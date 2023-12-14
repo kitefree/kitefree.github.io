@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="地球人的修練">
+<meta property="og:url" content="https://kitefree.github.io/page/10/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/page/10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/12/2021-05-12%20CCNA_12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/12/2021-05-12%20CCNA_12/" class="post-title-link" itemprop="url">CCNA_12</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-12 19:07:00" itemprop="dateCreated datePublished" datetime="2021-05-12T19:07:00+08:00">2021-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="12-Warm-Up-Packet-Tracer-and-IOS-Basic"><a href="#12-Warm-Up-Packet-Tracer-and-IOS-Basic" class="headerlink" title="12. Warm Up Packet Tracer and IOS Basic"></a>12. Warm Up Packet Tracer and IOS Basic</h2><p>IOS 是思科網路的系統名稱</p>
+<h3 id="Bring-Up-a-Device"><a href="#Bring-Up-a-Device" class="headerlink" title="Bring Up a Device"></a>Bring Up a Device</h3><p>Router Bootup Process</p>
+<ul>
+<li><ol>
+<li>Perform POST</li>
+</ol>
+<ul>
+<li>Power-on Self-test(POST) - 通電自檢</li>
+<li>對於硬件做基本檢測</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>Load Bootstrap</li>
+</ol>
+<ul>
+<li>當當於電腦的BIOS</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>Locate IOS</li>
+</ol>
+<ul>
+<li>啟動系統二種方法<ul>
+<li>啟動一個文件，存在於flash上，相當於本地硬盤一樣</li>
+<li>存取TFTP Server 上的文件進行啟動<ul>
+<li>跟無盤工作站概念很相似</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>Load IOS</li>
+</ol>
+<ul>
+<li>加載系統</li>
+<li>加載完過後，要加載配置文件</li>
+</ul>
+</li>
+<li><ol start="5">
+<li>Locate the Configuration File</li>
+</ol>
+<ul>
+<li>NVRAM</li>
+<li>TFTP Server</li>
+<li>Console</li>
+</ul>
+</li>
+<li><ol start="6">
+<li>Execute the Configuration File or enter “Setup” mode</li>
+</ol>
+</li>
+</ul>
+<p>NVRAM 斷電之後，儲存在裡面的資料不會流失</p>
+<p><img src="https://i.imgur.com/l5Up7Eq.png"></p>
+<h3 id="Different-Modes"><a href="#Different-Modes" class="headerlink" title="Different Modes"></a>Different Modes</h3><h4 id="USER-MODE"><a href="#USER-MODE" class="headerlink" title="USER MODE"></a>USER MODE</h4><p>show users<br>show version<br>無法進行配置</p>
+<h4 id="PRIVILEGED-MODE"><a href="#PRIVILEGED-MODE" class="headerlink" title="PRIVILEGED MODE"></a>PRIVILEGED MODE</h4><p>enable<br>也無法進行配置<br>?<br>接口地址、接口路由，在這邊也無法配置</p>
+<h4 id="CONFIGURE-MODE"><a href="#CONFIGURE-MODE" class="headerlink" title="CONFIGURE MODE"></a>CONFIGURE MODE</h4><p>指令<br>configure terminal<br>exit<br>或者打<br>config<br>t</p>
+<p>可以對系統配置進行修改<br>要配置接口就必須在 interface 模式以此類推…</p>
+<p><img src="https://i.imgur.com/LQZxGjS.png"></p>
+<p><img src="https://i.imgur.com/2wVngsm.png"></p>
+<p><img src="https://i.imgur.com/oJs1Xzw.png"></p>
+<h4 id="Viewing-Saving-and-Erasing-Configurations"><a href="#Viewing-Saving-and-Erasing-Configurations" class="headerlink" title="Viewing,Saving, and Erasing Configurations"></a>Viewing,Saving, and Erasing Configurations</h4><p>Running configuration<br>正在敲打配置命令時，是存在於RAM裡面的</p>
+<p>要經過<br>copy running-config startup-config<br>才會寫到NVRAM</p>
+<p>系統reboot時都是找Startup configuration</p>
+<p>系統上敲打wr 跟copy running-config 效果是一樣的</p>
+<p><img src="https://i.imgur.com/HN9aOVM.png"></p>
+<h4 id="Configuration-Register"><a href="#Configuration-Register" class="headerlink" title="Configuration Register"></a>Configuration Register</h4><p>IOS 要去找starup-config 是由configuration register 控制的<br>改完之後不會馬上生效<br>在這個模式要加上do 指令才能show</p>
+<p><img src="https://i.imgur.com/zVyonJg.png"></p>
+<h4 id="Boot-System"><a href="#Boot-System" class="headerlink" title="Boot System"></a>Boot System</h4><p>系統要從哪裡啟動</p>
+<ul>
+<li>本地硬碟</li>
+<li>TFTP</li>
+</ul>
+<p>可以先備份舊系統到別台服務器，以便還原<br>請操作練習<br><img src="https://i.imgur.com/PGq1cdw.png"></p>
+<h4 id="ROM-Monitor-ROMMON"><a href="#ROM-Monitor-ROMMON" class="headerlink" title="ROM Monitor(ROMMON)"></a>ROM Monitor(ROMMON)</h4><p>作業系統丟失時，比方說斷電導致IOS死掉，可以用ROM Monitor 進行recover</p>
+<p>圖中所列出的指令，記得大小寫是有差的。<br><img src="https://i.imgur.com/KeCQrbt.png"></p>
+<h4 id="Cisco-IOS-FILE-SYSTEM-IFS"><a href="#Cisco-IOS-FILE-SYSTEM-IFS" class="headerlink" title="Cisco IOS FILE SYSTEM(IFS)"></a>Cisco IOS FILE SYSTEM(IFS)</h4><ul>
+<li><p>dir</p>
+</li>
+<li><p>copy</p>
+</li>
+<li><p>show file</p>
+</li>
+<li><p>delete</p>
+</li>
+<li><p>erase</p>
+</li>
+<li><p>cd&#x2F;pwd</p>
+</li>
+<li><p>mkdir&#x2F;rmdir</p>
+</li>
+<li><p>ctrl + a</p>
+</li>
+<li><p>ctrl + e</p>
+</li>
+<li><p>ctrl + u</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/9qr0d0V.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">DRY、KISS、YAGNI三原則的理解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-06 11:47:00" itemprop="dateCreated datePublished" datetime="2021-05-06T11:47:00+08:00">2021-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>軟件三原則的個人理解<br>在軟件的設計當中前人已經總結了許多的設計原則和設計模式。例如SOLID，GRASP設計原則，這些原則都是基於面向對象設計總結而來的。而GOF23是基於許多常見的場景總結出了一套設計模式，在我們遇到類似的場景，都可以套用設計模式。而今天所講到的軟件三原則是適用於在軟件設計的各個層面的。它不僅適用於面向對象的設計，也適用於面向過程的程序設計；不僅適用於類的設計，也適用於模塊、子系統的設計。就連在項目架構運維部署中也適用於這一套簡單的法則。</p>
+<h2 id="DRY-Don’t-Repeat-Yourself"><a href="#DRY-Don’t-Repeat-Yourself" class="headerlink" title="DRY - Don’t Repeat Yourself"></a>DRY - Don’t Repeat Yourself</h2><p>第一條準則是千萬不要重複你自身。盡量在項目中減少重複的代碼行，重複的方法，重複的模塊。其實許多設計原則和模式最本質的思想都是在消除重複。&#x3D;&#x3D;我們經常提起的重用性和可維護性其實是基於減少重複這一簡單的思想&#x3D;&#x3D;。為什麼現在微服務盛行呢？正是因為將系統中的服務進行抽取的話，便減少了重複。重複冗餘在維護代碼的時候將是非常困難的。 DRY意味著系統內的每一個部件都應該是唯一的並且是不模糊的。我們可以&#x3D;&#x3D;通過應用單一職責接口隔離等原則盡量拆分系統，模塊，類，方法·。使其每一個部件都是職責明確的並且可重用的。&#x3D;&#x3D;</p>
+<h2 id="KISS-Keep-It-Simple-Stupid"><a href="#KISS-Keep-It-Simple-Stupid" class="headerlink" title="KISS - Keep It Simple &amp; Stupid"></a>KISS - Keep It Simple &amp; Stupid</h2><p>第二條準則是保持簡單易懂。從小到幾行代碼的寫法大到整個系統的架構我們都應該保持簡單易懂。高手高就高在可以將復雜的東西“簡單”的實現出來。剛入行的時候，我總喜歡用三目運算符將復雜的邏輯用一句冗長的代碼行寫出來。後面才發現這是非常愚蠢的。到了重構或者需求變更的時候，連我自己寫的代碼我都看著非常費勁難以下手。所以我們應該致力於代碼的可理解性。降低複雜度也意味著維護變得簡單。 &#x3D;&#x3D;Martin Flower在《重構》中有一句經典的話：”任何一個傻瓜都能寫出計算機可以理解的程序，只有寫出人類容易理解的程序才是優秀的程序員。”&#x3D;&#x3D; 其實不光是程序，這個原則也可以延伸到產品的設計，業務的設計，項目結構的設計上。</p>
+<h2 id="YAGNI-You-Ain’t-Gonna-Need-It"><a href="#YAGNI-You-Ain’t-Gonna-Need-It" class="headerlink" title="YAGNI - You Ain’t Gonna Need It"></a>YAGNI - You Ain’t Gonna Need It</h2><p>&#x3D;&#x3D;第三條準則是你將不會需要它。千萬不要進行過度設計。&#x3D;&#x3D; 我們經常會在開發當中盡可能的迎合未來可能的需求。而為了迎合某些產生概率極低的需求而設計的成本是非常高的，這種過度設計的收益非常低。可能你深思熟慮的設計花了不少時間成本，卻在未來的兩三年內這個設計卻完全沒有派上用場。一些設計是否必要，更多的應該基於當前的情況。而不是為了應對未來的各種變化，畫蛇添足的設計。如果淘寶一開始就往日均交易上億的情況進行設計的話，那麼可能就不會有今天的淘寶了。因為創業公司的時間是非常寶貴的，比其他公司早一步退出新的服務就能搶占先機。並不是說淘寶不需要考慮以後交易量暴增的情況，而是不應該以當前日均交易才幾萬的情況下去設計編碼日均交易上億的項目。過度設計往往會延緩開發迭代的速度。</p>
+<blockquote>
+<p>YAGNI 原則想到想當在讀易讀程式碼之美學時，也有講到類似的概念，主要是釐清需求範圍跟可能發生的狀況，將會大大減少不必要的開發成本與過度開發可能沒用到的功能</p>
+</blockquote>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d65da856fb9a06ac93cdf5a#heading-3">DRY、KISS、YAGNI三原则的理解</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/03/2021-05-03%20CCNA_10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/03/2021-05-03%20CCNA_10/" class="post-title-link" itemprop="url">CCNA_10</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-03 17:27:00" itemprop="dateCreated datePublished" datetime="2021-05-03T17:27:00+08:00">2021-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>220</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="9-Subnetting-2"><a href="#9-Subnetting-2" class="headerlink" title="9. Subnetting 2"></a>9. Subnetting 2</h2><h3 id="練習題"><a href="#練習題" class="headerlink" title="練習題"></a>練習題</h3><p><img src="https://i.imgur.com/PQgu1YC.png"></p>
+<p><img src="https://i.imgur.com/HcnW4A3.png"></p>
+<p><img src="https://i.imgur.com/2H8P5Mn.png"></p>
+<p><img src="https://i.imgur.com/xxlX41n.png"></p>
+<p><img src="https://i.imgur.com/VgimToH.png"></p>
+<p><img src="https://i.imgur.com/mTtqxA6.png"></p>
+<p><img src="https://i.imgur.com/RgolIpi.png"></p>
+<p><img src="https://i.imgur.com/lyIvKh1.png"></p>
+<p><img src="https://i.imgur.com/zd6PIwD.png"></p>
+<p><img src="https://i.imgur.com/XlOhugE.png"></p>
+<h3 id="VLSM-Variable-Length-Subnet-Mask"><a href="#VLSM-Variable-Length-Subnet-Mask" class="headerlink" title="VLSM (Variable Length Subnet Mask)"></a>VLSM (Variable Length Subnet Mask)</h3><p>借用host number 來當 sunbet number , 這個行為叫 VLSM<br>mechanism - 機制<br>CIDR 只是一種表式的格式(方式)</p>
+<p>路由器支持VLSM 就是在表達可以配置不同長度的子網路遮照<br>如果這路由器每個PORT都要統一的 &#x2F;24 &#x2F;24 &#x2F;24 的話，代表是不支持VSLM的<br><img src="https://i.imgur.com/cq0f45P.png"></p>
+<h3 id="Summarization"><a href="#Summarization" class="headerlink" title="Summarization"></a>Summarization</h3><p>把小的子網路合成一個大網路</p>
+<p><img src="https://i.imgur.com/7svzUMJ.png"></p>
+<p><img src="https://i.imgur.com/9oUsh3n.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/02/2021-05-02%20CCNA_11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/02/2021-05-02%20CCNA_11/" class="post-title-link" itemprop="url">CCNA_11</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-02 17:22:00" itemprop="dateCreated datePublished" datetime="2021-05-02T17:22:00+08:00">2021-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="11-Physical-Layer"><a href="#11-Physical-Layer" class="headerlink" title="11. Physical Layer"></a>11. Physical Layer</h2><h3 id="物理層拓璞"><a href="#物理層拓璞" class="headerlink" title="物理層拓璞"></a>物理層拓璞</h3><p><img src="https://i.imgur.com/u9mPd2p.png"></p>
+<h3 id="Network-Cabling-網路線"><a href="#Network-Cabling-網路線" class="headerlink" title="Network Cabling 網路線"></a>Network Cabling 網路線</h3><p>只要可以傳播數據的我們都可以稱為是網線</p>
+<p><img src="https://i.imgur.com/cwwmAnQ.png"></p>
+<h3 id="Ethernet-Cabling"><a href="#Ethernet-Cabling" class="headerlink" title="Ethernet Cabling"></a>Ethernet Cabling</h3><p>最常見的為雙絞線<br><img src="https://i.imgur.com/NoGy76d.png"></p>
+<h3 id="Twisted-Pair-Cable"><a href="#Twisted-Pair-Cable" class="headerlink" title="Twisted Pair Cable"></a>Twisted Pair Cable</h3><ul>
+<li>UTP</li>
+<li>STP<ul>
+<li>減少電磁波的干擾</li>
+</ul>
+</li>
+</ul>
+<p>STP 相對貴一些<br>但是現在的UTP 其實不太影響，除非是很特殊的環境</p>
+<p><img src="https://i.imgur.com/SAODf43.png"></p>
+<h3 id="UTP-Categories"><a href="#UTP-Categories" class="headerlink" title="UTP Categories"></a>UTP Categories</h3><p>CAT 是指Categories<br><img src="https://i.imgur.com/OyKQUb6.png"></p>
+<h3 id="UTP-Connector"><a href="#UTP-Connector" class="headerlink" title="UTP Connector"></a>UTP Connector</h3><p>凹的是JACK<br>凸的是PLUG<br><img src="https://i.imgur.com/1qQEKCM.png"></p>
+<h3 id="RJ-45-接線標準"><a href="#RJ-45-接線標準" class="headerlink" title="RJ-45 接線標準"></a>RJ-45 接線標準</h3><p><img src="https://i.imgur.com/JsWt4mG.png"><br>現在常用的是T568B<br>白橙橙白綠藍白藍綠白棕棕<br>RJ-11 電話線</p>
+<h3 id="Straight-Through-Cable"><a href="#Straight-Through-Cable" class="headerlink" title="Straight-Through Cable"></a>Straight-Through Cable</h3><p>不同種類的設備的連線</p>
+<ul>
+<li>Host to Switch</li>
+<li>Router to Switch</li>
+<li>Host to Router</li>
+</ul>
+<h3 id="Crossover-Cable"><a href="#Crossover-Cable" class="headerlink" title="Crossover Cable"></a>Crossover Cable</h3><p>同種設備的連線</p>
+<ul>
+<li>Host to Host</li>
+<li>Switch to Switch </li>
+<li>Router to Router</li>
+</ul>
+<p>不過目前是可以直接使用Straight-Through Cable ,系統偵測如果線序是不一致的，會進行跳線轉換<br>Automatic Medium-Dependent Interface Crossover(Auto-MDIX)<br><img src="https://i.imgur.com/mXvVaq7.png"></p>
+<h3 id="Rolled-Cable"><a href="#Rolled-Cable" class="headerlink" title="Rolled Cable"></a>Rolled Cable</h3><p>Console cable 就是用這種線序<br><img src="https://i.imgur.com/AlcnAUf.png"></p>
+<h3 id="Fiber-Optic"><a href="#Fiber-Optic" class="headerlink" title="Fiber Optic"></a>Fiber Optic</h3><ul>
+<li>Single-mode 單模<ul>
+<li>遠距離傳輸</li>
+<li>較貴</li>
+</ul>
+</li>
+<li>Multi-mode 多模<ul>
+<li>近距離傳輸</li>
+</ul>
+</li>
+</ul>
+<p>光纖使用的光<br>請不要用眼睛直接看裡面的光</p>
+<ul>
+<li>LED</li>
+<li>激光<ul>
+<li>激光對視網模會造成損害</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/1T6GPQT.jpg"></p>
+<h3 id="OM-Optical-Multimode"><a href="#OM-Optical-Multimode" class="headerlink" title="OM (Optical Multimode)"></a>OM (Optical Multimode)</h3><p>大部分會使用OM3</p>
+<ul>
+<li>OM1</li>
+<li>OM2</li>
+<li>OM3</li>
+<li>OM4<br><img src="https://i.imgur.com/YB3GL9Z.png"><br><img src="https://i.imgur.com/OKsNXuq.png"></li>
+</ul>
+<h3 id="Fiber-Connector"><a href="#Fiber-Connector" class="headerlink" title="Fiber Connector"></a>Fiber Connector</h3><p>光纖的接口叫connect<br>最常見的是SC、LC<br>比較舊的設備是用SC<br>現在比較常用的是LC<br><img src="https://i.imgur.com/TLXpuJ3.png"><br><img src="https://i.imgur.com/1RbmFrt.png"></p>
+<h3 id="SFP-Transceiver"><a href="#SFP-Transceiver" class="headerlink" title="SFP Transceiver"></a>SFP Transceiver</h3><p>當有了線有了頭，還要一個東西就是這個，這個東西叫模塊<br>買交接機的時候要注意一下後面是固定的RJ-45接口呢還是空的位置讓你插<br>SFP 也可以拿來接RJ-45的哦!!<br><img src="https://i.imgur.com/1Lub1X1.png"></p>
+<h3 id="Transceiver-Code"><a href="#Transceiver-Code" class="headerlink" title="Transceiver Code"></a>Transceiver Code</h3><p>太多種了，只講以下兩種</p>
+<ul>
+<li>SR stnads for Short Reach(10GBase-SR)<ul>
+<li>Short Range</li>
+<li>Almost always multi-mode (多模)</li>
+</ul>
+</li>
+<li>LR stands for Long Reach(10GBase-LR)<ul>
+<li>Long Range</li>
+<li>Either multi-mode or single-mode(單模)</li>
+</ul>
+</li>
+</ul>
+<p>當在買模塊的時候，要考慮線材是多模的還是單模的，再去挑對應的模塊代號</p>
+<p><img src="https://i.imgur.com/58n2Igo.png"></p>
+<h3 id="Simple-HalfDuplex-Duplex"><a href="#Simple-HalfDuplex-Duplex" class="headerlink" title="Simple ,HalfDuplex ,Duplex"></a>Simple ,HalfDuplex ,Duplex</h3><ul>
+<li>單工<ul>
+<li>單行道</li>
+<li>只能單向傳輸</li>
+</ul>
+</li>
+<li>半雙工<ul>
+<li>一個時間點只允一個方向傳輸</li>
+</ul>
+</li>
+<li>全雙工<ul>
+<li>雙向道</li>
+<li>同一個時間點可以同時允許雙向傳輸</li>
+</ul>
+</li>
+</ul>
+<p>如果兩個交換機 之間是 1 Gbps &#x2F;Full Duplex<br>那我們在講吞吐量的時候會說有2gbps，但是一樣每一個方向最多是1g</p>
+<p><img src="https://i.imgur.com/hVtzUOF.png"></p>
+<h3 id="Simplex-Duplex-Fiber-Optic-Cables"><a href="#Simplex-Duplex-Fiber-Optic-Cables" class="headerlink" title="Simplex &amp; Duplex Fiber Optic Cables"></a>Simplex &amp; Duplex Fiber Optic Cables</h3><p>Tx<br>Rx</p>
+<p><img src="https://i.imgur.com/pLeHZmW.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/30/2021-04-30%20CCNA_09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/30/2021-04-30%20CCNA_09/" class="post-title-link" itemprop="url">CCNA_09</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-30 19:35:00" itemprop="dateCreated datePublished" datetime="2021-04-30T19:35:00+08:00">2021-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:55:47" itemprop="dateModified" datetime="2021-10-01T15:55:47+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>872</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="8-Subnetting-1"><a href="#8-Subnetting-1" class="headerlink" title="8. Subnetting 1"></a>8. Subnetting 1</h2><p>Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍</p>
+<p>為什麼要劃分?</p>
+<ul>
+<li>More Secure<ul>
+<li>網路安全<br>HR + IT + Sale 如果都在同一個網域裡，就可以直接訪問IT，顯然不安全…</li>
+</ul>
+</li>
+<li>Easier to Manager<ul>
+<li>好管理<ul>
+<li>比如針對IT部門做決策政策管理，就可以直接找同網段的IP即可<br><img src="https://i.imgur.com/bF3RB7C.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Save IP Address<ul>
+<li>節省地址空間<br>以下範例說明了浪費，Class C 2^8 - 2 個地址可用<ul>
+<li>192.168.10.0 HR</li>
+<li>192.168.20.0 IT</li>
+<li>192.168.30.0 Sale</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Why-you-need-subnetting"><a href="#Why-you-need-subnetting" class="headerlink" title="Why you need subnetting"></a>Why you need subnetting</h2><p>把一個網段劃分成若干網段<br><img src="https://i.imgur.com/WaYd8ge.png" alt="image"></p>
+<h2 id="How-to-create-subnets"><a href="#How-to-create-subnets" class="headerlink" title="How to create subnets"></a>How to create subnets</h2><p><img src="https://i.imgur.com/yFWbRUY.png" alt="image"></p>
+<p>Classful 沒進行子網劃分稱為有類<br>Classless 進擁子網劃分稱為無類<br>複習一下<br>Class A 8 + 24<br>Class B 16 + 16<br>Class C 24 + 8</p>
+<h2 id="Subnet-Mask"><a href="#Subnet-Mask" class="headerlink" title="Subnet Mask"></a>Subnet Mask</h2><p>給你這3個ip 是無法判斷是否為同網段</p>
+<ul>
+<li>192.168.1.1</li>
+<li>192.168.1.129</li>
+<li>192.168.1.254</li>
+</ul>
+<p>只有IP Address + Subnet Mask 才能判斷是否為同一個網段</p>
+<p><img src="https://i.imgur.com/FIisjlB.png" alt="image"></p>
+<p><img src="https://i.imgur.com/ZxUBMIy.png" alt="image"></p>
+<h2 id="Classless-Inter-Domain-Routing-CIDR"><a href="#Classless-Inter-Domain-Routing-CIDR" class="headerlink" title="Classless Inter-Domain Routing (CIDR)"></a>Classless Inter-Domain Routing (CIDR)</h2><p><img src="https://i.imgur.com/hANy2d0.png" alt="image"></p>
+<p>Subnet Mask<br>不能迅速告訴我借了多少bit給network，所以可以用CIDR<br>CIDR<br>又稱為Slash Notation<br>Prefix<br>&#x2F;8 代表有8個網路位<br>以&#x2F;26為例</p>
+<h2 id="Subnet-Mask-with-CIDR"><a href="#Subnet-Mask-with-CIDR" class="headerlink" title="Subnet Mask with CIDR"></a>Subnet Mask with CIDR</h2><p>思科設備大部分是以MASK 進行設定，其它廠商有時候會以CIDR進行設定<br><img src="https://i.imgur.com/5ED86zA.png" alt="image"></p>
+<ul>
+<li>IP&#x2F;32<ul>
+<li>代表是一個主機</li>
+</ul>
+</li>
+<li>IP&#x2F;30<ul>
+<li>2^-2 &#x3D; 2</li>
+<li>最小網段</li>
+<li>如何確認另一個IP是哪一個呢?<ul>
+<li>Tips</li>
+<li>the lower IP is always odd,and the higher is always even</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IP&#x2F;31<ul>
+<li>是理論上最小的網段</li>
+<li>2個HOST彼此之間溝通，不需要再有頭跟尾的IP需求(網路、廣播)</li>
+<li>能否設定IP&#x2F;31 要看硬體設備是否有支持這樣的作法<br><img src="https://i.imgur.com/iiqD35a.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+<h2 id="Subnet-Zero"><a href="#Subnet-Zero" class="headerlink" title="Subnet Zero"></a>Subnet Zero</h2><p>思科設備在版本12.x 以前 subnet zero 是不允許使用的</p>
+<p><img src="https://i.imgur.com/vJD8OrS.png" alt="image"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/30/2021-04-30%20Ubuntu%20SSH%20Server%20%E5%AE%89%E8%A3%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/30/2021-04-30%20Ubuntu%20SSH%20Server%20%E5%AE%89%E8%A3%9D/" class="post-title-link" itemprop="url">Ubuntu SSH Server 安裝</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-30 07:24:00" itemprop="dateCreated datePublished" datetime="2021-04-30T07:24:00+08:00">2021-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:44:44" itemprop="dateModified" datetime="2021-10-01T15:44:44+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>147</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>開啟 Terminal</p>
+</li>
+<li><p>安裝openSSH Server</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y openssh-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>確認SSH服務</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安裝網路指令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install net-tools</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查詢IP</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 PuTTY or ZOC 軟體連線</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/28/2021-04-28%20CCNA_08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/28/2021-04-28%20CCNA_08/" class="post-title-link" itemprop="url">CCNA_08</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-28 20:07:00" itemprop="dateCreated datePublished" datetime="2021-04-28T20:07:00+08:00">2021-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:42:32" itemprop="dateModified" datetime="2021-10-01T15:42:32+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>483</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="8-IP-Address"><a href="#8-IP-Address" class="headerlink" title="8. IP Address"></a>8. IP Address</h2><h3 id="Hierarchical-IP-Addressing"><a href="#Hierarchical-IP-Addressing" class="headerlink" title="Hierarchical IP Addressing"></a>Hierarchical IP Addressing</h3><p>MAC address is <strong>flat</strong> or <strong>non-hierarchical</strong> schema</p>
+<p>如果用MAC 地址當作互相聯基礎，這樣每個node都必須儲存所有node資訊，搜尋效率也比較慢</p>
+<p><img src="https://i.imgur.com/XGPcDLz.png" alt="image"></p>
+<h3 id="IP-Address-Class"><a href="#IP-Address-Class" class="headerlink" title="IP Address Class"></a>IP Address Class</h3><p><img src="https://i.imgur.com/SM18cie.png" alt="image"></p>
+<p>IP Address &#x3D; Network Address + Node(host) Address<br>網段 + 每一台電腦的主機地址</p>
+<p>Class A 與 Class C 比較說明</p>
+<h3 id="Identify-the-Class"><a href="#Identify-the-Class" class="headerlink" title="Identify the Class"></a>Identify the Class</h3><p><img src="https://i.imgur.com/78eaxoN.png" alt="image"></p>
+<ul>
+<li>127.0.0.1<ul>
+<li>指自己的電腦</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/Q2EtNoz.png" alt="image"><br><img src="https://i.imgur.com/5ZZN5L1.png" alt="image"><br><img src="https://i.imgur.com/wmkBDrX.png" alt="image"></p>
+<p><img src="https://i.imgur.com/uoizwQV.png" alt="image"></p>
+<p>私有不可以在互聯網路由<br>NAT<br>公有轉私有<br>私有轉公有</p>
+<h3 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h3><p>2.5 層<br>要Ping 地址，會經過學習.<br>如圖廣播一樣<br>確認了對方的MAC 之後，就會記錄起來了，之後再進行通訊</p>
+<p><img src="https://i.imgur.com/5jY6pYl.png" alt="image"></p>
+<p><img src="https://i.imgur.com/qum2Hno.png" alt="image"><br><img src="https://i.imgur.com/XO3MBLu.png" alt="image"><br><img src="https://i.imgur.com/YHcAUF8.png" alt="image"></p>
+<h3 id="Layer-2-Broadcast"><a href="#Layer-2-Broadcast" class="headerlink" title="Layer 2 Broadcast"></a>Layer 2 Broadcast</h3><p>如何得知這個封包是廣播封包<br>呢?<br>確認目標地址</p>
+<ul>
+<li>ff:ff:ff:ff:ff:ff<br><img src="https://i.imgur.com/ZrFQ6jb.png" alt="image"><br><img src="https://i.imgur.com/xUM8KfL.png" alt="image"></li>
+</ul>
+<h3 id="Layer-3-Broadcast"><a href="#Layer-3-Broadcast" class="headerlink" title="Layer 3 Broadcast"></a>Layer 3 Broadcast</h3><p>當ping 192.168.1.255 時，在第二層MAC 目標地址會自動變成 ff:ff:ff:ff:ff:ff<br>交換機(L2)收到的時候，才會知道這個是廣播封包。<br><img src="https://i.imgur.com/JpIiaoF.png" alt="image"></p>
+<h3 id="Unicast"><a href="#Unicast" class="headerlink" title="Unicast"></a>Unicast</h3><p><img src="https://i.imgur.com/AwTJP2w.png" alt="image"></p>
+<h2 id="Multicast"><a href="#Multicast" class="headerlink" title="Multicast"></a>Multicast</h2><p><img src="https://i.imgur.com/Ye53ZWp.png" alt="image"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/27/2021-04-27%20CCNA_04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/27/2021-04-27%20CCNA_04/" class="post-title-link" itemprop="url">CCNA_04</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-27 16:22:00" itemprop="dateCreated datePublished" datetime="2021-04-27T16:22:00+08:00">2021-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:55:39" itemprop="dateModified" datetime="2021-10-01T15:55:39+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>6 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="4-TCP-IP-Protocol-Suite-2"><a href="#4-TCP-IP-Protocol-Suite-2" class="headerlink" title="4. TCP IP Protocol Suite 2"></a>4. TCP IP Protocol Suite 2</h2><h3 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h3><p>1969就被開發出來<br>主要用途在用於遠程登入<br>目前很少人用這個方式登入<br><img src="https://i.imgur.com/2a6baDO.png" alt="image"></p>
+<p>Telnet 是不安全的<br>wireshark 進行網路抓包<br>使用Telnet 連線，打的帳密可以在wireshark裡面看得很清楚</p>
+<h3 id="SSH-Secure-Shell-安全外殼協定"><a href="#SSH-Secure-Shell-安全外殼協定" class="headerlink" title="SSH(Secure Shell) - 安全外殼協定"></a>SSH(Secure Shell) - 安全外殼協定</h3><p><img src="https://i.imgur.com/VM6qYG6.png" alt="image"></p>
+<ul>
+<li><a href="/ib3MOXKETcyR9gzPxuQkiA">Ubuntu SSH Server 安裝</a></li>
+</ul>
+<h3 id="FTP-File-Transfer-Protocol-檔案傳輸協定"><a href="#FTP-File-Transfer-Protocol-檔案傳輸協定" class="headerlink" title="FTP(File Transfer Protocol) - 檔案傳輸協定"></a>FTP(File Transfer Protocol) - 檔案傳輸協定</h3><p><img src="https://i.imgur.com/Tyma9Qr.png" alt="image"></p>
+<ul>
+<li>指令</li>
+</ul>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ftp 1.1.1.1</span><br><span class="line">dir</span><br><span class="line">get filename</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+
+<h4 id="FTP-架設"><a href="#FTP-架設" class="headerlink" title="FTP 架設"></a>FTP 架設</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@kite/Ubuntu_FTP_Install">Ubuntu FTP Server 安裝</a></li>
+</ul>
+<h3 id="TFTP-Trivial-File-Transfer-Protocol-簡單檔案傳輸協定"><a href="#TFTP-Trivial-File-Transfer-Protocol-簡單檔案傳輸協定" class="headerlink" title="TFTP(Trivial File Transfer Protocol) - 簡單檔案傳輸協定"></a>TFTP(Trivial File Transfer Protocol) - 簡單檔案傳輸協定</h3><p><img src="https://i.imgur.com/5c5aYgL.png" alt="image"><br><img src="https://i.imgur.com/cN7mQPX.png" alt="image"></p>
+<h4 id="TFTP-架設"><a href="#TFTP-架設" class="headerlink" title="TFTP 架設"></a>TFTP 架設</h4><p>FTP 可以看到目錄<br>TFTP 看不到目錄，要提前知道檔名才能下載</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@kite/Ubuntu_TFTP_Install">TFTP 架設</a></li>
+</ul>
+<h3 id="TFTP與FTP差異"><a href="#TFTP與FTP差異" class="headerlink" title="TFTP與FTP差異"></a>TFTP與FTP差異</h3><p><img src="https://i.imgur.com/NAx1NFY.png" alt="image"></p>
+<h3 id="SNMP-Simple-Network-Management-Protocol-簡易網路管理通訊協定"><a href="#SNMP-Simple-Network-Management-Protocol-簡易網路管理通訊協定" class="headerlink" title="SNMP(Simple Network Management Protocol) - 簡易網路管理通訊協定"></a>SNMP(Simple Network Management Protocol) - 簡易網路管理通訊協定</h3><h4 id="SNMP管理的網路主要由3個元件所組成"><a href="#SNMP管理的網路主要由3個元件所組成" class="headerlink" title="SNMP管理的網路主要由3個元件所組成"></a>SNMP管理的網路主要由3個元件所組成</h4><ol>
+<li>NMS(Network Management System) - 網路管理系統<br> 為安裝於管理端(Manager)的軟體，用以向代理者查詢被管理裝置的相關資訊。</li>
+<li>Managed Device - 被管理裝置<br> 是指網路中被監控的設備節點。</li>
+<li>Agent - 代理者<br> 為安裝於被管理裝置的軟體，負責監控及回傳被監控設備的相關資訊。</li>
+</ol>
+<p><img src="https://i.imgur.com/c6dr7P7.png" alt="image"><br>可以監控網路設備、服務器、應用程序、防火牆…等</p>
+<h4 id="SNMP-概念"><a href="#SNMP-概念" class="headerlink" title="SNMP 概念"></a>SNMP 概念</h4><p><img src="https://i.imgur.com/3HIITtu.png" alt="image"></p>
+<p><code>監控的方式</code></p>
+<ul>
+<li>polling</li>
+<li>SNMP Traps</li>
+</ul>
+<p><strong>SNMP所定義的五種Manager與Agent溝通指令</strong><br><img src="https://i.imgur.com/YWIiFo5.png" alt="image"></p>
+<h4 id="MIB-Management-Information-Base-管理資訊資料庫"><a href="#MIB-Management-Information-Base-管理資訊資料庫" class="headerlink" title="MIB(Management Information Base) - 管理資訊資料庫"></a>MIB(Management Information Base) - 管理資訊資料庫</h4><p>是描述被管理物件的資料結構。SNMP 被設計成可以管理各種網路設備，造成它所管理的訊息也隨著設備有成千上萬種，而每種網路或設備對自己資料的表達方式也不會相同</p>
+<p>為了讓這些資訊納入同一套管理系統，就必須採用一套抽象的語法，來描述所有類型的訊息，因此，SNMP 定義了『管理訊息資料庫』（MIB），以階層式來描述所有被管理物件的屬性，並稱這些被管理訊息為『SNMP 物件』（SNMP Object）。</p>
+<p>MIB 檔案是 SNMP 管理器可以詢問代理程式的問題集合。如 MIB 中所定義，代理程式在本地收集這些資料並將其存儲。</p>
+<p>SNMP Agent是以變數方式呈現被管理裝置的相關資訊，每個變數皆有其唯一的物件識別碼(Object Identifier; OID)，而OID是以階層方式被描述於管理資訊庫(Management Information Base; MIB)，例如OID為1.3.6.1.4.1.9代表Cisco公司。</p>
+<p><img src="https://i.imgur.com/GgowT9u.jpg" alt="image"></p>
+<h4 id="知名軟體-solarwinds-監控實際狀況"><a href="#知名軟體-solarwinds-監控實際狀況" class="headerlink" title="知名軟體 solarwinds 監控實際狀況"></a>知名軟體 solarwinds 監控實際狀況</h4><p><img src="https://i.imgur.com/UDB2vlZ.png" alt="image"></p>
+<h4 id="SNMP-架設"><a href="#SNMP-架設" class="headerlink" title="SNMP 架設"></a>SNMP 架設</h4><p><a target="_blank" rel="noopener" href="https://www.netadmin.com.tw/netadmin/zh-tw/technology/38DA8ABF30B448EC985421D5D23D1233">https://www.netadmin.com.tw/netadmin/zh-tw/technology/38DA8ABF30B448EC985421D5D23D1233</a></p>
+<p>自刻專案</p>
+<p><a target="_blank" rel="noopener" href="http://ir.hust.edu.tw/bitstream/310993100/2600/1/%E7%B6%B2%E8%B7%AF%E7%AE%A1%E7%90%86%E4%B9%8BSNMP%E5%B0%88%E9%A1%8C%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf">http://ir.hust.edu.tw/bitstream/310993100/2600/1/%E7%B6%B2%E8%B7%AF%E7%AE%A1%E7%90%86%E4%B9%8BSNMP%E5%B0%88%E9%A1%8C%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf</a></p>
+<h4 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.cc.ntu.edu.tw/chinese/epaper/0047/20181220_4707.html">淺談簡單網路管理協定(SNMP)</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tsnien.idv.tw/Internet_WebBook/chap16/16-7%20MIB%20%E8%A8%8A%E6%81%AF%E8%B3%87%E6%96%99%E5%BA%AB.html">TCP&#x2F;IP 協定與 Internet 網路：第十六章 SNMP 網路管理協定</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.netadmin.com.tw/netadmin/zh-tw/technology/38DA8ABF30B448EC985421D5D23D1233">以SNMP即時監控網站伺服器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2IXP0TkwNJU">How SNMP Works - a quick guide</a></li>
+</ul>
+<h3 id="DNS-Domain-Name-System-網域名稱系統"><a href="#DNS-Domain-Name-System-網域名稱系統" class="headerlink" title="DNS(Domain Name System) - 網域名稱系統"></a>DNS(Domain Name System) - 網域名稱系統</h3><p>ROOT-domain</p>
+<ul>
+<li>Top-Level<ul>
+<li>edu</li>
+<li>gov</li>
+<li>com</li>
+<li>net</li>
+</ul>
+</li>
+<li>Second-levl<ul>
+<li>nsu</li>
+<li>mit</li>
+<li>google</li>
+<li>att</li>
+</ul>
+</li>
+</ul>
+<p>目前root domain 有13個server<br>一旦root 出問題了，大家就斷網啦<br><a target="_blank" rel="noopener" href="http://www.root-servers.org/">http://www.root-servers.org/</a></p>
+<p><img src="https://i.imgur.com/eI53qx5.png" alt="image"><br>Resolves hostnames</p>
+<ul>
+<li>A record</li>
+<li>PTR record</li>
+</ul>
+<h4 id="Query-Difference"><a href="#Query-Difference" class="headerlink" title="Query Difference"></a>Query Difference</h4><p><img src="https://i.imgur.com/nVi4DIF.png" alt="image"></p>
+<ul>
+<li>Recursive</li>
+<li>Lterative</li>
+</ul>
+<h4 id="實際使用是用-Recursive-還是-Ilterative-呢"><a href="#實際使用是用-Recursive-還是-Ilterative-呢" class="headerlink" title="實際使用是用 Recursive 還是 Ilterative 呢?"></a>實際使用是用 Recursive 還是 Ilterative 呢?</h4><p><img src="https://i.imgur.com/H30mj8P.png" alt="image"></p>
+<p>DNS resolver 右邊是 Lterative<br>DNS resolver 左邊是 Recursive</p>
+<h4 id="實驗"><a href="#實驗" class="headerlink" title="實驗"></a>實驗</h4><p><img src="https://i.imgur.com/NxAqLU3.png" alt="image"></p>
+<h4 id="DNS-架設"><a href="#DNS-架設" class="headerlink" title="DNS 架設"></a>DNS 架設</h4><h4 id="相關文章"><a href="#相關文章" class="headerlink" title="相關文章"></a>相關文章</h4><ul>
+<li><a href="/DIxl6euWSj-1TiPvB0NTaQ">DNS(Domain Name System) - 網域名稱系統</a></li>
+</ul>
+<h3 id="HTTP-與-HTTPS"><a href="#HTTP-與-HTTPS" class="headerlink" title="HTTP 與 HTTPS"></a>HTTP 與 HTTPS</h3><p><img src="https://i.imgur.com/fRM9Esy.png" alt="image"></p>
+<h4 id="HTTPS-架設"><a href="#HTTPS-架設" class="headerlink" title="HTTPS 架設"></a>HTTPS 架設</h4><h3 id="NTP-Network-Time-Protocol-網路時間協定"><a href="#NTP-Network-Time-Protocol-網路時間協定" class="headerlink" title="NTP(Network Time Protocol) - 網路時間協定"></a>NTP(Network Time Protocol) - 網路時間協定</h3><h4 id="統一時間的重要性"><a href="#統一時間的重要性" class="headerlink" title="統一時間的重要性"></a>統一時間的重要性</h4><ul>
+<li>log 檢查，時間不對了，就無法追溯問題</li>
+<li>證書的時間，證書是用來加密的，設備與設備之間的通訊利用證書來加密，設備和設備之間時間差不可以大於15分鐘，一旦大於15分鐘，通訊就會失敗</li>
+</ul>
+<h4 id="同步機制"><a href="#同步機制" class="headerlink" title="同步機制"></a>同步機制</h4><p><img src="https://i.imgur.com/sWGSbgr.png" alt="image"><br>比如NTP Server有一條天線，接去到屋頂，使用GPS方式與衛星同步時間<br>比如網路設備與服務連結到NTP SERVER再進行同步<br>比如說核心交換機或區域的伺服器再上一層進行同步<br>達到一級一級的同步(SYNC)<br><em>註：stratum - 層</em></p>
+<h4 id="同步的時間源頭種類"><a href="#同步的時間源頭種類" class="headerlink" title="同步的時間源頭種類"></a>同步的時間源頭種類</h4><ul>
+<li>CDMA&#x2F;GSM</li>
+<li>GPS</li>
+<li>Radio Wave<br>…<br>商業常見的是使用GPS</li>
+</ul>
+<h4 id="NTP-Server-架設"><a href="#NTP-Server-架設" class="headerlink" title="NTP Server 架設"></a>NTP Server 架設</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://slashview.com/archive2013/20131219.html">http://slashview.com/archive2013/20131219.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tquark.com.tw/zh_tw/Download/NTPServer%E6%9E%B6%E8%A8%AD.pdf">http://www.tquark.com.tw/zh_tw/Download/NTPServer%E6%9E%B6%E8%A8%AD.pdf</a></li>
+</ul>
+<h3 id="DHCP-Dynamic-Host-Configuration-Protocol-動態主機設定協定"><a href="#DHCP-Dynamic-Host-Configuration-Protocol-動態主機設定協定" class="headerlink" title="DHCP(Dynamic Host Configuration Protocol) - 動態主機設定協定"></a>DHCP(Dynamic Host Configuration Protocol) - 動態主機設定協定</h3><h4 id="BootP"><a href="#BootP" class="headerlink" title="BootP"></a>BootP</h4><ul>
+<li>DHCP 前身</li>
+<li>host’s hardware address must be entered <strong>manually</strong> in a BootP table</li>
+</ul>
+<h4 id="DHCP-主要功能"><a href="#DHCP-主要功能" class="headerlink" title="DHCP 主要功能"></a>DHCP 主要功能</h4><p>可以減少用戶端手動設定 IP 位址的麻煩，並且減少手動設定發生錯誤的機率，又可以節省 IP 位址的使用量。</p>
+<ul>
+<li>提供IP位置</li>
+<li>Subnet mask - 子網路遮罩</li>
+<li>Default gateway - 預設閘道器</li>
+<li>DNS伺服器 IP</li>
+</ul>
+<p><img src="https://i.imgur.com/c1wtxVB.png" alt="image"></p>
+<h4 id="DHCP-工作流程"><a href="#DHCP-工作流程" class="headerlink" title="DHCP 工作流程"></a>DHCP 工作流程</h4><p><img src="https://i.imgur.com/rAGDQHE.png" alt="image"></p>
+<ul>
+<li>DHCP Discover - 探索<ul>
+<li>用戶端電腦發出廣播封包到整個子網路，向負責這個子網路的DHCP伺服器要求IP位址來連接網路</li>
+</ul>
+</li>
+<li>DHCP Offer - 提供<ul>
+<li>DHCP伺服器回應用戶端電腦的要求，指定一個未被使用的IP位置給用戶端電腦使用，比如192.168.10.12</li>
+</ul>
+</li>
+<li>DHCP Request - 回覆<ul>
+<li>用戶端電腦收到配發的IP後，發出回覆給DHCP伺服器，表示接受DHCP指定的IP位置</li>
+</ul>
+</li>
+<li>DHCP ACK - 確認<ul>
+<li>由DHCP伺服器回應用戶端電腦確認訊號，表示用戶端電腦可以使用這個IP位址連接網路</li>
+</ul>
+</li>
+</ul>
+<h4 id="用戶端設定IP方式"><a href="#用戶端設定IP方式" class="headerlink" title="用戶端設定IP方式"></a>用戶端設定IP方式</h4><ul>
+<li><p>Manual - 手動設定<br>使用者以手動的方式自行為電腦設定 IP 位址，每次連線的 IP 位址是固定的，除非使用者再以手動的方式變更設定</p>
+</li>
+<li><p>Dynamic - 動態設定<br>用戶端電腦向 DHCP 伺服器要求 IP 位址，DHCP 伺服器動態指定一個未被使用的 IP 位址給用戶端電腦使用，動態設定的 IP 位址通常並不固定</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/cVhpE7M.jpg" alt="image"></p>
+<h4 id="如果DHCP-死掉了，該怎麼辦-不能有IP上網了"><a href="#如果DHCP-死掉了，該怎麼辦-不能有IP上網了" class="headerlink" title="如果DHCP 死掉了，該怎麼辦? 不能有IP上網了?"></a>如果DHCP 死掉了，該怎麼辦? 不能有IP上網了?</h4><p>微軟想到這個問題，Windows 98 之後的 Windows 作業系統都有支援 APIPA</p>
+<h4 id="DHCP參考連結"><a href="#DHCP參考連結" class="headerlink" title="DHCP參考連結"></a>DHCP參考連結</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.stockfeel.com.tw/dhcp%E4%BC%BA%E6%9C%8D%E5%99%A8%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%8B%E7%94%A8%EF%BC%9F/">DHCP 伺服器是什麼？如何運用？</a></li>
+</ul>
+<h3 id="APIPA-Automatic-Private-IP-Addressing"><a href="#APIPA-Automatic-Private-IP-Addressing" class="headerlink" title="APIPA (Automatic Private IP Addressing)"></a>APIPA (Automatic Private IP Addressing)</h3><ul>
+<li>生命週期<ul>
+<li>APIPA服務會持續每5分鐘一次，週期的檢查 DHCP 伺服器是否出現，如果偵測到 DHCP 伺服器，APIPA 便會停止，原先的IP 相關設定轉為向 DHCP 伺服器要求。</li>
+</ul>
+</li>
+<li>IP範圍<ul>
+<li>168.254.0.1 ~ 168.254.255.254(Class B)</li>
+</ul>
+</li>
+<li>遮照範圍<ul>
+<li>255.255.0.0</li>
+</ul>
+</li>
+<li>優點<ul>
+<li>小型不作路由的網路環境很實用，不需作任何設定，電腦之間就能透過網路連線</li>
+</ul>
+</li>
+</ul>
+<h4 id="APIPA-工作流程"><a href="#APIPA-工作流程" class="headerlink" title="APIPA 工作流程"></a>APIPA 工作流程</h4><p>由於 APIPA 是自我指定 IP 位址，因此就有可能產生相同 IP 位址的問題，要避免 IP 衝突的問題，APIPA 用戶端會送出 gratuitous ARP（Address Resolution Protocol）封包，以便宣告我要使用某個 169.254.x.x的 IP 位址，若有其他 APIPA用戶端剛好要用到同樣 IP 位址時，先前佔用此 IP 的用戶便會告訴後者這個 IP 位址已被採用，後者就只好重新配一個 IP 位置，若配到的 IP 位址也被用掉了，就再重覆配置的動作，總共有十次的配置的機會。</p>
+<p><img src="https://i.imgur.com/5kD1aOt.png" alt="image"></p>
+<h4 id="APIPA參考連結"><a href="#APIPA參考連結" class="headerlink" title="APIPA參考連結"></a>APIPA參考連結</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://chaomengyang.wordpress.com/2008/05/02/apipa-automatic-private-ip-addressing/">APIPA</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/26/2021-04-26%20Ubuntu%20TFTP%20Server%20%E5%AE%89%E8%A3%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/26/2021-04-26%20Ubuntu%20TFTP%20Server%20%E5%AE%89%E8%A3%9D/" class="post-title-link" itemprop="url">Ubuntu TFTP Server 安裝</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-26 08:12:00" itemprop="dateCreated datePublished" datetime="2021-04-26T08:12:00+08:00">2021-04-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:54:34" itemprop="dateModified" datetime="2021-10-01T15:54:34+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>TFTP (Trivial File Transfer Protocol)，是很常見的通訊協議用在一些小系統上，如 cisco 韌體更新、或是有些廠家會 BIOS 內建 tftp 下載 rom 檔功能。如此輕巧簡易的通訊協議就很常派上用場。</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><ol>
+<li><p>Install following packages.</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install xinetd tftpd tftp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create &#x2F;etc&#x2F;xinetd.d&#x2F;tftp and put this entry</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">service tftp</span><br><span class="line">&#123;</span><br><span class="line">protocol        = udp</span><br><span class="line">port            = 69</span><br><span class="line">socket_type     = dgram</span><br><span class="line">wait            = yes</span><br><span class="line">user            = nobody</span><br><span class="line">server          = /usr/sbin/in.tftpd</span><br><span class="line">server_args     = /tftpboot</span><br><span class="line">disable         = no</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create a folder &#x2F;tftpboot  this should match whatever you gave in server_args. mostly it will be tftpboot</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /tftpboot</span><br><span class="line">sudo chmod -R 777 /tftpboot</span><br><span class="line">sudo chown -R nobody /tftpboot</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Restart the xinetd service</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/xinetd stop</span><br><span class="line">sudo /etc/init.d/xinetd start</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>Now our tftp server is up and running.</p>
+<h2 id="Testing-our-tftp-server"><a href="#Testing-our-tftp-server" class="headerlink" title="Testing our tftp server"></a>Testing our tftp server</h2><ol>
+<li><p>Create a file named test with some content in &#x2F;tftpboot path of the tftp server</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> ls / &gt; /tftpboot/test</span><br><span class="line"> sudo chmod -R 777 /tftpboot</span><br><span class="line"> ls /tftpboot/test -lh</span><br><span class="line">-rw-r--r-- 1 thalib thalib 159 2010-03-05 20:48 test</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Now in some other system follow the following steps.</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tftp localhost</span><br><span class="line"><span class="meta prompt_">tftp&gt; </span><span class="language-bash">get <span class="built_in">test</span></span></span><br><span class="line">Sent xxx bytes in 0.0 seconds</span><br><span class="line"><span class="meta prompt_">tftp&gt; </span><span class="language-bash">quit</span></span><br><span class="line">cat test</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mohammadthalif.wordpress.com/2010/03/05/installing-and-testing-tftpd-in-ubuntudebian/">Installing and Testing TFTP Server in Ubuntu&#x2F;Debian</a></li>
+<li><a target="_blank" rel="noopener" href="https://yulun.me/2016/setup-tftp-server-on-ubuntu/">架設 tftp server 在 Ubuntu 環境</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/24/2021-04-24%20CCNA_07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/24/2021-04-24%20CCNA_07/" class="post-title-link" itemprop="url">CCNA_07</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-24 21:57:00" itemprop="dateCreated datePublished" datetime="2021-04-24T21:57:00+08:00">2021-04-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:35:27" itemprop="dateModified" datetime="2021-10-01T15:35:27+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>828</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="7-MAC-Address"><a href="#7-MAC-Address" class="headerlink" title="7. MAC Address"></a>7. MAC Address</h2><h3 id="Data-Link-Layer-Protocol"><a href="#Data-Link-Layer-Protocol" class="headerlink" title="Data Link Layer Protocol"></a>Data Link Layer Protocol</h3><p>最常用還是Ethernet<br><img src="https://i.imgur.com/bLFkpCO.png" alt="image"></p>
+<p><img src="https://i.imgur.com/PfSMWQx.png" alt="image"></p>
+<h3 id="Ethernet"><a href="#Ethernet" class="headerlink" title="Ethernet"></a>Ethernet</h3><p>為什麼要叫乙太網呢?因為是它具有medium independent 特性<br>copper 銅線<br>Fiber 光纖<br>wireless 無線<br>乙太網跟物理層是不相關的，可以用任何線材去實踐乙太網的規範</p>
+<p>Net 是網<br>Ether 是啥<br>乙太是古臘的哲學家亞里斯多德所設想的一種物質<br>被認為是一種電磁波傳播的媒介<br>他認為在空間當中宇宙當中都存在這種物質<br>這種乙太是拿來被傳播電磁波的，只要有乙太的地方都可以傳播電磁波<br>這個概念很符合乙太網，我就可以進行數據傳輸，不需要管下層的媒介是什麼<br>但事實上乙太這個物質是不存在的</p>
+<h3 id="Ethernet-Addressing"><a href="#Ethernet-Addressing" class="headerlink" title="Ethernet Addressing"></a>Ethernet Addressing</h3><p>IP 32 bits<br>MAC 48 bits<br>MAC 地址理論上是全球唯一的<br>但其實也可以用軟體去修改MAC地址<br>前24bit 是廠商的資訊<br>後24bit 根據廠商自己生產分配<br><img src="https://i.imgur.com/8sLiSCo.png" alt="image"></p>
+<h3 id="查詢MAC-Address"><a href="#查詢MAC-Address" class="headerlink" title="查詢MAC Address"></a>查詢MAC Address</h3><p><img src="https://i.imgur.com/k8PFQfk.png" alt="image"></p>
+<p>知道生產廠商在我們troubleshooting時是有幫助的，比如上可以了解連接到交換機的到底是什麼設備</p>
+<h3 id="乙太網格式"><a href="#乙太網格式" class="headerlink" title="乙太網格式"></a>乙太網格式</h3><ul>
+<li>Ethernet Type<ul>
+<li>如果我的Type 是 0x0800 代表我後面的data 是屬於IPv4</li>
+</ul>
+</li>
+<li>FCS<ul>
+<li>FCS 就是一個CRC(Cyclic redundancy check)</li>
+<li>過程大概是將data經由hash演算法算完之後，得到一個值(比如值是1234)，放在FCS，接著對方也利用相同的算法檢驗收到的資料，看看算出來得值是否等於FCS所記錄的值1234。</li>
+<li>可以檢驗人為或非人為(資料竄改)的資料是否完整</li>
+</ul>
+</li>
+</ul>
+<h4 id="Ethernet-Type"><a href="#Ethernet-Type" class="headerlink" title="Ethernet Type"></a>Ethernet Type</h4><ul>
+<li>0x0800 IPv4</li>
+<li>0x0842 Wake-on-Lan</li>
+<li>0x86DD IPv6</li>
+<li>0x8906 <code>FCoE (Fibre Channel over Ethernet)</code></li>
+</ul>
+<p><img src="https://i.imgur.com/37EQhnX.png" alt="image"></p>
+<h4 id="CRC-Cyclic-redundancy-check-循環冗餘校驗"><a href="#CRC-Cyclic-redundancy-check-循環冗餘校驗" class="headerlink" title="CRC(Cyclic redundancy check) - 循環冗餘校驗"></a>CRC(Cyclic redundancy check) - 循環冗餘校驗</h4><p>是一種根據網路數據封包或電腦檔案等數據產生簡短固定位數驗證碼的一種散列函數，主要用來檢測或校驗數據傳輸或者保存後可能出現的錯誤。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

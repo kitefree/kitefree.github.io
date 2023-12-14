@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="地球人的修練">
+<meta property="og:url" content="https://kitefree.github.io/page/11/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/page/11/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/23/2021-04-23%20CCNA_06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/23/2021-04-23%20CCNA_06/" class="post-title-link" itemprop="url">CCNA_06</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-23 11:52:00" itemprop="dateCreated datePublished" datetime="2021-04-23T11:52:00+08:00">2021-04-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:34:16" itemprop="dateModified" datetime="2021-10-01T15:34:16+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>584</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="4-TCP-IP-Protocol-Suite-4"><a href="#4-TCP-IP-Protocol-Suite-4" class="headerlink" title="4. TCP IP Protocol Suite 4"></a>4. TCP IP Protocol Suite 4</h2><h3 id="TCP-UDP-形容圖"><a href="#TCP-UDP-形容圖" class="headerlink" title="TCP UDP 形容圖"></a>TCP UDP 形容圖</h3><p><img src="https://i.imgur.com/Yj1XQAh.png" alt="image"></p>
+<h3 id="TCP-3-Way-Handshake"><a href="#TCP-3-Way-Handshake" class="headerlink" title="TCP 3-Way Handshake"></a>TCP 3-Way Handshake</h3><h4 id="virtual-circuit-虛擬電路"><a href="#virtual-circuit-虛擬電路" class="headerlink" title="virtual circuit (虛擬電路)"></a>virtual circuit (虛擬電路)</h4><p>在兩個終端系統（End system）間，建立一條連線，來進行資料交換。在使用虛擬電路之前，必須先在兩個節點或軟體應用程式間建立連線。在建立連線之後，兩個節點之間，就可以進行資料串流的交換。概念來自於電路交換</p>
+<p>3次握手</p>
+<ul>
+<li>SYN</li>
+<li>SYN-ACK</li>
+<li>ACK<br>握手成功後，就開始傳送資料<br>只要任何一次出了問題，就不會傳送資料</li>
+</ul>
+<p>當資料傳送太快時，會將接收資料先放在buffer區等待處理</p>
+<p><img src="https://i.imgur.com/B9RqmdF.png" alt="image"></p>
+<h3 id="TCP-Flow-Control"><a href="#TCP-Flow-Control" class="headerlink" title="TCP Flow Control"></a>TCP Flow Control</h3><p>發送停止命令<br>當有能力再處理資料時，再發送開始命令<br><img src="https://i.imgur.com/NkPom8i.png" alt="image"></p>
+<h3 id="TCP-Sequencing-Acknowledgment"><a href="#TCP-Sequencing-Acknowledgment" class="headerlink" title="TCP Sequencing &amp; Acknowledgment"></a>TCP Sequencing &amp; Acknowledgment</h3><p>當點擊下載10m的檔案時候，其實會拆解成多個包裏傳遞<br>可以解決的問題<br>數據包可能沒有按步驟到達<br>我可以確保每一個數據包都在接受方有收到</p>
+<p><img src="https://i.imgur.com/CeVLcoi.png" alt="image"></p>
+<h3 id="TCP-Window-Control"><a href="#TCP-Window-Control" class="headerlink" title="TCP Window Control"></a>TCP Window Control</h3><p>一次能發送多少數據包<br><img src="https://i.imgur.com/aobn75H.png" alt="image"></p>
+<h3 id="TCP-Segment-Format"><a href="#TCP-Segment-Format" class="headerlink" title="TCP Segment Format"></a>TCP Segment Format</h3><p>20 bytes overhead<br><img src="https://i.imgur.com/2d3IlRl.png" alt="image"></p>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>8 bytes overhead<br>傳輸速率比TCP快<br>傳送的過程掉包了就掉了，沒有SEQ跟ACK<br>程序員決定TCP跟UDP方式<br>以前的電纜品質比較不好，物理上的質量造成很容易掉包<br>現在的品質比較好，物理上的質量造成的丟包比較少了<br>現在的應用程序比較傾向用UDP<br><img src="https://i.imgur.com/yHi4xR0.png" alt="image"></p>
+<h3 id="回顧第四層協議"><a href="#回顧第四層協議" class="headerlink" title="回顧第四層協議"></a>回顧第四層協議</h3><p><img src="https://i.imgur.com/CzdxYnR.png" alt="image"></p>
+<h3 id="TCP與UDP-SUMMARY"><a href="#TCP與UDP-SUMMARY" class="headerlink" title="TCP與UDP SUMMARY"></a>TCP與UDP SUMMARY</h3><p><img src="https://i.imgur.com/9Jzilrj.png" alt="image"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/21/2021-04-21%20CCNA_05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/21/2021-04-21%20CCNA_05/" class="post-title-link" itemprop="url">CCNA_05</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-21 23:49:00" itemprop="dateCreated datePublished" datetime="2021-04-21T23:49:00+08:00">2021-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:54:28" itemprop="dateModified" datetime="2021-10-01T15:54:28+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>790</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="5-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number"><a href="#5-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number" class="headerlink" title="5. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)"></a>5. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)</h2><h3 id="Layered-System-Review"><a href="#Layered-System-Review" class="headerlink" title="Layered System Review"></a>Layered System Review</h3><p><img src="https://i.imgur.com/QYbUcHW.png" alt="image"></p>
+<h3 id="TCP-UDP-Port-Number"><a href="#TCP-UDP-Port-Number" class="headerlink" title="TCP&#x2F;UDP Port Number"></a>TCP&#x2F;UDP Port Number</h3><p><img src="https://i.imgur.com/ov3P7IB.png" alt="image"></p>
+<p>我們在講端口號(Port Number) 時，記得要講清楚是UDP 還是TCP，意味著這2個是不同的應用程序</p>
+<h4 id="Port-Number-範圍與規範"><a href="#Port-Number-範圍與規範" class="headerlink" title="Port Number 範圍與規範"></a>Port Number 範圍與規範</h4><ul>
+<li>0 to 65535 (TCP &amp; UDP)</li>
+<li>0 to 1024<ul>
+<li>分配給最常用的應用程序, 比如80 http</li>
+</ul>
+</li>
+<li>1024 to 49151 registred ports<ul>
+<li>給Internet Assigned Numbers Authority 組織機構，註冊走了</li>
+</ul>
+</li>
+<li>49152 to 65535 dynamic or private<ul>
+<li>比如自己開發遊戲，可以用這邊的端口號</li>
+</ul>
+</li>
+</ul>
+<h3 id="NIC-Ethernet-Type-Protocol-Number"><a href="#NIC-Ethernet-Type-Protocol-Number" class="headerlink" title="NIC,Ethernet Type,Protocol Number"></a>NIC,Ethernet Type,Protocol Number</h3><h4 id="NIC-network-interface-controller-網路介面控制器"><a href="#NIC-network-interface-controller-網路介面控制器" class="headerlink" title="NIC(network interface controller) - 網路介面控制器"></a>NIC(network interface controller) - 網路介面控制器</h4><p>第一層 Physical layer</p>
+<ul>
+<li>銅線</li>
+<li>光纖</li>
+<li>Serial port - 串口(v.35標準)<ul>
+<li>序列埠或序列埠，序列通信埠，COM埠，簡稱串口</li>
+</ul>
+</li>
+</ul>
+<p>銅線和光纖都是根據乙太網協議設計的<br>而串口是根據PPP協議設計的<br><img src="https://i.imgur.com/5nOlzDy.jpg" alt="image"></p>
+<h4 id="Ethernet-Type"><a href="#Ethernet-Type" class="headerlink" title="Ethernet Type"></a>Ethernet Type</h4><p>第二層<br>如何判斷要給IPv4 還是IPv6 協議呢??<br>判斷 EtherNet Type <code>0x0800 = IPv4</code> <code>0x86DD = IPv6</code><br><img src="https://i.imgur.com/XyZae4N.png" alt="image"></p>
+<h4 id="Protocol-Number"><a href="#Protocol-Number" class="headerlink" title="Protocol Number"></a>Protocol Number</h4><p>第三層<br>到了IP這層header 會記錄 Protocol Number<br>如果header記錄了<code>6</code>那就知道下一步轉發到上一層TCP<br>如果header<code>89</code>那就知道下一步先平行移動轉發到OSPF<br><img src="https://i.imgur.com/UPwucgs.png" alt="image"></p>
+<h3 id="Host-to-Host-Communication"><a href="#Host-to-Host-Communication" class="headerlink" title="Host to Host Communication"></a>Host to Host Communication</h3><p>寫下IP之後，接下來通過路由協議來查看地圖，如果有路由到SERVER，我就把封包往下發送<br>OSPF EIGRP 來確認是否有辦法達到SERVER的路由</p>
+<p>ARP是在做IP與MAC的對應</p>
+<p><img src="https://i.imgur.com/vTQ2nKy.png" alt="image"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/18/2021-04-18%20DNS%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/18/2021-04-18%20DNS%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">DNS介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-18 01:03:00" itemprop="dateCreated datePublished" datetime="2021-04-18T01:03:00+08:00">2021-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:54:19" itemprop="dateModified" datetime="2021-10-01T15:54:19+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>透過 <strong>hosts</strong> 設定檔手動設定主機名稱與 IP 位址是系統與網站管理者常用的除錯技巧，以下我們將介紹這個好用小功能該怎麼使用。</p>
+<p>在架設網站時，除了伺服主機的網路設定之外，還要配合 DNS 伺服器才能讓網站正常運作，而 DNS 上面的記錄在變更之後，通常都會需要幾個小時才會生效，所以很多人在架設網站初期都會浪費許多時間在等待 DNS 生效，才進行後續的設定，其實我們可以在 DNS 生效之前，以動的方式自行先設定自己電腦上的 hosts 檔，加速網站的建置工作。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><img src="https://i.imgur.com/OvwcVPi.png" alt="image"><br>負責將網址轉換成 IP 位址</p>
+<h2 id="hosts-設定檔是什麼？"><a href="#hosts-設定檔是什麼？" class="headerlink" title="hosts 設定檔是什麼？"></a>hosts 設定檔是什麼？</h2><p>hosts 設定檔的作用跟 DNS 伺服器相同,檔案裡面紀錄了一些網址與 IP 位址的對應表<br>般的電腦在需要查詢網址與 IP 位址的時候，會先開啟這個檔案來查詢，如果這個檔案裡面剛好有電腦需要查詢的對應記錄，就可以直接連上網站來瀏覽；如果從 hosts 設定檔裡面查不到，才會連線至 DNS 伺服器來查詢。如下圖：<br><img src="https://i.imgur.com/WCbp5Di.png" alt="image"></p>
+<h2 id="如何設定-hosts-檔？"><a href="#如何設定-hosts-檔？" class="headerlink" title="如何設定 hosts 檔？"></a>如何設定 hosts 檔？</h2><p>hosts 設定檔在 Windows 與 Linux 系統上都有，而且裡面的資料格式完全一樣，只是放置檔案的目錄有差異而已，以下用windows 系統進行說明：</p>
+<p>直接使用cmd or power shell 以系統管理員身份進入以下路徑：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\drivers\etc\</span><br></pre></td></tr></table></figure>
+
+<p>接著指令輸入,預設就會以vscode 編輯器打開，就可以直接編輯儲存囉。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="keyword">\Windows</span><span class="keyword">\System</span>32<span class="keyword">\drivers</span><span class="keyword">\etc</span><span class="keyword">\ </span>code hosts</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">#</span> Copyright (c) 1993-2009 Microsoft Corp.</span><br><span class="line"><span class="params">#</span></span><br><span class="line"><span class="params">#</span> This is a sample HOSTS file used by Microsoft TCP/IP for Windows.</span><br><span class="line"><span class="params">#</span></span><br><span class="line"><span class="params">#</span> This file contains the mappings of IP addresses to host names. Each</span><br><span class="line"><span class="params">#</span> entry should be kept on an individual line. The IP address should</span><br><span class="line"><span class="params">#</span> be placed in the first column followed by the corresponding host name.</span><br><span class="line"><span class="params">#</span> The IP address and the host name should be separated by at least one</span><br><span class="line"><span class="params">#</span> space.</span><br><span class="line"><span class="params">#</span></span><br><span class="line"><span class="params">#</span> Additionally, comments (such as these) may be inserted on individual</span><br><span class="line"><span class="params">#</span> lines or following the machine name denoted by a &#x27;<span class="params">#</span>&#x27; symbol.</span><br><span class="line"><span class="params">#</span></span><br><span class="line"><span class="params">#</span> For example:</span><br><span class="line"><span class="params">#</span></span><br><span class="line"><span class="params">#</span>      102.54.94.97     rhino.acme.com          <span class="params">#</span> source server</span><br><span class="line"><span class="params">#</span>       38.25.63.10     x.acme.com              <span class="params">#</span> x client host</span><br><span class="line"></span><br><span class="line"><span class="params">#</span> localhost name resolution is handled within DNS itself.</span><br><span class="line"><span class="params">#</span> 127.0.0.1       localhost</span><br><span class="line"><span class="params">#</span> ::1             localhost</span><br><span class="line"> 127.0.0.1       kite.com.tw</span><br></pre></td></tr></table></figure>
+
+<p>有人也喜歡把dns 設為</p>
+<p>223.5.5.5 阿里</p>
+<p>8.8.8.8 google</p>
+<h3 id="其它關鍵字"><a href="#其它關鍵字" class="headerlink" title="其它關鍵字"></a>其它關鍵字</h3><p>bind9</p>
+<h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.miniasp.com/post/2008/08/25/Modify-hosts-file-to-change-Domain-Name-IP-Mapping">手動設定網址對應 IP 的方式 ( 主機 IP 域名對應檔 hosts )</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.gtwang.org/windows/windows-linux-hosts-file-configuration/">手動設定網址與 IP 對應的 hosts 檔教學，適用 Windows、Mac OS X 與 Linux 系統</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=1ZBqfuFdBCU">DNS是干什么的？修改hosts的原理又是什么？</a></li>
+<li><a target="_blank" rel="noopener" href="https://wcc723.github.io/dns/2019/04/25/custom_name_server/">自建 Name Server</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-kjZq2unnJU">拆解 Domain Name System 網域名稱系統 的運作原理 DNS 基礎概念 教學</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/18/2021-04-18%20%E5%A3%93%E5%8A%9B%E6%B8%AC%E8%A9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/18/2021-04-18%20%E5%A3%93%E5%8A%9B%E6%B8%AC%E8%A9%A6/" class="post-title-link" itemprop="url">壓力測試</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-18 01:03:00" itemprop="dateCreated datePublished" datetime="2021-04-18T01:03:00+08:00">2021-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:28:44" itemprop="dateModified" datetime="2021-10-01T15:28:44+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>794</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>可以找出內存泄漏、併發與同步</p>
+<p>性能指標</p>
+<ul>
+<li>響應時間(Response Time:RT)<ul>
+<li>響應時間指用戶從客戶端發起一個請求開始，到客戶端接收到服務器端返回的響應結束，整個過程所耗費的時間。</li>
+</ul>
+</li>
+<li>HPS<ul>
+<li>每秒點擊次數，單位是次&#x2F;秒</li>
+</ul>
+</li>
+<li>TPS<ul>
+<li>系統每秒處理交易數，單位是筆&#x2F;秒</li>
+</ul>
+</li>
+<li>QPS<ul>
+<li>系統每秒處理查詢次數，單位是次&#x2F;秒</li>
+</ul>
+</li>
+</ul>
+<p>無論TPS、QPS、HPS，此指標是衡量系統處理能力非常重要的指標，越大越好，根據經驗，一般情況下：</p>
+<ul>
+<li><p>金融行業</p>
+<ul>
+<li>1000TPS~50000TPS，不包括互聯網化的活動</li>
+</ul>
+</li>
+<li><p>保險行業</p>
+<ul>
+<li>100TPS~100000TPS，不包括互聯網化的活動</li>
+</ul>
+</li>
+<li><p>製造行業</p>
+<ul>
+<li>10TPS~5000TPS</li>
+</ul>
+</li>
+<li><p>互聯網電子商務</p>
+<ul>
+<li>10000TPS~1000000TPS</li>
+</ul>
+</li>
+<li><p>互聯網中型網站</p>
+<ul>
+<li>1000TPS~50000TPS</li>
+</ul>
+</li>
+<li><p>互聯網小型網站</p>
+<ul>
+<li>500TPS~10000TPS</li>
+</ul>
+</li>
+<li><p>最大響應時間</p>
+<ul>
+<li>指用戶發出請求或者指令到系統做出反應的最大時間，比如100萬個用戶請求，其中1個用戶反應時間為90秒，那這個就是最大響應時間</li>
+</ul>
+</li>
+<li><p>最少響應時間</p>
+<ul>
+<li>同上，概念</li>
+</ul>
+</li>
+<li><p>90%響應時間</p>
+<ul>
+<li>指所有用戶的響應時間進行排序，第90%響應時間為多少?</li>
+</ul>
+</li>
+</ul>
+<p>從外部看，性能測試主要關注如下三個指標</p>
+<ul>
+<li>吞吐量<ul>
+<li>每秒鐘系統能夠處理的請求數、任務數</li>
+</ul>
+</li>
+<li>響應時間<ul>
+<li>服務處理一個請求或一個任務的耗時</li>
+</ul>
+</li>
+<li>錯誤率<ul>
+<li>一批請求中結果出錯的請求所占比例</li>
+</ul>
+</li>
+</ul>
+<p>影響性能考慮點包括：<br>數據庫、應用程序、中間件(tomcat、nginx)、網路和操作系統等方面<br>首先考慮自己的應用屬於CPU密集型還是IO密集型<br>是屬於哪一類型，可以監看效能，看哪一個部分使用常滿載,是CPU 還是IO</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=naGC4aZA84Q&amp;list=PLetRJkePh3AYEAxH8nNsxiPqKA02NkEIV&amp;index=45">https://www.youtube.com/watch?v=naGC4aZA84Q&amp;list=PLetRJkePh3AYEAxH8nNsxiPqKA02NkEIV&amp;index=45</a><br>web service 性能測試計劃<br>高級web性能測試計劃<br>数据库访问性能测试计劃</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/18/2021-04-18%20Ubuntu%20FTP%20Server%20%E5%AE%89%E8%A3%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/18/2021-04-18%20Ubuntu%20FTP%20Server%20%E5%AE%89%E8%A3%9D/" class="post-title-link" itemprop="url">Ubuntu FTP Server 安裝</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-18 00:21:00" itemprop="dateCreated datePublished" datetime="2021-04-18T00:21:00+08:00">2021-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:31:56" itemprop="dateModified" datetime="2021-10-01T15:31:56+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>542</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>安裝vsftpd</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果以前有裝過vsftpd 或者已經移除，如果有發現”&#x2F;etc&#x2F;vsftpd.conf”這個檔案不存在的話，請移除vsftpd再重新安裝一次</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove --purge vsftpd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>編輯 vsftpd.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重啟vsftpd</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service vsftpd restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看FTP 狀態</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增一個不能登入 OS 的使用者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -M  -s /usr/sbin/nologin user1  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增此user1帳號的密碼</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd user1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增與設定資料夾權限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /home/user1  </span><br><span class="line">sudo chmod 777 /home/user1  </span><br><span class="line">sudo mkdir /home/user1/uploads  </span><br><span class="line">sudo chmod 777 /home/user1/uploads  </span><br><span class="line">sudo chown user1:ftp -R /home/user1</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://oranwind.org/-ftp-ubuntu-an-zhuang-ftp-yu-she-ding-apache-du-qu-quan-xian/">ftp ubuntu 安裝 ftp 與設定權限</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.alvinchen.club/2019/12/11/ubuntu-ftp-server-%E6%9E%B6%E8%A8%AD/">Ubuntu FTP server 架設</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/bbc2005/article/details/80034065">Ubuntu安装SFTP服务</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/17/2021-04-17%20CCNA_03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/17/2021-04-17%20CCNA_03/" class="post-title-link" itemprop="url">CCNA_03</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-17 20:52:00" itemprop="dateCreated datePublished" datetime="2021-04-17T20:52:00+08:00">2021-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:52:49" itemprop="dateModified" datetime="2021-10-01T15:52:49+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="3-TCP-IP-Protocol-Suite-1-協議的定義，TCP-IP協議族的歷史及定義）"><a href="#3-TCP-IP-Protocol-Suite-1-協議的定義，TCP-IP協議族的歷史及定義）" class="headerlink" title="3. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）"></a>3. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）</h2><h3 id="Protocol-協議"><a href="#Protocol-協議" class="headerlink" title="Protocol-協議"></a>Protocol-協議</h3><p>系統與系統之間講的是一個協議，只有2個系統用一個協議才能進行通訊<br>系統的內部我們使用了通訊模型<br>每一層都代表了不同模型，把它拼接起來就是一套系統</p>
+<p>Layered Communication Model 好處</p>
+<ul>
+<li>Products from different vendors can work together<ul>
+<li>所有廠商都參照相同模型，這樣大家的廠商產品才有辦法互相通訊</li>
+</ul>
+</li>
+<li>Provides a common language to describe networking functions and capabilities<ul>
+<li>可以單獨開發一層的產品<ul>
+<li>到時候可以蓋房子一樣，把這些產品拼接起來</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Easy to design protocol</li>
+<li>Prevents technology changes in one layer from affecting other layers above and blow<ul>
+<li>更新比較容易<ul>
+<li>可以針對某一層更新就好，可以不用動到別層<ul>
+<li>舉例裝修4樓房子，不用動到別層樓</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>重要規則，只有同一層才能互相通訊<br>四樓只能跟四樓的講話<br><img src="https://i.imgur.com/UF2XO5V.png" alt="image"></p>
+<h3 id="通信的流程"><a href="#通信的流程" class="headerlink" title="通信的流程"></a>通信的流程</h3><p><img src="https://i.imgur.com/5Qu4PgB.png" alt="image"><br>假如4樓的想跟對面4樓的說話，寫了一個信封，<br>到了第3層會用再大一點的信封把它包起來，<br>到了第2層會用再大一點的信封把它包起來，<br>到了第1層會用再大一點的信封把它包起來，<br>交由派送員傳到對面<br>接著，經過每一層再逐一拆解最外面的信封。<br>最終第四樓的人就看得到訊息囉</p>
+<h3 id="學習通訊模型"><a href="#學習通訊模型" class="headerlink" title="學習通訊模型"></a>學習通訊模型</h3><h4 id="OSI-Model"><a href="#OSI-Model" class="headerlink" title="OSI Model"></a>OSI Model</h4><ul>
+<li><p>最早的通訊模型</p>
+</li>
+<li><p>是一個Reference Model</p>
+<ul>
+<li>什麼是Reference Model?<ul>
+<li>大家在開發系統的時候，只是參考這種模型來開發，並不是100%的遵守<br><img src="https://i.imgur.com/49C5FDF.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>表達層(6)</p>
+<ul>
+<li>加密、解密</li>
+</ul>
+</li>
+<li><p>網路層(3)</p>
+<ul>
+<li>IP address</li>
+</ul>
+</li>
+</ul>
+<h4 id="DoD-Model-Department-of-Defense"><a href="#DoD-Model-Department-of-Defense" class="headerlink" title="DoD Model (Department of Defense)"></a>DoD Model (Department of Defense)</h4><ul>
+<li>美國國防部開發出來的<br><img src="https://i.imgur.com/chtlDsm.png" alt="image"></li>
+</ul>
+<h4 id="TCP-IP-Model-Protocol-Suite"><a href="#TCP-IP-Model-Protocol-Suite" class="headerlink" title="TCP&#x2F;IP Model(Protocol Suite)"></a>TCP&#x2F;IP Model(Protocol Suite)</h4><ul>
+<li>我們現在實際使用的模型</li>
+<li>可以看作一個水果籃<ul>
+<li>每一種水果就相對是一種協議<ul>
+<li>最重要的是TCP UDP IP 這3個水果是目前互相聯的基礎<ul>
+<li>TCP UDP 是在Transport Layer</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>二層跟一層的協議不屬於TCP&#x2F;IP協議(Ethernet,Token Ring,Frame Relay,ATM)<ul>
+<li>它們都是單獨的協議</li>
+</ul>
+</li>
+<li>只有圖中紫色的部分才是屬於TCP&#x2F;IP 協議</li>
+</ul>
+<p><img src="https://i.imgur.com/XoyWhyw.png" alt="image"></p>
+<ul>
+<li><p>包裏從哪裡來??</p>
+  <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">從Application來的，比如你有一個應用程序，比如郵件，它會用到SNMP協議</span><br><span class="line">當然你寫了一封郵件按發送，應用程序會產生Data(數據)(parcel)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下一步要做決定? 要買保險嗎??</p>
+  <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">要的話會採用TCP形式傳送</span><br><span class="line">不要的話可以用UDP形式傳送</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>是誰決定買保險的呢??</p>
+  <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由程序員決定的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接下來，寫地址</p>
+  <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IP 協議專門來處理地址的，最大貢獻統一了所有系統的地址格式</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>這樣就能送件了嗎?? 其實還插了張地圖</p>
+  <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">由Routing Protocol 來負責產生地圖的</span><br><span class="line">路由協議跟IP協議一樣都在第三層工作的</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://i.imgur.com/7Od9qeb.png" alt="image"></p>
+<ul>
+<li><p>上述的條件都有了，我們能送件了嗎??</p>
+</li>
+<li><p>參考圖片，我們從第6區出發到第一區有很多條路徑，但是要走6421還是6531的路徑呢?</p>
+</li>
+<li><p>通訊系統中是誰來做這個決定呢??</p>
+<ul>
+<li>答案是第二層協議(Ethernet、token ring、Frame Relay、ATM)</li>
+<li>目前應用最廣泛的是Ethernet(乙太網路)</li>
+<li>可以是現在的網路百分之99%都是用乙太網協議</li>
+</ul>
+</li>
+<li><p>乙太網協議又是如何決定往哪走呢?</p>
+<ul>
+<li>它使用的是MAC來決定的</li>
+</ul>
+</li>
+<li><p>我們要記得我們會有兩個地址，一個是三層的IP地址，一個是二層的MAC地址<br><img src="https://i.imgur.com/6T855h1.png" alt="image"></p>
+</li>
+</ul>
+<p>比如我的MAC是屬於MAC4，所以我們就轉發到區域4，當到達到區域4之後，這個MAC4的地址就會被丟棄掉，在第四區會重新獲得一個新的MAC地址，會問區域4的快遞員說，你要往3走還是往2走?以此類推走到目的地。這個就是基本的通訊原理</p>
+<p><img src="https://i.imgur.com/yVz6Vvo.png" alt="image"></p>
+<h3 id="Data-Encapsulation"><a href="#Data-Encapsulation" class="headerlink" title="Data Encapsulation"></a>Data Encapsulation</h3><p><img src="https://i.imgur.com/bNAbazi.png" alt="image"></p>
+<ul>
+<li><p>應用層</p>
+<ul>
+<li>產生data</li>
+</ul>
+</li>
+<li><p>第四層</p>
+<ul>
+<li>如果想買保險，我就用TCP header</li>
+</ul>
+</li>
+<li><p>第三層</p>
+<ul>
+<li>寫上地址IP</li>
+</ul>
+</li>
+<li><p>第二層</p>
+<ul>
+<li>寫MAC地址，決定下一站要到什麼地方</li>
+</ul>
+</li>
+<li><p>第一層</p>
+<ul>
+<li>變成0101，電信號出去</li>
+</ul>
+</li>
+<li><p>Transport</p>
+<ul>
+<li>segment</li>
+</ul>
+</li>
+<li><p>Network</p>
+<ul>
+<li>packet</li>
+</ul>
+</li>
+<li><p>Data Link</p>
+<ul>
+<li>frame</li>
+</ul>
+</li>
+<li><p>Physical</p>
+<ul>
+<li>bits</li>
+</ul>
+</li>
+</ul>
+<h3 id="History-of-TCP-IP-Protocol-Suite"><a href="#History-of-TCP-IP-Protocol-Suite" class="headerlink" title="History of TCP&#x2F;IP Protocol Suite"></a>History of TCP&#x2F;IP Protocol Suite</h3><p><img src="https://i.imgur.com/pEVoNmv.png" alt="image"><br>TCP 負擔太大把IP分出來<br>TCP UDP IP 是裡面最重要的協議</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/15/2021-04-15%20windows%20batch%20%E6%8C%87%E4%BB%A4%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/15/2021-04-15%20windows%20batch%20%E6%8C%87%E4%BB%A4%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5/" class="post-title-link" itemprop="url">windows batch 指令基本觀念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-15 15:00:00" itemprop="dateCreated datePublished" datetime="2021-04-15T15:00:00+08:00">2021-04-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:52:57" itemprop="dateModified" datetime="2021-10-01T15:52:57+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>129</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="中文編碼"><a href="#中文編碼" class="headerlink" title="中文編碼"></a>中文編碼</h2><p>Windows Command 視窗，預設開啟時使用的 Code Page 是 950 (Big-5)，<br>請在.bat 檔第一行加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chcp 65001</span><br></pre></td></tr></table></figure>
+
+<h2 id="檔案包含中文或空白"><a href="#檔案包含中文或空白" class="headerlink" title="檔案包含中文或空白"></a>檔案包含中文或空白</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">請在前後加上雙引號</span><br></pre></td></tr></table></figure>
+
+<h2 id="7zip-參數"><a href="#7zip-參數" class="headerlink" title="7zip 參數"></a>7zip 參數</h2><p>password</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-p&quot;pa$$word @|&quot;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/15/2021-04-15%20HUB%20SWITCH%20ROUTER/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/15/2021-04-15%20HUB%20SWITCH%20ROUTER/" class="post-title-link" itemprop="url">HUB&SWITCH&ROUTER</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-15 07:14:00" itemprop="dateCreated datePublished" datetime="2021-04-15T07:14:00+08:00">2021-04-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:24:28" itemprop="dateModified" datetime="2021-10-01T15:24:28+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Hub"><a href="#Hub" class="headerlink" title="Hub"></a>Hub</h2><ul>
+<li>L1 - 實體層(TCP&#x2F;IP第一層)</li>
+<li>每個PORT是互通的</li>
+<li>收到封包時，每個PORT上的PC都會收到封包，而其他的PC不處理，所以會丟棄</li>
+</ul>
+<p><img src="https://i.imgur.com/vKIhQA9.png" alt="image"></p>
+<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><ul>
+<li>L2 - 資料鏈結層(TCP&#x2F;IP的第二層(MAC))</li>
+<li>每個PORT都是個別區隔<ul>
+<li>原因在於每個PORT會自動記憶電腦的MAC Address(switch table)</li>
+</ul>
+</li>
+<li>收到封包時，switch會只給該mac address 對象電腦</li>
+</ul>
+<p><img src="https://i.imgur.com/zxGKaBg.png" alt="image"></p>
+<p><img src="https://i.imgur.com/nrIPlCz.png" alt="image"></p>
+<h2 id="Switch-Layer3"><a href="#Switch-Layer3" class="headerlink" title="Switch Layer3"></a>Switch Layer3</h2><p>同switch，多了routing(路由)的功能</p>
+<ul>
+<li>L3 - 網路層(TCP&#x2F;IP的第二層及第三、四層(MAC、IP及TCP&#x2F;UDP Port)</li>
+<li>仍無法做NAT(網路位置轉譯)功能，除非要像CISCO 65XX 等級的 layer3 switch</li>
+</ul>
+<h3 id="Switch-交換機樣式"><a href="#Switch-交換機樣式" class="headerlink" title="Switch 交換機樣式"></a>Switch 交換機樣式</h3><p>盒式（箱式）交換機<br><img src="https://i.imgur.com/aHOAwEr.jpg" alt="image"></p>
+<p>桌面式交換機<br><img src="https://i.imgur.com/5QDk9zq.jpg" alt="image"></p>
+<p>機櫃式交換機<br><img src="https://i.imgur.com/AVIZ9hC.jpg" alt="image"></p>
+<h3 id="Switch當有數據經過時，如何運作的呢"><a href="#Switch當有數據經過時，如何運作的呢" class="headerlink" title="Switch當有數據經過時，如何運作的呢??"></a>Switch當有數據經過時，如何運作的呢??</h3><ul>
+<li>直通轉發<ul>
+<li>直接看送信到哪個MAC，就直接投遞訊息，速度快。仰賴ASIC與FPGA晶片的硬體作用</li>
+</ul>
+</li>
+<li>碎片隔離<ul>
+<li>看數據的簡要內容，也只不過是斷章取義，不去校驗是否正確。</li>
+</ul>
+</li>
+<li>存儲轉發<ul>
+<li>全部讀取一遍後再進行投遞訊息，將錯誤的信息進行丟棄。</li>
+</ul>
+</li>
+</ul>
+<p>這3類可以看到速度是由快而慢的，可靠性是逐漸上升的。</p>
+<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><p>交換不同網段的封包、決定封包的傳送方向及路徑</p>
+<ul>
+<li>L3、L4 - 網路層、傳輸層(TCP&#x2F;IP的第三層及第四層(IP和TCP&#x2F;UDP Port)</li>
+<li>功能列表<ul>
+<li>Firewall<ul>
+<li>我可以決定什麼資料可以進來，什麼資料可以出去</li>
+</ul>
+</li>
+<li>QoS<ul>
+<li>我可以決定誰的資料先走，誰可以使用比較大的頻𡪨等等</li>
+</ul>
+</li>
+<li>負載平衡<ul>
+<li>我可以使用兩條對外的線路，讓資料平均的在兩個線路上傳輸。一條線路發生故障時，所有的資料流自動移轉到另一條線路上。</li>
+</ul>
+</li>
+<li>NAT<ul>
+<li>就是人稱的IP分享器，我可以在內網使用虛擬的IP，這樣可以解決IP不夠的問題，也同時把內網與外網徹底的隔開了</li>
+<li>VOIP<ul>
+<li>網路電話應用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/pEOxGn4.png" alt="image"></p>
+<p><img src="https://i.imgur.com/Dy0l5ae.png" alt="image"></p>
+<h3 id="Switch-與-Hub"><a href="#Switch-與-Hub" class="headerlink" title="Switch 與 Hub"></a>Switch 與 Hub</h3><ul>
+<li>Switch HUB比 HUB 更有安全性，減少封包碰撞，傳輸更有效率。</li>
+<li>使用sniffer 之類的軟體聽取封包，Swtich 無法讓你監聽PC跟ROUTER之間的封包訊息。但是如果是 HUB，無論是這個線段網路上的任何資料，每個Port都收得到。</li>
+</ul>
+<h3 id="switch-與-router"><a href="#switch-與-router" class="headerlink" title="switch 與 router"></a>switch 與 router</h3><ul>
+<li>switch &amp; hub  are used to create networks</li>
+<li>Routers are used to connect networks</li>
+</ul>
+<h2 id="Hub、Switch、Router共同點"><a href="#Hub、Switch、Router共同點" class="headerlink" title="Hub、Switch、Router共同點"></a>Hub、Switch、Router共同點</h2><p>連結多台電腦、傳遞封包，延伸網路範圍、進行廣播。可在區域網路內使用。</p>
+<h2 id="說明L2-L3"><a href="#說明L2-L3" class="headerlink" title="說明L2 L3"></a>說明L2 L3</h2><p>L2、L3、L4、L7  的L  指的是OSI模型中的Layer層</p>
+<p>L3 的交換器又稱為IP Switch 或 Switch Router</p>
+<h2 id="TCP-IP-MODEL-VS-OSI-MODEL"><a href="#TCP-IP-MODEL-VS-OSI-MODEL" class="headerlink" title="TCP&#x2F;IP MODEL VS OSI MODEL"></a>TCP&#x2F;IP MODEL VS OSI MODEL</h2><p><img src="https://i.imgur.com/pjQJeD2.jpg" alt="image"></p>
+<p>Layer2<br>L2將實體在網路之間建立邏輯連結，在傳輸過程中處理流量控制及錯誤偵測，L2將實體層的數位訊號封裝成訊框(data frame)，其中訊框包含資料鏈結層的MAC位址，用以識別主機資料來源位址。主要用於區域網路上。</p>
+<p>Layer3<br>運用在網路層，在傳輸中將IP位址加入資料組成封包，L3主要以IP運作為主，相比於L2 可橫跨不同實體區域或VLAN的IP路由，在不同網段間互相連通。</p>
+<p>Layer4<br>用於傳輸層中，可辨識傳輸層內TCP或UDP埠號(port)，判斷封包是使用哪一種應用協定(http或ftp等)，在傳遞的封包中加入控制信息，以增加服務品質，達成重新導向(redirect)或伺服器的負載平衡(Load Balancing)</p>
+<p>Layer7<br>用於應用層中，提供網路應用服務，包含DHCP或瀏覽器(www、http)等，可做Cookie Switch、Session Switch、Url Switch 或是 CDN。</p>
+<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hivenson.pixnet.net/blog/post/225842720-l2-switch-%E8%88%87-l3-switch-%E5%B7%AE%E5%88%A5">l2-switch-與-l3-switch-差別</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.coolsun.idv.tw/modules/xhnewbb/viewtopic.php?topic_id=353">一網情深 : [分享]L2與L3 Switch的差別</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=1z0ULvg_pW8">集線器，交換機和路由器解釋 - 有什麼區別？</a></li>
+<li><a target="_blank" rel="noopener" href="https://home.gamer.com.tw/creationDetail.php?sn=4247878">L2、L3、L4、L7 Switch與Hub、Router的差異</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/14/2021-04-14%20CDN(Content%20Delivery%20Network)%20-%20%E5%85%A7%E5%AE%B9%E5%82%B3%E9%81%9E%E7%B6%B2%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/14/2021-04-14%20CDN(Content%20Delivery%20Network)%20-%20%E5%85%A7%E5%AE%B9%E5%82%B3%E9%81%9E%E7%B6%B2%E8%B7%AF/" class="post-title-link" itemprop="url">CDN(Content Delivery Network) - 內容傳遞網路</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-14 21:16:00" itemprop="dateCreated datePublished" datetime="2021-04-14T21:16:00+08:00">2021-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:06:17" itemprop="dateModified" datetime="2021-10-01T15:06:17+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>75</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/kOVMSky.png" alt="image"></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=MgjkRt0xHZg">How to setup a CDN on a website (In under 5 minutes!)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=HYZdRvekH04">域名解析教程 讲解IP地址CDN设置CNAME设置A记录【愛來教程】</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/14/2021-04-14%20DLP(Data%20Loss%20Prevention)%20-%20%E8%B3%87%E6%96%99%E5%A4%96%E6%B4%A9%E9%98%B2%E8%AD%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/14/2021-04-14%20DLP(Data%20Loss%20Prevention)%20-%20%E8%B3%87%E6%96%99%E5%A4%96%E6%B4%A9%E9%98%B2%E8%AD%B7/" class="post-title-link" itemprop="url">DLP(Data Loss Prevention) - 資料外洩防護</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-14 21:16:00" itemprop="dateCreated datePublished" datetime="2021-04-14T21:16:00+08:00">2021-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:06:23" itemprop="dateModified" datetime="2021-10-01T15:06:23+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>51</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>保護您的資料，降低資料外洩成本。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3lxHUay3QzI">Demo | 8.7 | Forcepoint DLP Endpoint
+</a><br>-<a target="_blank" rel="noopener" href="https://www.trendmicro.com/zh_tw/business/products/user-protection/sps/endpoint/integrated-data-loss-prevention.html">趨勢科技</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

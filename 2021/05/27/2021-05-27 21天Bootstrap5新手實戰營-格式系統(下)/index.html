@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="格線系統斷點設計下面區塊你會切6還是12呢?  12比較好，未來字長度變了，還有空間老師也有可能只會用container , 連row 都不用  老師切版參考答案     網格系統再次強調不要動margin,padding 可以在上面加顏色、背景圖片、文字樣式等等 col-4,col-8寫法 是手機優先的寫法 我們在做網站通常都是從PC版的開始開發，會從md大小開始 若想先做 PC 版，可用 md">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21天Bootstrap5新手實戰營-格線系統(下)">
+<meta property="og:url" content="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="格線系統斷點設計下面區塊你會切6還是12呢?  12比較好，未來字長度變了，還有空間老師也有可能只會用container , 連row 都不用  老師切版參考答案     網格系統再次強調不要動margin,padding 可以在上面加顏色、背景圖片、文字樣式等等 col-4,col-8寫法 是手機優先的寫法 我們在做網站通常都是從PC版的開始開發，會從md大小開始 若想先做 PC 版，可用 md">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/ZAbPfZg.jpg">
+<meta property="og:image" content="https://i.imgur.com/OJ8q4IZ.jpg">
+<meta property="og:image" content="https://i.imgur.com/86BsgeN.png">
+<meta property="og:image" content="https://i.imgur.com/moZmDbK.png">
+<meta property="og:image" content="https://i.imgur.com/Yw92gU3.png">
+<meta property="og:image" content="https://i.imgur.com/7CrjdnY.png">
+<meta property="og:image" content="https://i.imgur.com/G875Os4.png">
+<meta property="og:image" content="https://i.imgur.com/pyUtqSd.jpg">
+<meta property="og:image" content="https://i.imgur.com/sAyuQiL.png">
+<meta property="og:image" content="https://i.imgur.com/rGA5rO7.png">
+<meta property="og:image" content="https://i.imgur.com/UDpfrBp.jpg">
+<meta property="og:image" content="https://i.imgur.com/5j8FT1o.png">
+<meta property="og:image" content="https://i.imgur.com/hkvhqRF.jpg">
+<meta property="og:image" content="https://i.imgur.com/i67JS8r.jpg">
+<meta property="og:image" content="https://i.imgur.com/cs1VgAs.jpg">
+<meta property="og:image" content="https://i.imgur.com/FK53y5e.png">
+<meta property="og:image" content="https://i.imgur.com/UM5IwAU.png">
+<meta property="og:image" content="https://i.imgur.com/mzUWZdK.png">
+<meta property="article:published_time" content="2021-05-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T06:16:20.694Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Bootstrap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/ZAbPfZg.jpg">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>21天Bootstrap5新手實戰營-格線系統(下) | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          21天Bootstrap5新手實戰營-格線系統(下)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:16:20" itemprop="dateModified" datetime="2021-10-01T14:16:20+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>829</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="格線系統斷點設計"><a href="#格線系統斷點設計" class="headerlink" title="格線系統斷點設計"></a>格線系統斷點設計</h2><p>下面區塊你會切6還是12呢?<br><img src="https://i.imgur.com/ZAbPfZg.jpg" alt="2021_05_22_01_41_01_697.png"></p>
+<blockquote>
+<p>12比較好，未來字長度變了，還有空間<br>老師也有可能只會用container , 連row 都不用</p>
+</blockquote>
+<p>老師切版參考答案</p>
+<blockquote>
+<p><img src="https://i.imgur.com/OJ8q4IZ.jpg" alt="2021_05_22_01_16_50_432.png"></p>
+</blockquote>
+<ul>
+<li>網格系統再次強調不要動margin,padding</li>
+<li>可以在上面加顏色、背景圖片、文字樣式等等</li>
+<li>col-4,col-8寫法 是手機優先的寫法</li>
+<li>我們在做網站通常都是從PC版的開始開發，會從md大小開始</li>
+<li>若想先做 PC 版，可用 md、lg 當起手式</li>
+<li>老師斷點通常會寫3個，比如當md,lg不滿足就會是手機版格式</li>
+</ul>
+<h2 id="格線系統與元件整合"><a href="#格線系統與元件整合" class="headerlink" title="格線系統與元件整合"></a>格線系統與元件整合</h2><p><img src="https://i.imgur.com/86BsgeN.png" alt="Untitled.png"></p>
+<ul>
+<li>容器裡放元件</li>
+<li>鉛筆盒 是容器 象皮擦是元件</li>
+</ul>
+<h2 id="容器與元件分離-內容與樣式分離"><a href="#容器與元件分離-內容與樣式分離" class="headerlink" title="容器與元件分離? 內容與樣式分離?"></a>容器與元件分離? 內容與樣式分離?</h2><p>這樣寫有沒有問題?<br><img src="https://i.imgur.com/moZmDbK.png" alt="2021_05_22_02_00_49_631.png"></p>
+<blockquote>
+<p>容器與元件各司其職，拆開寫</p>
+</blockquote>
+<p><img src="https://i.imgur.com/Yw92gU3.png" alt="2021_05_22_02_03_04_140.png"></p>
+<p>請說出容器與元件的行數<br><img src="https://i.imgur.com/7CrjdnY.png" alt="2021_05_22_02_04_43_916.png"></p>
+<h2 id="通用類別搭配"><a href="#通用類別搭配" class="headerlink" title="通用類別搭配"></a>通用類別搭配</h2><ul>
+<li>我希望在md 平板大小時隱藏</li>
+<li>厲害之處是結合了斷點組合了常用的功能</li>
+</ul>
+<p><img src="https://i.imgur.com/G875Os4.png" alt="2021_05_22_02_13_28_553.png"></p>
+<h2 id="問題時間-網站範例"><a href="#問題時間-網站範例" class="headerlink" title="問題時間-網站範例"></a>問題時間-網站範例</h2><p><a target="_blank" rel="noopener" href="https://www.hexschool.com/">六角學院</a></p>
+<h3 id="1-判斷哪些地方有用到-row-哪些地方沒有"><a href="#1-判斷哪些地方有用到-row-哪些地方沒有" class="headerlink" title="1. 判斷哪些地方有用到 .row 哪些地方沒有"></a>1. 判斷哪些地方有用到 .row 哪些地方沒有</h3><p><img src="https://i.imgur.com/pyUtqSd.jpg" alt="2021_05_24_11_16_06_80.png"></p>
+<blockquote>
+<p>通常選單不會切row column,因為選單的選項會一直增加，要切column 會一直調整。可以使用<a target="_blank" rel="noopener" href="https://bootstrap5.hexschool.com/docs/5.0/components/navbar/">導覽列 (Navbar)</a></p>
+</blockquote>
+<h3 id="2-這個區塊會使用到row-column-嗎"><a href="#2-這個區塊會使用到row-column-嗎" class="headerlink" title="2. 這個區塊會使用到row column 嗎?"></a>2. 這個區塊會使用到row column 嗎?</h3><p><img src="https://i.imgur.com/sAyuQiL.png" alt="2021_05_24_11_17_23_599.png"></p>
+<blockquote>
+<p>會</p>
+</blockquote>
+<h3 id="3-有用到格線系統嗎"><a href="#3-有用到格線系統嗎" class="headerlink" title="3. 有用到格線系統嗎?"></a>3. 有用到格線系統嗎?</h3><p><img src="https://i.imgur.com/rGA5rO7.png" alt="2021_05_24_11_28_36_368.png"></p>
+<blockquote>
+<p>有</p>
+</blockquote>
+<h3 id="4-補充說明"><a href="#4-補充說明" class="headerlink" title="4. 補充說明"></a>4. 補充說明</h3><ul>
+<li>另外Flex 也有通用類別</li>
+<li>老師習慣class 由小寫到大(手機到平板到桌機)</li>
+<li>範例<br><img src="https://i.imgur.com/UDpfrBp.jpg" alt="2021_05_24_12_05_14_723.png"></li>
+</ul>
+<h3 id="5-表尾，會使用到格線系統嗎"><a href="#5-表尾，會使用到格線系統嗎" class="headerlink" title="5. 表尾，會使用到格線系統嗎?"></a>5. 表尾，會使用到格線系統嗎?</h3><blockquote>
+<p>會<br>另外提醒，盡量不要算的剛好。<br>要自己買保險啊，孩子。<br>老師自己又說自己可以用boostrap 的其它方式達成，不見得一定要用格線系統<br><img src="https://i.imgur.com/5j8FT1o.png" alt="2021_05_24_12_27_48_867.png"></p>
+</blockquote>
+<ol>
+<li>會嗎?</li>
+</ol>
+<ul>
+<li><p>答案</p>
+<p>  會</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/hkvhqRF.jpg" alt="2021_05_24_12_31_02_351.png"></p>
+<h3 id="7-有用到格線系統嗎"><a href="#7-有用到格線系統嗎" class="headerlink" title="7. 有用到格線系統嗎??"></a>7. 有用到格線系統嗎??</h3><blockquote>
+<p>有<br><img src="https://i.imgur.com/i67JS8r.jpg" alt="2021_05_24_12_33_22_499.png"></p>
+</blockquote>
+<p>補充說明：</p>
+<p>在boostrap版型應該都有要格線。</p>
+<p>像button 的部分 設計師沒有follow 格線系統，因此我們自己在切版的時候，就可以照自己的方式達到就好</p>
+<p><img src="https://i.imgur.com/cs1VgAs.jpg" alt="2021_05_24_12_36_13_651.png"></p>
+<h3 id="8-會用到格線系統嗎"><a href="#8-會用到格線系統嗎" class="headerlink" title="8. 會用到格線系統嗎??"></a>8. 會用到格線系統嗎??</h3><blockquote>
+<p>不會<br><img src="https://i.imgur.com/FK53y5e.png" alt="2021_05_24_12_42_14_733.png"></p>
+</blockquote>
+<p>補充說明：</p>
+<p>如果自己要開版設計稿，格線的圖可以哪裡找?</p>
+<p>可用軟體如下</p>
+<ul>
+<li>Adobe XD</li>
+<li>sketch</li>
+<li>figma</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://bootstrapmade.com/">Free Bootstrap Templates</a></p>
+<h3 id="9-需要格線系統嗎"><a href="#9-需要格線系統嗎" class="headerlink" title="9. 需要格線系統嗎?"></a>9. 需要格線系統嗎?</h3><blockquote>
+<p>要<br><img src="https://i.imgur.com/UM5IwAU.png" alt="2021_05_24_12_45_33_367.png"></p>
+</blockquote>
+<h2 id="問題解答-column-再包row-column-能不能"><a href="#問題解答-column-再包row-column-能不能" class="headerlink" title="問題解答 column 再包row column 能不能?"></a>問題解答 column 再包row column 能不能?</h2><p><img src="https://i.imgur.com/mzUWZdK.png" alt="2021_05_24_13_21_12_769.png"></p>
+<h2 id="主線及每日任務"><a href="#主線及每日任務" class="headerlink" title="主線及每日任務"></a>主線及每日任務</h2><h3 id="通用類別前3名"><a href="#通用類別前3名" class="headerlink" title="通用類別前3名"></a>通用類別前3名</h3><ul>
+<li>display</li>
+<li>flex</li>
+<li>spacing</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/Bootstrap/" rel="tag"># Bootstrap</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/13/2021-05-13%20CSS%E6%AC%8A%E9%87%8D%E8%80%83%E9%A1%8C/" rel="prev" title="CSS權重考題">
+      <i class="fa fa-chevron-left"></i> CSS權重考題
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/" rel="next" title="21天Bootstrap5新手實戰營-格式系統(上)">
+      21天Bootstrap5新手實戰營-格式系統(上) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E6%96%B7%E9%BB%9E%E8%A8%AD%E8%A8%88"><span class="nav-number">1.</span> <span class="nav-text">格線系統斷點設計</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E8%88%87%E5%85%83%E4%BB%B6%E6%95%B4%E5%90%88"><span class="nav-number">2.</span> <span class="nav-text">格線系統與元件整合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E8%88%87%E5%85%83%E4%BB%B6%E5%88%86%E9%9B%A2-%E5%85%A7%E5%AE%B9%E8%88%87%E6%A8%A3%E5%BC%8F%E5%88%86%E9%9B%A2"><span class="nav-number">3.</span> <span class="nav-text">容器與元件分離? 內容與樣式分離?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E9%A1%9E%E5%88%A5%E6%90%AD%E9%85%8D"><span class="nav-number">4.</span> <span class="nav-text">通用類別搭配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E6%99%82%E9%96%93-%E7%B6%B2%E7%AB%99%E7%AF%84%E4%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">問題時間-網站範例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%A4%E6%96%B7%E5%93%AA%E4%BA%9B%E5%9C%B0%E6%96%B9%E6%9C%89%E7%94%A8%E5%88%B0-row-%E5%93%AA%E4%BA%9B%E5%9C%B0%E6%96%B9%E6%B2%92%E6%9C%89"><span class="nav-number">5.1.</span> <span class="nav-text">1. 判斷哪些地方有用到 .row 哪些地方沒有</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%99%E5%80%8B%E5%8D%80%E5%A1%8A%E6%9C%83%E4%BD%BF%E7%94%A8%E5%88%B0row-column-%E5%97%8E"><span class="nav-number">5.2.</span> <span class="nav-text">2. 這個區塊會使用到row column 嗎?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%89%E7%94%A8%E5%88%B0%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E5%97%8E"><span class="nav-number">5.3.</span> <span class="nav-text">3. 有用到格線系統嗎?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%A3%9C%E5%85%85%E8%AA%AA%E6%98%8E"><span class="nav-number">5.4.</span> <span class="nav-text">4. 補充說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%A1%A8%E5%B0%BE%EF%BC%8C%E6%9C%83%E4%BD%BF%E7%94%A8%E5%88%B0%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E5%97%8E"><span class="nav-number">5.5.</span> <span class="nav-text">5. 表尾，會使用到格線系統嗎?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%9C%89%E7%94%A8%E5%88%B0%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E5%97%8E"><span class="nav-number">5.6.</span> <span class="nav-text">7. 有用到格線系統嗎??</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%9C%83%E7%94%A8%E5%88%B0%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E5%97%8E"><span class="nav-number">5.7.</span> <span class="nav-text">8. 會用到格線系統嗎??</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E9%9C%80%E8%A6%81%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E5%97%8E"><span class="nav-number">5.8.</span> <span class="nav-text">9. 需要格線系統嗎?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E8%A7%A3%E7%AD%94-column-%E5%86%8D%E5%8C%85row-column-%E8%83%BD%E4%B8%8D%E8%83%BD"><span class="nav-number">6.</span> <span class="nav-text">問題解答 column 再包row column 能不能?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E7%B7%9A%E5%8F%8A%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8B%99"><span class="nav-number">7.</span> <span class="nav-text">主線及每日任務</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E9%A1%9E%E5%88%A5%E5%89%8D3%E5%90%8D"><span class="nav-number">7.1.</span> <span class="nav-text">通用類別前3名</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

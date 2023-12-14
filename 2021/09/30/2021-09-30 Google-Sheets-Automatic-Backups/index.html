@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言目前專案階段已經進入到軟體功能驗收階段，在進行驗收時需要將問題一一的列出來。 為了溝通與協同作業方便，於是選用了google sheets 進行分享。但後續想想，如果哪天一不小心出現了傻瓜或者其它意外，這份資料就不見了… 於是開始研究如何自動備份google sheets 資料。以下是問題管制表：  流程說明建立新資料夾比方說在問題管制表底下建立個一名稱為Backups資料夾，接著點擊到Bac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Sheets Automatic Backups">
+<meta property="og:url" content="https://kitefree.github.io/2021/09/30/2021-09-30%20Google-Sheets-Automatic-Backups/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="前言目前專案階段已經進入到軟體功能驗收階段，在進行驗收時需要將問題一一的列出來。 為了溝通與協同作業方便，於是選用了google sheets 進行分享。但後續想想，如果哪天一不小心出現了傻瓜或者其它意外，這份資料就不見了… 於是開始研究如何自動備份google sheets 資料。以下是問題管制表：  流程說明建立新資料夾比方說在問題管制表底下建立個一名稱為Backups資料夾，接著點擊到Bac">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/p6YMezX.png">
+<meta property="og:image" content="https://i.imgur.com/vGDICPQ.png">
+<meta property="og:image" content="https://i.imgur.com/qcphhpd.png">
+<meta property="og:image" content="https://i.imgur.com/aRKSUw9.png">
+<meta property="og:image" content="https://i.imgur.com/s8ohZyd.png">
+<meta property="og:image" content="https://i.imgur.com/dgHuwGh.png">
+<meta property="og:image" content="https://i.imgur.com/la7gpRy.png">
+<meta property="og:image" content="https://i.imgur.com/G4Giboi.png">
+<meta property="og:image" content="https://i.imgur.com/f5Ughop.png">
+<meta property="og:image" content="https://i.imgur.com/wJLEu5V.png">
+<meta property="article:published_time" content="2021-09-30T11:46:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T02:55:00.110Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="Schedule Backup">
+<meta property="article:tag" content="Google Tools">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/p6YMezX.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/09/30/2021-09-30%20Google-Sheets-Automatic-Backups/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Google Sheets Automatic Backups | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/09/30/2021-09-30%20Google-Sheets-Automatic-Backups/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Google Sheets Automatic Backups
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-30 19:46:00" itemprop="dateCreated datePublished" datetime="2021-09-30T19:46:00+08:00">2021-09-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 10:55:00" itemprop="dateModified" datetime="2021-10-01T10:55:00+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前專案階段已經進入到軟體功能驗收階段，在進行驗收時需要將問題一一的列出來。</p>
+<p>為了溝通與協同作業方便，於是選用了google sheets 進行分享。但後續想想，如果哪天一不小心出現了傻瓜或者其它意外，這份資料就不見了…</p>
+<p>於是開始研究如何自動備份google sheets 資料。以下是<code>問題管制表</code>：</p>
+<p><img src="https://i.imgur.com/p6YMezX.png" alt="image-20210930203829852"></p>
+<h2 id="流程說明"><a href="#流程說明" class="headerlink" title="流程說明"></a>流程說明</h2><h3 id="建立新資料夾"><a href="#建立新資料夾" class="headerlink" title="建立新資料夾"></a>建立新資料夾</h3><p>比方說在問題管制表底下建立個一名稱為<code>Backups</code>資料夾，接著點擊到<code>Backups</code>這一層，我們要取出紅色線條部份的ID字串，這個屬於<code>資料夾ID</code>，待會會用到。</p>
+<p><img src="https://i.imgur.com/vGDICPQ.png" alt="image-20210930203614781"></p>
+<h3 id="指令碼編輯器"><a href="#指令碼編輯器" class="headerlink" title="指令碼編輯器"></a>指令碼編輯器</h3><p>到你要備份的對象sheet 打開，接著找到<code>工具</code>→<code>指令碼編輯器</code> ，點擊它到下一步驟畫面</p>
+<p><img src="https://i.imgur.com/qcphhpd.png" alt="image-20210930200414943"></p>
+<h3 id="貼上程式碼"><a href="#貼上程式碼" class="headerlink" title="貼上程式碼"></a>貼上程式碼</h3><p>接著會看到右邊有程式碼可以貼，請貼上以下程式碼，這個畫面是貼完之後的結果。</p>
+<p>重點在<code>第10行</code> code </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">DriveAPP</span>.<span class="title function_">getFolderById</span>(<span class="string">&#x27;your backup bolder id&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>有注意到嗎？其實就是要貼上剛剛在建立資料夾步驟要留意的資料夾ID，請貼到這裡。</p>
+<p>之後請記得按下<code>儲存</code>，長的像磁片正方形的那個。</p>
+<p><img src="https://i.imgur.com/aRKSUw9.png" alt="image-20210930200620937"></p>
+<h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">makeCopy</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// generates the timestamp and stores in variable formattedDate as year-month-date hour-minute-second</span></span><br><span class="line"><span class="keyword">var</span> formattedDate = <span class="title class_">Utilities</span>.<span class="title function_">formatDate</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(), <span class="string">&quot;GMT&quot;</span>, <span class="string">&quot;yyyy-MM-dd&#x27; &#x27;HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the name of the original file and appends the word &quot;copy&quot; followed by the timestamp stored in formattedDate</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getName</span>() + <span class="string">&quot; Copy &quot;</span> + formattedDate;</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the destination folder by their ID. REPLACE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx with your folder&#x27;s ID that you can get by opening the folder in Google Drive and checking the URL in the browser&#x27;s address bar</span></span><br><span class="line"><span class="keyword">var</span> destination = <span class="title class_">DriveApp</span>.<span class="title function_">getFolderById</span>(<span class="string">&quot;your backup folder name&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the current Google Sheet file</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="title class_">DriveApp</span>.<span class="title function_">getFileById</span>(<span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getId</span>())</span><br><span class="line"></span><br><span class="line"><span class="comment">// makes copy of &quot;file&quot; with &quot;name&quot; at the &quot;destination&quot;</span></span><br><span class="line">file.<span class="title function_">makeCopy</span>(name, destination);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="設定觸發條件"><a href="#設定觸發條件" class="headerlink" title="設定觸發條件"></a>設定觸發條件</h3><p>左邊選單有一個小時鐘的就是我們的主角，要設定時間備份，就是在這裡</p>
+<p><img src="https://i.imgur.com/s8ohZyd.png" alt="image-20210930201927739"></p>
+<h3 id="選擇時間驅動"><a href="#選擇時間驅動" class="headerlink" title="選擇時間驅動"></a>選擇時間驅動</h3><p>因為我的目的是想要定時備份，所以這次是選<code>時間驅動</code>的選項</p>
+<p><img src="https://i.imgur.com/dgHuwGh.png" alt="image-20210930202210516"></p>
+<h3 id="定時顆粒度"><a href="#定時顆粒度" class="headerlink" title="定時顆粒度"></a>定時顆粒度</h3><p><img src="https://i.imgur.com/la7gpRy.png" alt="image-20210930202310015"></p>
+<h3 id="最後完成的設定"><a href="#最後完成的設定" class="headerlink" title="最後完成的設定"></a>最後完成的設定</h3><p>設定完之後，按下<code>儲存</code></p>
+<p><img src="https://i.imgur.com/G4Giboi.png" alt="image-20210930202358258"></p>
+<h3 id="觸發條件清單"><a href="#觸發條件清單" class="headerlink" title="觸發條件清單"></a>觸發條件清單</h3><p>按下儲存後，這時候畫面會直接導向到這個清單，紅色部分就是我們剛剛設定的。</p>
+<p>眼針的我們可以發現它多了一個觸發器，這個觸發器是設定在<code>文件開啟時</code>。</p>
+<p>後來實測只要使用者有去開啟這個sheet，就會自動備一份，這也是不錯的備份方式，所以我就沒有刪掉它。</p>
+<p><img src="https://i.imgur.com/f5Ughop.png" alt="image-20210930202803058"></p>
+<h2 id="最後完成"><a href="#最後完成" class="headerlink" title="最後完成"></a>最後完成</h2><p>完成囉，在這個備份的資料夾，時間一到就會多一份囉。</p>
+<p><img src="https://i.imgur.com/wJLEu5V.png" alt="image-20210930203214080"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Schedule-Backup/" rel="tag"># Schedule Backup</a>
+              <a href="/tags/Google-Tools/" rel="tag"># Google Tools</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/30/2021-09-30%20%E5%A3%93%E5%8A%9B%E6%B8%AC%E8%A9%A6/" rel="prev" title="壓力測試">
+      <i class="fa fa-chevron-left"></i> 壓力測試
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/02/2021-10-02%20Git%E7%AD%86%E8%A8%98part2/" rel="next" title="Git筆記part2">
+      Git筆記part2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E8%AA%AA%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">流程說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%96%B0%E8%B3%87%E6%96%99%E5%A4%BE"><span class="nav-number">2.1.</span> <span class="nav-text">建立新資料夾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E7%A2%BC%E7%B7%A8%E8%BC%AF%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">指令碼編輯器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B2%BC%E4%B8%8A%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">2.3.</span> <span class="nav-text">貼上程式碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">2.4.</span> <span class="nav-text">程式碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E8%A7%B8%E7%99%BC%E6%A2%9D%E4%BB%B6"><span class="nav-number">2.5.</span> <span class="nav-text">設定觸發條件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E6%99%82%E9%96%93%E9%A9%85%E5%8B%95"><span class="nav-number">2.6.</span> <span class="nav-text">選擇時間驅動</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%99%82%E9%A1%86%E7%B2%92%E5%BA%A6"><span class="nav-number">2.7.</span> <span class="nav-text">定時顆粒度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C%E5%AE%8C%E6%88%90%E7%9A%84%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.8.</span> <span class="nav-text">最後完成的設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%B8%E7%99%BC%E6%A2%9D%E4%BB%B6%E6%B8%85%E5%96%AE"><span class="nav-number">2.9.</span> <span class="nav-text">觸發條件清單</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C%E5%AE%8C%E6%88%90"><span class="nav-number">3.</span> <span class="nav-text">最後完成</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

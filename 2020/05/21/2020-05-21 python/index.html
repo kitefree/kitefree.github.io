@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="整數除法12print(7&#x2F;&#x2F;3)#2  平方12print(2**4)#16  字串換行1234print(&quot;&quot;&quot;Hi,How are you?I&#x27;m fine.&quot;&quot;&quot;)#How are you?  開根號12print(64**0.5)#8.0  3次方根12print(pow(8,1&#x2F;3))#2.0  LISTlength">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python">
+<meta property="og:url" content="https://kitefree.github.io/2020/05/21/2020-05-21%20python/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="整數除法12print(7&#x2F;&#x2F;3)#2  平方12print(2**4)#16  字串換行1234print(&quot;&quot;&quot;Hi,How are you?I&#x27;m fine.&quot;&quot;&quot;)#How are you?  開根號12print(64**0.5)#8.0  3次方根12print(pow(8,1&#x2F;3))#2.0  LISTlength">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-05-21T02:55:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T06:26:42.992Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/2020/05/21/2020-05-21%20python/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>python | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/21/2020-05-21%20python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-21 10:55:00" itemprop="dateCreated datePublished" datetime="2020-05-21T10:55:00+08:00">2020-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:26:42" itemprop="dateModified" datetime="2021-10-01T14:26:42+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="整數除法"><a href="#整數除法" class="headerlink" title="整數除法"></a>整數除法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">7</span>//<span class="number">3</span>)</span><br><span class="line"><span class="comment">#2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="平方"><a href="#平方" class="headerlink" title="平方"></a>平方</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">2</span>**<span class="number">4</span>)</span><br><span class="line"><span class="comment">#16</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字串換行"><a href="#字串換行" class="headerlink" title="字串換行"></a>字串換行</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&quot;&quot;Hi,</span></span><br><span class="line"><span class="string">How are you?</span></span><br><span class="line"><span class="string">I&#x27;m fine.&quot;&quot;&quot;</span>)</span><br><span class="line"><span class="comment">#How are you?</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="開根號"><a href="#開根號" class="headerlink" title="開根號"></a>開根號</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">64</span>**<span class="number">0.5</span>)</span><br><span class="line"><span class="comment">#8.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3次方根"><a href="#3次方根" class="headerlink" title="3次方根"></a>3次方根</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(<span class="number">8</span>,<span class="number">1</span>/<span class="number">3</span>))</span><br><span class="line"><span class="comment">#2.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LIST"><a href="#LIST" class="headerlink" title="LIST"></a>LIST</h2><h3 id="length"><a href="#length" class="headerlink" title="length"></a>length</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fruits =[<span class="string">&quot;apple&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;Guava&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(fruits))</span><br><span class="line"><span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="how-to-list-remove-range"><a href="#how-to-list-remove-range" class="headerlink" title="how to list remove range"></a>how to list remove range</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fruits =[<span class="string">&quot;apple&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;Guava&quot;</span>]</span><br><span class="line">fruits[:<span class="number">2</span>] = []</span><br><span class="line"><span class="built_in">print</span>(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment">#==result==</span></span><br><span class="line"><span class="comment">#[&#x27;Guava&#x27;]</span></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="comment">### how to set nested list</span></span><br><span class="line"></span><br><span class="line">```python=</span><br><span class="line">[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="what’s-differnect-list-vs-tuple"><a href="#what’s-differnect-list-vs-tuple" class="headerlink" title="what’s differnect list vs tuple ?"></a>what’s differnect list vs tuple ?</h2><p>不能修改值</p>
+<h2 id="collections"><a href="#collections" class="headerlink" title="collections"></a>collections</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">collection_1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">collection_2 = &#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 &amp; collection_2)</span><br><span class="line"><span class="comment">#&#123;2, 3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="聯集"><a href="#聯集" class="headerlink" title="聯集"></a>聯集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 | collection_2)</span><br><span class="line"><span class="comment">#&#123;1, 2, 3, 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 - collection_2)</span><br><span class="line"><span class="comment">#&#123;1&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="反交集"><a href="#反交集" class="headerlink" title="反交集"></a>反交集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 ^ collection_2)</span><br><span class="line"><span class="comment">#&#123;1, 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">2</span> <span class="keyword">in</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;)</span><br><span class="line"><span class="comment">#True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="string-to-list"><a href="#string-to-list" class="headerlink" title="string to list"></a>string to list</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">&quot;kite&quot;</span>*<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(name)</span><br><span class="line">name = <span class="built_in">set</span>(<span class="string">&quot;kite&quot;</span>*<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(name)</span><br><span class="line"></span><br><span class="line"><span class="comment">#==result==</span></span><br><span class="line"><span class="comment">#kitekite</span></span><br><span class="line"><span class="comment">#&#123;&#x27;i&#x27;, &#x27;e&#x27;, &#x27;k&#x27;, &#x27;t&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="從列表的資料產生字典"><a href="#從列表的資料產生字典" class="headerlink" title="從列表的資料產生字典"></a>從列表的資料產生字典</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123; x:x*<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span>[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] &#125;</span><br><span class="line"><span class="built_in">print</span>(dic)</span><br><span class="line"><span class="comment">#==result==</span></span><br><span class="line"><span class="comment">#&#123;3: 6, 4: 8, 5: 10&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函式不定參數"><a href="#函式不定參數" class="headerlink" title="函式不定參數"></a>函式不定參數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">avg</span>(<span class="params">*nums</span>):</span><br><span class="line">    <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="built_in">sum</span> = <span class="built_in">sum</span> + num</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>/<span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(avg(<span class="number">4</span>,<span class="number">8</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="模組的概念"><a href="#模組的概念" class="headerlink" title="模組的概念"></a>模組的概念</h2><p>sys.path.append(“modules”)<br>sys.path</p>
+<p>封包的設計與使用<br>專案檔案配置</p>
+<ul>
+<li>專案資料夾</li>
+<li>封包資料夾<ul>
+<li><strong>init</strong>.py<ul>
+<li>模組一.py</li>
+<li>模組二.py</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>import 封包名稱.模組名稱</p>
+<h2 id="檔案操作"><a href="#檔案操作" class="headerlink" title="檔案操作"></a>檔案操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;config.json&quot;</span>,mode=<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = json.load(file)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;config.json&quot;</span>,mode=<span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = json.load(file)</span><br><span class="line">    data[<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;kite&quot;</span></span><br><span class="line">    json.dump(data,file)</span><br></pre></td></tr></table></figure>
+
+<h2 id="隨機數"><a href="#隨機數" class="headerlink" title="隨機數"></a>隨機數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">random.choice([<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>])</span><br><span class="line">random.sample([<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>],<span class="number">2</span>)</span><br><span class="line">data = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="comment">#洗牌</span></span><br><span class="line">random.shuffle(data)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="comment">#隨機數</span></span><br><span class="line">random.random()</span><br><span class="line">random.uniform(<span class="number">0.0</span>,<span class="number">1.0</span>)</span><br><span class="line"><span class="comment">#常態分配</span></span><br><span class="line">random.normalvariate(<span class="number">100</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="平均數"><a href="#平均數" class="headerlink" title="平均數"></a>平均數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statistics</span><br><span class="line">statistics.mean([<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="中位數"><a href="#中位數" class="headerlink" title="中位數"></a>中位數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statistics</span><br><span class="line">statistics.median([<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="標準差"><a href="#標準差" class="headerlink" title="標準差"></a>標準差</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statistics</span><br><span class="line"><span class="comment">#標準差 資料散部的狀況，資料間有沒有落差很大</span></span><br><span class="line">statistics.stdev([<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/10/2020-05-10%20windows%20python%20environment%20install%20%E7%9B%B8%E9%97%9C%E8%A8%98%E9%8C%84/" rel="prev" title="windows python environment install 相關記錄">
+      <i class="fa fa-chevron-left"></i> windows python environment install 相關記錄
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/15/2020-09-15%20%E7%B6%B2%E9%A0%81%E5%88%87%E7%89%88%E7%AD%86%E8%A8%98/" rel="next" title="網頁切版筆記">
+      網頁切版筆記 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B8%E9%99%A4%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">整數除法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B3%E6%96%B9"><span class="nav-number">2.</span> <span class="nav-text">平方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2%E6%8F%9B%E8%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">字串換行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E6%A0%B9%E8%99%9F"><span class="nav-number">4.</span> <span class="nav-text">開根號</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E6%AC%A1%E6%96%B9%E6%A0%B9"><span class="nav-number">5.</span> <span class="nav-text">3次方根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIST"><span class="nav-number">6.</span> <span class="nav-text">LIST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#length"><span class="nav-number">6.1.</span> <span class="nav-text">length</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-to-list-remove-range"><span class="nav-number">6.2.</span> <span class="nav-text">how to list remove range</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what%E2%80%99s-differnect-list-vs-tuple"><span class="nav-number">7.</span> <span class="nav-text">what’s differnect list vs tuple ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#collections"><span class="nav-number">8.</span> <span class="nav-text">collections</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E9%9B%86"><span class="nav-number">8.1.</span> <span class="nav-text">交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%AF%E9%9B%86"><span class="nav-number">8.2.</span> <span class="nav-text">聯集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%AE%E9%9B%86"><span class="nav-number">8.3.</span> <span class="nav-text">差集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E4%BA%A4%E9%9B%86"><span class="nav-number">8.4.</span> <span class="nav-text">反交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN"><span class="nav-number">8.5.</span> <span class="nav-text">IN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string-to-list"><span class="nav-number">9.</span> <span class="nav-text">string to list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%9E%E5%88%97%E8%A1%A8%E7%9A%84%E8%B3%87%E6%96%99%E7%94%A2%E7%94%9F%E5%AD%97%E5%85%B8"><span class="nav-number">10.</span> <span class="nav-text">從列表的資料產生字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E5%BC%8F%E4%B8%8D%E5%AE%9A%E5%8F%83%E6%95%B8"><span class="nav-number">11.</span> <span class="nav-text">函式不定參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E7%B5%84%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">12.</span> <span class="nav-text">模組的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AA%94%E6%A1%88%E6%93%8D%E4%BD%9C"><span class="nav-number">13.</span> <span class="nav-text">檔案操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%A8%E6%A9%9F%E6%95%B8"><span class="nav-number">14.</span> <span class="nav-text">隨機數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%95%B8"><span class="nav-number">15.</span> <span class="nav-text">平均數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E4%BD%8D%E6%95%B8"><span class="nav-number">16.</span> <span class="nav-text">中位數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%99%E6%BA%96%E5%B7%AE"><span class="nav-number">17.</span> <span class="nav-text">標準差</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

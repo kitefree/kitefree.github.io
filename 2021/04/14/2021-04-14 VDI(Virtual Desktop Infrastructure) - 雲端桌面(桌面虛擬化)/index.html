@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="VDI(Virtual Desktop Infrastructure)集中計算，集中管理  使用者只要透過網路連線，執行遠端虛擬機，使用的硬體資源都是屬於伺服器的。 運行在遠端硬體虛擬化層  架構特性  客戶端的設備性能不需要很好 與傳統的比較，對於作業系統的所有操作與掌控都回到伺服器來決定，也就是集中管理概念  探討問題  服務器的硬體等級要提升，所有成本都在伺服器的規格上去擴充 客戶端一定要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VDI(Virtual Desktop Infrastructure)  - 雲端桌面(桌面虛擬化)">
+<meta property="og:url" content="https://kitefree.github.io/2021/04/14/2021-04-14%20VDI(Virtual%20Desktop%20Infrastructure)%20-%20%E9%9B%B2%E7%AB%AF%E6%A1%8C%E9%9D%A2(%E6%A1%8C%E9%9D%A2%E8%99%9B%E6%93%AC%E5%8C%96)/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="VDI(Virtual Desktop Infrastructure)集中計算，集中管理  使用者只要透過網路連線，執行遠端虛擬機，使用的硬體資源都是屬於伺服器的。 運行在遠端硬體虛擬化層  架構特性  客戶端的設備性能不需要很好 與傳統的比較，對於作業系統的所有操作與掌控都回到伺服器來決定，也就是集中管理概念  探討問題  服務器的硬體等級要提升，所有成本都在伺服器的規格上去擴充 客戶端一定要">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/ywsWQMO.jpg">
+<meta property="og:image" content="https://i.imgur.com/FXUInpK.jpg">
+<meta property="og:image" content="https://i.imgur.com/lvBbjdv.jpg">
+<meta property="og:image" content="https://i.imgur.com/OrrlM5E.jpg">
+<meta property="article:published_time" content="2021-04-14T13:15:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T07:22:31.633Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="網路知識">
+<meta property="article:tag" content="VDI">
+<meta property="article:tag" content="IDV">
+<meta property="article:tag" content="RDV">
+<meta property="article:tag" content="VOI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/ywsWQMO.jpg">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/04/14/2021-04-14%20VDI(Virtual%20Desktop%20Infrastructure)%20-%20%E9%9B%B2%E7%AB%AF%E6%A1%8C%E9%9D%A2(%E6%A1%8C%E9%9D%A2%E8%99%9B%E6%93%AC%E5%8C%96)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>VDI(Virtual Desktop Infrastructure)  - 雲端桌面(桌面虛擬化) | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/14/2021-04-14%20VDI(Virtual%20Desktop%20Infrastructure)%20-%20%E9%9B%B2%E7%AB%AF%E6%A1%8C%E9%9D%A2(%E6%A1%8C%E9%9D%A2%E8%99%9B%E6%93%AC%E5%8C%96)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VDI(Virtual Desktop Infrastructure)  - 雲端桌面(桌面虛擬化)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-14 21:15:00" itemprop="dateCreated datePublished" datetime="2021-04-14T21:15:00+08:00">2021-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:22:31" itemprop="dateModified" datetime="2021-10-01T15:22:31+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>734</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://i.imgur.com/ywsWQMO.jpg" alt="image"></p>
+<h2 id="VDI-Virtual-Desktop-Infrastructure"><a href="#VDI-Virtual-Desktop-Infrastructure" class="headerlink" title="VDI(Virtual Desktop Infrastructure)"></a>VDI(Virtual Desktop Infrastructure)</h2><p><code>集中計算，集中管理</code></p>
+<ul>
+<li>使用者只要透過網路連線，執行遠端虛擬機，使用的硬體資源都是屬於伺服器的。</li>
+<li>運行在遠端硬體虛擬化層<br><img src="https://i.imgur.com/FXUInpK.jpg" alt="image"></li>
+</ul>
+<p>架構特性</p>
+<ul>
+<li>客戶端的設備性能不需要很好</li>
+<li>與傳統的比較，對於作業系統的所有操作與掌控都回到伺服器來決定，也就是集中管理概念</li>
+</ul>
+<p>探討問題</p>
+<ul>
+<li>服務器的硬體等級要提升，所有成本都在伺服器的規格上去擴充</li>
+<li>客戶端一定要有穩定的網路傳輸，畢竟所有操作都是經由網路傳輸下達指令</li>
+</ul>
+<h2 id="IDV-Intelligent-Desktop-Virtualization"><a href="#IDV-Intelligent-Desktop-Virtualization" class="headerlink" title="IDV(Intelligent Desktop Virtualization)"></a>IDV(Intelligent Desktop Virtualization)</h2><p><code>分布式計算，集中管理</code></p>
+<ul>
+<li>IDV技術是由英特爾公司提出的革新性框架</li>
+<li>鏡像資源在伺服器端，將鏡像資源配發到客戶端，由客戶端在本地運行虛擬機。</li>
+<li>運行在本地硬體虛擬化層<br><img src="https://i.imgur.com/lvBbjdv.jpg" alt="image"></li>
+</ul>
+<p>架構特性</p>
+<ul>
+<li>不依賴網路(不需連網)，畢竟使用者在運行系統是在自己的電腦上執行</li>
+<li>一樣可以管理虛擬系統的環境，因為是由伺服器配發鏡像到客戶端的，鏡像的管理權限一樣在伺服器端</li>
+</ul>
+<p>探討問題</p>
+<ul>
+<li>吃的是客戶端的硬體資源</li>
+<li>要求本地硬體必須統一，必須支持VT等帶外特性</li>
+</ul>
+<h2 id="RDV"><a href="#RDV" class="headerlink" title="RDV"></a>RDV</h2><p><code>分布式計算，集中管理</code><br>RDV又在IDV基礎上進行了改進,終端機器啟動的時候，通過網絡重定向技術從伺服器端獲取很小的系統啟動數據，跟上述二個技術差別在於是運行在<strong>本地物理計算機</strong>。</p>
+<p>架構特性</p>
+<ul>
+<li>運行在本地物理計算機</li>
+<li>系統數據在伺服器共享存儲</li>
+<li>支持系統緩存到本地運行</li>
+<li>支持離線運行</li>
+<li>支持工作數據集中存儲和管理</li>
+</ul>
+<p><img src="https://i.imgur.com/OrrlM5E.jpg" alt="image"></p>
+<h2 id="VOI"><a href="#VOI" class="headerlink" title="VOI"></a>VOI</h2><p>VOI技術是直接在I&#x2F;O 層實現對物理存儲介質的數據重定向，以達到虛擬化的操作系統完全工作於本機物理硬件之上。VOI技術是對操作系統存儲層進行重新定義，是改進的無盤工作站方案。其最大特點是管理集中化，性能體驗好。</p>
+<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><p><a target="_blank" rel="noopener" href="https://kknews.cc/zh-tw/tech/9nle9yb.html">VDI、IDV、RDV三種雲桌面的區別</a><br><a target="_blank" rel="noopener" href="https://kknews.cc/tech/mb64gr2.html">細說桌面虛擬化發展歷程</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/" rel="tag"># 網路知識</a>
+              <a href="/tags/VDI/" rel="tag"># VDI</a>
+              <a href="/tags/IDV/" rel="tag"># IDV</a>
+              <a href="/tags/RDV/" rel="tag"># RDV</a>
+              <a href="/tags/VOI/" rel="tag"># VOI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/14/2021-04-14%20python%20%E8%AE%80%E5%8F%96%E4%B8%8D%E5%90%8C%E6%AA%94%E6%A1%88%E9%A1%9E%E5%9E%8B/" rel="prev" title="python 讀取不同檔案類型">
+      <i class="fa fa-chevron-left"></i> python 讀取不同檔案類型
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/14/2021-04-14%20WAF(Web%20Application%20Firewall)%20-%20%E7%B6%B2%E8%B7%AF%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E9%98%B2%E7%81%AB%E7%89%86/" rel="next" title="WAF(Web Application Firewall) - 網路應用程式防火牆">
+      WAF(Web Application Firewall) - 網路應用程式防火牆 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VDI-Virtual-Desktop-Infrastructure"><span class="nav-number">1.</span> <span class="nav-text">VDI(Virtual Desktop Infrastructure)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDV-Intelligent-Desktop-Virtualization"><span class="nav-number">2.</span> <span class="nav-text">IDV(Intelligent Desktop Virtualization)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDV"><span class="nav-number">3.</span> <span class="nav-text">RDV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VOI"><span class="nav-number">4.</span> <span class="nav-text">VOI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">參考連結</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

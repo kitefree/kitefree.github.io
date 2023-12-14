@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. windows python install 直接去官網下載windows 版本安裝 檢查安裝是否成功  1python --version  1.1 如果有重新安裝過python會遇到 1Fatal error in launcher: Unable to create process using  這個是因為在環境變數裡面有2個路徑說明了python,pip的位置。可以利用以下指令確認路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows python environment install 相關記錄">
+<meta property="og:url" content="https://kitefree.github.io/2020/05/10/2020-05-10%20windows%20python%20environment%20install%20%E7%9B%B8%E9%97%9C%E8%A8%98%E9%8C%84/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="1. windows python install 直接去官網下載windows 版本安裝 檢查安裝是否成功  1python --version  1.1 如果有重新安裝過python會遇到 1Fatal error in launcher: Unable to create process using  這個是因為在環境變數裡面有2個路徑說明了python,pip的位置。可以利用以下指令確認路">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-05-10T05:15:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T06:24:38.158Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/2020/05/10/2020-05-10%20windows%20python%20environment%20install%20%E7%9B%B8%E9%97%9C%E8%A8%98%E9%8C%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>windows python environment install 相關記錄 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/10/2020-05-10%20windows%20python%20environment%20install%20%E7%9B%B8%E9%97%9C%E8%A8%98%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          windows python environment install 相關記錄
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-10 13:15:00" itemprop="dateCreated datePublished" datetime="2020-05-10T13:15:00+08:00">2020-05-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:24:38" itemprop="dateModified" datetime="2021-10-01T14:24:38+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-windows-python-install"><a href="#1-windows-python-install" class="headerlink" title="1. windows python install"></a>1. windows python install</h2><ul>
+<li>直接去官網下載windows 版本安裝</li>
+<li>檢查安裝是否成功</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-如果有重新安裝過python"><a href="#1-1-如果有重新安裝過python" class="headerlink" title="1.1 如果有重新安裝過python"></a>1.1 如果有重新安裝過python</h3><p>會遇到</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error in launcher: Unable to create process using</span><br></pre></td></tr></table></figure>
+
+<p>這個是因為在環境變數裡面有2個路徑說明了python,pip的位置。<br>可以利用以下指令確認路徑，並選擇刪除多餘的路徑參數</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">where python</span><br><span class="line">where pip</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-windows-pip-install"><a href="#2-windows-pip-install" class="headerlink" title="2. windows pip install"></a>2. windows pip install</h2><p>pip 基本上已經內鍵了<br>如果你安裝的Python版本，Python 2在2.7.9含以上或 Python 3在3.4含以上，則預設已經包含了pip。本範例為Python 3.7.3。<br>檢查安裝是否成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip --version</span><br></pre></td></tr></table></figure>
+
+<p>參考文章 &gt;&gt; <a target="_blank" rel="noopener" href="https://matthung0807.blogspot.com/2019/08/windows-pythonpip.html">Windows 安裝Python套件管理工具pip</a></p>
+<h2 id="3-virtualenv-install"><a href="#3-virtualenv-install" class="headerlink" title="3. virtualenv install"></a>3. virtualenv install</h2><p>這篇寫的很好，在裝opencv之前，先教你怎麼裝virtualenv<br><a target="_blank" rel="noopener" href="https://medium.com/@airwaves/opencv-%E5%9C%A8windows%E4%B8%AD%E5%AE%89%E8%A3%9D-opencv-python-295ae092ca57">OpenCV —在Windows中安裝 OpenCV-python</a></p>
+<h2 id="4-VSCode-install"><a href="#4-VSCode-install" class="headerlink" title="4. VSCode install"></a>4. VSCode install</h2><p>直接去官網上下載安裝</p>
+<h3 id="4-1-Pylint"><a href="#4-1-Pylint" class="headerlink" title="4.1 Pylint"></a>4.1 Pylint</h3><p>PyLint 是一種廣泛使用的工具，可檢查 Python 程式碼中的錯誤，有助於撰寫良好的 Python 程式碼模式，因此 Visual Studio 已針對 Python 專案整合這項工具。</p>
+<h3 id="4-2-VSCode-virtualenv"><a href="#4-2-VSCode-virtualenv" class="headerlink" title="4.2 VSCode &amp; virtualenv"></a>4.2 VSCode &amp; virtualenv</h3><p>自己實測，如果在terminal 下，弄出一個env,跑獨立環境是沒問題的<br>但是如果我們又想要在VSCode 下能在env底下run debug ，我目前成功的方式是將setting.json 裡面指向的python 指向到env&#x2F;Scripts</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;python.pythonPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;E:\\pythonworkspace\\venv2\\Scripts\\python.exe&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>我是也有看到有人改動lanuch.json ,讓運行的設定進行調改，但我沒成功.總覺得應該找時間把lanuch.json與vscode 的愛昧關係給搞定</p>
+<h2 id="5-其它遇到的問題"><a href="#5-其它遇到的問題" class="headerlink" title="5. 其它遇到的問題"></a>5. 其它遇到的問題</h2><ul>
+<li>opencv 讀取資料夾的時候最好不要有中文字，不然會讀取不到</li>
+<li>在用VSCode 結合virtualenv 時，debug run , terminal 會出現錯誤，但還是可以繼續debug 跟跑出結果，只是有點不順眼，查了一下怎麼解決不出現這個錯誤，可以參考這篇的教學&gt;&gt;<a target="_blank" rel="noopener" href="https://officeguide.cc/powershell-set-execution-policy-remote-signed/">PowerShell 更改執行原則，解決無法執行 ps1 指令稿問題</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/06/2020-05-06%20CORS%20(Cross-Origin%20Resource%20Sharing)/" rel="prev" title="CORS (Cross-Origin Resource Sharing)">
+      <i class="fa fa-chevron-left"></i> CORS (Cross-Origin Resource Sharing)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/21/2020-05-21%20python/" rel="next" title="python">
+      python <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-windows-python-install"><span class="nav-number">1.</span> <span class="nav-text">1. windows python install</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%A6%82%E6%9E%9C%E6%9C%89%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%9D%E9%81%8Epython"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 如果有重新安裝過python</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-windows-pip-install"><span class="nav-number">2.</span> <span class="nav-text">2. windows pip install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-virtualenv-install"><span class="nav-number">3.</span> <span class="nav-text">3. virtualenv install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-VSCode-install"><span class="nav-number">4.</span> <span class="nav-text">4. VSCode install</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Pylint"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Pylint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-VSCode-virtualenv"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 VSCode &amp; virtualenv</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%85%B6%E5%AE%83%E9%81%87%E5%88%B0%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-number">5.</span> <span class="nav-text">5. 其它遇到的問題</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

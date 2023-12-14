@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="介紹官方  A node.js tool to automate end-to-end web testing Write tests in JS or TypeScript, run them and view results  基於 node.js 的自動化端對端測試工具  Write tests with ease Test in every browser that matters Dep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TestCafe 筆記">
+<meta property="og:url" content="https://kitefree.github.io/2021/08/28/2021-08-28%20TestCafe%20%E7%AD%86%E8%A8%98/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="介紹官方  A node.js tool to automate end-to-end web testing Write tests in JS or TypeScript, run them and view results  基於 node.js 的自動化端對端測試工具  Write tests with ease Test in every browser that matters Dep">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/X5HjnK5.png">
+<meta property="og:image" content="https://i.imgur.com/j9P5soJ.png">
+<meta property="og:image" content="https://i.imgur.com/MNk4JHx.png">
+<meta property="og:image" content="https://i.imgur.com/17bzoQJ.png">
+<meta property="article:published_time" content="2021-08-28T09:03:00.000Z">
+<meta property="article:modified_time" content="2021-10-19T03:41:26.623Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="端對端測試">
+<meta property="article:tag" content="TestCafe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/X5HjnK5.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/08/28/2021-08-28%20TestCafe%20%E7%AD%86%E8%A8%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>TestCafe 筆記 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/08/28/2021-08-28%20TestCafe%20%E7%AD%86%E8%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TestCafe 筆記
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-08-28 17:03:00" itemprop="dateCreated datePublished" datetime="2021-08-28T17:03:00+08:00">2021-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-19 11:41:26" itemprop="dateModified" datetime="2021-10-19T11:41:26+08:00">2021-10-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>19 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><p>官方</p>
+<blockquote>
+<p>A node.js tool to automate end-to-end web testing Write tests in JS or TypeScript, run them and view results</p>
+</blockquote>
+<p>基於 node.js 的自動化端對端測試工具</p>
+<ol>
+<li>Write tests with ease</li>
+<li>Test in every browser that matters</li>
+<li>Deploy without fear<ol>
+<li>CI&#x2F;CD-ready</li>
+<li>Concurrent test runs</li>
+<li>If something goes wrong…</li>
+</ol>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10221559">[Day 11] 看見 TestCafe，又簡單又完整的工具鍊</a></p>
+<blockquote>
+<p>TestCafe 是筆者用過框架裡，支援最多<strong>作業系統</strong> 和 <strong>瀏覽器</strong> 的測試框架</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://testcafe.io/">官網</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.letswrite.tw/testcafe-member-login/">https://www.letswrite.tw/testcafe-member-login/</a></p>
+<p><a target="_blank" rel="noopener" href="https://partypeopleland.github.io/artblog/2019/06/24/%E4%BD%BF%E7%94%A8testCafe%E5%81%9AE2E%E6%B8%AC%E8%A9%A6/">https://partypeopleland.github.io/artblog/2019/06/24/%E4%BD%BF%E7%94%A8testCafe%E5%81%9AE2E%E6%B8%AC%E8%A9%A6/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=D7BfL1x5T2M">https://www.youtube.com/watch?v=D7BfL1x5T2M</a></p>
+<p><a target="_blank" rel="noopener" href="http://testingpai.com/article/1619681368102">http://testingpai.com/article/1619681368102</a></p>
+<p><a target="_blank" rel="noopener" href="http://testingpai.com/article/1600914326318">http://testingpai.com/article/1600914326318</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.letswrite.tw/testcafe-settings/">https://www.letswrite.tw/testcafe-settings/</a></p>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g testcafe</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="起手式"><a href="#起手式" class="headerlink" title="起手式"></a>起手式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Selector</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;testcafe&#x27;</span>; </span><br><span class="line"></span><br><span class="line">fixture <span class="string">`Getting Started`</span> </span><br><span class="line">    .<span class="property">page</span> <span class="string">`http://devexpress.github.io/testcafe/example`</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;HelloWorld test&#x27;</span>, <span class="keyword">async</span> t =&gt; &#123; </span><br><span class="line">    <span class="keyword">await</span> t</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="string">&#x27;#developer-name&#x27;</span>, <span class="string">&#x27;HelloWorld&#x27;</span>) </span><br><span class="line">        .<span class="title function_">click</span>(<span class="string">&#x27;#submit-button&#x27;</span>) </span><br><span class="line">        .<span class="title function_">expect</span>(<span class="title class_">Selector</span>(<span class="string">&#x27;#article-header&#x27;</span>).<span class="property">innerText</span>).<span class="title function_">eql</span>(<span class="string">&#x27;Thank you, HelloWorld!&#x27;</span>);        </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="安裝後的執行錯誤"><a href="#安裝後的執行錯誤" class="headerlink" title="安裝後的執行錯誤"></a>安裝後的執行錯誤</h2><p>執行 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day01.js</span><br></pre></td></tr></table></figure>
+
+<p>因為這個系統上已停用指令碼執行，所以無法載入 C:\Users\RESH\AppData\Roaming\npm\testcafe.ps1 檔案。如需詳細資訊，請參閱 about_Execution_Policies，網址為 https:&#x2F;go.<br>microsoft.com&#x2F;fwlink&#x2F;?LinkID&#x3D;135170。</p>
+<p>開啟powershell ，請使用「系統管理員身份」執行。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://hsiangfeng.github.io/other/20200510/1067127387/">解決 Windows 上輸入指令出現「因為這個系統上已停用指令碼執行，所以無法載入…」的問題</a></p>
+<h2 id="截圖功能"><a href="#截圖功能" class="headerlink" title="截圖功能"></a>截圖功能</h2><h3 id="全屏截圖"><a href="#全屏截圖" class="headerlink" title="全屏截圖"></a>全屏截圖</h3><p>放在你想要截圖的流程上</p>
+<p>takeScreenshot() </p>
+<p><code>test_members.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;測試_登入&#x27;</span>, <span class="keyword">async</span> t =&gt; &#123; </span><br><span class="line">    <span class="keyword">await</span> t</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtAccount</span>, <span class="string">&#x27;kite&#x27;</span>)</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtPassword</span>, <span class="string">&#x27;123456&#x27;</span>)       </span><br><span class="line">        .<span class="title function_">click</span>(<span class="title class_">Member</span>.<span class="property">btnLogin</span>)</span><br><span class="line">        .<span class="title function_">expect</span>(<span class="title class_">Selector</span>(<span class="string">&#x27;.dropdown-toggle&#x27;</span>).<span class="property">innerText</span>).<span class="title function_">contains</span>(<span class="string">&#x27;kite&#x27;</span>)</span><br><span class="line">        .<span class="title function_">takeScreenshot</span>();  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="局部截圖"><a href="#局部截圖" class="headerlink" title="局部截圖"></a>局部截圖</h3><p>takeElementScreenshot()</p>
+<p><code>test_members.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;測試_登入&#x27;</span>, <span class="keyword">async</span> t =&gt; &#123; </span><br><span class="line">    <span class="keyword">await</span> t</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtAccount</span>, <span class="string">&#x27;kite&#x27;</span>)</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtPassword</span>, <span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">        .<span class="title function_">takeElementScreenshot</span>(<span class="string">&#x27;#divLoginForm&#x27;</span>)   </span><br><span class="line">        .<span class="title function_">click</span>(<span class="title class_">Member</span>.<span class="property">btnLogin</span>)</span><br><span class="line">        .<span class="title function_">expect</span>(<span class="title class_">Selector</span>(<span class="string">&#x27;.dropdown-toggle&#x27;</span>).<span class="property">innerText</span>).<span class="title function_">contains</span>(<span class="string">&#x27;kite&#x27;</span>)</span><br><span class="line">        .<span class="title function_">takeScreenshot</span>();  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="錯誤才截圖"><a href="#錯誤才截圖" class="headerlink" title="錯誤才截圖"></a>錯誤才截圖</h3><p>這份code 裡面已經沒有<code>takescreenshot()</code> 囉，當發生錯誤的時候，會自動儲存照片</p>
+<p><code>test_members.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;測試_登入&#x27;</span>, <span class="keyword">async</span> t =&gt; &#123; </span><br><span class="line">    <span class="keyword">await</span> t</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtAccount</span>, <span class="string">&#x27;kite&#x27;</span>)</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtPassword</span>, <span class="string">&#x27;123456&#x27;</span>)       </span><br><span class="line">        .<span class="title function_">click</span>(<span class="title class_">Member</span>.<span class="property">btnLogin</span>)</span><br><span class="line">        .<span class="title function_">expect</span>(<span class="title class_">Selector</span>(<span class="string">&#x27;.dropdown-toggle&#x27;</span>).<span class="property">innerText</span>).<span class="title function_">contains</span>(<span class="string">&#x27;kite&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>指令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome tests/test_members.js -s takeOnFails=true</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="全螢幕功能"><a href="#全螢幕功能" class="headerlink" title="全螢幕功能"></a>全螢幕功能</h2><p><code>maximizeWindow()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;測試_登入&#x27;</span>, <span class="keyword">async</span> t =&gt; &#123; </span><br><span class="line">    <span class="keyword">await</span> t</span><br><span class="line">        .<span class="title function_">maximizeWindow</span>()</span><br><span class="line">        .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtAccount</span>, <span class="string">&#x27;kite&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="參數說明"><a href="#參數說明" class="headerlink" title="參數說明"></a>參數說明</h2><h3 id="速度參數"><a href="#速度參數" class="headerlink" title="速度參數"></a>速度參數</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome HelloWorld.js --speed 0.3</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>0.01 ~ 1 之間 1最快，0.01最慢</p>
+</blockquote>
+<h3 id="瀏覽器參數"><a href="#瀏覽器參數" class="headerlink" title="瀏覽器參數"></a>瀏覽器參數</h3><blockquote>
+<p>對於 Web 自動化測試而言，一個瀏覽器還真解決不了所有事！<br>為了完成相容性測試和提高測試完整度，通常要在多的瀏覽器上測試過。</p>
+</blockquote>
+<h4 id="啟用chrome"><a href="#啟用chrome" class="headerlink" title="啟用chrome"></a>啟用chrome</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="啟用firefox"><a href="#啟用firefox" class="headerlink" title="啟用firefox"></a>啟用firefox</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe firefox day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="啟用edge"><a href="#啟用edge" class="headerlink" title="啟用edge"></a>啟用edge</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe edge day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="同時執行兩個瀏覽器"><a href="#同時執行兩個瀏覽器" class="headerlink" title="同時執行兩個瀏覽器"></a>同時執行兩個瀏覽器</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome,firefox day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="本地端所有瀏覽器執行"><a href="#本地端所有瀏覽器執行" class="headerlink" title="本地端所有瀏覽器執行"></a>本地端所有瀏覽器執行</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe all day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="無頭模式"><a href="#無頭模式" class="headerlink" title="無頭模式"></a>無頭模式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome:headless day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="模擬iphone-or-android-device"><a href="#模擬iphone-or-android-device" class="headerlink" title="模擬iphone or android device"></a>模擬iphone or android device</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">testcafe &quot;chrome:emulation:device=iphone X&quot; day02.js</span><br><span class="line">testcafe &quot;chrome:emulation:device=pixel 2&quot; day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="模擬器-headless-mode"><a href="#模擬器-headless-mode" class="headerlink" title="模擬器 + headless mode"></a>模擬器 + headless mode</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">testcafe &quot;chrome:headless:emulation:device=iphone X&quot; day02.js</span><br><span class="line">testcafe &quot;chrome:headless:emulation:device=pixel 2&quot; day02.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="concurrent-參數"><a href="#concurrent-參數" class="headerlink" title="concurrent 參數"></a>concurrent 參數</h3><p>真正的平行測試，將<strong>多個測試案例</strong> 分散到 <strong>多個瀏覽器跑</strong><br>下例，若有 2 個測試案例，會開 2 個 Chrome 瀏覽器，各跑 1 個測試案例。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe -c 2 chrome day02.js --speed .5</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="遠端跑自動化測試"><a href="#遠端跑自動化測試" class="headerlink" title="遠端跑自動化測試"></a>遠端跑自動化測試</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">testcafe remote day02.js</span><br><span class="line">testcafe remote day02.js --qr-code</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="報表類型"><a href="#報表類型" class="headerlink" title="報表類型"></a>報表類型</h3><h4 id="spec"><a href="#spec" class="headerlink" title="spec"></a>spec</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day02.js -r spec</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="list"><a href="#list" class="headerlink" title="list"></a>list</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day02.js -r list</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="minimal"><a href="#minimal" class="headerlink" title="minimal"></a>minimal</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day02.js -r minimal</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="xunit-report-xml"><a href="#xunit-report-xml" class="headerlink" title="xunit:report.xml"></a>xunit:report.xml</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day02.js -r xunit:report.xml</span><br></pre></td></tr></table></figure>
+
+<p><code>output結果</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">testsuite</span> <span class="attr">name</span>=<span class="string">&quot;TestCafe Tests: Chrome 92.0.4515.159 / Windows 10&quot;</span> <span class="attr">tests</span>=<span class="string">&quot;2&quot;</span> <span class="attr">failures</span>=<span class="string">&quot;0&quot;</span> <span class="attr">skipped</span>=<span class="string">&quot;0&quot;</span> <span class="attr">errors</span>=<span class="string">&quot;0&quot;</span> <span class="attr">time</span>=<span class="string">&quot;6.167&quot;</span> <span class="attr">timestamp</span>=<span class="string">&quot;Wed, 25 Aug 2021 01:28:00 GMT&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">testcase</span> <span class="attr">classname</span>=<span class="string">&quot;Getting Started&quot;</span> <span class="attr">name</span>=<span class="string">&quot;測試案例一&quot;</span> <span class="attr">time</span>=<span class="string">&quot;3.65&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">testcase</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">testcase</span> <span class="attr">classname</span>=<span class="string">&quot;Getting Started&quot;</span> <span class="attr">name</span>=<span class="string">&quot;測試案例二&quot;</span> <span class="attr">time</span>=<span class="string">&quot;2.502&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">testcase</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">testsuite</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="json-report-json"><a href="#json-report-json" class="headerlink" title="json:report.json"></a>json:report.json</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day02.js -r json:report.json</span><br></pre></td></tr></table></figure>
+
+<p><code>output結果</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;startTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2021-08-25T03:15:25.322Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;endTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2021-08-25T03:15:32.590Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;userAgents&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;Chrome 92.0.4515.159 / Windows 10&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;passed&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;total&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;skipped&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;fixtures&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Getting Started&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;E:\\note\\test_cafe_project\\day02\\day02.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;meta&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;tests&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;測試案例一&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;meta&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;errs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;durationMs&quot;</span><span class="punctuation">:</span> <span class="number">4735</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;unstable&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;screenshotPath&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;skipped&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;測試案例二&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;meta&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;errs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;durationMs&quot;</span><span class="punctuation">:</span> <span class="number">2513</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;unstable&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;screenshotPath&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;skipped&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;warnings&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Debug說明"><a href="#Debug說明" class="headerlink" title="Debug說明"></a>Debug說明</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;測試_登出&#x27;</span>, <span class="keyword">async</span> t =&gt; &#123; <span class="comment">// 一個測試案例    </span></span><br><span class="line">    <span class="title class_">Member</span>.<span class="title function_">autoLogin</span>()    </span><br><span class="line">    <span class="keyword">await</span> t    </span><br><span class="line">    .<span class="title function_">click</span>(<span class="title class_">Member</span>.<span class="property">btnLogout</span>) <span class="comment">//按下送出按鈕      </span></span><br><span class="line">    .<span class="title function_">debug</span>()  </span><br><span class="line">    .<span class="title function_">expect</span>(<span class="title class_">Selector</span>(<span class="string">&#x27;#divLoginForm &gt; div &gt; h2&#x27;</span>).<span class="property">innerText</span>).<span class="title function_">contains</span>(<span class="string">&#x27;...&#x27;</span>);        </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="TestCafe-Config-說明"><a href="#TestCafe-Config-說明" class="headerlink" title="TestCafe Config 說明"></a>TestCafe Config 說明</h2><p>資料結架構如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├── 根目錄 // root </span><br><span class="line">├── .testcaferc.json // TestCafe Configuration File</span><br><span class="line">└── tests // 存放測試的資料夾</span><br><span class="line">    ├── TestFixture1.js </span><br><span class="line">    └── TestFixture2.js</span><br></pre></td></tr></table></figure>
+
+<p>我們將要測試的腳本都放在<code>tests資料夾</code>底下</p>
+<p>然後在這個的<code>根目錄</code>建立一個<code>.testcaferc.json</code>檔，還有另一種方式是建立<code>.js</code>檔可以參考<a target="_blank" rel="noopener" href="https://testcafe.io/documentation/402638/reference/configuration-file">官網文件</a></p>
+<p>註：記得testcaferc.json 前面有一個<code>.</code> ，踩到這個坑，想說怎麼照設定一直不會自動跑</p>
+<p><code>testcaferc.json</code>文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;browsers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;chrome&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;speed&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;concurrency&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;tests&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;reporter&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> </span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;spec&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;json&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="string">&quot;reports/report.json&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;screenshotPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;reports/screenshots&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;screenshots&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;fullPage&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;takeScreenshotsOnFails&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;videoPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;reports/videos&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;videoOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> </span><br><span class="line">      <span class="attr">&quot;singleFile&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span> </span><br><span class="line">      <span class="attr">&quot;failedOnly&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span> </span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;selectorTimeout&quot;</span><span class="punctuation">:</span> <span class="number">3000</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;assertionTimeout&quot;</span><span class="punctuation">:</span> <span class="number">3000</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>接著就下指令試試囉</p>
+<p>註：請在<code>根目錄</code>執行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe</span><br></pre></td></tr></table></figure>
+
+<p>就會自動跑在tests資料夾底下所有的腳本囉</p>
+<p><img src="https://i.imgur.com/X5HjnK5.png" alt="image-20210919150241430"></p>
+<h2 id="測試資料"><a href="#測試資料" class="headerlink" title="測試資料"></a>測試資料</h2><blockquote>
+<p>有規劃可控管的測試資料帶你上天堂，沒控管的測試資料會帶你下地獄。</p>
+</blockquote>
+<p>目前的資料結構</p>
+<p><img src="https://i.imgur.com/j9P5soJ.png" alt="image-20210919165641400"></p>
+<p><code>user_account.json</code></p>
+<p><img src="https://i.imgur.com/MNk4JHx.png" alt="image-20210919170200827"></p>
+<p><code>test_batch_members.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Selector</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;testcafe&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Member</span> <span class="keyword">from</span> <span class="string">&#x27;./model/Member&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> dataSet = <span class="built_in">require</span>(<span class="string">&quot;./dataset/user_account.json&quot;</span>)</span><br><span class="line"></span><br><span class="line">fixture <span class="string">`會員中心`</span>.<span class="property">page</span> <span class="string">`fill your website`</span>;</span><br><span class="line"></span><br><span class="line">dataSet.<span class="title function_">forEach</span>(<span class="function"><span class="params">data</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; account, password, name &#125; = data</span><br><span class="line">    <span class="title function_">test</span>(<span class="string">`測試_登入_<span class="subst">$&#123;account&#125;</span>_<span class="subst">$&#123;name&#125;</span>`</span>, <span class="keyword">async</span> t =&gt; &#123; </span><br><span class="line">        <span class="keyword">await</span> t</span><br><span class="line">            .<span class="title function_">maximizeWindow</span>()</span><br><span class="line">            .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtAccount</span>, account)</span><br><span class="line">            .<span class="title function_">typeText</span>(<span class="title class_">Member</span>.<span class="property">txtPassword</span>, password)            </span><br><span class="line">            .<span class="title function_">click</span>(<span class="title class_">Member</span>.<span class="property">btnLogin</span>)</span><br><span class="line">            .<span class="title function_">expect</span>(<span class="title class_">Selector</span>(<span class="string">&#x27;.dropdown-toggle&#x27;</span>).<span class="property">innerText</span>).<span class="title function_">contains</span>(name);     </span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>結果</p>
+<p><img src="https://i.imgur.com/17bzoQJ.png" alt="image-20210919170516212"></p>
+<h2 id="技巧整理"><a href="#技巧整理" class="headerlink" title="技巧整理"></a>技巧整理</h2><p>三神器  Selectors, Actions, Assertions</p>
+<p>在實作過程中，筆者認為在選取<code>elements</code>時儘量以中文字的方式選取對象。在mockdata階段，填中文字比較直覺。</p>
+<h3 id="InputText"><a href="#InputText" class="headerlink" title="InputText"></a>InputText</h3><p><code>HTML</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">身份證：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;personal_id&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>testcafe js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Selectors</span></span><br><span class="line"><span class="keyword">const</span> txtID = <span class="title class_">Selector</span>(<span class="string">&#x27;#personal_id&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Actions</span></span><br><span class="line"><span class="title function_">typeText</span>(<span class="title class_">MemberPage</span>.<span class="property">txtID</span>, <span class="string">&quot;A123456789&quot;</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">//Assertions</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="title class_">MemberPage</span>.<span class="property">txtID</span>.<span class="property">value</span>).<span class="title function_">eql</span>(<span class="string">&quot;A123456789&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="SelectOption"><a href="#SelectOption" class="headerlink" title="SelectOption"></a>SelectOption</h3><p><code>HTML</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;super_user&quot;</span>&gt;</span>超級使用者<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;normal_user&quot;</span>&gt;</span>一般用戶<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>TesCafe</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Selectors</span></span><br><span class="line"><span class="keyword">const</span> selRole = <span class="title class_">Selector</span>(<span class="string">&quot;#selRole&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Actions</span></span><br><span class="line"><span class="title function_">click</span>(selRole)</span><br><span class="line"><span class="title function_">click</span>(selRole.<span class="title function_">find</span>(<span class="string">&quot;option&quot;</span>).<span class="title function_">withText</span>(<span class="string">&quot;超級使用者&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//Assertions</span></span><br><span class="line"><span class="comment">//1. get value</span></span><br><span class="line"><span class="title function_">expect</span>(selRole.<span class="property">value</span>).<span class="title function_">eql</span>(<span class="string">&#x27;super_user&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2. get text</span></span><br><span class="line"><span class="title function_">expect</span>(selRole.<span class="title function_">find</span>(<span class="string">&#x27;option:checked&#x27;</span>).<span class="property">innerText</span>).<span class="title function_">eql</span>(<span class="string">&quot;超級使用者&quot;</span>) </span><br></pre></td></tr></table></figure>
+
+<h3 id="CheckBox"><a href="#CheckBox" class="headerlink" title="CheckBox"></a>CheckBox</h3><p>唯一ID</p>
+<p><code>TesCafe</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Selectors</span></span><br><span class="line"><span class="keyword">const</span> checkbox = <span class="title class_">Selector</span>(<span class="string">&#x27;#testing-on-remote-devices&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Actions</span></span><br><span class="line"><span class="title function_">click</span>(checkbox)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Assertions</span></span><br><span class="line"><span class="title function_">expect</span>(checkbox.<span class="property">checked</span>).<span class="title function_">ok</span>();</span><br></pre></td></tr></table></figure>
+
+<p>多個ID</p>
+<p>以這個為例取最外層的<code>selFruit</code>再用<code>withText</code>方式點擊<code>checkbox</code></p>
+<p><code>HTML</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;selFruit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;fruits&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-check&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-check-input&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;chkFruit[]&quot;</span> <span class="attr">id</span>=<span class="string">&quot;chkFruit_A&quot;</span> <span class="attr">value</span>=<span class="string">&quot;香蕉&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;form-check-label&quot;</span> <span class="attr">for</span>=<span class="string">&quot;chkFruit_A&quot;</span>&gt;</span>香蕉<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;selFruit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;fruits&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-check&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-check-input&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;chkFruit[]&quot;</span> <span class="attr">id</span>=<span class="string">&quot;chkFruit_B&quot;</span> <span class="attr">value</span>=<span class="string">&quot;蘋果&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;form-check-label&quot;</span> <span class="attr">for</span>=<span class="string">&quot;chkFruit_B&quot;</span>&gt;</span>蘋果<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>TesCafe</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Selectors</span></span><br><span class="line"><span class="keyword">const</span> chkFruit = <span class="title class_">Selector</span>(<span class="string">&#x27;#selFruit&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Actions</span></span><br><span class="line">chkFruit.<span class="title function_">withText</span>(<span class="string">&quot;香蕉&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Assertions</span></span><br><span class="line"><span class="title function_">expect</span>(chkFruit.<span class="title function_">withText</span>(<span class="string">&#x27;香蕉&#x27;</span>).<span class="title function_">find</span>(<span class="string">&#x27;input[type=checkbox]&#x27;</span>).<span class="property">checked</span>).<span class="title function_">eql</span>(<span class="literal">true</span>)  </span><br></pre></td></tr></table></figure>
+
+<h3 id="RadioButton"><a href="#RadioButton" class="headerlink" title="RadioButton"></a>RadioButton</h3><p><code>HTML</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-check-inline&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;difficulty&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-check-input&quot;</span> <span class="attr">id</span>=<span class="string">&quot;role_1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;form-check-label&quot;</span> <span class="attr">for</span>=<span class="string">&quot;role_1&quot;</span>&gt;</span>娜美<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-check-inline&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;difficulty&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-check-input&quot;</span> <span class="attr">id</span>=<span class="string">&quot;role_2&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;form-check-label&quot;</span> <span class="attr">for</span>=<span class="string">&quot;role_2&quot;</span>&gt;</span>喬巴<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-check-inline&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;difficulty&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-check-input&quot;</span> <span class="attr">id</span>=<span class="string">&quot;role_3&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;form-check-label&quot;</span> <span class="attr">for</span>=<span class="string">&quot;role_3&quot;</span>&gt;</span>魯夫<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以此為例，選<code>Label</code> click 等於直接選<code>radiobutton</code>，主要原因是有寫<strong>label for 對應id</strong>，這樣的寫法可以很簡單的抽換中文字就好囉。</p>
+<p>下一關在mockdata階段就會比較彈性一點。</p>
+<p><code>TestCafe</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Selectors</span></span><br><span class="line"><span class="keyword">const</span> rdoDiff = <span class="title class_">Selector</span>(<span class="string">&#x27;.form-check-label&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Actions</span></span><br><span class="line"><span class="title function_">click</span>(rdoDiff.<span class="title function_">withText</span>(<span class="string">&#x27;娜美&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//Assertions</span></span><br><span class="line">未寫</span><br></pre></td></tr></table></figure>
+
+<p>延伸主題：</p>
+<blockquote>
+<p>資料驅動測試 (Data-Driven Test) </p>
+</blockquote>
+<h2 id="安裝外掛"><a href="#安裝外掛" class="headerlink" title="安裝外掛"></a>安裝外掛</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @ffmpeg-installer/ffmpeg</span><br></pre></td></tr></table></figure>
+
+<p>安裝外掛報表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testcafe chrome day02.js -r html:report.html</span><br></pre></td></tr></table></figure>
+
+<p>npm 市集</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.npmjs.com/search?q=testcafe-reporter-</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AB%AF%E5%B0%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/" rel="tag"># 端對端測試</a>
+              <a href="/tags/TestCafe/" rel="tag"># TestCafe</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/20/2021-08-17%20python%E7%88%AC%E8%9F%B2/" rel="prev" title="python爬蟲">
+      <i class="fa fa-chevron-left"></i> python爬蟲
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/11/2021-09-11%20Webpack/" rel="next" title="Webpack">
+      Webpack <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">1.</span> <span class="nav-text">介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">2.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%B7%E6%89%8B%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">起手式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E5%BE%8C%E7%9A%84%E5%9F%B7%E8%A1%8C%E9%8C%AF%E8%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">安裝後的執行錯誤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%AA%E5%9C%96%E5%8A%9F%E8%83%BD"><span class="nav-number">5.</span> <span class="nav-text">截圖功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%8F%E6%88%AA%E5%9C%96"><span class="nav-number">5.1.</span> <span class="nav-text">全屏截圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%88%AA%E5%9C%96"><span class="nav-number">5.2.</span> <span class="nav-text">局部截圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%8C%AF%E8%AA%A4%E6%89%8D%E6%88%AA%E5%9C%96"><span class="nav-number">5.3.</span> <span class="nav-text">錯誤才截圖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E8%9E%A2%E5%B9%95%E5%8A%9F%E8%83%BD"><span class="nav-number">6.</span> <span class="nav-text">全螢幕功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E6%95%B8%E8%AA%AA%E6%98%8E"><span class="nav-number">7.</span> <span class="nav-text">參數說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6%E5%8F%83%E6%95%B8"><span class="nav-number">7.1.</span> <span class="nav-text">速度參數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%80%8F%E8%A6%BD%E5%99%A8%E5%8F%83%E6%95%B8"><span class="nav-number">7.2.</span> <span class="nav-text">瀏覽器參數</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%95%9F%E7%94%A8chrome"><span class="nav-number">7.2.1.</span> <span class="nav-text">啟用chrome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%95%9F%E7%94%A8firefox"><span class="nav-number">7.2.2.</span> <span class="nav-text">啟用firefox</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%95%9F%E7%94%A8edge"><span class="nav-number">7.2.3.</span> <span class="nav-text">啟用edge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%99%82%E5%9F%B7%E8%A1%8C%E5%85%A9%E5%80%8B%E7%80%8F%E8%A6%BD%E5%99%A8"><span class="nav-number">7.2.4.</span> <span class="nav-text">同時執行兩個瀏覽器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%AB%AF%E6%89%80%E6%9C%89%E7%80%8F%E8%A6%BD%E5%99%A8%E5%9F%B7%E8%A1%8C"><span class="nav-number">7.2.5.</span> <span class="nav-text">本地端所有瀏覽器執行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%84%A1%E9%A0%AD%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.2.6.</span> <span class="nav-text">無頭模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E6%93%ACiphone-or-android-device"><span class="nav-number">7.2.7.</span> <span class="nav-text">模擬iphone or android device</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E6%93%AC%E5%99%A8-headless-mode"><span class="nav-number">7.2.8.</span> <span class="nav-text">模擬器 + headless mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#concurrent-%E5%8F%83%E6%95%B8"><span class="nav-number">7.3.</span> <span class="nav-text">concurrent 參數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%A0%E7%AB%AF%E8%B7%91%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6"><span class="nav-number">7.4.</span> <span class="nav-text">遠端跑自動化測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%B1%E8%A1%A8%E9%A1%9E%E5%9E%8B"><span class="nav-number">7.5.</span> <span class="nav-text">報表類型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spec"><span class="nav-number">7.5.1.</span> <span class="nav-text">spec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#list"><span class="nav-number">7.5.2.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#minimal"><span class="nav-number">7.5.3.</span> <span class="nav-text">minimal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xunit-report-xml"><span class="nav-number">7.5.4.</span> <span class="nav-text">xunit:report.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-report-json"><span class="nav-number">7.5.5.</span> <span class="nav-text">json:report.json</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug%E8%AA%AA%E6%98%8E"><span class="nav-number">8.</span> <span class="nav-text">Debug說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TestCafe-Config-%E8%AA%AA%E6%98%8E"><span class="nav-number">9.</span> <span class="nav-text">TestCafe Config 說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E8%B3%87%E6%96%99"><span class="nav-number">10.</span> <span class="nav-text">測試資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86"><span class="nav-number">11.</span> <span class="nav-text">技巧整理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#InputText"><span class="nav-number">11.1.</span> <span class="nav-text">InputText</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SelectOption"><span class="nav-number">11.2.</span> <span class="nav-text">SelectOption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CheckBox"><span class="nav-number">11.3.</span> <span class="nav-text">CheckBox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RadioButton"><span class="nav-number">11.4.</span> <span class="nav-text">RadioButton</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E5%A4%96%E6%8E%9B"><span class="nav-number">12.</span> <span class="nav-text">安裝外掛</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

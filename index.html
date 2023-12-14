@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="地球人的修練">
+<meta property="og:url" content="https://kitefree.github.io/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2023/10/11/2023-12-12%20EFCore%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/11/2023-12-12%20EFCore%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/" class="post-title-link" itemprop="url">EFCore讀寫分離</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-10-11 22:33:00" itemprop="dateCreated datePublished" datetime="2023-10-11T22:33:00+08:00">2023-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 23:25:08" itemprop="dateModified" datetime="2023-12-14T23:25:08+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%8C%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">後端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>10 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="讀寫分離示意圖"><a href="#讀寫分離示意圖" class="headerlink" title="讀寫分離示意圖"></a>讀寫分離示意圖</h2><p><img src="https://i.imgur.com/AswBDyN.png" alt="image-20231213101632763"></p>
+<p><code>發佈伺服器</code>的實作可以透過<code>SQLSERVER</code>的<code>複寫</code>功能，分別設定<code>發佈</code>與<code>訂閱</code>，資料庫複寫設定有興趣可以參考相關連結。以下針對程式碼如何實踐讀寫分離，做個紀錄筆記。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/11/2023-12-12%20EFCore%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/08/06/2022-08-06%20Vue3TypeScript(5)%20-%20%E6%B8%B2%E6%9F%93404%E5%92%8C%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/06/2022-08-06%20Vue3TypeScript(5)%20-%20%E6%B8%B2%E6%9F%93404%E5%92%8C%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2/" class="post-title-link" itemprop="url">Vue3TypeScript(5) - 渲染404和登入頁面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-06 23:01:00" itemprop="dateCreated datePublished" datetime="2022-08-06T23:01:00+08:00">2022-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 23:02:56" itemprop="dateModified" datetime="2023-12-14T23:02:56+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>12 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-404-頁面實作"><a href="#1-404-頁面實作" class="headerlink" title="1. 404 頁面實作"></a>1. 404 頁面實作</h2><h3 id="1-1-新增views-404-vue"><a href="#1-1-新增views-404-vue" class="headerlink" title="1.1. 新增views\404.vue"></a>1.1. 新增<code>views\404.vue</code></h3><p><code>404.vue</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;not-found&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../assets/404-error.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;error&quot;</span>&gt;</span>        </span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">class</span>=<span class="string">&quot;goback&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;$router.push(&#x27;/&#x27;)&quot;</span>&gt;</span>The page you are looking for can’t be found. Go home by clicking here!<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"><span class="selector-class">.not-found</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">width</span>: <span class="number">100%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">height</span>: <span class="number">100%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">overflow</span>: hidden;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"><span class="selector-class">.not-found</span> <span class="selector-tag">img</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">width</span>: <span class="number">100%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">height</span>: <span class="number">100%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"><span class="selector-class">.goback</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">position</span>: absolute;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">z-index</span>: <span class="number">9999</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">top</span>: <span class="number">80%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">left</span>: <span class="number">31%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">48</span>, <span class="number">173</span>, <span class="number">211</span>);</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">font-size</span>: <span class="number">1.5rem</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">30px</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">outline</span>: none;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="attribute">border</span>: none;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-修改router-index-ts"><a href="#1-2-修改router-index-ts" class="headerlink" title="1.2. 修改router\index.ts"></a>1.2. 修改<code>router\index.ts</code></h3><p>使用<code>path/:catchAll(.*)</code>，只要是找不到的都會指向到這</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">routes</span>: <span class="title class_">Array</span>&lt;<span class="title class_">RouteRecordRaw</span>&gt; =[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&quot;/&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;Login&quot;</span>,</span><br><span class="line">        <span class="attr">component</span>:<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../views/Login.vue&quot;</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&quot;/:catchAll(.*)&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;404&quot;</span>,</span><br><span class="line">        <span class="attr">component</span>:<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../views/404.vue&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-最後結果"><a href="#1-3-最後結果" class="headerlink" title="1.3. 最後結果"></a>1.3. 最後結果</h3><p><img src="https://i.imgur.com/DXFIhlk.png" alt="image-20220807005958868"></p>
+<h2 id="2-登入頁實作"><a href="#2-登入頁實作" class="headerlink" title="2. 登入頁實作"></a>2. 登入頁實作</h2><p>在登入頁實作跳轉到後台介面過程，就必須與後端進行串接工作，而在現行主流前後端分離架構下，Mock Server 的準備是前端工程師開發流程非常重要的技能之一。之前就知道的Mock Server 工具是<code>JSON-Server</code>，這是一套運行在<code>node js</code>環境底下的工具。</p>
+<p>今天想嘗試另一套「<code>POSTMAN</code> 」軟體，其中也支援這樣的功能，有機會再寫一篇介紹，使用方式與介紹先跳過…總之最後可以取得一個對外的URL提供使用。</p>
+<h3 id="2-1-使用vite-config-ts進行代理"><a href="#2-1-使用vite-config-ts進行代理" class="headerlink" title="2.1. 使用vite.config.ts進行代理"></a>2.1. 使用<code>vite.config.ts</code>進行代理</h3><h4 id="2-1-1-修改-vite-config-ts"><a href="#2-1-1-修改-vite-config-ts" class="headerlink" title="2.1.1. 修改\vite.config.ts"></a>2.1.1. 修改<code>\vite.config.ts</code></h4><p>這邊增加了 <code>server proxy</code>，其中<code>target</code> 填上了<code>POSTMAN</code>產生的URL，<code>rewrite</code>部分也請記得改寫</p>
+<p><code>vite.config.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">AutoImport</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Components</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElementPlusResolver</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()</span><br><span class="line">    ,</span><br><span class="line">  <span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">    <span class="attr">resolvers</span>: [<span class="title class_">ElementPlusResolver</span>()],</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="title class_">Components</span>(&#123;</span><br><span class="line">    <span class="attr">resolvers</span>: [<span class="title class_">ElementPlusResolver</span>()],</span><br><span class="line">  &#125;),</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">server</span>:&#123;</span><br><span class="line">    <span class="attr">proxy</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;/api&#x27;</span>: &#123;</span><br><span class="line">        <span class="attr">target</span>: <span class="string">&#x27;https://c37e652f-46f8-4272-a694-85e33c3766b1.mock.pstmn.io&#x27;</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">rewrite</span>: <span class="function">(<span class="params">path</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> path.<span class="title function_">replace</span>(<span class="string">&#x27;/api&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-修改src-views-Login-vue"><a href="#2-1-2-修改src-views-Login-vue" class="headerlink" title="2.1.2. 修改src\views\Login.vue"></a>2.1.2. 修改<code>src\views\Login.vue</code></h4><p>實際上登入驗證的URL路徑為<code>https://c37e652f-46f8-4272-a694-85e33c3766b1.mock.pstmn.io/login</code>，因為我們使用了代理的關係，這邊填的URL就會以<code>api</code>為開頭：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; data &#125; = <span class="keyword">await</span> axios.<span class="title function_">post</span>(<span class="string">&quot;/api/login&quot;</span>,formData);</span><br></pre></td></tr></table></figure>
+
+<p><code>Login.vue</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;h1&gt;英語字典管理系統&lt;/h1&gt;</span><br><span class="line">        &lt;el-divider style=&quot;border-color:black&quot; /&gt;</span><br><span class="line">        &lt;el-row class=&quot;row&quot; justify=&quot;center&quot; style=&quot;margin-bottom:1.2rem;&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;flex items-center&quot;&gt;</span><br><span class="line">                &lt;el-radio-group v-model=&quot;rdoRole&quot;&gt;</span><br><span class="line">                    &lt;el-radio label=&quot;admin&quot; size=&quot;large&quot;&gt;管理員&lt;/el-radio&gt;</span><br><span class="line">                    &lt;el-radio label=&quot;student&quot; size=&quot;large&quot;&gt;考生&lt;/el-radio&gt;</span><br><span class="line">                &lt;/el-radio-group&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/el-row&gt;</span><br><span class="line">        &lt;el-row class=&quot;row&quot; justify=&quot;center&quot;&gt;</span><br><span class="line">            &lt;el-col :span=&quot;12&quot;&gt;</span><br><span class="line">                &lt;el-form :label-position=&quot;labelPosition&quot; label-width=&quot;100px&quot; :model=&quot;formData&quot; style=&quot;max-width: 560px&quot;&gt;</span><br><span class="line">                    &lt;el-form-item label=&quot;帳號&quot;&gt;</span><br><span class="line">                        &lt;el-input v-model=&quot;formData.account&quot; placeholder=&quot;請輸入帳號&quot; /&gt;</span><br><span class="line">                    &lt;/el-form-item&gt;</span><br><span class="line">                    &lt;el-form-item label=&quot;密碼&quot;&gt;</span><br><span class="line">                        &lt;el-input v-model=&quot;formData.password&quot; type=&quot;password&quot; placeholder=&quot;請輸入密碼&quot; show-password /&gt;</span><br><span class="line">                    &lt;/el-form-item&gt;</span><br><span class="line">                    &lt;div style=&quot;text-align:center&quot;&gt;</span><br><span class="line">                        &lt;el-button @click=&quot;btnLogin&quot; type=&quot;info&quot; round</span><br><span class="line">                            style=&quot;text-align:center;width:150px;font-size:1.5rem;background: #4A4A4A;padding:1.5rem&quot;&gt;登入</span><br><span class="line">                        &lt;/el-button&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">                &lt;/el-form&gt;</span><br><span class="line">            &lt;/el-col&gt;</span><br><span class="line">        &lt;/el-row&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=&quot;ts&quot; setup&gt;</span><br><span class="line">import &#123; reactive, ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">const rdoRole = ref(&#x27;admin&#x27;)</span><br><span class="line">const labelPosition = ref(&#x27;top&#x27;)</span><br><span class="line"></span><br><span class="line">const formData = reactive(&#123;</span><br><span class="line">    account: &#x27;&#x27;,</span><br><span class="line">    password: &#x27;&#x27;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const btnLogin = async () =&gt; &#123;</span><br><span class="line">    console.log(rdoRole.value);</span><br><span class="line">    console.log(formData);</span><br><span class="line">    </span><br><span class="line">    if (formData.account != &#x27;&#x27; &amp;&amp; formData.password != &#x27;&#x27;) &#123;</span><br><span class="line">        console.log(&#x27;ajax&#x27;);  </span><br><span class="line">        const &#123; data &#125; = await axios.post(&quot;/api/login&quot;,formData);</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        console.log(&#x27;data 不完整&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.container &#123;</span><br><span class="line">    width: 800px;</span><br><span class="line">    margin: 10% auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1 &#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    font-size: 2rem;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-3-最後結果"><a href="#2-1-3-最後結果" class="headerlink" title="2.1.3. 最後結果"></a>2.1.3. 最後結果</h4><p>觀查request console log ，的確有收到server 的response data</p>
+<p><img src="https://i.imgur.com/qfEsPeJ.png" alt="image-20220807114039287"></p>
+<p>觀查request URL值為<code>http:127.0.0.1:5173/api/login</code>，顯然代理成功，但還是對我感到好奇…實際上是怎麼做到的？有機會回來再了解一下</p>
+<p><img src="https://i.imgur.com/KJSbvUT.png" alt="image-20220807114127268"></p>
+<h3 id="2-2-設定axios-defaults-baseURL"><a href="#2-2-設定axios-defaults-baseURL" class="headerlink" title="2.2. 設定axios.defaults.baseURL"></a>2.2. 設定<code>axios.defaults.baseURL</code></h3><p>這個部分其實還有很多issue，就是如何做到<code>產品階段設定</code>、<code>開發階段設定</code>吃不一樣的設定檔，這個部分後續花時間回來補一下。</p>
+<p>先記錄一下簡單的版本，在有使用axios的地方，起頭就先宣告<code>baseURL</code>：</p>
+<p><code>src\view\Login.vue</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=&quot;ts&quot; setup&gt;</span><br><span class="line">import &#123; reactive, ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">axios.defaults.baseURL=&quot;https://c37e652f-46f8-4272-a694-85e33c3766b1.mock.pstmn.io&quot;;</span><br><span class="line">const rdoRole = ref(&#x27;admin&#x27;)</span><br><span class="line">const labelPosition = ref(&#x27;top&#x27;)</span><br><span class="line"></span><br><span class="line">const formData = reactive(&#123;</span><br><span class="line">    account: &#x27;&#x27;,</span><br><span class="line">    password: &#x27;&#x27;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const btnLogin = async () =&gt; &#123;</span><br><span class="line">    console.log(rdoRole.value);</span><br><span class="line">    console.log(formData);</span><br><span class="line">    </span><br><span class="line">    if (formData.account != &#x27;&#x27; &amp;&amp; formData.password != &#x27;&#x27;) &#123;</span><br><span class="line">        console.log(&#x27;ajax&#x27;);  </span><br><span class="line">        const &#123; data &#125; = await axios.post(&quot;/login&quot;,formData);</span><br><span class="line">        console.log(data);   </span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        console.log(&#x27;data 不完整&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-伺服器回傳後，前端繼續驗證與處理"><a href="#3-伺服器回傳後，前端繼續驗證與處理" class="headerlink" title="3. 伺服器回傳後，前端繼續驗證與處理"></a>3. 伺服器回傳後，前端繼續驗證與處理</h2><p>接續使用代理方式進行開發，下段程式碼透過<code>localStorage</code>先儲存回傳的<code>token</code>值，<code>element plus</code> 套件的<code>ElMessage</code>元件呈現登入成功的效果(toast notification)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">btnLogin</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(rdoRole.<span class="property">value</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(formData);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (formData.<span class="property">account</span> != <span class="string">&#x27;&#x27;</span> &amp;&amp; formData.<span class="property">password</span> != <span class="string">&#x27;&#x27;</span>) &#123;        </span><br><span class="line">        <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">await</span> axios.<span class="title function_">post</span>(<span class="string">&quot;/api/login&quot;</span>,formData);</span><br><span class="line">        <span class="keyword">const</span> &#123; token &#125; = data.<span class="property">data</span>;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(data);        </span><br><span class="line">        <span class="keyword">if</span>(data.<span class="property">status</span> == <span class="string">&#x27;success&#x27;</span>)</span><br><span class="line">        &#123;            </span><br><span class="line">            <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&quot;token&quot;</span>,token);</span><br><span class="line">            <span class="comment">// @ts-ignore</span></span><br><span class="line">            <span class="title class_">ElMessage</span>(&#123;</span><br><span class="line">                <span class="attr">showClose</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">message</span>: <span class="string">&#x27;登入成功.&#x27;</span>,</span><br><span class="line">                <span class="attr">type</span>: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">            router.<span class="title function_">push</span>(<span class="string">&#x27;/Main&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&#x27;帳密錯誤&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;data 不完整&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src="https://i.imgur.com/MSZ8oDv.png" alt="image-20220807201545862"></p>
+<p>其中有一個<code>ts-ignore</code>要特別說明，因為稍早我們使用的是<code>自動載入</code>的方式，所以在開發階段的智能提示，會誤以為沒有進行import動作。要消除這個錯誤提示，我們可以在<code>ElMessage</code>上方加上<code>ts-ignore</code>寫法，錯誤就消失囉！</p>
+<h2 id="4-參考資料"><a href="#4-參考資料" class="headerlink" title="4. 參考資料"></a>4. 參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/AIfurture/article/details/108616830?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1-108616830-blog-89886735.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1-108616830-blog-89886735.pc_relevant_default&utm_relevant_index=2">vue中使用axios给生产环境和开发环境配置不同的baseUrl</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41023528/article/details/89886735">axios.defaults.baseURL的三种配置方法</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/08/06/2022-08-06%20Vue3TypeScript(6)%20-%20%E5%AF%A6%E7%8F%BE%E8%B7%AF%E7%94%B1%E5%AE%88%E8%A1%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/06/2022-08-06%20Vue3TypeScript(6)%20-%20%E5%AF%A6%E7%8F%BE%E8%B7%AF%E7%94%B1%E5%AE%88%E8%A1%9B/" class="post-title-link" itemprop="url">Vue3TypeScript(6) - 實現路由守衛</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-06 23:01:00" itemprop="dateCreated datePublished" datetime="2022-08-06T23:01:00+08:00">2022-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 23:03:01" itemprop="dateModified" datetime="2023-12-14T23:03:01+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="實現路由守衛"><a href="#實現路由守衛" class="headerlink" title="實現路由守衛"></a>實現路由守衛</h2><p>主要的設計思維是在router的流程中進行驗證，我們來看如何修正<code>src\router\index.ts</code>檔案：</p>
+<p><code>index.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">beforeEach</span>(<span class="function">(<span class="params">to,<span class="keyword">from</span>,next</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="attr">isLogin</span>:<span class="built_in">boolean</span> = <span class="variable language_">localStorage</span>.<span class="property">token</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// console.log(`isLogin:$&#123;isLogin&#125;`);    </span></span><br><span class="line">    <span class="comment">// console.log(to.path);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(to.<span class="property">path</span> ===<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">    &#123;        </span><br><span class="line">        <span class="title function_">next</span>(<span class="string">&#x27;/login&#x27;</span>);        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(to.<span class="property">path</span> === <span class="string">&#x27;/login&#x27;</span> )&#123;                </span><br><span class="line">        <span class="title function_">next</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">        isLogin ? <span class="title function_">next</span>() : <span class="title function_">next</span>(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createRouter,createWebHistory,<span class="title class_">RouteRecordRaw</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">routes</span>: <span class="title class_">Array</span>&lt;<span class="title class_">RouteRecordRaw</span>&gt; =[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&quot;/&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;Login&quot;</span>,</span><br><span class="line">        <span class="attr">component</span>:<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../views/Login.vue&quot;</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&quot;/login&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;Login&quot;</span>,</span><br><span class="line">        <span class="attr">component</span>:<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../views/Login.vue&quot;</span>)</span><br><span class="line">    &#125;,    </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&quot;/main&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;Main&quot;</span>,</span><br><span class="line">        <span class="attr">component</span>:<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../views/Main.vue&quot;</span>)</span><br><span class="line">    &#125;,    </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&quot;/:catchAll(.*)&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;404&quot;</span>,</span><br><span class="line">        <span class="attr">component</span>:<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../views/404.vue&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">        routes</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">beforeEach</span>(<span class="function">(<span class="params">to,<span class="keyword">from</span>,next</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="attr">isLogin</span>:<span class="built_in">boolean</span> = <span class="variable language_">localStorage</span>.<span class="property">token</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// console.log(`isLogin:$&#123;isLogin&#125;`);    </span></span><br><span class="line">    <span class="comment">// console.log(to.path);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(to.<span class="property">path</span> ===<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">    &#123;        </span><br><span class="line">        <span class="title function_">next</span>(<span class="string">&#x27;/login&#x27;</span>);        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(to.<span class="property">path</span> === <span class="string">&#x27;/login&#x27;</span> )&#123;                </span><br><span class="line">        <span class="title function_">next</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">        isLogin ? <span class="title function_">next</span>() : <span class="title function_">next</span>(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/08/06/2022-08-06%20Vue3TypeScript(4)%20-%20%E5%AE%89%E8%A3%9DElement-Plus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/06/2022-08-06%20Vue3TypeScript(4)%20-%20%E5%AE%89%E8%A3%9DElement-Plus/" class="post-title-link" itemprop="url">Vue3TypeScript(4) - 安裝Element-Plus</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-06 22:01:00" itemprop="dateCreated datePublished" datetime="2022-08-06T22:01:00+08:00">2022-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 23:02:49" itemprop="dateModified" datetime="2023-12-14T23:02:49+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Element-Plus"><a href="#1-Element-Plus" class="headerlink" title="1. Element-Plus"></a>1. Element-Plus</h2><p>可參考官網的<a target="_blank" rel="noopener" href="https://element-plus.gitee.io/zh-CN/guide/installation.html">安裝手冊</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">NPM</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install element-plus --save</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-快速開始-完整導入"><a href="#2-快速開始-完整導入" class="headerlink" title="2. 快速開始 - 完整導入"></a>2. 快速開始 - 完整導入</h2><p>對於網站打包大小不在乎，可以使用這個。</p>
+<h3 id="2-1-main-ts修改"><a href="#2-1-main-ts修改" class="headerlink" title="2.1. main.ts修改"></a>2.1. <code>main.ts</code>修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createApp &#125; from &#x27;vue&#x27;</span><br><span class="line">import ElementPlus from &#x27;element-plus&#x27;</span><br><span class="line">import &#x27;element-plus/dist/index.css&#x27;</span><br><span class="line">import App from &#x27;./App.vue&#x27;</span><br><span class="line"></span><br><span class="line">const app = createApp(App)</span><br><span class="line"></span><br><span class="line">app.use(ElementPlus)</span><br><span class="line">app.mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-App-vue修改"><a href="#2-2-App-vue修改" class="headerlink" title="2.2. App.vue修改"></a>2.2. <code>App.vue</code>修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-row class=&quot;mb-4&quot;&gt;</span><br><span class="line">    &lt;el-button&gt;Default&lt;/el-button&gt;</span><br><span class="line">    &lt;el-button type=&quot;primary&quot;&gt;Primary&lt;/el-button&gt;</span><br><span class="line">    &lt;el-button type=&quot;success&quot;&gt;Success&lt;/el-button&gt;</span><br><span class="line">    &lt;el-button type=&quot;info&quot;&gt;Info&lt;/el-button&gt;</span><br><span class="line">    &lt;el-button type=&quot;warning&quot;&gt;Warning&lt;/el-button&gt;</span><br><span class="line">    &lt;el-button type=&quot;danger&quot;&gt;Danger&lt;/el-button&gt;</span><br><span class="line">    &lt;el-button&gt;中文&lt;/el-button&gt;</span><br><span class="line">  &lt;/el-row&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">html,</span><br><span class="line">body&#123;</span><br><span class="line">    width:100%;</span><br><span class="line">    height:100%;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-最後結果"><a href="#2-3-最後結果" class="headerlink" title="2.3. 最後結果"></a>2.3. 最後結果</h3><p><img src="https://i.imgur.com/y1HcRO6.png" alt="image-20220806223348857"></p>
+<h2 id="3-快速開始-自動導入"><a href="#3-快速開始-自動導入" class="headerlink" title="3. 快速開始 - 自動導入"></a>3. 快速開始 - 自動導入</h2><p>首先你需要安裝<code>unplugin-vue-components</code> 和 <code>unplugin-auto-import</code> 兩款套件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D unplugin-vue-components unplugin-auto-import</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-修改vite-config-ts-或-webpack"><a href="#3-1-修改vite-config-ts-或-webpack" class="headerlink" title="3.1. 修改vite.config.ts 或 webpack"></a>3.1. 修改<code>vite.config.ts</code> 或 <code>webpack</code></h3><p>這次練習改<code>vite.config.ts</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">AutoImport</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Components</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElementPlusResolver</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()</span><br><span class="line">    ,</span><br><span class="line">  <span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">    <span class="attr">resolvers</span>: [<span class="title class_">ElementPlusResolver</span>()],</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="title class_">Components</span>(&#123;</span><br><span class="line">    <span class="attr">resolvers</span>: [<span class="title class_">ElementPlusResolver</span>()],</span><br><span class="line">  &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-修改main-ts"><a href="#3-2-修改main-ts" class="headerlink" title="3.2. 修改main.ts"></a>3.2. 修改<code>main.ts</code></h3><p>確實將import elementplus 的程式註解：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./assets/css/reset.css&#x27;</span></span><br><span class="line"><span class="comment">//import ElementPlus from &#x27;element-plus&#x27;</span></span><br><span class="line"><span class="comment">//import &#x27;element-plus/dist/index.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">app.<span class="title function_">use</span>(router)</span><br><span class="line"><span class="comment">//app.use(ElementPlus)</span></span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-最後結果"><a href="#3-3-最後結果" class="headerlink" title="3.3. 最後結果"></a>3.3. 最後結果</h3><p>再跑一次 <code>npm run dev</code>驗證結果，確實有自動導入功能：</p>
+<p><img src="https://i.imgur.com/RSWHGxQ.png" alt="image-20220806224608276"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/08/06/2022-08-06%20Vue3TypeScript(3)%20-%20%E5%89%B5%E5%BB%BA%E8%B7%AF%E7%94%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/06/2022-08-06%20Vue3TypeScript(3)%20-%20%E5%89%B5%E5%BB%BA%E8%B7%AF%E7%94%B1/" class="post-title-link" itemprop="url">Vue3TypeScript(3) - 創建新由</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-06 19:01:00" itemprop="dateCreated datePublished" datetime="2022-08-06T19:01:00+08:00">2022-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 23:02:48" itemprop="dateModified" datetime="2023-12-14T23:02:48+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-安裝路由"><a href="#1-安裝路由" class="headerlink" title="1. 安裝路由"></a>1. 安裝路由</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router</span><br></pre></td></tr></table></figure>
+<h2 id="2-系統架構配置"><a href="#2-系統架構配置" class="headerlink" title="2. 系統架構配置"></a>2. 系統架構配置</h2><h3 id="2-1-新增資料夾-src-router"><a href="#2-1-新增資料夾-src-router" class="headerlink" title="2.1. 新增資料夾 src\router"></a>2.1. 新增資料夾 <code>src\router</code></h3><p>請在<code>src\</code>資料夾底下建立<code>router</code>資料夾，預期結果<code>src\router</code></p>
+<h3 id="2-2-新增資料夾-src-views"><a href="#2-2-新增資料夾-src-views" class="headerlink" title="2.2. 新增資料夾 src\views"></a>2.2. 新增資料夾 <code>src\views</code></h3><p>請在<code>src\</code>資料夾底下建立<code>view</code>資料夾，預期結果<code>src\view</code></p>
+<h3 id="2-3-新增src-view-Home-vue"><a href="#2-3-新增src-view-Home-vue" class="headerlink" title="2.3. 新增src\view\Home.vue"></a>2.3. 新增<code>src\view\Home.vue</code></h3><p>請在<code>src\views\</code>資料夾底下建立<code>Home.vue</code>，預期結果<code>src\view\Home.vue</code>，並填寫以下內容：</p>
+<p><code>Home.vue</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;初始化頁面&lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=&quot;ts&quot;&gt;</span><br><span class="line">export default&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-新增src-router-index-ts"><a href="#2-4-新增src-router-index-ts" class="headerlink" title="2.4. 新增src\router\index.ts"></a>2.4. 新增<code>src\router\index.ts</code></h3><p>請在<code>src\router\</code>底下建立<code>index.ts</code>檔案，稍候再來填寫，預期結果<code>src\router\index.ts</code>，並填寫以下內容：</p>
+<p><code>index.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createRouter,createWebHistory,<span class="title class_">RouteRecordRaw</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">routes</span>: <span class="title class_">Array</span>&lt;<span class="title class_">RouteRecordRaw</span>&gt; =[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&quot;/&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;Home&quot;</span>,</span><br><span class="line">        <span class="attr">component</span>:<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../views/Home.vue&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">        routes</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-修改src-main-ts"><a href="#2-5-修改src-main-ts" class="headerlink" title="2.5. 修改src\main.ts"></a>2.5. 修改<code>src\main.ts</code></h3><p><code>main.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./assets/css/reset.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">use</span>(router).<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-修改src-App-vue"><a href="#2-6-修改src-App-vue" class="headerlink" title="2.6. 修改src\App.vue"></a>2.6. 修改<code>src\App.vue</code></h3><p><code>App.vue</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">html,</span><br><span class="line">body&#123;</span><br><span class="line">    width:100%;</span><br><span class="line">    height:100%;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-最後結果"><a href="#3-最後結果" class="headerlink" title="3. 最後結果"></a>3. 最後結果</h2><p>執行<code>npm run dev</code>，預期結果如下：</p>
+<p><img src="https://i.imgur.com/e9tkhVr.png" alt="image-20220806221642538"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/08/06/2022-08-06%20Vue3TypeScript(2)%20-%20%E5%89%B5%E5%BB%BA%E9%A0%85%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/06/2022-08-06%20Vue3TypeScript(2)%20-%20%E5%89%B5%E5%BB%BA%E9%A0%85%E7%9B%AE/" class="post-title-link" itemprop="url">Vue3TypeScript(2) - 創建項目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-06 17:01:00" itemprop="dateCreated datePublished" datetime="2022-08-06T17:01:00+08:00">2022-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-08-07 00:41:18" itemprop="dateModified" datetime="2022-08-07T00:41:18+08:00">2022-08-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>531</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-安裝"><a href="#1-安裝" class="headerlink" title="1. 安裝"></a>1. 安裝</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init vite@latest vue3-vite-ts-vuex-element-plus</span><br></pre></td></tr></table></figure>
+<h3 id="1-1-select-a-framework"><a href="#1-1-select-a-framework" class="headerlink" title="1.1. select a framework"></a>1.1. select a framework</h3><p>會提示選擇，選<code>vue</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-select-a-variant"><a href="#1-2-select-a-variant" class="headerlink" title="1.2. select a variant"></a>1.2. select a variant</h3><p>第二次提示，選<code>vue-ts</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue-ts</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-npm-install"><a href="#1-3-npm-install" class="headerlink" title="1.3. npm install"></a>1.3. npm install</h3><p>經由上述初始設定後，輸入指令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-進行簡單整理"><a href="#2-進行簡單整理" class="headerlink" title="2. 進行簡單整理"></a>2. 進行簡單整理</h2><p><code>App.vue</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>看一下package.json</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;dev&quot;: &quot;vite&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;vue-tsc --noEmit &amp;&amp; vite build&quot;,</span><br><span class="line">  &quot;preview&quot;: &quot;vite preview&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>因此我們可以 使用 <code>npm run dev</code>，啟動了網頁伺服器</p>
+<p><img src="https://i.imgur.com/5UHbkP3.png" alt="image-20220806170832284"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/08/02/2022-08-02%20%E7%B6%B2%E7%AB%99%E5%BC%B1%E9%BB%9E%E6%8E%83%E6%8F%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/02/2022-08-02%20%E7%B6%B2%E7%AB%99%E5%BC%B1%E9%BB%9E%E6%8E%83%E6%8F%8F/" class="post-title-link" itemprop="url">網站弱點掃描</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-08-02 21:58:00" itemprop="dateCreated datePublished" datetime="2022-08-02T21:58:00+08:00">2022-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-08-03 19:36:24" itemprop="dateModified" datetime="2022-08-03T19:36:24+08:00">2022-08-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E5%AE%89/" itemprop="url" rel="index"><span itemprop="name">資安</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>9 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>寫這篇的原因是因為筆者經過OWASP ZAP修正弱點努力後，客戶後續實際請資安廠商進行掃描。客戶聯絡我需要進行弱點修正，以下記錄一些學習資訊。</p>
+<h2 id="環境說明"><a href="#環境說明" class="headerlink" title="環境說明"></a>環境說明</h2><ol>
+<li>Windows Server 2016</li>
+<li>IIS10</li>
+<li>網站架構(無後端程式碼)<ol>
+<li>HTML</li>
+<li>JS</li>
+<li>SCSS</li>
+<li>CSS</li>
+</ol>
+</li>
+</ol>
+<h2 id="科普名詞"><a href="#科普名詞" class="headerlink" title="科普名詞"></a>科普名詞</h2><h3 id="TLS-Transport-Layer-Security，傳輸層安全性"><a href="#TLS-Transport-Layer-Security，傳輸層安全性" class="headerlink" title="TLS -  (Transport Layer Security，傳輸層安全性)"></a>TLS -  (Transport Layer Security，傳輸層安全性)</h3><blockquote>
+<p>TSL (Transport Layer Security，傳輸層安全性) 是更新、更安全的 SSL 版本。我們仍將安全性憑證稱為 SSL，因為這是較常用的詞彙，不過當您透過DigiCert<a target="_blank" rel="noopener" href="https://www.websecurity.digicert.com/zh/tw/ssl-certificate?inid=infoctr_buylink_sslhome">購買 SSL </a>時，您所購買的其實是最新的 TLS 憑證及 <a target="_blank" rel="noopener" href="https://www.websecurity.digicert.com/zh/tw/security-topics/how-ssl-works">ECC、RSA 或 DSA 的加密選項</a>。</p>
+</blockquote>
+<p>簡單來說，<code>TLS</code>是更安全的版本，從<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A">WIKI資料</a>，也可以看到棄用的狀況：</p>
+<p><img src="https://i.imgur.com/0heFAtT.png" alt="image-20220802205731442"></p>
+<h3 id="Cipher-密碼"><a href="#Cipher-密碼" class="headerlink" title="Cipher - 密碼"></a>Cipher - 密碼</h3><blockquote>
+<p>在密碼學中，<strong>密碼</strong>（英語：cipher，或cypher），是一種用於執行<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8A%A0%E5%AF%86">加密</a>或<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%A7%A3%E5%AF%86">解密</a>的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%AE%97%E6%B3%95">演算法</a>——一系列可以作為一個過程來遵循的定義明確的步驟</p>
+</blockquote>
+<p>比較好聯想的就是我們常說的對稱加密<code>AES</code>、<code>DES</code>，非對稱加密<code>RSA</code>。</p>
+<h3 id="Hash-雜湊"><a href="#Hash-雜湊" class="headerlink" title="Hash - 雜湊"></a>Hash - 雜湊</h3><blockquote>
+<p>雜湊演算法也被用來加密存在資料庫中的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC">密碼</a>（password）字串，由於雜湊演算法所計算出來的<strong>雜湊值（Hash Value）</strong>具有<strong>不可逆</strong>（無法逆向演算回原本的數值）的性質，因此可有效的保護密碼。</p>
+</blockquote>
+<p>用在於檔案校驗碼（Checksum），比如：</p>
+<ul>
+<li>用來快速判斷檔案是否和原本相同。</li>
+<li>有在論壇下載過檔案的人應該都很常見到一長串 MD5 或 SHA-1 驗證碼，就是用來讓你快速檢查你下載的檔案裡頭的內容，是不是跟上傳者上傳的檔案一樣。</li>
+</ul>
+<h4 id="為什麼雜湊不是加密？"><a href="#為什麼雜湊不是加密？" class="headerlink" title="為什麼雜湊不是加密？"></a>為什麼雜湊不是加密？</h4><ul>
+<li>今天如果我拿到一串密文，我是有辦法透過解密，得到原始的明文的，而且如果使用非對稱式加密的話，我甚至還可以驗證傳送方是不是本人（是否有被進行中間人攻擊）。<ul>
+<li>雜湊演算法在這裡也會被使用，通常會被拿來檢驗傳送的訊息是否有被更改過。</li>
+<li>傳送方附上原始訊息經過某個雜湊演算法得出的雜湊值，接收方在解開這個訊息之後，會透過相同的雜湊演算法來驗證。</li>
+</ul>
+</li>
+<li>但如果是拿到一串雜湊值的話，理論上是無法逆向得到原始的明文的，根本無法拿來做資料的傳遞。</li>
+</ul>
+<p>對於雜湊在網路傳輸上的應用有了更進一步的了解，<code>確認傳送的訊息是否有被更改過</code>！</p>
+<p>引用：<a target="_blank" rel="noopener" href="https://blog.m157q.tw/posts/2017/12/25/differences-between-encryption-and-hashing/">加密和雜湊有什麼不一樣？</a></p>
+<h2 id="廠商檢測使用之軟體"><a href="#廠商檢測使用之軟體" class="headerlink" title="廠商檢測使用之軟體"></a>廠商檢測使用之軟體</h2><p>引用報告書內容：</p>
+<blockquote>
+<p>本服務所使用之弱點掃描檢測工具的廠牌為 <code>HCL AppScan</code>，作為網頁弱點掃描檢測工具，可全面搜尋受測單位的漏洞。</p>
+</blockquote>
+<p>經查詢這套軟體看起來是付費軟體哦。</p>
+<h2 id="檢測結果"><a href="#檢測結果" class="headerlink" title="檢測結果"></a>檢測結果</h2><p><img src="https://i.imgur.com/PNFRTIE.png" alt="image-20220802195617329"></p>
+<h3 id="低強度密碼組合-ROBOT-攻擊：伺服器支援有漏洞的密碼組合"><a href="#低強度密碼組合-ROBOT-攻擊：伺服器支援有漏洞的密碼組合" class="headerlink" title="低強度密碼組合 - ROBOT 攻擊：伺服器支援有漏洞的密碼組合"></a>低強度密碼組合 - ROBOT 攻擊：伺服器支援有漏洞的密碼組合</h3><p>網路搜尋找到來自HCL AppScan<a target="_blank" rel="noopener" href="https://help.hcltechsw.com/appscan/Enterprise/zh_TW/10.0.1/topics/t_disable_weak_cipher_suites_iis.html">文件說明</a>：</p>
+<blockquote>
+<p>依預設，IIS 安裝時會啟用 2 個低強度 SSL 2.0 密碼組合：<em>SSL2_RC4_128_WITH_MD5</em> 和 <em>SSL2_DES_192_EDE3_CBC_WITH_MD5</em>。這會影響 AppScan Enterprise 的安全，應該停用這些密碼組合。</p>
+</blockquote>
+<p>從文件內容中，了解到原來設定都藏在登錄檔之中，試圖理解<code>SSL2_RC4_128_WITH_MD5</code>這個是代表什麼意思，意外發現可以用這張圖片來解釋：</p>
+<p><code>Server Protocols</code> + <code>_</code> + <code>Ciphers</code> + <code>_</code> + <code>WITH</code> + <code>Hashes</code></p>
+<p><img src="https://i.imgur.com/lctcB5i.png" alt="img"></p>
+<p>實際去探訪<code>登錄檔</code>，截圖增加印象：</p>
+<p><img src="https://i.imgur.com/zlTfWhL.png" alt="image-20220802203224225"></p>
+<h3 id="偵測到-RC4-密碼組合"><a href="#偵測到-RC4-密碼組合" class="headerlink" title="偵測到 RC4 密碼組合"></a>偵測到 RC4 密碼組合</h3><p>經過第一項弱點的認識後，這一項的說明其實就變得更好理解了。也就是不要包含<code>RC4</code>就對了！</p>
+<h3 id="偵測到低強度密碼：並非所有密碼組合都支援完全秘密轉遞"><a href="#偵測到低強度密碼：並非所有密碼組合都支援完全秘密轉遞" class="headerlink" title="偵測到低強度密碼：並非所有密碼組合都支援完全秘密轉遞"></a>偵測到低強度密碼：並非所有密碼組合都支援完全秘密轉遞</h3><p>經過第一項弱點的認識後，這一項的說明其實就變得更好理解了。比如不能有<code>SSL</code>、<code>RC4</code>、<code>MD5</code>，並且在組合上避免低安全的組合！</p>
+<h2 id="工具推薦"><a href="#工具推薦" class="headerlink" title="工具推薦"></a>工具推薦</h2><h3 id="SSLScan"><a href="#SSLScan" class="headerlink" title="SSLScan"></a>SSLScan</h3><p>是一套open source，在github公開，可以自行下載。</p>
+<ul>
+<li>可以看到<code>SSL/TLS Protocols</code>的enable狀況</li>
+<li>可以看到<code>Supported Server Cipher</code> 的支援狀況</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\kite\Downloads\sslscan-2.0.15&gt; .\sslscan.exe tw.yahoo.com</span><br><span class="line">Version: 2.0.15 Windows 64-bit (Mingw)</span><br><span class="line">OpenSSL 1.1.1e-dev  xx XXX xxxx</span><br><span class="line"></span><br><span class="line">Connected to 119.161.15.251</span><br><span class="line"></span><br><span class="line">Testing SSL server tw.yahoo.com on port 443 using SNI name tw.yahoo.com</span><br><span class="line"></span><br><span class="line">  SSL/TLS Protocols:</span><br><span class="line">SSLv2     disabled</span><br><span class="line">SSLv3     disabled</span><br><span class="line">TLSv1.0   enabled</span><br><span class="line">TLSv1.1   enabled</span><br><span class="line">TLSv1.2   enabled</span><br><span class="line">TLSv1.3   enabled</span><br><span class="line"></span><br><span class="line">  TLS Fallback SCSV:</span><br><span class="line">Server supports TLS Fallback SCSV</span><br><span class="line"></span><br><span class="line">  TLS renegotiation:</span><br><span class="line">Secure session renegotiation supported</span><br><span class="line"></span><br><span class="line">  TLS Compression:</span><br><span class="line">Compression disabled</span><br><span class="line"></span><br><span class="line">  Heartbleed:</span><br><span class="line">TLSv1.3 not vulnerable to heartbleed</span><br><span class="line">TLSv1.2 not vulnerable to heartbleed</span><br><span class="line">TLSv1.1 not vulnerable to heartbleed</span><br><span class="line">TLSv1.0 not vulnerable to heartbleed</span><br><span class="line"></span><br><span class="line">  Supported Server Cipher(s):</span><br><span class="line">Preferred TLSv1.3  128 bits  TLS_AES_128_GCM_SHA256        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.3  256 bits  TLS_AES_256_GCM_SHA384        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.3  256 bits  TLS_CHACHA20_POLY1305_SHA256  Curve 25519 DHE 253</span><br><span class="line">Preferred TLSv1.2  128 bits  ECDHE-ECDSA-AES128-GCM-SHA256 Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-ECDSA-AES256-GCM-SHA384 Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-ECDSA-CHACHA20-POLY1305 Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-RSA-CHACHA20-POLY1305   Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  128 bits  ECDHE-RSA-AES128-GCM-SHA256   Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-RSA-AES256-GCM-SHA384   Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  128 bits  ECDHE-ECDSA-AES128-SHA256     Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-ECDSA-AES256-SHA384     Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  128 bits  ECDHE-ECDSA-AES128-SHA        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-ECDSA-AES256-SHA        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  128 bits  ECDHE-RSA-AES128-SHA256       Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-RSA-AES256-SHA384       Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  128 bits  ECDHE-RSA-AES128-SHA          Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  256 bits  ECDHE-RSA-AES256-SHA          Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.2  128 bits  AES128-GCM-SHA256</span><br><span class="line">Accepted  TLSv1.2  256 bits  AES256-GCM-SHA384</span><br><span class="line">Accepted  TLSv1.2  128 bits  AES128-SHA256</span><br><span class="line">Accepted  TLSv1.2  256 bits  AES256-SHA256</span><br><span class="line">Accepted  TLSv1.2  256 bits  AES256-SHA</span><br><span class="line">Preferred TLSv1.1  128 bits  ECDHE-ECDSA-AES128-SHA        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.1  256 bits  ECDHE-ECDSA-AES256-SHA        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.1  128 bits  ECDHE-RSA-AES128-SHA          Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.1  256 bits  ECDHE-RSA-AES256-SHA          Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.1  256 bits  AES256-SHA</span><br><span class="line">Preferred TLSv1.0  128 bits  ECDHE-ECDSA-AES128-SHA        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.0  256 bits  ECDHE-ECDSA-AES256-SHA        Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.0  128 bits  ECDHE-RSA-AES128-SHA          Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.0  256 bits  ECDHE-RSA-AES256-SHA          Curve 25519 DHE 253</span><br><span class="line">Accepted  TLSv1.0  256 bits  AES256-SHA</span><br><span class="line"></span><br><span class="line">  Server Key Exchange Group(s):</span><br><span class="line">TLSv1.3  128 bits  secp256r1 (NIST P-256)</span><br><span class="line">TLSv1.3  192 bits  secp384r1 (NIST P-384)</span><br><span class="line">TLSv1.3  260 bits  secp521r1 (NIST P-521)</span><br><span class="line">TLSv1.3  128 bits  x25519</span><br><span class="line">TLSv1.3  224 bits  x448</span><br><span class="line">TLSv1.2  128 bits  secp256r1 (NIST P-256)</span><br><span class="line">TLSv1.2  192 bits  secp384r1 (NIST P-384)</span><br><span class="line">TLSv1.2  260 bits  secp521r1 (NIST P-521)</span><br><span class="line">TLSv1.2  128 bits  x25519</span><br><span class="line">TLSv1.2  224 bits  x448</span><br><span class="line"></span><br><span class="line">  SSL Certificate:</span><br><span class="line">Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">ECC Curve Name:      prime256v1</span><br><span class="line">ECC Key Strength:    128</span><br></pre></td></tr></table></figure>
+
+<h3 id="IIS-Crypto"><a href="#IIS-Crypto" class="headerlink" title="IIS Crypto"></a>IIS Crypto</h3><h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/rdp-ssl-cipher-vulnerability/">非網站 Windows 之 SSL 加密弱點檢測及修補</a><ul>
+<li>這篇是黑暗大大寫的心得筆記，過程寫的很詳細。其中，也有推薦使用<code>nmap</code>來進行檢測。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="http://www.waynezim.com/2011/03/how-to-disable-weak-ssl-protocols-and-ciphers-in-iis/">How to Disable Weak SSL Protocols and Ciphers in IIS</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.websecurity.digicert.com/zh/tw/security-topics/what-is-ssl-tls-https">什麼是 SSL、TLS 以及 HTTPS？</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.m157q.tw/posts/2017/12/25/differences-between-encryption-and-hashing/">加密和雜湊有什麼不一樣？</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/%E7%A8%8B%E5%BC%8F%E8%A3%A1%E6%9C%89%E8%9F%B2/windows-%E4%B8%BB%E6%A9%9F%E5%A6%82%E4%BD%95%E5%95%9F%E7%94%A8-tls-1-2-d72825f791b9">Windows 主機如何啟用 TLS 1.2</a><ul>
+<li>如果要用登錄檔的方式進行修改，這篇圖文並茂，而且還將貼上了reg的文字設定檔</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@Not/rJ52Vrp_v#%E4%B8%AD-%E4%BD%BF%E7%94%A8TLS-1011-%E5%81%9C%E7%94%A8TLS%E8%88%8A%E7%89%88%E5%8D%94%E5%AE%9A%EF%BC%8C%E5%8F%AA%E5%95%9F%E7%94%A8TLS-12%E5%90%AB">網站檢測的資安風險修正筆記</a><ul>
+<li>IIS Crypto軟體使用方式可以參考這篇，做得還滿不錯的</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/07/28/2022-07-28%20typescript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/28/2022-07-28%20typescript/" class="post-title-link" itemprop="url">typescript</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-07-28 21:41:00" itemprop="dateCreated datePublished" datetime="2022-07-28T21:41:00+08:00">2022-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-08-02 02:23:24" itemprop="dateModified" datetime="2022-08-02T02:23:24+08:00">2022-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>7.6k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>14 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-TypeScript-TS-快速入門"><a href="#1-TypeScript-TS-快速入門" class="headerlink" title="1. TypeScript TS 快速入門"></a>1. TypeScript TS 快速入門</h2><h3 id="1-1-什麼是TypeScript？"><a href="#1-1-什麼是TypeScript？" class="headerlink" title="1.1. 什麼是TypeScript？"></a>1.1. 什麼是TypeScript？</h3><ol>
+<li>加強版的javascript(Superset)</li>
+<li>加強了「Type」的部分</li>
+<li>開發完成後，最後還是需要編譯成javascript</li>
+<li>適用於開發前端跟後端，例如：搭配React、Express等框架</li>
+</ol>
+<h3 id="1-2-為什麼需要TyperScript"><a href="#1-2-為什麼需要TyperScript" class="headerlink" title="1.2. 為什麼需要TyperScript"></a>1.2. 為什麼需要TyperScript</h3><ol>
+<li>開發時的(Type)類型檢查</li>
+<li>補強動態語言JS，Run起來才會出錯的缺點(不小心用字串做加減乘除)</li>
+<li>提高專案程式碼的維護性</li>
+</ol>
+<h2 id="2-環境安裝"><a href="#2-環境安裝" class="headerlink" title="2. 環境安裝"></a>2. 環境安裝</h2><h3 id="2-1-全局安裝"><a href="#2-1-全局安裝" class="headerlink" title="2.1. 全局安裝"></a>2.1. 全局安裝</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install typescript -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-專案安裝"><a href="#2-2-專案安裝" class="headerlink" title="2.2. 專案安裝"></a>2.2. 專案安裝</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install typescript --save-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-版本檢查"><a href="#2-3-版本檢查" class="headerlink" title="2.3. 版本檢查"></a>2.3. 版本檢查</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-初始化專案"><a href="#2-4-初始化專案" class="headerlink" title="2.4. 初始化專案"></a>2.4. 初始化專案</h3><p>經過以下指令產生<code>tsconfig.json</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-config設定項目"><a href="#3-config設定項目" class="headerlink" title="3. config設定項目"></a>3. config設定項目</h2><p>這邊簡單記錄幾個config設定</p>
+<h3 id="3-1-編譯目標版本"><a href="#3-1-編譯目標版本" class="headerlink" title="3.1. 編譯目標版本"></a>3.1. 編譯目標版本</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;es2016&quot;</span><span class="punctuation">,</span>                                  <span class="comment">/* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-Source-path"><a href="#3-2-Source-path" class="headerlink" title="3.2. Source path"></a>3.2. Source path</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;rootDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./src&quot;</span><span class="punctuation">,</span>                                  <span class="comment">/* Specify the root folder within your source files. */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-Output-path"><a href="#3-3-Output-path" class="headerlink" title="3.3. Output path"></a>3.3. Output path</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;outDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./dist/&quot;</span><span class="punctuation">,</span>                                <span class="comment">/* Specify an output folder for all emitted files. */</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/BMzSwEZ.png" alt="image-20220730193055247"></p>
+<h3 id="3-4-允許撰寫js"><a href="#3-4-允許撰寫js" class="headerlink" title="3.4. 允許撰寫js"></a>3.4. 允許撰寫js</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &quot;allowJs&quot;: true,                                  /* Allow JavaScript files to be a part of your program. Use the &#x27;checkJS&#x27; option to get errors from these files. */</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-5-debug模式指向ts檔案"><a href="#3-5-debug模式指向ts檔案" class="headerlink" title="3.5. debug模式指向ts檔案"></a>3.5. debug模式指向ts檔案</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;inlineSourceMap&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>                          <span class="comment">/* Include sourcemap files inside the emitted JavaScript. */</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/ghxCEfp.png" alt="image-20220730192733527"></p>
+<p><img src="https://i.imgur.com/urwlDRE.png" alt="image-20220730192703431"></p>
+<h2 id="4-如何complier"><a href="#4-如何complier" class="headerlink" title="4. 如何complier"></a>4. 如何complier</h2><h3 id="4-1-新增index-ts"><a href="#4-1-新增index-ts" class="headerlink" title="4.1. 新增index.ts"></a>4.1. 新增<code>index.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">string</span> =<span class="string">&quot;kite&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-手動編譯檔案"><a href="#4-2-手動編譯檔案" class="headerlink" title="4.2. 手動編譯檔案"></a>4.2. 手動編譯檔案</h3><p>經過以下指令會編譯出<code>index.js</code>檔</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc index.ts</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-持續監控"><a href="#4-3-持續監控" class="headerlink" title="4.3. 持續監控"></a>4.3. 持續監控</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --watch</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-動手寫程式"><a href="#5-動手寫程式" class="headerlink" title="5. 動手寫程式"></a>5. 動手寫程式</h2><p><img src="https://i.imgur.com/OedIFzb.png" alt="image-20220802022320270"></p>
+<h3 id="5-1-basic"><a href="#5-1-basic" class="headerlink" title="5.1. basic"></a>5.1. basic</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ 基本類型 ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">str</span>: <span class="built_in">string</span> =<span class="string">&#x27;kite&#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">str1</span>: <span class="built_in">string</span>;</span><br><span class="line">str1 =<span class="string">&quot;kite&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">num</span>: <span class="built_in">number</span> = <span class="number">1000</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">boo</span>: <span class="built_in">boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">n</span>: <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">un</span>: <span class="literal">undefined</span> = <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">test</span>: <span class="built_in">any</span> = <span class="literal">true</span>;<span class="comment">//任何型別都可以</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//陣列</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr1d</span>: <span class="built_in">string</span>[] = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr2d</span>: <span class="built_in">string</span>[][] = [[<span class="string">&#x27;a1&#x27;</span>,<span class="string">&#x27;b1&#x27;</span>,<span class="string">&#x27;c1&#x27;</span>],[<span class="string">&#x27;a2&#x27;</span>,<span class="string">&#x27;b2&#x27;</span>,<span class="string">&#x27;c2&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//元組</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">tuple1d</span>: [<span class="built_in">number</span>, <span class="built_in">string</span>, <span class="built_in">boolean</span>] = [<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>,<span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">tuple2d</span>: [<span class="built_in">string</span>,<span class="built_in">string</span>][] = [[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-2-Enum-枚舉"><a href="#5-2-Enum-枚舉" class="headerlink" title="5.2. Enum 枚舉"></a>5.2. Enum 枚舉</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ Enum 枚舉 ------------</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">LiveStatus</span> &#123;</span><br><span class="line">    <span class="variable constant_">SUCCESS</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="variable constant_">FAIL</span> = -<span class="number">1</span>,</span><br><span class="line">    <span class="variable constant_">STREAMING</span> = <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> liveStatus = <span class="title class_">LiveStatus</span>.<span class="property">FAIL</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(liveStatus);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-Union"><a href="#5-3-Union" class="headerlink" title="5.3. Union"></a>5.3. Union</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ Union ------------</span></span><br><span class="line"><span class="keyword">let</span> union : <span class="built_in">boolean</span> | <span class="built_in">string</span>;</span><br><span class="line">union = <span class="literal">true</span>;</span><br><span class="line">union = <span class="string">&quot;hi,I&#x27;m Support boolean、string type&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-4-Type"><a href="#5-4-Type" class="headerlink" title="5.4. Type"></a>5.4. Type</h3><h4 id="5-4-1-basic"><a href="#5-4-1-basic" class="headerlink" title="5.4.1. basic"></a>5.4.1. basic</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ Type ------------</span></span><br><span class="line"><span class="keyword">type</span> A = <span class="built_in">number</span> | <span class="built_in">string</span> </span><br><span class="line"><span class="keyword">let</span> <span class="attr">a1</span>: A</span><br><span class="line">a1 = <span class="number">1</span></span><br><span class="line">a1 = <span class="string">&quot;type A&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-2-Partial-Readonly"><a href="#5-4-2-Partial-Readonly" class="headerlink" title="5.4.2. Partial &amp; Readonly"></a>5.4.2. Partial &amp; Readonly</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//保哥 union</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Level</span> = <span class="string">&quot;初階&quot;</span> | <span class="string">&quot;中階&quot;</span> | <span class="string">&quot;高階&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">yourLevel</span>: <span class="title class_">Level</span> = <span class="string">&quot;中階&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//保哥 Partial &amp; ReadOnly Types</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Person</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PersonPartial</span> = <span class="title class_">Partial</span>&lt;<span class="title class_">Person</span>&gt;;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PersonReadonly</span> = <span class="title class_">Readonly</span>&lt;<span class="title class_">Person</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personA</span>: <span class="title class_">Person</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;Will&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personB</span>:<span class="title class_">PersonPartial</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Will&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personC</span>:<span class="title class_">PersonReadonly</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Will&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">123</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//personC.name=&quot;kite&quot;;//error</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-Interface"><a href="#5-5-Interface" class="headerlink" title="5.5. Interface"></a>5.5. Interface</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ Interface ------------</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">User</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-6-Object"><a href="#5-6-Object" class="headerlink" title="5.6. Object"></a>5.6. Object</h3><p>思考一下type 與 interface的差異性</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ Object ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Card</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    desc?: <span class="built_in">string</span> <span class="comment">//可選</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">card01</span>: <span class="title class_">Card</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;kite&quot;</span>,</span><br><span class="line">    <span class="attr">desc</span>:<span class="string">&quot;....&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Card2</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="attr">desc</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Card2</span> &#123;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">card02</span>: <span class="title class_">Card2</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;dog&quot;</span>,</span><br><span class="line">    <span class="attr">desc</span>:<span class="string">&quot;won!&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-7-Function"><a href="#5-7-Function" class="headerlink" title="5.7. Function"></a>5.7. Function</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ function ------------</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params">a: <span class="built_in">string</span>,b: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello2</span>(<span class="params">a: <span class="built_in">string</span>,b: <span class="built_in">string</span></span>): <span class="built_in">number</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello3</span>(<span class="params">a: <span class="built_in">number</span>,b: <span class="built_in">boolean</span>,c: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test2</span>(<span class="params">a: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可選參數要放在最後面</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello4</span>(<span class="params">name: <span class="built_in">string</span>, age?: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(age === <span class="literal">undefined</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="title function_">test2</span>(age)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//箭頭函式</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">func</span> = (<span class="params"></span>) =&gt; &#123;&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">func2</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-8-斷言"><a href="#5-8-斷言" class="headerlink" title="5.8. 斷言"></a>5.8. 斷言</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ 斷言 unknown ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoModel</span> = &#123;</span><br><span class="line">    <span class="attr">userId</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">id</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">getData</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//https://jsonplaceholder.typicode.com/</span></span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> todoModel = <span class="keyword">await</span> res.<span class="title function_">json</span>() <span class="keyword">as</span> <span class="title class_">TodoModel</span>;    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(todoModel);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">data1</span>: <span class="title class_">TodoModel</span> = &#123;</span><br><span class="line">    <span class="string">&quot;userId&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;delectus aut autem&quot;</span>,</span><br><span class="line">    <span class="string">&quot;completed&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Beta</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 假設data1是動態的，想像data1是response回來的json且動態內容，先unknow 再轉為預計的型別</span></span><br><span class="line"><span class="keyword">const</span> beta = data1 <span class="keyword">as</span> <span class="built_in">unknown</span> <span class="keyword">as</span> <span class="title class_">Beta</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">getData</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-9-Class"><a href="#5-9-Class" class="headerlink" title="5.9. Class"></a>5.9. Class</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ class ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Live</span> &#123;</span><br><span class="line">    <span class="attr">roomName</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="keyword">private</span> <span class="attr">id</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="keyword">protected</span> <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="title function_">constructor</span> (<span class="attr">roomName1</span>: <span class="built_in">string</span>, <span class="attr">id1</span>: <span class="built_in">string</span>, <span class="attr">name1</span>: <span class="built_in">string</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;建立直播中...&#x27;</span>);        </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">roomName</span> = roomName1;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">id</span> = id1;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;class Live start method&quot;</span>);        </span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`class Live this.id = <span class="subst">$&#123;<span class="variable language_">this</span>.id&#125;</span>`</span>);                </span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`class Live this.name = <span class="subst">$&#123;<span class="variable language_">this</span>.name&#125;</span>`</span>);      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承 extends</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CarLive</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Live</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span> (<span class="attr">roomName1</span>: <span class="built_in">string</span>, <span class="attr">id1</span>: <span class="built_in">string</span>, <span class="attr">name1</span>: <span class="built_in">string</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">super</span>(roomName1,id1,name1)        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live01 = <span class="keyword">new</span> <span class="title class_">Live</span>(<span class="string">&quot;1號&quot;</span>,<span class="string">&quot;00001&quot;</span>,<span class="string">&quot;kite&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live01);</span><br><span class="line"><span class="comment">//console.log(live01.id);//在開發階段會有報錯提示</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live02 = <span class="keyword">new</span> <span class="title class_">CarLive</span>(<span class="string">&quot;2號&quot;</span>,<span class="string">&quot;00002&quot;</span>,<span class="string">&quot;Richard&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live02);</span><br><span class="line">live02.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//私有變數新寫法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Live2</span>&#123;</span><br><span class="line">    <span class="comment">//↓私有變數</span></span><br><span class="line">    #name</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.#name= name;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(name);        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live2 = <span class="keyword">new</span> <span class="title class_">Live2</span>(<span class="string">&quot;Mary&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//實作介面 implements</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">CarProps</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">    <span class="attr">start</span>: <span class="function">() =&gt;</span> <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">implements</span> <span class="title class_">CarProps</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">name: <span class="built_in">string</span>,age: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-9-1-public"><a href="#5-9-1-public" class="headerlink" title="5.9.1. public"></a>5.9.1. public</h4><p>當一個變數或方法的可視性被宣告為<code>public</code>。這表示這些方法和屬性可以在<code>類別的裡面與外面被存取</code>。</p>
+<h4 id="5-9-2-protected"><a href="#5-9-2-protected" class="headerlink" title="5.9.2. protected"></a>5.9.2. protected</h4><p>當一個變數或方法的可視性被宣告為<code>protected</code>，該變數或方法只能在<code>類別以及子類別的內部存取</code>。</p>
+<h4 id="5-9-3-private"><a href="#5-9-3-private" class="headerlink" title="5.9.3. private"></a>5.9.3. private</h4><p>當一個變數或方法的可視性被宣告為<code>private</code>，該變數或方法只能在<code>定義它們的類別內</code>。</p>
+<p>實質上，在browser上還是能進行存取，如下圖：</p>
+<p><img src="https://i.imgur.com/x75cpRg.png" alt="image-20220730235820137"></p>
+<p>新語法新特性，希望能達到private效果可以使用<code>#</code>符號進行變數宣告。再看一次browser，的確已經限制住存取了。</p>
+<p><img src="https://i.imgur.com/J1vRZue.png" alt="image-20220731005658972"></p>
+<h3 id="5-10-泛型"><a href="#5-10-泛型" class="headerlink" title="5.10. 泛型"></a>5.10. 泛型</h3><h4 id="5-10-1-function"><a href="#5-10-1-function" class="headerlink" title="5.10.1. function"></a>5.10.1. function</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------ 泛型 ------------</span></span><br><span class="line"><span class="comment">//function</span></span><br><span class="line"><span class="keyword">function</span> print&lt;T&gt;(<span class="attr">data</span>:T)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;data&#x27;</span>,data);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">print&lt;<span class="built_in">number</span>&gt;(<span class="number">999</span>)</span><br><span class="line">print&lt;<span class="built_in">string</span>&gt;(<span class="string">&quot;kite&quot;</span>)</span><br><span class="line">print&lt;<span class="built_in">string</span>[][]&gt;([[<span class="string">&#x27;kite&#x27;</span>,<span class="string">&#x27;Richard&#x27;</span>]])</span><br><span class="line">print&lt;<span class="title class_">CarProps</span>&gt;(&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;kite&quot;</span></span><br><span class="line">    ,<span class="attr">age</span>:<span class="number">123</span></span><br><span class="line">    ,<span class="title function_">start</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`I&#x27;m start method`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-10-2-class"><a href="#5-10-2-class" class="headerlink" title="5.10.2. class"></a>5.10.2. class</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Print</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="attr">data</span>: T</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">d: T</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">data</span> = d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Print</span>&lt;<span class="built_in">number</span>&gt;(<span class="number">999</span>);</span><br><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">Print</span>&lt;<span class="built_in">string</span>&gt;(<span class="string">&#x27;kite&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p&#x27;</span>,p);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p1&#x27;</span>,p1);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-11-Utility-Types"><a href="#5-11-Utility-Types" class="headerlink" title="5.11. Utility Types"></a>5.11. Utility Types</h3><h4 id="5-11-1-Record"><a href="#5-11-1-Record" class="headerlink" title="5.11.1. Record&lt;Keys, Type&gt;"></a>5.11.1. Record&lt;Keys, Type&gt;</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">CatInfo</span> &#123;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">breed</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">type</span> <span class="title class_">CatName</span> = <span class="string">&quot;miffy&quot;</span> | <span class="string">&quot;boris&quot;</span> | <span class="string">&quot;mordred&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">cats</span>: <span class="title class_">Record</span>&lt;<span class="title class_">CatName</span>, <span class="title class_">CatInfo</span>&gt; = &#123;</span><br><span class="line">    <span class="attr">miffy</span>: &#123; <span class="attr">age</span>: <span class="number">10</span>, <span class="attr">breed</span>: <span class="string">&quot;Persian&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">boris</span>: &#123; <span class="attr">age</span>: <span class="number">5</span>, <span class="attr">breed</span>: <span class="string">&quot;Maine Coon&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">mordred</span>: &#123; <span class="attr">age</span>: <span class="number">16</span>, <span class="attr">breed</span>: <span class="string">&quot;British Shorthair&quot;</span> &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-11-2-Pick"><a href="#5-11-2-Pick" class="headerlink" title="5.11.2. Pick&lt;Type, Keys&gt;"></a>5.11.2. Pick&lt;Type, Keys&gt;</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Todo1</span> &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">description</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoPreview1</span> = <span class="title class_">Pick</span>&lt;<span class="title class_">Todo1</span>, <span class="string">&quot;title&quot;</span> | <span class="string">&quot;completed&quot;</span>&gt;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="attr">todo1</span>: <span class="title class_">TodoPreview1</span> = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Clean room&quot;</span>,</span><br><span class="line">  <span class="attr">completed</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-11-3-Omit"><a href="#5-11-3-Omit" class="headerlink" title="5.11.3. Omit&lt;Type, Keys&gt;"></a>5.11.3. Omit&lt;Type, Keys&gt;</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Todo2</span> &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">description</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">    <span class="attr">createdAt</span>: <span class="built_in">number</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoPreview2</span> = <span class="title class_">Omit</span>&lt;<span class="title class_">Todo2</span>, <span class="string">&quot;description&quot;</span>&gt;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="attr">todo2</span>: <span class="title class_">TodoPreview2</span> = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Clean room&quot;</span>,</span><br><span class="line">  <span class="attr">completed</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">createdAt</span>: <span class="number">1615544252770</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-參考連結"><a href="#6-參考連結" class="headerlink" title="6. 參考連結"></a>6. 參考連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/GinkGJZBHIY">【前端速成】TypeScript TS 快速入門｜Tiktok工程師帶你入門前端｜布魯斯前端</a></li>
+<li><a target="_blank" rel="noopener" href="http://json2ts.com/">json2ts</a></li>
+<li><a target="_blank" rel="noopener" href="https://jsonplaceholder.typicode.com/">{JSON} Placeholder</a></li>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/SCLKlc6G0_k">用不用 TypeScript 隨便你，反正我是用了 | Will 保哥 (JSDC 2020)</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/07/26/2022-07-26%20%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/26/2022-07-26%20%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97/" class="post-title-link" itemprop="url">消息隊列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-07-26 12:08:00 / 修改時間：23:06:26" itemprop="dateCreated datePublished" datetime="2022-07-26T12:08:00+08:00">2022-07-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%8C%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">後端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-消息隊列-Message-Queue"><a href="#1-消息隊列-Message-Queue" class="headerlink" title="1. 消息隊列 Message Queue"></a>1. 消息隊列 Message Queue</h2><p>內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題</p>
+<h2 id="2-為什麼需要消息隊列"><a href="#2-為什麼需要消息隊列" class="headerlink" title="2. 為什麼需要消息隊列"></a>2. 為什麼需要消息隊列</h2><h3 id="2-1-工廠流水線"><a href="#2-1-工廠流水線" class="headerlink" title="2.1. 工廠流水線"></a>2.1. 工廠流水線</h3><p>大家在廠線上，只需要觀注自己的工作內容，意味著解耦了彼此的關係。</p>
+<p><img src="https://i.imgur.com/bfpPK5p.png" alt="image-20220726121505581"></p>
+<h3 id="2-2-水庫"><a href="#2-2-水庫" class="headerlink" title="2.2. 水庫"></a>2.2. 水庫</h3><p>當發生大量的請求與流量時，可以保護我們的後端伺服器的穩定，扮演水庫角色，進行的控制與排放。</p>
+<p><img src="https://i.imgur.com/19z3MSg.png" alt="image-20220726121556180"></p>
+<h3 id="2-3-倉庫"><a href="#2-3-倉庫" class="headerlink" title="2.3. 倉庫"></a>2.3. 倉庫</h3><p>可用途儲存半成品的存放站，後續再由它人去拿取半成品商品進行處理。</p>
+<p><img src="https://i.imgur.com/EN8QPDP.png" alt="image-20220726122222781"></p>
+<h2 id="3-場景"><a href="#3-場景" class="headerlink" title="3. 場景"></a>3. 場景</h2><h3 id="3-1-非同步處理"><a href="#3-1-非同步處理" class="headerlink" title="3.1. 非同步處理"></a>3.1. 非同步處理</h3><p>同步處理</p>
+<p>響應一個用戶的請求，需要完成4個步驟，每個模塊都有自己的運行時間，這樣的話運行時間就會相對較長。</p>
+<p>並且，往往在過程當中，只有一步或二步是重要的關鍵步驟，其餘的步驟往往都沒有那麼重要…比如發郵件或簡訊通知訂單完成之類的訊息</p>
+<p>亦或者是數據統計之類的工作。</p>
+<p>異步處理</p>
+<p>加入了隊列請求後，對於一個用戶的請求，我們只需要完成一個最核心的業務邏輯操作，完成後直接返回請求。</p>
+<p>我們引入消息隊列，使這些模塊監聽消息隊列中的事件，這些模塊只要異步操作完即可。</p>
+<p>異步處理，可以大大縮短響應用戶的請求</p>
+<p><img src="https://i.imgur.com/Toubbsh.png" alt="MQ同步、異步"></p>
+<h3 id="3-2-應付瞬間巨量"><a href="#3-2-應付瞬間巨量" class="headerlink" title="3.2. 應付瞬間巨量"></a>3.2. 應付瞬間巨量</h3><p>秒殺活動流量較大，透過網關導向到隊列中，隊列在這當中扮演了很大的保護作用，可避免後端服務器崩潰。![MQ_流量控制](E:\1. kite\GitWorkSpace\kite_hexo\source_posts\2022-07-26 消息隊列.assets\MQ_流量控制.png)</p>
+<h3 id="3-3-系統間解耦-服務解耦"><a href="#3-3-系統間解耦-服務解耦" class="headerlink" title="3.3. 系統間解耦(服務解耦)"></a>3.3. 系統間解耦(服務解耦)</h3><p>如果沒有導入<code>MessageQueue</code>時，可以說每個模塊之間的接口耦合，又或者說每個微服務之間的RPC耦合。</p>
+<p>如果某一個模塊出現了問題，又或者需要重新佈署，這些與它相依賴的模塊有可能會受到影響。</p>
+<p>引入了MessageQueue之後，每個模塊就可以觀注在自己的事情上面，完全不用考慮體會上游或下游的情況。去掉耦合之後，我們的微服務佈署也好，項目維護也好，包括項目的高可用性，帶來不錯的效益。</p>
+<p><img src="https://i.imgur.com/7dpxUxQ.png" alt="MQ_服務解耦"></p>
+<h2 id="4-消息隊列類型"><a href="#4-消息隊列類型" class="headerlink" title="4. 消息隊列類型"></a>4. 消息隊列類型</h2><p>分為兩大類，分為單播、廣播。現在有很多消息隊列是能同時支援兩種類型的，比如<code>RabbitMQ</code>、<code>Kafka</code></p>
+<h3 id="4-1-單播-1對1"><a href="#4-1-單播-1對1" class="headerlink" title="4.1. 單播 (1對1)"></a>4.1. 單播 (1對1)</h3><p>一個<code>消息發佈者</code>對應一個<code>消息消費者</code>，就算<code>MQ</code>中有多個消息，<strong>每一個消息</strong>都還是對應<strong>一個</strong><code>消息消費者</code>。很像我們平常在用的數據模式，先進先出。</p>
+<p><img src="https://i.imgur.com/ugqxhQ4.png" alt="MQ_單播"></p>
+<h3 id="4-2-廣播-1對多"><a href="#4-2-廣播-1對多" class="headerlink" title="4.2. 廣播 (1對多)"></a>4.2. 廣播 (1對多)</h3><p>多個<code>消息消費者</code>監聽一個<code>消息發佈者</code>。舉例來說，一個訂單成立之後，後續流程各自展開「開始通知整貨作業、簡訊通知訂單成立、郵件通知訂單成立、統計數據」，多個模塊都需要知道一個消息發佈者的完整訊息。</p>
+<p><img src="https://i.imgur.com/2V6saL3.png" alt="MQ_多播"></p>
+<h2 id="5-事務"><a href="#5-事務" class="headerlink" title="5. 事務"></a>5. 事務</h2><p>什麼是事務，簡單來說它是一組操作，需要滿足這些操作全部完成或者這些操作全部都沒有完成</p>
+<h3 id="5-1-Half-Message-RocketMQ"><a href="#5-1-Half-Message-RocketMQ" class="headerlink" title="5.1. Half Message - RocketMQ"></a>5.1. Half Message - RocketMQ</h3><p>我們無法保證網路傳輸是穩定的，因此，如何提高事務的完整性(ACID，Atomicity 原子性 )，就需要透過一些設計方法與思維，其中，Half Message就是一個解決方法。它是一個有順序流程性的設計：</p>
+<ol>
+<li><p>在開始執行業務邏輯之前，會先發送一條半消息到<code>MQ</code>，提醒<code>MQ</code>說我們的業務邏輯即將開始了。</p>
+</li>
+<li><p><code>MQ</code>會回覆收到<code>半消息</code>的確認，如果這一步就錯誤了，我們就必須在業務邏輯上註記(返回)失敗。</p>
+</li>
+<li><p>真正開始業務邏輯(這段覺得很怪<code>業務模組</code>告訴<code>消息發佈者</code>)</p>
+</li>
+<li><p>由消息發佈者進行提交&#x2F;回滾消息給<code>MQ</code>，當<code>MQ</code>收到提交(業務邏輯執行成功)，則將<code>半消息</code>改狀態變為正常的消息(可見的)</p>
+</li>
+<li><p><code>消費消費者</code>自然可以去取得<code>MQ</code>的訊息</p>
+<blockquote>
+<p>確認如何畫圖</p>
+</blockquote>
+</li>
+</ol>
+<p>而<code>半消息</code>的定義是這條訊息在消費者那邊是不可見的。</p>
+<h4 id="5-1-1-死信隊列"><a href="#5-1-1-死信隊列" class="headerlink" title="5.1.1. 死信隊列"></a>5.1.1. 死信隊列</h4><p>以上5個步驟只是確保<code>MQ</code>、<code>Publisher</code>、<code>業務</code>的<code>原子性</code>，無法確保<code>Consumer</code>的原子性。因此，在Consumer與MQ之間，會允許嘗試try catch 多次(maybe 3~5次的限制)，如果是失敗3次了，則進入到死信的隊列。其實死信隊列就是記錄了consumer操作失敗訊息，我們可以定期查詢死信隊列的記錄，進行手動修復，這樣就是最大成度的保證原子性。</p>
+<h4 id="5-1-2-反查機制"><a href="#5-1-2-反查機制" class="headerlink" title="5.1.2. 反查機制"></a>5.1.2. 反查機制</h4><p>我們繼續考慮一個例外狀況，當第4步驟沒有執行的時候，那MQ就會無法得知實際狀況，變成死等。因此，我們可以利用一個回調函式提供MQ去反查確認消費發佈者的狀況，maybe是一個定期器，預計10秒內應該得到回應，如果沒有就去反查<code>消費發佈者</code></p>
+<h2 id="6-消息隊列常見問題"><a href="#6-消息隊列常見問題" class="headerlink" title="6. 消息隊列常見問題"></a>6. 消息隊列常見問題</h2><h3 id="6-1-消息丟失"><a href="#6-1-消息丟失" class="headerlink" title="6.1. 消息丟失"></a>6.1. 消息丟失</h3><p>P 發送 MQ</p>
+<p>MQ發送確認P</p>
+<p>MQ發送C</p>
+<p>C發送確認MQ</p>
+<h3 id="6-2-重複消息"><a href="#6-2-重複消息" class="headerlink" title="6.2. 重複消息"></a>6.2. 重複消息</h3><p>幂等性:Idempotence</p>
+<p>重傳保證結果不會影響最終結果</p>
+<h3 id="6-3-消息積壓"><a href="#6-3-消息積壓" class="headerlink" title="6.3. 消息積壓"></a>6.3. 消息積壓</h3><ul>
+<li>水平擴容queue&#x2F;partition的數量，以及consumer實例的數量<ul>
+<li>兩邊要等量的增加，單獨增加一邊是沒有效益的</li>
+</ul>
+</li>
+<li>排查日誌，確保隊列層正常送達消息</li>
+<li>在producer段，服務降級<ul>
+<li>提供重要邏輯的優先度</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-參考資料"><a href="#7-參考資料" class="headerlink" title="7. 參考資料"></a>7. 參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=M7v1rlgpgec&ab_channel=JimmyCoding">Message Queue 消息队列：最强大的web后端组件</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=E1pxP0wuGso">91APP 電商技術大解密 (2020 線上分享系列)：解密 91APP Queue System</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/07/14/2022-07-14%20Vue3TypeScript(1)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/14/2022-07-14%20Vue3TypeScript(1)/" class="post-title-link" itemprop="url">Vue3TypeScript(1)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-07-14 19:59:00" itemprop="dateCreated datePublished" datetime="2022-07-14T19:59:00+08:00">2022-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-06-01 01:12:58" itemprop="dateModified" datetime="2023-06-01T01:12:58+08:00">2023-06-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

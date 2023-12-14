@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="網路位址轉譯（Network Address Translation, NAT）可以改變封包的傳送端 IP 位址與接收端 IP 位址，減少真實 IP 的使用量，也可以將私有 IP（內部 IP）改變成真實 IP（外部 IP）再傳送到網際網路，只需要向網際網路服務供應商，例如：中華電信（2412-TW）申請一個真實 IP，就可以將公司內部所有的電腦連接到網際網路了，因此 NAT 伺服器是最重要的防火牆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAT(Network Address Translation) - 網路位址轉換">
+<meta property="og:url" content="https://kitefree.github.io/2021/04/14/2021-04-14%20NAT(Network%20Address%20Translation)%20-%20%E7%B6%B2%E8%B7%AF%E4%BD%8D%E5%9D%80%E8%BD%89%E6%8F%9B/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="網路位址轉譯（Network Address Translation, NAT）可以改變封包的傳送端 IP 位址與接收端 IP 位址，減少真實 IP 的使用量，也可以將私有 IP（內部 IP）改變成真實 IP（外部 IP）再傳送到網際網路，只需要向網際網路服務供應商，例如：中華電信（2412-TW）申請一個真實 IP，就可以將公司內部所有的電腦連接到網際網路了，因此 NAT 伺服器是最重要的防火牆">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/OL1dxor.jpg">
+<meta property="og:image" content="https://i.imgur.com/92gzAXV.jpg">
+<meta property="og:image" content="https://i.imgur.com/wNW6xnq.png">
+<meta property="og:image" content="https://i.imgur.com/JwookYX.png">
+<meta property="og:image" content="https://i.imgur.com/bZiat6r.png">
+<meta property="article:published_time" content="2021-04-14T13:15:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T07:57:00.095Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="網路知識">
+<meta property="article:tag" content="NAT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/OL1dxor.jpg">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/04/14/2021-04-14%20NAT(Network%20Address%20Translation)%20-%20%E7%B6%B2%E8%B7%AF%E4%BD%8D%E5%9D%80%E8%BD%89%E6%8F%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>NAT(Network Address Translation) - 網路位址轉換 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/14/2021-04-14%20NAT(Network%20Address%20Translation)%20-%20%E7%B6%B2%E8%B7%AF%E4%BD%8D%E5%9D%80%E8%BD%89%E6%8F%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NAT(Network Address Translation) - 網路位址轉換
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-14 21:15:00" itemprop="dateCreated datePublished" datetime="2021-04-14T21:15:00+08:00">2021-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:57:00" itemprop="dateModified" datetime="2021-10-01T15:57:00+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>網路位址轉譯（Network Address Translation, NAT）可以改變封包的傳送端 IP 位址與接收端 IP 位址，減少真實 IP 的使用量，也可以將私有 IP（內部 IP）改變成真實 IP（外部 IP）再傳送到網際網路，只需要向網際網路服務供應商，例如：中華電信（2412-TW）申請一個真實 IP，就可以將公司內部所有的電腦連接到網際網路了，因此 NAT 伺服器是最重要的防火牆成員，也是一種「封包過濾器（Packet filter）」。</p>
+<ul>
+<li>Cisco設備中，NAT會被應用在Cisco路由器上</li>
+</ul>
+<h2 id="NAT-伺服器的原理"><a href="#NAT-伺服器的原理" class="headerlink" title="NAT 伺服器的原理"></a>NAT 伺服器的原理</h2><p>NAT 伺服器的連接方式如＜圖一＞所示，一端連接私有網路（內部網路），由企業內部網管人員自行設定私有 IP，可以自由設定但是不可以重覆，不需要支付費用，而且可以減少真實 IP 的使用量；一端連接外部網路（網際網路），由企業向網際網路服務供應商（例如：中華電信）申請真實 IP，必須支付費用。</p>
+<p>假設台大電機系的網管人員將網路切割為內部與外部，內部網路的網址設定為 192.168.1.1、192.168.1.2、192.168.1.3；而外部網路的網址為 140.112.66.88，則 NAT 伺服器的功能就是更改封包表頭的傳送端 IP 位址與接收端 IP 位址。</p>
+<p>➤傳送封包：假設私有網路（內部網路）的電腦 A 要傳送封包到網際網路（外部網路），所以將封包表頭內的傳送端 IP 位址設定為 192.168.1.1，如（a）所示。</p>
+<p>➤轉送封包：NAT 伺服器將封包表頭的傳送端 IP 位址改成 140.112.66.88 再傳送到網際網路（外部網路），並且記錄這個封包來自電腦 A，如（b）所示。</p>
+<p>➤接收封包：網際網路（外部網路）要傳送封包到電腦 A，但是封包表頭的接收端 IP 位址設定為 140.112.66.88，因此先由 NAT 伺服器接收進來，如（c）所示。</p>
+<p>➤轉送封包：NAT 伺服器將封包表頭的接收端 IP 位址改成 192.168.1.1 再傳送到私有網路（內部網路）的電腦 A，如（d）所示。</p>
+<p><img src="https://i.imgur.com/OL1dxor.jpg" alt="image"></p>
+<h2 id="NAT-伺服器的功能"><a href="#NAT-伺服器的功能" class="headerlink" title="NAT 伺服器的功能"></a>NAT 伺服器的功能</h2><p>➤封包偽裝（IP masquerade）：可以將私有 IP（內部IP）改變成真實 IP（外部 IP）再傳送到網際網路，使網路上的人無法得知私有網路的 IP 分配情形而增加網路安全性。</p>
+<p>➤封包過濾：可以攔截網際網路進入私有網路的封包，阻擋怪客（Cracker）的攻擊，所以 NAT 伺服器是最重要的防火牆成員，也是一種「封包過濾器（Packet filter）」。</p>
+<p>➤平衡負載：通常使用在網頁伺服器（Web server），一般公司的網頁伺服器同時可能會有數千人連線上來，如果只使用一台主機，一定無法負荷這麼多電腦的連線，我們可以在入口處加裝一台 NAT 伺服器，改變網際網路（外部網路）進入私有網路（內部網路）封包表頭的接收端 IP 位址，使進入的封包分散到不同的主機上，可以減輕單一主機的負擔，也可以增加網路安全性，如下圖所示：</p>
+<p><img src="https://i.imgur.com/92gzAXV.jpg" alt="image"></p>
+<p><img src="https://i.imgur.com/wNW6xnq.png" alt="image"></p>
+<h2 id="NAT技術用語"><a href="#NAT技術用語" class="headerlink" title="NAT技術用語"></a>NAT技術用語</h2><ul>
+<li>內部網路(Inside Network)</li>
+<li>外部網路(Outside Network)</li>
+<li>Inside Global位址<ul>
+<li>經由Network Information Center或Server Provider所分派的邏輯IP位址</li>
+</ul>
+</li>
+<li>Inside Local位址<ul>
+<li>非透過Network Information Center或Server Provider所取得的ip位置</li>
+</ul>
+</li>
+<li>Outside Global位址<ul>
+<li>網際網路中實際有效，而且能被繞送的IP位址</li>
+</ul>
+</li>
+<li>Outside Local位址<ul>
+<li>外部網際網路中的電腦在內部網路中所運行的IP位址</li>
+</ul>
+</li>
+</ul>
+<h2 id="私有IP位址"><a href="#私有IP位址" class="headerlink" title="私有IP位址"></a>私有IP位址</h2><ul>
+<li><p>私有IP位置定義在RFC1918規格中</p>
+<ul>
+<li>當電腦不需要存取網際網路時，可以只用私有IP位置。私有IP不需要註冊。</li>
+</ul>
+</li>
+<li><p>Link-local位置</p>
+<ul>
+<li>定義在RFC 3330和RFC 3927文件中</li>
+<li>希望在沒有DHCP伺服器的情況之下還能夠提供IP位址</li>
+<li>範圍 <code>169.254.0.0/16</code></li>
+<li>Link-local Address 所發送或送往出來的網路封包都不能經過<strong>路由器</strong><ul>
+<li>這個限制被定義在RFC 3927中，有興趣的話可以參考RFC 3927和RFC 1918文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>私有IP範圍<br><img src="https://i.imgur.com/JwookYX.png" alt="image"></p>
+</li>
+</ul>
+<h2 id="NAT運行種類"><a href="#NAT運行種類" class="headerlink" title="NAT運行種類"></a>NAT運行種類</h2><ul>
+<li>靜態（Static）<ul>
+<li>將私有IP位址對應用公有IP位址，採用對應方式一對一，屬於最基本的NAT</li>
+</ul>
+</li>
+<li>動態（Dynamic）<ul>
+<li>將一個私有IP位址與一群公有IP位址對應</li>
+</ul>
+</li>
+<li>Overlapping<ul>
+<li>將多個私有IP位址與單一一個公有IP位址對應</li>
+</ul>
+</li>
+</ul>
+<h2 id="NAT穿透技術相關RFC文件"><a href="#NAT穿透技術相關RFC文件" class="headerlink" title="NAT穿透技術相關RFC文件"></a>NAT穿透技術相關RFC文件</h2><p><img src="https://i.imgur.com/bZiat6r.png" alt="image"></p>
+<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.stockfeel.com.tw/nat-%E4%BC%BA%E6%9C%8D%E5%99%A8%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%8B%E7%94%A8%EF%BC%9F/">nat-伺服器是什麼？如何運用</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.netadmin.com.tw/netadmin/zh-tw/technology/9E69BC3BDD3E427C8D1DAF3272983130?page=1">NAT穿透技術 從外部直接溝通私有IP</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10209590">30-28之 WebRTC 連線前傳 - 為什麼 P2P 連線很麻煩 ? ( NAT )</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/" rel="tag"># 網路知識</a>
+              <a href="/tags/NAT/" rel="tag"># NAT</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/14/2021-04-14%20WAF(Web%20Application%20Firewall)%20-%20%E7%B6%B2%E8%B7%AF%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E9%98%B2%E7%81%AB%E7%89%86/" rel="prev" title="WAF(Web Application Firewall) - 網路應用程式防火牆">
+      <i class="fa fa-chevron-left"></i> WAF(Web Application Firewall) - 網路應用程式防火牆
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/14/2021-04-14%20Latency%20and%20Throughput%20-%20%E5%BB%B6%E9%81%B2%E8%88%87%E5%90%9E%E5%90%90%E9%87%8F/" rel="next" title="Latency and Throughput - 延遲與吞吐量">
+      Latency and Throughput - 延遲與吞吐量 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">NAT 伺服器的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">NAT 伺服器的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E6%8A%80%E8%A1%93%E7%94%A8%E8%AA%9E"><span class="nav-number">3.</span> <span class="nav-text">NAT技術用語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89IP%E4%BD%8D%E5%9D%80"><span class="nav-number">4.</span> <span class="nav-text">私有IP位址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E9%81%8B%E8%A1%8C%E7%A8%AE%E9%A1%9E"><span class="nav-number">5.</span> <span class="nav-text">NAT運行種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E7%A9%BF%E9%80%8F%E6%8A%80%E8%A1%93%E7%9B%B8%E9%97%9CRFC%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">NAT穿透技術相關RFC文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">7.</span> <span class="nav-text">參考連結</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

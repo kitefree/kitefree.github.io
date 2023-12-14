@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="地球人的修練">
+<meta property="og:url" content="https://kitefree.github.io/page/3/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(17)%20%E8%B3%87%E6%96%99%E9%A9%97%E8%AD%89%20%E5%AE%9A%E7%BE%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(17)%20%E8%B3%87%E6%96%99%E9%A9%97%E8%AD%89%20%E5%AE%9A%E7%BE%A9/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (17) 資料驗證 定義</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-01-10 13:58:00 / 修改時間：14:14:09" itemprop="dateCreated datePublished" datetime="2022-01-10T13:58:00+08:00">2022-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>56</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="建立-Request-Validation"><a href="#建立-Request-Validation" class="headerlink" title="建立 Request Validation"></a>建立 Request Validation</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:request UpdateCartItem</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/iW4Iu2H.png" alt="image-20220110140938139"></p>
+<p><img src="https://i.imgur.com/g8a6sEn.png" alt="image-20220110141106874"></p>
+<p><img src="https://i.imgur.com/OSSyhRw.png" alt="image-20220110141229871"></p>
+<p><img src="https://i.imgur.com/xO8iuUn.png" alt="image-20220110141322200"></p>
+<p><img src="https://i.imgur.com/mONlvPh.png" alt="image-20220110141334438"></p>
+<p><img src="https://i.imgur.com/z34AP8i.png" alt="image-20220110141401481"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(16)%20%E8%B3%87%E6%96%99%E9%A9%97%E8%AD%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(16)%20%E8%B3%87%E6%96%99%E9%A9%97%E8%AD%89/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (16) 資料驗證</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-01-10 13:42:00 / 修改時間：13:59:15" itemprop="dateCreated datePublished" datetime="2022-01-10T13:42:00+08:00">2022-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>27</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>什麼是資料驗證呢？檢查使用者傳過來的資料是否符合要求。</p>
+<p><img src="https://i.imgur.com/vNx6mjV.png" alt="image-20220110134427966"></p>
+<p><img src="https://i.imgur.com/JJRzB02.png" alt="image-20220110134614068"></p>
+<p><img src="https://i.imgur.com/ypWu3hN.png" alt="image-20220110134718359"></p>
+<p><img src="https://i.imgur.com/x9hbVJD.png" alt="image-20220110134807188"></p>
+<p><img src="https://i.imgur.com/BhtwGNd.png" alt="image-20220110134821109"></p>
+<p><img src="https://i.imgur.com/w6Uy9gb.png" alt="image-20220110134905461"></p>
+<p><img src="https://i.imgur.com/hSZUI4P.png" alt="image-20220110134915037"></p>
+<p><img src="https://i.imgur.com/0va2Pha.png" alt="image-20220110135143019"></p>
+<p><img src="https://i.imgur.com/SsZoLHX.png" alt="image-20220110135618587"></p>
+<p><img src="https://i.imgur.com/IB21DYd.png" alt="image-20220110135553636"></p>
+<p><img src="https://i.imgur.com/9Di1hrf.png" alt="image-20220110135643915"></p>
+<p><img src="https://i.imgur.com/n1chYv5.png" alt="image-20220110135749668"></p>
+<p><img src="https://i.imgur.com/3ArID5P.png" alt="image-20220110135800933"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(15)%20%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9CMiddleware/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(15)%20%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9CMiddleware/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (15) 如何建立Middleware</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-01-10 13:12:00 / 修改時間：13:41:59" itemprop="dateCreated datePublished" datetime="2022-01-10T13:12:00+08:00">2022-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="建立middleware"><a href="#建立middleware" class="headerlink" title="建立middleware"></a>建立middleware</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:middleware CheckDirtyWord</span><br></pre></td></tr></table></figure>
+
+<p>路徑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/http/Middleware</span><br></pre></td></tr></table></figure>
+
+<p>底下會多出一個<code>CheckDirtyWord.php</code></p>
+<p><img src="https://i.imgur.com/Ezp5TnT.png" alt="image-20220110132249158"></p>
+<h2 id="撰寫dirtyword檢查"><a href="#撰寫dirtyword檢查" class="headerlink" title="撰寫dirtyword檢查"></a>撰寫dirtyword檢查</h2><p>打開 <code>CheckDirtyWord.php</code> 我們會看到有一個function 名稱為<code>handle</code>，試著改成以下的程式碼：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params">Request <span class="variable">$request</span>, <span class="built_in">Closure</span> <span class="variable">$next</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$dirtyWords</span> = [</span><br><span class="line">        <span class="string">&#x27;apple&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;orange&#x27;</span></span><br><span class="line">    ];</span><br><span class="line">    </span><br><span class="line">    <span class="variable">$parameters</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">all</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$parameters</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$key</span> == <span class="string">&#x27;content&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">foreach</span>(<span class="variable">$dirtyWords</span> <span class="keyword">as</span> <span class="variable">$dirtyWord</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="title function_ invoke__">strpos</span>(<span class="variable">$value</span>,<span class="variable">$dirtyWord</span>) !== <span class="literal">false</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="string">&#x27;dirty!&#x27;</span>,<span class="number">400</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$next</span>(<span class="variable">$request</span>);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="kernel-php-加上middleware"><a href="#kernel-php-加上middleware" class="headerlink" title="kernel.php 加上middleware"></a>kernel.php 加上middleware</h2><p>在<code>$routeMiddleware</code>加上一個，名稱可以自己取：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;check.kite&#x27;</span> =&gt; <span class="title class_">\App\Http\Middleware\CheckDirtyWord</span>::<span class="variable language_">class</span>,</span><br></pre></td></tr></table></figure>
+
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">protected $routeMiddleware = [</span><br><span class="line">    &#x27;auth&#x27; =&gt; \App\Http\Middleware\Authenticate::class,</span><br><span class="line">    &#x27;auth.basic&#x27; =&gt; \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,</span><br><span class="line">    &#x27;cache.headers&#x27; =&gt; \Illuminate\Http\Middleware\SetCacheHeaders::class,</span><br><span class="line">    &#x27;can&#x27; =&gt; \Illuminate\Auth\Middleware\Authorize::class,</span><br><span class="line">    &#x27;guest&#x27; =&gt; \App\Http\Middleware\RedirectIfAuthenticated::class,</span><br><span class="line">    &#x27;password.confirm&#x27; =&gt; \Illuminate\Auth\Middleware\RequirePassword::class,</span><br><span class="line">    &#x27;signed&#x27; =&gt; \Illuminate\Routing\Middleware\ValidateSignature::class,</span><br><span class="line">    &#x27;throttle&#x27; =&gt; \Illuminate\Routing\Middleware\ThrottleRequests::class,</span><br><span class="line">    &#x27;verified&#x27; =&gt; \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,</span><br><span class="line">    &#x27;check.kite&#x27; =&gt; \App\Http\Middleware\CheckDirtyWord::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改router"><a href="#修改router" class="headerlink" title="修改router"></a>修改router</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Route</span>::<span class="title function_ invoke__">group</span>([<span class="string">&#x27;middleware&#x27;</span> =&gt;<span class="string">&#x27;check.kite&#x27;</span>],function()&#123;</span><br><span class="line">    <span class="title class_">Route</span>::<span class="title function_ invoke__">resource</span>(<span class="string">&#x27;main&#x27;</span>,<span class="string">&#x27;MainController&#x27;</span>);    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="POSTMAN-測試"><a href="#POSTMAN-測試" class="headerlink" title="POSTMAN 測試"></a>POSTMAN 測試</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/main</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/MfNHcHn.png" alt="image-20220110133608558"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(14)%20Request%20Lifecycle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(14)%20Request%20Lifecycle/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (14) Request Lifecycle</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-01-10 10:12:00 / 修改時間：13:20:31" itemprop="dateCreated datePublished" datetime="2022-01-10T10:12:00+08:00">2022-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>14</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>了解Laravel的運作基礎</p>
+<p><img src="https://i.imgur.com/DZAoI79.png" alt="image-20220110093817201"></p>
+<p><img src="https://i.imgur.com/ZW41HCM.png" alt="image-20220110093843474"></p>
+<p><img src="https://i.imgur.com/qkzU8ys.png" alt="image-20220110094643658"></p>
+<p><img src="https://i.imgur.com/bIFZqR2.png" alt="image-20220110100445090"></p>
+<p><img src="https://i.imgur.com/8eWiKyg.png" alt="image-20220110100505948"></p>
+<p><img src="https://i.imgur.com/1kX77aE.png" alt="image-20220110102143036"></p>
+<p><img src="https://i.imgur.com/QKd59we.png" alt="image-20220110102154457"></p>
+<p><img src="https://i.imgur.com/PoX9nJZ.png" alt="image-20220110102218691"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/12/14/2021-12-14%2050Days%20WebProject%20-%20Day01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/14/2021-12-14%2050Days%20WebProject%20-%20Day01/" class="post-title-link" itemprop="url">50Days WebProject - Day01</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-12-14 13:40:00" itemprop="dateCreated datePublished" datetime="2021-12-14T13:40:00+08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 23:10:03" itemprop="dateModified" datetime="2023-12-14T23:10:03+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>679</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>希望透過50個project 練習，從中學習與發現有趣的知識。實現做中學目標</p>
+<h2 id="2-題目"><a href="#2-題目" class="headerlink" title="2. 題目"></a>2. 題目</h2><p>Expanding Cards</p>
+<h2 id="3-Wireframe"><a href="#3-Wireframe" class="headerlink" title="3. Wireframe"></a>3. Wireframe</h2><p><img src="https://i.imgur.com/mbIgDO2.png" alt="wireframes.drawio"></p>
+<h2 id="4-成品效果"><a href="#4-成品效果" class="headerlink" title="4. 成品效果"></a>4. 成品效果</h2><p><img src="https://i.imgur.com/HXF2Dem.png" alt="image-20211214134552321"></p>
+<h2 id="5-考考自己"><a href="#5-考考自己" class="headerlink" title="5. 考考自己"></a>5. 考考自己</h2><h3 id="第一題"><a href="#第一題" class="headerlink" title="第一題"></a>第一題</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">90vw</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二題"><a href="#第二題" class="headerlink" title="第二題"></a>第二題</h3><p><code>background-size:cover</code>若改成<code>contain</code> 預期會是什麼效果，動手試試。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.panel</span>&#123;</span><br><span class="line">    <span class="attribute">background-size</span>: cover;</span><br><span class="line">    <span class="attribute">background-position</span>: center;</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">80vh</span>;    </span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">cursor</span>:pointer;</span><br><span class="line">    <span class="attribute">flex</span>:<span class="number">0.5</span>;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: flex <span class="number">0.7s</span> ease-in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三題"><a href="#第三題" class="headerlink" title="第三題"></a>第三題</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.panel</span> <span class="selector-tag">h3</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">color</span>:white;</span><br><span class="line">    <span class="attribute">bottom</span>:<span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">right</span>:<span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第四題"><a href="#第四題" class="headerlink" title="第四題"></a>第四題</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.panel</span><span class="selector-class">.active</span>&#123;</span><br><span class="line">    <span class="attribute">flex</span>:<span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.panel</span><span class="selector-class">.active</span> <span class="selector-tag">h3</span>&#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-知識點"><a href="#6-知識點" class="headerlink" title="6. 知識點"></a>6. 知識點</h2><ol>
+<li>利用<code>active</code>class 搭配js進行狀態切換</li>
+<li>利用<code>flex</code> 調整佔比</li>
+<li>利用<code>transition</code> 做出展開動畫</li>
+</ol>
+<h2 id="7-github"><a href="#7-github" class="headerlink" title="7. github"></a>7. github</h2><ul>
+<li><p><a href="https://kitefree.github.io/50-Projects-In-50-Days---HTML-CSS-JavaScript/Day01/index.html">Day01 Demo</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/kitefree/50-Projects-In-50-Days---HTML-CSS-JavaScript.git">50days Web Project repo</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/11/15/2021-11-15%20CICD%20%E5%A5%BD%E8%87%AA%E5%8B%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/15/2021-11-15%20CICD%20%E5%A5%BD%E8%87%AA%E5%8B%95/" class="post-title-link" itemprop="url">CICD好自動</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-11-15 09:53:00" itemprop="dateCreated datePublished" datetime="2021-11-15T09:53:00+08:00">2021-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-14 14:31:47" itemprop="dateModified" datetime="2021-12-14T14:31:47+08:00">2021-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>170</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="CI-CD-運作流程"><a href="#CI-CD-運作流程" class="headerlink" title="CI&#x2F;CD 運作流程"></a>CI&#x2F;CD 運作流程</h2><p><img src="https://i.imgur.com/tTOyZLE.png" alt="image-20211115101210773"></p>
+<h2 id="CI-CD-優缺點"><a href="#CI-CD-優缺點" class="headerlink" title="CI&#x2F;CD 優缺點"></a>CI&#x2F;CD 優缺點</h2><p><img src="https://i.imgur.com/B16BKW2.png" alt="image-20211115101254784"></p>
+<h2 id="CI-CD-Pipeline"><a href="#CI-CD-Pipeline" class="headerlink" title="CI&#x2F;CD Pipeline"></a>CI&#x2F;CD Pipeline</h2><p><img src="https://i.imgur.com/QXqF4Rt.png" alt="image-20211115101501789"></p>
+<h2 id="CI-CD-節省成本"><a href="#CI-CD-節省成本" class="headerlink" title="CI&#x2F;CD 節省成本"></a>CI&#x2F;CD 節省成本</h2><p><img src="https://i.imgur.com/olraQ4a.png" alt="image-20211115101831573"></p>
+<h2 id="工具介紹"><a href="#工具介紹" class="headerlink" title="工具介紹"></a>工具介紹</h2><h3 id="自動化測試工具"><a href="#自動化測試工具" class="headerlink" title="自動化測試工具"></a>自動化測試工具</h3><p><img src="https://i.imgur.com/R6L43yV.png" alt="image-20211115102145172"></p>
+<h3 id="程式碼掃描工具"><a href="#程式碼掃描工具" class="headerlink" title="程式碼掃描工具"></a>程式碼掃描工具</h3><p><img src="https://i.imgur.com/y5aA4tG.png" alt="image-20211115102211301"></p>
+<p><img src="https://i.imgur.com/uG1okKZ.png" alt="image-20211115111548577"></p>
+<h3 id="Jenkins-Blue-Ocean"><a href="#Jenkins-Blue-Ocean" class="headerlink" title="Jenkins Blue Ocean"></a>Jenkins Blue Ocean</h3><p>可以利用這套系統來建立pipeline</p>
+<p><img src="https://i.imgur.com/V52qAdY.png" alt="image-20211115111304523"></p>
+<h3 id="Maven-打包工具"><a href="#Maven-打包工具" class="headerlink" title="Maven 打包工具"></a>Maven 打包工具</h3><p><img src="https://i.imgur.com/zVPN6MA.png" alt="image-20211115111404216"></p>
+<h2 id="Jenkins-CI-CD-flow"><a href="#Jenkins-CI-CD-flow" class="headerlink" title="Jenkins CI&#x2F;CD flow"></a>Jenkins CI&#x2F;CD flow</h2><p><img src="https://i.imgur.com/oIAdmuD.png" alt="image-20211115110732177"></p>
+<p><img src="https://i.imgur.com/obOTo7U.png" alt="image-20211115112231538"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=62OkCmn90Lk">技術小聚｜CICD 好自動！你準備好 CICD 了嗎？</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/11/10/2021-11-10%20Veeam%E5%8D%B3%E5%88%BB%E6%95%91%E6%8F%B4%E4%B9%8B%E5%9C%B0%E8%A1%A8%E6%9C%80%E5%BC%B7%E9%82%84%E5%8E%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/10/2021-11-10%20Veeam%E5%8D%B3%E5%88%BB%E6%95%91%E6%8F%B4%E4%B9%8B%E5%9C%B0%E8%A1%A8%E6%9C%80%E5%BC%B7%E9%82%84%E5%8E%9F/" class="post-title-link" itemprop="url">Veeam 即刻救援之地表最強還原</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-11-10 15:27:00 / 修改時間：15:31:46" itemprop="dateCreated datePublished" datetime="2021-11-10T15:27:00+08:00">2021-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">資訊安全</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>563</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><p>以下內容是看veeam youtube 影片的心得整理，詳細資料請參考連結</p>
+<h2 id="資料恢復的時間軸"><a href="#資料恢復的時間軸" class="headerlink" title="資料恢復的時間軸"></a>資料恢復的時間軸</h2><p><img src="https://i.imgur.com/wcGfMoe.png" alt="image-20211110132542102"></p>
+<h2 id="營運不間斷的關鍵"><a href="#營運不間斷的關鍵" class="headerlink" title="營運不間斷的關鍵"></a>營運不間斷的關鍵</h2><p><img src="https://i.imgur.com/wufaIFN.png" alt="image-20211110132635150"></p>
+<h2 id="3-2-1-0法則"><a href="#3-2-1-0法則" class="headerlink" title="3-2-1-0法則"></a>3-2-1-0法則</h2><p><img src="https://i.imgur.com/FDTr6aK.png" alt="image-20211110132703429"></p>
+<h2 id="符合3-2-1-0？"><a href="#符合3-2-1-0？" class="headerlink" title="符合3-2-1-0？"></a>符合3-2-1-0？</h2><p><img src="https://i.imgur.com/W44OLE1.png" alt="image-20211110132802389"></p>
+<h2 id="產品介紹"><a href="#產品介紹" class="headerlink" title="產品介紹"></a>產品介紹</h2><h3 id="Instant-VM-Recovery-即時還原"><a href="#Instant-VM-Recovery-即時還原" class="headerlink" title="Instant VM Recovery(即時還原)"></a>Instant VM Recovery(即時還原)</h3><p><img src="https://i.imgur.com/uyg05qd.png" alt="image-20211110133000037"></p>
+<h3 id="快速移轉資料到不同平台"><a href="#快速移轉資料到不同平台" class="headerlink" title="快速移轉資料到不同平台"></a>快速移轉資料到不同平台</h3><p><img src="https://i.imgur.com/NJezqbO.png" alt="image-20211110133123535"></p>
+<h3 id="Instant-VM-Recovery"><a href="#Instant-VM-Recovery" class="headerlink" title="Instant VM Recovery"></a>Instant VM Recovery</h3><p>只要透過veeam備份(多種來源，下圖所示)，都可以在vmware 還原</p>
+<p><img src="https://i.imgur.com/gxiB09B.png" alt="image-20211110133356180"></p>
+<h3 id="雲端備份"><a href="#雲端備份" class="headerlink" title="雲端備份"></a>雲端備份</h3><p><img src="https://i.imgur.com/o1Q3kqL.png" alt="image-20211110133816275"></p>
+<h4 id="完整還原-精細還原"><a href="#完整還原-精細還原" class="headerlink" title="完整還原&#x2F;精細還原"></a>完整還原&#x2F;精細還原</h4><p>備份丟到雲端時是完整備份，要還原的時候可以透過veeam挑出您要的檔案進行還原，這個就是所謂的<code>精細還原</code>，下圖綠框清單舉例了精細還原的應用對象</p>
+<p><img src="https://i.imgur.com/Ebhqpfp.png" alt="image-20211110133927651"></p>
+<h3 id="將服務搬上雲端"><a href="#將服務搬上雲端" class="headerlink" title="將服務搬上雲端"></a>將服務搬上雲端</h3><p>不是只是把檔案搬上去而已，可以做到把服務放到雲端，服務營運在雲端</p>
+<p><img src="https://i.imgur.com/JRmOSBK.png" alt="image-20211110134207012"></p>
+<h3 id="將Cloud服務快速還原至地端"><a href="#將Cloud服務快速還原至地端" class="headerlink" title="將Cloud服務快速還原至地端"></a>將Cloud服務快速還原至地端</h3><p><img src="https://i.imgur.com/4nfm5Ae.png" alt="image-20211110134426166"></p>
+<h3 id="AWS-marketplace"><a href="#AWS-marketplace" class="headerlink" title="AWS marketplace"></a>AWS marketplace</h3><p>可以在 marketplace 點選這個服務，將這個服務打開。可以在雲端上面備份雲端上面的虛擬機，備份到雲端的Storage Service(S3)</p>
+<p><img src="https://i.imgur.com/rjVkisU.png" alt="image-20211110134515310"></p>
+<p><img src="https://i.imgur.com/RrhhLKV.png" alt="image-20211110134808002"></p>
+<h3 id="Azure-marketplace"><a href="#Azure-marketplace" class="headerlink" title="Azure marketplace"></a>Azure marketplace</h3><p><img src="https://i.imgur.com/SAk1xdJ.png" alt="image-20211110134854369"></p>
+<p><img src="https://i.imgur.com/3K0i43s.png" alt="image-20211110134919266"></p>
+<h3 id="還原至地端服務"><a href="#還原至地端服務" class="headerlink" title="還原至地端服務"></a>還原至地端服務</h3><p>先將object copy 到地端的backup server ，再透過veeam 工具佈署到你要的環境上，比如vmware 等等。</p>
+<p><img src="https://i.imgur.com/kTDonI7.png" alt="image-20211110135402815"></p>
+<h3 id="快速還原到地端"><a href="#快速還原到地端" class="headerlink" title="快速還原到地端"></a>快速還原到地端</h3><p>也支援快速還原到地端的功能</p>
+<p><img src="https://i.imgur.com/2LlBBLX.png" alt="image-20211110135537151"></p>
+<h3 id="雲跟雲之間互換"><a href="#雲跟雲之間互換" class="headerlink" title="雲跟雲之間互換"></a>雲跟雲之間互換</h3><p>從AWS 或 Azure 備份檔案透過地端的Veeam 還原到其它的cloud上</p>
+<p><img src="https://i.imgur.com/Tvm163J.png" alt="image-20211110135703752"></p>
+<h3 id="平台移轉支援表列"><a href="#平台移轉支援表列" class="headerlink" title="平台移轉支援表列"></a>平台移轉支援表列</h3><p><img src="https://i.imgur.com/NOcz7UC.png" alt="image-20211110140258117"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oLS7EN0R4cc">Veeam 即刻救援之地表最強還原</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/11/10/2021-11-10%20Veeam%20Backup%20&%20Replication%20v11%20%E5%85%A8%E6%96%B0%E5%BC%B7%E5%8C%96%E5%9E%8B%20Linux%20%E5%84%B2%E5%AD%98%E5%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/10/2021-11-10%20Veeam%20Backup%20&%20Replication%20v11%20%E5%85%A8%E6%96%B0%E5%BC%B7%E5%8C%96%E5%9E%8B%20Linux%20%E5%84%B2%E5%AD%98%E5%BA%AB/" class="post-title-link" itemprop="url">Veeam Backup & Replication v11 全新強化型 Linux 儲存庫</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-11-10 10:11:00 / 修改時間：15:32:18" itemprop="dateCreated datePublished" datetime="2021-11-10T10:11:00+08:00">2021-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">資訊安全</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>638</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><p>以下內容是看veeam youtube 影片的心得整理，詳細資料請參考連結</p>
+<h2 id="杜絕勤索體軟-消除資料遺失的風險"><a href="#杜絕勤索體軟-消除資料遺失的風險" class="headerlink" title="杜絕勤索體軟 消除資料遺失的風險"></a>杜絕勤索體軟 消除資料遺失的風險</h2><p>比過去多了1個1，這個1是指離線備份或者不可變動，後面會講到</p>
+<p><img src="https://i.imgur.com/yfNpVqV.png" alt="image-20211110141615038"></p>
+<h2 id="兼顧高可用性的資料保護策略"><a href="#兼顧高可用性的資料保護策略" class="headerlink" title="兼顧高可用性的資料保護策略"></a>兼顧高可用性的資料保護策略</h2><p>可以試著以<code>32110</code>策略來以下的資料保護策略實施方法。當發生各種不一樣的情境(災難)時，可以用不同的對應方式來還原回來。可以檢視一下有沒有做到。</p>
+<p><img src="https://i.imgur.com/5mwZe6K.png" alt="image-20211110141824224"></p>
+<h2 id="提供多種安全的備份儲存"><a href="#提供多種安全的備份儲存" class="headerlink" title="提供多種安全的備份儲存"></a>提供多種安全的備份儲存</h2><p>veeam 提供了多種的備份儲存方式</p>
+<p><img src="https://i.imgur.com/aCVxJis.png" alt="image-20211110144026062"></p>
+<h2 id="強化型-Linux-儲存庫"><a href="#強化型-Linux-儲存庫" class="headerlink" title="強化型 Linux 儲存庫"></a>強化型 Linux 儲存庫</h2><p>v11 特別強調這個新的功能，這個部分也是所以稍早講的<code>1</code>的部分，不可修改部分。</p>
+<p>Linux base 的解決方案，裝在linux 的儲存空間，確保資料放進去之後，進入了不可修改、刪除的狀態。</p>
+<p><img src="https://i.imgur.com/r29Ktwl.png" alt="image-20211110142333716"></p>
+<h2 id="通過第三方娛構合規性評估測試"><a href="#通過第三方娛構合規性評估測試" class="headerlink" title="通過第三方娛構合規性評估測試"></a>通過第三方娛構合規性評估測試</h2><p>強化型linux 儲存庫經過第三方機構的認證</p>
+<p><img src="https://i.imgur.com/lJeQ8sM.png" alt="image-20211110142410567"></p>
+<h2 id="不可修改儲存庫架構-Immutable"><a href="#不可修改儲存庫架構-Immutable" class="headerlink" title="不可修改儲存庫架構(Immutable)"></a>不可修改儲存庫架構(Immutable)</h2><ul>
+<li><p>跟備份主機是分開佈署</p>
+</li>
+<li><p>一次性憑證</p>
+<ul>
+<li>設置時使用一次性憑證，備份主機不存留憑證。避免再一次機會取得憑證之後，有權可以進入這個空間。</li>
+</ul>
+</li>
+<li><p>對外連線關掉</p>
+<ul>
+<li>可以關閉SSH服務</li>
+<li>就算當時檔案是我建立的，我也無法用遠端的方式登入，才能確保即使是駭客才不會有任何機會</li>
+</ul>
+</li>
+<li><p>不可修改記號</p>
+<ul>
+<li>採用root 權限設定不可修改記號，只會在設定的期間到期時解除</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/mEfdySH.png" alt="image-20211110142617416"></p>
+<h2 id="只有限制備份資料變動權"><a href="#只有限制備份資料變動權" class="headerlink" title="只有限制備份資料變動權"></a>只有限制備份資料變動權</h2><p>我當時設定是1個月，只要在這1個月內，誰都沒有變動的權利，當時間到了才能修改。我不能動，駭客也不能動</p>
+<p><img src="https://i.imgur.com/2DmBLhC.png" alt="image-20211110143020331"></p>
+<h2 id="備份是資訊安全防護"><a href="#備份是資訊安全防護" class="headerlink" title="備份是資訊安全防護"></a>備份是資訊安全防護</h2><p>最後一道防線也是啟動的第一道程式</p>
+<p><img src="https://i.imgur.com/IgVgKXV.png" alt="image-20211110143157724"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=TLTwdwBm89U">Veeam Backup &amp; Replication v11 全新強化型 Linux 儲存庫</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/11/09/2021-11-09%20Ionic%20%E7%B3%BB%E5%88%97%20-%20(5)%20components/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/09/2021-11-09%20Ionic%20%E7%B3%BB%E5%88%97%20-%20(5)%20components/" class="post-title-link" itemprop="url">Ionic 系列 - (5) components</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-11-09 18:24:00 / 修改時間：18:46:32" itemprop="dateCreated datePublished" datetime="2021-11-09T18:24:00+08:00">2021-11-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ionic/" itemprop="url" rel="index"><span itemprop="name">Ionic</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>233</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="color-內置顏色"><a href="#color-內置顏色" class="headerlink" title="color 內置顏色"></a>color 內置顏色</h2><p><a target="_blank" rel="noopener" href="https://ionicframework.com/docs/theming/basics">官方文件</a></p>
+<p>可以在元素上加上<code>color</code> 再填寫對應的色系，這個作法跟bs是一樣的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ion-button</span> <span class="attr">color</span>=<span class="string">&quot;primary&quot;</span>&gt;</span> primary <span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ion-button</span> <span class="attr">color</span>=<span class="string">&quot;secondary&quot;</span>&gt;</span> secondary <span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/NAdJHIL.png" alt="image-20211109183956490"></p>
+<h2 id="學習資源"><a href="#學習資源" class="headerlink" title="學習資源"></a>學習資源</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ub41117q5?from=search&seid=16222549152627740100&spm_id_from=333.337.0.0">Ionic4 Ionic5视频教程_Ionic4.x Ionic5.x入门实战教程</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/25/2021-10-25%20Ionic%20%E7%B3%BB%E5%88%97%20-%20(4)%20%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%85%AC%E7%94%A8%E6%A8%A1%E5%A1%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/25/2021-10-25%20Ionic%20%E7%B3%BB%E5%88%97%20-%20(4)%20%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%85%AC%E7%94%A8%E6%A8%A1%E5%A1%8A/" class="post-title-link" itemprop="url">Ionic 系列 - (4) 自定義公用模塊</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-25 02:22:00" itemprop="dateCreated datePublished" datetime="2021-10-25T02:22:00+08:00">2021-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-29 09:21:20" itemprop="dateModified" datetime="2021-10-29T09:21:20+08:00">2021-10-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ionic/" itemprop="url" rel="index"><span itemprop="name">Ionic</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>5 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="自定義公用模塊"><a href="#自定義公用模塊" class="headerlink" title="自定義公用模塊"></a>自定義公用模塊</h2><p>ionic4.x中頁面是模塊(module)組成的，多個模塊沒法用共一個組件(component)。</p>
+<p>可以把<code>component</code> 封裝成<code>module</code>,讓<code>module</code>引入<code>module</code>。</p>
+<p>以下來做實驗</p>
+<p>新增module</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic g module module/slide</span><br></pre></td></tr></table></figure>
+<p>新增componet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic g component module/slide</span><br></pre></td></tr></table></figure>
+
+<h3 id="調整module內容"><a href="#調整module內容" class="headerlink" title="調整module內容"></a>調整module內容</h3><p><code>crm\src\app\module\slide\slide.module.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">NgModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CommonModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">SlideComponent</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./slide.component&#x27;</span>;<span class="comment">//加入</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [<span class="title class_">SlideComponent</span>],<span class="comment">//加入</span></span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="title class_">CommonModule</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">exports</span>:[</span><br><span class="line">    <span class="title class_">SlideComponent</span></span><br><span class="line">  ]<span class="comment">//加入</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SlideModule</span> &#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="調整tab1-module-ts"><a href="#調整tab1-module-ts" class="headerlink" title="調整tab1.module.ts"></a>調整tab1.module.ts</h3><p><code>crm\src\app\tab1\tab1.module.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">IonicModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@ionic/angular&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">NgModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CommonModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">FormsModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/forms&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Tab1Page</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./tab1.page&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ExploreContainerComponentModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;../explore-container/explore-container.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Tab1PageRoutingModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./tab1-routing.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">SlideModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;../module/slide/slide.module&#x27;</span>;<span class="comment">//加入</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="title class_">IonicModule</span>,</span><br><span class="line">    <span class="title class_">CommonModule</span>,</span><br><span class="line">    <span class="title class_">FormsModule</span>,</span><br><span class="line">    <span class="title class_">ExploreContainerComponentModule</span>,</span><br><span class="line">    <span class="title class_">Tab1PageRoutingModule</span>,</span><br><span class="line">    <span class="title class_">SlideModule</span><span class="comment">//加入</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">declarations</span>: [<span class="title class_">Tab1Page</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Tab1PageModule</span> &#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="調整tab-page-html"><a href="#調整tab-page-html" class="headerlink" title="調整tab.page.html"></a>調整tab.page.html</h3><p><code>crm\src\app\tab1\tab1.page.html</code></p>
+<p>加入<code>app-slide</code>，就成功囉。至於怎麼定義這個名稱可以去<code>crm\src\app\module\slide\slide.component.ts</code>調整</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;ion-header [translucent]=<span class="string">&quot;true&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ion-toolbar</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      Tab 1</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">ion-toolbar</span>&gt;</span></span></span><br><span class="line">&lt;/ion-header&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">ion-content</span> [<span class="attr">fullscreen</span>]=<span class="string">&quot;true&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">ion-header</span> <span class="attr">collapse</span>=<span class="string">&quot;condense&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">ion-toolbar</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">ion-title</span> <span class="attr">size</span>=<span class="string">&quot;large&quot;</span>&gt;</span>Tab 1<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">ion-toolbar</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">app-slide</span>&gt;</span><span class="tag">&lt;/<span class="name">app-slide</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="comment">&lt;!-- &lt;app-explore-container name=&quot;Tab 1 page&quot;&gt;&lt;/app-explore-container&gt; --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/Q7H3MGG.png" alt="image-20211025021854454"></p>
+<h2 id="公用模塊如何使用ionic本身的component？"><a href="#公用模塊如何使用ionic本身的component？" class="headerlink" title="公用模塊如何使用ionic本身的component？"></a>公用模塊如何使用ionic本身的component？</h2><p>比方說<code>&lt;ion-item&gt;</code>等等的component用在自建的component如何做，實驗如下</p>
+<p><code>crm\src\app\module\slide\slide.module.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">IonicModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@ionic/angular&#x27;</span>;<span class="comment">//加入</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">NgModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CommonModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">SlideComponent</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./slide.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [<span class="title class_">SlideComponent</span>],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="title class_">CommonModule</span>,</span><br><span class="line">    <span class="title class_">IonicModule</span><span class="comment">//加入</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">exports</span>:[</span><br><span class="line">    <span class="title class_">SlideComponent</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SlideModule</span> &#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>crm\src\app\module\slide\slide.component.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  slide works!</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ion-list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-label</span>&gt;</span>Awesome Label<span class="tag">&lt;/<span class="name">ion-label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-label</span>&gt;</span>Awesome Label<span class="tag">&lt;/<span class="name">ion-label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ion-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/EMhq65Z.png" alt="image-20211025025042015"></p>
+<h2 id="學習資源"><a href="#學習資源" class="headerlink" title="學習資源"></a>學習資源</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ub41117q5?from=search&seid=16222549152627740100&spm_id_from=333.337.0.0">Ionic4 Ionic5视频教程_Ionic4.x Ionic5.x入门实战教程</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

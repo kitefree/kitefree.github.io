@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="網路基礎知識回顧作者Wassim Chegham  Will保哥 初學者都該了解的HTTP通訊協定基礎 網路常用命令IP地址查詢Windows 1ipconfig  Linux 1ifconfig  或者 1ip addr 或 ip a  1234567891011121314151617181920212223241: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 系列 - (5) Docker的網路">
+<meta property="og:url" content="https://kitefree.github.io/2022/03/03/2022-03-03%20Docker%20%E7%B3%BB%E5%88%97%20-%20(5)%20Docker%E7%9A%84%E7%B6%B2%E8%B7%AF/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="網路基礎知識回顧作者Wassim Chegham  Will保哥 初學者都該了解的HTTP通訊協定基礎 網路常用命令IP地址查詢Windows 1ipconfig  Linux 1ifconfig  或者 1ip addr 或 ip a  1234567891011121314151617181920212223241: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 6">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/OA8lKw3.jpg">
+<meta property="og:image" content="https://i.imgur.com/fLELTcL.png">
+<meta property="og:image" content="https://i.imgur.com/U5mek0P.png">
+<meta property="og:image" content="https://i.imgur.com/ATlSu1Y.png">
+<meta property="og:image" content="https://i.imgur.com/gxUx2r9.png">
+<meta property="og:image" content="https://i.imgur.com/gxUx2r9.png">
+<meta property="og:image" content="https://i.imgur.com/8O8nGDp.png">
+<meta property="og:image" content="https://i.imgur.com/yxGUnHE.png">
+<meta property="og:image" content="https://i.imgur.com/tHoIkRm.png">
+<meta property="article:published_time" content="2022-03-03T09:14:00.000Z">
+<meta property="article:modified_time" content="2022-03-03T07:02:07.287Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/OA8lKw3.jpg">
+
+<link rel="canonical" href="https://kitefree.github.io/2022/03/03/2022-03-03%20Docker%20%E7%B3%BB%E5%88%97%20-%20(5)%20Docker%E7%9A%84%E7%B6%B2%E8%B7%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>docker 系列 - (5) Docker的網路 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/03/03/2022-03-03%20Docker%20%E7%B3%BB%E5%88%97%20-%20(5)%20Docker%E7%9A%84%E7%B6%B2%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker 系列 - (5) Docker的網路
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-03-03 17:14:00 / 修改時間：15:02:07" itemprop="dateCreated datePublished" datetime="2022-03-03T17:14:00+08:00">2022-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>29k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>53 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="網路基礎知識回顧"><a href="#網路基礎知識回顧" class="headerlink" title="網路基礎知識回顧"></a>網路基礎知識回顧</h2><p><a target="_blank" rel="noopener" href="https://twitter.com/manekinekko">作者Wassim Chegham</a></p>
+<p><img src="https://i.imgur.com/OA8lKw3.jpg" alt="圖片"></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Taq5TV1K4XU">Will保哥 初學者都該了解的HTTP通訊協定基礎</a></p>
+<h2 id="網路常用命令"><a href="#網路常用命令" class="headerlink" title="網路常用命令"></a>網路常用命令</h2><h3 id="IP地址查詢"><a href="#IP地址查詢" class="headerlink" title="IP地址查詢"></a>IP地址查詢</h3><p>Windows</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig</span><br></pre></td></tr></table></figure>
+
+<p>Linux</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr 或 ip a</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000</span><br><span class="line">    link/ether 00:0c:29:ac:f4:ef brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    altname enp2s1</span><br><span class="line">    inet 192.168.152.137/24 brd 192.168.152.255 scope global dynamic noprefixroute ens33</span><br><span class="line">       valid_lft 1200sec preferred_lft 1200sec</span><br><span class="line">    inet6 fe80::c252:7221:a2a5:42d9/64 scope link noprefixroute </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">3: docker0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default </span><br><span class="line">    link/ether 02:42:80:62:9c:23 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:80ff:fe62:9c23/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">5: veth58b174d@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP group default </span><br><span class="line">    link/ether b6:1c:f6:19:ec:c8 brd ff:ff:ff:ff:ff:ff link-netnsid 0</span><br><span class="line">    inet6 fe80::b41c:f6ff:fe19:ecc8/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>lo</code>：localhost</p>
+<p><code>ens33</code>：對外網路</p>
+<p><code>docker0</code>：docker內部網路</p>
+<p><code>veth</code>：docker內部容器</p>
+<h3 id="測試網路連通性"><a href="#測試網路連通性" class="headerlink" title="測試網路連通性"></a>測試網路連通性</h3><h4 id="ping命令"><a href="#ping命令" class="headerlink" title="ping命令"></a>ping命令</h4><p>測試IP連通性</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# ping 192.168.152.139</span><br><span class="line">PING 192.168.152.139 (192.168.152.139) 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.152.139: icmp_seq=1 ttl=64 time=0.614 ms</span><br><span class="line">64 bytes from 192.168.152.139: icmp_seq=2 ttl=64 time=0.521 ms</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="測試端口連通性"><a href="#測試端口連通性" class="headerlink" title="測試端口連通性"></a>測試端口連通性</h3><h4 id="telnet命令"><a href="#telnet命令" class="headerlink" title="telnet命令"></a>telnet命令</h4><p>測試(port)連通性</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# telnet www.google.com.tw 80</span><br><span class="line">Trying 142.251.43.3...</span><br><span class="line">Connected to www.google.com.tw.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="測試路徑"><a href="#測試路徑" class="headerlink" title="測試路徑"></a>測試路徑</h3><h4 id="traceroute命令"><a href="#traceroute命令" class="headerlink" title="traceroute命令"></a>traceroute命令</h4><p>路徑探測跟蹤</p>
+<ul>
+<li><p>Linux</p>
+<ul>
+<li>tracepath</li>
+</ul>
+</li>
+<li><p>Windows</p>
+<ul>
+<li>TRACERT.EXE</li>
+</ul>
+</li>
+</ul>
+<h3 id="測試web服務"><a href="#測試web服務" class="headerlink" title="測試web服務"></a>測試web服務</h3><h4 id="curl命令"><a href="#curl命令" class="headerlink" title="curl命令"></a>curl命令</h4><p>請求web服務的工具。它的名字就是客戶端(client)的URL工具的意思。</p>
+<p>它的功能非常強大，如果熟練的話，完全可以取代Postman這一類的圖形界面工具。</p>
+<p>可以參考 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/curl-reference.html">阮一峰 curl 的用法指南</a></p>
+<h2 id="容器網路需要解決哪些問題？"><a href="#容器網路需要解決哪些問題？" class="headerlink" title="容器網路需要解決哪些問題？"></a>容器網路需要解決哪些問題？</h2><h3 id="第一個問題實驗"><a href="#第一個問題實驗" class="headerlink" title="第一個問題實驗"></a>第一個問題實驗</h3><p>首先先創建一個容器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container run -d --rm --name box01 busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</span><br></pre></td></tr></table></figure>
+
+<p>進入容器後，使用<code>ip a</code>，看到<code>etho0</code>開頭有一個ip為<code>172.17.0.2</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker exec -it box01 sh</span><br><span class="line">/ # ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">8: eth0@if9: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu 1500 qdisc noqueue </span><br><span class="line">    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">/ # exit</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二個問題實驗"><a href="#第二個問題實驗" class="headerlink" title="第二個問題實驗"></a>第二個問題實驗</h3><p>退出容器後，在host使用ping觀查：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# ping 172.17.0.2</span><br><span class="line">PING 172.17.0.2 (172.17.0.2) 56(84) bytes of data.</span><br><span class="line">64 bytes from 172.17.0.2: icmp_seq=1 ttl=64 time=0.184 ms</span><br><span class="line">64 bytes from 172.17.0.2: icmp_seq=2 ttl=64 time=0.040 ms</span><br><span class="line">64 bytes from 172.17.0.2: icmp_seq=3 ttl=64 time=0.032 ms</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="第三個問題實驗"><a href="#第三個問題實驗" class="headerlink" title="第三個問題實驗"></a>第三個問題實驗</h3><p>實驗待補</p>
+<h3 id="第四個問題實驗"><a href="#第四個問題實驗" class="headerlink" title="第四個問題實驗"></a>第四個問題實驗</h3><p>再創第二個容器<code>box02</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container run -d --rm --name box02 busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</span><br></pre></td></tr></table></figure>
+
+<p>查看容器IP，IP為<code>172.17.0.3</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container exec -it box02 ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">10: eth0@if11: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu 1500 qdisc noqueue </span><br><span class="line">    link/ether 02:42:ac:11:00:03 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.3/16 brd 172.17.255.255 scope global eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在<code>box02</code>容器內去ping <code>box01</code>：</p>
+<ul>
+<li><p>box01</p>
+<ul>
+<li>IP 172.17.0.2</li>
+</ul>
+</li>
+<li><p>box02</p>
+<ul>
+<li>IP 172.17.0.3</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container exec -it box02 ping 172.17.0.2</span><br><span class="line">PING 172.17.0.2 (172.17.0.2): 56 data bytes</span><br><span class="line">64 bytes from 172.17.0.2: seq=0 ttl=64 time=0.060 ms</span><br><span class="line">64 bytes from 172.17.0.2: seq=1 ttl=64 time=0.066 ms</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="第五個問題實驗"><a href="#第五個問題實驗" class="headerlink" title="第五個問題實驗"></a>第五個問題實驗</h3><p>創建一個<code>web01</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container run -d -p 8080:80 --name web01 nginx</span><br></pre></td></tr></table></figure>
+
+<p>查看一下<code>host04</code>IP：</p>
+<p><code>192.168.152.137</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000</span><br><span class="line">    link/ether 00:0c:29:ac:f4:ef brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    altname enp2s1</span><br><span class="line">    inet 192.168.152.137/24 brd 192.168.152.255 scope global dynamic noprefixroute ens33</span><br><span class="line">       valid_lft 1637sec preferred_lft 1637sec</span><br><span class="line">    inet6 fe80::c252:7221:a2a5:42d9/64 scope link noprefixroute </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">3: docker0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default </span><br><span class="line">    link/ether 02:42:80:62:9c:23 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:80ff:fe62:9c23/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">9: veth2024750@if8: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP group default </span><br><span class="line">    link/ether f6:0a:2b:a1:86:df brd ff:ff:ff:ff:ff:ff link-netnsid 0</span><br><span class="line">    inet6 fe80::f40a:2bff:fea1:86df/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">11: veth3872608@if10: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP group default </span><br><span class="line">    link/ether 8e:84:3d:c0:57:7c brd ff:ff:ff:ff:ff:ff link-netnsid 1</span><br><span class="line">    inet6 fe80::8c84:3dff:fec0:577c/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">19: vetha5bf5e2@if18: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP group default </span><br><span class="line">    link/ether 7a:26:38:e8:03:8f brd ff:ff:ff:ff:ff:ff link-netnsid 2</span><br><span class="line">    inet6 fe80::7826:38ff:fee8:38f/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+
+<p>我們利用<code>host05</code>使用<code>curl</code>來 對 <code>host04</code> IP <code>192.168.152.137:8080</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">kite@host5:~/Desktop$ curl 192.168.152.137:8080</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">html &#123; color-scheme: light dark; &#125;</span><br><span class="line">body &#123; width: 35em; margin: 0 auto;</span><br><span class="line">font-family: Tahoma, Verdana, Arial, sans-serif; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;For online documentation and support please refer to</span><br><span class="line">&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="第一個問題：為什麼容器內會獲取到172-17-0-2-的IP地址"><a href="#第一個問題：為什麼容器內會獲取到172-17-0-2-的IP地址" class="headerlink" title="第一個問題：為什麼容器內會獲取到172.17.0.2 的IP地址"></a>第一個問題：為什麼容器內會獲取到172.17.0.2 的IP地址</h3><h3 id="第二個問題：為什麼HOST可以PING成功容器？"><a href="#第二個問題：為什麼HOST可以PING成功容器？" class="headerlink" title="第二個問題：為什麼HOST可以PING成功容器？"></a>第二個問題：為什麼HOST可以PING成功容器？</h3><h3 id="第三個問題：為什麼容器可以PING外部網路成功？"><a href="#第三個問題：為什麼容器可以PING外部網路成功？" class="headerlink" title="第三個問題：為什麼容器可以PING外部網路成功？"></a>第三個問題：為什麼容器可以PING外部網路成功？</h3><h3 id="第四個問題：為什麼容器與容器之間可以互通？"><a href="#第四個問題：為什麼容器與容器之間可以互通？" class="headerlink" title="第四個問題：為什麼容器與容器之間可以互通？"></a>第四個問題：為什麼容器與容器之間可以互通？</h3><h3 id="第五個問題：PORT轉發是怎麼回事？"><a href="#第五個問題：PORT轉發是怎麼回事？" class="headerlink" title="第五個問題：PORT轉發是怎麼回事？"></a>第五個問題：PORT轉發是怎麼回事？</h3><h2 id="容器間通信之bridge網路"><a href="#容器間通信之bridge網路" class="headerlink" title="容器間通信之bridge網路"></a>容器間通信之bridge網路</h2><p>來教一個新指令<code>docker network ls</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker network ls</span><br><span class="line">NETWORK ID     NAME      DRIVER    SCOPE</span><br><span class="line">118c43b92cc6   bridge    bridge    local</span><br><span class="line">60cb3d796e6b   host      host      local</span><br><span class="line">c5b7b2fbb219   none      null      local</span><br></pre></td></tr></table></figure>
+
+<p>這是目前的container網路相關配置，我們再使用<code>docker network inspect 118c</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker network inspect 118</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;bridge&quot;,</span><br><span class="line">        &quot;Id&quot;: &quot;118c43b92cc662ecc4e86dc17d63fc599bcc3d0d39547715f92ab77c4fcc2b6c&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2022-02-24T11:01:57.933731418+08:00&quot;,</span><br><span class="line">        &quot;Scope&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;bridge&quot;,</span><br><span class="line">        &quot;EnableIPv6&quot;: false,</span><br><span class="line">        &quot;IPAM&quot;: &#123;</span><br><span class="line">            &quot;Driver&quot;: &quot;default&quot;,</span><br><span class="line">            &quot;Options&quot;: null,</span><br><span class="line">            #Here</span><br><span class="line">            &quot;Config&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;Subnet&quot;: &quot;172.17.0.0/16&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Internal&quot;: false,</span><br><span class="line">        &quot;Attachable&quot;: false,</span><br><span class="line">        &quot;Ingress&quot;: false,</span><br><span class="line">        &quot;ConfigFrom&quot;: &#123;</span><br><span class="line">            &quot;Network&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ConfigOnly&quot;: false,</span><br><span class="line">        #Here</span><br><span class="line">        &quot;Containers&quot;: &#123;</span><br><span class="line">            &quot;794e99f196278ea048b963bbac0845ad228a768ca9f787450d557b317f098f7e&quot;: &#123;</span><br><span class="line">                &quot;Name&quot;: &quot;web01&quot;,</span><br><span class="line">                &quot;EndpointID&quot;: &quot;df84f183d1fcd096c04e9f902000176b2bb25e7eb46e1c3a9e1c16b9d42c9642&quot;,</span><br><span class="line">                &quot;MacAddress&quot;: &quot;02:42:ac:11:00:04&quot;,</span><br><span class="line">                &quot;IPv4Address&quot;: &quot;172.17.0.4/16&quot;,</span><br><span class="line">                &quot;IPv6Address&quot;: &quot;&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;cb69532a01df76e063aeaf5addaf921ff5e8f7fd273e6fa685b5e976c26e5355&quot;: &#123;</span><br><span class="line">                &quot;Name&quot;: &quot;box01&quot;,</span><br><span class="line">                &quot;EndpointID&quot;: &quot;1d6f5ea9838a274bed7bbb4df5ed66a4071119aec190414de7ca0d12f089dd14&quot;,</span><br><span class="line">                &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,</span><br><span class="line">                &quot;IPv4Address&quot;: &quot;172.17.0.2/16&quot;,</span><br><span class="line">                &quot;IPv6Address&quot;: &quot;&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;ef42984b47681f9f0d923dc85902e952a6a53adcc5d7f37cb2c4290711945e62&quot;: &#123;</span><br><span class="line">                &quot;Name&quot;: &quot;box02&quot;,</span><br><span class="line">                &quot;EndpointID&quot;: &quot;3153006bfa4e61c83a9edf44cdf4d666557603c74ef1bcacd8fcac01c43eef10&quot;,</span><br><span class="line">                &quot;MacAddress&quot;: &quot;02:42:ac:11:00:03&quot;,</span><br><span class="line">                &quot;IPv4Address&quot;: &quot;172.17.0.3/16&quot;,</span><br><span class="line">                &quot;IPv6Address&quot;: &quot;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Options&quot;: &#123;</span><br><span class="line">            &quot;com.docker.network.bridge.default_bridge&quot;: &quot;true&quot;,</span><br><span class="line">            &quot;com.docker.network.bridge.enable_icc&quot;: &quot;true&quot;,</span><br><span class="line">            &quot;com.docker.network.bridge.enable_ip_masquerade&quot;: &quot;true&quot;,</span><br><span class="line">            &quot;com.docker.network.bridge.host_binding_ipv4&quot;: &quot;0.0.0.0&quot;,</span><br><span class="line">            &quot;com.docker.network.bridge.name&quot;: &quot;docker0&quot;,</span><br><span class="line">            &quot;com.docker.network.driver.mtu&quot;: &quot;1500&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Labels&quot;: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>整理後，抽出幾個部分說明</p>
+<p>Config</p>
+<p>gateway為<code>172.17.0.1</code></p>
+<pre><code>        &quot;Config&quot;: [
+            &#123;
+                &quot;Subnet&quot;: &quot;172.17.0.0/16&quot;,
+                &quot;Gateway&quot;: &quot;172.17.0.1&quot;
+            &#125;
+</code></pre>
+<p>Containers</p>
+<p>這個bridge就扮演了switch的角色，container都接這個bridge上面，可以再參考下面的圖片。</p>
+<p>因此有了這個<code>docker0</code>，就可以讓container彼此之間進行交互溝通。</p>
+<p>並且container在預設建立時，沒有指令要使用哪個bridge，那默認就會使用<code>docker0</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&quot;Containers&quot;: &#123;</span><br><span class="line">    &quot;794e99f196278ea048b963bbac0845ad228a768ca9f787450d557b317f098f7e&quot;: &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;web01&quot;,</span><br><span class="line">        &quot;EndpointID&quot;: &quot;df84f183d1fcd096c04e9f902000176b2bb25e7eb46e1c3a9e1c16b9d42c9642&quot;,</span><br><span class="line">        &quot;MacAddress&quot;: &quot;02:42:ac:11:00:04&quot;,</span><br><span class="line">        &quot;IPv4Address&quot;: &quot;172.17.0.4/16&quot;,</span><br><span class="line">        &quot;IPv6Address&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;cb69532a01df76e063aeaf5addaf921ff5e8f7fd273e6fa685b5e976c26e5355&quot;: &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;box01&quot;,</span><br><span class="line">        &quot;EndpointID&quot;: &quot;1d6f5ea9838a274bed7bbb4df5ed66a4071119aec190414de7ca0d12f089dd14&quot;,</span><br><span class="line">        &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,</span><br><span class="line">        &quot;IPv4Address&quot;: &quot;172.17.0.2/16&quot;,</span><br><span class="line">        &quot;IPv6Address&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;ef42984b47681f9f0d923dc85902e952a6a53adcc5d7f37cb2c4290711945e62&quot;: &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;box02&quot;,</span><br><span class="line">        &quot;EndpointID&quot;: &quot;3153006bfa4e61c83a9edf44cdf4d666557603c74ef1bcacd8fcac01c43eef10&quot;,</span><br><span class="line">        &quot;MacAddress&quot;: &quot;02:42:ac:11:00:03&quot;,</span><br><span class="line">        &quot;IPv4Address&quot;: &quot;172.17.0.3/16&quot;,</span><br><span class="line">        &quot;IPv6Address&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/fLELTcL.png" alt="Untitled"></p>
+<h2 id="容器對外通訊之bridge網路"><a href="#容器對外通訊之bridge網路" class="headerlink" title="容器對外通訊之bridge網路"></a>容器對外通訊之bridge網路</h2><p><img src="https://i.imgur.com/U5mek0P.png" alt="network.drawio"></p>
+<p>可以先安裝<code> sudo apt-get install -y bridge-utils</code>，接著我們下指令，我們會看到docker0有3個<code>interfaces</code>以<code>veth</code>開頭，就如我們上面圖片一樣的示意圖。因為我們有3個container所以就會有3個interface。</p>
+<p>假設我們再刪掉一個container，再重新下<code>brctl show</code>指令，也就會發現少一個喔。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# brctl show</span><br><span class="line">bridge name	bridge id		STP enabled	interfaces</span><br><span class="line">docker0		8000.024280629c23	no		veth2024750</span><br><span class="line">							            veth3872608</span><br><span class="line">               							vetha5bf5e2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我們複習一下</p>
+<ol>
+<li>如果<code>box01</code> ping <code>web01</code>能成功，路線會經過<code>docker0</code>過去。</li>
+<li>我們<code>box01</code>往外網ping能成功，路線一樣會經過<code>docker0</code>往外丟。(前提是host主機本身也能連外網，這樣才能ping成功)</li>
+</ol>
+<p>那<code>docker0</code>怎麼走出去的，實際還是要看路由，可以使用<code>ip route</code>來看一下，其中 <code>default via 192.168.152.55</code> 就是<code>eth0</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# ip route</span><br><span class="line">default via 192.168.152.55 dev ens33 proto dhcp metric 100 </span><br><span class="line">169.254.0.0/16 dev ens33 scope link metric 1000 </span><br><span class="line">172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 </span><br><span class="line">192.168.152.0/24 dev ens33 proto kernel scope link src 192.168.152.137 metric 100 </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/ATlSu1Y.png" alt="network.drawio"></p>
+<p>如果<code>box01</code>要出去到外網時，因為是pirvate ip，因此到外網前會再透過<code>NAT</code>轉為成<code>eth0</code>的IP地址，而實際怎麼轉換的規則可以使用<code>iptables --list -t nat</code>來查看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# iptables --list -t nat</span><br><span class="line">Chain PREROUTING (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DOCKER     all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL</span><br><span class="line"></span><br><span class="line">Chain INPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DOCKER     all  --  anywhere            !localhost/8          ADDRTYPE match dst-type LOCAL</span><br><span class="line"></span><br><span class="line">Chain POSTROUTING (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">MASQUERADE  all  --  172.17.0.0/16        anywhere            </span><br><span class="line">MASQUERADE  tcp  --  172.17.0.4           172.17.0.4           tcp dpt:http</span><br><span class="line"></span><br><span class="line">Chain DOCKER (2 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">RETURN     all  --  anywhere             anywhere            </span><br><span class="line">DNAT       tcp  --  anywhere             anywhere             tcp dpt:http-alt to:172.17.0.4:80</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>參考資料</p>
+<p><a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/Security_Guide/s1-firewall-ipt-fwd.html">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/Security_Guide/s1-firewall-ipt-fwd.html</a></p>
+<h2 id="網路知識補充NAT"><a href="#網路知識補充NAT" class="headerlink" title="網路知識補充NAT"></a>網路知識補充NAT</h2><p>NAT的技術在解決什麼問題？</p>
+<blockquote>
+<p>IP不足的問題</p>
+</blockquote>
+<p>網路上進行通信必須要一個獨一無二的IP才能進行傳輸。</p>
+<p>舉例來說，在家裡的筆電、桌機、平板都給一個私有IP，透過路由器後，會再轉換成公有IP。回程的時候再透過路由器將公有IP轉換為對應內部的IP。</p>
+<p>NAT translates：</p>
+<ul>
+<li>Private to public</li>
+<li>Public to private</li>
+</ul>
+<h2 id="創建和使用自定義bridge-上"><a href="#創建和使用自定義bridge-上" class="headerlink" title="創建和使用自定義bridge(上)"></a>創建和使用自定義bridge(上)</h2><p><img src="https://i.imgur.com/gxUx2r9.png"></p>
+<p><code>docker network create -d [類型] [名稱]</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge mybridge</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>-d</code> 指的就是driver，因為network類型有很多種，以此為例，我們創建一個<code>bridge</code>類型。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">創建bridge名為mybridge</span></span><br><span class="line">root@host04:/home/kite/Desktop# docker network create -d bridge mybridge</span><br><span class="line">020d342bf4a11304f4509d44ff64df2555918b2ff4d6664878254faba753d489</span><br><span class="line">root@host04:/home/kite/Desktop# docker network ls</span><br><span class="line">NETWORK ID     NAME       DRIVER    SCOPE</span><br><span class="line">118c43b92cc6   bridge     bridge    local</span><br><span class="line">60cb3d796e6b   host       host      local</span><br><span class="line">020d342bf4a1   mybridge   bridge    local</span><br><span class="line">c5b7b2fbb219   none       null      local</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看mybridge 172.18.0.0 ，還記得嗎？剛剛默認的bridge 是172.17.0.0</span></span><br><span class="line">root@host04:/home/kite/Desktop# docker network inspect mybridge</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;mybridge&quot;,</span><br><span class="line">        &quot;Id&quot;: &quot;020d342bf4a11304f4509d44ff64df2555918b2ff4d6664878254faba753d489&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2022-03-01T15:19:52.641431288+08:00&quot;,</span><br><span class="line">        &quot;Scope&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;bridge&quot;,</span><br><span class="line">        &quot;EnableIPv6&quot;: false,</span><br><span class="line">        &quot;IPAM&quot;: &#123;</span><br><span class="line">            &quot;Driver&quot;: &quot;default&quot;,</span><br><span class="line">            &quot;Options&quot;: &#123;&#125;,</span><br><span class="line">            &quot;Config&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;Subnet&quot;: &quot;172.18.0.0/16&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.18.0.1&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Internal&quot;: false,</span><br><span class="line">        &quot;Attachable&quot;: false,</span><br><span class="line">        &quot;Ingress&quot;: false,</span><br><span class="line">        &quot;ConfigFrom&quot;: &#123;</span><br><span class="line">            &quot;Network&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ConfigOnly&quot;: false,</span><br><span class="line">        &quot;Containers&quot;: &#123;&#125;,</span><br><span class="line">        &quot;Options&quot;: &#123;&#125;,</span><br><span class="line">        &quot;Labels&quot;: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何添加指定的bridge在container上？"><a href="#如何添加指定的bridge在container上？" class="headerlink" title="如何添加指定的bridge在container上？"></a>如何添加指定的bridge在container上？</h3><p>補上<code>--network mybridge</code>，完成！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container run -d --rm --name box03 --network mybridge busybox /bin/sh -c &quot;while true; do sleep 3600; done&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>來看一下container設定內容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container inspect box03</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Id&quot;: &quot;408dbc15598a60ec6f57dbfd7ae080cc9bceb318bf307a19303b757d8d9e3265&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2022-03-01T07:21:15.326172232Z&quot;,</span><br><span class="line">        &quot;Path&quot;: &quot;/bin/sh&quot;,</span><br><span class="line">		...</span><br><span class="line">		...</span><br><span class="line">        &quot;NetworkSettings&quot;: &#123;</span><br><span class="line">            &quot;Bridge&quot;: &quot;&quot;,</span><br><span class="line">			...</span><br><span class="line">			...</span><br><span class="line">            &quot;Networks&quot;: &#123;</span><br><span class="line">                &quot;mybridge&quot;: &#123;</span><br><span class="line">                    &quot;IPAMConfig&quot;: null,</span><br><span class="line">                    &quot;Links&quot;: null,</span><br><span class="line">                    &quot;Aliases&quot;: [</span><br><span class="line">                        &quot;408dbc15598a&quot;</span><br><span class="line">                    ],</span><br><span class="line">                    &quot;NetworkID&quot;: &quot;020d342bf4a11304f4509d44ff64df2555918b2ff4d6664878254faba753d489&quot;,</span><br><span class="line">                    &quot;EndpointID&quot;: &quot;c3acfbc43272a5c1c9c01a1ff3c05faa7925e8f3b86617d24cac3d620f74be48&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.18.0.1&quot;,</span><br><span class="line">                    &quot;IPAddress&quot;: &quot;172.18.0.2&quot;,</span><br><span class="line">                    &quot;IPPrefixLen&quot;: 16,</span><br><span class="line">                    &quot;IPv6Gateway&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6PrefixLen&quot;: 0,</span><br><span class="line">                    &quot;MacAddress&quot;: &quot;02:42:ac:12:00:02&quot;,</span><br><span class="line">                    &quot;DriverOpts&quot;: null</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="在一個container可否有2個bridge？"><a href="#在一個container可否有2個bridge？" class="headerlink" title="在一個container可否有2個bridge？"></a>在一個container可否有2個bridge？</h3><p>可以喔。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network connect bridge box03</span><br></pre></td></tr></table></figure>
+
+<p>查看一下container：</p>
+<p>這個<code>box03</code>拿到了兩個ip，分別是<code>172.17.0.5</code>、<code>172.18.0.2</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker network connect bridge box03</span><br><span class="line">root@host04:/home/kite/Desktop# docker container inspect box03</span><br><span class="line">[</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">        &quot;NetworkSettings&quot;: &#123;</span><br><span class="line">			...</span><br><span class="line">            &quot;Networks&quot;: &#123;</span><br><span class="line">                &quot;bridge&quot;: &#123;</span><br><span class="line">                    &quot;IPAMConfig&quot;: &#123;&#125;,</span><br><span class="line">                    &quot;Links&quot;: null,</span><br><span class="line">                    &quot;Aliases&quot;: [],</span><br><span class="line">                    &quot;NetworkID&quot;: &quot;118c43b92cc662ecc4e86dc17d63fc599bcc3d0d39547715f92ab77c4fcc2b6c&quot;,</span><br><span class="line">                    &quot;EndpointID&quot;: &quot;d15ea2680f6b23826c99995932b2ad178366ee3008cb1025fc7385133bd63b8e&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;,</span><br><span class="line">                    &quot;IPAddress&quot;: &quot;172.17.0.5&quot;,</span><br><span class="line">                    &quot;IPPrefixLen&quot;: 16,</span><br><span class="line">                    &quot;IPv6Gateway&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6PrefixLen&quot;: 0,</span><br><span class="line">                    &quot;MacAddress&quot;: &quot;02:42:ac:11:00:05&quot;,</span><br><span class="line">                    &quot;DriverOpts&quot;: &#123;&#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &quot;mybridge&quot;: &#123;</span><br><span class="line">                    &quot;IPAMConfig&quot;: null,</span><br><span class="line">                    &quot;Links&quot;: null,</span><br><span class="line">                    &quot;Aliases&quot;: [</span><br><span class="line">                        &quot;408dbc15598a&quot;</span><br><span class="line">                    ],</span><br><span class="line">                    &quot;NetworkID&quot;: &quot;020d342bf4a11304f4509d44ff64df2555918b2ff4d6664878254faba753d489&quot;,</span><br><span class="line">                    &quot;EndpointID&quot;: &quot;c3acfbc43272a5c1c9c01a1ff3c05faa7925e8f3b86617d24cac3d620f74be48&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.18.0.1&quot;,</span><br><span class="line">                    &quot;IPAddress&quot;: &quot;172.18.0.2&quot;,</span><br><span class="line">                    &quot;IPPrefixLen&quot;: 16,</span><br><span class="line">                    &quot;IPv6Gateway&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6PrefixLen&quot;: 0,</span><br><span class="line">                    &quot;MacAddress&quot;: &quot;02:42:ac:12:00:02&quot;,</span><br><span class="line">                    &quot;DriverOpts&quot;: null</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>進入到container裡面驗證，的確有兩個IP：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container exec -it box03 sh</span><br><span class="line">/ # ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">21: eth0@if22: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu 1500 qdisc noqueue </span><br><span class="line">    link/ether 02:42:ac:12:00:02 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.18.0.2/16 brd 172.18.255.255 scope global eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">23: eth1@if24: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu 1500 qdisc noqueue </span><br><span class="line">    link/ether 02:42:ac:11:00:05 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.5/16 brd 172.17.255.255 scope global eth1</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+
+<h3 id="在bridge中移除掉container"><a href="#在bridge中移除掉container" class="headerlink" title="在bridge中移除掉container"></a>在bridge中移除掉container</h3><p>可以透過<code>docker network disconnect [bridge name] [container name]</code> ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker network disconnect bridge box03</span><br></pre></td></tr></table></figure>
+
+<p>再重查一次，的確沒有<code>bridge</code>那一項：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container inspect box03</span><br><span class="line">[</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">        &quot;NetworkSettings&quot;: &#123;</span><br><span class="line">			...</span><br><span class="line">            &quot;Networks&quot;: &#123;</span><br><span class="line">                &quot;mybridge&quot;: &#123;</span><br><span class="line">                    &quot;IPAMConfig&quot;: null,</span><br><span class="line">                    &quot;Links&quot;: null,</span><br><span class="line">                    &quot;Aliases&quot;: [</span><br><span class="line">                        &quot;408dbc15598a&quot;</span><br><span class="line">                    ],</span><br><span class="line">                    &quot;NetworkID&quot;: &quot;020d342bf4a11304f4509d44ff64df2555918b2ff4d6664878254faba753d489&quot;,</span><br><span class="line">                    &quot;EndpointID&quot;: &quot;c3acfbc43272a5c1c9c01a1ff3c05faa7925e8f3b86617d24cac3d620f74be48&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.18.0.1&quot;,</span><br><span class="line">                    &quot;IPAddress&quot;: &quot;172.18.0.2&quot;,</span><br><span class="line">                    &quot;IPPrefixLen&quot;: 16,</span><br><span class="line">                    &quot;IPv6Gateway&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,</span><br><span class="line">                    &quot;GlobalIPv6PrefixLen&quot;: 0,</span><br><span class="line">                    &quot;MacAddress&quot;: &quot;02:42:ac:12:00:02&quot;,</span><br><span class="line">                    &quot;DriverOpts&quot;: null</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="創建和使用自定義bridge-下"><a href="#創建和使用自定義bridge-下" class="headerlink" title="創建和使用自定義bridge(下)"></a>創建和使用自定義bridge(下)</h2><h3 id="自定義bridge好處"><a href="#自定義bridge好處" class="headerlink" title="自定義bridge好處"></a>自定義bridge好處</h3><p>container 使用自定義的bridge時，容器之間的互ping可以多一種選擇，就是直接使用container 名稱</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container exec -ti box04 ping 172.18.0.4</span><br><span class="line">PING 172.18.0.4 (172.18.0.4): 56 data bytes</span><br><span class="line">64 bytes from 172.18.0.4: seq=0 ttl=64 time=0.262 ms</span><br><span class="line">64 bytes from 172.18.0.4: seq=1 ttl=64 time=0.095 ms</span><br><span class="line"></span><br><span class="line">#這個方法我目前沒試成功，不過的確在教學中看老師是有成功的，目前懷疑是docker的版本問題</span><br><span class="line">root@host04:/home/kite/Desktop# docker container exec -ti box04 ping box05</span><br></pre></td></tr></table></figure>
+
+<p>記錄問題：</p>
+<p>目前在使用container 名稱互ping是失敗的，環境資訊先memo，後續找出確切問題</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker version</span><br><span class="line">Client:</span><br><span class="line"> Version:           20.10.7</span><br><span class="line"> API version:       1.41</span><br><span class="line"> Go version:        go1.13.8</span><br><span class="line"> Git commit:        20.10.7-0ubuntu5~20.04.2</span><br><span class="line"> Built:             Mon Nov  1 00:34:17 2021</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"> Experimental:      true</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          20.10.7</span><br><span class="line">  API version:      1.41 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.13.8</span><br><span class="line">  Git commit:       20.10.7-0ubuntu5~20.04.2</span><br><span class="line">  Built:            Fri Oct 22 00:45:53 2021</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.5.5-0ubuntu3~20.04.1</span><br><span class="line">  GitCommit:        </span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.0.1-0ubuntu2~20.04.1</span><br><span class="line">  GitCommit:        </span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:        </span><br><span class="line">  </span><br><span class="line">root@host04:/home/kite/Desktop# lsb_release -a</span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 20.04.3 LTS</span><br><span class="line">Release:	20.04</span><br><span class="line">Codename:	focal</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="自己決定區段"><a href="#自己決定區段" class="headerlink" title="自己決定區段"></a>自己決定區段</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge --gateway 172.200.0.1 --subnet 172.200.0.0/16</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立一個bridge 並自行設定gateway、subnet</span></span><br><span class="line">root@host04:/home/kite/Desktop# docker network create -d bridge --gateway 172.200.0.1 --subnet 172.200.0.0/16 mydemo</span><br><span class="line">b9020c5774943e03e7ddfbf9506d16434a0058330e2e4798ddfa9ef37403e598</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">檢查network清單</span></span><br><span class="line">root@host04:/home/kite/Desktop# docker network ls</span><br><span class="line">NETWORK ID     NAME       DRIVER    SCOPE</span><br><span class="line">118c43b92cc6   bridge     bridge    local</span><br><span class="line">60cb3d796e6b   host       host      local</span><br><span class="line">020d342bf4a1   mybridge   bridge    local</span><br><span class="line">b9020c577494   mydemo     bridge    local</span><br><span class="line">c5b7b2fbb219   none       null      local</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看mydemo詳細</span></span><br><span class="line">root@host04:/home/kite/Desktop# docker network inspect mydemo</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;mydemo&quot;,</span><br><span class="line">        &quot;Id&quot;: &quot;b9020c5774943e03e7ddfbf9506d16434a0058330e2e4798ddfa9ef37403e598&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2022-03-01T17:06:02.813440335+08:00&quot;,</span><br><span class="line">        &quot;Scope&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;bridge&quot;,</span><br><span class="line">        &quot;EnableIPv6&quot;: false,</span><br><span class="line">        &quot;IPAM&quot;: &#123;</span><br><span class="line">            &quot;Driver&quot;: &quot;default&quot;,</span><br><span class="line">            &quot;Options&quot;: &#123;&#125;,</span><br><span class="line">            &quot;Config&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;Subnet&quot;: &quot;172.200.0.0/16&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.200.0.1&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Internal&quot;: false,</span><br><span class="line">        &quot;Attachable&quot;: false,</span><br><span class="line">        &quot;Ingress&quot;: false,</span><br><span class="line">        &quot;ConfigFrom&quot;: &#123;</span><br><span class="line">            &quot;Network&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ConfigOnly&quot;: false,</span><br><span class="line">        &quot;Containers&quot;: &#123;&#125;,</span><br><span class="line">        &quot;Options&quot;: &#123;&#125;,</span><br><span class="line">        &quot;Labels&quot;: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="容器的端口轉發Port-Forwarding"><a href="#容器的端口轉發Port-Forwarding" class="headerlink" title="容器的端口轉發Port Forwarding"></a>容器的端口轉發Port Forwarding</h2><p>試著建立一個容器：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -p 8080:80 --name web01 nginx</span><br></pre></td></tr></table></figure>
+
+<p>我們使用<code>sudo iptables -t nat -nvxL</code></p>
+<p>裡面有一條很重要的訊息<code> tcp dpt:8080 to:172.17.0.4:80</code> 也就是指host 8080 port 映射到 容器172.17.0.4:80 port。顯然很多docker network 的底層實際會用到iptable進行一些設定，好讓容器與host之間能有很好的互通效果。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# sudo iptables -t nat -nvxL</span><br><span class="line">Chain PREROUTING (policy ACCEPT 13 packets, 1629 bytes)</span><br><span class="line">    pkts      bytes target     prot opt in     out     source               destination         </span><br><span class="line">       4      312 DOCKER     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL</span><br><span class="line"></span><br><span class="line">Chain INPUT (policy ACCEPT 12 packets, 1545 bytes)</span><br><span class="line">    pkts      bytes target     prot opt in     out     source               destination         </span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT 140 packets, 13111 bytes)</span><br><span class="line">    pkts      bytes target     prot opt in     out     source               destination         </span><br><span class="line">       0        0 DOCKER     all  --  *      *       0.0.0.0/0           !127.0.0.0/8          ADDRTYPE match dst-type LOCAL</span><br><span class="line"></span><br><span class="line">Chain POSTROUTING (policy ACCEPT 141 packets, 13195 bytes)</span><br><span class="line">    pkts      bytes target     prot opt in     out     source               destination         </span><br><span class="line">       0        0 MASQUERADE  all  --  *      !br-b9020c577494  172.200.0.0/16       0.0.0.0/0           </span><br><span class="line">       0        0 MASQUERADE  all  --  *      !br-020d342bf4a1  172.18.0.0/16        0.0.0.0/0           </span><br><span class="line">      27     1767 MASQUERADE  all  --  *      !docker0  172.17.0.0/16        0.0.0.0/0           </span><br><span class="line">       0        0 MASQUERADE  tcp  --  *      *       172.17.0.4           172.17.0.4           tcp dpt:80</span><br><span class="line"></span><br><span class="line">Chain DOCKER (2 references)</span><br><span class="line">    pkts      bytes target     prot opt in     out     source               destination         </span><br><span class="line">       0        0 RETURN     all  --  br-b9020c577494 *       0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">       0        0 RETURN     all  --  br-020d342bf4a1 *       0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">       0        0 RETURN     all  --  docker0 *       0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">       1       60 DNAT       tcp  --  !docker0 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8080 to:172.17.0.4:80</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="端口轉發和dockerfile"><a href="#端口轉發和dockerfile" class="headerlink" title="端口轉發和dockerfile"></a>端口轉發和dockerfile</h2><p><a target="_blank" rel="noopener" href="https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile-alpine.template">https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile-alpine.template</a></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> alpine:%%ALPINE_VERSION%%</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> docker-entrypoint.sh /</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> 10-listen-on-ipv6-by-default.sh /docker-entrypoint.d</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> 20-envsubst-on-templates.sh /docker-entrypoint.d</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> 30-tune-worker-processes.sh /docker-entrypoint.d</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;/docker-entrypoint.sh&quot;</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">STOPSIGNAL</span> SIGQUIT</span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-g&quot;</span>, <span class="string">&quot;daemon off;&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以看到在<code>nginx</code>的dockerfile中有一行 <code>EXPOSE 80</code> ，可以做到對外PORT的映射。</p>
+<p>提問，那如果dockerfile 沒有這行<code>EXPOSE 80</code>，我們還能使用<code>docker container run -p </code>這樣的方式設定port嗎？答案是可以的。</p>
+<p>dockefile這邊如果有明確使用<code>EXPOSE 80</code>，主要的精神在表達讓使用者知道有一個默認的對外port。</p>
+<blockquote>
+<p>The <code>EXPOSE</code> instruction does not actually publish the port. It functions as a type of documentation between the person who builds the image and the person who runs the container,about which ports are intended to be published.</p>
+</blockquote>
+<p><code>EXPOSE</code> 默認為<code>TCP</code> ，也可以具體明確定義：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span>/udp</span><br></pre></td></tr></table></figure>
+
+<p>當然，也可以同使支持兩種協議，寫二行即可：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span>/tcp</span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span>/udp</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="HOST與None"><a href="#HOST與None" class="headerlink" title="HOST與None"></a>HOST與None</h2><h3 id="HOST"><a href="#HOST" class="headerlink" title="HOST"></a>HOST</h3><p>針對HOST詳細說明</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker network ls</span><br><span class="line">NETWORK ID     NAME       DRIVER    SCOPE</span><br><span class="line">b22fdb790b7f   bridge     bridge    local</span><br><span class="line">60cb3d796e6b   host       host      local</span><br></pre></td></tr></table></figure>
+
+
+
+<p>建立一個container 並使用<code>host</code>network：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container run -d --name web03 --network host nginx</span><br><span class="line">e1b6b611df2e79a4622359385b98e5a0c824af8a740d71a9ad2ecfcf14fac886</span><br></pre></td></tr></table></figure>
+
+<p>列出container ps ，我們會發現<code>web03</code>port 是空白的。是因為我們剛剛使用的的是host 那組netwowrk，所以目前這個container是與host共用同一組network設定的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker container ps -a</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND    CREATED         STATUS                        PORTS   NAMES</span><br><span class="line">e1b6b611df2e   nginx     &quot;/docker-entrypoint.…&quot;   7 minutes ago   Up 7 minutes            web03</span><br><span class="line">f1a1469eac7f   nginx     &quot;/docker-entrypoint.…&quot;   2 hours ago     Up 7 minutes    80/tcp  web02</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>curl</code>查看一下，的確在host上的80 port 是映射到<code>web03</code> container ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# curl 127.0.0.1:80</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">html &#123; color-scheme: light dark; &#125;</span><br><span class="line">body &#123; width: 35em; margin: 0 auto;</span><br><span class="line">font-family: Tahoma, Verdana, Arial, sans-serif; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;For online documentation and support please refer to</span><br><span class="line">&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我們可以思考一下，那這樣的使用<code>host netowrk</code>與使用<code>container -p 80:80</code>(沒填寫network 預設會選擇<code>docker0</code>，也就是<code>bridge network</code>)會有什麼差別？</p>
+<p>其實用圖片來說，多了一個<code>docker0</code>，當中間層的轉發，效率上是有差一些的喔。(因為突然斷電…圖的設計稿不見了，懶得重畫…)想像一下，多了一個web03 然後不經過<code>docker0</code>,直接一條線對接<code>192.168.152.55 eth0</code>。</p>
+<p><img src="https://i.imgur.com/gxUx2r9.png"></p>
+<h3 id="NONE"><a href="#NONE" class="headerlink" title="NONE"></a>NONE</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop# docker network ls</span><br><span class="line">NETWORK ID     NAME       DRIVER    SCOPE</span><br><span class="line">b22fdb790b7f   bridge     bridge    local</span><br><span class="line">60cb3d796e6b   host       host      local</span><br><span class="line">c5b7b2fbb219   none       null      local</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立一個box01 使用network none</span></span><br><span class="line">root@host04:/home/kite/Desktop# docker container run -it --name box01 --network none busybox </span><br><span class="line">/ # ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>有一些第三方開發特殊需求，只需要container容器，相關的網路配置由自己決定與設計。就會使用到 <code>none network</code></p>
+<h2 id="網路命名空間"><a href="#網路命名空間" class="headerlink" title="網路命名空間"></a>網路命名空間</h2><p><img src="https://i.imgur.com/8O8nGDp.png" alt="docker-volume"></p>
+<p><code>add-ns-to-br.sh</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">bridge=$1</span><br><span class="line">namespace=$2</span><br><span class="line">addr=$3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">link</span>的兩頭</span></span><br><span class="line">vethA=veth-$namespace</span><br><span class="line">vethB=eth00</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立一個namespace空間</span></span><br><span class="line">sudo ip netns add $namespace</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立一個<span class="built_in">link</span>，兩頭一個是<span class="variable">$vethA</span>，另一個是<span class="variable">$vethB</span></span></span><br><span class="line">sudo ip link add $vethA type veth peer name $vethB</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">將<span class="variable">$vethB</span>放到這個namespace裡</span></span><br><span class="line">sudo ip link set $vethB netns $namespace</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">這個namespace空間中，針對<span class="variable">$vethB</span>頭賦與一個IP地址給它</span></span><br><span class="line">sudo ip netns exec $namespace ip addr add $addr dev $vethB</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">將<span class="variable">$vethB</span> 給up起來</span></span><br><span class="line">sudo ip netns exec $namespace ip link set $vethB up</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">將<span class="variable">$vethA</span> 給up起來</span></span><br><span class="line">sudo ip link set $vethA up</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">將<span class="variable">$vethA</span> 加到這個bridge上</span></span><br><span class="line">sudo brctl addif $bridge $vethA</span><br></pre></td></tr></table></figure>
+
+<h3 id="腳本執行"><a href="#腳本執行" class="headerlink" title="腳本執行"></a>腳本執行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/namespace$ sh add-ns-to-br.sh mydocker0 ns1 172.16.1.1/16</span><br><span class="line">kite@host04:~/Desktop/namespace$ sh add-ns-to-br.sh mydocker0 ns1 172.16.1.2/16</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h3><p>我使用的是ubuntu 環境，去ping 另一個ip 沒有成功。有空再回來試試看，以下是視頻的實驗結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[vagrant@docker-host1 ~]$ sudo ip netns exec ns1 bash</span><br><span class="line">[root@docker-host1 vagrant]# ip a</span><br><span class="line">1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">5: eth00@if6: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000</span><br><span class="line">    link/ether f2:59:19:34:73:70 brd ff:ff:ff:ff:ff:ff link-netnsid 0</span><br><span class="line">    inet 172.16.1.1/16 scope global eth00</span><br><span class="line">    valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::f059:19ff:fe34:7370/64 scope link</span><br><span class="line">    valid_lft forever preferred_lft forever</span><br><span class="line">[root@docker-host1 vagrant]# ping 172.16.1.2</span><br><span class="line">PING 172.16.1.2 (172.16.1.2) 56(84) bytes of data.</span><br><span class="line">64 bytes from 172.16.1.2: icmp_seq=1 ttl=64 time=0.029 ms</span><br><span class="line">64 bytes from 172.16.1.2: icmp_seq=2 ttl=64 time=0.080 ms</span><br><span class="line">^C</span><br><span class="line">--- 172.16.1.2 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 received, 0% packet loss, time 1000ms</span><br><span class="line">rtt min/avg/max/mdev = 0.029/0.054/0.080/0.026 ms</span><br><span class="line">[root@docker-host1 vagrant]#</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="多容器應用部署練習"><a href="#多容器應用部署練習" class="headerlink" title="多容器應用部署練習"></a>多容器應用部署練習</h2><p>常見需求會將各個服務進行拆分各自容器之中。後續我們會再講<code>docker compose</code> ，透過配置文件定義容器之間的交互溝通與設定，搭建一個完整的環境。</p>
+<p><img src="https://i.imgur.com/yxGUnHE.png" alt="image-20220303145950107"></p>
+<h3 id="鏡像準備"><a href="#鏡像準備" class="headerlink" title="鏡像準備"></a>鏡像準備</h3><h4 id="REDIS"><a href="#REDIS" class="headerlink" title="REDIS"></a>REDIS</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop/namespace# docker image pull redis</span><br></pre></td></tr></table></figure>
+
+<h4 id="python-flask-web"><a href="#python-flask-web" class="headerlink" title="python flask web"></a>python flask web</h4><h5 id="資料夾結構"><a href="#資料夾結構" class="headerlink" title="資料夾結構"></a>資料夾結構</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop/flask_redis_practice# tree </span><br><span class="line">.</span><br><span class="line">├── app.py</span><br><span class="line">└── Dockerfile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="程式準備"><a href="#程式準備" class="headerlink" title="程式準備"></a>程式準備</h5><p><code>app.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> redis <span class="keyword">import</span> Redis</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">redis = Redis(host=os.environ.get(<span class="string">&#x27;REDIS_HOST&#x27;</span>, <span class="string">&#x27;127.0.0.1&#x27;</span>), port=<span class="number">6379</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    redis.incr(<span class="string">&#x27;hits&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;Hello Container World! I have been seen <span class="subst">&#123;redis.get(<span class="string">&#x27;hits&#x27;</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>)&#125;</span> times and my hostname is <span class="subst">&#123;socket.gethostname()&#125;</span>.\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="dockerfile準備"><a href="#dockerfile準備" class="headerlink" title="dockerfile準備"></a>dockerfile準備</h5><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.9</span>.<span class="number">5</span>-slim</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install flask redis &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    groupadd -r flask &amp;&amp; useradd -r -g flask flask &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mkdir</span> /src &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">chown</span> -R flask:flask /src</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> flask</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> app.py /src/app.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /src</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> FLASK_APP=app.py REDIS_HOST=redis</span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;flask&quot;</span>, <span class="string">&quot;run&quot;</span>, <span class="string">&quot;-h&quot;</span>, <span class="string">&quot;0.0.0.0&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="產生鏡像檔"><a href="#產生鏡像檔" class="headerlink" title="產生鏡像檔"></a>產生鏡像檔</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image build -t flask-demo .</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="建立bridge"><a href="#建立bridge" class="headerlink" title="建立bridge"></a>建立bridge</h3><p>建立名為<code>demo-network</code>的bridge</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop/flask_redis_practice# docerk network create -d bridge demo-network</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="建立container"><a href="#建立container" class="headerlink" title="建立container"></a>建立container</h3><p>將<code>redis</code>、<code>python flask web</code> 創建時，加入至 <code>demo-network</code>中。</p>
+<h4 id="REDIS-1"><a href="#REDIS-1" class="headerlink" title="REDIS"></a>REDIS</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop/flask_redis_practice# docker container run -d --name redis-server --network demo-network redis</span><br></pre></td></tr></table></figure>
+
+<h4 id="python-flask-web-1"><a href="#python-flask-web-1" class="headerlink" title="python flask web"></a>python flask web</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop/flask_redis_practice# docker container run -d --network demo-network --name flask-demo --env REDIS_HOST=redis-server -p 5000:5000 flask-demo</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h4><p>應該就會看到網頁刷新時，會一直+1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:5000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/tHoIkRm.png" alt="image-20220303145554786"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/24/2022-02-23%20Docker%20%E7%B3%BB%E5%88%97%20-%20(4)%20Dockerfile%E5%AE%B9%E5%99%A8%E7%9A%84%E5%84%B2%E5%AD%98/" rel="prev" title="docker 系列 - (4) Dockerfile容器的儲存">
+      <i class="fa fa-chevron-left"></i> docker 系列 - (4) Dockerfile容器的儲存
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/05/2022-03-05%20Docker%20%E7%B3%BB%E5%88%97%20-%20(6)%20Docker%20compose/" rel="next" title="docker 系列 - (6) Docker compose">
+      docker 系列 - (6) Docker compose <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E%E7%9F%A5%E8%AD%98%E5%9B%9E%E9%A1%A7"><span class="nav-number">1.</span> <span class="nav-text">網路基礎知識回顧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">網路常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP%E5%9C%B0%E5%9D%80%E6%9F%A5%E8%A9%A2"><span class="nav-number">2.1.</span> <span class="nav-text">IP地址查詢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%B6%B2%E8%B7%AF%E9%80%A3%E9%80%9A%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">測試網路連通性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ping%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.1.</span> <span class="nav-text">ping命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%AB%AF%E5%8F%A3%E9%80%A3%E9%80%9A%E6%80%A7"><span class="nav-number">2.3.</span> <span class="nav-text">測試端口連通性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#telnet%E5%91%BD%E4%BB%A4"><span class="nav-number">2.3.1.</span> <span class="nav-text">telnet命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E8%B7%AF%E5%BE%91"><span class="nav-number">2.4.</span> <span class="nav-text">測試路徑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#traceroute%E5%91%BD%E4%BB%A4"><span class="nav-number">2.4.1.</span> <span class="nav-text">traceroute命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6web%E6%9C%8D%E5%8B%99"><span class="nav-number">2.5.</span> <span class="nav-text">測試web服務</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#curl%E5%91%BD%E4%BB%A4"><span class="nav-number">2.5.1.</span> <span class="nav-text">curl命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%B6%B2%E8%B7%AF%E9%9C%80%E8%A6%81%E8%A7%A3%E6%B1%BA%E5%93%AA%E4%BA%9B%E5%95%8F%E9%A1%8C%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">容器網路需要解決哪些問題？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%80%8B%E5%95%8F%E9%A1%8C%E5%AF%A6%E9%A9%97"><span class="nav-number">3.1.</span> <span class="nav-text">第一個問題實驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%80%8B%E5%95%8F%E9%A1%8C%E5%AF%A6%E9%A9%97"><span class="nav-number">3.2.</span> <span class="nav-text">第二個問題實驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%80%8B%E5%95%8F%E9%A1%8C%E5%AF%A6%E9%A9%97"><span class="nav-number">3.3.</span> <span class="nav-text">第三個問題實驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%80%8B%E5%95%8F%E9%A1%8C%E5%AF%A6%E9%A9%97"><span class="nav-number">3.4.</span> <span class="nav-text">第四個問題實驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E5%80%8B%E5%95%8F%E9%A1%8C%E5%AF%A6%E9%A9%97"><span class="nav-number">3.5.</span> <span class="nav-text">第五個問題實驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%80%8B%E5%95%8F%E9%A1%8C%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E5%AE%B9%E5%99%A8%E5%85%A7%E6%9C%83%E7%8D%B2%E5%8F%96%E5%88%B0172-17-0-2-%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="nav-number">3.6.</span> <span class="nav-text">第一個問題：為什麼容器內會獲取到172.17.0.2 的IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%80%8B%E5%95%8F%E9%A1%8C%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BCHOST%E5%8F%AF%E4%BB%A5PING%E6%88%90%E5%8A%9F%E5%AE%B9%E5%99%A8%EF%BC%9F"><span class="nav-number">3.7.</span> <span class="nav-text">第二個問題：為什麼HOST可以PING成功容器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%80%8B%E5%95%8F%E9%A1%8C%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5PING%E5%A4%96%E9%83%A8%E7%B6%B2%E8%B7%AF%E6%88%90%E5%8A%9F%EF%BC%9F"><span class="nav-number">3.8.</span> <span class="nav-text">第三個問題：為什麼容器可以PING外部網路成功？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%80%8B%E5%95%8F%E9%A1%8C%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E5%AE%B9%E5%99%A8%E8%88%87%E5%AE%B9%E5%99%A8%E4%B9%8B%E9%96%93%E5%8F%AF%E4%BB%A5%E4%BA%92%E9%80%9A%EF%BC%9F"><span class="nav-number">3.9.</span> <span class="nav-text">第四個問題：為什麼容器與容器之間可以互通？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E5%80%8B%E5%95%8F%E9%A1%8C%EF%BC%9APORT%E8%BD%89%E7%99%BC%E6%98%AF%E6%80%8E%E9%BA%BC%E5%9B%9E%E4%BA%8B%EF%BC%9F"><span class="nav-number">3.10.</span> <span class="nav-text">第五個問題：PORT轉發是怎麼回事？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E9%96%93%E9%80%9A%E4%BF%A1%E4%B9%8Bbridge%E7%B6%B2%E8%B7%AF"><span class="nav-number">4.</span> <span class="nav-text">容器間通信之bridge網路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%B0%8D%E5%A4%96%E9%80%9A%E8%A8%8A%E4%B9%8Bbridge%E7%B6%B2%E8%B7%AF"><span class="nav-number">5.</span> <span class="nav-text">容器對外通訊之bridge網路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98%E8%A3%9C%E5%85%85NAT"><span class="nav-number">6.</span> <span class="nav-text">網路知識補充NAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%B5%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E7%BE%A9bridge-%E4%B8%8A"><span class="nav-number">7.</span> <span class="nav-text">創建和使用自定義bridge(上)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E6%8C%87%E5%AE%9A%E7%9A%84bridge%E5%9C%A8container%E4%B8%8A%EF%BC%9F"><span class="nav-number">7.1.</span> <span class="nav-text">如何添加指定的bridge在container上？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E4%B8%80%E5%80%8Bcontainer%E5%8F%AF%E5%90%A6%E6%9C%892%E5%80%8Bbridge%EF%BC%9F"><span class="nav-number">7.2.</span> <span class="nav-text">在一個container可否有2個bridge？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8bridge%E4%B8%AD%E7%A7%BB%E9%99%A4%E6%8E%89container"><span class="nav-number">7.3.</span> <span class="nav-text">在bridge中移除掉container</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%B5%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E7%BE%A9bridge-%E4%B8%8B"><span class="nav-number">8.</span> <span class="nav-text">創建和使用自定義bridge(下)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E7%BE%A9bridge%E5%A5%BD%E8%99%95"><span class="nav-number">8.1.</span> <span class="nav-text">自定義bridge好處</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E6%B1%BA%E5%AE%9A%E5%8D%80%E6%AE%B5"><span class="nav-number">8.2.</span> <span class="nav-text">自己決定區段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%89%E7%99%BCPort-Forwarding"><span class="nav-number">9.</span> <span class="nav-text">容器的端口轉發Port Forwarding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%89%E7%99%BC%E5%92%8Cdockerfile"><span class="nav-number">10.</span> <span class="nav-text">端口轉發和dockerfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOST%E8%88%87None"><span class="nav-number">11.</span> <span class="nav-text">HOST與None</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HOST"><span class="nav-number">11.1.</span> <span class="nav-text">HOST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NONE"><span class="nav-number">11.2.</span> <span class="nav-text">NONE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E5%91%BD%E5%90%8D%E7%A9%BA%E9%96%93"><span class="nav-number">12.</span> <span class="nav-text">網路命名空間</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%85%B3%E6%9C%AC%E5%9F%B7%E8%A1%8C"><span class="nav-number">12.1.</span> <span class="nav-text">腳本執行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A9%97%E8%AD%89"><span class="nav-number">12.2.</span> <span class="nav-text">驗證</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%AE%B9%E5%99%A8%E6%87%89%E7%94%A8%E9%83%A8%E7%BD%B2%E7%B7%B4%E7%BF%92"><span class="nav-number">13.</span> <span class="nav-text">多容器應用部署練習</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%8F%A1%E5%83%8F%E6%BA%96%E5%82%99"><span class="nav-number">13.1.</span> <span class="nav-text">鏡像準備</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REDIS"><span class="nav-number">13.1.1.</span> <span class="nav-text">REDIS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-flask-web"><span class="nav-number">13.1.2.</span> <span class="nav-text">python flask web</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%A4%BE%E7%B5%90%E6%A7%8B"><span class="nav-number">13.1.2.1.</span> <span class="nav-text">資料夾結構</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E6%BA%96%E5%82%99"><span class="nav-number">13.1.2.2.</span> <span class="nav-text">程式準備</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dockerfile%E6%BA%96%E5%82%99"><span class="nav-number">13.1.2.3.</span> <span class="nav-text">dockerfile準備</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A2%E7%94%9F%E9%8F%A1%E5%83%8F%E6%AA%94"><span class="nav-number">13.1.2.4.</span> <span class="nav-text">產生鏡像檔</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8Bbridge"><span class="nav-number">13.2.</span> <span class="nav-text">建立bridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8Bcontainer"><span class="nav-number">13.3.</span> <span class="nav-text">建立container</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REDIS-1"><span class="nav-number">13.3.1.</span> <span class="nav-text">REDIS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-flask-web-1"><span class="nav-number">13.3.2.</span> <span class="nav-text">python flask web</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6"><span class="nav-number">13.3.3.</span> <span class="nav-text">測試</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

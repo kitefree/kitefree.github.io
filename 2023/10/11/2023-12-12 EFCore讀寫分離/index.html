@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="讀寫分離示意圖 發佈伺服器的實作可以透過SQLSERVER的複寫功能，分別設定發佈與訂閱，資料庫複寫設定有興趣可以參考相關連結。以下針對程式碼如何實踐讀寫分離，做個紀錄筆記。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EFCore讀寫分離">
+<meta property="og:url" content="https://kitefree.github.io/2023/10/11/2023-12-12%20EFCore%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="讀寫分離示意圖 發佈伺服器的實作可以透過SQLSERVER的複寫功能，分別設定發佈與訂閱，資料庫複寫設定有興趣可以參考相關連結。以下針對程式碼如何實踐讀寫分離，做個紀錄筆記。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/AswBDyN.png">
+<meta property="og:image" content="https://i.imgur.com/cQzoEfS.png">
+<meta property="og:image" content="https://i.imgur.com/zTNzoxP.png">
+<meta property="og:image" content="https://i.imgur.com/RKOC4AG.png">
+<meta property="og:image" content="https://i.imgur.com/K3pds2U.png">
+<meta property="og:image" content="https://i.imgur.com/Nj0D80Q.png">
+<meta property="article:published_time" content="2023-10-11T14:33:00.000Z">
+<meta property="article:modified_time" content="2023-12-14T15:25:08.000Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="NET Core">
+<meta property="article:tag" content="讀寫分離">
+<meta property="article:tag" content="高併發">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/AswBDyN.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2023/10/11/2023-12-12%20EFCore%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>EFCore讀寫分離 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2023/10/11/2023-12-12%20EFCore%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EFCore讀寫分離
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-10-11 22:33:00" itemprop="dateCreated datePublished" datetime="2023-10-11T22:33:00+08:00">2023-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 23:25:08" itemprop="dateModified" datetime="2023-12-14T23:25:08+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%8C%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">後端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>10 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="讀寫分離示意圖"><a href="#讀寫分離示意圖" class="headerlink" title="讀寫分離示意圖"></a>讀寫分離示意圖</h2><p><img src="https://i.imgur.com/AswBDyN.png" alt="image-20231213101632763"></p>
+<p><code>發佈伺服器</code>的實作可以透過<code>SQLSERVER</code>的<code>複寫</code>功能，分別設定<code>發佈</code>與<code>訂閱</code>，資料庫複寫設定有興趣可以參考相關連結。以下針對程式碼如何實踐讀寫分離，做個紀錄筆記。</p>
+<span id="more"></span>
+
+
+
+<h2 id="資料準備"><a href="#資料準備" class="headerlink" title="資料準備"></a>資料準備</h2><h3 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h3><p>分別建立<code>MyDB_Master</code>、<code>MyDB_Slave01</code>、<code>MyDB_Slave02</code>，共三個資料庫。</p>
+<ul>
+<li><p><code>MyDB_Master</code>扮演<code>寫入</code></p>
+</li>
+<li><p>、<code>MyDB_Slave01</code>、<code>MyDB_Slave02</code>扮演<code>讀取</code>。</p>
+</li>
+</ul>
+<p>完成結果如下：</p>
+<p><img src="https://i.imgur.com/cQzoEfS.png" alt="image-20231213102554874"></p>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><ol>
+<li><p>三個資料庫建立以下資料表</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [dbo].[SysUser](</span><br><span class="line">    [Id] [<span class="type">int</span>] <span class="keyword">IDENTITY</span>(<span class="number">1</span>,<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">FOR</span> REPLICATION <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    [UserName] [<span class="type">varchar</span>](<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    [Account] [<span class="type">varchar</span>](<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    [Password] [<span class="type">varchar</span>](<span class="number">100</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    [Phone] [<span class="type">varchar</span>](<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    [CreateTime] [datetime] <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"> <span class="keyword">CONSTRAINT</span> [PK_User] <span class="keyword">PRIMARY</span> KEY CLUSTERED </span><br><span class="line">(</span><br><span class="line">    [Id] <span class="keyword">ASC</span></span><br><span class="line">)<span class="keyword">WITH</span> (PAD_INDEX <span class="operator">=</span> OFF, STATISTICS_NORECOMPUTE <span class="operator">=</span> OFF, IGNORE_DUP_KEY <span class="operator">=</span> OFF, ALLOW_ROW_LOCKS <span class="operator">=</span> <span class="keyword">ON</span>, ALLOW_PAGE_LOCKS <span class="operator">=</span> <span class="keyword">ON</span>) <span class="keyword">ON</span> [<span class="keyword">PRIMARY</span>]</span><br><span class="line">) <span class="keyword">ON</span> [<span class="keyword">PRIMARY</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增資料</p>
+<p> 使用<code>編輯前200列資料</code>功能，再COPY PASTE以下資料即可。</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#MyDB_Master</span><br><span class="line"><span class="number">1</span>	主<span class="operator">-</span>狗狗<span class="number">01</span>	gougou	eae8da4d<span class="number">-5</span>cf2<span class="number">-4</span>bbc<span class="operator">-</span>ab2b<span class="number">-217</span>a0be96e59	<span class="number">13345435554</span>	<span class="number">2023</span><span class="number">-12</span><span class="number">-13</span> <span class="number">09</span>:<span class="number">08</span>:<span class="number">22.030</span></span><br><span class="line"><span class="number">2</span>	主<span class="operator">-</span>狗狗<span class="number">02</span>	gougou	<span class="number">2</span>d989e51<span class="number">-961</span>a<span class="number">-440</span>b<span class="number">-9528</span><span class="number">-90362</span>ed79d0a	<span class="number">13345435554</span>	<span class="number">2023</span><span class="number">-12</span><span class="number">-13</span> <span class="number">09</span>:<span class="number">08</span>:<span class="number">31.793</span></span><br><span class="line">#MyDB_Slave01</span><br><span class="line"><span class="number">1</span>	從<span class="number">01</span><span class="operator">-</span>狗狗<span class="number">01</span>	gougou	efae76c8<span class="number">-271</span>a<span class="number">-4</span>bbe<span class="operator">-</span>b0aa<span class="number">-512163</span>d1ccaf	<span class="number">13345435554</span>	<span class="number">2023</span><span class="number">-12</span><span class="number">-13</span> <span class="number">09</span>:<span class="number">10</span>:<span class="number">02.887</span></span><br><span class="line">#MyDB_Slave02</span><br><span class="line"><span class="number">1</span>	從<span class="number">02</span><span class="operator">-</span>狗狗<span class="number">01</span>	gougou	efae76c8<span class="number">-271</span>a<span class="number">-4</span>bbe<span class="operator">-</span>b0aa<span class="number">-512163</span>d1ccaf	<span class="number">13345435554</span>	<span class="number">2023</span><span class="number">-12</span><span class="number">-13</span> <span class="number">09</span>:<span class="number">10</span>:<span class="number">02.887</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="專案實作"><a href="#專案實作" class="headerlink" title="專案實作"></a>專案實作</h2><h3 id="專案套件"><a href="#專案套件" class="headerlink" title="專案套件"></a>專案套件</h3><p><code>EFCoreReadWriteSeparate.csproj</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">&quot;Microsoft.NET.Sdk.Web&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>net6.0<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Nullable</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">Nullable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImplicitUsings</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">ImplicitUsings</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.EntityFrameworkCore&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;6.0.25&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.EntityFrameworkCore.SqlServer&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;6.0.7&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Swashbuckle.AspNetCore&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;6.5.0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="設定-DB-Config"><a href="#設定-DB-Config" class="headerlink" title="設定 DB  Config"></a>設定 DB  Config</h4><p><code>appsettings.json</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;ConnectionStrings&quot;</span>: &#123;</span><br><span class="line">  <span class="comment">//寫</span></span><br><span class="line">  <span class="string">&quot;WriteConnection&quot;</span>: <span class="string">&quot;Server=KITE;Database=MyDB_Master;Trusted_Connection=True;MultipleActiveResultSets=true; TrustServerCertificate=true&quot;</span>,</span><br><span class="line">  <span class="comment">//讀</span></span><br><span class="line">  <span class="string">&quot;ReadConnectionList&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;Server=KITE;Database=MyDB_Slave01;Trusted_Connection=True;MultipleActiveResultSets=true; TrustServerCertificate=true&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Server=KITE;Database=MyDB_Slave02;Trusted_Connection=True;MultipleActiveResultSets=true; TrustServerCertificate=true&quot;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="讀取-DB-Config"><a href="#讀取-DB-Config" class="headerlink" title="讀取 DB Config"></a>讀取 DB Config</h4><p><code>Program.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.Configure&lt;DBConnectionOption&gt;(builder.Configuration.GetSection(<span class="string">&quot;ConnectionStrings&quot;</span>));</span><br><span class="line">builder.Services.AddTransient&lt;DbContext, MyDBContext&gt;();</span><br></pre></td></tr></table></figure>
+
+<h4 id="擴充DbContext方法"><a href="#擴充DbContext方法" class="headerlink" title="擴充DbContext方法"></a>擴充DbContext方法</h4><p><code>DBModel\DbContextExtend.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.EntityFrameworkCore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">EFCoreReadWriteSeparate.DBModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">DbContextExtend</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DbContext <span class="title">ToRead</span>(<span class="params"><span class="keyword">this</span> DbContext dbContext</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (dbContext <span class="keyword">is</span> MyDBContext)</span><br><span class="line">                <span class="keyword">return</span> ((MyDBContext)dbContext).ToRead();</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DbContext <span class="title">ToWrite</span>(<span class="params"><span class="keyword">this</span> DbContext dbContext</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (dbContext <span class="keyword">is</span> MyDBContext)</span><br><span class="line">                <span class="keyword">return</span> ((MyDBContext)dbContext).ToWrite();</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="實作DbContext方法"><a href="#實作DbContext方法" class="headerlink" title="實作DbContext方法"></a>實作DbContext方法</h4><p><code>DBModel\MyDBContext.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> EFCoreReadWriteSeparate.Models;</span><br><span class="line"><span class="keyword">using</span> Microsoft.EntityFrameworkCore;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Options;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">EFCoreReadWriteSeparate.DBModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyDBContext</span> : <span class="title">DbContext</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> DBConnectionOption _readAndWrite = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">string</span> conn = <span class="built_in">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MyDBContext</span>(<span class="params">IOptionsMonitor&lt;DBConnectionOption&gt; options</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>._readAndWrite = options.CurrentValue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span> _iSeed = <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> DbContext <span class="title">ToRead</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//隨機</span></span><br><span class="line">            <span class="comment">//int num = new Random(_iSeed++).Next(0, this._readAndWrite.ReadConnectionList.Count);</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//輪詢</span></span><br><span class="line">            <span class="keyword">this</span>.Database.GetDbConnection().ConnectionString =</span><br><span class="line">                <span class="keyword">this</span>._readAndWrite.ReadConnectionList[_iSeed++ %</span><br><span class="line">                <span class="keyword">this</span>._readAndWrite.ReadConnectionList.Count];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> DbContext <span class="title">ToWrite</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.Database.GetDbConnection().ConnectionString =</span><br><span class="line">                <span class="keyword">this</span>._readAndWrite.WriteConnection;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> DbSet&lt;SysUser&gt; SysUser &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnConfiguring</span>(<span class="params">DbContextOptionsBuilder optionsBuilder</span>)</span></span><br><span class="line">        &#123;               </span><br><span class="line">            optionsBuilder.UseSqlServer(<span class="keyword">this</span>._readAndWrite.WriteConnection);</span><br><span class="line">         </span><br><span class="line">            <span class="meta">#<span class="keyword">region</span> Print SQL語句</span></span><br><span class="line">            optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                builder.AddConsole();</span><br><span class="line">            &#125;));</span><br><span class="line">            <span class="meta">#<span class="keyword">endregion</span></span></span><br><span class="line">            </span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="建立Model-Class"><a href="#建立Model-Class" class="headerlink" title="建立Model Class"></a>建立Model Class</h4><p><code>DBModel\SysUser.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">EFCoreReadWriteSeparate.DBModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SysUser</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> UserName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> Account &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> Password &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> Phone &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> DateTime CreateTime &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="API測試"><a href="#API測試" class="headerlink" title="API測試"></a>API測試</h4><p><code>WeatherForecastController.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost(Name = <span class="string">&quot;PostWeatherForecast&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;SysUser&gt; <span class="title">Post</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//新增-------------------</span></span><br><span class="line">    SysUser user = <span class="keyword">new</span> SysUser()</span><br><span class="line">    &#123;</span><br><span class="line">        UserName = <span class="string">&quot;主-狗狗02&quot;</span>,</span><br><span class="line">        Account = <span class="string">&quot;gougou&quot;</span>,</span><br><span class="line">        Password = Guid.NewGuid().ToString(),</span><br><span class="line">        Phone = <span class="string">&quot;13345435554&quot;</span>,</span><br><span class="line">        CreateTime = DateTime.Now</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;新增,目前連結字串為:<span class="subst">&#123;_dbContext.Database.GetDbConnection().ConnectionString&#125;</span>&quot;</span>);</span><br><span class="line">    _dbContext.ToWrite().Add(user);</span><br><span class="line">    _dbContext.SaveChanges();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//只讀--------------------------------</span></span><br><span class="line">    <span class="keyword">var</span> users = _dbContext.ToRead().Set&lt;SysUser&gt;().ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;讀取SysUser,數量為:<span class="subst">&#123;users.Count&#125;</span>,目前連結字串為:<span class="subst">&#123;_dbContext.Database.GetDbConnection().ConnectionString&#125;</span>&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> users;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h4><p>第一次執行，讀取時，取得Slave</p>
+<p><img src="https://i.imgur.com/zTNzoxP.png" alt="image-20231213131525781"></p>
+<p>觀查command line</p>
+<p><img src="https://i.imgur.com/RKOC4AG.png" alt="image-20231213131825336"></p>
+<p>第二次執行</p>
+<p><img src="https://i.imgur.com/K3pds2U.png" alt="image-20231213131939848"></p>
+<p>觀查command line</p>
+<p><img src="https://i.imgur.com/Nj0D80Q.png" alt="image-20231213132046360"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wei325/p/16516014.html">SQL Server、MySQL主从搭建，EF Core读写分离代码实现</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/KingCruel/article/details/123451714">EFCore 读写分离</a><ul>
+<li>這篇實作輪詢作法</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://www.zendei.com/article/77238.html">EF core 實現讀寫分離解決方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7199131771668234296">一款针对EF Core轻量级分表分库、读写分离的开源项目</a><ul>
+<li>這篇很值得之後研究，其中有實踐分表、分庫、讀寫分離等作法</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NET-Core/" rel="tag"># NET Core</a>
+              <a href="/tags/%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/" rel="tag"># 讀寫分離</a>
+              <a href="/tags/%E9%AB%98%E4%BD%B5%E7%99%BC/" rel="tag"># 高併發</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/06/2022-08-06%20Vue3TypeScript(5)%20-%20%E6%B8%B2%E6%9F%93404%E5%92%8C%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2/" rel="prev" title="Vue3TypeScript(5) - 渲染404和登入頁面">
+      <i class="fa fa-chevron-left"></i> Vue3TypeScript(5) - 渲染404和登入頁面
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2%E7%A4%BA%E6%84%8F%E5%9C%96"><span class="nav-number">1.</span> <span class="nav-text">讀寫分離示意圖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E6%BA%96%E5%82%99"><span class="nav-number">2.</span> <span class="nav-text">資料準備</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DB"><span class="nav-number">2.1.</span> <span class="nav-text">DB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">2.2.</span> <span class="nav-text">SQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%88%E6%A1%88%E5%AF%A6%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">專案實作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%88%E6%A1%88%E5%A5%97%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">專案套件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A-DB-Config"><span class="nav-number">3.1.1.</span> <span class="nav-text">設定 DB  Config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%80%E5%8F%96-DB-Config"><span class="nav-number">3.1.2.</span> <span class="nav-text">讀取 DB Config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%93%B4%E5%85%85DbContext%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.3.</span> <span class="nav-text">擴充DbContext方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9CDbContext%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.4.</span> <span class="nav-text">實作DbContext方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8BModel-Class"><span class="nav-number">3.1.5.</span> <span class="nav-text">建立Model Class</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API%E6%B8%AC%E8%A9%A6"><span class="nav-number">3.1.6.</span> <span class="nav-text">API測試</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C"><span class="nav-number">3.1.7.</span> <span class="nav-text">測試結果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

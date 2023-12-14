@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="地球人的修練">
+<meta property="og:url" content="https://kitefree.github.io/page/9/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/page/9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/06/16/2021-06-16%20CCNA_13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/16/2021-06-16%20CCNA_13/" class="post-title-link" itemprop="url">CCNA_13</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-06-16 10:12:00" itemprop="dateCreated datePublished" datetime="2021-06-16T10:12:00+08:00">2021-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="13-Warm-Up-Packet-Tracer-and-IOS-Basic-2-配置line，Telnet，SSH，Message和Banner"><a href="#13-Warm-Up-Packet-Tracer-and-IOS-Basic-2-配置line，Telnet，SSH，Message和Banner" class="headerlink" title="13. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)"></a>13. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)</h2><h3 id="Line"><a href="#Line" class="headerlink" title="Line"></a>Line</h3><p>總類分別</p>
+<ul>
+<li>CTY(console port)</li>
+<li>TTY</li>
+<li>AUX</li>
+<li>VTY(virtual terminal,telnet,SSH)</li>
+</ul>
+<p>目前只要學CTY、UTY<br>如果你從SSH登入，那LINE TYPE就是VTY<br>正常我們就只會有一個CTY，因為實際接了一條線<br>交換機允許多人登入，但是有上限的限制。<br><img src="https://i.imgur.com/UmJOrhS.png"></p>
+<p>查當前用戶</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show user</span><br></pre></td></tr></table></figure>
+
+<p>查目前line狀況</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show line</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="console-物理端口"><a href="#console-物理端口" class="headerlink" title="console(物理端口)"></a>console(物理端口)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">line con 0</span><br><span class="line">password cisco</span><br><span class="line">login</span><br><span class="line">exec-timeout 0 0 --分 秒</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/s5t4LDc.png"></p>
+<h3 id="telnet-VTY-遠程登入"><a href="#telnet-VTY-遠程登入" class="headerlink" title="telnet - VTY(遠程登入)"></a>telnet - VTY(遠程登入)</h3><p>設定可以有幾個vty使用者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br></pre></td></tr></table></figure>
+<p>設定驗證機制三種方式</p>
+<h4 id="1-no-login"><a href="#1-no-login" class="headerlink" title="1. no login"></a>1. no login</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">no login</span><br><span class="line">n○ password abc123</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-login-僅密碼"><a href="#2-login-僅密碼" class="headerlink" title="2. login 僅密碼"></a>2. login 僅密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">password abc123</span><br><span class="line">login</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-login-帳號、密碼"><a href="#3-login-帳號、密碼" class="headerlink" title="3. login 帳號、密碼"></a>3. login 帳號、密碼</h4><p>創建帳號<br>回到config</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username abc password abc123</span><br></pre></td></tr></table></figure>
+
+<p>設定vty帳號密碼</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">login local</span><br></pre></td></tr></table></figure>
+
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>RSA 演算法<br><img src="https://i.imgur.com/C7SBme4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hostname sw -- 命名交換機的名稱</span><br><span class="line">conf t</span><br><span class="line">ip domain name ccna++.com</span><br><span class="line">crypto key generate rsa</span><br><span class="line">會問 How many bits in the modules [512]: 2048</span><br><span class="line">ip ssh version 2</span><br></pre></td></tr></table></figure>
+<p>目前rsa 的bit 512 是默認，但不安全，可以填2048</p>
+<h4 id="1-no-login-1"><a href="#1-no-login-1" class="headerlink" title="1. no login"></a>1. no login</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">no login</span><br></pre></td></tr></table></figure>
+
+<p>雖然在ssh 登入的時候會問你，但是你隨便key還是進得去</p>
+<h4 id="2-無帳號有密碼"><a href="#2-無帳號有密碼" class="headerlink" title="2. 無帳號有密碼"></a>2. 無帳號有密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">password cisco</span><br><span class="line">login</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-有帳號有密碼"><a href="#3-有帳號有密碼" class="headerlink" title="3. 有帳號有密碼"></a>3. 有帳號有密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">username cisco password cisco </span><br><span class="line">line vty 0 4</span><br><span class="line">password cisco </span><br><span class="line">login local</span><br></pre></td></tr></table></figure>
+
+<p>但是未限制ssh</p>
+<h4 id="4-限制ssh方式"><a href="#4-限制ssh方式" class="headerlink" title="4. 限制ssh方式"></a>4. 限制ssh方式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">username cisco password cisco</span><br><span class="line">line vty 0 4 </span><br><span class="line">login local </span><br><span class="line">transport input ssh</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Send-message"><a href="#Send-message" class="headerlink" title="Send message"></a>Send message</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">send *</span><br></pre></td></tr></table></figure>
+
+<p>使用方法</p>
+<ul>
+<li>通知對方要重啟交換機</li>
+<li>透過發訊息的方式，確認講的是同一台交換機</li>
+</ul>
+<p><img src="https://i.imgur.com/gqqRjRC.png"></p>
+<h3 id="BANNER"><a href="#BANNER" class="headerlink" title="BANNER"></a>BANNER</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner motd ! --驚嘆號是一個起始符號，當然也可以是別的特殊符號，結束也要打這個</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/mbUZyfn.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/06/15/2021-06-15%20%E7%84%A1%E9%9A%9C%E7%A4%99%E7%B6%B2%E9%A0%81%E7%AD%86%E8%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/15/2021-06-15%20%E7%84%A1%E9%9A%9C%E7%A4%99%E7%B6%B2%E9%A0%81%E7%AD%86%E8%A8%98/" class="post-title-link" itemprop="url">無障礙網頁筆記</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-06-15 20:02:00" itemprop="dateCreated datePublished" datetime="2021-06-15T20:02:00+08:00">2021-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB/" itemprop="url" rel="index"><span itemprop="name">WEB</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>286</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>圖片加alt</li>
+<li>導航磚(accesskey) 常見的有ULC</li>
+<li>製作網站導覽頁，聲明有無障礙設計</li>
+<li>影音影片配合文字說明</li>
+<li><code>&lt;noscript&gt;使用&lt;/noscript&gt;</code></li>
+<li>table th,td 用法</li>
+<li>軟體檢測 freego</li>
+<li>人工檢測  7-14天，審核是需要時間，不要一口答應可以馬上一個月就搞定</li>
+<li>語音驗證碼</li>
+<li>手機的無障礙 ios voice over</li>
+<li>label 與 input 設計</li>
+<li>須符合W3C 規格語句結構</li>
+<li>政府、公家機關都會符合無障礙網站</li>
+<li>A、AA、AAA 越來越難，比方說在AAA需要加入手語</li>
+<li>通常大家都只做到A等級</li>
+<li>H2 UL LI 結構</li>
+<li>H1 每個網頁最重要的說明，且只能有一個</li>
+<li>減少動畫效果，癲癇的人會發作</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/06/12/2021-06-12%20SASS%E7%AD%86%E8%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/12/2021-06-12%20SASS%E7%AD%86%E8%A8%98/" class="post-title-link" itemprop="url">SASS筆記</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-06-12 07:08:00" itemprop="dateCreated datePublished" datetime="2021-06-12T07:08:00+08:00">2021-06-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="SASS原理"><a href="#SASS原理" class="headerlink" title="SASS原理"></a>SASS原理</h2><p><img src="https://i.imgur.com/Jmbx6B8.png"></p>
+<h2 id="SASS-提供兩種寫法"><a href="#SASS-提供兩種寫法" class="headerlink" title="SASS 提供兩種寫法"></a>SASS 提供兩種寫法</h2><p><img src="https://i.imgur.com/fsy2z6E.png"></p>
+<h3 id="SASS-與SCSS-差別"><a href="#SASS-與SCSS-差別" class="headerlink" title="SASS 與SCSS 差別"></a>SASS 與SCSS 差別</h3><p>SASS利用空白的方式縮行(2個空白或1個tab)，代表下一個階層的內容，跟python的程式風格一樣的概念<br><img src="https://i.imgur.com/9Oi0aC8.png"></p>
+<h2 id="編譯軟體"><a href="#編譯軟體" class="headerlink" title="編譯軟體"></a>編譯軟體</h2><ol>
+<li>軟體編譯<ul>
+<li>Prepros</li>
+</ul>
+</li>
+<li>gulp or webpack 打包工具<ul>
+<li>使用command line方式打包，會用到js語法</li>
+</ul>
+</li>
+<li>編輯器內鍵的插件<ul>
+<li>VSCode<ul>
+<li>Live Sass Complier</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="符號使用"><a href="#符號使用" class="headerlink" title="&amp;符號使用"></a><code>&amp;</code>符號使用</h3><p><img src="https://i.imgur.com/gmuuszx.png"></p>
+<h3 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h3><h4 id="宣告變數在最前面"><a href="#宣告變數在最前面" class="headerlink" title="宣告變數在最前面"></a>宣告變數在最前面</h4><p><img src="https://i.imgur.com/Nr9ogba.png"></p>
+<h4 id="Bootstrap也有在使用"><a href="#Bootstrap也有在使用" class="headerlink" title="Bootstrap也有在使用"></a>Bootstrap也有在使用</h4><p><img src="https://i.imgur.com/HVj7gpQ.png"></p>
+<h4 id="自我練習"><a href="#自我練習" class="headerlink" title="自我練習"></a>自我練習</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$font-m:32px;</span><br><span class="line">$font-l:$font-m*1.2;</span><br><span class="line">$font-s:$font-m*0.8;</span><br><span class="line">.a&#123;</span><br><span class="line">    font-size: $font-m;</span><br><span class="line">&#125;</span><br><span class="line">.b&#123;</span><br><span class="line">    font-size: $font-s;</span><br><span class="line">&#125;</span><br><span class="line">.c&#123;</span><br><span class="line">    font-size: $font-l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="拆檔"><a href="#拆檔" class="headerlink" title="拆檔"></a>拆檔</h3><p>Bootstrap 使用拆檔功能<br><img src="https://i.imgur.com/3uS0Ts3.png"></p>
+<p><img src="https://i.imgur.com/2hBrzCL.png"></p>
+<h4 id="自我練習-1"><a href="#自我練習-1" class="headerlink" title="自我練習"></a>自我練習</h4><p><code>_index.scss</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$font-m:32px;</span><br><span class="line">$font-l:$font-m*1.2;</span><br><span class="line">$font-s:$font-m*0.8;</span><br><span class="line">.a&#123;</span><br><span class="line">    font-size: $font-m;</span><br><span class="line">&#125;</span><br><span class="line">.b&#123;</span><br><span class="line">    font-size: $font-s;</span><br><span class="line">&#125;</span><br><span class="line">.c&#123;</span><br><span class="line">    font-size: $font-l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>_reset.scss</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">    margin:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>all.sass</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@import &#x27;reset&#x27;;</span><br><span class="line">@import &#x27;index&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="mixin用法"><a href="#mixin用法" class="headerlink" title="mixin用法"></a>mixin用法</h3><p>將常用或記不起來的css包裝成<code>@mixin</code>方式宣告，接著在要用的地方使用<code>@include</code>，<br>當然在bootstrap有一個專門的mixin資料夾存放這些設定</p>
+<h4 id="簡單include方式"><a href="#簡單include方式" class="headerlink" title="簡單include方式"></a>簡單include方式</h4><p><img src="https://imgur.com/vCWeEYA.png"></p>
+<h4 id="函式方式"><a href="#函式方式" class="headerlink" title="函式方式"></a>函式方式</h4><p><img src="https://imgur.com/mPvWWcX.png"></p>
+<h3 id="循序漸進優化網頁架構"><a href="#循序漸進優化網頁架構" class="headerlink" title="循序漸進優化網頁架構"></a>循序漸進優化網頁架構</h3><h4 id="第一次寫SCSS建議結構-all-scss"><a href="#第一次寫SCSS建議結構-all-scss" class="headerlink" title="第一次寫SCSS建議結構(all.scss)"></a>第一次寫SCSS建議結構(all.scss)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;mixin&quot;;//所有全域變數與mixin</span><br><span class="line">@import &quot;reset&quot;;//reset.css</span><br><span class="line">@import &quot;index&quot;;//首頁</span><br><span class="line">@import &quot;page/..&quot;;//內頁</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="接著可以這樣寫-all-scss"><a href="#接著可以這樣寫-all-scss" class="headerlink" title="接著可以這樣寫(all.scss)"></a>接著可以這樣寫(all.scss)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;mixin&quot;;//所有全域變數與mixin</span><br><span class="line">@import &quot;reset&quot;;//reset.css</span><br><span class="line">@import &quot;layout&quot;;//共同框架，第一層</span><br><span class="line">@import &quot;module&quot;;//button,form,table</span><br><span class="line">@import &quot;page/index,page1,page2&quot;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>舉例來說，將button 跟video 分開撰寫<br>然後在每一個頁面都有各自的css<br><img src="https://imgur.com/O2f4Zvy.png"></p>
+<h4 id="mixin-cotent設計響應式網站超方便"><a href="#mixin-cotent設計響應式網站超方便" class="headerlink" title="@mixin+@cotent設計響應式網站超方便"></a><code>@mixin+@cotent</code>設計響應式網站超方便</h4><p>先設計好每個裝置的斷點，內容部分填寫<code>@content</code><br><img src="https://i.imgur.com/9j1inP5.jpg"></p>
+<p>在應用部分直接<code>@include()</code> 裡面內容填寫相關設定<br><img src="https://i.imgur.com/DbmfAic.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/06/01/2021-06-01%20Nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/2021-06-01%20Nginx/" class="post-title-link" itemprop="url">Nginx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-06-01 21:21:00" itemprop="dateCreated datePublished" datetime="2021-06-01T21:21:00+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>11 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什麼是Nginx"><a href="#什麼是Nginx" class="headerlink" title="什麼是Nginx?"></a>什麼是Nginx?</h2><h3 id="wiki"><a href="#wiki" class="headerlink" title="wiki"></a>wiki</h3><p>是一個高性能的HTTP和反向代理WEB服務器，同時也提供了IMAP&#x2F;POP3&#x2F;SMTP服務。NGINX是由俄羅斯伊戈爾·賽索耶夫開發。Nginx在官方測試的結果中，能夠支援五萬個並列連接。2019年3月11日，Nginx公司被F5 Networks以6.7億美元收購。截至2018年1月，Nginx服務或者代理了全球30.46%的網站。在維基百科裡面講的相當全面。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/01/2021-06-01%20Nginx/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/06/01/2021-06-01%20%E6%8E%92%E7%A8%8B%E5%82%99%E4%BB%BD%E8%A8%98%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/2021-06-01%20%E6%8E%92%E7%A8%8B%E5%82%99%E4%BB%BD%E8%A8%98%E9%8C%84/" class="post-title-link" itemprop="url">排程備份記錄</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-06-01 13:42:00" itemprop="dateCreated datePublished" datetime="2021-06-01T13:42:00+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>11 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>要注意系統預設的日期格式，當時在開發的時候是在這個格式底下進行開發的，如果有切換到別的格式日期，那腳本的跟有日期計算的要再重新疏理一遍。</p>
+<p><img src="https://i.imgur.com/sFGHFNM.jpg"></p>
+<h2 id="MYSQL-資料庫備份"><a href="#MYSQL-資料庫備份" class="headerlink" title="MYSQL 資料庫備份"></a>MYSQL 資料庫備份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DB_NAME=exam2018_api</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/TQE_SERVER/DB_BAK/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=%DB_NAME%_db__D%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;C:\xampp\mysql\bin\mysqldump&quot;</span> --add-drop-database --add-drop-table --allow-keywords -QqceKf --routines --create-options --flush-privileges --insert-ignore --databases -r <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.sql&quot;</span> -uroot -prootNaerTqa %DB_NAME% </span><br><span class="line"><span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx9 <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.sql&quot;</span></span><br><span class="line"><span class="keyword">if</span> exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> <span class="built_in">cd</span> /d %DATA_DEST_FOLDER_PATH% &amp;&amp; del %DATA_DEST_FILE_NAME%.sql</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 資料庫名稱 %DB_NAME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 mysqldump database output</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_FOLDER_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="WEB-程式備份"><a href="#WEB-程式備份" class="headerlink" title="WEB 程式備份"></a>WEB 程式備份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DATA_SOURCE_PATH=C:/xampp/htdocs/exam2018*</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/TQE_SERVER/WEB_BAK/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=exam_web__D%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_FOLDER_PATH% &amp;&amp; <span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx9 %DATA_DEST_FILE_NAME%.7z -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_SOURCE_PATH%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 應用程式名稱 exam2018*</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 %DATA_SOURCE_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_ROOT_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="檔案備份"><a href="#檔案備份" class="headerlink" title="檔案備份"></a>檔案備份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DATA_SOURCE_PATH=D:/掃描文件/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/OES_DATA/掃描文件/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=掃描文件_data__D%CUR_DAY%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx=0 -v1024m <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_SOURCE_PATH%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 %DATA_SOURCE_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_ROOT_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=g7yTpi_u0Z8&list=PLWg9zacwOnweUO4gfbSUPMVguIz_ONIEF&index=1">初學者的命令行</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/30/2021-05-30%20%E4%BB%80%E9%BA%BC%E6%98%AF%E8%B2%A0%E8%BC%89%E5%B9%B3%E8%A1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/30/2021-05-30%20%E4%BB%80%E9%BA%BC%E6%98%AF%E8%B2%A0%E8%BC%89%E5%B9%B3%E8%A1%A1/" class="post-title-link" itemprop="url">什麼是負載平衡?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-30 09:39:00" itemprop="dateCreated datePublished" datetime="2021-05-30T09:39:00+08:00">2021-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>380</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什麼是負載平衡"><a href="#什麼是負載平衡" class="headerlink" title="什麼是負載平衡?"></a>什麼是負載平衡?</h3><ul>
+<li><p>頻寬管理</p>
+<ul>
+<li>LAN Load Balance</li>
+<li>WAN Load Balance<br>  WAN Load Balance（WLB），一般也稱為Multi-Homing設備。當企業對外線路有兩條以上的時候，WLB就可以擔負起網際網路（Internet）與內部網路（Intranet）之間多條連外線路流量平衡的工作。 LAN Load Balance針對區域網路，設置在封包類別較複雜的節點，有助於調整、控制封包的進出順序。</li>
+</ul>
+</li>
+<li><p>應用管理</p>
+<ul>
+<li>Server Load Balance<br>  Server Load Balance（SLB）是最早發展的一塊，其功能在於將企業內多部伺服器的負載量作平衡，將過大流量轉向相同功能的其他伺服器，讓每一部伺服器工作量維持平均，保持服務不因流量過大而變慢或中斷。SLB主要應用在入口端的網頁分流，透過SLB轉址到各個伺服器，平均分配網路流量。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.ithome.com.tw/node/26592">ITHOME-什麼是負載平衡？</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/29/2021-05-29%20%E6%87%89%E7%94%A8%E6%9E%B6%E6%A7%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/29/2021-05-29%20%E6%87%89%E7%94%A8%E6%9E%B6%E6%A7%8B/" class="post-title-link" itemprop="url">應用架構</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-29 19:17:00" itemprop="dateCreated datePublished" datetime="2021-05-29T19:17:00+08:00">2021-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h6 id="tags-應用架構"><a href="#tags-應用架構" class="headerlink" title="tags: 應用架構"></a>tags: <code>應用架構</code></h6><h2 id="最簡單架構"><a href="#最簡單架構" class="headerlink" title="最簡單架構"></a>最簡單架構</h2><p>剛開始應用沒有太多訪問量，所以只需要一台服務器<br><img src="https://i.imgur.com/FWy7Rin.png"></p>
+<h2 id="應用與數據服務分隔"><a href="#應用與數據服務分隔" class="headerlink" title="應用與數據服務分隔"></a>應用與數據服務分隔</h2><p><strong>場景探討</strong><br>隨著應用的業務越來越複雜，應用訪問量越來越大，導致性能越來越差，存儲空間嚴重不足</p>
+<p><strong>架構概念</strong><br>這時候我們考慮把服務增加到三台(能通過加機器解決的問題都不是問題);分離出應用服務器、數據庫服務器、文件服務器。</p>
+<ul>
+<li>應用服務器需要處理大量的訪問，所以需要性能更好的CPU</li>
+<li>數據庫服務器需要存儲大量的數據以及快速的檢索，所以需磁盤的檢索速度較快以及儲存空間大</li>
+<li>文件服務器需要存儲上傳的文件，需要更大的磁盤;現在通常情況下會選擇第三方的存儲服務<br><img src="https://i.imgur.com/nQdiZWe.png"></li>
+</ul>
+<p><strong>架構問題探討</strong><br>根據每個服務器對應的場景，配置服務器後應用的性能能夠大大提高，更好的支持業務的發展。但是隨之業務的發展，訪問量的增大，這種架構又將再次面臨挑戰，應用服務器處理能力下降，存儲空間不足。</p>
+<h2 id="應用服務器集群"><a href="#應用服務器集群" class="headerlink" title="應用服務器集群"></a>應用服務器集群</h2><p><strong>場景探討</strong><br>在高併發大流量的情況下，一台服務器是肯定處理不過來的</p>
+<p><strong>架構概念</strong><br>這個時候增加服務器，部署集群提供服務，來分擔每台服務器的壓力，部署集群的另一個好處是可伸縮性，比如當遇到了雙11大流量的場景下，可以增加服務器分攤流量，等雙11過後，減少服務器節約成本。架構如下：</p>
+<p><img src="https://i.imgur.com/g5sVSRr.png"></p>
+<p>如果應用服務器是tomcat，那麼可以部署一個tomcat的集群，外部再部署一個負載均衡器，可以採用<strong>隨機</strong>、<strong>輪詢</strong>、<strong>一致性合希演算法</strong>將用戶的請求分發到不同應用服務集群;通常選擇免費的負載均衡是<strong>nginx</strong>。在這種架構下，應用服務器的負載將不會是整個應用的瓶頸點。</p>
+<p><strong>架構問題探討</strong><br>雖然應用程序的處理速度在這種架構下提升了許多，但是又會暴露一個問題，數據庫的壓力大大增加，導致訪問響應延遲，影響整個應用的性能。</p>
+<p>這種架構還有個問題，通常應用是有狀態的，需要記錄用戶的登錄信息，如果每次用戶的請求都是隨機路由到後端的應用服務器，那麼用戶的會話(session)將會丟失;</p>
+<p><strong>架構問題-解決方案</strong></p>
+<ul>
+<li>採用一致性的hash把用戶的請求路由到同一個tomcat，如果有一台服務器跪了，那麼這台服務器上面的用戶信息將會丟失。</li>
+<li>tomcat集群之間通過配置session複製，達到共享，此方案效率較低。</li>
+</ul>
+<p>這邊我覺得可以後續再接上看nginx 跟一口氣說出4種分布式一致性session 實現方式。</p>
+<h2 id="緩存"><a href="#緩存" class="headerlink" title="緩存"></a>緩存</h2><p><strong>場景探討</strong><br>根據二八原則，80%的業務都是集中訪問20%的數據，這20%的數據通常稱為<strong>熱點數據</strong>，但是這20%的數據占用的內存也不會小，如果每個應用服務器都存放一份，有些浪費存儲空間</p>
+<p><strong>架構概念</strong><br>所以這時候需要考慮加入分布式緩存服務器(常用的是<strong>Redis</strong>);當引入了分布式緩存服務器，再來看上面那個方案的問題，就可以解決了，<strong>把用戶的會話存放到緩存服務器</strong>，不僅可以防止用戶數據丟失，效率也不低;架構圖如下：<br><img src="https://i.imgur.com/VBZqdZ8.png"></p>
+<p>由於分布式緩存服務器畢竟存放在遠程，需要經過網路，所以取數據還是要花一點時間;地本緩存訪問速度更快，但是內存空間有限，並且還會出現和應用程序爭搶資源;所以這種架構搭配了<strong>分布式緩存</strong>和<strong>本地緩存</strong>，本地緩存存放少量常用熱點數據，當本地緩存中沒有命中時再去集中式緩存取。</p>
+<p>在引進緩存之後，數據庫的訪問壓力可以得到一定的緩解。</p>
+<h2 id="數據庫讀寫分離"><a href="#數據庫讀寫分離" class="headerlink" title="數據庫讀寫分離"></a>數據庫讀寫分離</h2><p><strong>場景探討</strong><br>雖然在加入了緩存之後，部分數據可以直接走緩存，不需要訪問數據庫，但是仍然會有一些請求，會訪問數據庫，比如：緩存失效，緩存未命中;當流量大的時候，數據庫的訪問量也不小，這時候我們需要考慮搭建<strong>數據庫集群，讀寫分離</strong>。</p>
+<p><strong>架構概念</strong><br>當應用服務器有寫操作時，訪問主庫，當應用程序有讀操作時，訪問從庫;大多數的應用都是讀的操作遠遠大於寫的操作，所以可以配置數據庫一主多從來分擔數據庫的壓力;為了讓應用程序對應主庫和從庫無感知，通常需要引入一些讀寫分離的框架做一個統一的數據訪問模塊。</p>
+<p><img src="https://i.imgur.com/lH34pof.png"></p>
+<p><strong>架構問題探討</strong><br>這種架構通常需要警惕的一個問題是<strong>主從延遲</strong>，當在高併發的場景下，主庫剛寫成功，數據庫還未成功同步完從庫，這時候另一個請求進入讀取數據發現不存在;</p>
+<p><strong>架構問題-解決方案</strong><br>在應用程序中高併發的場景下設置強制走主庫查詢。</p>
+<p>如何確認目前是高併發的場景??</p>
+<h2 id="反向代理和CDN"><a href="#反向代理和CDN" class="headerlink" title="反向代理和CDN"></a>反向代理和CDN</h2><h2 id="搜索引擎和NoSQL"><a href="#搜索引擎和NoSQL" class="headerlink" title="搜索引擎和NoSQL"></a>搜索引擎和NoSQL</h2><h2 id="業務縱向拆分"><a href="#業務縱向拆分" class="headerlink" title="業務縱向拆分"></a>業務縱向拆分</h2><h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://excalidraw.com/#room=532abe3496fd700504ca,OyZ_NtxeOQf3IBADjq8Q5g">excalidraw1</a></li>
+<li><a target="_blank" rel="noopener" href="https://excalidraw.com/#json=5004874848665600,pWnfJa3eZMcA3i0WL8a02g">excalidraw2</a></li>
+<li><a target="_blank" rel="noopener" href="https://excalidraw.com/#json=4983856352460800,t4IjF3Jm3clW4PWqoltx8g">excalidraw3</a></li>
+<li><a target="_blank" rel="noopener" href="https://excalidraw.com/#json=5535324247687168,XNBF-YEp94WfBqxapRot4Q">excalidraw4</a></li>
+<li><a target="_blank" rel="noopener" href="https://excalidraw.com/#json=6708724680884224,vtYWfYXomE9GJqrhQU3Rng">excalidraw5</a></li>
+<li><a target="_blank" rel="noopener" href="https://gitmind.com/app/doc/dab110f6d06ca5288d8215912ddcd2d3">gitMind</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/jtBTv1rsFHDDlyqbaWI-bA">8张图带你了解大型应用架构演进历程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/goodAndyxublog/archive/2020/07/17/13327412.html">一口氣說出4種分布式架構</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94176221">互聯網公司分布式架構</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/339719011">分布式集群架构场景化解决方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/76b359480940">秒杀系统的“热点数据”</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10226783">30-25之資料庫層的擴展 - 讀寫分離架構</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://akuma1.pixnet.net/blog/post/168180962-%E5%A4%A7%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%A6%82%E5%BF%B5%E8%88%87%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%EF%BC%8D%EF%BC%8D%EF%BC%88%E4%B8%80%EF%BC%89%E5%B0%8E%E8%AB%96">大架構的概念與程式設計－－（一）導論</a></p>
+<p>系統設計入門：效能與可擴展性的差異<br><a target="_blank" rel="noopener" href="https://askie.today/system-design-primer-performance-vs-scalability/">https://askie.today/system-design-primer-performance-vs-scalability/</a><br>系統設計入門：內容傳遞網路 CDN<br><a target="_blank" rel="noopener" href="https://askie.today/system-design-cdn-content-delivery-network/">https://askie.today/system-design-cdn-content-delivery-network/</a></p>
+<p>系統設計學習地圖<br><a target="_blank" rel="noopener" href="https://medium.com/%E5%BE%8C%E7%AB%AF%E6%96%B0%E6%89%8B%E6%9D%91/%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%E5%AD%B8%E7%BF%92%E5%9C%B0%E5%9C%96-de216ab211fb">https://medium.com/%E5%BE%8C%E7%AB%AF%E6%96%B0%E6%89%8B%E6%9D%91/%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%E5%AD%B8%E7%BF%92%E5%9C%B0%E5%9C%96-de216ab211fb</a></p>
+<p>筆記整理：技術架構涵蓋內容和演變過程總結</p>
+<p><a target="_blank" rel="noopener" href="https://codingnote.cc/zh-hk/p/336942/">https://codingnote.cc/zh-hk/p/336942/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ct4y1a7wU?p=49">https://www.bilibili.com/video/BV1Ct4y1a7wU?p=49</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/" class="post-title-link" itemprop="url">21天Bootstrap5新手實戰營-格式系統(上)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:00:13" itemprop="dateModified" datetime="2021-10-01T14:00:13+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="活動連結"><a href="#活動連結" class="headerlink" title="活動連結"></a>活動連結</h2><p><a target="_blank" rel="noopener" href="https://hackmd.io/@YmcMgo-NSKOqgTGAjl_5tg/ryar-vGOd/%2FNdGKchTeRBqbkTMiQ2HSmw">21 天帶您做出 Bootstrap 5 募資網站</a></p>
+<h2 id="格線"><a href="#格線" class="headerlink" title="格線"></a>格線</h2><p>容器就讓他回歸於容器</p>
+<p>元件就讓他回歸於元件</p>
+<p><img src="https://i.imgur.com/cEQ5Mrs.png" alt="img"></p>
+<p>選單通常不會用col 去排</p>
+<p>class 小寫到大</p>
+<p><img src="https://i.imgur.com/uy8Lphw.jpg" alt="img"></p>
+<p>寫東西不要寫剛好，在不同瀏覽器差1px就會斷行，幫自己買保險</p>
+<p><img src="https://i.imgur.com/SgDk9Mz.png" alt="img"></p>
+<p>設計師應該要用格線系統</p>
+<p>軟體</p>
+<p>figma,adobe xd</p>
+<p><img src="https://i.imgur.com/cly8xDg.jpg" alt="img"></p>
+<h2 id="PC-優先與手機優先之寫法介紹"><a href="#PC-優先與手機優先之寫法介紹" class="headerlink" title="PC 優先與手機優先之寫法介紹"></a>PC 優先與手機優先之寫法介紹</h2><p>桌面版優先是指樣式書寫順序為: 先寫最大寬度上限(EX: max-width:1440px) 當所有樣式寫完 最後再依序寫</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">992px</span>) &#123;...&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">768px</span>) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>手機優先是指樣式書寫順序為: 先寫最小固定寬度(通常都是: width:100% or width:100vw) 當所有樣式寫完 最後再依序寫</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>:<span class="number">768px</span>) &#123;...&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>:<span class="number">992px</span>) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="格線系統-上"><a href="#格線系統-上" class="headerlink" title="格線系統(上)"></a>格線系統(上)</h2><p>常開的版型是1140px，水平居中，所以可以用container class</p>
+<p>col-4 ,col-5 這樣寫是在寫手機</p>
+<p>boostrap5 是手機優先</p>
+<p>通常在寫的時候會先寫桌機版</p>
+<p>老師自己寫的時候，斷點的col 最多寫3個</p>
+<p>老師比較常用md ,lg</p>
+<p>sm,xxl 比較少</p>
+<h3 id="奇幻數字"><a href="#奇幻數字" class="headerlink" title="奇幻數字"></a>奇幻數字</h3><p><img src="https://i.imgur.com/AMgKdFL.jpg" alt="img"></p>
+<p>切版有了203、408 這種魔術數字，於有人發明了格線系統，解決自由發展的困擾</p>
+<h2 id="格線系統"><a href="#格線系統" class="headerlink" title="格線系統"></a>格線系統</h2><ul>
+<li>目的是為了減輕 magic number 出現</li>
+<li>可以解決重複code問題</li>
+<li>格線系統關鍵字：column(欄)、gutter(間距)</li>
+<li>960 grid<ul>
+<li>使用float 方式進行格線系統設計</li>
+<li>故意多1px，就會換行囉，這個就是float的特性</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/gpa0zTN.png" alt="img"></p>
+<ul>
+<li><p>Bootstrap5 也是用float 特性設計的哦 12:26</p>
+</li>
+<li><p>格線系統就是column + gutter 的加總</p>
+</li>
+<li><p>格線系統有11個gutter</p>
+</li>
+<li><p>為什麼要設計12欄</p>
+<ul>
+<li>因為比較好整除</li>
+<li>2,3,4,6欄好整除</li>
+</ul>
+</li>
+<li><p>gutter 產生方式</p>
+<ul>
+<li>有時候會用padding</li>
+<li>有時候會用margin</li>
+<li>960 grid 網站就是用margin-left,margin-right   左右各推10，產生20的空間</li>
+</ul>
+<p><img src="https://i.imgur.com/95DJhLa.png" alt="img"></p>
+<ul>
+<li>Bootstarp 本來是用padding 去推的</li>
+<li>每個格線系統推的方式可能有所不同，之後在設計上要注意。</li>
+</ul>
+</li>
+</ul>
+<h2 id="切版方式的演進"><a href="#切版方式的演進" class="headerlink" title="切版方式的演進"></a>切版方式的演進</h2><ul>
+<li>table + table</li>
+<li>float</li>
+<li>inline block</li>
+<li>flexbox</li>
+<li>grid</li>
+</ul>
+<h2 id="格線系統三劍客"><a href="#格線系統三劍客" class="headerlink" title="格線系統三劍客"></a>格線系統三劍客</h2><ul>
+<li>container</li>
+<li>row</li>
+<li>column</li>
+<li>Boostrap 是用box-sizing: border-box;</li>
+</ul>
+<h2 id="格線系統名言"><a href="#格線系統名言" class="headerlink" title="格線系統名言"></a>格線系統名言</h2><ul>
+<li>row的下一層一定要是column</li>
+<li>column的上一層一定要是row</li>
+<li>網頁內容與元件請放在.col-裡面</li>
+</ul>
+<h2 id="常見錯誤"><a href="#常見錯誤" class="headerlink" title="常見錯誤"></a>常見錯誤</h2><ul>
+<li><p>在 .col 增加寬度</p>
+</li>
+<li><p>在格線系統調整左右 margin 與 padding</p>
+</li>
+<li><p>常見觀念</p>
+<ul>
+<li>可以加上下 的 margin 與 padding</li>
+<li>最外層至少補一個 container</li>
+<li>整體格線邏輯是一致</li>
+</ul>
+</li>
+</ul>
+<h2 id="格線觀念考驗時間"><a href="#格線觀念考驗時間" class="headerlink" title="格線觀念考驗時間"></a>格線觀念考驗時間</h2><ol>
+<li><p>請問這樣寫對還是錯?</p>
+<p><img src="https://i.imgur.com/NTzBBh3.png" alt="img"></p>
+<blockquote>
+<p>對</p>
+</blockquote>
+</li>
+<li><p>請問這樣寫對還是錯？</p>
+<p><img src="https://i.imgur.com/nhwarkP.png" alt="img"></p>
+<blockquote>
+<p>對</p>
+</blockquote>
+</li>
+<li><p>請問這樣寫對還是錯?</p>
+<p><img src="https://i.imgur.com/QLBU2FM.png" alt="img"></p>
+<blockquote>
+<p>錯</p>
+</blockquote>
+</li>
+<li><p>會斷行還是不會斷行?</p>
+<p><img src="https://i.imgur.com/h4nROPq.jpg" alt="img"></p>
+<blockquote>
+<p>會,因為row有flex-wrap:wrap屬性</p>
+</blockquote>
+</li>
+<li><p>上面的版本對，還是下面的版本對，還是都對?</p>
+<p><img src="https://i.imgur.com/uhiDo0z.jpg" alt="img"></p>
+<blockquote>
+<p>上面的版本對，因為跟後端邏輯設計有關</p>
+<p>提醒：flex-wrap 自己會往下換行</p>
+</blockquote>
+</li>
+<li><p>對還是錯？</p>
+<p><img src="https://i.imgur.com/9NRk6Ff.png" alt="img"></p>
+<blockquote>
+<p>錯</p>
+</blockquote>
+</li>
+<li><p>對還是錯？</p>
+<p><img src="https://i.imgur.com/t7M9Cei.png" alt="img"></p>
+<blockquote>
+<p>錯，沒有下container</p>
+</blockquote>
+</li>
+<li><p>對還是錯?</p>
+<p><img src="https://i.imgur.com/Yr9TrMY.png" alt="img"></p>
+<blockquote>
+<p>是ok的</p>
+</blockquote>
+</li>
+<li><p>對還錯?</p>
+<p><img src="https://i.imgur.com/VaVhCEk.png" alt="img"></p>
+<blockquote>
+<p>對的，其中第三個footer 沒有一定要求水平居中，有可能需求會需要滿版設計</p>
+</blockquote>
+</li>
+<li><p>對還錯?</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/kZbhPjs.png" alt="img"></p>
+<blockquote>
+<p>對</p>
+<p>header ,footer 想要滿版</p>
+<p>container 裡面符合名言</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/" class="post-title-link" itemprop="url">21天Bootstrap5新手實戰營-格線系統(下)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:16:20" itemprop="dateModified" datetime="2021-10-01T14:16:20+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>829</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="格線系統斷點設計"><a href="#格線系統斷點設計" class="headerlink" title="格線系統斷點設計"></a>格線系統斷點設計</h2><p>下面區塊你會切6還是12呢?<br><img src="https://i.imgur.com/ZAbPfZg.jpg" alt="2021_05_22_01_41_01_697.png"></p>
+<blockquote>
+<p>12比較好，未來字長度變了，還有空間<br>老師也有可能只會用container , 連row 都不用</p>
+</blockquote>
+<p>老師切版參考答案</p>
+<blockquote>
+<p><img src="https://i.imgur.com/OJ8q4IZ.jpg" alt="2021_05_22_01_16_50_432.png"></p>
+</blockquote>
+<ul>
+<li>網格系統再次強調不要動margin,padding</li>
+<li>可以在上面加顏色、背景圖片、文字樣式等等</li>
+<li>col-4,col-8寫法 是手機優先的寫法</li>
+<li>我們在做網站通常都是從PC版的開始開發，會從md大小開始</li>
+<li>若想先做 PC 版，可用 md、lg 當起手式</li>
+<li>老師斷點通常會寫3個，比如當md,lg不滿足就會是手機版格式</li>
+</ul>
+<h2 id="格線系統與元件整合"><a href="#格線系統與元件整合" class="headerlink" title="格線系統與元件整合"></a>格線系統與元件整合</h2><p><img src="https://i.imgur.com/86BsgeN.png" alt="Untitled.png"></p>
+<ul>
+<li>容器裡放元件</li>
+<li>鉛筆盒 是容器 象皮擦是元件</li>
+</ul>
+<h2 id="容器與元件分離-內容與樣式分離"><a href="#容器與元件分離-內容與樣式分離" class="headerlink" title="容器與元件分離? 內容與樣式分離?"></a>容器與元件分離? 內容與樣式分離?</h2><p>這樣寫有沒有問題?<br><img src="https://i.imgur.com/moZmDbK.png" alt="2021_05_22_02_00_49_631.png"></p>
+<blockquote>
+<p>容器與元件各司其職，拆開寫</p>
+</blockquote>
+<p><img src="https://i.imgur.com/Yw92gU3.png" alt="2021_05_22_02_03_04_140.png"></p>
+<p>請說出容器與元件的行數<br><img src="https://i.imgur.com/7CrjdnY.png" alt="2021_05_22_02_04_43_916.png"></p>
+<h2 id="通用類別搭配"><a href="#通用類別搭配" class="headerlink" title="通用類別搭配"></a>通用類別搭配</h2><ul>
+<li>我希望在md 平板大小時隱藏</li>
+<li>厲害之處是結合了斷點組合了常用的功能</li>
+</ul>
+<p><img src="https://i.imgur.com/G875Os4.png" alt="2021_05_22_02_13_28_553.png"></p>
+<h2 id="問題時間-網站範例"><a href="#問題時間-網站範例" class="headerlink" title="問題時間-網站範例"></a>問題時間-網站範例</h2><p><a target="_blank" rel="noopener" href="https://www.hexschool.com/">六角學院</a></p>
+<h3 id="1-判斷哪些地方有用到-row-哪些地方沒有"><a href="#1-判斷哪些地方有用到-row-哪些地方沒有" class="headerlink" title="1. 判斷哪些地方有用到 .row 哪些地方沒有"></a>1. 判斷哪些地方有用到 .row 哪些地方沒有</h3><p><img src="https://i.imgur.com/pyUtqSd.jpg" alt="2021_05_24_11_16_06_80.png"></p>
+<blockquote>
+<p>通常選單不會切row column,因為選單的選項會一直增加，要切column 會一直調整。可以使用<a target="_blank" rel="noopener" href="https://bootstrap5.hexschool.com/docs/5.0/components/navbar/">導覽列 (Navbar)</a></p>
+</blockquote>
+<h3 id="2-這個區塊會使用到row-column-嗎"><a href="#2-這個區塊會使用到row-column-嗎" class="headerlink" title="2. 這個區塊會使用到row column 嗎?"></a>2. 這個區塊會使用到row column 嗎?</h3><p><img src="https://i.imgur.com/sAyuQiL.png" alt="2021_05_24_11_17_23_599.png"></p>
+<blockquote>
+<p>會</p>
+</blockquote>
+<h3 id="3-有用到格線系統嗎"><a href="#3-有用到格線系統嗎" class="headerlink" title="3. 有用到格線系統嗎?"></a>3. 有用到格線系統嗎?</h3><p><img src="https://i.imgur.com/rGA5rO7.png" alt="2021_05_24_11_28_36_368.png"></p>
+<blockquote>
+<p>有</p>
+</blockquote>
+<h3 id="4-補充說明"><a href="#4-補充說明" class="headerlink" title="4. 補充說明"></a>4. 補充說明</h3><ul>
+<li>另外Flex 也有通用類別</li>
+<li>老師習慣class 由小寫到大(手機到平板到桌機)</li>
+<li>範例<br><img src="https://i.imgur.com/UDpfrBp.jpg" alt="2021_05_24_12_05_14_723.png"></li>
+</ul>
+<h3 id="5-表尾，會使用到格線系統嗎"><a href="#5-表尾，會使用到格線系統嗎" class="headerlink" title="5. 表尾，會使用到格線系統嗎?"></a>5. 表尾，會使用到格線系統嗎?</h3><blockquote>
+<p>會<br>另外提醒，盡量不要算的剛好。<br>要自己買保險啊，孩子。<br>老師自己又說自己可以用boostrap 的其它方式達成，不見得一定要用格線系統<br><img src="https://i.imgur.com/5j8FT1o.png" alt="2021_05_24_12_27_48_867.png"></p>
+</blockquote>
+<ol>
+<li>會嗎?</li>
+</ol>
+<ul>
+<li><p>答案</p>
+<p>  會</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/hkvhqRF.jpg" alt="2021_05_24_12_31_02_351.png"></p>
+<h3 id="7-有用到格線系統嗎"><a href="#7-有用到格線系統嗎" class="headerlink" title="7. 有用到格線系統嗎??"></a>7. 有用到格線系統嗎??</h3><blockquote>
+<p>有<br><img src="https://i.imgur.com/i67JS8r.jpg" alt="2021_05_24_12_33_22_499.png"></p>
+</blockquote>
+<p>補充說明：</p>
+<p>在boostrap版型應該都有要格線。</p>
+<p>像button 的部分 設計師沒有follow 格線系統，因此我們自己在切版的時候，就可以照自己的方式達到就好</p>
+<p><img src="https://i.imgur.com/cs1VgAs.jpg" alt="2021_05_24_12_36_13_651.png"></p>
+<h3 id="8-會用到格線系統嗎"><a href="#8-會用到格線系統嗎" class="headerlink" title="8. 會用到格線系統嗎??"></a>8. 會用到格線系統嗎??</h3><blockquote>
+<p>不會<br><img src="https://i.imgur.com/FK53y5e.png" alt="2021_05_24_12_42_14_733.png"></p>
+</blockquote>
+<p>補充說明：</p>
+<p>如果自己要開版設計稿，格線的圖可以哪裡找?</p>
+<p>可用軟體如下</p>
+<ul>
+<li>Adobe XD</li>
+<li>sketch</li>
+<li>figma</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://bootstrapmade.com/">Free Bootstrap Templates</a></p>
+<h3 id="9-需要格線系統嗎"><a href="#9-需要格線系統嗎" class="headerlink" title="9. 需要格線系統嗎?"></a>9. 需要格線系統嗎?</h3><blockquote>
+<p>要<br><img src="https://i.imgur.com/UM5IwAU.png" alt="2021_05_24_12_45_33_367.png"></p>
+</blockquote>
+<h2 id="問題解答-column-再包row-column-能不能"><a href="#問題解答-column-再包row-column-能不能" class="headerlink" title="問題解答 column 再包row column 能不能?"></a>問題解答 column 再包row column 能不能?</h2><p><img src="https://i.imgur.com/mzUWZdK.png" alt="2021_05_24_13_21_12_769.png"></p>
+<h2 id="主線及每日任務"><a href="#主線及每日任務" class="headerlink" title="主線及每日任務"></a>主線及每日任務</h2><h3 id="通用類別前3名"><a href="#通用類別前3名" class="headerlink" title="通用類別前3名"></a>通用類別前3名</h3><ul>
+<li>display</li>
+<li>flex</li>
+<li>spacing</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/13/2021-05-13%20CSS%E6%AC%8A%E9%87%8D%E8%80%83%E9%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/13/2021-05-13%20CSS%E6%AC%8A%E9%87%8D%E8%80%83%E9%A1%8C/" class="post-title-link" itemprop="url">CSS權重考題</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-13 10:32:29" itemprop="dateCreated datePublished" datetime="2021-05-13T10:32:29+08:00">2021-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>606</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="第一題"><a href="#第一題" class="headerlink" title="第一題"></a>第一題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="第二題"><a href="#第二題" class="headerlink" title="第二題"></a>第二題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三題"><a href="#第三題" class="headerlink" title="第三題"></a>第三題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-class">.title1</span><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

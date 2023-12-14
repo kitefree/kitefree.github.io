@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="8. Subnetting 1Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍 為什麼要劃分?  More Secure 網路安全HR + IT + Sale 如果都在同一個網域裡，就可以直接訪問IT，顯然不安全…   Easier to Manager 好管理 比如針對IT部門做決策政策管理，就可以直接找同網段的IP即可     Save IP Address 節省地址空間以下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCNA_09">
+<meta property="og:url" content="https://kitefree.github.io/2021/04/30/2021-04-30%20CCNA_09/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="8. Subnetting 1Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍 為什麼要劃分?  More Secure 網路安全HR + IT + Sale 如果都在同一個網域裡，就可以直接訪問IT，顯然不安全…   Easier to Manager 好管理 比如針對IT部門做決策政策管理，就可以直接找同網段的IP即可     Save IP Address 節省地址空間以下">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/bF3RB7C.png">
+<meta property="og:image" content="https://i.imgur.com/WaYd8ge.png">
+<meta property="og:image" content="https://i.imgur.com/yFWbRUY.png">
+<meta property="og:image" content="https://i.imgur.com/FIisjlB.png">
+<meta property="og:image" content="https://i.imgur.com/ZxUBMIy.png">
+<meta property="og:image" content="https://i.imgur.com/hANy2d0.png">
+<meta property="og:image" content="https://i.imgur.com/5ED86zA.png">
+<meta property="og:image" content="https://i.imgur.com/iiqD35a.png">
+<meta property="og:image" content="https://i.imgur.com/vJD8OrS.png">
+<meta property="article:published_time" content="2021-04-30T11:35:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T07:55:47.324Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="CCNA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/bF3RB7C.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/04/30/2021-04-30%20CCNA_09/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>CCNA_09 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/30/2021-04-30%20CCNA_09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CCNA_09
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-30 19:35:00" itemprop="dateCreated datePublished" datetime="2021-04-30T19:35:00+08:00">2021-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:55:47" itemprop="dateModified" datetime="2021-10-01T15:55:47+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>872</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="8-Subnetting-1"><a href="#8-Subnetting-1" class="headerlink" title="8. Subnetting 1"></a>8. Subnetting 1</h2><p>Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍</p>
+<p>為什麼要劃分?</p>
+<ul>
+<li>More Secure<ul>
+<li>網路安全<br>HR + IT + Sale 如果都在同一個網域裡，就可以直接訪問IT，顯然不安全…</li>
+</ul>
+</li>
+<li>Easier to Manager<ul>
+<li>好管理<ul>
+<li>比如針對IT部門做決策政策管理，就可以直接找同網段的IP即可<br><img src="https://i.imgur.com/bF3RB7C.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Save IP Address<ul>
+<li>節省地址空間<br>以下範例說明了浪費，Class C 2^8 - 2 個地址可用<ul>
+<li>192.168.10.0 HR</li>
+<li>192.168.20.0 IT</li>
+<li>192.168.30.0 Sale</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Why-you-need-subnetting"><a href="#Why-you-need-subnetting" class="headerlink" title="Why you need subnetting"></a>Why you need subnetting</h2><p>把一個網段劃分成若干網段<br><img src="https://i.imgur.com/WaYd8ge.png" alt="image"></p>
+<h2 id="How-to-create-subnets"><a href="#How-to-create-subnets" class="headerlink" title="How to create subnets"></a>How to create subnets</h2><p><img src="https://i.imgur.com/yFWbRUY.png" alt="image"></p>
+<p>Classful 沒進行子網劃分稱為有類<br>Classless 進擁子網劃分稱為無類<br>複習一下<br>Class A 8 + 24<br>Class B 16 + 16<br>Class C 24 + 8</p>
+<h2 id="Subnet-Mask"><a href="#Subnet-Mask" class="headerlink" title="Subnet Mask"></a>Subnet Mask</h2><p>給你這3個ip 是無法判斷是否為同網段</p>
+<ul>
+<li>192.168.1.1</li>
+<li>192.168.1.129</li>
+<li>192.168.1.254</li>
+</ul>
+<p>只有IP Address + Subnet Mask 才能判斷是否為同一個網段</p>
+<p><img src="https://i.imgur.com/FIisjlB.png" alt="image"></p>
+<p><img src="https://i.imgur.com/ZxUBMIy.png" alt="image"></p>
+<h2 id="Classless-Inter-Domain-Routing-CIDR"><a href="#Classless-Inter-Domain-Routing-CIDR" class="headerlink" title="Classless Inter-Domain Routing (CIDR)"></a>Classless Inter-Domain Routing (CIDR)</h2><p><img src="https://i.imgur.com/hANy2d0.png" alt="image"></p>
+<p>Subnet Mask<br>不能迅速告訴我借了多少bit給network，所以可以用CIDR<br>CIDR<br>又稱為Slash Notation<br>Prefix<br>&#x2F;8 代表有8個網路位<br>以&#x2F;26為例</p>
+<h2 id="Subnet-Mask-with-CIDR"><a href="#Subnet-Mask-with-CIDR" class="headerlink" title="Subnet Mask with CIDR"></a>Subnet Mask with CIDR</h2><p>思科設備大部分是以MASK 進行設定，其它廠商有時候會以CIDR進行設定<br><img src="https://i.imgur.com/5ED86zA.png" alt="image"></p>
+<ul>
+<li>IP&#x2F;32<ul>
+<li>代表是一個主機</li>
+</ul>
+</li>
+<li>IP&#x2F;30<ul>
+<li>2^-2 &#x3D; 2</li>
+<li>最小網段</li>
+<li>如何確認另一個IP是哪一個呢?<ul>
+<li>Tips</li>
+<li>the lower IP is always odd,and the higher is always even</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IP&#x2F;31<ul>
+<li>是理論上最小的網段</li>
+<li>2個HOST彼此之間溝通，不需要再有頭跟尾的IP需求(網路、廣播)</li>
+<li>能否設定IP&#x2F;31 要看硬體設備是否有支持這樣的作法<br><img src="https://i.imgur.com/iiqD35a.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+<h2 id="Subnet-Zero"><a href="#Subnet-Zero" class="headerlink" title="Subnet Zero"></a>Subnet Zero</h2><p>思科設備在版本12.x 以前 subnet zero 是不允許使用的</p>
+<p><img src="https://i.imgur.com/vJD8OrS.png" alt="image"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CCNA/" rel="tag"># CCNA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/30/2021-04-30%20Ubuntu%20SSH%20Server%20%E5%AE%89%E8%A3%9D/" rel="prev" title="Ubuntu SSH Server 安裝">
+      <i class="fa fa-chevron-left"></i> Ubuntu SSH Server 安裝
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/02/2021-05-02%20CCNA_11/" rel="next" title="CCNA_11">
+      CCNA_11 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Subnetting-1"><span class="nav-number">1.</span> <span class="nav-text">8. Subnetting 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-you-need-subnetting"><span class="nav-number">2.</span> <span class="nav-text">Why you need subnetting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-create-subnets"><span class="nav-number">3.</span> <span class="nav-text">How to create subnets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subnet-Mask"><span class="nav-number">4.</span> <span class="nav-text">Subnet Mask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classless-Inter-Domain-Routing-CIDR"><span class="nav-number">5.</span> <span class="nav-text">Classless Inter-Domain Routing (CIDR)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subnet-Mask-with-CIDR"><span class="nav-number">6.</span> <span class="nav-text">Subnet Mask with CIDR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subnet-Zero"><span class="nav-number">7.</span> <span class="nav-text">Subnet Zero</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

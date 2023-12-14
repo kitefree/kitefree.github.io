@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="說明以下內容是看veeam youtube 影片的心得整理，詳細資料請參考連結 資料恢復的時間軸 營運不間斷的關鍵 3-2-1-0法則 符合3-2-1-0？ 產品介紹Instant VM Recovery(即時還原) 快速移轉資料到不同平台 Instant VM Recovery只要透過veeam備份(多種來源，下圖所示)，都可以在vmware 還原  雲端備份 完整還原&#x2F;精細還原備份丟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Veeam 即刻救援之地表最強還原">
+<meta property="og:url" content="https://kitefree.github.io/2021/11/10/2021-11-10%20Veeam%E5%8D%B3%E5%88%BB%E6%95%91%E6%8F%B4%E4%B9%8B%E5%9C%B0%E8%A1%A8%E6%9C%80%E5%BC%B7%E9%82%84%E5%8E%9F/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="說明以下內容是看veeam youtube 影片的心得整理，詳細資料請參考連結 資料恢復的時間軸 營運不間斷的關鍵 3-2-1-0法則 符合3-2-1-0？ 產品介紹Instant VM Recovery(即時還原) 快速移轉資料到不同平台 Instant VM Recovery只要透過veeam備份(多種來源，下圖所示)，都可以在vmware 還原  雲端備份 完整還原&#x2F;精細還原備份丟">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/wcGfMoe.png">
+<meta property="og:image" content="https://i.imgur.com/wufaIFN.png">
+<meta property="og:image" content="https://i.imgur.com/FDTr6aK.png">
+<meta property="og:image" content="https://i.imgur.com/W44OLE1.png">
+<meta property="og:image" content="https://i.imgur.com/uyg05qd.png">
+<meta property="og:image" content="https://i.imgur.com/NJezqbO.png">
+<meta property="og:image" content="https://i.imgur.com/gxiB09B.png">
+<meta property="og:image" content="https://i.imgur.com/o1Q3kqL.png">
+<meta property="og:image" content="https://i.imgur.com/Ebhqpfp.png">
+<meta property="og:image" content="https://i.imgur.com/JRmOSBK.png">
+<meta property="og:image" content="https://i.imgur.com/4nfm5Ae.png">
+<meta property="og:image" content="https://i.imgur.com/rjVkisU.png">
+<meta property="og:image" content="https://i.imgur.com/RrhhLKV.png">
+<meta property="og:image" content="https://i.imgur.com/SAk1xdJ.png">
+<meta property="og:image" content="https://i.imgur.com/3K0i43s.png">
+<meta property="og:image" content="https://i.imgur.com/kTDonI7.png">
+<meta property="og:image" content="https://i.imgur.com/2LlBBLX.png">
+<meta property="og:image" content="https://i.imgur.com/Tvm163J.png">
+<meta property="og:image" content="https://i.imgur.com/NOcz7UC.png">
+<meta property="article:published_time" content="2021-11-10T07:27:00.000Z">
+<meta property="article:modified_time" content="2021-11-10T07:31:46.475Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="Veeam">
+<meta property="article:tag" content="backup">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/wcGfMoe.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/11/10/2021-11-10%20Veeam%E5%8D%B3%E5%88%BB%E6%95%91%E6%8F%B4%E4%B9%8B%E5%9C%B0%E8%A1%A8%E6%9C%80%E5%BC%B7%E9%82%84%E5%8E%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Veeam 即刻救援之地表最強還原 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/11/10/2021-11-10%20Veeam%E5%8D%B3%E5%88%BB%E6%95%91%E6%8F%B4%E4%B9%8B%E5%9C%B0%E8%A1%A8%E6%9C%80%E5%BC%B7%E9%82%84%E5%8E%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Veeam 即刻救援之地表最強還原
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-11-10 15:27:00 / 修改時間：15:31:46" itemprop="dateCreated datePublished" datetime="2021-11-10T15:27:00+08:00">2021-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">資訊安全</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>563</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><p>以下內容是看veeam youtube 影片的心得整理，詳細資料請參考連結</p>
+<h2 id="資料恢復的時間軸"><a href="#資料恢復的時間軸" class="headerlink" title="資料恢復的時間軸"></a>資料恢復的時間軸</h2><p><img src="https://i.imgur.com/wcGfMoe.png" alt="image-20211110132542102"></p>
+<h2 id="營運不間斷的關鍵"><a href="#營運不間斷的關鍵" class="headerlink" title="營運不間斷的關鍵"></a>營運不間斷的關鍵</h2><p><img src="https://i.imgur.com/wufaIFN.png" alt="image-20211110132635150"></p>
+<h2 id="3-2-1-0法則"><a href="#3-2-1-0法則" class="headerlink" title="3-2-1-0法則"></a>3-2-1-0法則</h2><p><img src="https://i.imgur.com/FDTr6aK.png" alt="image-20211110132703429"></p>
+<h2 id="符合3-2-1-0？"><a href="#符合3-2-1-0？" class="headerlink" title="符合3-2-1-0？"></a>符合3-2-1-0？</h2><p><img src="https://i.imgur.com/W44OLE1.png" alt="image-20211110132802389"></p>
+<h2 id="產品介紹"><a href="#產品介紹" class="headerlink" title="產品介紹"></a>產品介紹</h2><h3 id="Instant-VM-Recovery-即時還原"><a href="#Instant-VM-Recovery-即時還原" class="headerlink" title="Instant VM Recovery(即時還原)"></a>Instant VM Recovery(即時還原)</h3><p><img src="https://i.imgur.com/uyg05qd.png" alt="image-20211110133000037"></p>
+<h3 id="快速移轉資料到不同平台"><a href="#快速移轉資料到不同平台" class="headerlink" title="快速移轉資料到不同平台"></a>快速移轉資料到不同平台</h3><p><img src="https://i.imgur.com/NJezqbO.png" alt="image-20211110133123535"></p>
+<h3 id="Instant-VM-Recovery"><a href="#Instant-VM-Recovery" class="headerlink" title="Instant VM Recovery"></a>Instant VM Recovery</h3><p>只要透過veeam備份(多種來源，下圖所示)，都可以在vmware 還原</p>
+<p><img src="https://i.imgur.com/gxiB09B.png" alt="image-20211110133356180"></p>
+<h3 id="雲端備份"><a href="#雲端備份" class="headerlink" title="雲端備份"></a>雲端備份</h3><p><img src="https://i.imgur.com/o1Q3kqL.png" alt="image-20211110133816275"></p>
+<h4 id="完整還原-精細還原"><a href="#完整還原-精細還原" class="headerlink" title="完整還原&#x2F;精細還原"></a>完整還原&#x2F;精細還原</h4><p>備份丟到雲端時是完整備份，要還原的時候可以透過veeam挑出您要的檔案進行還原，這個就是所謂的<code>精細還原</code>，下圖綠框清單舉例了精細還原的應用對象</p>
+<p><img src="https://i.imgur.com/Ebhqpfp.png" alt="image-20211110133927651"></p>
+<h3 id="將服務搬上雲端"><a href="#將服務搬上雲端" class="headerlink" title="將服務搬上雲端"></a>將服務搬上雲端</h3><p>不是只是把檔案搬上去而已，可以做到把服務放到雲端，服務營運在雲端</p>
+<p><img src="https://i.imgur.com/JRmOSBK.png" alt="image-20211110134207012"></p>
+<h3 id="將Cloud服務快速還原至地端"><a href="#將Cloud服務快速還原至地端" class="headerlink" title="將Cloud服務快速還原至地端"></a>將Cloud服務快速還原至地端</h3><p><img src="https://i.imgur.com/4nfm5Ae.png" alt="image-20211110134426166"></p>
+<h3 id="AWS-marketplace"><a href="#AWS-marketplace" class="headerlink" title="AWS marketplace"></a>AWS marketplace</h3><p>可以在 marketplace 點選這個服務，將這個服務打開。可以在雲端上面備份雲端上面的虛擬機，備份到雲端的Storage Service(S3)</p>
+<p><img src="https://i.imgur.com/rjVkisU.png" alt="image-20211110134515310"></p>
+<p><img src="https://i.imgur.com/RrhhLKV.png" alt="image-20211110134808002"></p>
+<h3 id="Azure-marketplace"><a href="#Azure-marketplace" class="headerlink" title="Azure marketplace"></a>Azure marketplace</h3><p><img src="https://i.imgur.com/SAk1xdJ.png" alt="image-20211110134854369"></p>
+<p><img src="https://i.imgur.com/3K0i43s.png" alt="image-20211110134919266"></p>
+<h3 id="還原至地端服務"><a href="#還原至地端服務" class="headerlink" title="還原至地端服務"></a>還原至地端服務</h3><p>先將object copy 到地端的backup server ，再透過veeam 工具佈署到你要的環境上，比如vmware 等等。</p>
+<p><img src="https://i.imgur.com/kTDonI7.png" alt="image-20211110135402815"></p>
+<h3 id="快速還原到地端"><a href="#快速還原到地端" class="headerlink" title="快速還原到地端"></a>快速還原到地端</h3><p>也支援快速還原到地端的功能</p>
+<p><img src="https://i.imgur.com/2LlBBLX.png" alt="image-20211110135537151"></p>
+<h3 id="雲跟雲之間互換"><a href="#雲跟雲之間互換" class="headerlink" title="雲跟雲之間互換"></a>雲跟雲之間互換</h3><p>從AWS 或 Azure 備份檔案透過地端的Veeam 還原到其它的cloud上</p>
+<p><img src="https://i.imgur.com/Tvm163J.png" alt="image-20211110135703752"></p>
+<h3 id="平台移轉支援表列"><a href="#平台移轉支援表列" class="headerlink" title="平台移轉支援表列"></a>平台移轉支援表列</h3><p><img src="https://i.imgur.com/NOcz7UC.png" alt="image-20211110140258117"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oLS7EN0R4cc">Veeam 即刻救援之地表最強還原</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Veeam/" rel="tag"># Veeam</a>
+              <a href="/tags/backup/" rel="tag"># backup</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/10/2021-11-10%20Veeam%20Backup%20&%20Replication%20v11%20%E5%85%A8%E6%96%B0%E5%BC%B7%E5%8C%96%E5%9E%8B%20Linux%20%E5%84%B2%E5%AD%98%E5%BA%AB/" rel="prev" title="Veeam Backup & Replication v11 全新強化型 Linux 儲存庫">
+      <i class="fa fa-chevron-left"></i> Veeam Backup & Replication v11 全新強化型 Linux 儲存庫
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/15/2021-11-15%20CICD%20%E5%A5%BD%E8%87%AA%E5%8B%95/" rel="next" title="CICD好自動">
+      CICD好自動 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AA%AA%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E6%81%A2%E5%BE%A9%E7%9A%84%E6%99%82%E9%96%93%E8%BB%B8"><span class="nav-number">2.</span> <span class="nav-text">資料恢復的時間軸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%87%9F%E9%81%8B%E4%B8%8D%E9%96%93%E6%96%B7%E7%9A%84%E9%97%9C%E9%8D%B5"><span class="nav-number">3.</span> <span class="nav-text">營運不間斷的關鍵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-1-0%E6%B3%95%E5%89%87"><span class="nav-number">4.</span> <span class="nav-text">3-2-1-0法則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%A6%E5%90%883-2-1-0%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">符合3-2-1-0？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A2%E5%93%81%E4%BB%8B%E7%B4%B9"><span class="nav-number">6.</span> <span class="nav-text">產品介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instant-VM-Recovery-%E5%8D%B3%E6%99%82%E9%82%84%E5%8E%9F"><span class="nav-number">6.1.</span> <span class="nav-text">Instant VM Recovery(即時還原)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E7%A7%BB%E8%BD%89%E8%B3%87%E6%96%99%E5%88%B0%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0"><span class="nav-number">6.2.</span> <span class="nav-text">快速移轉資料到不同平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instant-VM-Recovery"><span class="nav-number">6.3.</span> <span class="nav-text">Instant VM Recovery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B2%E7%AB%AF%E5%82%99%E4%BB%BD"><span class="nav-number">6.4.</span> <span class="nav-text">雲端備份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E9%82%84%E5%8E%9F-%E7%B2%BE%E7%B4%B0%E9%82%84%E5%8E%9F"><span class="nav-number">6.4.1.</span> <span class="nav-text">完整還原&#x2F;精細還原</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%87%E6%9C%8D%E5%8B%99%E6%90%AC%E4%B8%8A%E9%9B%B2%E7%AB%AF"><span class="nav-number">6.5.</span> <span class="nav-text">將服務搬上雲端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%87Cloud%E6%9C%8D%E5%8B%99%E5%BF%AB%E9%80%9F%E9%82%84%E5%8E%9F%E8%87%B3%E5%9C%B0%E7%AB%AF"><span class="nav-number">6.6.</span> <span class="nav-text">將Cloud服務快速還原至地端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AWS-marketplace"><span class="nav-number">6.7.</span> <span class="nav-text">AWS marketplace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Azure-marketplace"><span class="nav-number">6.8.</span> <span class="nav-text">Azure marketplace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%84%E5%8E%9F%E8%87%B3%E5%9C%B0%E7%AB%AF%E6%9C%8D%E5%8B%99"><span class="nav-number">6.9.</span> <span class="nav-text">還原至地端服務</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E9%82%84%E5%8E%9F%E5%88%B0%E5%9C%B0%E7%AB%AF"><span class="nav-number">6.10.</span> <span class="nav-text">快速還原到地端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B2%E8%B7%9F%E9%9B%B2%E4%B9%8B%E9%96%93%E4%BA%92%E6%8F%9B"><span class="nav-number">6.11.</span> <span class="nav-text">雲跟雲之間互換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%8F%B0%E7%A7%BB%E8%BD%89%E6%94%AF%E6%8F%B4%E8%A1%A8%E5%88%97"><span class="nav-number">6.12.</span> <span class="nav-text">平台移轉支援表列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

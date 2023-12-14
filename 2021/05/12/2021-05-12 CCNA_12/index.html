@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="12. Warm Up Packet Tracer and IOS BasicIOS 是思科網路的系統名稱 Bring Up a DeviceRouter Bootup Process   Perform POST   Power-on Self-test(POST) - 通電自檢 對於硬件做基本檢測    Load Bootstrap   當當於電腦的BIOS    Locate IOS   啟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCNA_12">
+<meta property="og:url" content="https://kitefree.github.io/2021/05/12/2021-05-12%20CCNA_12/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="12. Warm Up Packet Tracer and IOS BasicIOS 是思科網路的系統名稱 Bring Up a DeviceRouter Bootup Process   Perform POST   Power-on Self-test(POST) - 通電自檢 對於硬件做基本檢測    Load Bootstrap   當當於電腦的BIOS    Locate IOS   啟">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/l5Up7Eq.png">
+<meta property="og:image" content="https://i.imgur.com/LQZxGjS.png">
+<meta property="og:image" content="https://i.imgur.com/2wVngsm.png">
+<meta property="og:image" content="https://i.imgur.com/oJs1Xzw.png">
+<meta property="og:image" content="https://i.imgur.com/HN9aOVM.png">
+<meta property="og:image" content="https://i.imgur.com/zVyonJg.png">
+<meta property="og:image" content="https://i.imgur.com/PGq1cdw.png">
+<meta property="og:image" content="https://i.imgur.com/KeCQrbt.png">
+<meta property="og:image" content="https://i.imgur.com/9qr0d0V.png">
+<meta property="article:published_time" content="2021-05-12T11:07:00.000Z">
+<meta property="article:modified_time" content="2021-09-19T01:19:33.041Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="CCNA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/l5Up7Eq.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/05/12/2021-05-12%20CCNA_12/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>CCNA_12 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/12/2021-05-12%20CCNA_12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CCNA_12
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-12 19:07:00" itemprop="dateCreated datePublished" datetime="2021-05-12T19:07:00+08:00">2021-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="12-Warm-Up-Packet-Tracer-and-IOS-Basic"><a href="#12-Warm-Up-Packet-Tracer-and-IOS-Basic" class="headerlink" title="12. Warm Up Packet Tracer and IOS Basic"></a>12. Warm Up Packet Tracer and IOS Basic</h2><p>IOS 是思科網路的系統名稱</p>
+<h3 id="Bring-Up-a-Device"><a href="#Bring-Up-a-Device" class="headerlink" title="Bring Up a Device"></a>Bring Up a Device</h3><p>Router Bootup Process</p>
+<ul>
+<li><ol>
+<li>Perform POST</li>
+</ol>
+<ul>
+<li>Power-on Self-test(POST) - 通電自檢</li>
+<li>對於硬件做基本檢測</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>Load Bootstrap</li>
+</ol>
+<ul>
+<li>當當於電腦的BIOS</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>Locate IOS</li>
+</ol>
+<ul>
+<li>啟動系統二種方法<ul>
+<li>啟動一個文件，存在於flash上，相當於本地硬盤一樣</li>
+<li>存取TFTP Server 上的文件進行啟動<ul>
+<li>跟無盤工作站概念很相似</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>Load IOS</li>
+</ol>
+<ul>
+<li>加載系統</li>
+<li>加載完過後，要加載配置文件</li>
+</ul>
+</li>
+<li><ol start="5">
+<li>Locate the Configuration File</li>
+</ol>
+<ul>
+<li>NVRAM</li>
+<li>TFTP Server</li>
+<li>Console</li>
+</ul>
+</li>
+<li><ol start="6">
+<li>Execute the Configuration File or enter “Setup” mode</li>
+</ol>
+</li>
+</ul>
+<p>NVRAM 斷電之後，儲存在裡面的資料不會流失</p>
+<p><img src="https://i.imgur.com/l5Up7Eq.png"></p>
+<h3 id="Different-Modes"><a href="#Different-Modes" class="headerlink" title="Different Modes"></a>Different Modes</h3><h4 id="USER-MODE"><a href="#USER-MODE" class="headerlink" title="USER MODE"></a>USER MODE</h4><p>show users<br>show version<br>無法進行配置</p>
+<h4 id="PRIVILEGED-MODE"><a href="#PRIVILEGED-MODE" class="headerlink" title="PRIVILEGED MODE"></a>PRIVILEGED MODE</h4><p>enable<br>也無法進行配置<br>?<br>接口地址、接口路由，在這邊也無法配置</p>
+<h4 id="CONFIGURE-MODE"><a href="#CONFIGURE-MODE" class="headerlink" title="CONFIGURE MODE"></a>CONFIGURE MODE</h4><p>指令<br>configure terminal<br>exit<br>或者打<br>config<br>t</p>
+<p>可以對系統配置進行修改<br>要配置接口就必須在 interface 模式以此類推…</p>
+<p><img src="https://i.imgur.com/LQZxGjS.png"></p>
+<p><img src="https://i.imgur.com/2wVngsm.png"></p>
+<p><img src="https://i.imgur.com/oJs1Xzw.png"></p>
+<h4 id="Viewing-Saving-and-Erasing-Configurations"><a href="#Viewing-Saving-and-Erasing-Configurations" class="headerlink" title="Viewing,Saving, and Erasing Configurations"></a>Viewing,Saving, and Erasing Configurations</h4><p>Running configuration<br>正在敲打配置命令時，是存在於RAM裡面的</p>
+<p>要經過<br>copy running-config startup-config<br>才會寫到NVRAM</p>
+<p>系統reboot時都是找Startup configuration</p>
+<p>系統上敲打wr 跟copy running-config 效果是一樣的</p>
+<p><img src="https://i.imgur.com/HN9aOVM.png"></p>
+<h4 id="Configuration-Register"><a href="#Configuration-Register" class="headerlink" title="Configuration Register"></a>Configuration Register</h4><p>IOS 要去找starup-config 是由configuration register 控制的<br>改完之後不會馬上生效<br>在這個模式要加上do 指令才能show</p>
+<p><img src="https://i.imgur.com/zVyonJg.png"></p>
+<h4 id="Boot-System"><a href="#Boot-System" class="headerlink" title="Boot System"></a>Boot System</h4><p>系統要從哪裡啟動</p>
+<ul>
+<li>本地硬碟</li>
+<li>TFTP</li>
+</ul>
+<p>可以先備份舊系統到別台服務器，以便還原<br>請操作練習<br><img src="https://i.imgur.com/PGq1cdw.png"></p>
+<h4 id="ROM-Monitor-ROMMON"><a href="#ROM-Monitor-ROMMON" class="headerlink" title="ROM Monitor(ROMMON)"></a>ROM Monitor(ROMMON)</h4><p>作業系統丟失時，比方說斷電導致IOS死掉，可以用ROM Monitor 進行recover</p>
+<p>圖中所列出的指令，記得大小寫是有差的。<br><img src="https://i.imgur.com/KeCQrbt.png"></p>
+<h4 id="Cisco-IOS-FILE-SYSTEM-IFS"><a href="#Cisco-IOS-FILE-SYSTEM-IFS" class="headerlink" title="Cisco IOS FILE SYSTEM(IFS)"></a>Cisco IOS FILE SYSTEM(IFS)</h4><ul>
+<li><p>dir</p>
+</li>
+<li><p>copy</p>
+</li>
+<li><p>show file</p>
+</li>
+<li><p>delete</p>
+</li>
+<li><p>erase</p>
+</li>
+<li><p>cd&#x2F;pwd</p>
+</li>
+<li><p>mkdir&#x2F;rmdir</p>
+</li>
+<li><p>ctrl + a</p>
+</li>
+<li><p>ctrl + e</p>
+</li>
+<li><p>ctrl + u</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/9qr0d0V.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CCNA/" rel="tag"># CCNA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/" rel="prev" title="DRY、KISS、YAGNI三原則的理解">
+      <i class="fa fa-chevron-left"></i> DRY、KISS、YAGNI三原則的理解
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/13/2021-05-13%20CSS%E6%AC%8A%E9%87%8D%E8%80%83%E9%A1%8C/" rel="next" title="CSS權重考題">
+      CSS權重考題 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Warm-Up-Packet-Tracer-and-IOS-Basic"><span class="nav-number">1.</span> <span class="nav-text">12. Warm Up Packet Tracer and IOS Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bring-Up-a-Device"><span class="nav-number">1.1.</span> <span class="nav-text">Bring Up a Device</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Different-Modes"><span class="nav-number">1.2.</span> <span class="nav-text">Different Modes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#USER-MODE"><span class="nav-number">1.2.1.</span> <span class="nav-text">USER MODE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PRIVILEGED-MODE"><span class="nav-number">1.2.2.</span> <span class="nav-text">PRIVILEGED MODE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CONFIGURE-MODE"><span class="nav-number">1.2.3.</span> <span class="nav-text">CONFIGURE MODE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Viewing-Saving-and-Erasing-Configurations"><span class="nav-number">1.2.4.</span> <span class="nav-text">Viewing,Saving, and Erasing Configurations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Configuration-Register"><span class="nav-number">1.2.5.</span> <span class="nav-text">Configuration Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boot-System"><span class="nav-number">1.2.6.</span> <span class="nav-text">Boot System</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROM-Monitor-ROMMON"><span class="nav-number">1.2.7.</span> <span class="nav-text">ROM Monitor(ROMMON)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cisco-IOS-FILE-SYSTEM-IFS"><span class="nav-number">1.2.8.</span> <span class="nav-text">Cisco IOS FILE SYSTEM(IFS)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

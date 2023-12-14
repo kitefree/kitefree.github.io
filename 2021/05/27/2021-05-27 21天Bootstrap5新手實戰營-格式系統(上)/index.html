@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="活動連結21 天帶您做出 Bootstrap 5 募資網站 格線容器就讓他回歸於容器 元件就讓他回歸於元件  選單通常不會用col 去排 class 小寫到大  寫東西不要寫剛好，在不同瀏覽器差1px就會斷行，幫自己買保險  設計師應該要用格線系統 軟體 figma,adobe xd  PC 優先與手機優先之寫法介紹桌面版優先是指樣式書寫順序為: 先寫最大寬度上限(EX: max-width:14">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21天Bootstrap5新手實戰營-格式系統(上)">
+<meta property="og:url" content="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="活動連結21 天帶您做出 Bootstrap 5 募資網站 格線容器就讓他回歸於容器 元件就讓他回歸於元件  選單通常不會用col 去排 class 小寫到大  寫東西不要寫剛好，在不同瀏覽器差1px就會斷行，幫自己買保險  設計師應該要用格線系統 軟體 figma,adobe xd  PC 優先與手機優先之寫法介紹桌面版優先是指樣式書寫順序為: 先寫最大寬度上限(EX: max-width:14">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/cEQ5Mrs.png">
+<meta property="og:image" content="https://i.imgur.com/uy8Lphw.jpg">
+<meta property="og:image" content="https://i.imgur.com/SgDk9Mz.png">
+<meta property="og:image" content="https://i.imgur.com/cly8xDg.jpg">
+<meta property="og:image" content="https://i.imgur.com/AMgKdFL.jpg">
+<meta property="og:image" content="https://i.imgur.com/gpa0zTN.png">
+<meta property="og:image" content="https://i.imgur.com/95DJhLa.png">
+<meta property="og:image" content="https://i.imgur.com/NTzBBh3.png">
+<meta property="og:image" content="https://i.imgur.com/nhwarkP.png">
+<meta property="og:image" content="https://i.imgur.com/QLBU2FM.png">
+<meta property="og:image" content="https://i.imgur.com/h4nROPq.jpg">
+<meta property="og:image" content="https://i.imgur.com/uhiDo0z.jpg">
+<meta property="og:image" content="https://i.imgur.com/9NRk6Ff.png">
+<meta property="og:image" content="https://i.imgur.com/t7M9Cei.png">
+<meta property="og:image" content="https://i.imgur.com/Yr9TrMY.png">
+<meta property="og:image" content="https://i.imgur.com/VaVhCEk.png">
+<meta property="og:image" content="https://i.imgur.com/kZbhPjs.png">
+<meta property="article:published_time" content="2021-05-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T06:00:13.244Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Bootstrap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/cEQ5Mrs.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>21天Bootstrap5新手實戰營-格式系統(上) | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          21天Bootstrap5新手實戰營-格式系統(上)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:00:13" itemprop="dateModified" datetime="2021-10-01T14:00:13+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="活動連結"><a href="#活動連結" class="headerlink" title="活動連結"></a>活動連結</h2><p><a target="_blank" rel="noopener" href="https://hackmd.io/@YmcMgo-NSKOqgTGAjl_5tg/ryar-vGOd/%2FNdGKchTeRBqbkTMiQ2HSmw">21 天帶您做出 Bootstrap 5 募資網站</a></p>
+<h2 id="格線"><a href="#格線" class="headerlink" title="格線"></a>格線</h2><p>容器就讓他回歸於容器</p>
+<p>元件就讓他回歸於元件</p>
+<p><img src="https://i.imgur.com/cEQ5Mrs.png" alt="img"></p>
+<p>選單通常不會用col 去排</p>
+<p>class 小寫到大</p>
+<p><img src="https://i.imgur.com/uy8Lphw.jpg" alt="img"></p>
+<p>寫東西不要寫剛好，在不同瀏覽器差1px就會斷行，幫自己買保險</p>
+<p><img src="https://i.imgur.com/SgDk9Mz.png" alt="img"></p>
+<p>設計師應該要用格線系統</p>
+<p>軟體</p>
+<p>figma,adobe xd</p>
+<p><img src="https://i.imgur.com/cly8xDg.jpg" alt="img"></p>
+<h2 id="PC-優先與手機優先之寫法介紹"><a href="#PC-優先與手機優先之寫法介紹" class="headerlink" title="PC 優先與手機優先之寫法介紹"></a>PC 優先與手機優先之寫法介紹</h2><p>桌面版優先是指樣式書寫順序為: 先寫最大寬度上限(EX: max-width:1440px) 當所有樣式寫完 最後再依序寫</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">992px</span>) &#123;...&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">768px</span>) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>手機優先是指樣式書寫順序為: 先寫最小固定寬度(通常都是: width:100% or width:100vw) 當所有樣式寫完 最後再依序寫</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>:<span class="number">768px</span>) &#123;...&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>:<span class="number">992px</span>) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="格線系統-上"><a href="#格線系統-上" class="headerlink" title="格線系統(上)"></a>格線系統(上)</h2><p>常開的版型是1140px，水平居中，所以可以用container class</p>
+<p>col-4 ,col-5 這樣寫是在寫手機</p>
+<p>boostrap5 是手機優先</p>
+<p>通常在寫的時候會先寫桌機版</p>
+<p>老師自己寫的時候，斷點的col 最多寫3個</p>
+<p>老師比較常用md ,lg</p>
+<p>sm,xxl 比較少</p>
+<h3 id="奇幻數字"><a href="#奇幻數字" class="headerlink" title="奇幻數字"></a>奇幻數字</h3><p><img src="https://i.imgur.com/AMgKdFL.jpg" alt="img"></p>
+<p>切版有了203、408 這種魔術數字，於有人發明了格線系統，解決自由發展的困擾</p>
+<h2 id="格線系統"><a href="#格線系統" class="headerlink" title="格線系統"></a>格線系統</h2><ul>
+<li>目的是為了減輕 magic number 出現</li>
+<li>可以解決重複code問題</li>
+<li>格線系統關鍵字：column(欄)、gutter(間距)</li>
+<li>960 grid<ul>
+<li>使用float 方式進行格線系統設計</li>
+<li>故意多1px，就會換行囉，這個就是float的特性</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/gpa0zTN.png" alt="img"></p>
+<ul>
+<li><p>Bootstrap5 也是用float 特性設計的哦 12:26</p>
+</li>
+<li><p>格線系統就是column + gutter 的加總</p>
+</li>
+<li><p>格線系統有11個gutter</p>
+</li>
+<li><p>為什麼要設計12欄</p>
+<ul>
+<li>因為比較好整除</li>
+<li>2,3,4,6欄好整除</li>
+</ul>
+</li>
+<li><p>gutter 產生方式</p>
+<ul>
+<li>有時候會用padding</li>
+<li>有時候會用margin</li>
+<li>960 grid 網站就是用margin-left,margin-right   左右各推10，產生20的空間</li>
+</ul>
+<p><img src="https://i.imgur.com/95DJhLa.png" alt="img"></p>
+<ul>
+<li>Bootstarp 本來是用padding 去推的</li>
+<li>每個格線系統推的方式可能有所不同，之後在設計上要注意。</li>
+</ul>
+</li>
+</ul>
+<h2 id="切版方式的演進"><a href="#切版方式的演進" class="headerlink" title="切版方式的演進"></a>切版方式的演進</h2><ul>
+<li>table + table</li>
+<li>float</li>
+<li>inline block</li>
+<li>flexbox</li>
+<li>grid</li>
+</ul>
+<h2 id="格線系統三劍客"><a href="#格線系統三劍客" class="headerlink" title="格線系統三劍客"></a>格線系統三劍客</h2><ul>
+<li>container</li>
+<li>row</li>
+<li>column</li>
+<li>Boostrap 是用box-sizing: border-box;</li>
+</ul>
+<h2 id="格線系統名言"><a href="#格線系統名言" class="headerlink" title="格線系統名言"></a>格線系統名言</h2><ul>
+<li>row的下一層一定要是column</li>
+<li>column的上一層一定要是row</li>
+<li>網頁內容與元件請放在.col-裡面</li>
+</ul>
+<h2 id="常見錯誤"><a href="#常見錯誤" class="headerlink" title="常見錯誤"></a>常見錯誤</h2><ul>
+<li><p>在 .col 增加寬度</p>
+</li>
+<li><p>在格線系統調整左右 margin 與 padding</p>
+</li>
+<li><p>常見觀念</p>
+<ul>
+<li>可以加上下 的 margin 與 padding</li>
+<li>最外層至少補一個 container</li>
+<li>整體格線邏輯是一致</li>
+</ul>
+</li>
+</ul>
+<h2 id="格線觀念考驗時間"><a href="#格線觀念考驗時間" class="headerlink" title="格線觀念考驗時間"></a>格線觀念考驗時間</h2><ol>
+<li><p>請問這樣寫對還是錯?</p>
+<p><img src="https://i.imgur.com/NTzBBh3.png" alt="img"></p>
+<blockquote>
+<p>對</p>
+</blockquote>
+</li>
+<li><p>請問這樣寫對還是錯？</p>
+<p><img src="https://i.imgur.com/nhwarkP.png" alt="img"></p>
+<blockquote>
+<p>對</p>
+</blockquote>
+</li>
+<li><p>請問這樣寫對還是錯?</p>
+<p><img src="https://i.imgur.com/QLBU2FM.png" alt="img"></p>
+<blockquote>
+<p>錯</p>
+</blockquote>
+</li>
+<li><p>會斷行還是不會斷行?</p>
+<p><img src="https://i.imgur.com/h4nROPq.jpg" alt="img"></p>
+<blockquote>
+<p>會,因為row有flex-wrap:wrap屬性</p>
+</blockquote>
+</li>
+<li><p>上面的版本對，還是下面的版本對，還是都對?</p>
+<p><img src="https://i.imgur.com/uhiDo0z.jpg" alt="img"></p>
+<blockquote>
+<p>上面的版本對，因為跟後端邏輯設計有關</p>
+<p>提醒：flex-wrap 自己會往下換行</p>
+</blockquote>
+</li>
+<li><p>對還是錯？</p>
+<p><img src="https://i.imgur.com/9NRk6Ff.png" alt="img"></p>
+<blockquote>
+<p>錯</p>
+</blockquote>
+</li>
+<li><p>對還是錯？</p>
+<p><img src="https://i.imgur.com/t7M9Cei.png" alt="img"></p>
+<blockquote>
+<p>錯，沒有下container</p>
+</blockquote>
+</li>
+<li><p>對還是錯?</p>
+<p><img src="https://i.imgur.com/Yr9TrMY.png" alt="img"></p>
+<blockquote>
+<p>是ok的</p>
+</blockquote>
+</li>
+<li><p>對還錯?</p>
+<p><img src="https://i.imgur.com/VaVhCEk.png" alt="img"></p>
+<blockquote>
+<p>對的，其中第三個footer 沒有一定要求水平居中，有可能需求會需要滿版設計</p>
+</blockquote>
+</li>
+<li><p>對還錯?</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/kZbhPjs.png" alt="img"></p>
+<blockquote>
+<p>對</p>
+<p>header ,footer 想要滿版</p>
+<p>container 裡面符合名言</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/Bootstrap/" rel="tag"># Bootstrap</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/" rel="prev" title="21天Bootstrap5新手實戰營-格線系統(下)">
+      <i class="fa fa-chevron-left"></i> 21天Bootstrap5新手實戰營-格線系統(下)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/29/2021-05-29%20%E6%87%89%E7%94%A8%E6%9E%B6%E6%A7%8B/" rel="next" title="應用架構">
+      應用架構 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B4%BB%E5%8B%95%E9%80%A3%E7%B5%90"><span class="nav-number">1.</span> <span class="nav-text">活動連結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A"><span class="nav-number">2.</span> <span class="nav-text">格線</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PC-%E5%84%AA%E5%85%88%E8%88%87%E6%89%8B%E6%A9%9F%E5%84%AA%E5%85%88%E4%B9%8B%E5%AF%AB%E6%B3%95%E4%BB%8B%E7%B4%B9"><span class="nav-number">3.</span> <span class="nav-text">PC 優先與手機優先之寫法介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1-%E4%B8%8A"><span class="nav-number">4.</span> <span class="nav-text">格線系統(上)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%87%E5%B9%BB%E6%95%B8%E5%AD%97"><span class="nav-number">4.1.</span> <span class="nav-text">奇幻數字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1"><span class="nav-number">5.</span> <span class="nav-text">格線系統</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E7%89%88%E6%96%B9%E5%BC%8F%E7%9A%84%E6%BC%94%E9%80%B2"><span class="nav-number">6.</span> <span class="nav-text">切版方式的演進</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E4%B8%89%E5%8A%8D%E5%AE%A2"><span class="nav-number">7.</span> <span class="nav-text">格線系統三劍客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E5%90%8D%E8%A8%80"><span class="nav-number">8.</span> <span class="nav-text">格線系統名言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E9%8C%AF%E8%AA%A4"><span class="nav-number">9.</span> <span class="nav-text">常見錯誤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E8%A7%80%E5%BF%B5%E8%80%83%E9%A9%97%E6%99%82%E9%96%93"><span class="nav-number">10.</span> <span class="nav-text">格線觀念考驗時間</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

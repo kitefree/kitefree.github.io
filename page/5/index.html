@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="地球人的修練">
+<meta property="og:url" content="https://kitefree.github.io/page/5/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/page/5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(6)%20%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(6)%20%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (6) 專案架構介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-16 11:44:00" itemprop="dateCreated datePublished" datetime="2021-10-16T11:44:00+08:00">2021-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-08-24 20:35:57" itemprop="dateModified" datetime="2022-08-24T20:35:57+08:00">2022-08-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="完整專案架構截圖"><a href="#完整專案架構截圖" class="headerlink" title="完整專案架構截圖"></a>完整專案架構截圖</h2><p><img src="https://i.imgur.com/JkAghTK.png" alt="image-20211016113510041"></p>
+<h2 id="app-structure"><a href="#app-structure" class="headerlink" title="app structure"></a>app structure</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">+---app</span><br><span class="line">|   +---Console</span><br><span class="line">|   |       Kernel.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Exceptions</span><br><span class="line">|   |       Handler.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Http</span><br><span class="line">|   |   |   Kernel.php</span><br><span class="line">|   |   |   </span><br><span class="line">|   |   +---Controllers</span><br><span class="line">|   |   |       Controller.php</span><br><span class="line">|   |   |       </span><br><span class="line">|   |   \---Middleware</span><br><span class="line">|   |           Authenticate.php</span><br><span class="line">|   |           EncryptCookies.php</span><br><span class="line">|   |           PreventRequestsDuringMaintenance.php</span><br><span class="line">|   |           RedirectIfAuthenticated.php</span><br><span class="line">|   |           TrimStrings.php</span><br><span class="line">|   |           TrustHosts.php</span><br><span class="line">|   |           TrustProxies.php</span><br><span class="line">|   |           VerifyCsrfToken.php</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在windows 要輸出這樣的結構可以使用cmd指令產出</p>
+<p>tree &gt; dir.txt &#x2F;a &#x2F;f</p>
+</blockquote>
+<h2 id="app"><a href="#app" class="headerlink" title="app"></a>app</h2><p>程式最常修改的地方</p>
+<h3 id="Console"><a href="#Console" class="headerlink" title="Console"></a>Console</h3><p>可以寫一些指令相關的檔案，前期暫時不會使用到它</p>
+<h3 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h3><p>做一些除錯相關的檔案，前期暫時不會使用到它</p>
+<h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>這是一個很重要的folder</p>
+<h4 id="controllers"><a href="#controllers" class="headerlink" title="controllers"></a>controllers</h4><p>使用者進入程式的進入點設定</p>
+<h4 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h4><p>比較進階的模塊</p>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>擺放一些資料模塊</p>
+<h3 id="Providers"><a href="#Providers" class="headerlink" title="Providers"></a>Providers</h3><p>有些邏輯可以包成一些服務，可以放在這兒。</p>
+<p>或者是套件的一些使用方式都會在這邊</p>
+<h2 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h2><p>是比較進階的，跟程式運作有關，很少會碰到它</p>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>可以去設定一些參數，比方說要連到哪個資料庫、email要發到哪個server ip</p>
+<h2 id="database"><a href="#database" class="headerlink" title="database"></a>database</h2><p>跟資料庫操作有關的，或者是要做一些假資料，或者是啟動server時預設產生的資料等等</p>
+<h2 id="public"><a href="#public" class="headerlink" title="public"></a>public</h2><p>放的是靜態檔案 比方說圖片或pdf等等</p>
+<h2 id="resource-structure"><a href="#resource-structure" class="headerlink" title="resource structure"></a>resource structure</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+---resources</span><br><span class="line">|   +---css</span><br><span class="line">|   |       app.css</span><br><span class="line">|   |       </span><br><span class="line">|   +---js</span><br><span class="line">|   |       app.js</span><br><span class="line">|   |       bootstrap.js</span><br><span class="line">|   |       </span><br><span class="line">|   +---lang</span><br><span class="line">|   |   \---en</span><br><span class="line">|   |           auth.php</span><br><span class="line">|   |           pagination.php</span><br><span class="line">|   |           passwords.php</span><br><span class="line">|   |           validation.php</span><br><span class="line">|   |           </span><br><span class="line">|   \---views</span><br><span class="line">|           welcome.blade.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><p>可以放一些前端必備的檔案</p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>可以放一些前端必備的檔案</p>
+<h3 id="views"><a href="#views" class="headerlink" title="views"></a>views</h3><p>view有關的程式碼</p>
+<h2 id="routes"><a href="#routes" class="headerlink" title="routes"></a>routes</h2><p>使用者透過網址拜訪網站，透過路由決定要執行哪一段程式，下一章節會介紹</p>
+<h2 id="storage"><a href="#storage" class="headerlink" title="storage"></a>storage</h2><p>使用者上傳檔案，或者是你要產生暫時檔案，都在這邊哦</p>
+<h2 id="tests"><a href="#tests" class="headerlink" title="tests"></a>tests</h2><p>進行程式測試使用的</p>
+<h2 id="vendor"><a href="#vendor" class="headerlink" title="vendor"></a>vendor</h2><p>這個專案用到的套件</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/15/2021-10-15%20%E4%BA%94%E5%80%8B%E5%BF%85%E9%A0%88%E7%9F%A5%E9%81%93%E7%9A%84%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/15/2021-10-15%20%E4%BA%94%E5%80%8B%E5%BF%85%E9%A0%88%E7%9F%A5%E9%81%93%E7%9A%84%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/" class="post-title-link" itemprop="url">五個必須知道的命名規則</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-10-15 15:05:00 / 修改時間：15:11:23" itemprop="dateCreated datePublished" datetime="2021-10-15T15:05:00+08:00">2021-10-15</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>168</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="變數命名規則"><a href="#變數命名規則" class="headerlink" title="變數命名規則"></a>變數命名規則</h2><h3 id="變數使用駝峰式命名-Camel-Case"><a href="#變數使用駝峰式命名-Camel-Case" class="headerlink" title="變數使用駝峰式命名(Camel Case)"></a><code>變數</code>使用駝峰式命名(Camel Case)</h3><p>第一個單字首小寫，第二個單字首大寫。例如：name、firstName</p>
+<h3 id="類別使用巴斯卡命名-Pascal-Case"><a href="#類別使用巴斯卡命名-Pascal-Case" class="headerlink" title="類別使用巴斯卡命名(Pascal Case)"></a><code>類別</code>使用巴斯卡命名(Pascal Case)</h3><p>每個單字首都為大寫。例如：Server、CreatePerson。</p>
+<h3 id="常數使用全大寫命名"><a href="#常數使用全大寫命名" class="headerlink" title="常數使用全大寫命名"></a><code>常數</code>使用全大寫命名</h3><p>每個單字使用底線連接。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="variable constant_">PI</span> = <span class="number">3.13</span> ; </span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">MAX_WIDTH</span> = <span class="number">800</span>;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/15/2021-10-15%20%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/15/2021-10-15%20%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F/" class="post-title-link" itemprop="url">正則表達式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-10-15 15:05:00 / 修改時間：17:06:53" itemprop="dateCreated datePublished" datetime="2021-10-15T15:05:00+08:00">2021-10-15</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>171</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a></p>
+<blockquote>
+<p>在不同程式語言的特殊符號在正則表達式時會遇到吃掉效能或造成無窮迴圈的問題，保哥遇到了很多次這種狀況</p>
+</blockquote>
+<blockquote>
+<p>反向表列的用法比較危險一點</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\w \W</span><br><span class="line">\d \D</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Ex6cCWDwNJU">https://www.youtube.com/watch?v=Ex6cCWDwNJU</a><br>26:29<br>重要技巧</p>
+<p>36:20</p>
+<p><a target="_blank" rel="noopener" href="https://regexone.com/">https://regexone.com/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/14/2021-10-14%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(5)%20Composer%20%E5%A5%97%E4%BB%B6%E5%AE%89%E8%A3%9D%E8%88%87%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/14/2021-10-14%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(5)%20Composer%20%E5%A5%97%E4%BB%B6%E5%AE%89%E8%A3%9D%E8%88%87%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (5) Composer 套件安裝與介紹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-14 22:49:47" itemprop="dateCreated datePublished" datetime="2021-10-14T22:49:47+08:00">2021-10-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-19 10:22:34" itemprop="dateModified" datetime="2021-10-19T10:22:34+08:00">2021-10-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>762</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="召喚composer"><a href="#召喚composer" class="headerlink" title="召喚composer"></a>召喚composer</h2><p>它是一個php的套件管理工具，可以讓composer去召喚<code>third party</code>套件。</p>
+<p>角色類似於<code>c#</code> 的<code>nuget</code>、<code>nodejs</code> 的<code>npm</code>、<code>python</code> 的 <code>pip</code></p>
+<h2 id="到官網下載安裝檔"><a href="#到官網下載安裝檔" class="headerlink" title="到官網下載安裝檔"></a>到官網下載安裝檔</h2><p><a target="_blank" rel="noopener" href="https://getcomposer.org/download/">官網</a></p>
+<h3 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h3><p><img src="https://i.imgur.com/aKPL0Bs.png" alt="image-20211014222904333"></p>
+<h3 id="安裝畫面"><a href="#安裝畫面" class="headerlink" title="安裝畫面"></a>安裝畫面</h3><p>過程中會問php檔在哪裡，筆者是放在c槽</p>
+<p><img src="https://i.imgur.com/xnfVLDW.png" alt="image-20211014223118594"></p>
+<h2 id="將-php-ini-development-更名為php-ini"><a href="#將-php-ini-development-更名為php-ini" class="headerlink" title="將 php.ini-development 更名為php.ini"></a>將 php.ini-development 更名為php.ini</h2><p>在之前安裝的時候就裝在c槽底下</p>
+<p>路徑參考</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\php-7.4.15\php.ini-development</span><br></pre></td></tr></table></figure>
+
+<p>複製一份<code>php.ini-development</code> 更名為<code>php.ini</code></p>
+<h2 id="啟用fileinfo-extension"><a href="#啟用fileinfo-extension" class="headerlink" title="啟用fileinfo extension"></a>啟用fileinfo extension</h2><p>編輯<code>php.ini</code> 尋找<code>fileinfo</code>，分號為註解，請解開註解</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=fileinfo</span><br></pre></td></tr></table></figure>
+
+<h2 id="確認是否安裝成功"><a href="#確認是否安裝成功" class="headerlink" title="確認是否安裝成功"></a>確認是否安裝成功</h2><p>打開command line 輸入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/UZuCcjk.png" alt="image-20211014223256919"></p>
+<p>總算這次的召喚沒有白消耗<code>魔法寶石*3</code>，魅力值夠，ㄏㄏ。(天堂迷…誤)</p>
+<h2 id="召喚主角Laravel"><a href="#召喚主角Laravel" class="headerlink" title="召喚主角Laravel"></a>召喚主角Laravel</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer global require &quot;laravel/installer&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/FqBWXeK.png" alt="image-20211014224410769"></p>
+<p>我們可以看到綠色字中有描述到安裝路徑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\kite\AppData\Roaming\Composer</span><br></pre></td></tr></table></figure>
+
+<p>好奇看一下</p>
+<p><img src="https://i.imgur.com/sdLV2hE.png" alt="image-20211014224621076"></p>
+<p>打開<code>composer.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;laravel/installer&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.2&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>這是一個全域的安裝，跟<code>npm</code> 的<code>package.json</code> 87像</p>
+<p>我們的召喚獸在這個底下</p>
+<p><img src="https://i.imgur.com/jD9iK8T.png" alt="image-20211014224818954"></p>
+<h2 id="建立Laravel專案"><a href="#建立Laravel專案" class="headerlink" title="建立Laravel專案"></a>建立Laravel專案</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new laravel_blog</span><br></pre></td></tr></table></figure>
+
+<p>會跑一陣子</p>
+<h2 id="啟動Larvael專案"><a href="#啟動Larvael專案" class="headerlink" title="啟動Larvael專案"></a>啟動Larvael專案</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan serve</span><br></pre></td></tr></table></figure>
+
+<p>輸入完指令後，可以看到服務已經run起來囉</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.0.1:8000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/d0vIcqK.png" alt="image-20211014234857214"></p>
+<p><img src="https://i.imgur.com/kdGZZgU.png" alt="image-20211014234936195"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/14/2021-10-14%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(4)%20%E5%B8%B8%E8%A6%8B%E5%87%BD%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/14/2021-10-14%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(4)%20%E5%B8%B8%E8%A6%8B%E5%87%BD%E5%BC%8F/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (4) 常見函式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-14 13:53:47" itemprop="dateCreated datePublished" datetime="2021-10-14T13:53:47+08:00">2021-10-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-15 13:34:38" itemprop="dateModified" datetime="2021-10-15T13:34:38+08:00">2021-10-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>5 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="array-column"><a href="#array-column" class="headerlink" title="array_column"></a>array_column</h2><p>依照指定<code>欄位名稱(key)</code>取出陣列</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];</span><br><span class="line">    </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_column</span>(<span class="variable">$records</span>,<span class="string">&#x27;first_name&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="array-keys"><a href="#array-keys" class="headerlink" title="array_keys"></a>array_keys</h2><p>回傳指定陣列的<code>key</code>  </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];   </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_keys</span>(<span class="variable">$records</span>[<span class="number">0</span>]));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[0] =&gt; id</span></span><br><span class="line"><span class="comment">	[1] =&gt; first_name</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="array-values"><a href="#array-values" class="headerlink" title="array_values"></a>array_values</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];  </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_values</span>(<span class="variable">$records</span>[<span class="number">0</span>]));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[0] =&gt; 1</span></span><br><span class="line"><span class="comment">	[1] =&gt; kite</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_values</span>(<span class="variable">$records</span>));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[0] =&gt; 0</span></span><br><span class="line"><span class="comment">	[1] =&gt; 1</span></span><br><span class="line"><span class="comment">	[2] =&gt; 2	</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="array-map"><a href="#array-map" class="headerlink" title="array_map"></a>array_map</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$newRecords</span> = <span class="title function_ invoke__">array_map</span>(function(<span class="variable">$record</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable">$record</span>[<span class="string">&#x27;id&#x27;</span>] = <span class="variable">$record</span>[<span class="string">&#x27;id&#x27;</span>] * <span class="number">5</span>;</span><br><span class="line">              &#125;,<span class="variable">$records</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$newRecords</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; 5</span></span><br><span class="line"><span class="comment">    [1] =&gt; 10</span></span><br><span class="line"><span class="comment">    [2] =&gt; 15</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="array-filter"><a href="#array-filter" class="headerlink" title="array_filter"></a>array_filter</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$newRecords</span> = <span class="title function_ invoke__">array_filter</span>(</span><br><span class="line">    <span class="variable">$records</span>,</span><br><span class="line">    function(<span class="variable">$record</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="variable">$record</span>[<span class="string">&#x27;id&#x27;</span>] &gt;=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$newRecords</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="array-push"><a href="#array-push" class="headerlink" title="array_push"></a>array_push</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$num</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="title function_ invoke__">array_push</span>(<span class="variable">$nums</span>,<span class="number">8</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="array-pop"><a href="#array-pop" class="headerlink" title="array_pop"></a>array_pop</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$num</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="title function_ invoke__">array_pop</span>(<span class="variable">$num</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="array-merge"><a href="#array-merge" class="headerlink" title="array_merge"></a>array_merge</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$person</span> = [<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">5</span>, <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>];</span><br><span class="line"><span class="variable">$person</span> = <span class="title function_ invoke__">array_merge</span>(</span><br><span class="line">	<span class="variable">$person</span>,</span><br><span class="line">	[<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>, <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">10</span>]</span><br><span class="line">);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [id] =&gt; 5</span></span><br><span class="line"><span class="comment">    [name] =&gt; bubu</span></span><br><span class="line"><span class="comment">    [age] =&gt; 10</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="asort"><a href="#asort" class="headerlink" title="asort"></a>asort</h2><p>value排序</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$arr</span> = [<span class="string">&#x27;d&#x27;</span> =&gt;<span class="string">&#x27;bubu&#x27;</span> ,<span class="string">&#x27;c&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>,<span class="string">&#x27;b&#x27;</span>=&gt; <span class="string">&#x27;kite&#x27;</span> , <span class="string">&#x27;a&#x27;</span> =&gt;<span class="string">&#x27;apple&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">sort</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; apple</span></span><br><span class="line"><span class="comment">    [1] =&gt; bubu</span></span><br><span class="line"><span class="comment">    [2] =&gt; kite</span></span><br><span class="line"><span class="comment">    [3] =&gt; snow</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ksort"><a href="#ksort" class="headerlink" title="ksort"></a>ksort</h2><p>key排序</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$arr</span> = [<span class="string">&#x27;d&#x27;</span> =&gt;<span class="string">&#x27;bubu&#x27;</span> ,<span class="string">&#x27;c&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>,<span class="string">&#x27;b&#x27;</span>=&gt; <span class="string">&#x27;kite&#x27;</span> , <span class="string">&#x27;a&#x27;</span> =&gt;<span class="string">&#x27;apple&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">ksort</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; apple</span></span><br><span class="line"><span class="comment">    [1] =&gt; bubu</span></span><br><span class="line"><span class="comment">    [2] =&gt; kite</span></span><br><span class="line"><span class="comment">    [3] =&gt; snow</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="array-search"><a href="#array-search" class="headerlink" title="array_search"></a>array_search</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$people</span> = [<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;kite&#x27;</span>];</span><br><span class="line"><span class="keyword">echo</span>(<span class="title function_ invoke__">array_search</span>(<span class="string">&#x27;kite&#x27;</span>,<span class="variable">$people</span>));</span><br><span class="line"><span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="array-unique"><a href="#array-unique" class="headerlink" title="array_unique"></a>array_unique</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$people</span> = [<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;kite&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_unique</span>(<span class="variable">$people</span>));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; john</span></span><br><span class="line"><span class="comment">    [1] =&gt; tim</span></span><br><span class="line"><span class="comment">    [3] =&gt; kite</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="array-sum"><a href="#array-sum" class="headerlink" title="array_sum"></a>array_sum</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$nums</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>];</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_sum</span>(<span class="variable">$nums</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="count"><a href="#count" class="headerlink" title="count"></a>count</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$nums</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>];</span><br><span class="line"><span class="keyword">echo</span>(<span class="title function_ invoke__">count</span>(<span class="variable">$nums</span>));</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/12/2021-10-12%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(3)%20%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%EF%BC%8C%E8%B3%87%E6%96%99%E9%87%8F%E4%B8%80%E5%A4%9A%EF%BC%8C%E6%AD%A3%E8%A6%8F%E7%9A%84%E5%84%B2%E5%AD%98%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/12/2021-10-12%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(3)%20%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%EF%BC%8C%E8%B3%87%E6%96%99%E9%87%8F%E4%B8%80%E5%A4%9A%EF%BC%8C%E6%AD%A3%E8%A6%8F%E7%9A%84%E5%84%B2%E5%AD%98%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (3) 資料結構，資料量一多，正規的儲存方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-12 13:53:47" itemprop="dateCreated datePublished" datetime="2021-10-12T13:53:47+08:00">2021-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-15 13:34:29" itemprop="dateModified" datetime="2021-10-15T13:34:29+08:00">2021-10-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>554</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="陣列"><a href="#陣列" class="headerlink" title="陣列"></a>陣列</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$people</span> = [<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;may&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [name] =&gt; john</span></span><br><span class="line"><span class="comment">    [age] =&gt; 55   </span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字典式陣列"><a href="#字典式陣列" class="headerlink" title="字典式陣列"></a>字典式陣列</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$student</span> = [<span class="string">&#x27;name&#x27;</span>=&gt;<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;age&#x27;</span>=&gt; <span class="number">55</span>];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [name] =&gt; john</span></span><br><span class="line"><span class="comment">    [age] =&gt; 55</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="迴圈操作"><a href="#迴圈操作" class="headerlink" title="迴圈操作"></a>迴圈操作</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$students</span> = [</span><br><span class="line">    [<span class="string">&#x27;name&#x27;</span>=&gt; <span class="string">&#x27;kite&#x27;</span> , <span class="string">&#x27;grade&#x27;</span>=&gt; <span class="number">100</span>]</span><br><span class="line">    ,[<span class="string">&#x27;name&#x27;</span>=&gt; <span class="string">&#x27;snow&#x27;</span> , <span class="string">&#x27;grade&#x27;</span>=&gt; <span class="number">85</span>]</span><br><span class="line"></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$students</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$student</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> (<span class="string">&#x27;第&#x27;</span>.<span class="variable">$key</span>.<span class="string">&#x27;個學生&#x27;</span>.<span class="variable">$student</span>[<span class="string">&#x27;name&#x27;</span>]. <span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">第0個學生kite</span></span><br><span class="line"><span class="comment">第1個學生snow</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/11/2021-10-11%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(2)%20VScode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/11/2021-10-11%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(2)%20VScode/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (2) VSCode</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-11 14:53:47" itemprop="dateCreated datePublished" datetime="2021-10-11T14:53:47+08:00">2021-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-19 10:22:34" itemprop="dateModified" datetime="2021-10-19T10:22:34+08:00">2021-10-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>27</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>找檔案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + p</span><br></pre></td></tr></table></figure>
+
+<p>開啟終端機</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + `</span><br></pre></td></tr></table></figure>
+
+
+
+<p>more …</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/11/2021-10-11%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(1)%20Windows%20%E5%AE%89%E8%A3%9Dphp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/11/2021-10-11%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(1)%20Windows%20%E5%AE%89%E8%A3%9Dphp/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (1) Windows 安裝php</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-11 13:53:47" itemprop="dateCreated datePublished" datetime="2021-10-11T13:53:47+08:00">2021-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-15 13:34:35" itemprop="dateModified" datetime="2021-10-15T13:34:35+08:00">2021-10-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>40</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://www.php.net/">官網</a>下載stable 版之後</p>
+<p>放置於c槽</p>
+<p><img src="https://i.imgur.com/k1oLAQN.png" alt="image-20211011173713765"></p>
+<p>接著在環境變數設定上相關路徑</p>
+<p><img src="https://i.imgur.com/FXMY3KN.png" alt="image-20211011173314068"></p>
+<p>命令提示字元確認</p>
+<p><img src="https://i.imgur.com/EaK93EV.png" alt="image-20211011173244580"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/02/2021-10-02%20Git%E7%AD%86%E8%A8%98part2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/02/2021-10-02%20Git%E7%AD%86%E8%A8%98part2/" class="post-title-link" itemprop="url">Git筆記part2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-02 13:53:47" itemprop="dateCreated datePublished" datetime="2021-10-02T13:53:47+08:00">2021-10-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-06-18 08:42:31" itemprop="dateModified" datetime="2023-06-18T08:42:31+08:00">2023-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>24 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-檢查版號指令"><a href="#1-檢查版號指令" class="headerlink" title="1. 檢查版號指令"></a>1. 檢查版號指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-使用者設定指令"><a href="#2-使用者設定指令" class="headerlink" title="2. 使用者設定指令"></a>2. 使用者設定指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;kite&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;kite@hotmail.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果不小心設定錯誤名稱，再執行同樣的指令，就可以接做修改囉。</p>
+<h2 id="3-查看config"><a href="#3-查看config" class="headerlink" title="3. 查看config"></a>3. 查看config</h2><p>如果要找到實際檔案的修改位置以<code>windows</code>來說在使用者目錄底下的<code>.gitconfig</code>檔</p>
+<p><img src="https://i.imgur.com/fgFioSm.png" alt="image-20211002191613907"></p>
+<p>或者下指令也是可以的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-縮短指令"><a href="#4-縮短指令" class="headerlink" title="4. 縮短指令"></a>4. 縮短指令</h2><p>可以把常用的指令進行縮寫設定</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.st status</span><br></pre></td></tr></table></figure>
+
+<p>設定完之後，之後就打指令<code>git co</code> 就可以代表<code>git checkout</code>。這些設定儲存在<code>.gitconfig</code>裡哦。</p>
+<h2 id="5-刪除指令"><a href="#5-刪除指令" class="headerlink" title="5. 刪除指令"></a>5. 刪除指令</h2><p>以指令方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> alias.co</span><br></pre></td></tr></table></figure>
+
+<p>或者去打開<code>.gitconfig</code>t檔進行編輯也是可以的</p>
+<h2 id="6-小技巧"><a href="#6-小技巧" class="headerlink" title="6. 小技巧"></a>6. 小技巧</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">alias</span>]</span><br><span class="line">st = status</span><br><span class="line">sample_code = <span class="built_in">clone</span> https://github.com/kitefree/crud_test_sync_db.git</span><br><span class="line">code = !code</span><br></pre></td></tr></table></figure>
+
+<p>可以用 sample_code 的方式去抓一個固定的git 內容</p>
+<p>code &#x3D; !code ，只要前面加驚嘆號就是呼叫外部程式的方式</p>
+<h3 id="6-1-常用指令參考"><a href="#6-1-常用指令參考" class="headerlink" title="6.1. 常用指令參考"></a>6.1. 常用指令參考</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">alias</span>]</span><br><span class="line">    s = status</span><br><span class="line">    co = checkout</span><br><span class="line">    cob = checkout -b</span><br><span class="line">    del = branch -D    </span><br><span class="line">    br = branch --format=<span class="string">&#x27;%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]&#x27;</span> --<span class="built_in">sort</span>=-committerdate</span><br><span class="line">    save = !git add -A &amp;&amp; git commit -m <span class="string">&#x27;chore: savepoint&#x27;</span></span><br><span class="line">    undo = reset HEAD~1 --mixed</span><br><span class="line">    res = !git reset --hard</span><br><span class="line">    <span class="keyword">done</span> = !git push origin HEAD</span><br><span class="line">    lg = !git <span class="built_in">log</span> --pretty=format:\&quot;%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\&quot; --abbrev-commit -30</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-也可以在系統層級自創指令"><a href="#7-也可以在系統層級自創指令" class="headerlink" title="7. 也可以在系統層級自創指令"></a>7. 也可以在系統層級自創指令</h2><p><code>~/.bash_profile</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> hello=<span class="string">&quot;echo Hello Boudhayan!! How are you?&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/K00OeUZ.png" alt="img"></p>
+<h2 id="8-也可以使用shell-function-包裝git-指令"><a href="#8-也可以使用shell-function-包裝git-指令" class="headerlink" title="8. 也可以使用shell function 包裝git 指令"></a>8. 也可以使用shell function 包裝git 指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">gcp</span></span>() &#123;</span><br><span class="line">     git commit -am <span class="string">&quot;<span class="variable">$1</span>&quot;</span> &amp;&amp; git push</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcp <span class="string">&quot;initial commit&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以參考 <a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/an-intro-to-git-aliases-a-faster-way-of-working-with-git-b1eda81c7747/">An intro to Git Aliases: a faster way of working with Git</a> 這篇</p>
+<h2 id="9-依專案設定使用者指令"><a href="#9-依專案設定使用者指令" class="headerlink" title="9. 依專案設定使用者指令"></a>9. 依專案設定使用者指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name Snow</span><br><span class="line">git config --<span class="built_in">local</span> user.email Snow@gmail.com</span><br></pre></td></tr></table></figure>
+
+<p>我們可以看到在專案底下的<code>.git\config</code> 檔案打開，這邊就多一個<code>user</code>設定</p>
+<p><img src="https://i.imgur.com/TkWqgrZ.png" alt="image-20211003100029940"></p>
+<h2 id="10-全新開始"><a href="#10-全新開始" class="headerlink" title="10. 全新開始"></a>10. 全新開始</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-⽬錄不想再被-Git-控制？"><a href="#11-⽬錄不想再被-Git-控制？" class="headerlink" title="11. ⽬錄不想再被 Git 控制？"></a>11. ⽬錄不想再被 Git 控制？</h2><p>砍掉<code>.git</code>資料夾就好囉</p>
+<h2 id="12-確認目錄的狀態"><a href="#12-確認目錄的狀態" class="headerlink" title="12. 確認目錄的狀態"></a>12. 確認目錄的狀態</h2><p>這張圖有助於了解後續指令的相關概念</p>
+<p><img src="https://i.imgur.com/Irbf6oA.png" alt="查看來源圖片"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>增加或修改檔案預設會在<code>Unstaged files</code>狀態</p>
+<h2 id="13-追蹤檔案-stage-file"><a href="#13-追蹤檔案-stage-file" class="headerlink" title="13. 追蹤檔案(stage file)"></a>13. 追蹤檔案(stage file)</h2><h3 id="13-1-所有檔"><a href="#13-1-所有檔" class="headerlink" title="13.1. 所有檔"></a>13.1. 所有檔</h3><p>把目前所有更新的檔案都加入到<code>Staged files</code> 狀態可使用以下指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure>
+
+<p>或者是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add --all</span><br></pre></td></tr></table></figure>
+
+<p>其實 <code>git add .</code> 跟 <code>git add -A</code> 效果是不同的</p>
+<h3 id="13-2-單個檔"><a href="#13-2-單個檔" class="headerlink" title="13.2. 單個檔"></a>13.2. 單個檔</h3><p>git add  <code>file name</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add index.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-3-多個檔"><a href="#13-3-多個檔" class="headerlink" title="13.3. 多個檔"></a>13.3. 多個檔</h3><p>git add <code>file1</code> <code>file2</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add index.html readme.md</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-4-針對副檔名批次追蹤"><a href="#13-4-針對副檔名批次追蹤" class="headerlink" title="13.4. 針對副檔名批次追蹤"></a>13.4. 針對副檔名批次追蹤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add *.html</span><br></pre></td></tr></table></figure>
+
+<h2 id="14-提交到倉庫"><a href="#14-提交到倉庫" class="headerlink" title="14. 提交到倉庫"></a>14. 提交到倉庫</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;message&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>下完這個指令之後是提交到local repo 倉庫</p>
+<h2 id="15-歷史記錄"><a href="#15-歷史記錄" class="headerlink" title="15. 歷史記錄"></a>15. 歷史記錄</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/DoAASdc.png" alt="image-20211003213017296"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/tzEs4Ds.png" alt="image-20211003212950939"></p>
+<h2 id="16-如何自定指令"><a href="#16-如何自定指令" class="headerlink" title="16. 如何自定指令"></a>16. 如何自定指令</h2><p>比如hexo 這樣</p>
+<h2 id="17-git-重要四個物件"><a href="#17-git-重要四個物件" class="headerlink" title="17. git 重要四個物件"></a>17. git 重要四個物件</h2><p><code>blob</code>、<code>tree</code>、<code>commit</code>、<code>tag</code></p>
+<p>blob(binary large object)</p>
+<p>查閱物件常用指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git cat-file&lt;SHA1&gt;</span><br><span class="line">-t (git object <span class="built_in">type</span>)</span><br><span class="line">-s (git object size)</span><br><span class="line">-p (git object contnet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -t </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -p</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -s</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="17-1-commit-物件"><a href="#17-1-commit-物件" class="headerlink" title="17.1. commit 物件"></a>17.1. commit 物件</h3><p>舉例來說：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">kite-nb@DESKTOP-ORUP4EV MINGW64 ~/Downloads/gitTest/.git/objects (GIT_DIR!)</span><br><span class="line">$ git cat-file -t ef81</span><br><span class="line">commit</span><br><span class="line"></span><br><span class="line">kite-nb@DESKTOP-ORUP4EV MINGW64 ~/Downloads/gitTest/.git/objects (GIT_DIR!)</span><br><span class="line">$ git cat-file -p ef81</span><br><span class="line">tree 8151fedb3b9ed570e97ec2c51a878b717c446343</span><br><span class="line">author kite &lt;kitefree@gmail.com&gt; 1686465526 +0800</span><br><span class="line">committer kite &lt;kitefree@gmail.com&gt; 1686465526 +0800</span><br><span class="line"></span><br><span class="line">first commit</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="17-2-tree-物件"><a href="#17-2-tree-物件" class="headerlink" title="17.2. tree 物件"></a>17.2. tree 物件</h3><p>舉例來說：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kite-nb@DESKTOP-ORUP4EV MINGW64 ~/Downloads/gitTest/.git/objects (GIT_DIR!)</span><br><span class="line">$ git cat-file -t 8151</span><br><span class="line">tree</span><br><span class="line"></span><br><span class="line">kite-nb@DESKTOP-ORUP4EV MINGW64 ~/Downloads/gitTest/.git/objects (GIT_DIR!)</span><br><span class="line">$ git cat-file -p 8151</span><br><span class="line">100644 blob b5b9ef6c6a00ef52d45f5e557c6a71e4d1367681    file.txt</span><br><span class="line">100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    file02.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="18-目前GIT-使用的是sha1的雜湊演算法"><a href="#18-目前GIT-使用的是sha1的雜湊演算法" class="headerlink" title="18. 目前GIT 使用的是sha1的雜湊演算法"></a>18. 目前GIT 使用的是sha1的雜湊演算法</h2><p>檔案內容碰撞的實例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ shasum shattered-*</span><br><span class="line">38762cf7f55934b34d179ae6a4c80cadccbb7f0a *shattered-1.pdf</span><br><span class="line">38762cf7f55934b34d179ae6a4c80cadccbb7f0a *shattered-2.pdf</span><br></pre></td></tr></table></figure>
+
+<p>如果用 <code>sha256</code> 就不會碰撞</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ shasum -a 256 shattered-*</span><br><span class="line">2bb787a73e37352f92383abe7e2902936d1059ad9f1ba6daaa9c1e58ee6970d0 *shattered-1.pdf</span><br><span class="line">d4488775d29bdef7993367d541064dbdda50d383f89f0aa13a6ff2e0894ba5ff *shattered-2.pdf</span><br></pre></td></tr></table></figure>
+
+<p>檔案名稱沒有碰撞</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git ls-files -s</span><br><span class="line">100644 ba9aaa145ccd24ef760cf31c74d8f7ca1a2e47b0 0       shattered-1.pdf</span><br><span class="line">100644 b621eeccd5c7edac9b7dcba35a8d5afd075e24f2 0       shattered-2.pdf</span><br></pre></td></tr></table></figure>
+
+
+
+<p>參考網站：<a target="_blank" rel="noopener" href="https://shattered.io/">https://shattered.io/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file 8982 -p</span><br><span class="line">tree 2b3149179c8e3ecf0bbedf6816141cd4c6fe03c9</span><br><span class="line">parent 98322f878cfa4ca296318fe55f03483555a7e40c</span><br><span class="line">author DESKTOP-I40U13Q\kite &lt;kitefree@gmail.com&gt; 1686837812 +0800</span><br><span class="line">committer DESKTOP-I40U13Q\kite &lt;kitefree@gmail.com&gt; 1686837812 +0800</span><br><span class="line"></span><br><span class="line">add folder01</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="19-Git-裡的四種物件的關係"><a href="#19-Git-裡的四種物件的關係" class="headerlink" title="19. Git 裡的四種物件的關係"></a>19. Git 裡的四種物件的關係</h2><p><img src="https://i.imgur.com/vyf5jGf.png" alt="image-20230616085021570"></p>
+<ol>
+<li>把檔案加入 Git 之後，檔案的內容會被轉成 Blob 物件儲存。</li>
+<li>⽬錄以及檔名會存放在 Tree 物件內，Tree 物件會指向 Blob 物件，或是其它的 Tree 物<br> 件。</li>
+<li>Commit 物件會指向某個 Tree 物件。除了第⼀個 Commit 之外，其它的 Commit 都會指向<br> 前⼀次的 Commit 物件。</li>
+<li>Tag 物件（Annotated Tag）會指向某個 Commit 物件。</li>
+<li>分⽀雖然不屬於這四個物件之⼀，但它會指向某個 Commit 物件。</li>
+<li>當開始往 Git Server 上推送之後，在 .git&#x2F;refs 底下就會多出⼀個 remote 的⽬錄，裡⾯<br> 放的是遠端的分⽀，基本上跟本地的分⽀是差不多的概念，同樣也會指向某個 Commit 物<br> 件。</li>
+<li>HEAD 也不屬於這四個物件之⼀，它會指向某個分⽀。</li>
+</ol>
+<h2 id="20-垃圾回收機制"><a href="#20-垃圾回收機制" class="headerlink" title="20. 垃圾回收機制"></a>20. 垃圾回收機制</h2><p><img src="https://i.imgur.com/sMN3ypp.png" alt="image-20230616102934912"><br>當每次使⽤ git add 指令把檔案加到暫存 區的時候，即使檔案的內容只改了⼀個字，因為算出來的 SHA-1 值不同，所以 Git 也會為它做 出⼀顆全新的 Blob 物件，⽽不是只記錄「差異」。也因為 Git 在切換 Commit 的時候會像「拎 葡萄」⼀樣整串抽出來，不需要⼀個⼀個去拼湊歷史紀錄，所以在做 Checkout 的時候效能相對 的比較好。有些⼈也會⽤快照（Snapshot）來形容這個「拎葡萄」的概念。</p>
+<p>我們來了解一下目前的檔案狀況：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git ls-files -s</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git ls-files -s</span><br><span class="line">100644 5bbd493e709d6f1d06c653ef6cc0df91f1b3a065 0       index.html</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>git gc</code>指令，進行手動回收垃圾，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git gc</span><br><span class="line">Enumerating objects: 6, <span class="keyword">done</span>.</span><br><span class="line">Counting objects: 100% (6/6), <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 8 threads</span><br><span class="line">Compressing objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (6/6), <span class="keyword">done</span>.</span><br><span class="line">Total 6 (delta 1), reused 6 (delta 1), pack-reused 0</span><br></pre></td></tr></table></figure>
+
+<p>透過<code>git verify-pack -v</code>查閱路徑<code>objects/pack/</code>底下打包好的壓縮物件內容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git verify-pack -v</span><br></pre></td></tr></table></figure>
+
+<p>執行如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git verify-pack -v .git/objects/pack/pack-e1c18eef9de03245886714260e8358ee3fe255e5.idx</span><br><span class="line">cd61bd77fbdcfb74ff2b4121b95bcb49481e49b9 commit 254 179 12</span><br><span class="line">31473df02f02abb405e1263288cb80f3f2f21844 commit 202 143 191</span><br><span class="line">5bbd493e709d6f1d06c653ef6cc0df91f1b3a065 blob   267 191 334</span><br><span class="line">c4711c95748c9bc71663450934fff3ad296c245b tree   38 49 525</span><br><span class="line">7f4709e94455b029ee72933dce31e517ae196806 tree   38 49 574</span><br><span class="line">56efbdba61ff12f90f864930b9a85eac0259666d blob   18 30 623 1 5bbd493e709d6f1d06c653ef6cc0df91f1b3a065</span><br><span class="line">non delta: 5 objects</span><br><span class="line">chain length = 1: 1 object</span><br><span class="line">.git/objects/pack/pack-e1c18eef9de03245886714260e8358ee3fe255e5.pack: ok</span><br></pre></td></tr></table></figure>
+
+<p>我們看這行<code>56efbdba61ff12f90f864930b9a85eac0259666d blob   18 30 623 1 5bbd493e709d6f1d06c653ef6cc0df91f1b3a065</code></p>
+<p>這個blob只有18btyes 檔案大小，原因是因為它參照了<code>5bbd</code>這個blob 物件進行儲存，做到了類似差異備份的機制，因此檔案變小了。</p>
+<p>最後，說明什麼時機點git 會自動執行gc的機制：</p>
+<ol>
+<li><p>當在 .git&#x2F;objects ⽬錄的物件或是打包過的 packfile 數量過多的時候，Git 會⾃動觸發資源回收指令。</p>
+</li>
+<li><p>當執⾏ git push 指令把內容推⾄遠端伺服器時（如果你有仔細觀察過 Push 指令的訊息的話…）。</p>
+</li>
+</ol>
+<blockquote>
+<p>話說回來，其實 Git 也不是真的很在意浪費空間這回事，反正現在硬碟這麼便宜，能夠快速、<br>有效率的操作才是 Git 關切的重點。</p>
+</blockquote>
+<h2 id="21-git-branch"><a href="#21-git-branch" class="headerlink" title="21. git branch"></a>21. git branch</h2><p>git branch(list and branches we have)<br>git branch <branch_name>(create a branch with branch_name,if there already have branch with the name you want to create,it will return error)</p>
+<p>git branch -D <branch_name>(delete branch,can’t delete current active branch or branch not existing)<br>git branch –delete dev</p>
+<p>git branch -m <old_name> <new_name>(rename branch with new name)</p>
+<h3 id="21-1-刪除分支"><a href="#21-1-刪除分支" class="headerlink" title="21.1. 刪除分支"></a>21.1. 刪除分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d &lt;branch_name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-2-強制刪除分支"><a href="#21-2-強制刪除分支" class="headerlink" title="21.2. 強制刪除分支"></a>21.2. 強制刪除分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D &lt;branch_name&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="22-git-merge"><a href="#22-git-merge" class="headerlink" title="22. git merge"></a>22. git merge</h2><p>先切換到<code>master</code>分支，再下指令進行合併：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge <span class="built_in">cat</span></span><br></pre></td></tr></table></figure>
+
+<p>如果在master分支上都未做變動，進行merge時，會是<code>fast-forward</code>(快轉)</p>
+<p>如果在master分支上有做變動，進行merge時，會是<code>3 ways merge</code></p>
+<p>以<code>sourcetree</code>進行操作</p>
+<p><img src="https://i.imgur.com/B6bqPdf.png" alt="image-20230616165944213"></p>
+<h3 id="22-1-快轉模式-fast-forward-情況下，還是想要有小耳朵"><a href="#22-1-快轉模式-fast-forward-情況下，還是想要有小耳朵" class="headerlink" title="22.1. 快轉模式(fast-forward)情況下，還是想要有小耳朵"></a>22.1. 快轉模式(fast-forward)情況下，還是想要有小耳朵</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge <span class="built_in">cat</span> --no-ff</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git merge <span class="built_in">cat</span> --no-ff</span><br><span class="line">hint: Waiting <span class="keyword">for</span> your editor to close the file...</span><br><span class="line">[1612:0616/212512.631:ERROR:service_worker_storage.cc(1933)] Failed to delete the database: Database IO error</span><br><span class="line">Merge made by the <span class="string">&#x27;recursive&#x27;</span> strategy.</span><br><span class="line"> cat4.html | 0</span><br><span class="line"> cat5.html | 0</span><br><span class="line"> 2 files changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 cat4.html</span><br><span class="line"> create mode 100644 cat5.html</span><br></pre></td></tr></table></figure>
+
+<p><code>sourcetree</code>方式</p>
+<p><img src="https://i.imgur.com/yBQFUVZ.png" alt="image-20230616213033199"></p>
+<p><img src="https://i.imgur.com/nlQuCKV.png" alt="image-20230616213205677"></p>
+<p><code>merge</code>、<code>rebase</code>發生衝突時，具體步驟如下：</p>
+<p>1.優先解決衝突檔案的內容修正</p>
+<ol start="2">
+<li>接著進行<code>git add</code>指令</li>
+</ol>
+<p>3-1 git merge 的情境，則繼續下<code>git commit</code>指令</p>
+<p>3-2 git rebase的情境，指令為<code> git rebase --continue</code></p>
+<h2 id="ORIG-HEAD"><a href="#ORIG-HEAD" class="headerlink" title="ORIG_HEAD"></a>ORIG_HEAD</h2><p>Git 有另⼀個特別的紀錄點叫做 ORIG_HEAD ，當你在做⼀些比較「危險」的操作（例如像 merge 、 rebase 或 reset 之類的），Git 就會把 HEAD 的狀態存放在這裡，讓你隨時可以跳回危險動作之前的狀態。</p>
+<h2 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h2><p>互動模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i &lt;commit_sha1&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>pick</code>：預設都是這個指令，代表會使用這個 Commit。<br><code>reword</code>：使用這個 Commit，但是執行到此 Commit 時會開啟 vim 供更改 Commit 訊息。<br><code>edit</code>：使用這個 Commit，但是執行到此 Commit 時會暫停，直到執行 git rebase –continue。<br><code>squash</code>：將這個 Commit 與前一個 Commit 合併，訊息也會合併。<br><code>fixup</code>：與 squash 相同，但會捨棄這個 Commit 的訊息。<br><code>drop</code>：刪除這個 Commit，結果同直接刪除行。</p>
+<h2 id="23-狀況題"><a href="#23-狀況題" class="headerlink" title="23. 狀況題"></a>23. 狀況題</h2><h3 id="23-1-如果在-git-add-之後⼜修改了那個檔案-的內容？"><a href="#23-1-如果在-git-add-之後⼜修改了那個檔案-的內容？" class="headerlink" title="23.1. 如果在 git add 之後⼜修改了那個檔案 的內容？"></a>23.1. 如果在 git add 之後⼜修改了那個檔案 的內容？</h3><h3 id="23-2-我想要找某個⼈或某些⼈的-Commit"><a href="#23-2-我想要找某個⼈或某些⼈的-Commit" class="headerlink" title="23.2. 我想要找某個⼈或某些⼈的 Commit"></a>23.2. 我想要找某個⼈或某些⼈的 Commit</h3>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline --author=<span class="string">&quot;Sherly&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="23-3-想找commit罵髒話"><a href="#23-3-想找commit罵髒話" class="headerlink" title="23.3. 想找commit罵髒話"></a>23.3. 想找commit罵髒話</h3>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline --grep=<span class="string">&quot;WTF&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="23-4-想找commit-提到ruby"><a href="#23-4-想找commit-提到ruby" class="headerlink" title="23.4. 想找commit 提到ruby"></a>23.4. 想找commit 提到ruby</h3>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> -S <span class="string">&quot;Ruby&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="23-5-看你早上commit-了什麼"><a href="#23-5-看你早上commit-了什麼" class="headerlink" title="23.5. 看你早上commit 了什麼"></a>23.5. 看你早上commit 了什麼</h3>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline --since-=<span class="string">&quot;9am&quot;</span> --<span class="keyword">until</span>=<span class="string">&quot;12am&quot;</span> --after=<span class="string">&quot;2017-01&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="23-6-我不是真的想把這個檔案刪掉，只是不想讓這個檔案再被Git控管了"><a href="#23-6-我不是真的想把這個檔案刪掉，只是不想讓這個檔案再被Git控管了" class="headerlink" title="23.6. 我不是真的想把這個檔案刪掉，只是不想讓這個檔案再被Git控管了"></a>23.6. 我不是真的想把這個檔案刪掉，只是不想讓這個檔案再被Git控管了</h3>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> welcome.html --cached</span><br></pre></td></tr></table></figure>
+
+<h3 id="23-7-修改Commit紀錄"><a href="#23-7-修改Commit紀錄" class="headerlink" title="23.7. 修改Commit紀錄"></a>23.7. 修改Commit紀錄</h3><p>   要修改Commit紀錄有好幾種⽅法：</p>
+<ol>
+<li><p>把.git⽬錄整個刪除（誤）。</p>
+</li>
+<li><p>使⽤<code>git rebase</code>來修改歷史。</p>
+</li>
+<li><p>先把Commit⽤<code>git reset</code>拆掉，整理後再重新Commit。</p>
+</li>
+<li><p>使⽤<code>--amend</code>參數來修改最後⼀次的Commit。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend -m <span class="string">&quot;Welcome To Facebook&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/MNcYYqA.png" alt="image-20211004171011513"></p>
+<p>雖然在commit 數上沒有變動，訊息上也更改了，但注意觀查其實在sha值上已經換過了，畢竟已經有做<code>修改</code>動作</p>
+</li>
+</ol>
+<h3 id="23-8-追加檔案到最近⼀次的Commit"><a href="#23-8-追加檔案到最近⼀次的Commit" class="headerlink" title="23.8. 追加檔案到最近⼀次的Commit"></a>23.8. 追加檔案到最近⼀次的Commit</h3><p>   先將目前的檔案加入到<code>staged</code>狀態</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<p>   接著下這個指令就會合併到最後一次commit 囉</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend --no-edit</span><br></pre></td></tr></table></figure>
+
+<p>   在<code>sourcetree</code>軟體部分，一樣使用<code>amend last commit</code>，可以達到同樣的效果，合併到最後一次commit<br>   <img src="https://i.imgur.com/Pkmo2L7.png" alt="image-20211005093726530"></p>
+<h3 id="23-9-新增目錄卻沒有被追蹤"><a href="#23-9-新增目錄卻沒有被追蹤" class="headerlink" title="23.9. 新增目錄卻沒有被追蹤?"></a>23.9. 新增目錄卻沒有被追蹤?</h3><p>請記得⼀件很重要的觀念，就是Git在計算、產⽣物件的時候，是根據「檔案的內容」去做計算的，所以光是新增⼀個⽬錄，Git是沒辦法處理它的。</p>
+<p>如果需要git追蹤這個目錄的話可以在目錄底下加上<code>.gitkeep</code>檔案</p>
+<h3 id="23-10-有些檔案我不想放在Git裡⾯"><a href="#23-10-有些檔案我不想放在Git裡⾯" class="headerlink" title="23.10. 有些檔案我不想放在Git裡⾯"></a>23.10. 有些檔案我不想放在Git裡⾯</h3><p>可能的狀況</p>
+<ol>
+<li><p>資料庫存取密碼</p>
+</li>
+<li><p>AWS伺服器的存取金鑰</p>
+</li>
+<li><p>程式編譯的中間檔或暫存檔(因為每次的編譯都會產生新檔，對於專案來說沒有利用價值)</p>
+</li>
+</ol>
+<p>要做到忽略追蹤要新增<code>.gitignore</code>檔，填寫忽略規則</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">#</span>忽略secret.yml檔案</span><br><span class="line">secret.yml</span><br><span class="line"></span><br><span class="line"><span class="params">#</span>忽略config⽬錄下的database.yml檔案</span><br><span class="line">config/database.yml</span><br><span class="line"></span><br><span class="line"><span class="params">#</span>忽略所有db⽬錄下附檔名是.sqlite3的檔案</span><br><span class="line">/db/*.sqlite3</span><br><span class="line"></span><br><span class="line"><span class="params">#</span>忽略所有附檔名是.tmp的檔案</span><br><span class="line">*.tmp</span><br></pre></td></tr></table></figure>
+
+<h3 id="23-11-可以忽略這個忽略嗎？"><a href="#23-11-可以忽略這個忽略嗎？" class="headerlink" title="23.11. 可以忽略這個忽略嗎？"></a>23.11. 可以忽略這個忽略嗎？</h3><p>直接硬闖關</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -f 檔案名稱</span><br></pre></td></tr></table></figure>
+
+<h3 id="23-12-為什麼-gitignore-沒效果？"><a href="#23-12-為什麼-gitignore-沒效果？" class="headerlink" title="23.12. 為什麼.gitignore 沒效果？"></a>23.12. 為什麼.gitignore 沒效果？</h3><p>有一種狀況你先建了index.html 也commit 了。</p>
+<p>之後再新增.gitignore 說忽略index.html，</p>
+<p>這時如果去異動index.html，會發現還是會被追蹤。</p>
+<p>如果是這樣的話，可以使用指令停止追蹤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached index.html</span><br></pre></td></tr></table></figure>
+
+<p>對應<code>sourcetree</code>軟體 是<code>Stop Tracking</code>功能</p>
+<p><img src="https://i.imgur.com/7c5lJHB.png" alt="image-20211005101224894"></p>
+<h3 id="23-13-一口形清除忽略的檔案"><a href="#23-13-一口形清除忽略的檔案" class="headerlink" title="23.13. 一口形清除忽略的檔案"></a>23.13. 一口形清除忽略的檔案</h3><p>如果想要⼀⼝氣清除那些已經被忽略的檔案，可以使⽤ git clean 指令並配合 -X 參數：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -fX</span><br></pre></td></tr></table></figure>
+
+<p>那個額外加上的 -f 參數是指強制刪除的意思，這樣⼀來就可清除那些被忽略的檔案。</p>
+<h3 id="23-14-新增檔案時，檔案還沒加入追蹤，想清空工作目錄"><a href="#23-14-新增檔案時，檔案還沒加入追蹤，想清空工作目錄" class="headerlink" title="23.14. 新增檔案時，檔案還沒加入追蹤，想清空工作目錄"></a>23.14. 新增檔案時，檔案還沒加入追蹤，想清空工作目錄</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -f</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="23-15-檢視特定檔案的commit-記錄"><a href="#23-15-檢視特定檔案的commit-記錄" class="headerlink" title="23.15. 檢視特定檔案的commit 記錄"></a>23.15. 檢視特定檔案的commit 記錄</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit index.html</span><br></pre></td></tr></table></figure>
+
+<p>如果要看更詳細的可以加上<code>p</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -p index.html</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>sourcetree</code>查看的方式，在檔案上右鍵找<code>Log selected</code></p>
+<p><img src="https://i.imgur.com/TFa4XzT.png" alt="image-20230614220428502"></p>
+<h3 id="23-16-這行程式是誰寫的？"><a href="#23-16-這行程式是誰寫的？" class="headerlink" title="23.16. 這行程式是誰寫的？"></a>23.16. 這行程式是誰寫的？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git blame index.html</span><br></pre></td></tr></table></figure>
+
+<p>如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git blame index.html</span><br><span class="line">7fe12367 (DESKTOP-I40U13Q\kite 2023-06-14 21:53:04 +0800 1) hello</span><br><span class="line">5a85a883 (DESKTOP-I40U13Q\kite 2023-06-14 21:57:35 +0800 2) this 2 line</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果行數太多，加上<code>L</code>參數</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git blame -L 1,1 index.html</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (main)</span><br><span class="line">$ git blame -L 1,1 index.html</span><br><span class="line">7fe12367 (DESKTOP-I40U13Q\kite 2023-06-14 21:53:04 +0800 1) hello</span><br></pre></td></tr></table></figure>
+
+<p>在<code>sourcetree</code>上的操作</p>
+<p><img src="https://i.imgur.com/rtebxcV.png" alt="image-20230614221304355"></p>
+<h3 id="23-17-不小心把檔案或目錄刪掉了…"><a href="#23-17-不小心把檔案或目錄刪掉了…" class="headerlink" title="23.17. 不小心把檔案或目錄刪掉了…"></a>23.17. 不小心把檔案或目錄刪掉了…</h3><p>刪除檔案指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> *.html</span><br></pre></td></tr></table></figure>
+
+<p>指令過程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (main)</span><br><span class="line">$ <span class="built_in">rm</span> *.html</span><br><span class="line"></span><br><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (main)</span><br><span class="line">$ git st</span><br><span class="line">On branch main</span><br><span class="line">Your branch is ahead of <span class="string">&#x27;origin/main&#x27;</span> by 3 commits.</span><br><span class="line">  (use <span class="string">&quot;git push&quot;</span> to publish your <span class="built_in">local</span> commits)</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add/rm &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        deleted:    home.html</span><br><span class="line">        deleted:    index.html</span><br></pre></td></tr></table></figure>
+
+<p>單一檔案救回指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout index.html</span><br></pre></td></tr></table></figure>
+
+<p>全數救回指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout .</span><br></pre></td></tr></table></figure>
+
+<p><code>sourcetree</code></p>
+<p><img src="https://i.imgur.com/lkXHIw2.png" alt="image-20230614222305610"></p>
+<p>還原某個檔案至前面的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout HEAD~2 index.html	</span><br></pre></td></tr></table></figure>
+
+<p><code>index.html</code>檔距離現今前二次的版本</p>
+<blockquote>
+<p>距離現在兩個版本以前的那個 welcome.html 檔案來覆蓋現在的⼯作⽬錄裡的 welcome.html 檔案</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout HEAD~2 .</span><br></pre></td></tr></table></figure>
+
+<p>目前<code>工作區</code>檔案距離現今前二次的版本</p>
+<blockquote>
+<p>拿距離現在兩個版本以前的檔案來覆蓋現在⼯作⽬錄的檔案，同時也更 新暫存區裡的狀態</p>
+</blockquote>
+<h3 id="23-18-剛才的commit-後悔了，想拆掉重做…"><a href="#23-18-剛才的commit-後悔了，想拆掉重做…" class="headerlink" title="23.18. 剛才的commit 後悔了，想拆掉重做…"></a>23.18. 剛才的commit 後悔了，想拆掉重做…</h3><p>相對的作法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset e12d8ef^</span><br></pre></td></tr></table></figure>
+
+<p>以這個object位置前往<code>一次</code></p>
+<p>如果要前往<code>二次</code>以上，舉例來說五次的寫法如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset e12d8ef~5</span><br></pre></td></tr></table></figure>
+
+<p>以上的寫法也可以成寫</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset <span class="built_in">head</span>~5</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset master~5</span><br></pre></td></tr></table></figure>
+
+<p><code>HEAD</code>、<code>master</code>指針指向<code>e12d8ef</code>情況下，效果是一樣的。</p>
+<p><code>sourcetree</code></p>
+<p><img src="https://i.imgur.com/o4Mlt9S.png" alt="image-20230615091430499"></p>
+<p><img src="https://i.imgur.com/iK0lb3W.png" alt="image-20230615091503830"></p>
+<p>reset 三種模式</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>mixed模式</th>
+<th>soft模式</th>
+<th>hard模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>commit 拆出來的檔案</td>
+<td>丟回工作目錄</td>
+<td>丟至暫存區</td>
+<td>直接丟掉</td>
+</tr>
+</tbody></table>
+<h3 id="23-19-不小心使用hard模式reset了某個commit救得回來嗎？"><a href="#23-19-不小心使用hard模式reset了某個commit救得回來嗎？" class="headerlink" title="23.19. 不小心使用hard模式reset了某個commit救得回來嗎？"></a>23.19. 不小心使用hard模式reset了某個commit救得回來嗎？</h3><p>git reset 之前的sha1 值就可以了，舉例來說：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset a95148f --hard</span><br></pre></td></tr></table></figure>
+
+<p>如果忘記、甚至沒記當時的sha1值，怎麼辦？</p>
+<p>使用<code>reflog</code>指令，執行如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git reflog</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;0&#125;: reset: moving to <span class="built_in">head</span>~2</span><br><span class="line">a95148f HEAD@&#123;1&#125;: reset: moving to a95148f</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;2&#125;: reset: moving to <span class="built_in">head</span>~2</span><br><span class="line">a95148f HEAD@&#123;3&#125;: reset: moving to a95148f</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;4&#125;: reset: moving to <span class="built_in">head</span>~2</span><br><span class="line">a95148f HEAD@&#123;5&#125;: reset: moving to a95148f</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;6&#125;: reset: moving to <span class="built_in">head</span>~2</span><br><span class="line">a95148f HEAD@&#123;7&#125;: reset: moving to a95148f</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;8&#125;: reset: moving to <span class="built_in">head</span>~2</span><br><span class="line">a95148f HEAD@&#123;9&#125;: reset: moving to a95148f</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;10&#125;: reset: moving to <span class="built_in">head</span>~2</span><br><span class="line">a95148f HEAD@&#123;11&#125;: reset: moving to a95148f</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;12&#125;: reset: moving to <span class="built_in">head</span>~2</span><br><span class="line">a95148f HEAD@&#123;13&#125;: commit: file03</span><br><span class="line">f1e0d52 HEAD@&#123;14&#125;: commit: file02</span><br><span class="line">ae90fda (HEAD -&gt; master) HEAD@&#123;15&#125;: commit (initial): add file01</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>試了很多次，所以會看到很多次reset資料，</p>
+<p>當 <code>HEAD</code> 有移動的時候（例如切換分⽀或是 reset 都會造成 <code>HEAD</code> 移動），Git 就會在 <code>Reflog</code> 裡記上⼀筆。</p>
+<blockquote>
+<p>git log 如果加上 -g 參數，也可以看到 Reflog 喔！</p>
+</blockquote>
+<p>可以只commit 一個檔案的部分內容嗎？</p>
+<p>使用 <code>git add -p</code>方式，舉例如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git add file03  -p</span><br><span class="line">diff --git a/file03 b/file03</span><br><span class="line">index e69de29..0eb7e4c 100644</span><br><span class="line">--- a/file03</span><br><span class="line">+++ b/file03</span><br><span class="line">@@ -0,0 +1,3 @@</span><br><span class="line">+123</span><br><span class="line">+456</span><br><span class="line">+789</span><br><span class="line">\ No newline at end of file</span><br><span class="line">(1/1) Stage this hunk [y,n,q,a,d,e,?]? e</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>這時候會開啟檔案，再將要刪掉的行數刪掉，儲存關掉即可。</p>
+<p><code>sourcetree</code></p>
+<p><img src="https://i.imgur.com/3JIRdt1.png" alt="image-20230615104916492"></p>
+<p><img src="https://i.imgur.com/U4tPJi3.png" alt="image-20230615104949216"></p>
+<h3 id="23-20-那如果改⼀半切換分⽀會發⽣什麼事？"><a href="#23-20-那如果改⼀半切換分⽀會發⽣什麼事？" class="headerlink" title="23.20. 那如果改⼀半切換分⽀會發⽣什麼事？"></a>23.20. 那如果改⼀半切換分⽀會發⽣什麼事？</h3><p>舉例來說，在<code>cat</code>分支時，新增了<code>cat3.html</code>、修改<code>index.html</code>檔案，這時切換分支至<code>master</code>，結果仍保留之前在<code>工作區</code>的更新檔案。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (<span class="built_in">cat</span>)</span><br><span class="line">$ <span class="built_in">touch</span> cat3.html</span><br><span class="line"></span><br><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (<span class="built_in">cat</span>)</span><br><span class="line">$ vim index.html</span><br><span class="line"></span><br><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (<span class="built_in">cat</span>)</span><br><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">&#x27;master&#x27;</span></span><br><span class="line">M       index.html</span><br><span class="line"></span><br><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git st</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        modified:   index.html</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line">        cat3.html</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="不⼩⼼把還沒合併的分⽀砍掉了，救得回來嗎？"><a href="#不⼩⼼把還沒合併的分⽀砍掉了，救得回來嗎？" class="headerlink" title="不⼩⼼把還沒合併的分⽀砍掉了，救得回來嗎？"></a>不⼩⼼把還沒合併的分⽀砍掉了，救得回來嗎？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git branch -D <span class="built_in">cat</span></span><br><span class="line">Deleted branch <span class="built_in">cat</span> (was 6e34a6f).</span><br><span class="line"></span><br><span class="line">kite@DESKTOP-I40U13Q MINGW64 /d/kite/tmp/test (master)</span><br><span class="line">$ git branch <span class="built_in">cat</span> 6e34a</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>當在刪除的時候，我們會看到後面有一個當時的sha1值。</p>
+<p>如果真的不小心誤砍了，可以透過以下指令進行回復：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="built_in">cat</span> 6e34a</span><br></pre></td></tr></table></figure>
+
+<p>如果真的連sha1值都記不下來，其實還是可以用<code>git reflog</code>指令找出重要操作的log。(Reflog 預設會保留 30 天，所以 30 天內應該都還找得到)</p>
+<h2 id="24-問題"><a href="#24-問題" class="headerlink" title="24. 問題"></a>24. 問題</h2><h3 id="24-1-其實-git-add-跟-git-add-A-效果是不同的"><a href="#24-1-其實-git-add-跟-git-add-A-效果是不同的" class="headerlink" title="24.1. 其實 git add . 跟 git add -A 效果是不同的"></a>24.1. 其實 <code>git add .</code> 跟 <code>git add -A</code> 效果是不同的</h3><p>   <code>git add .</code></p>
+<blockquote>
+<p>這個指令會把⽬前當下這個⽬錄，以及它的⼦⽬錄、⼦⼦⽬錄、⼦⼦⼦⽬ 錄…裡的異動全部加到暫存區，但在這個⽬錄的以外的就不歸它管了。</p>
+</blockquote>
+<p>   <code>git add --all</code></p>
+<blockquote>
+<p>就沒這個問題，這個指令不管在專案的哪⼀層⽬錄執⾏，效果都是⼀樣的，在這個專案裡所有 的異動都會被加⾄暫存區。</p>
+</blockquote>
+<h3 id="24-2-⼀定要⼆段式嗎？"><a href="#24-2-⼀定要⼆段式嗎？" class="headerlink" title="24.2. ⼀定要⼆段式嗎？"></a>24.2. ⼀定要⼆段式嗎？</h3>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m <span class="string">&quot;update content&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>這樣即使沒有先 add 也可以完成 Commit。但要注意的是這個 -a 參數只對已經存在<br>Repository 的檔案有效，對還是新加入的檔案（也就是 Untracked file）是無效的。</p>
+</blockquote>
+<h2 id="25-參考網站"><a href="#25-參考網站" class="headerlink" title="25. 參考網站"></a>25. 參考網站</h2><p><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/an-intro-to-git-aliases-a-faster-way-of-working-with-git-b1eda81c7747/">An intro to Git Aliases: a faster way of working with Git</a></p>
+<p><a target="_blank" rel="noopener" href="https://snyk.io/blog/10-git-aliases-for-faster-and-productive-git-workflow/">10 git aliases for a faster and productive git workflow</a></p>
+<p><a target="_blank" rel="noopener" href="https://sdwh.dev/posts/2020/05/Git-100/">Git 的 100 個情境應用</a></p>
+<p><a target="_blank" rel="noopener" href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#merge">https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#merge</a></p>
+<p>How to Animate Your Git Commit History with git-story</p>
+<p><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/animate-your-git-repo-with-git-story/">https://www.freecodecamp.org/news/animate-your-git-repo-with-git-story/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3o_01F04bZ4&ab_channel=VisualStudioCode">https://www.youtube.com/watch?v=3o_01F04bZ4&amp;ab_channel=VisualStudioCode</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/09/30/2021-09-30%20Google-Sheets-Automatic-Backups/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/30/2021-09-30%20Google-Sheets-Automatic-Backups/" class="post-title-link" itemprop="url">Google Sheets Automatic Backups</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-30 19:46:00" itemprop="dateCreated datePublished" datetime="2021-09-30T19:46:00+08:00">2021-09-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 10:55:00" itemprop="dateModified" datetime="2021-10-01T10:55:00+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前專案階段已經進入到軟體功能驗收階段，在進行驗收時需要將問題一一的列出來。</p>
+<p>為了溝通與協同作業方便，於是選用了google sheets 進行分享。但後續想想，如果哪天一不小心出現了傻瓜或者其它意外，這份資料就不見了…</p>
+<p>於是開始研究如何自動備份google sheets 資料。以下是<code>問題管制表</code>：</p>
+<p><img src="https://i.imgur.com/p6YMezX.png" alt="image-20210930203829852"></p>
+<h2 id="流程說明"><a href="#流程說明" class="headerlink" title="流程說明"></a>流程說明</h2><h3 id="建立新資料夾"><a href="#建立新資料夾" class="headerlink" title="建立新資料夾"></a>建立新資料夾</h3><p>比方說在問題管制表底下建立個一名稱為<code>Backups</code>資料夾，接著點擊到<code>Backups</code>這一層，我們要取出紅色線條部份的ID字串，這個屬於<code>資料夾ID</code>，待會會用到。</p>
+<p><img src="https://i.imgur.com/vGDICPQ.png" alt="image-20210930203614781"></p>
+<h3 id="指令碼編輯器"><a href="#指令碼編輯器" class="headerlink" title="指令碼編輯器"></a>指令碼編輯器</h3><p>到你要備份的對象sheet 打開，接著找到<code>工具</code>→<code>指令碼編輯器</code> ，點擊它到下一步驟畫面</p>
+<p><img src="https://i.imgur.com/qcphhpd.png" alt="image-20210930200414943"></p>
+<h3 id="貼上程式碼"><a href="#貼上程式碼" class="headerlink" title="貼上程式碼"></a>貼上程式碼</h3><p>接著會看到右邊有程式碼可以貼，請貼上以下程式碼，這個畫面是貼完之後的結果。</p>
+<p>重點在<code>第10行</code> code </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">DriveAPP</span>.<span class="title function_">getFolderById</span>(<span class="string">&#x27;your backup bolder id&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>有注意到嗎？其實就是要貼上剛剛在建立資料夾步驟要留意的資料夾ID，請貼到這裡。</p>
+<p>之後請記得按下<code>儲存</code>，長的像磁片正方形的那個。</p>
+<p><img src="https://i.imgur.com/aRKSUw9.png" alt="image-20210930200620937"></p>
+<h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">makeCopy</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// generates the timestamp and stores in variable formattedDate as year-month-date hour-minute-second</span></span><br><span class="line"><span class="keyword">var</span> formattedDate = <span class="title class_">Utilities</span>.<span class="title function_">formatDate</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(), <span class="string">&quot;GMT&quot;</span>, <span class="string">&quot;yyyy-MM-dd&#x27; &#x27;HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the name of the original file and appends the word &quot;copy&quot; followed by the timestamp stored in formattedDate</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getName</span>() + <span class="string">&quot; Copy &quot;</span> + formattedDate;</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the destination folder by their ID. REPLACE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx with your folder&#x27;s ID that you can get by opening the folder in Google Drive and checking the URL in the browser&#x27;s address bar</span></span><br><span class="line"><span class="keyword">var</span> destination = <span class="title class_">DriveApp</span>.<span class="title function_">getFolderById</span>(<span class="string">&quot;your backup folder name&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the current Google Sheet file</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="title class_">DriveApp</span>.<span class="title function_">getFileById</span>(<span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getId</span>())</span><br><span class="line"></span><br><span class="line"><span class="comment">// makes copy of &quot;file&quot; with &quot;name&quot; at the &quot;destination&quot;</span></span><br><span class="line">file.<span class="title function_">makeCopy</span>(name, destination);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="設定觸發條件"><a href="#設定觸發條件" class="headerlink" title="設定觸發條件"></a>設定觸發條件</h3><p>左邊選單有一個小時鐘的就是我們的主角，要設定時間備份，就是在這裡</p>
+<p><img src="https://i.imgur.com/s8ohZyd.png" alt="image-20210930201927739"></p>
+<h3 id="選擇時間驅動"><a href="#選擇時間驅動" class="headerlink" title="選擇時間驅動"></a>選擇時間驅動</h3><p>因為我的目的是想要定時備份，所以這次是選<code>時間驅動</code>的選項</p>
+<p><img src="https://i.imgur.com/dgHuwGh.png" alt="image-20210930202210516"></p>
+<h3 id="定時顆粒度"><a href="#定時顆粒度" class="headerlink" title="定時顆粒度"></a>定時顆粒度</h3><p><img src="https://i.imgur.com/la7gpRy.png" alt="image-20210930202310015"></p>
+<h3 id="最後完成的設定"><a href="#最後完成的設定" class="headerlink" title="最後完成的設定"></a>最後完成的設定</h3><p>設定完之後，按下<code>儲存</code></p>
+<p><img src="https://i.imgur.com/G4Giboi.png" alt="image-20210930202358258"></p>
+<h3 id="觸發條件清單"><a href="#觸發條件清單" class="headerlink" title="觸發條件清單"></a>觸發條件清單</h3><p>按下儲存後，這時候畫面會直接導向到這個清單，紅色部分就是我們剛剛設定的。</p>
+<p>眼針的我們可以發現它多了一個觸發器，這個觸發器是設定在<code>文件開啟時</code>。</p>
+<p>後來實測只要使用者有去開啟這個sheet，就會自動備一份，這也是不錯的備份方式，所以我就沒有刪掉它。</p>
+<p><img src="https://i.imgur.com/f5Ughop.png" alt="image-20210930202803058"></p>
+<h2 id="最後完成"><a href="#最後完成" class="headerlink" title="最後完成"></a>最後完成</h2><p>完成囉，在這個備份的資料夾，時間一到就會多一份囉。</p>
+<p><img src="https://i.imgur.com/wJLEu5V.png" alt="image-20210930203214080"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

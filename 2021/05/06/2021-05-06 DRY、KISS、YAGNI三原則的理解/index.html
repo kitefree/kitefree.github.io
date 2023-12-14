@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="軟件三原則的個人理解在軟件的設計當中前人已經總結了許多的設計原則和設計模式。例如SOLID，GRASP設計原則，這些原則都是基於面向對象設計總結而來的。而GOF23是基於許多常見的場景總結出了一套設計模式，在我們遇到類似的場景，都可以套用設計模式。而今天所講到的軟件三原則是適用於在軟件設計的各個層面的。它不僅適用於面向對象的設計，也適用於面向過程的程序設計；不僅適用於類的設計，也適用於模塊、子系統">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DRY、KISS、YAGNI三原則的理解">
+<meta property="og:url" content="https://kitefree.github.io/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="軟件三原則的個人理解在軟件的設計當中前人已經總結了許多的設計原則和設計模式。例如SOLID，GRASP設計原則，這些原則都是基於面向對象設計總結而來的。而GOF23是基於許多常見的場景總結出了一套設計模式，在我們遇到類似的場景，都可以套用設計模式。而今天所講到的軟件三原則是適用於在軟件設計的各個層面的。它不僅適用於面向對象的設計，也適用於面向過程的程序設計；不僅適用於類的設計，也適用於模塊、子系統">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-05-06T03:47:00.000Z">
+<meta property="article:modified_time" content="2021-09-19T01:19:33.041Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="軟體思維">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>DRY、KISS、YAGNI三原則的理解 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DRY、KISS、YAGNI三原則的理解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-06 11:47:00" itemprop="dateCreated datePublished" datetime="2021-05-06T11:47:00+08:00">2021-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>軟件三原則的個人理解<br>在軟件的設計當中前人已經總結了許多的設計原則和設計模式。例如SOLID，GRASP設計原則，這些原則都是基於面向對象設計總結而來的。而GOF23是基於許多常見的場景總結出了一套設計模式，在我們遇到類似的場景，都可以套用設計模式。而今天所講到的軟件三原則是適用於在軟件設計的各個層面的。它不僅適用於面向對象的設計，也適用於面向過程的程序設計；不僅適用於類的設計，也適用於模塊、子系統的設計。就連在項目架構運維部署中也適用於這一套簡單的法則。</p>
+<h2 id="DRY-Don’t-Repeat-Yourself"><a href="#DRY-Don’t-Repeat-Yourself" class="headerlink" title="DRY - Don’t Repeat Yourself"></a>DRY - Don’t Repeat Yourself</h2><p>第一條準則是千萬不要重複你自身。盡量在項目中減少重複的代碼行，重複的方法，重複的模塊。其實許多設計原則和模式最本質的思想都是在消除重複。&#x3D;&#x3D;我們經常提起的重用性和可維護性其實是基於減少重複這一簡單的思想&#x3D;&#x3D;。為什麼現在微服務盛行呢？正是因為將系統中的服務進行抽取的話，便減少了重複。重複冗餘在維護代碼的時候將是非常困難的。 DRY意味著系統內的每一個部件都應該是唯一的並且是不模糊的。我們可以&#x3D;&#x3D;通過應用單一職責接口隔離等原則盡量拆分系統，模塊，類，方法·。使其每一個部件都是職責明確的並且可重用的。&#x3D;&#x3D;</p>
+<h2 id="KISS-Keep-It-Simple-Stupid"><a href="#KISS-Keep-It-Simple-Stupid" class="headerlink" title="KISS - Keep It Simple &amp; Stupid"></a>KISS - Keep It Simple &amp; Stupid</h2><p>第二條準則是保持簡單易懂。從小到幾行代碼的寫法大到整個系統的架構我們都應該保持簡單易懂。高手高就高在可以將復雜的東西“簡單”的實現出來。剛入行的時候，我總喜歡用三目運算符將復雜的邏輯用一句冗長的代碼行寫出來。後面才發現這是非常愚蠢的。到了重構或者需求變更的時候，連我自己寫的代碼我都看著非常費勁難以下手。所以我們應該致力於代碼的可理解性。降低複雜度也意味著維護變得簡單。 &#x3D;&#x3D;Martin Flower在《重構》中有一句經典的話：”任何一個傻瓜都能寫出計算機可以理解的程序，只有寫出人類容易理解的程序才是優秀的程序員。”&#x3D;&#x3D; 其實不光是程序，這個原則也可以延伸到產品的設計，業務的設計，項目結構的設計上。</p>
+<h2 id="YAGNI-You-Ain’t-Gonna-Need-It"><a href="#YAGNI-You-Ain’t-Gonna-Need-It" class="headerlink" title="YAGNI - You Ain’t Gonna Need It"></a>YAGNI - You Ain’t Gonna Need It</h2><p>&#x3D;&#x3D;第三條準則是你將不會需要它。千萬不要進行過度設計。&#x3D;&#x3D; 我們經常會在開發當中盡可能的迎合未來可能的需求。而為了迎合某些產生概率極低的需求而設計的成本是非常高的，這種過度設計的收益非常低。可能你深思熟慮的設計花了不少時間成本，卻在未來的兩三年內這個設計卻完全沒有派上用場。一些設計是否必要，更多的應該基於當前的情況。而不是為了應對未來的各種變化，畫蛇添足的設計。如果淘寶一開始就往日均交易上億的情況進行設計的話，那麼可能就不會有今天的淘寶了。因為創業公司的時間是非常寶貴的，比其他公司早一步退出新的服務就能搶占先機。並不是說淘寶不需要考慮以後交易量暴增的情況，而是不應該以當前日均交易才幾萬的情況下去設計編碼日均交易上億的項目。過度設計往往會延緩開發迭代的速度。</p>
+<blockquote>
+<p>YAGNI 原則想到想當在讀易讀程式碼之美學時，也有講到類似的概念，主要是釐清需求範圍跟可能發生的狀況，將會大大減少不必要的開發成本與過度開發可能沒用到的功能</p>
+</blockquote>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d65da856fb9a06ac93cdf5a#heading-3">DRY、KISS、YAGNI三原则的理解</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BB%9F%E9%AB%94%E6%80%9D%E7%B6%AD/" rel="tag"># 軟體思維</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/03/2021-05-03%20CCNA_10/" rel="prev" title="CCNA_10">
+      <i class="fa fa-chevron-left"></i> CCNA_10
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/12/2021-05-12%20CCNA_12/" rel="next" title="CCNA_12">
+      CCNA_12 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DRY-Don%E2%80%99t-Repeat-Yourself"><span class="nav-number">1.</span> <span class="nav-text">DRY - Don’t Repeat Yourself</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KISS-Keep-It-Simple-Stupid"><span class="nav-number">2.</span> <span class="nav-text">KISS - Keep It Simple &amp; Stupid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YAGNI-You-Ain%E2%80%99t-Gonna-Need-It"><span class="nav-number">3.</span> <span class="nav-text">YAGNI - You Ain’t Gonna Need It</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">3.1.</span> <span class="nav-text">參考資料</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

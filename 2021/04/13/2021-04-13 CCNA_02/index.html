@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="2. THE Bassic internet解釋internet 單字兩個物體外部相互連接之關係是inter 表示net 是網的意思所以internet 是互相連的網而網跟網之間的連結就是使用ISP來連接 ISP - Internet Service Provider (網際網路服務供應商) ISP依大小來分級構建示意圖如下 ISP依大小分為 國家 national ISP 國家級的ISP會相互連">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCNA_02">
+<meta property="og:url" content="https://kitefree.github.io/2021/04/13/2021-04-13%20CCNA_02/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="2. THE Bassic internet解釋internet 單字兩個物體外部相互連接之關係是inter 表示net 是網的意思所以internet 是互相連的網而網跟網之間的連結就是使用ISP來連接 ISP - Internet Service Provider (網際網路服務供應商) ISP依大小來分級構建示意圖如下 ISP依大小分為 國家 national ISP 國家級的ISP會相互連">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/uOd8zEA.png">
+<meta property="og:image" content="https://i.imgur.com/QDkWvXl.jpg">
+<meta property="og:image" content="https://i.imgur.com/udIZOLO.jpg">
+<meta property="og:image" content="https://i.imgur.com/9xI9Pc9.png">
+<meta property="og:image" content="https://i.imgur.com/sc2ULpR.jpg">
+<meta property="og:image" content="https://i.imgur.com/N3GrB0g.jpg">
+<meta property="og:image" content="https://i.imgur.com/bPh95SU.jpg">
+<meta property="og:image" content="https://i.imgur.com/EMamnL2.png">
+<meta property="og:image" content="https://i.imgur.com/lUik6NF.jpg">
+<meta property="og:image" content="https://i.imgur.com/48fJzNG.png">
+<meta property="og:image" content="https://i.imgur.com/LZ9qzc9.png">
+<meta property="og:image" content="https://i.imgur.com/zEMvG8g.png">
+<meta property="og:image" content="https://i.imgur.com/4QWNoLv.png">
+<meta property="article:published_time" content="2021-04-13T08:26:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T07:05:26.083Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="CCNA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/uOd8zEA.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/04/13/2021-04-13%20CCNA_02/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>CCNA_02 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/13/2021-04-13%20CCNA_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CCNA_02
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-13 16:26:00" itemprop="dateCreated datePublished" datetime="2021-04-13T16:26:00+08:00">2021-04-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:05:26" itemprop="dateModified" datetime="2021-10-01T15:05:26+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>976</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="2-THE-Bassic-internet"><a href="#2-THE-Bassic-internet" class="headerlink" title="2. THE Bassic internet"></a>2. THE Bassic internet</h2><h3 id="解釋internet-單字"><a href="#解釋internet-單字" class="headerlink" title="解釋internet 單字"></a>解釋internet 單字</h3><p>兩個物體外部相互連接之關係是inter 表示<br>net 是網的意思<br>所以internet 是互相連的網<br>而網跟網之間的連結就是使用ISP來連接</p>
+<h3 id="ISP-Internet-Service-Provider-網際網路服務供應商"><a href="#ISP-Internet-Service-Provider-網際網路服務供應商" class="headerlink" title="ISP - Internet Service Provider (網際網路服務供應商)"></a>ISP - Internet Service Provider (網際網路服務供應商)</h3><p><img src="https://i.imgur.com/uOd8zEA.png" alt="image"></p>
+<h4 id="ISP依大小來分級構建示意圖如下"><a href="#ISP依大小來分級構建示意圖如下" class="headerlink" title="ISP依大小來分級構建示意圖如下"></a>ISP依大小來分級構建示意圖如下</h4><p><img src="https://i.imgur.com/QDkWvXl.jpg" alt="image"></p>
+<h4 id="ISP依大小分為"><a href="#ISP依大小分為" class="headerlink" title="ISP依大小分為"></a>ISP依大小分為</h4><ul>
+<li>國家 national ISP<ul>
+<li>國家級的ISP會相互連接，有時候這個連結點也會連結Regional ISP<ul>
+<li>這個連接點叫NAP(Network Access Point)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>區域 Regional ISP<ul>
+<li>Regional ISP點連接起來的叫MAE(Metropolitan Area Exchange)</li>
+</ul>
+</li>
+<li>地區 Local ISP</li>
+</ul>
+<h4 id="國家和國家之間的ISP"><a href="#國家和國家之間的ISP" class="headerlink" title="國家和國家之間的ISP"></a>國家和國家之間的ISP</h4><p>國家跟國家之間用海底電纜連接ISP 服務，如下示意圖：<br><img src="https://i.imgur.com/udIZOLO.jpg" alt="image"></p>
+<h4 id="國家內部ISP"><a href="#國家內部ISP" class="headerlink" title="國家內部ISP"></a>國家內部ISP</h4><p><img src="https://i.imgur.com/9xI9Pc9.png" alt="image"></p>
+<ul>
+<li>國家最大的ISP<ul>
+<li>稱為 Tier 1 ISP</li>
+<li>而最大ISP會再從某一個Router 再跟其它國家連接，如圖框選的紅色圓</li>
+</ul>
+</li>
+<li>國家小的ISP<ul>
+<li>會跟大的ISP 連接在一起，會使用IXP(Internet exchange point)</li>
+<li>沒有辦法去訪問別的國家ISP(小的ISP沒有海底電纜)，所以一定要跟大的ISP連接，訪問別的國家</li>
+</ul>
+</li>
+<li>ISP環境<ul>
+<li>小的ISP向大的ISP購買互聯網，再賣給我們一般用戶</li>
+</ul>
+</li>
+</ul>
+<h3 id="從機房慢慢介紹到如何登入switch、router"><a href="#從機房慢慢介紹到如何登入switch、router" class="headerlink" title="從機房慢慢介紹到如何登入switch、router"></a>從機房慢慢介紹到如何登入switch、router</h3><h3 id="Data-Center-Server-Room"><a href="#Data-Center-Server-Room" class="headerlink" title="Data Center&#x2F;Server Room"></a>Data Center&#x2F;Server Room</h3><p>數據中心的樣貌<br><img src="https://i.imgur.com/sc2ULpR.jpg" alt="image"></p>
+<h3 id="機架-RACK-大小的標準"><a href="#機架-RACK-大小的標準" class="headerlink" title="機架(RACK)大小的標準"></a>機架(RACK)大小的標準</h3><p>1U &#x3D; 44mm (厚度)<br>42U RACK<br><img src="https://i.imgur.com/N3GrB0g.jpg" alt="image"></p>
+<p><strong>Cisco 系列</strong><br><img src="https://i.imgur.com/bPh95SU.jpg" alt="image"></p>
+<ul>
+<li>SWITCH<ul>
+<li>CISCO Catalyst<ul>
+<li>一般用在校園區網或辦公大樓</li>
+<li>catalyst 6509 switch<ul>
+<li>模塊化設計</li>
+</ul>
+</li>
+<li>cisco Nexus<ul>
+<li>主要用在數據中心裡面</li>
+<li>數據轉發能力比Catlyst大</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Router<ul>
+<li>ASR<ul>
+<li>高端一點</li>
+<li>差別在數據轉方能力</li>
+</ul>
+</li>
+<li>ISR<ul>
+<li>低端一點</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="交換機觀查"><a href="#交換機觀查" class="headerlink" title="交換機觀查"></a>交換機觀查</h3><p><img src="https://i.imgur.com/EMamnL2.png" alt="image"></p>
+<ul>
+<li>連接交換機的方式，要插console 的那個port</li>
+</ul>
+<h3 id="連接交換機的線材介紹"><a href="#連接交換機的線材介紹" class="headerlink" title="連接交換機的線材介紹"></a>連接交換機的線材介紹</h3><p><img src="https://i.imgur.com/lUik6NF.jpg" alt="image"></p>
+<p><img src="https://i.imgur.com/48fJzNG.png" alt="image"></p>
+<h3 id="連接交換機使用的軟體"><a href="#連接交換機使用的軟體" class="headerlink" title="連接交換機使用的軟體"></a>連接交換機使用的軟體</h3><p><img src="https://i.imgur.com/LZ9qzc9.png" alt="image"></p>
+<ul>
+<li>以前是使用實體的Terminal(終端機)來連線機器</li>
+<li>現在可以使用軟體的方式來連線機器</li>
+<li>可以使用PuTTY</li>
+</ul>
+<h3 id="如何連接與設定"><a href="#如何連接與設定" class="headerlink" title="如何連接與設定"></a>如何連接與設定</h3><p><img src="https://i.imgur.com/zEMvG8g.png" alt="image"></p>
+<ul>
+<li>當插上線之後可以去裝置管理員(Computer Managerment)去查目前的 serrial line 名稱，比如看到的是com4</li>
+<li>打開putty 填上com4，speed 默認9600(cisco 都是用這個)</li>
+<li>選擇Serial 方式</li>
+<li>登入成功如下：<br><img src="https://i.imgur.com/4QWNoLv.png" alt="image"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CCNA/" rel="tag"># CCNA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/13/2021-04-13%20CCNA_01/" rel="prev" title="CCNA_01">
+      <i class="fa fa-chevron-left"></i> CCNA_01
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/14/2021-04-14%20python%20%E8%AE%80%E5%8F%96%E4%B8%8D%E5%90%8C%E6%AA%94%E6%A1%88%E9%A1%9E%E5%9E%8B/" rel="next" title="python 讀取不同檔案類型">
+      python 讀取不同檔案類型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-THE-Bassic-internet"><span class="nav-number">1.</span> <span class="nav-text">2. THE Bassic internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8Binternet-%E5%96%AE%E5%AD%97"><span class="nav-number">1.1.</span> <span class="nav-text">解釋internet 單字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISP-Internet-Service-Provider-%E7%B6%B2%E9%9A%9B%E7%B6%B2%E8%B7%AF%E6%9C%8D%E5%8B%99%E4%BE%9B%E6%87%89%E5%95%86"><span class="nav-number">1.2.</span> <span class="nav-text">ISP - Internet Service Provider (網際網路服務供應商)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ISP%E4%BE%9D%E5%A4%A7%E5%B0%8F%E4%BE%86%E5%88%86%E7%B4%9A%E6%A7%8B%E5%BB%BA%E7%A4%BA%E6%84%8F%E5%9C%96%E5%A6%82%E4%B8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">ISP依大小來分級構建示意圖如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ISP%E4%BE%9D%E5%A4%A7%E5%B0%8F%E5%88%86%E7%82%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">ISP依大小分為</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%8B%E5%AE%B6%E5%92%8C%E5%9C%8B%E5%AE%B6%E4%B9%8B%E9%96%93%E7%9A%84ISP"><span class="nav-number">1.2.3.</span> <span class="nav-text">國家和國家之間的ISP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%8B%E5%AE%B6%E5%85%A7%E9%83%A8ISP"><span class="nav-number">1.2.4.</span> <span class="nav-text">國家內部ISP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%9E%E6%A9%9F%E6%88%BF%E6%85%A2%E6%85%A2%E4%BB%8B%E7%B4%B9%E5%88%B0%E5%A6%82%E4%BD%95%E7%99%BB%E5%85%A5switch%E3%80%81router"><span class="nav-number">1.3.</span> <span class="nav-text">從機房慢慢介紹到如何登入switch、router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Center-Server-Room"><span class="nav-number">1.4.</span> <span class="nav-text">Data Center&#x2F;Server Room</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A9%9F%E6%9E%B6-RACK-%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%A8%99%E6%BA%96"><span class="nav-number">1.5.</span> <span class="nav-text">機架(RACK)大小的標準</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%8F%9B%E6%A9%9F%E8%A7%80%E6%9F%A5"><span class="nav-number">1.6.</span> <span class="nav-text">交換機觀查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%A3%E6%8E%A5%E4%BA%A4%E6%8F%9B%E6%A9%9F%E7%9A%84%E7%B7%9A%E6%9D%90%E4%BB%8B%E7%B4%B9"><span class="nav-number">1.7.</span> <span class="nav-text">連接交換機的線材介紹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%A3%E6%8E%A5%E4%BA%A4%E6%8F%9B%E6%A9%9F%E4%BD%BF%E7%94%A8%E7%9A%84%E8%BB%9F%E9%AB%94"><span class="nav-number">1.8.</span> <span class="nav-text">連接交換機使用的軟體</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%80%A3%E6%8E%A5%E8%88%87%E8%A8%AD%E5%AE%9A"><span class="nav-number">1.9.</span> <span class="nav-text">如何連接與設定</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

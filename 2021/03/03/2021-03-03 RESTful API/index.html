@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. 什麼是 API?應用程式介面（英語：Application Programming Interface) 想像API是服務員，你來到了餐廳，看了菜單(API Doc)，點了你想要的項目(Request)。經過廚師的努力(Server)，服務員將菜端出來(response)給你。 What is an API? 1.1 以API 公開性大概可以分為三類 Open API又稱作Public AP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RESTful API">
+<meta property="og:url" content="https://kitefree.github.io/2021/03/03/2021-03-03%20RESTful%20API/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="1. 什麼是 API?應用程式介面（英語：Application Programming Interface) 想像API是服務員，你來到了餐廳，看了菜單(API Doc)，點了你想要的項目(Request)。經過廚師的努力(Server)，服務員將菜端出來(response)給你。 What is an API? 1.1 以API 公開性大概可以分為三類 Open API又稱作Public AP">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-03-03T11:26:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T06:31:04.233Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="RESTful API">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/03/03/2021-03-03%20RESTful%20API/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>RESTful API | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/03/03/2021-03-03%20RESTful%20API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RESTful API
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-03-03 19:26:00" itemprop="dateCreated datePublished" datetime="2021-03-03T19:26:00+08:00">2021-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:31:04" itemprop="dateModified" datetime="2021-10-01T14:31:04+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>6.7k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>12 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-什麼是-API"><a href="#1-什麼是-API" class="headerlink" title="1. 什麼是 API?"></a>1. 什麼是 API?</h2><p>應用程式介面（英語：Application Programming Interface)</p>
+<p>想像API是服務員，你來到了餐廳，看了菜單(API Doc)，點了你想要的項目(Request)。經過廚師的努力(Server)，服務員將菜端出來(response)給你。</p>
+<p><a target="_blank" rel="noopener" href="https://youtu.be/s7wmiS2mSXY">What is an API?</a></p>
+<h3 id="1-1-以API-公開性大概可以分為三類"><a href="#1-1-以API-公開性大概可以分為三類" class="headerlink" title="1.1 以API 公開性大概可以分為三類"></a>1.1 以API 公開性大概可以分為三類</h3><ol>
+<li><strong>Open API又稱作Public API</strong><br>Developers(開發商)它還是需要去Register(註冊),Sign up 取得key。給大眾使用的API</li>
+<li><strong>Internal API</strong><br>公司內部使用，串聯不同service，不同team之間</li>
+<li><strong>Private API</strong><br>有授權使用，透過合作或付費方式</li>
+</ol>
+<h3 id="1-2-以-protocol-與-architectural角度來分"><a href="#1-2-以-protocol-與-architectural角度來分" class="headerlink" title="1.2 以 protocol 與 architectural角度來分"></a>1.2 以 protocol 與 architectural角度來分</h3><ol>
+<li><strong>Local APIs</strong><br>The original API, created to provide operating system or middleware services to application programs.</li>
+<li><strong>Web APIs</strong><br>Designed to represent widely used resources like HTML pages and are accessed using a simple HTTP protocol.Often called REST APIs or RESTful APIs.</li>
+<li><strong>Program APIs</strong><br>Based on RPC technology that makes a remote program component appear to be local to the rest of the software</li>
+</ol>
+<h2 id="2-什麼是-REST"><a href="#2-什麼是-REST" class="headerlink" title="2. 什麼是 REST?"></a>2. 什麼是 REST?</h2><p>REST 是 Representational State Transfer 的縮寫，可譯為「具象狀態傳輸」。由 Roy Fielding 博士在 2000 年的博士論文中所提出。他同時也是 HTTP 規範的主要作者之一。符合 REST 風格的網站架構可以稱為 RESTful。</p>
+<p>REST 是一種軟體架構風格（並非標準），目的是幫助在世界各地不同軟體、程式在網際網路中能夠互相傳遞訊息。每一個網頁都可視為一個資源（resource）提供使用者使用，而你可以透過 URL（Uniform Resource Locator），也就是這些資源的地址，來取得這些資源並在你的瀏覽器上使用。</p>
+<p>REST指的是網路中Client端和Server端的一種呼叫服務形式，透過既定的規則，滿足約束條件和原則的應用程式設計，對資源的操作包括獲取、創建、修改和刪除資源，這些操作就是依照我們前面所提到的HTTP Method: GET、POST、PUT、PATCH和DELETE。這正好會對應到資料庫基本操作CRUD。</p>
+<p>CRUD 為 Create(新增)、Read(讀取)、Update(更新)與Delete(刪除)的縮寫。</p>
+<h2 id="3-什麼是-RESTful"><a href="#3-什麼是-RESTful" class="headerlink" title="3. 什麼是 RESTful?"></a>3. 什麼是 RESTful?</h2><p>運用 HTTP 來表達語義的路由設計風格稱為 RESTful API。</p>
+<p>(Rest化 ＝ Restful，如果像小編一樣常常不知道講述的時候該用Rest或是Restful可以這樣去記，被轉化成Rest架構的Web API &#x3D; Restful API)</p>
+<p>HTTP 本身就是 REST 的實作</p>
+<h2 id="4-REST和RESTFUL的區別"><a href="#4-REST和RESTFUL的區別" class="headerlink" title="4. REST和RESTFUL的區別?"></a>4. REST和RESTFUL的區別?</h2><p>經過大量資料閱讀，我只能這樣詮釋：就好比Beauty和Beautiful的關係。</p>
+<h2 id="5-RESTful-API-主要由三種元件組成"><a href="#5-RESTful-API-主要由三種元件組成" class="headerlink" title="5. RESTful API 主要由三種元件組成"></a>5. RESTful API 主要由三種元件組成</h2><ol>
+<li><strong>Nouns 名詞</strong>：定義資源位置的 URL，每個資源在網路上都會有唯一的位置，就如每戶人家都有唯一的地址一樣。</li>
+<li><strong>Verbs 動詞</strong>：對資源要做的動作。</li>
+<li><strong>Content Types 資源呈現方式</strong>：API 資源可以以多種方式表現，最常用的是 JSON，較輕，也較好處理。</li>
+</ol>
+<p>不同公司，不一樣的工程師，設計的名稱都會不一樣，沒有統一的命名方式，造成在引用各家 API 時，都需要詳讀 API 文件，理解所有設計命名規則後，才可使用。</p>
+<h2 id="6-REST-優點與限制"><a href="#6-REST-優點與限制" class="headerlink" title="6. REST 優點與限制"></a>6. REST 優點與限制</h2><ol>
+<li>有唯一的URL表示資源位置，統一的 API 接口。(Uniform Interface)</li>
+<li>無狀態。(Stateless)<br>RESTful 的狀態，意即 HTTP 的請求狀態，一般 Web 服務中，Server 端和 Client 端交互的資訊，會存在 Server 端的 Session (例如：已登入狀態)，在 Client 端再次發送請求的時候，Server 端透過保存在 Server 端的 Session，去執行 request。無狀態的意思，即 Client 端自行保存狀態，在請求 Server 的時候，一併附上給 Server 端，Server 端無保存 Client 端的狀態資訊。<br>舉例來說，可能在用戶登錄系統時，Server 產生 token 紀錄 user 已登錄系統，然後把 token 還給 Client，在 Client 再次發送請求的時候，把 token 一起發給 Server，這樣 Server 就知道這一個 Client 是已經處於登錄的狀態。<br>意即所有的資源都可以 URI 定位，而且這個定位與其他資源無關，也不會因為其他資源的變化而變化，資源相互的依賴性降低。<br>舉一個白話一點的例子：查詢員工工資：<br>第一步：登錄系統。<br>第二步：進入查詢工資的頁面。<br>第三步：搜索該員工。<br>第四步：點擊姓名查看工資。<br>這樣的操作流程就是有狀態的，查詢工資的每一個步驟都依賴於前一個步驟，只要前置操作不成功，後續操作就無法執行。如果輸入一個URL就可以直接得到指定員工的工資，這種情況就是無狀態的，因為獲取工資不依賴於其他資源或狀態，這種情況下，員工工資是一個資源，由一個 URL 與之對應可以通過 HTTP 中的 GET 方法得到資源，這就是典型的 RESTful 風格。</li>
+<li>可更高效利用快取來提高回應速度 (Cachable)<br>在 server-side，GET 過的資源，如果沒有被變更過，可以利用 cache 機制減少 request。<br>在 client-side，透過 client 端 cache 紀錄 cache 版本，若向 server 要求資源時發現 server 最新版與 cache 相同，則 client 端直接取用本地資源即可，不需要再做一次查詢</li>
+<li>分層系統架構 (Layered System)</li>
+<li>客戶端服務器分離 (Client-Server)</li>
+<li>充份利用 HTTP protocal(GET&#x2F;POST&#x2F;PUT&#x2F;DELETE) (Manipulation of resources through representations)</li>
+<li>可執行程式碼的設計，像是 JavaScript（非必要實作項目） Code-On-Demand (optional)</li>
+</ol>
+<h3 id="好處"><a href="#好處" class="headerlink" title="好處"></a>好處</h3><p>RESTful 這種「和 CRUD 對齊」的特性會帶來一些溝通的便利性，客戶端只需要知道可用資源，就能依照約定俗成的邏輯，推測出相關的 API。<br>這種「約定俗成」的設計感也可以讓工程師規劃路由時減少一些煩惱。</p>
+<h3 id="壞處"><a href="#壞處" class="headerlink" title="壞處"></a>壞處</h3><p>REST 也不是萬能的，除了優點也是有許多在實務上應用的缺點。比如查詢時常被詬病資源相依結構鬆散問題，有時候取資料時都要呼叫好多次 API 才可以組合成完整的物件。舉個例子，想要取得文章與作者資訊，就必須先 GET &#x2F;文章&#x2F;{ID}，然後再透過取回的文章物件中的 Author 欄位再一次呼叫 GET &#x2F;使用者&#x2F;{NAME} 取得作者資訊，挺麻煩的。像是最近興起的 GraphQL (由 Facebook 發佈) 就可以解決 REST 取相依結構資料的問題，整體來說 ORM 的實踐概念更好了，也剛好呼應近幾年熱門的 NoSQL 設計</p>
+<p>當然，一個專案裡不可能所有的路由都在操作資料，因此不會每條路由都能完美對齊 RESTful，例如「登入」的路由通常設定為 <em><strong>POST &#x2F;login</strong></em>，就完全是以動詞為中心。身為專案的架構者，有時候還是需因地制宜，風格只是參考，不是阻礙。</p>
+<h2 id="7-PUT-需要注意"><a href="#7-PUT-需要注意" class="headerlink" title="7. PUT 需要注意"></a>7. PUT 需要注意</h2><p>POST／PUT 都可以用來新增，PATCH／PUT 都可以用來修改，但其中的差別在哪裡呢?</p>
+<p>POST的定義上屬於將原先沒有的資料去做一筆新增的動作，PATCH就是一般常見的修改，所以真的有問題的其實是PUT。<br>PUT在定義上(idempotent)無論做多少次，回傳結果都會一樣。</p>
+<p>以POST來說，我要一雙鞋，我就會得到一雙鞋。但是如果再用POST發一次我要一雙鞋，會出現兩種可能：</p>
+<ol>
+<li>我”再”得到一雙鞋，而且這雙鞋跟上一雙是不一樣的，以資料庫來說，就是ID不一樣。</li>
+<li>我只能有一雙鞋，所以他會跟我說”錯誤”，我已經得到一雙鞋了！</li>
+</ol>
+<h2 id="8-使用回傳-HTTP-狀態碼-Status-codes-來表示執行結果如何"><a href="#8-使用回傳-HTTP-狀態碼-Status-codes-來表示執行結果如何" class="headerlink" title="8. 使用回傳 HTTP 狀態碼 (Status codes) 來表示執行結果如何"></a>8. 使用回傳 HTTP 狀態碼 (Status codes) 來表示執行結果如何</h2><p>HTTP 中也規範了各種狀態碼，來表示請求是否被完成，因此 API 在回應時也應回傳適當的 HTTP 狀態碼，來表示執行結果。HTTP 狀態碼的大分類如下：<br>1XX 訊息 (Informational)<br>2XX 成功 (Successful)<br>3XX 重新導向 (Redirection)<br>4XX 請求錯誤 (Client Error)<br>5XX 伺服器錯誤 (Server Error)</p>
+<h2 id="9-實作"><a href="#9-實作" class="headerlink" title="9. 實作"></a>9. 實作</h2><p>PYTHON FAST API</p>
+<p><code>index.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"><span class="keyword">from</span> fastapi.middleware.cors <span class="keyword">import</span> CORSMiddleware</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">origins = [    </span><br><span class="line">    <span class="string">&quot;http://127.0.0.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;http://127.0.0.1:0000&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">app.add_middleware(</span><br><span class="line">    CORSMiddleware,</span><br><span class="line">    allow_origins=origins,</span><br><span class="line">    allow_credentials=<span class="literal">True</span>,</span><br><span class="line">    allow_methods=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">    allow_headers=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    name: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;2&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/file/&#123;name&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="keyword">return</span> name + <span class="string">&quot;..GET file(R)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/file&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">item: Item</span>):</span><br><span class="line">    <span class="keyword">return</span> item.name + <span class="string">&quot;..POST file(C)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.put(<span class="params"><span class="string">&quot;/file&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">item: Item</span>):</span><br><span class="line">    <span class="keyword">return</span> item.name + <span class="string">&quot;..UPDATE file(U)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.delete(<span class="params"><span class="string">&quot;/file&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">item: Item</span>):</span><br><span class="line">    <span class="keyword">return</span> item.name + <span class="string">&quot;..DELETE file(D)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>index.html</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    uvicorn index:app --reload</span><br><span class="line">    &lt;button id=&quot;get&quot; onclick=&quot;apiget()&quot;&gt;get&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;post&quot; onclick=&quot;callapi(this.id)&quot;&gt;post&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;put&quot; onclick=&quot;callapi(this.id)&quot;&gt;put&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;delete&quot; onclick=&quot;callapi(this.id)&quot;&gt;delete&lt;/button&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line"></span><br><span class="line">        function apiget() &#123;</span><br><span class="line">            axios.get(&#x27;http://127.0.0.1:8000/file/kite file22&#x27;, &#123;                </span><br><span class="line">            &#125;).then(function (res) &#123;</span><br><span class="line">                console.log(res.data);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        function callapi(method) &#123;</span><br><span class="line">            axios(&#123;</span><br><span class="line">                method: method,</span><br><span class="line">                url: &#x27;http://127.0.0.1:8000/file&#x27;,</span><br><span class="line">                headers: &#123;</span><br><span class="line">                    &#x27;Content-Type&#x27;: &#x27;application/json;charset=UTF-8&#x27;</span><br><span class="line">                &#125;,</span><br><span class="line">                data: &#123;</span><br><span class="line"></span><br><span class="line">                    name: &quot;kite file&quot;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).then(function (res) &#123;</span><br><span class="line">                console.log(res.data);</span><br><span class="line">            &#125;)</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-其它ISSUE"><a href="#10-其它ISSUE" class="headerlink" title="10. 其它ISSUE"></a>10. 其它ISSUE</h2><p>避免API被攻擊，可以考慮啟用API調用速度限制(Rate limiting)，又或是HTTP Cache的機制</p>
+<p>狀態碼</p>
+<p>2xx &#x3D; Success（成功）</p>
+<p>3xx &#x3D; Redirect（重定向）</p>
+<p>4xx &#x3D; User error（客戶端錯誤）</p>
+<p>5xx &#x3D; Server error（伺服器端錯誤）</p>
+<h2 id="11-延伸閱讀"><a href="#11-延伸閱讀" class="headerlink" title="11. 延伸閱讀"></a>11. 延伸閱讀</h2><ol>
+<li>RPC</li>
+<li>SOAP</li>
+<li>REST</li>
+<li>GraphQL</li>
+</ol>
+<h3 id="WEB-SERVICE-分四種"><a href="#WEB-SERVICE-分四種" class="headerlink" title="WEB SERVICE 分四種"></a>WEB SERVICE 分四種</h3><ul>
+<li>JSON-RPC</li>
+<li>SOAP</li>
+<li>XML-RPC</li>
+<li>REST</li>
+</ul>
+<h2 id="12-參考文章"><a href="#12-參考文章" class="headerlink" title="12. 參考文章"></a>12. 參考文章</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.enixjin.net/api_design_part1/">API设计，从RPC、SOAP、REST到GraphQL（一）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/twtrubiks/django-rest-framework-tutorial/tree/master/RESTful-API-Tutorial">twtrubiks&#x2F;django-rest-framework-tutorial</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.webguide.nat.gov.tw/News_Content.aspx?n=531&s=2918">RESTful API 設計準則與實務經驗</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=R8GL5y49iJc">[ Alex 宅幹嘛 ] 👨‍💻 JSON 與 RESTFUL API 串接一次搞定</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://stoplight.io/api-types/">Types of API | Open Rest API Types for Enterprise | Types Of API Calls &amp; REST API Protocol</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cevgroup.org/what-is-api/">What is API? - CUTTING EDGE VISIONARIES</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rapidapi.com/blog/types-of-apis/">Types of APIs (and what’s the Difference?) [2021] | RapidAPI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://tw.alphacamp.co/blog/rest-restful-api">什麼是REST? 認識 RESTful API 路由語義化設計風格｜ALPHA Camp Blog</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://medium.com/itsems-frontend/api-%E6%98%AF%E4%BB%80%E9%BA%BC-restful-api-%E5%8F%88%E6%98%AF%E4%BB%80%E9%BA%BC-a001a85ab638">API 是什麼? RESTful API 又是什麼?</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://progressbar.tw/posts/53">[不是工程師] 休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://noob.tw/restful-api/">API 實作(一)：規劃 RESTful API 要注意什麼</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/John_ToStr/article/details/103473077">RPC and REST</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/laomo_bible/article/details/79677677?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control&dist_request_id=1328593.8780.16147646030120667&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control">REST RPC</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RESTful-API/" rel="tag"># RESTful API</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/27/2020-12-27%20bootstrap5/" rel="prev" title="bootstrap5">
+      <i class="fa fa-chevron-left"></i> bootstrap5
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/08/2021-03-08%20JSON%20APIs(v1.0)/" rel="next" title="JSON APIs(v1.0)">
+      JSON APIs(v1.0) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E9%BA%BC%E6%98%AF-API"><span class="nav-number">1.</span> <span class="nav-text">1. 什麼是 API?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BB%A5API-%E5%85%AC%E9%96%8B%E6%80%A7%E5%A4%A7%E6%A6%82%E5%8F%AF%E4%BB%A5%E5%88%86%E7%82%BA%E4%B8%89%E9%A1%9E"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 以API 公開性大概可以分為三類</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BB%A5-protocol-%E8%88%87-architectural%E8%A7%92%E5%BA%A6%E4%BE%86%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 以 protocol 與 architectural角度來分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BB%80%E9%BA%BC%E6%98%AF-REST"><span class="nav-number">2.</span> <span class="nav-text">2. 什麼是 REST?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BB%80%E9%BA%BC%E6%98%AF-RESTful"><span class="nav-number">3.</span> <span class="nav-text">3. 什麼是 RESTful?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-REST%E5%92%8CRESTFUL%E7%9A%84%E5%8D%80%E5%88%A5"><span class="nav-number">4.</span> <span class="nav-text">4. REST和RESTFUL的區別?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-RESTful-API-%E4%B8%BB%E8%A6%81%E7%94%B1%E4%B8%89%E7%A8%AE%E5%85%83%E4%BB%B6%E7%B5%84%E6%88%90"><span class="nav-number">5.</span> <span class="nav-text">5. RESTful API 主要由三種元件組成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-REST-%E5%84%AA%E9%BB%9E%E8%88%87%E9%99%90%E5%88%B6"><span class="nav-number">6.</span> <span class="nav-text">6. REST 優點與限制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%BD%E8%99%95"><span class="nav-number">6.1.</span> <span class="nav-text">好處</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%9E%E8%99%95"><span class="nav-number">6.2.</span> <span class="nav-text">壞處</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-PUT-%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F"><span class="nav-number">7.</span> <span class="nav-text">7. PUT 需要注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E4%BD%BF%E7%94%A8%E5%9B%9E%E5%82%B3-HTTP-%E7%8B%80%E6%85%8B%E7%A2%BC-Status-codes-%E4%BE%86%E8%A1%A8%E7%A4%BA%E5%9F%B7%E8%A1%8C%E7%B5%90%E6%9E%9C%E5%A6%82%E4%BD%95"><span class="nav-number">8.</span> <span class="nav-text">8. 使用回傳 HTTP 狀態碼 (Status codes) 來表示執行結果如何</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%AF%A6%E4%BD%9C"><span class="nav-number">9.</span> <span class="nav-text">9. 實作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%85%B6%E5%AE%83ISSUE"><span class="nav-number">10.</span> <span class="nav-text">10. 其它ISSUE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80"><span class="nav-number">11.</span> <span class="nav-text">11. 延伸閱讀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WEB-SERVICE-%E5%88%86%E5%9B%9B%E7%A8%AE"><span class="nav-number">11.1.</span> <span class="nav-text">WEB SERVICE 分四種</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">12.</span> <span class="nav-text">12. 參考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

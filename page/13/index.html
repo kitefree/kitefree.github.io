@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="地球人的修練">
+<meta property="og:url" content="https://kitefree.github.io/page/13/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kitefree.github.io/page/13/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/12/27/2020-12-27%20bootstrap5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/27/2020-12-27%20bootstrap5/" class="post-title-link" itemprop="url">bootstrap5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-12-27 19:11:00" itemprop="dateCreated datePublished" datetime="2020-12-27T19:11:00+08:00">2020-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:28:11" itemprop="dateModified" datetime="2021-10-01T14:28:11+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>523</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>格線系統</p>
+<p>container-fluid 滿版容器<br>container 定寬容器</p>
+<p>手機、平板以上<br>col-12 col-md-3</p>
+<p>平板直向md<br>平板橫向lg<br>桌機xl</p>
+<p>不想管幾欄 就寫class&#x3D;”col”<br>自動欄寬 col</p>
+<p>col-4 ，如果有6個div 會自己換行<br>w-100 h-100</p>
+<p>breakpoint<br>用時寫sm 與md ，優先序是md會蓋掉sm</p>
+<p>col-12 col-md-4 col-lg-3 col-xxl-2<br>這個寫法用在col 上</p>
+<p>另一種寫法寫在row<br>row row-cols-md-3 row-cols-lg-4 row-cols-xl-6<br>欄位間距<br>g-5</p>
+<p>垂直居中<br>justify-content-center<br>align-items-center<br>col-8 col-md-6</p>
+<p>height:98vh  – &gt; vh 是什麼?<br>background-size:cover; –&gt; 是什麼?<br>mb4</p>
+<p>格線距離的控制</p>
+<p>圖片與寬高尺寸控制<br>class img-fluid 滿版圖片<br>css max-width:100%<br>w-100 與 max-width:100%</p>
+<p>共用項目margin padding</p>
+<p>卡片組件<br>.amos-card-img{<br>width:100%;<br>height:100%;<br>object-fit:cover;<br>}</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/11/07/2020-11-07%20git%2020%E9%81%93%E9%A1%8C%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/07/2020-11-07%20git%2020%E9%81%93%E9%A1%8C%E7%9B%AE/" class="post-title-link" itemprop="url">git 20道題目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-11-07 00:44:00" itemprop="dateCreated datePublished" datetime="2020-11-07T00:44:00+08:00">2020-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:27:21" itemprop="dateModified" datetime="2021-10-01T14:27:21+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>360</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f7db497104dffa008bc801fb49230444">git commit</a><br>2.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=817c026fe90d09e67eb30946ef5d42fa">git head 技巧 I</a><br>3.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8dba225432eba46847beafd616042fc7">git head 技巧 II</a><br>4.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=81354f6467eeebfcbd81294787371458">分支合併(快轉模式)</a><br>5.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3821f5ac77cd68c20f7e5ac9ea4a4234">分支合併(非快轉模式 -no-ff) I</a><br>6.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=4ebc7d237aec42ba62f5d9484040d279">分支合併(非快轉模式 -no-ff) II</a><br>7.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=51dbe15aa9787175a8c4c34b8fa6ed12">分支合併(非快轉模式) I</a><br>8.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8a53b2a46b9fa9e963d0eb80b65f17bb">分支合併(非快轉模式) II</a><br>9.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=293df94156d03ffcb8ad2a796c3d1ebf">git clone</a><br>10.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=c350fdc6aa338549b6eb4b1499383fca">git push</a><br>11.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=96dd4464d93b751d3fc5d124663bdd73">git pull (可用 git fakeTeamwork)</a><br>12.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=fd0557f04608384f2d35c3814c088913">git fetch</a><br>13.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=9eddf30e74e1b1c089e83f7c265c192e">本地三個分支(master、dev、feature&#x2F;a)</a><br>14.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=20cf21dbc718a76cce6cd77363abe335">本地三個分支(master、dev、feature&#x2F;a) ，遠端有 master 分支，並擁有合併後的所有 commit</a><br>15.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f6e4b301996ac6c121b6d0fb25c51027">git reset 還原練習</a><br>16.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=40764d63ded638a1b48b2d9e3afeff09">git rebase 練習 I</a><br>17.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3148f8917a34af79cf9bd348cc99c3f8">git rebase 練習 II</a><br>18.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=0896114d1a1d3a66e022631dab133726">git cherry-pick 練習</a><br>19.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=6b282a154f95ba54844d6b747f65128a">git tag 練習</a><br>20.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=1cb0672c88c5f675ff393d010ef9deda">魔王題</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/11/07/2020-11-07%20XSS%20%E9%A1%9E%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/07/2020-11-07%20XSS%20%E9%A1%9E%E5%9E%8B/" class="post-title-link" itemprop="url">XSS 類型</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-11-07 00:43:00" itemprop="dateCreated datePublished" datetime="2020-11-07T00:43:00+08:00">2020-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:27:49" itemprop="dateModified" datetime="2021-10-01T14:27:49+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>78</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>反射型</li>
+<li>存儲型</li>
+<li>DOM-Based型</li>
+</ol>
+<h2 id="XSS的防範"><a href="#XSS的防範" class="headerlink" title="XSS的防範"></a>XSS的防範</h2><blockquote>
+<p>對輸入進行過濾<br>對輸出進行編碼<br>Cookie 設置 http-only</p>
+</blockquote>
+<hr>
+<p>相關參考</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=QJzkifQ-Cuk&t=629s">XSS原理和攻防</a><br><a target="_blank" rel="noopener" href="https://xss-game.appspot.com/">Google XSS Game</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/09/15/2020-09-15%20%E7%B6%B2%E9%A0%81%E5%88%87%E7%89%88%E7%AD%86%E8%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/15/2020-09-15%20%E7%B6%B2%E9%A0%81%E5%88%87%E7%89%88%E7%AD%86%E8%A8%98/" class="post-title-link" itemprop="url">網頁切版筆記</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00+08:00">2020-09-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:27:11" itemprop="dateModified" datetime="2021-10-01T14:27:11+08:00">2021-10-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB/" itemprop="url" rel="index"><span itemprop="name">WEB</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>437</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>上課筆記</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/15/2020-09-15%20%E7%B6%B2%E9%A0%81%E5%88%87%E7%89%88%E7%AD%86%E8%A8%98/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/21/2020-05-21%20python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/21/2020-05-21%20python/" class="post-title-link" itemprop="url">python</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-21 10:55:00" itemprop="dateCreated datePublished" datetime="2020-05-21T10:55:00+08:00">2020-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:26:42" itemprop="dateModified" datetime="2021-10-01T14:26:42+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="整數除法"><a href="#整數除法" class="headerlink" title="整數除法"></a>整數除法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">7</span>//<span class="number">3</span>)</span><br><span class="line"><span class="comment">#2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="平方"><a href="#平方" class="headerlink" title="平方"></a>平方</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">2</span>**<span class="number">4</span>)</span><br><span class="line"><span class="comment">#16</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字串換行"><a href="#字串換行" class="headerlink" title="字串換行"></a>字串換行</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&quot;&quot;Hi,</span></span><br><span class="line"><span class="string">How are you?</span></span><br><span class="line"><span class="string">I&#x27;m fine.&quot;&quot;&quot;</span>)</span><br><span class="line"><span class="comment">#How are you?</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="開根號"><a href="#開根號" class="headerlink" title="開根號"></a>開根號</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">64</span>**<span class="number">0.5</span>)</span><br><span class="line"><span class="comment">#8.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3次方根"><a href="#3次方根" class="headerlink" title="3次方根"></a>3次方根</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(<span class="number">8</span>,<span class="number">1</span>/<span class="number">3</span>))</span><br><span class="line"><span class="comment">#2.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LIST"><a href="#LIST" class="headerlink" title="LIST"></a>LIST</h2><h3 id="length"><a href="#length" class="headerlink" title="length"></a>length</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fruits =[<span class="string">&quot;apple&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;Guava&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(fruits))</span><br><span class="line"><span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="how-to-list-remove-range"><a href="#how-to-list-remove-range" class="headerlink" title="how to list remove range"></a>how to list remove range</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fruits =[<span class="string">&quot;apple&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;Guava&quot;</span>]</span><br><span class="line">fruits[:<span class="number">2</span>] = []</span><br><span class="line"><span class="built_in">print</span>(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment">#==result==</span></span><br><span class="line"><span class="comment">#[&#x27;Guava&#x27;]</span></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="comment">### how to set nested list</span></span><br><span class="line"></span><br><span class="line">```python=</span><br><span class="line">[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="what’s-differnect-list-vs-tuple"><a href="#what’s-differnect-list-vs-tuple" class="headerlink" title="what’s differnect list vs tuple ?"></a>what’s differnect list vs tuple ?</h2><p>不能修改值</p>
+<h2 id="collections"><a href="#collections" class="headerlink" title="collections"></a>collections</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">collection_1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">collection_2 = &#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 &amp; collection_2)</span><br><span class="line"><span class="comment">#&#123;2, 3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="聯集"><a href="#聯集" class="headerlink" title="聯集"></a>聯集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 | collection_2)</span><br><span class="line"><span class="comment">#&#123;1, 2, 3, 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 - collection_2)</span><br><span class="line"><span class="comment">#&#123;1&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="反交集"><a href="#反交集" class="headerlink" title="反交集"></a>反交集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(collection_1 ^ collection_2)</span><br><span class="line"><span class="comment">#&#123;1, 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">2</span> <span class="keyword">in</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;)</span><br><span class="line"><span class="comment">#True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="string-to-list"><a href="#string-to-list" class="headerlink" title="string to list"></a>string to list</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">&quot;kite&quot;</span>*<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(name)</span><br><span class="line">name = <span class="built_in">set</span>(<span class="string">&quot;kite&quot;</span>*<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(name)</span><br><span class="line"></span><br><span class="line"><span class="comment">#==result==</span></span><br><span class="line"><span class="comment">#kitekite</span></span><br><span class="line"><span class="comment">#&#123;&#x27;i&#x27;, &#x27;e&#x27;, &#x27;k&#x27;, &#x27;t&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="從列表的資料產生字典"><a href="#從列表的資料產生字典" class="headerlink" title="從列表的資料產生字典"></a>從列表的資料產生字典</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123; x:x*<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span>[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] &#125;</span><br><span class="line"><span class="built_in">print</span>(dic)</span><br><span class="line"><span class="comment">#==result==</span></span><br><span class="line"><span class="comment">#&#123;3: 6, 4: 8, 5: 10&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函式不定參數"><a href="#函式不定參數" class="headerlink" title="函式不定參數"></a>函式不定參數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">avg</span>(<span class="params">*nums</span>):</span><br><span class="line">    <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="built_in">sum</span> = <span class="built_in">sum</span> + num</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>/<span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(avg(<span class="number">4</span>,<span class="number">8</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="模組的概念"><a href="#模組的概念" class="headerlink" title="模組的概念"></a>模組的概念</h2><p>sys.path.append(“modules”)<br>sys.path</p>
+<p>封包的設計與使用<br>專案檔案配置</p>
+<ul>
+<li>專案資料夾</li>
+<li>封包資料夾<ul>
+<li><strong>init</strong>.py<ul>
+<li>模組一.py</li>
+<li>模組二.py</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>import 封包名稱.模組名稱</p>
+<h2 id="檔案操作"><a href="#檔案操作" class="headerlink" title="檔案操作"></a>檔案操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;config.json&quot;</span>,mode=<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = json.load(file)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;config.json&quot;</span>,mode=<span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = json.load(file)</span><br><span class="line">    data[<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;kite&quot;</span></span><br><span class="line">    json.dump(data,file)</span><br></pre></td></tr></table></figure>
+
+<h2 id="隨機數"><a href="#隨機數" class="headerlink" title="隨機數"></a>隨機數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">random.choice([<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>])</span><br><span class="line">random.sample([<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>],<span class="number">2</span>)</span><br><span class="line">data = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="comment">#洗牌</span></span><br><span class="line">random.shuffle(data)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="comment">#隨機數</span></span><br><span class="line">random.random()</span><br><span class="line">random.uniform(<span class="number">0.0</span>,<span class="number">1.0</span>)</span><br><span class="line"><span class="comment">#常態分配</span></span><br><span class="line">random.normalvariate(<span class="number">100</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="平均數"><a href="#平均數" class="headerlink" title="平均數"></a>平均數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statistics</span><br><span class="line">statistics.mean([<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="中位數"><a href="#中位數" class="headerlink" title="中位數"></a>中位數</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statistics</span><br><span class="line">statistics.median([<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="標準差"><a href="#標準差" class="headerlink" title="標準差"></a>標準差</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statistics</span><br><span class="line"><span class="comment">#標準差 資料散部的狀況，資料間有沒有落差很大</span></span><br><span class="line">statistics.stdev([<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/10/2020-05-10%20windows%20python%20environment%20install%20%E7%9B%B8%E9%97%9C%E8%A8%98%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/10/2020-05-10%20windows%20python%20environment%20install%20%E7%9B%B8%E9%97%9C%E8%A8%98%E9%8C%84/" class="post-title-link" itemprop="url">windows python environment install 相關記錄</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-10 13:15:00" itemprop="dateCreated datePublished" datetime="2020-05-10T13:15:00+08:00">2020-05-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:24:38" itemprop="dateModified" datetime="2021-10-01T14:24:38+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-windows-python-install"><a href="#1-windows-python-install" class="headerlink" title="1. windows python install"></a>1. windows python install</h2><ul>
+<li>直接去官網下載windows 版本安裝</li>
+<li>檢查安裝是否成功</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-如果有重新安裝過python"><a href="#1-1-如果有重新安裝過python" class="headerlink" title="1.1 如果有重新安裝過python"></a>1.1 如果有重新安裝過python</h3><p>會遇到</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error in launcher: Unable to create process using</span><br></pre></td></tr></table></figure>
+
+<p>這個是因為在環境變數裡面有2個路徑說明了python,pip的位置。<br>可以利用以下指令確認路徑，並選擇刪除多餘的路徑參數</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">where python</span><br><span class="line">where pip</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-windows-pip-install"><a href="#2-windows-pip-install" class="headerlink" title="2. windows pip install"></a>2. windows pip install</h2><p>pip 基本上已經內鍵了<br>如果你安裝的Python版本，Python 2在2.7.9含以上或 Python 3在3.4含以上，則預設已經包含了pip。本範例為Python 3.7.3。<br>檢查安裝是否成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip --version</span><br></pre></td></tr></table></figure>
+
+<p>參考文章 &gt;&gt; <a target="_blank" rel="noopener" href="https://matthung0807.blogspot.com/2019/08/windows-pythonpip.html">Windows 安裝Python套件管理工具pip</a></p>
+<h2 id="3-virtualenv-install"><a href="#3-virtualenv-install" class="headerlink" title="3. virtualenv install"></a>3. virtualenv install</h2><p>這篇寫的很好，在裝opencv之前，先教你怎麼裝virtualenv<br><a target="_blank" rel="noopener" href="https://medium.com/@airwaves/opencv-%E5%9C%A8windows%E4%B8%AD%E5%AE%89%E8%A3%9D-opencv-python-295ae092ca57">OpenCV —在Windows中安裝 OpenCV-python</a></p>
+<h2 id="4-VSCode-install"><a href="#4-VSCode-install" class="headerlink" title="4. VSCode install"></a>4. VSCode install</h2><p>直接去官網上下載安裝</p>
+<h3 id="4-1-Pylint"><a href="#4-1-Pylint" class="headerlink" title="4.1 Pylint"></a>4.1 Pylint</h3><p>PyLint 是一種廣泛使用的工具，可檢查 Python 程式碼中的錯誤，有助於撰寫良好的 Python 程式碼模式，因此 Visual Studio 已針對 Python 專案整合這項工具。</p>
+<h3 id="4-2-VSCode-virtualenv"><a href="#4-2-VSCode-virtualenv" class="headerlink" title="4.2 VSCode &amp; virtualenv"></a>4.2 VSCode &amp; virtualenv</h3><p>自己實測，如果在terminal 下，弄出一個env,跑獨立環境是沒問題的<br>但是如果我們又想要在VSCode 下能在env底下run debug ，我目前成功的方式是將setting.json 裡面指向的python 指向到env&#x2F;Scripts</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;python.pythonPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;E:\\pythonworkspace\\venv2\\Scripts\\python.exe&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>我是也有看到有人改動lanuch.json ,讓運行的設定進行調改，但我沒成功.總覺得應該找時間把lanuch.json與vscode 的愛昧關係給搞定</p>
+<h2 id="5-其它遇到的問題"><a href="#5-其它遇到的問題" class="headerlink" title="5. 其它遇到的問題"></a>5. 其它遇到的問題</h2><ul>
+<li>opencv 讀取資料夾的時候最好不要有中文字，不然會讀取不到</li>
+<li>在用VSCode 結合virtualenv 時，debug run , terminal 會出現錯誤，但還是可以繼續debug 跟跑出結果，只是有點不順眼，查了一下怎麼解決不出現這個錯誤，可以參考這篇的教學&gt;&gt;<a target="_blank" rel="noopener" href="https://officeguide.cc/powershell-set-execution-policy-remote-signed/">PowerShell 更改執行原則，解決無法執行 ps1 指令稿問題</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/06/2020-05-06%20CORS%20(Cross-Origin%20Resource%20Sharing)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/06/2020-05-06%20CORS%20(Cross-Origin%20Resource%20Sharing)/" class="post-title-link" itemprop="url">CORS (Cross-Origin Resource Sharing)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-06 15:35:00" itemprop="dateCreated datePublished" datetime="2020-05-06T15:35:00+08:00">2020-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:21:21" itemprop="dateModified" datetime="2021-10-01T14:21:21+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前端開發人員寫 JS 遇到需要串接第三方 API，或是想存取第三方網站的資料時，遲早會遇到跨域限制的問題。</p>
+<p>跨域(Cross-Origin Resource Sharing)的原理可參考這篇「<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">跨來源資源共用</a>」，因為安全性考量，網站主幾可設定收到 HTTP 請求時，是否允許非主機網域的來源進行存取。例如自架站的圖片若不想被盜連，可以設定不允許其他網域存取。</p>
+<p>使用 JS 存取第三方 API 或網站資料時，若對方主機未允許 CORS，那麼前端人員可是一點辦法都沒有，只能求助於後端，利用伺服器端程式來繞過此問題。</p>
+<p>但是不太可能每個前端人員都自己架個伺服器，花這麼一大筆費用只為了處理跨域問題。值得慶幸的是，有國外免費服務架設伺服器，幫大家處理跨域存取的問題，本篇就來整理一些可用的選擇。</p>
+<h2 id="同源政策（same-origin-policy）"><a href="#同源政策（same-origin-policy）" class="headerlink" title="同源政策（same-origin policy）"></a>同源政策（same-origin policy）</h2><p>在同源政策（same-origin policy）中規範了那寫資源可以跨源存取，哪些會受到限制。</p>
+<p>同源的定義簡單如下：</p>
+<ul>
+<li>不同網域（Domain）</li>
+<li>不同通訊協定：HTTP, HTTPS, FTP</li>
+<li>不同連接埠號（Port）</li>
+<li>一般來說跨來源寫（Cross-origin writes）、跨來源嵌入（Cross-origin embedding）是被允許的，而跨來源讀取（Cross-origin reads）是受限制的。</li>
+</ul>
+<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><h3 id="1-後端程式人員幫忙解開限制-開啟跨來源請求"><a href="#1-後端程式人員幫忙解開限制-開啟跨來源請求" class="headerlink" title="1. 後端程式人員幫忙解開限制(開啟跨來源請求)"></a>1. 後端程式人員幫忙解開限制(開啟跨來源請求)</h3><p>若要開啟跨來源請求，必須在伺服器端做一些設定，像是在 Response Header 加上 Access-Control-Allow-Origin：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>* # 允許所有網站發送的請求</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://foo.example   # 只允許 http://foo.example 的請求</span><br></pre></td></tr></table></figure>
+
+<p>也就是在後端程式碼要寫開放的規則</p>
+<h3 id="2-後端程式碼再包裝第三方API後，給前端調用"><a href="#2-後端程式碼再包裝第三方API後，給前端調用" class="headerlink" title="2. 後端程式碼再包裝第三方API後，給前端調用"></a>2. 後端程式碼再包裝第三方API後，給前端調用</h3><p>如果是第三方的API，沒辦法請對方幫我改後端，那要怎麼辦呢？<br>另外做個後端再包裝API，讓前端得以調用。這也是最常見的方式。</p>
+<h3 id="3-第三方服務代理請求"><a href="#3-第三方服務代理請求" class="headerlink" title="3. 第三方服務代理請求"></a>3. 第三方服務代理請求</h3><h4 id="CORS-ANYWHERE"><a href="#CORS-ANYWHERE" class="headerlink" title="CORS-ANYWHERE"></a>CORS-ANYWHERE</h4><p>API 使用很簡單，用以下格式即可：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cors-anywhere.herokuapp.com/第三方網址 </span><br></pre></td></tr></table></figure>
+
+<h4 id="CORSIO"><a href="#CORSIO" class="headerlink" title="CORSIO"></a>CORSIO</h4><p>API 使用很簡單，用以下格式即可：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cors.io/?第三方網址</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-JSONP"><a href="#4-JSONP" class="headerlink" title="4. JSONP"></a>4. JSONP</h3><h4 id="JSONP-的原理"><a href="#JSONP-的原理" class="headerlink" title="JSONP 的原理"></a>JSONP 的原理</h4><p>利用 script 標籤不受同源策略影響，可以跨域引入外部資源的特性，讓服務器端返回可執行的 JS 函數，將要返回的數據作為參數傳進函數，以此實現跨域加載數據的目的<br>此時，繞過 Ajax，並未使用它，但同樣達成了請求數據的目的<br>[](【備註】——script 標籤引用資源得本質是：<br>1）向 src 發送請求<br>2）將資源下載到當前頁面<br>3）當資源加載完畢後，把該資源當做 JS 代碼來立刻執行——【備註】)</p>
+<h4 id="JSONP-的使用"><a href="#JSONP-的使用" class="headerlink" title="JSONP 的使用"></a>JSONP 的使用</h4><p>動態創建 script 標籤，src 地址指向數據接口，並傳遞 callback 參數<br>定義數據處理函數<br>服務端接收請求，解析參數，計算數，返回回調函數字符串<br>將回調函數字符串引入頁面並作為 JS 去執行：此時會調用數據處理函數，數據會作為數據處理函數的參數被處理計算出一個結果</p>
+<h2 id="精華解析"><a href="#精華解析" class="headerlink" title="精華解析"></a>精華解析</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0446b5bcdbab">跨域之一：同源策略和跨域</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/94946ca90194">跨域之二：JSONP 和 CORS</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7666e1ffb8c6">跨域之三：降域 和 postMessage</a></li>
+</ul>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@brianwu291/jsonp-with-simple-example-4711e2a07443">[JS] 同源政策與跨來源資源共用（CORS）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/94946ca90194">跨域之二：JSONP 和 CORS</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/06/2020-05-06%20SQL%20inject%20%E9%98%B2%E7%AF%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/06/2020-05-06%20SQL%20inject%20%E9%98%B2%E7%AF%84/" class="post-title-link" itemprop="url">SQL inject 防範</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-06 11:21:00" itemprop="dateCreated datePublished" datetime="2020-05-06T11:21:00+08:00">2020-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 14:23:09" itemprop="dateModified" datetime="2021-10-01T14:23:09+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>179</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection："><a href="#在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection：" class="headerlink" title="在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection："></a>在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection：</h2><ol>
+<li>Constrain input.</li>
+<li>Use parameters with stored procedures.</li>
+<li>Use parameters with dynamic SQL.</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.qa-knowhow.com/?p=131">SQL Injection 的測試與防範</a></li>
+<li><a target="_blank" rel="noopener" href="https://sites.google.com/site/chengshixuexipingtai/sql/ql-injection-de-jian-jie-yu-yu-fang">SQL injection的簡介與預防</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/" class="post-title-link" itemprop="url">CSRF Cross Site Request Forgery</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-06 11:11:00" itemprop="dateCreated datePublished" datetime="2020-05-06T11:11:00+08:00">2020-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:12:01" itemprop="dateModified" datetime="2021-10-01T15:12:01+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>592</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="攻擊手段"><a href="#攻擊手段" class="headerlink" title="攻擊手段"></a><strong>攻擊手段</strong></h2><p>利用使用者已經登入過A系統之後，在B系統上偽造請求去做壞事情。比如影片中舉的例子轉帳金額跟對象參數偽造。</p>
+<p>CSRF 就是在不同的 domain 底下卻能夠偽造出「使用者本人發出的 request」。要達成這件事也很簡單，因為瀏覽器的機制，你只要發送 request 給某個網域，就會把關聯的 cookie 一起帶上去。如果使用者是登入狀態，那這個 request 就理所當然包含了他的資訊（例如說 session id），這 request 看起來就像是使用者本人發出的。</p>
+<h2 id="防禦手段"><a href="#防禦手段" class="headerlink" title="防禦手段"></a><strong>防禦手段</strong></h2><ol>
+<li>儘量使用POST</li>
+<li>加入驗證碼(比如圖形驗證碼、滑塊驗證、簡訊驗證碼)</li>
+<li>檢驗HTTP Referer(確認是否從允許的網站過來的請求)</li>
+<li>Anti CSRF Token</li>
+</ol>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre><code>    * 在form表單隱藏token 或者是在 head 的 meta attribute
+
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;csrf-token&quot;</span> <span class="attr">content</span>=<span class="string">&quot;GBU1HKZpy3N2grxxoR...&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+    * 後端檢驗時確認是否是存在的token(可以放在資料庫比對或在session上記錄)
+</code></pre>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>利用framework 提供的內鍵library,比如PHP CodeIgniter 本身就有<br>5. 加入自定義 Header<br>    這個概念我覺得應該跟平常在設計JWT或WEB API時考量資安問題的方式一樣</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=gEPii2y3ISQ">CSRF 攻击和防御 - Web 安全常识</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2017/02/25/csrf-introduction/">讓我們來談談 CSRF</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2019/06/02/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/02/hello-world/" class="post-title-link" itemprop="url">樣板模式(TemplatePattern)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-06-02 22:30:11" itemprop="dateCreated datePublished" datetime="2019-06-02T22:30:11+08:00">2019-06-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-14 22:54:17" itemprop="dateModified" datetime="2023-12-14T22:54:17+08:00">2023-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%86%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">分类</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>367</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

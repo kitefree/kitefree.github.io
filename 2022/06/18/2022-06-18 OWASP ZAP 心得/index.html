@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. 前言客戶的案子希望提供簡單的弱點掃描服務，這次使用OWASP ZAP 2.11.1版本進行掃描測試。如何修復弱點…過程是痛苦的(可能心中只想寫程式…)，於是決定寫下筆記，或許之後會用得上。(朋友提醒我，要注意軟體有沒有誤判) 2. Missing Anti-clickjacking Header (風險：中) 2.1. Description The response does not in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OWASP ZAP 心得">
+<meta property="og:url" content="https://kitefree.github.io/2022/06/18/2022-06-18%20OWASP%20ZAP%20%E5%BF%83%E5%BE%97/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="1. 前言客戶的案子希望提供簡單的弱點掃描服務，這次使用OWASP ZAP 2.11.1版本進行掃描測試。如何修復弱點…過程是痛苦的(可能心中只想寫程式…)，於是決定寫下筆記，或許之後會用得上。(朋友提醒我，要注意軟體有沒有誤判) 2. Missing Anti-clickjacking Header (風險：中) 2.1. Description The response does not in">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/lEtVkxN.png">
+<meta property="og:image" content="https://i.imgur.com/rpV0bso.png">
+<meta property="og:image" content="https://i.imgur.com/4QSbJp1.png">
+<meta property="og:image" content="https://i.imgur.com/njtWTjT.png">
+<meta property="og:image" content="https://i.imgur.com/2bLyCYw.jpg">
+<meta property="og:image" content="https://i.imgur.com/QUAkUoB.png">
+<meta property="og:image" content="https://i.imgur.com/lp54xAM.png">
+<meta property="og:image" content="https://i.imgur.com/AIeNGfA.png">
+<meta property="og:image" content="https://i.imgur.com/R28DEli.jpg">
+<meta property="og:image" content="https://i.imgur.com/XhogXK8.png">
+<meta property="og:image" content="https://i.imgur.com/X6fcSdR.jpg">
+<meta property="og:image" content="https://i.imgur.com/lp54xAM.png">
+<meta property="og:image" content="https://i.imgur.com/1YjiIcO.png">
+<meta property="og:image" content="https://i.imgur.com/X1ucSSv.png">
+<meta property="og:image" content="https://i.imgur.com/Ec3jntc.png">
+<meta property="og:image" content="https://i.imgur.com/zUzaYa7.png">
+<meta property="og:image" content="https://i.imgur.com/gZ0QL3x.png">
+<meta property="og:image" content="https://i.imgur.com/CF0rtyh.png">
+<meta property="og:image" content="https://i.imgur.com/lLgnEH2.png">
+<meta property="og:image" content="https://i.imgur.com/3SciMww.png">
+<meta property="og:image" content="https://i.imgur.com/rowqcEj.png">
+<meta property="og:image" content="https://i.imgur.com/rZXUZjv.png">
+<meta property="og:image" content="https://i.imgur.com/AqjZJbE.png">
+<meta property="og:image" content="https://i.imgur.com/ki8Pq9k.png">
+<meta property="og:image" content="https://i.imgur.com/XCXVNr2.png">
+<meta property="og:image" content="https://i.imgur.com/YIN41R0.png">
+<meta property="og:image" content="https://i.imgur.com/SdqCzFg.png">
+<meta property="og:image" content="https://i.imgur.com/bepCT9m.png">
+<meta property="og:image" content="https://i.imgur.com/GIRTOuZ.png">
+<meta property="og:image" content="https://i.imgur.com/SITrgSd.png">
+<meta property="og:image" content="https://i.imgur.com/7w8At1b.png">
+<meta property="article:published_time" content="2022-06-18T03:23:00.000Z">
+<meta property="article:modified_time" content="2022-07-14T11:02:20.061Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="資安">
+<meta property="article:tag" content="弱點掃描">
+<meta property="article:tag" content="IIS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/lEtVkxN.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2022/06/18/2022-06-18%20OWASP%20ZAP%20%E5%BF%83%E5%BE%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>OWASP ZAP 心得 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/06/18/2022-06-18%20OWASP%20ZAP%20%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OWASP ZAP 心得
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-06-18 11:23:00" itemprop="dateCreated datePublished" datetime="2022-06-18T11:23:00+08:00">2022-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-07-14 19:02:20" itemprop="dateModified" datetime="2022-07-14T19:02:20+08:00">2022-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E5%AE%89/" itemprop="url" rel="index"><span itemprop="name">資安</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E5%AE%89/OWASP-ZAP/" itemprop="url" rel="index"><span itemprop="name">OWASP ZAP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>14k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>25 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>客戶的案子希望提供簡單的弱點掃描服務，這次使用OWASP ZAP 2.11.1版本進行掃描測試。如何修復弱點…過程是痛苦的(可能心中只想寫程式…)，於是決定寫下筆記，或許之後會用得上。(朋友提醒我，要注意軟體有沒有誤判)</p>
+<h2 id="2-Missing-Anti-clickjacking-Header-風險：中"><a href="#2-Missing-Anti-clickjacking-Header-風險：中" class="headerlink" title="2. Missing Anti-clickjacking Header (風險：中)"></a>2. Missing Anti-clickjacking Header (風險：中)</h2><p><img src="https://i.imgur.com/lEtVkxN.png" alt="image-20220618144640064"></p>
+<h3 id="2-1-Description"><a href="#2-1-Description" class="headerlink" title="2.1. Description"></a>2.1. Description</h3><blockquote>
+<p>The response does not include either Content-Security-Policy with ‘frame-ancestors’ directive or X-Frame-Options to protect against ‘Click.Jacking’ attacks.</p>
+</blockquote>
+<h3 id="2-2-Solution"><a href="#2-2-Solution" class="headerlink" title="2.2. Solution"></a>2.2. Solution</h3><blockquote>
+<p>Modern Web Browsers support the Content-Security-Policy and X-Frame-Options HTTP headers. Ensure one of them is set on all web pages returned by your site&#x2F;app.</p>
+<p>If you expect the page to be framed only by pages on your server(e.g. it’s part of a FRAMESET) then you’ll want to use SAMEORIGIN. otherwise if you nerver expect the page to be framed,you should use DENY. Alternatively consider implementing Content Security Policy’s “frame-ancestors” directive.</p>
+</blockquote>
+<h3 id="2-3-Before-response-header"><a href="#2-3-Before-response-header" class="headerlink" title="2.3. Before response header"></a>2.3. Before response header</h3><p><img src="https://i.imgur.com/rpV0bso.png" alt="image-20220619192311369"></p>
+<h3 id="2-4-解決方式"><a href="#2-4-解決方式" class="headerlink" title="2.4. 解決方式"></a>2.4. 解決方式</h3><p>設定web.config ，加入<code>&lt;add name=&quot;X-Frame-Options&quot; value=&quot;SAMEORIGIN&quot; /&gt;</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-After-Response-header"><a href="#2-5-After-Response-header" class="headerlink" title="2.5. After Response header"></a>2.5. After Response header</h3><p><img src="https://i.imgur.com/4QSbJp1.png" alt="image-20220619192406171"></p>
+<h3 id="2-6-進行OWASP-ZAP-驗證"><a href="#2-6-進行OWASP-ZAP-驗證" class="headerlink" title="2.6. 進行OWASP ZAP 驗證"></a>2.6. 進行OWASP ZAP 驗證</h3><p><img src="https://i.imgur.com/njtWTjT.png" alt="image-20220618145351126"></p>
+<h3 id="2-7-小結"><a href="#2-7-小結" class="headerlink" title="2.7. 小結"></a>2.7. 小結</h3><p>其實跟下一題解決方式一樣(X-Frame-Options Setting Malformed)，筆者這邊只是練習了二次，別分使用<code>web.config</code>、<code>IIS工具介面</code>，想知道效果是不是一樣的。這裡比較令我感到好奇的是，同一個解法解決了「Missing Anti-clickjacking Header」、「X-Frame-Options Setting Malformed 」二個題目，只是有時候OWASP ZAP 出現的alert 卻是不同的。</p>
+<h2 id="3-X-Frame-Options-Setting-Malformed-風險：中"><a href="#3-X-Frame-Options-Setting-Malformed-風險：中" class="headerlink" title="3. X-Frame-Options Setting Malformed (風險：中)"></a>3. X-Frame-Options Setting Malformed (風險：中)</h2><p><img src="https://i.imgur.com/2bLyCYw.jpg" alt="messageImage_1655471403029"></p>
+<h3 id="3-1-Description"><a href="#3-1-Description" class="headerlink" title="3.1. Description"></a>3.1. Description</h3><blockquote>
+<p>An X-Frame-Options header was present in the response but the value was not correctly set.</p>
+</blockquote>
+<h3 id="3-2-Solution"><a href="#3-2-Solution" class="headerlink" title="3.2. Solution"></a>3.2. Solution</h3><blockquote>
+<p>Ensure a valid setting is used on all web pages returned by your site (if you expect the page to be framed only by pages on your server (e.g. it’s part of a FRAMESET) then you’ll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY.  Alternatively consider implementing Content Security Policy’s “frame-ancestors” directive.</p>
+</blockquote>
+<h3 id="3-3-Before-response-header"><a href="#3-3-Before-response-header" class="headerlink" title="3.3. Before response header"></a>3.3. Before response header</h3><p><img src="https://i.imgur.com/QUAkUoB.png" alt="image-20220619192525912"></p>
+<h3 id="3-4-解決方式"><a href="#3-4-解決方式" class="headerlink" title="3.4. 解決方式"></a>3.4. 解決方式</h3><p>在IIS介面使用<code>HTTP回應標題</code>點擊進入後，再點擊右邊的<code>新增</code>，開始填寫<code>名稱</code>、<code>值</code>。</p>
+<p><img src="https://i.imgur.com/lp54xAM.png" alt="image-20220618141806921"></p>
+<p><img src="https://i.imgur.com/AIeNGfA.png" alt="image-20220618150503383"></p>
+<p><img src="https://i.imgur.com/R28DEli.jpg" alt="1655470906467"></p>
+<h3 id="3-5-After-response-header"><a href="#3-5-After-response-header" class="headerlink" title="3.5. After response header"></a>3.5. After response header</h3><p><img src="https://i.imgur.com/XhogXK8.png" alt="image-20220618114602656"></p>
+<h3 id="3-6-進行OWASP-ZAP-驗證"><a href="#3-6-進行OWASP-ZAP-驗證" class="headerlink" title="3.6. 進行OWASP ZAP 驗證"></a>3.6. 進行OWASP ZAP 驗證</h3><p><img src="https://i.imgur.com/X6fcSdR.jpg" alt="1655471705151"></p>
+<h2 id="4-Re-examine-Cache-control-Directives-風險：低"><a href="#4-Re-examine-Cache-control-Directives-風險：低" class="headerlink" title="4. Re-examine Cache-control Directives(風險：低)"></a>4. Re-examine Cache-control Directives(風險：低)</h2><p>無圖(忘了截圖，放棄補…)</p>
+<h3 id="4-1-Description"><a href="#4-1-Description" class="headerlink" title="4.1. Description"></a>4.1. Description</h3><blockquote>
+<p>The cache-control header has not been set properly or is missing, allowing the browser and proxies to cache content. For static assets like css, js, or image files this might be intended, however, the resources should be reviewed to ensure that no sensitive content will be cached.</p>
+</blockquote>
+<h3 id="4-2-Solution"><a href="#4-2-Solution" class="headerlink" title="4.2. Solution"></a>4.2. Solution</h3><blockquote>
+<p>For secure content, ensure the cache-control HTTP header is set with “no-cache, no-store, must-revalidate”. If an asset should be cached consider setting the directives “public, max-age, immutable”.</p>
+</blockquote>
+<p><img src="https://i.imgur.com/lp54xAM.png" alt="image-20220618141806921"></p>
+<h3 id="4-3-Before-response-header"><a href="#4-3-Before-response-header" class="headerlink" title="4.3. Before response header"></a>4.3. Before response header</h3><p><img src="https://i.imgur.com/1YjiIcO.png" alt="image-20220619193259536"></p>
+<h3 id="4-4-解決方式"><a href="#4-4-解決方式" class="headerlink" title="4.4. 解決方式"></a>4.4. 解決方式</h3><p><img src="https://i.imgur.com/X1ucSSv.png" alt="image-20220618142106847"></p>
+<p>如果在站台下有web.config檔，則會自動添加紅色區塊的設定</p>
+<p><img src="https://i.imgur.com/Ec3jntc.png" alt="image-20220618142246166"></p>
+<h3 id="4-5-After-Response-header"><a href="#4-5-After-Response-header" class="headerlink" title="4.5. After Response header"></a>4.5. After Response header</h3><p><img src="https://i.imgur.com/zUzaYa7.png" alt="image-20220619193212629"></p>
+<h3 id="4-6-進行OWASP-ZAP驗證"><a href="#4-6-進行OWASP-ZAP驗證" class="headerlink" title="4.6. 進行OWASP ZAP驗證"></a>4.6. 進行OWASP ZAP驗證</h3><p>無圖(忘了截圖，放棄補…)</p>
+<h2 id="5-X-Content-Type-Options-Header-Missing-風險：低"><a href="#5-X-Content-Type-Options-Header-Missing-風險：低" class="headerlink" title="5. X-Content-Type-Options Header Missing (風險：低)"></a>5. X-Content-Type-Options Header Missing (風險：低)</h2><p><img src="https://i.imgur.com/gZ0QL3x.png" alt="image-20220618152728961"></p>
+<h3 id="5-1-Description"><a href="#5-1-Description" class="headerlink" title="5.1. Description"></a>5.1. Description</h3><blockquote>
+<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to ‘nosniff’. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p>
+</blockquote>
+<h3 id="5-2-Solution"><a href="#5-2-Solution" class="headerlink" title="5.2. Solution"></a>5.2. Solution</h3><blockquote>
+<p>Ensure that the application&#x2F;web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to ‘nosniff’ for all web pages.<br>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application&#x2F;web server to not perform MIME-sniffing.</p>
+</blockquote>
+<h3 id="5-3-Before-response-header"><a href="#5-3-Before-response-header" class="headerlink" title="5.3. Before response header"></a>5.3. Before response header</h3><p><img src="https://i.imgur.com/CF0rtyh.png" alt="image-20220619193337785"></p>
+<h3 id="5-4-解決方式"><a href="#5-4-解決方式" class="headerlink" title="5.4. 解決方式"></a>5.4. 解決方式</h3><p>加入 <code>&lt;add name=&quot;X-Content-Type-Options&quot; value=&quot;nosniff&quot; /&gt;</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span>	  </span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;nosniff&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-After-response-header"><a href="#5-5-After-response-header" class="headerlink" title="5.5. After response header"></a>5.5. After response header</h3><p><img src="https://i.imgur.com/lLgnEH2.png" alt="image-20220619193423691"></p>
+<h3 id="5-6-進行OWASP-ZAP-驗證"><a href="#5-6-進行OWASP-ZAP-驗證" class="headerlink" title="5.6. 進行OWASP ZAP 驗證"></a>5.6. 進行OWASP ZAP 驗證</h3><p><img src="https://i.imgur.com/3SciMww.png" alt="image-20220618153815955"></p>
+<h2 id="6-Content-Security-Policy-CSP"><a href="#6-Content-Security-Policy-CSP" class="headerlink" title="6. Content Security Policy (CSP)"></a>6. Content Security Policy (CSP)</h2><h3 id="6-1-心得說明"><a href="#6-1-心得說明" class="headerlink" title="6.1. 心得說明"></a>6.1. 心得說明</h3><p>使用vscode的<code>Live Server</code>extension跑一個臨時起一個網站，這種方式設定CSP，瀏覽器的確會吃到這個設定，比方說<code>default-src &#39;none&#39;;</code>，網頁確實都沒有相關載入資源，但是去查看response header 卻看不出CSP的設定，而且在OWASP ZAP去attack這個<code>http://127.0.0.1:5502</code>網站，也是會回饋沒有設定CSP。</p>
+<p>對照的另一個實驗是在客戶的伺服器上，使用的是IIS機器。如果有設定CSP的情況下，在response header就會有看到CSP的設定，在OWASP ZAP的掃描的確有掃到CSP，並且是alert另一種CSP的問題。</p>
+<p>可能的狀況是HTTP、HTTPS的不同？ 有實體的IIS 與臨時的extension架站有實質上的差異？ 不過…都沒有關係，就先以客戶的https機器 + IIS 進行測試吧…。</p>
+<p>PS：因為跑客戶的實體機一次掃描都太久了，所以在想有沒有更快的作法，比如先掃自己電腦架的網站(的確掃描速度非常快…但就是不太正常，alert 消不掉)。</p>
+<h3 id="6-2-Content-Security-Policy-CSP-Header-Not-Set-風險：中"><a href="#6-2-Content-Security-Policy-CSP-Header-Not-Set-風險：中" class="headerlink" title="6.2. Content Security Policy(CSP) Header Not Set(風險：中)"></a>6.2. Content Security Policy(CSP) Header Not Set(風險：中)</h3><p><img src="https://i.imgur.com/rowqcEj.png" alt="image-20220619175219207"></p>
+<h4 id="6-2-1-Description"><a href="#6-2-1-Description" class="headerlink" title="6.2.1. Description"></a>6.2.1. Description</h4><blockquote>
+<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page — covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>
+</blockquote>
+<h4 id="6-2-2-Solution"><a href="#6-2-2-Solution" class="headerlink" title="6.2.2. Solution"></a>6.2.2. Solution</h4><blockquote>
+<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header, to achieve optimal browser support: “Content-Security-Policy” for Chrome 25+, Firefox 23+ and Safari 7+, “X-Content-Security-Policy” for Firefox 4.0+ and Internet Explorer 10+, and “X-WebKit-CSP” for Chrome 14+ and Safari 6+.</p>
+</blockquote>
+<h4 id="6-2-3-Before-response-header"><a href="#6-2-3-Before-response-header" class="headerlink" title="6.2.3. Before response header"></a>6.2.3. Before response header</h4><p><img src="https://i.imgur.com/rZXUZjv.png" alt="image-20220619180854290"></p>
+<h4 id="6-2-4-解決方式"><a href="#6-2-4-解決方式" class="headerlink" title="6.2.4. 解決方式"></a>6.2.4. 解決方式</h4><p>加上<code>Content-Security-Policy</code>，參考如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span>  </span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;default-src &#x27;self&#x27;;&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;nosniff&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-5-After-response-header"><a href="#6-2-5-After-response-header" class="headerlink" title="6.2.5. After response header"></a>6.2.5. After response header</h4><p><img src="https://i.imgur.com/AqjZJbE.png" alt="image-20220619184257141"></p>
+<h4 id="6-2-6-進行OWASP-ZAP-驗證"><a href="#6-2-6-進行OWASP-ZAP-驗證" class="headerlink" title="6.2.6. 進行OWASP ZAP 驗證"></a>6.2.6. 進行OWASP ZAP 驗證</h4><p><img src="https://i.imgur.com/ki8Pq9k.png" alt="image-20220619181157201"></p>
+<h3 id="6-3-CSP-Wildcard-Directive-風險：中"><a href="#6-3-CSP-Wildcard-Directive-風險：中" class="headerlink" title="6.3. CSP:Wildcard Directive(風險：中)"></a>6.3. CSP:Wildcard Directive(風險：中)</h3><h4 id="6-3-1-Description"><a href="#6-3-1-Description" class="headerlink" title="6.3.1. Description"></a>6.3.1. Description</h4><blockquote>
+<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks. Including (but not limited to) Cross Site Scripting (XSS), and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page — covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>
+</blockquote>
+<h4 id="6-3-2-Other-Info"><a href="#6-3-2-Other-Info" class="headerlink" title="6.3.2. Other Info"></a>6.3.2. Other Info</h4><blockquote>
+<p>The following directives either allow wildcard sources (or ancestors), are not defined, or are overly broadly defined:<br>frame-ancestors, form-action</p>
+<p>The directive(s): frame-ancestors, form-action are among the directives that do not fallback to default-src, missing&#x2F;excluding them is the same as allowing anything.</p>
+</blockquote>
+<h4 id="6-3-3-Solution"><a href="#6-3-3-Solution" class="headerlink" title="6.3.3. Solution"></a>6.3.3. Solution</h4><blockquote>
+<p>Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.</p>
+</blockquote>
+<h4 id="6-3-4-Before-response-header"><a href="#6-3-4-Before-response-header" class="headerlink" title="6.3.4. Before response header"></a>6.3.4. Before response header</h4><p><img src="https://i.imgur.com/XCXVNr2.png" alt="image-20220619184133110"></p>
+<h4 id="6-3-5-解決方法"><a href="#6-3-5-解決方法" class="headerlink" title="6.3.5. 解決方法"></a>6.3.5. 解決方法</h4><p>在OWASP ZAP 的 other info 裡其實有提到 <code>frame-ancestors</code> <code>form-action</code> director，所以補上了這個兩個director：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span>	  </span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;default-src &#x27;self&#x27;; frame-ancestors &#x27;self&#x27;; form-action &#x27;self&#x27;&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;nosniff&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span>	  	  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-3-6-After-response-header"><a href="#6-3-6-After-response-header" class="headerlink" title="6.3.6. After response header"></a>6.3.6. After response header</h4><p><img src="https://i.imgur.com/YIN41R0.png" alt="image-20220619184432581"></p>
+<h4 id="6-3-7-進行OWASP-ZAP驗證"><a href="#6-3-7-進行OWASP-ZAP驗證" class="headerlink" title="6.3.7. 進行OWASP ZAP驗證"></a>6.3.7. 進行OWASP ZAP驗證</h4><p><img src="https://i.imgur.com/SdqCzFg.png" alt="image-20220619184451166"></p>
+<h3 id="6-4-CSP-script-src-unsafe-inline-風險：中"><a href="#6-4-CSP-script-src-unsafe-inline-風險：中" class="headerlink" title="6.4. CSP: script-src unsafe-inline(風險：中)"></a>6.4. CSP: script-src unsafe-inline(風險：中)</h3><h4 id="6-4-1-Description"><a href="#6-4-1-Description" class="headerlink" title="6.4.1. Description"></a>6.4.1. Description</h4><blockquote>
+<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks. Including (but not limited to) Cross Site Scripting (XSS), and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page — covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>
+</blockquote>
+<h4 id="6-4-2-Other-Info"><a href="#6-4-2-Other-Info" class="headerlink" title="6.4.2. Other Info"></a>6.4.2. Other Info</h4><blockquote>
+<p>script-src includes unsafe-inline.</p>
+</blockquote>
+<h4 id="6-4-3-Solution"><a href="#6-4-3-Solution" class="headerlink" title="6.4.3. Solution"></a>6.4.3. Solution</h4><blockquote>
+<p>Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.</p>
+</blockquote>
+<p>Before response header</p>
+<h4 id="6-4-4-解決方式"><a href="#6-4-4-解決方式" class="headerlink" title="6.4.4. 解決方式"></a>6.4.4. 解決方式</h4><p>在某一次的嘗試CSP設定為如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span>	  </span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;default-src &#x27;self&#x27;; script-src &#x27;unsafe-inline&#x27;&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;nosniff&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span>	</span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>當時還不是很懂隨便亂設定，讓OWASP ZAP 掃描，就發現了這個風險中的alert。解決方式很簡單，將<code>script-src</code>改為<code>self</code>就可以了：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span>	  </span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;default-src &#x27;self&#x27;; script-src &#x27;self&#x27;&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;nosniff&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span>	</span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>除此之外，在程式的部分<strong>不能</strong>有類似<code>inline</code>JS的寫法，如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:goTop()&quot;</span> <span class="attr">class</span>=<span class="string">&quot;fs-4 bg-secondary px-2&quot;</span> <span class="attr">title</span>=<span class="string">&quot;Go to top&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;go to top&quot;</span>&gt;</span>TOP<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;...</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這種JS寫法，必須移到<code>index.js</code>(舉例，可能是別的js名稱)裡面去定義相關的實作。</p>
+<p>同樣的，在<code>style-src</code> 也有一樣<code>inline</code>的問題，我們來舉例個有問題的程式，如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">accesskey</span>=<span class="string">&quot;M&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#M&quot;</span> <span class="attr">id</span>=<span class="string">&quot;MU&quot;</span> <span class="attr">class</span>=<span class="string">&quot;nav-link text-white pe-0 &quot;</span> <span class="attr">style</span>=<span class="string">&quot;vertical-align: bottom;&quot;</span> <span class="attr">title</span>=<span class="string">&quot;相關連結區塊&quot;</span>&gt;</span>:::<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span> <span class="attr">id</span>=<span class="string">&quot;banner01&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;banner01&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:1266px;&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span> <span class="attr">id</span>=<span class="string">&quot;banner02&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./images/banner02.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;banner02&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:1266px;&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這種css寫法，必須移到<code>all.css</code>裡面去定義相關的實作。</p>
+<h4 id="6-4-5-如果沒改會怎樣？"><a href="#6-4-5-如果沒改會怎樣？" class="headerlink" title="6.4.5. 如果沒改會怎樣？"></a>6.4.5. 如果沒改會怎樣？</h4><p>你會發現這定這樣的CSP規則，而程式卻沒有遵循，瀏覽器是會報錯的，並且網頁的LAYOUT會壞掉哦…(畫面就不方便截圖了)， 報錯畫面如下：</p>
+<p><img src="https://i.imgur.com/bepCT9m.png" alt="image-20220619191312687"></p>
+<h3 id="6-5-OWASP-ZAP-到這裡…就沒有alert了"><a href="#6-5-OWASP-ZAP-到這裡…就沒有alert了" class="headerlink" title="6.5. OWASP ZAP 到這裡…就沒有alert了"></a>6.5. OWASP ZAP 到這裡…就沒有alert了</h3><p>接下來後面的東西是為了加強資安進行的實驗，於是改了一下CSP設定：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span>	  </span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;default-src &#x27;self&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;self&#x27;; frame-ancestors &#x27;self&#x27;; form-action &#x27;self&#x27;; block-all-mixed-content; base-uri &#x27;self&#x27;&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;nosniff&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span>	  </span><br><span class="line">	  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>提供一個產生CSP規則的網站：<a target="_blank" rel="noopener" href="https://report-uri.com/home/generate">report-uri.com</a></p>
+<h2 id="7-其它小筆記"><a href="#7-其它小筆記" class="headerlink" title="7. 其它小筆記"></a>7. 其它小筆記</h2><h3 id="7-1-chrome-extension-CSP-scanner"><a href="#7-1-chrome-extension-CSP-scanner" class="headerlink" title="7.1. chrome extension CSP scanner"></a>7.1. chrome extension CSP scanner</h3><p>這個工具還滿不錯的，可以針對CSP問題進行檢測，並且回饋您一些資訊與建議。最後在用OWASP ZAP 大部分時間都是在測試 CSP的問題，但是OWASP ZAP 是很全面的掃描，所以一輪下來都會花不少時間(2~5min)。這個工具就可以直接針對CSP 進行掃描。我猜想或許在OWASP ZAP 可以設定針對CSP掃描也說不定。</p>
+<p><img src="https://i.imgur.com/GIRTOuZ.png" alt="image-20220619210152807"></p>
+<p><img src="https://i.imgur.com/SITrgSd.png" alt="image-20220619204838625"></p>
+<h3 id="7-2-IIS-的-web-config-的記錄"><a href="#7-2-IIS-的-web-config-的記錄" class="headerlink" title="7.2. IIS 的 web.config 的記錄"></a>7.2. IIS 的 web.config 的記錄</h3><p>太久沒玩web.config了，所以稍微記錄一下實驗心得，方便回憶。</p>
+<p>放在某個專案底下的資料夾：</p>
+<p><img src="https://i.imgur.com/7w8At1b.png" alt="image-20220618135856027"></p>
+<p><code>web.config</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">staticContent</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">clientCache</span> <span class="attr">cacheControlMode</span>=<span class="string">&quot;DisableCache&quot;</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">staticContent</span>&gt;</span></span><br><span class="line">	  </span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;default-src &#x27;self&#x27; data:; img-src &#x27;self&#x27; data: ; script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; www.google-analytics.com;&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span>	  </span><br><span class="line">	  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>改完通常不用重啟服務，就直接生效了(不管是在web.config 還是在 IIS 工具介面設定都一樣)</p>
+<h2 id="8-備註"><a href="#8-備註" class="headerlink" title="8. 備註"></a>8. 備註</h2><p>寫一些有關文件</p>
+<ol>
+<li>SSH 、固定IP 在 IIS上設定的文件(複習)</li>
+<li>site map .xml(複習)</li>
+<li>robots(複習)</li>
+<li>寫一個CSP相關概念文件</li>
+</ol>
+<h2 id="9-相關連結"><a href="#9-相關連結" class="headerlink" title="9. 相關連結"></a>9. 相關連結</h2><p><a target="_blank" rel="noopener" href="https://sdwh.dev/posts/2020/10/Cyber-Security-Web-Config-Configuration/">ASP.NET Web.config &amp; Http Headers 安全設定大全 (Guide to Secure your Web application by web.config configuration)</a></p>
+<p>CSP Inline Styles</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://content-security-policy.com/examples/allow-inline-style/">CSP Inline Styles</a></li>
+</ol>
+<p>X-Content-Type-Options</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10273029">Day12-記得要戴安全帽（二）</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options">X-Content-Type-Options</a></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2018/08/css-svg-background-image-base64-encode/">学习了，CSS中内联SVG图片有比Base64更好的形式</a></p>
+<p>SiteMap </p>
+<p><a target="_blank" rel="noopener" href="https://www.da-vinci.com.tw/tw/blog/Sitemap">Sitemap是什麼？一次搞懂網站地圖提交</a></p>
+<p><a target="_blank" rel="noopener" href="https://awoo.ai/zh-hant/blog/sitemap-xml/">sitemap.xml網站地圖是什麼？從工具&#x2F;產生器&#x2F;程式製作到進行提交教學</a></p>
+<p>robots</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://welly.tw/serp-rank-optimization/how-to-use-or-check-robots.txt-and-meta-robots">robots.txt V.S. meta robots！SEO爬蟲溝通教學！</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/seo-day-1/%E6%92%B0%E5%AF%ABrobots-txt%E6%AA%94-%E8%AE%93%E7%88%AC%E8%9F%B2%E4%B9%96%E4%B9%96%E8%81%BD%E4%BD%A0%E7%9A%84%E8%A9%B1-8fa06b01fd59">撰寫robots.txt檔，讓爬蟲乖乖聽你的話</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yesharris.com/meta-robots-and-robots-txt/">三分鐘搞懂 SEO的《meta robots、robots.txt》</a></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.mxp.tw/9267/">[WordPress] 通過 OWASP ZAP 黑箱安全性檢測的幾個要點</a></p>
+<p>Cache-Control</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://shunnien.github.io/2018/05/08/cache-control/">Cache-Control 在 IIS 上的設定</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yamab2b.com/how/368526.html">IIS的Connection由改為close改為Keep-Alive?</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10013447">不要把網頁 cache 起來的語法</a></li>
+</ol>
+<p>CSP 產生網站</p>
+<p><a target="_blank" rel="noopener" href="https://report-uri.com/home/generate">https://report-uri.com/home/generate</a></p>
+<p>CSP介紹</p>
+<p><a target="_blank" rel="noopener" href="https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/">CSP script-src unsafe-inline</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.bepsvpt.me/2020/11/25/introduction-to-content-security-policy/">淺談 Content Security Policy (CSP)</a></p>
+<p><a target="_blank" rel="noopener" href="https://content-security-policy.com/">Content Security Policy Reference</a></p>
+<p><a target="_blank" rel="noopener" href="https://iter01.com/524950.html">Content Security Policy</a></p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/%E7%A8%8B%E5%BC%8F%E8%A3%A1%E6%9C%89%E8%9F%B2/content-security-policy-for-iis-c923e9f43c8a">Content Security Policy for IIS</a></p>
+<p><a target="_blank" rel="noopener" href="https://hackmd.io/@Eotones/BkOX6u5kX">Content Security Policy (CSP) 筆記</a></p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10223568">Web Security 魔法使攻略─嗑一下 CSP</a></p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10224306">Web Security 魔法使攻略─CSP bypasss</a></p>
+<p><a target="_blank" rel="noopener" href="https://csper.io/blog/an-introduction-to-report-uri">An Introduction To Report-URI</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.gushiciku.cn/pl/2UlJ/zh-tw">WEB應用內容安全策略(Content Security Policy)</a></p>
+<p><a target="_blank" rel="noopener" href="https://itw01.com/NRWNEBR.html">【學習筆記】Content Security Policy 入門教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://devco.re/blog/2014/04/08/security-issues-of-http-headers-2-content-security-policy/">Content-Security-Policy - HTTP Headers 的資安議題 (2)</a></p>
+<p>CSP 評估</p>
+<p><a target="_blank" rel="noopener" href="https://csp-evaluator.withgoogle.com/">CSP Evaluator</a></p>
+<p><a target="_blank" rel="noopener" href="https://rapidsec.com/resources/knowledge-base/6-common-web-application-client-side-vulnerabilities/#xss-cross-site-scripting">6 Common Web Application Client-side Vulnerabilities</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/applicationhost-config/">隨手記 - IIS &#x2F; IIS Express 伺服器 config 檔</a></p>
+<p>X-Frame-Options </p>
+<p>看這篇就對了-&gt;<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Headers/X-Frame-Options">X-Frame-Options 回應標頭</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%B3%87%E5%AE%89/" rel="tag"># 資安</a>
+              <a href="/tags/%E5%BC%B1%E9%BB%9E%E6%8E%83%E6%8F%8F/" rel="tag"># 弱點掃描</a>
+              <a href="/tags/IIS/" rel="tag"># IIS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/29/2022-04-29%20%E7%B7%A8%E7%A2%BC%E6%AD%B7%E5%8F%B2%E6%95%B4%E5%90%88%E5%8C%85/" rel="prev" title="編碼歷史">
+      <i class="fa fa-chevron-left"></i> 編碼歷史
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/14/2022-07-14%20Vue3TypeScript(1)/" rel="next" title="Vue3TypeScript(1)">
+      Vue3TypeScript(1) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Missing-Anti-clickjacking-Header-%E9%A2%A8%E9%9A%AA%EF%BC%9A%E4%B8%AD"><span class="nav-number">2.</span> <span class="nav-text">2. Missing Anti-clickjacking Header (風險：中)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Description"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Solution"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Before-response-header"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. Before response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. 解決方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-After-Response-header"><span class="nav-number">2.5.</span> <span class="nav-text">2.5. After Response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E9%80%B2%E8%A1%8COWASP-ZAP-%E9%A9%97%E8%AD%89"><span class="nav-number">2.6.</span> <span class="nav-text">2.6. 進行OWASP ZAP 驗證</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E5%B0%8F%E7%B5%90"><span class="nav-number">2.7.</span> <span class="nav-text">2.7. 小結</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-X-Frame-Options-Setting-Malformed-%E9%A2%A8%E9%9A%AA%EF%BC%9A%E4%B8%AD"><span class="nav-number">3.</span> <span class="nav-text">3. X-Frame-Options Setting Malformed (風險：中)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Description"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Solution"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Before-response-header"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. Before response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. 解決方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-After-response-header"><span class="nav-number">3.5.</span> <span class="nav-text">3.5. After response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-%E9%80%B2%E8%A1%8COWASP-ZAP-%E9%A9%97%E8%AD%89"><span class="nav-number">3.6.</span> <span class="nav-text">3.6. 進行OWASP ZAP 驗證</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Re-examine-Cache-control-Directives-%E9%A2%A8%E9%9A%AA%EF%BC%9A%E4%BD%8E"><span class="nav-number">4.</span> <span class="nav-text">4. Re-examine Cache-control Directives(風險：低)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Description"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Solution"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Before-response-header"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. Before response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">4.4.</span> <span class="nav-text">4.4. 解決方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-After-Response-header"><span class="nav-number">4.5.</span> <span class="nav-text">4.5. After Response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E9%80%B2%E8%A1%8COWASP-ZAP%E9%A9%97%E8%AD%89"><span class="nav-number">4.6.</span> <span class="nav-text">4.6. 進行OWASP ZAP驗證</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-X-Content-Type-Options-Header-Missing-%E9%A2%A8%E9%9A%AA%EF%BC%9A%E4%BD%8E"><span class="nav-number">5.</span> <span class="nav-text">5. X-Content-Type-Options Header Missing (風險：低)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Description"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Solution"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Before-response-header"><span class="nav-number">5.3.</span> <span class="nav-text">5.3. Before response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">5.4.</span> <span class="nav-text">5.4. 解決方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-After-response-header"><span class="nav-number">5.5.</span> <span class="nav-text">5.5. After response header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-%E9%80%B2%E8%A1%8COWASP-ZAP-%E9%A9%97%E8%AD%89"><span class="nav-number">5.6.</span> <span class="nav-text">5.6. 進行OWASP ZAP 驗證</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Content-Security-Policy-CSP"><span class="nav-number">6.</span> <span class="nav-text">6. Content Security Policy (CSP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E5%BF%83%E5%BE%97%E8%AA%AA%E6%98%8E"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. 心得說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Content-Security-Policy-CSP-Header-Not-Set-%E9%A2%A8%E9%9A%AA%EF%BC%9A%E4%B8%AD"><span class="nav-number">6.2.</span> <span class="nav-text">6.2. Content Security Policy(CSP) Header Not Set(風險：中)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-1-Description"><span class="nav-number">6.2.1.</span> <span class="nav-text">6.2.1. Description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-2-Solution"><span class="nav-number">6.2.2.</span> <span class="nav-text">6.2.2. Solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-Before-response-header"><span class="nav-number">6.2.3.</span> <span class="nav-text">6.2.3. Before response header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-4-%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">6.2.4.</span> <span class="nav-text">6.2.4. 解決方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-After-response-header"><span class="nav-number">6.2.5.</span> <span class="nav-text">6.2.5. After response header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-6-%E9%80%B2%E8%A1%8COWASP-ZAP-%E9%A9%97%E8%AD%89"><span class="nav-number">6.2.6.</span> <span class="nav-text">6.2.6. 進行OWASP ZAP 驗證</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-CSP-Wildcard-Directive-%E9%A2%A8%E9%9A%AA%EF%BC%9A%E4%B8%AD"><span class="nav-number">6.3.</span> <span class="nav-text">6.3. CSP:Wildcard Directive(風險：中)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-1-Description"><span class="nav-number">6.3.1.</span> <span class="nav-text">6.3.1. Description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2-Other-Info"><span class="nav-number">6.3.2.</span> <span class="nav-text">6.3.2. Other Info</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-3-Solution"><span class="nav-number">6.3.3.</span> <span class="nav-text">6.3.3. Solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-4-Before-response-header"><span class="nav-number">6.3.4.</span> <span class="nav-text">6.3.4. Before response header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-5-%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"><span class="nav-number">6.3.5.</span> <span class="nav-text">6.3.5. 解決方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-6-After-response-header"><span class="nav-number">6.3.6.</span> <span class="nav-text">6.3.6. After response header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-%E9%80%B2%E8%A1%8COWASP-ZAP%E9%A9%97%E8%AD%89"><span class="nav-number">6.3.7.</span> <span class="nav-text">6.3.7. 進行OWASP ZAP驗證</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-CSP-script-src-unsafe-inline-%E9%A2%A8%E9%9A%AA%EF%BC%9A%E4%B8%AD"><span class="nav-number">6.4.</span> <span class="nav-text">6.4. CSP: script-src unsafe-inline(風險：中)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-1-Description"><span class="nav-number">6.4.1.</span> <span class="nav-text">6.4.1. Description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-2-Other-Info"><span class="nav-number">6.4.2.</span> <span class="nav-text">6.4.2. Other Info</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-3-Solution"><span class="nav-number">6.4.3.</span> <span class="nav-text">6.4.3. Solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-4-%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">6.4.4.</span> <span class="nav-text">6.4.4. 解決方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-5-%E5%A6%82%E6%9E%9C%E6%B2%92%E6%94%B9%E6%9C%83%E6%80%8E%E6%A8%A3%EF%BC%9F"><span class="nav-number">6.4.5.</span> <span class="nav-text">6.4.5. 如果沒改會怎樣？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-OWASP-ZAP-%E5%88%B0%E9%80%99%E8%A3%A1%E2%80%A6%E5%B0%B1%E6%B2%92%E6%9C%89alert%E4%BA%86"><span class="nav-number">6.5.</span> <span class="nav-text">6.5. OWASP ZAP 到這裡…就沒有alert了</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%85%B6%E5%AE%83%E5%B0%8F%E7%AD%86%E8%A8%98"><span class="nav-number">7.</span> <span class="nav-text">7. 其它小筆記</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-chrome-extension-CSP-scanner"><span class="nav-number">7.1.</span> <span class="nav-text">7.1. chrome extension CSP scanner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-IIS-%E7%9A%84-web-config-%E7%9A%84%E8%A8%98%E9%8C%84"><span class="nav-number">7.2.</span> <span class="nav-text">7.2. IIS 的 web.config 的記錄</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%82%99%E8%A8%BB"><span class="nav-number">8.</span> <span class="nav-text">8. 備註</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%9B%B8%E9%97%9C%E9%80%A3%E7%B5%90"><span class="nav-number">9.</span> <span class="nav-text">9. 相關連結</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

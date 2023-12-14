@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="4. TCP IP Protocol Suite 2Telnet1969就被開發出來主要用途在用於遠程登入目前很少人用這個方式登入 Telnet 是不安全的wireshark 進行網路抓包使用Telnet 連線，打的帳密可以在wireshark裡面看得很清楚 SSH(Secure Shell) - 安全外殼協定  Ubuntu SSH Server 安裝  FTP(File Transfer Pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCNA_04">
+<meta property="og:url" content="https://kitefree.github.io/2021/04/27/2021-04-27%20CCNA_04/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="4. TCP IP Protocol Suite 2Telnet1969就被開發出來主要用途在用於遠程登入目前很少人用這個方式登入 Telnet 是不安全的wireshark 進行網路抓包使用Telnet 連線，打的帳密可以在wireshark裡面看得很清楚 SSH(Secure Shell) - 安全外殼協定  Ubuntu SSH Server 安裝  FTP(File Transfer Pr">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/2a6baDO.png">
+<meta property="og:image" content="https://i.imgur.com/VM6qYG6.png">
+<meta property="og:image" content="https://i.imgur.com/Tyma9Qr.png">
+<meta property="og:image" content="https://i.imgur.com/5c5aYgL.png">
+<meta property="og:image" content="https://i.imgur.com/cN7mQPX.png">
+<meta property="og:image" content="https://i.imgur.com/NAx1NFY.png">
+<meta property="og:image" content="https://i.imgur.com/c6dr7P7.png">
+<meta property="og:image" content="https://i.imgur.com/3HIITtu.png">
+<meta property="og:image" content="https://i.imgur.com/YWIiFo5.png">
+<meta property="og:image" content="https://i.imgur.com/GgowT9u.jpg">
+<meta property="og:image" content="https://i.imgur.com/UDB2vlZ.png">
+<meta property="og:image" content="https://i.imgur.com/eI53qx5.png">
+<meta property="og:image" content="https://i.imgur.com/nVi4DIF.png">
+<meta property="og:image" content="https://i.imgur.com/H30mj8P.png">
+<meta property="og:image" content="https://i.imgur.com/NxAqLU3.png">
+<meta property="og:image" content="https://i.imgur.com/fRM9Esy.png">
+<meta property="og:image" content="https://i.imgur.com/sWGSbgr.png">
+<meta property="og:image" content="https://i.imgur.com/c1wtxVB.png">
+<meta property="og:image" content="https://i.imgur.com/rAGDQHE.png">
+<meta property="og:image" content="https://i.imgur.com/cVhpE7M.jpg">
+<meta property="og:image" content="https://i.imgur.com/5kD1aOt.png">
+<meta property="article:published_time" content="2021-04-27T08:22:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T07:55:39.851Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="CCNA">
+<meta property="article:tag" content="網路知識">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="FTP">
+<meta property="article:tag" content="TFTP">
+<meta property="article:tag" content="SSH">
+<meta property="article:tag" content="SNMP">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="HTTPS">
+<meta property="article:tag" content="NTP">
+<meta property="article:tag" content="DHCP">
+<meta property="article:tag" content="BootP">
+<meta property="article:tag" content="APIPA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/2a6baDO.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/04/27/2021-04-27%20CCNA_04/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>CCNA_04 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/27/2021-04-27%20CCNA_04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CCNA_04
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-04-27 16:22:00" itemprop="dateCreated datePublished" datetime="2021-04-27T16:22:00+08:00">2021-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:55:39" itemprop="dateModified" datetime="2021-10-01T15:55:39+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>6 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="4-TCP-IP-Protocol-Suite-2"><a href="#4-TCP-IP-Protocol-Suite-2" class="headerlink" title="4. TCP IP Protocol Suite 2"></a>4. TCP IP Protocol Suite 2</h2><h3 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h3><p>1969就被開發出來<br>主要用途在用於遠程登入<br>目前很少人用這個方式登入<br><img src="https://i.imgur.com/2a6baDO.png" alt="image"></p>
+<p>Telnet 是不安全的<br>wireshark 進行網路抓包<br>使用Telnet 連線，打的帳密可以在wireshark裡面看得很清楚</p>
+<h3 id="SSH-Secure-Shell-安全外殼協定"><a href="#SSH-Secure-Shell-安全外殼協定" class="headerlink" title="SSH(Secure Shell) - 安全外殼協定"></a>SSH(Secure Shell) - 安全外殼協定</h3><p><img src="https://i.imgur.com/VM6qYG6.png" alt="image"></p>
+<ul>
+<li><a href="/ib3MOXKETcyR9gzPxuQkiA">Ubuntu SSH Server 安裝</a></li>
+</ul>
+<h3 id="FTP-File-Transfer-Protocol-檔案傳輸協定"><a href="#FTP-File-Transfer-Protocol-檔案傳輸協定" class="headerlink" title="FTP(File Transfer Protocol) - 檔案傳輸協定"></a>FTP(File Transfer Protocol) - 檔案傳輸協定</h3><p><img src="https://i.imgur.com/Tyma9Qr.png" alt="image"></p>
+<ul>
+<li>指令</li>
+</ul>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ftp 1.1.1.1</span><br><span class="line">dir</span><br><span class="line">get filename</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+
+<h4 id="FTP-架設"><a href="#FTP-架設" class="headerlink" title="FTP 架設"></a>FTP 架設</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@kite/Ubuntu_FTP_Install">Ubuntu FTP Server 安裝</a></li>
+</ul>
+<h3 id="TFTP-Trivial-File-Transfer-Protocol-簡單檔案傳輸協定"><a href="#TFTP-Trivial-File-Transfer-Protocol-簡單檔案傳輸協定" class="headerlink" title="TFTP(Trivial File Transfer Protocol) - 簡單檔案傳輸協定"></a>TFTP(Trivial File Transfer Protocol) - 簡單檔案傳輸協定</h3><p><img src="https://i.imgur.com/5c5aYgL.png" alt="image"><br><img src="https://i.imgur.com/cN7mQPX.png" alt="image"></p>
+<h4 id="TFTP-架設"><a href="#TFTP-架設" class="headerlink" title="TFTP 架設"></a>TFTP 架設</h4><p>FTP 可以看到目錄<br>TFTP 看不到目錄，要提前知道檔名才能下載</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@kite/Ubuntu_TFTP_Install">TFTP 架設</a></li>
+</ul>
+<h3 id="TFTP與FTP差異"><a href="#TFTP與FTP差異" class="headerlink" title="TFTP與FTP差異"></a>TFTP與FTP差異</h3><p><img src="https://i.imgur.com/NAx1NFY.png" alt="image"></p>
+<h3 id="SNMP-Simple-Network-Management-Protocol-簡易網路管理通訊協定"><a href="#SNMP-Simple-Network-Management-Protocol-簡易網路管理通訊協定" class="headerlink" title="SNMP(Simple Network Management Protocol) - 簡易網路管理通訊協定"></a>SNMP(Simple Network Management Protocol) - 簡易網路管理通訊協定</h3><h4 id="SNMP管理的網路主要由3個元件所組成"><a href="#SNMP管理的網路主要由3個元件所組成" class="headerlink" title="SNMP管理的網路主要由3個元件所組成"></a>SNMP管理的網路主要由3個元件所組成</h4><ol>
+<li>NMS(Network Management System) - 網路管理系統<br> 為安裝於管理端(Manager)的軟體，用以向代理者查詢被管理裝置的相關資訊。</li>
+<li>Managed Device - 被管理裝置<br> 是指網路中被監控的設備節點。</li>
+<li>Agent - 代理者<br> 為安裝於被管理裝置的軟體，負責監控及回傳被監控設備的相關資訊。</li>
+</ol>
+<p><img src="https://i.imgur.com/c6dr7P7.png" alt="image"><br>可以監控網路設備、服務器、應用程序、防火牆…等</p>
+<h4 id="SNMP-概念"><a href="#SNMP-概念" class="headerlink" title="SNMP 概念"></a>SNMP 概念</h4><p><img src="https://i.imgur.com/3HIITtu.png" alt="image"></p>
+<p><code>監控的方式</code></p>
+<ul>
+<li>polling</li>
+<li>SNMP Traps</li>
+</ul>
+<p><strong>SNMP所定義的五種Manager與Agent溝通指令</strong><br><img src="https://i.imgur.com/YWIiFo5.png" alt="image"></p>
+<h4 id="MIB-Management-Information-Base-管理資訊資料庫"><a href="#MIB-Management-Information-Base-管理資訊資料庫" class="headerlink" title="MIB(Management Information Base) - 管理資訊資料庫"></a>MIB(Management Information Base) - 管理資訊資料庫</h4><p>是描述被管理物件的資料結構。SNMP 被設計成可以管理各種網路設備，造成它所管理的訊息也隨著設備有成千上萬種，而每種網路或設備對自己資料的表達方式也不會相同</p>
+<p>為了讓這些資訊納入同一套管理系統，就必須採用一套抽象的語法，來描述所有類型的訊息，因此，SNMP 定義了『管理訊息資料庫』（MIB），以階層式來描述所有被管理物件的屬性，並稱這些被管理訊息為『SNMP 物件』（SNMP Object）。</p>
+<p>MIB 檔案是 SNMP 管理器可以詢問代理程式的問題集合。如 MIB 中所定義，代理程式在本地收集這些資料並將其存儲。</p>
+<p>SNMP Agent是以變數方式呈現被管理裝置的相關資訊，每個變數皆有其唯一的物件識別碼(Object Identifier; OID)，而OID是以階層方式被描述於管理資訊庫(Management Information Base; MIB)，例如OID為1.3.6.1.4.1.9代表Cisco公司。</p>
+<p><img src="https://i.imgur.com/GgowT9u.jpg" alt="image"></p>
+<h4 id="知名軟體-solarwinds-監控實際狀況"><a href="#知名軟體-solarwinds-監控實際狀況" class="headerlink" title="知名軟體 solarwinds 監控實際狀況"></a>知名軟體 solarwinds 監控實際狀況</h4><p><img src="https://i.imgur.com/UDB2vlZ.png" alt="image"></p>
+<h4 id="SNMP-架設"><a href="#SNMP-架設" class="headerlink" title="SNMP 架設"></a>SNMP 架設</h4><p><a target="_blank" rel="noopener" href="https://www.netadmin.com.tw/netadmin/zh-tw/technology/38DA8ABF30B448EC985421D5D23D1233">https://www.netadmin.com.tw/netadmin/zh-tw/technology/38DA8ABF30B448EC985421D5D23D1233</a></p>
+<p>自刻專案</p>
+<p><a target="_blank" rel="noopener" href="http://ir.hust.edu.tw/bitstream/310993100/2600/1/%E7%B6%B2%E8%B7%AF%E7%AE%A1%E7%90%86%E4%B9%8BSNMP%E5%B0%88%E9%A1%8C%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf">http://ir.hust.edu.tw/bitstream/310993100/2600/1/%E7%B6%B2%E8%B7%AF%E7%AE%A1%E7%90%86%E4%B9%8BSNMP%E5%B0%88%E9%A1%8C%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf</a></p>
+<h4 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.cc.ntu.edu.tw/chinese/epaper/0047/20181220_4707.html">淺談簡單網路管理協定(SNMP)</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tsnien.idv.tw/Internet_WebBook/chap16/16-7%20MIB%20%E8%A8%8A%E6%81%AF%E8%B3%87%E6%96%99%E5%BA%AB.html">TCP&#x2F;IP 協定與 Internet 網路：第十六章 SNMP 網路管理協定</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.netadmin.com.tw/netadmin/zh-tw/technology/38DA8ABF30B448EC985421D5D23D1233">以SNMP即時監控網站伺服器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2IXP0TkwNJU">How SNMP Works - a quick guide</a></li>
+</ul>
+<h3 id="DNS-Domain-Name-System-網域名稱系統"><a href="#DNS-Domain-Name-System-網域名稱系統" class="headerlink" title="DNS(Domain Name System) - 網域名稱系統"></a>DNS(Domain Name System) - 網域名稱系統</h3><p>ROOT-domain</p>
+<ul>
+<li>Top-Level<ul>
+<li>edu</li>
+<li>gov</li>
+<li>com</li>
+<li>net</li>
+</ul>
+</li>
+<li>Second-levl<ul>
+<li>nsu</li>
+<li>mit</li>
+<li>google</li>
+<li>att</li>
+</ul>
+</li>
+</ul>
+<p>目前root domain 有13個server<br>一旦root 出問題了，大家就斷網啦<br><a target="_blank" rel="noopener" href="http://www.root-servers.org/">http://www.root-servers.org/</a></p>
+<p><img src="https://i.imgur.com/eI53qx5.png" alt="image"><br>Resolves hostnames</p>
+<ul>
+<li>A record</li>
+<li>PTR record</li>
+</ul>
+<h4 id="Query-Difference"><a href="#Query-Difference" class="headerlink" title="Query Difference"></a>Query Difference</h4><p><img src="https://i.imgur.com/nVi4DIF.png" alt="image"></p>
+<ul>
+<li>Recursive</li>
+<li>Lterative</li>
+</ul>
+<h4 id="實際使用是用-Recursive-還是-Ilterative-呢"><a href="#實際使用是用-Recursive-還是-Ilterative-呢" class="headerlink" title="實際使用是用 Recursive 還是 Ilterative 呢?"></a>實際使用是用 Recursive 還是 Ilterative 呢?</h4><p><img src="https://i.imgur.com/H30mj8P.png" alt="image"></p>
+<p>DNS resolver 右邊是 Lterative<br>DNS resolver 左邊是 Recursive</p>
+<h4 id="實驗"><a href="#實驗" class="headerlink" title="實驗"></a>實驗</h4><p><img src="https://i.imgur.com/NxAqLU3.png" alt="image"></p>
+<h4 id="DNS-架設"><a href="#DNS-架設" class="headerlink" title="DNS 架設"></a>DNS 架設</h4><h4 id="相關文章"><a href="#相關文章" class="headerlink" title="相關文章"></a>相關文章</h4><ul>
+<li><a href="/DIxl6euWSj-1TiPvB0NTaQ">DNS(Domain Name System) - 網域名稱系統</a></li>
+</ul>
+<h3 id="HTTP-與-HTTPS"><a href="#HTTP-與-HTTPS" class="headerlink" title="HTTP 與 HTTPS"></a>HTTP 與 HTTPS</h3><p><img src="https://i.imgur.com/fRM9Esy.png" alt="image"></p>
+<h4 id="HTTPS-架設"><a href="#HTTPS-架設" class="headerlink" title="HTTPS 架設"></a>HTTPS 架設</h4><h3 id="NTP-Network-Time-Protocol-網路時間協定"><a href="#NTP-Network-Time-Protocol-網路時間協定" class="headerlink" title="NTP(Network Time Protocol) - 網路時間協定"></a>NTP(Network Time Protocol) - 網路時間協定</h3><h4 id="統一時間的重要性"><a href="#統一時間的重要性" class="headerlink" title="統一時間的重要性"></a>統一時間的重要性</h4><ul>
+<li>log 檢查，時間不對了，就無法追溯問題</li>
+<li>證書的時間，證書是用來加密的，設備與設備之間的通訊利用證書來加密，設備和設備之間時間差不可以大於15分鐘，一旦大於15分鐘，通訊就會失敗</li>
+</ul>
+<h4 id="同步機制"><a href="#同步機制" class="headerlink" title="同步機制"></a>同步機制</h4><p><img src="https://i.imgur.com/sWGSbgr.png" alt="image"><br>比如NTP Server有一條天線，接去到屋頂，使用GPS方式與衛星同步時間<br>比如網路設備與服務連結到NTP SERVER再進行同步<br>比如說核心交換機或區域的伺服器再上一層進行同步<br>達到一級一級的同步(SYNC)<br><em>註：stratum - 層</em></p>
+<h4 id="同步的時間源頭種類"><a href="#同步的時間源頭種類" class="headerlink" title="同步的時間源頭種類"></a>同步的時間源頭種類</h4><ul>
+<li>CDMA&#x2F;GSM</li>
+<li>GPS</li>
+<li>Radio Wave<br>…<br>商業常見的是使用GPS</li>
+</ul>
+<h4 id="NTP-Server-架設"><a href="#NTP-Server-架設" class="headerlink" title="NTP Server 架設"></a>NTP Server 架設</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://slashview.com/archive2013/20131219.html">http://slashview.com/archive2013/20131219.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tquark.com.tw/zh_tw/Download/NTPServer%E6%9E%B6%E8%A8%AD.pdf">http://www.tquark.com.tw/zh_tw/Download/NTPServer%E6%9E%B6%E8%A8%AD.pdf</a></li>
+</ul>
+<h3 id="DHCP-Dynamic-Host-Configuration-Protocol-動態主機設定協定"><a href="#DHCP-Dynamic-Host-Configuration-Protocol-動態主機設定協定" class="headerlink" title="DHCP(Dynamic Host Configuration Protocol) - 動態主機設定協定"></a>DHCP(Dynamic Host Configuration Protocol) - 動態主機設定協定</h3><h4 id="BootP"><a href="#BootP" class="headerlink" title="BootP"></a>BootP</h4><ul>
+<li>DHCP 前身</li>
+<li>host’s hardware address must be entered <strong>manually</strong> in a BootP table</li>
+</ul>
+<h4 id="DHCP-主要功能"><a href="#DHCP-主要功能" class="headerlink" title="DHCP 主要功能"></a>DHCP 主要功能</h4><p>可以減少用戶端手動設定 IP 位址的麻煩，並且減少手動設定發生錯誤的機率，又可以節省 IP 位址的使用量。</p>
+<ul>
+<li>提供IP位置</li>
+<li>Subnet mask - 子網路遮罩</li>
+<li>Default gateway - 預設閘道器</li>
+<li>DNS伺服器 IP</li>
+</ul>
+<p><img src="https://i.imgur.com/c1wtxVB.png" alt="image"></p>
+<h4 id="DHCP-工作流程"><a href="#DHCP-工作流程" class="headerlink" title="DHCP 工作流程"></a>DHCP 工作流程</h4><p><img src="https://i.imgur.com/rAGDQHE.png" alt="image"></p>
+<ul>
+<li>DHCP Discover - 探索<ul>
+<li>用戶端電腦發出廣播封包到整個子網路，向負責這個子網路的DHCP伺服器要求IP位址來連接網路</li>
+</ul>
+</li>
+<li>DHCP Offer - 提供<ul>
+<li>DHCP伺服器回應用戶端電腦的要求，指定一個未被使用的IP位置給用戶端電腦使用，比如192.168.10.12</li>
+</ul>
+</li>
+<li>DHCP Request - 回覆<ul>
+<li>用戶端電腦收到配發的IP後，發出回覆給DHCP伺服器，表示接受DHCP指定的IP位置</li>
+</ul>
+</li>
+<li>DHCP ACK - 確認<ul>
+<li>由DHCP伺服器回應用戶端電腦確認訊號，表示用戶端電腦可以使用這個IP位址連接網路</li>
+</ul>
+</li>
+</ul>
+<h4 id="用戶端設定IP方式"><a href="#用戶端設定IP方式" class="headerlink" title="用戶端設定IP方式"></a>用戶端設定IP方式</h4><ul>
+<li><p>Manual - 手動設定<br>使用者以手動的方式自行為電腦設定 IP 位址，每次連線的 IP 位址是固定的，除非使用者再以手動的方式變更設定</p>
+</li>
+<li><p>Dynamic - 動態設定<br>用戶端電腦向 DHCP 伺服器要求 IP 位址，DHCP 伺服器動態指定一個未被使用的 IP 位址給用戶端電腦使用，動態設定的 IP 位址通常並不固定</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/cVhpE7M.jpg" alt="image"></p>
+<h4 id="如果DHCP-死掉了，該怎麼辦-不能有IP上網了"><a href="#如果DHCP-死掉了，該怎麼辦-不能有IP上網了" class="headerlink" title="如果DHCP 死掉了，該怎麼辦? 不能有IP上網了?"></a>如果DHCP 死掉了，該怎麼辦? 不能有IP上網了?</h4><p>微軟想到這個問題，Windows 98 之後的 Windows 作業系統都有支援 APIPA</p>
+<h4 id="DHCP參考連結"><a href="#DHCP參考連結" class="headerlink" title="DHCP參考連結"></a>DHCP參考連結</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.stockfeel.com.tw/dhcp%E4%BC%BA%E6%9C%8D%E5%99%A8%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%8B%E7%94%A8%EF%BC%9F/">DHCP 伺服器是什麼？如何運用？</a></li>
+</ul>
+<h3 id="APIPA-Automatic-Private-IP-Addressing"><a href="#APIPA-Automatic-Private-IP-Addressing" class="headerlink" title="APIPA (Automatic Private IP Addressing)"></a>APIPA (Automatic Private IP Addressing)</h3><ul>
+<li>生命週期<ul>
+<li>APIPA服務會持續每5分鐘一次，週期的檢查 DHCP 伺服器是否出現，如果偵測到 DHCP 伺服器，APIPA 便會停止，原先的IP 相關設定轉為向 DHCP 伺服器要求。</li>
+</ul>
+</li>
+<li>IP範圍<ul>
+<li>168.254.0.1 ~ 168.254.255.254(Class B)</li>
+</ul>
+</li>
+<li>遮照範圍<ul>
+<li>255.255.0.0</li>
+</ul>
+</li>
+<li>優點<ul>
+<li>小型不作路由的網路環境很實用，不需作任何設定，電腦之間就能透過網路連線</li>
+</ul>
+</li>
+</ul>
+<h4 id="APIPA-工作流程"><a href="#APIPA-工作流程" class="headerlink" title="APIPA 工作流程"></a>APIPA 工作流程</h4><p>由於 APIPA 是自我指定 IP 位址，因此就有可能產生相同 IP 位址的問題，要避免 IP 衝突的問題，APIPA 用戶端會送出 gratuitous ARP（Address Resolution Protocol）封包，以便宣告我要使用某個 169.254.x.x的 IP 位址，若有其他 APIPA用戶端剛好要用到同樣 IP 位址時，先前佔用此 IP 的用戶便會告訴後者這個 IP 位址已被採用，後者就只好重新配一個 IP 位置，若配到的 IP 位址也被用掉了，就再重覆配置的動作，總共有十次的配置的機會。</p>
+<p><img src="https://i.imgur.com/5kD1aOt.png" alt="image"></p>
+<h4 id="APIPA參考連結"><a href="#APIPA參考連結" class="headerlink" title="APIPA參考連結"></a>APIPA參考連結</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://chaomengyang.wordpress.com/2008/05/02/apipa-automatic-private-ip-addressing/">APIPA</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CCNA/" rel="tag"># CCNA</a>
+              <a href="/tags/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/" rel="tag"># 網路知識</a>
+              <a href="/tags/DNS/" rel="tag"># DNS</a>
+              <a href="/tags/FTP/" rel="tag"># FTP</a>
+              <a href="/tags/TFTP/" rel="tag"># TFTP</a>
+              <a href="/tags/SSH/" rel="tag"># SSH</a>
+              <a href="/tags/SNMP/" rel="tag"># SNMP</a>
+              <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+              <a href="/tags/HTTPS/" rel="tag"># HTTPS</a>
+              <a href="/tags/NTP/" rel="tag"># NTP</a>
+              <a href="/tags/DHCP/" rel="tag"># DHCP</a>
+              <a href="/tags/BootP/" rel="tag"># BootP</a>
+              <a href="/tags/APIPA/" rel="tag"># APIPA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/26/2021-04-26%20Ubuntu%20TFTP%20Server%20%E5%AE%89%E8%A3%9D/" rel="prev" title="Ubuntu TFTP Server 安裝">
+      <i class="fa fa-chevron-left"></i> Ubuntu TFTP Server 安裝
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/28/2021-04-28%20CCNA_08/" rel="next" title="CCNA_08">
+      CCNA_08 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-TCP-IP-Protocol-Suite-2"><span class="nav-number">1.</span> <span class="nav-text">4. TCP IP Protocol Suite 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Telnet"><span class="nav-number">1.1.</span> <span class="nav-text">Telnet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-Secure-Shell-%E5%AE%89%E5%85%A8%E5%A4%96%E6%AE%BC%E5%8D%94%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">SSH(Secure Shell) - 安全外殼協定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FTP-File-Transfer-Protocol-%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E5%8D%94%E5%AE%9A"><span class="nav-number">1.3.</span> <span class="nav-text">FTP(File Transfer Protocol) - 檔案傳輸協定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FTP-%E6%9E%B6%E8%A8%AD"><span class="nav-number">1.3.1.</span> <span class="nav-text">FTP 架設</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TFTP-Trivial-File-Transfer-Protocol-%E7%B0%A1%E5%96%AE%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E5%8D%94%E5%AE%9A"><span class="nav-number">1.4.</span> <span class="nav-text">TFTP(Trivial File Transfer Protocol) - 簡單檔案傳輸協定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TFTP-%E6%9E%B6%E8%A8%AD"><span class="nav-number">1.4.1.</span> <span class="nav-text">TFTP 架設</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TFTP%E8%88%87FTP%E5%B7%AE%E7%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">TFTP與FTP差異</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP-Simple-Network-Management-Protocol-%E7%B0%A1%E6%98%93%E7%B6%B2%E8%B7%AF%E7%AE%A1%E7%90%86%E9%80%9A%E8%A8%8A%E5%8D%94%E5%AE%9A"><span class="nav-number">1.6.</span> <span class="nav-text">SNMP(Simple Network Management Protocol) - 簡易網路管理通訊協定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SNMP%E7%AE%A1%E7%90%86%E7%9A%84%E7%B6%B2%E8%B7%AF%E4%B8%BB%E8%A6%81%E7%94%B13%E5%80%8B%E5%85%83%E4%BB%B6%E6%89%80%E7%B5%84%E6%88%90"><span class="nav-number">1.6.1.</span> <span class="nav-text">SNMP管理的網路主要由3個元件所組成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SNMP-%E6%A6%82%E5%BF%B5"><span class="nav-number">1.6.2.</span> <span class="nav-text">SNMP 概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIB-Management-Information-Base-%E7%AE%A1%E7%90%86%E8%B3%87%E8%A8%8A%E8%B3%87%E6%96%99%E5%BA%AB"><span class="nav-number">1.6.3.</span> <span class="nav-text">MIB(Management Information Base) - 管理資訊資料庫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A5%E5%90%8D%E8%BB%9F%E9%AB%94-solarwinds-%E7%9B%A3%E6%8E%A7%E5%AF%A6%E9%9A%9B%E7%8B%80%E6%B3%81"><span class="nav-number">1.6.4.</span> <span class="nav-text">知名軟體 solarwinds 監控實際狀況</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SNMP-%E6%9E%B6%E8%A8%AD"><span class="nav-number">1.6.5.</span> <span class="nav-text">SNMP 架設</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">1.6.6.</span> <span class="nav-text">參考連結</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-Domain-Name-System-%E7%B6%B2%E5%9F%9F%E5%90%8D%E7%A8%B1%E7%B3%BB%E7%B5%B1"><span class="nav-number">1.7.</span> <span class="nav-text">DNS(Domain Name System) - 網域名稱系統</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Query-Difference"><span class="nav-number">1.7.1.</span> <span class="nav-text">Query Difference</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E4%BD%BF%E7%94%A8%E6%98%AF%E7%94%A8-Recursive-%E9%82%84%E6%98%AF-Ilterative-%E5%91%A2"><span class="nav-number">1.7.2.</span> <span class="nav-text">實際使用是用 Recursive 還是 Ilterative 呢?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%A6%E9%A9%97"><span class="nav-number">1.7.3.</span> <span class="nav-text">實驗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS-%E6%9E%B6%E8%A8%AD"><span class="nav-number">1.7.4.</span> <span class="nav-text">DNS 架設</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E9%97%9C%E6%96%87%E7%AB%A0"><span class="nav-number">1.7.5.</span> <span class="nav-text">相關文章</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-%E8%88%87-HTTPS"><span class="nav-number">1.8.</span> <span class="nav-text">HTTP 與 HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS-%E6%9E%B6%E8%A8%AD"><span class="nav-number">1.8.1.</span> <span class="nav-text">HTTPS 架設</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTP-Network-Time-Protocol-%E7%B6%B2%E8%B7%AF%E6%99%82%E9%96%93%E5%8D%94%E5%AE%9A"><span class="nav-number">1.9.</span> <span class="nav-text">NTP(Network Time Protocol) - 網路時間協定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B5%B1%E4%B8%80%E6%99%82%E9%96%93%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="nav-number">1.9.1.</span> <span class="nav-text">統一時間的重要性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%A9%9F%E5%88%B6"><span class="nav-number">1.9.2.</span> <span class="nav-text">同步機制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E7%9A%84%E6%99%82%E9%96%93%E6%BA%90%E9%A0%AD%E7%A8%AE%E9%A1%9E"><span class="nav-number">1.9.3.</span> <span class="nav-text">同步的時間源頭種類</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NTP-Server-%E6%9E%B6%E8%A8%AD"><span class="nav-number">1.9.4.</span> <span class="nav-text">NTP Server 架設</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP-Dynamic-Host-Configuration-Protocol-%E5%8B%95%E6%85%8B%E4%B8%BB%E6%A9%9F%E8%A8%AD%E5%AE%9A%E5%8D%94%E5%AE%9A"><span class="nav-number">1.10.</span> <span class="nav-text">DHCP(Dynamic Host Configuration Protocol) - 動態主機設定協定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BootP"><span class="nav-number">1.10.1.</span> <span class="nav-text">BootP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DHCP-%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-number">1.10.2.</span> <span class="nav-text">DHCP 主要功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DHCP-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.10.3.</span> <span class="nav-text">DHCP 工作流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B6%E7%AB%AF%E8%A8%AD%E5%AE%9AIP%E6%96%B9%E5%BC%8F"><span class="nav-number">1.10.4.</span> <span class="nav-text">用戶端設定IP方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9CDHCP-%E6%AD%BB%E6%8E%89%E4%BA%86%EF%BC%8C%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%BE%A6-%E4%B8%8D%E8%83%BD%E6%9C%89IP%E4%B8%8A%E7%B6%B2%E4%BA%86"><span class="nav-number">1.10.5.</span> <span class="nav-text">如果DHCP 死掉了，該怎麼辦? 不能有IP上網了?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DHCP%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">1.10.6.</span> <span class="nav-text">DHCP參考連結</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APIPA-Automatic-Private-IP-Addressing"><span class="nav-number">1.11.</span> <span class="nav-text">APIPA (Automatic Private IP Addressing)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#APIPA-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.11.1.</span> <span class="nav-text">APIPA 工作流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APIPA%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">1.11.2.</span> <span class="nav-text">APIPA參考連結</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

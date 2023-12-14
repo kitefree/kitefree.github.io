@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="docker命令行的基本使用docker + 管理的對象(比如容器、鏡像)  + 具體操作(比如創建、啟動、停止、刪除)  docker image pull nginx 拉取一个叫nginx的docker image鏡像 docker container stop web 停止一个叫web的docker container容器  Image vs Container 鏡像 vs 容器image鏡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 系列 - (1) 容器快速上手">
+<meta property="og:url" content="https://kitefree.github.io/2022/02/15/2022-02-14%20Docker%20%E7%B3%BB%E5%88%97%20-%20(1)%20%E5%AE%B9%E5%99%A8%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="docker命令行的基本使用docker + 管理的對象(比如容器、鏡像)  + 具體操作(比如創建、啟動、停止、刪除)  docker image pull nginx 拉取一个叫nginx的docker image鏡像 docker container stop web 停止一个叫web的docker container容器  Image vs Container 鏡像 vs 容器image鏡">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/NVZ3BEv.png">
+<meta property="og:image" content="https://i.imgur.com/DHpSx6M.png">
+<meta property="og:image" content="https://i.imgur.com/Ag4rG8C.png">
+<meta property="og:image" content="https://i.imgur.com/fZVe3F9.png">
+<meta property="og:image" content="https://i.imgur.com/Myvxh17.png">
+<meta property="og:image" content="https://i.imgur.com/HinfKfJ.png">
+<meta property="og:image" content="https://i.imgur.com/lyqVptM.png">
+<meta property="og:image" content="https://i.imgur.com/g8jcwYt.png">
+<meta property="og:image" content="https://i.imgur.com/M3bXiWg.png">
+<meta property="og:image" content="https://i.imgur.com/FXtsQ6T.png">
+<meta property="og:image" content="https://i.imgur.com/5K8U5Ms.jpg">
+<meta property="og:image" content="https://i.imgur.com/uxAyoP5.png">
+<meta property="og:image" content="https://i.imgur.com/19MsVc1.png">
+<meta property="og:image" content="https://i.imgur.com/p1NSgWQ.png">
+<meta property="og:image" content="https://i.imgur.com/vCIbls6.png">
+<meta property="og:image" content="https://i.imgur.com/H7VV5qA.png">
+<meta property="og:image" content="https://i.imgur.com/bUZLyjb.png">
+<meta property="article:published_time" content="2022-02-15T08:47:00.000Z">
+<meta property="article:modified_time" content="2022-02-15T09:04:18.498Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/NVZ3BEv.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2022/02/15/2022-02-14%20Docker%20%E7%B3%BB%E5%88%97%20-%20(1)%20%E5%AE%B9%E5%99%A8%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>docker 系列 - (1) 容器快速上手 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/02/15/2022-02-14%20Docker%20%E7%B3%BB%E5%88%97%20-%20(1)%20%E5%AE%B9%E5%99%A8%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker 系列 - (1) 容器快速上手
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-02-15 16:47:00 / 修改時間：17:04:18" itemprop="dateCreated datePublished" datetime="2022-02-15T16:47:00+08:00">2022-02-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>14 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="docker命令行的基本使用"><a href="#docker命令行的基本使用" class="headerlink" title="docker命令行的基本使用"></a>docker命令行的基本使用</h2><p>docker + 管理的對象(比如容器、鏡像)  + 具體操作(比如創建、啟動、停止、刪除)</p>
+<ul>
+<li><code>docker image pull nginx</code> 拉取一个叫nginx的docker image鏡像</li>
+<li><code>docker container stop web</code> 停止一个叫web的docker container容器</li>
+</ul>
+<h2 id="Image-vs-Container-鏡像-vs-容器"><a href="#Image-vs-Container-鏡像-vs-容器" class="headerlink" title="Image vs Container 鏡像 vs 容器"></a>Image vs Container 鏡像 vs 容器</h2><h3 id="image鏡像"><a href="#image鏡像" class="headerlink" title="image鏡像"></a>image鏡像</h3><ul>
+<li>docker image 是一個 <code>read-only</code>文件</li>
+<li>這個文件包含文件系統、源碼、庫文件、依賴、工具等一些運行application所需要的文件</li>
+<li>可以理解成一個模板</li>
+<li>docker image具有分層的概念</li>
+</ul>
+<h3 id="container容器"><a href="#container容器" class="headerlink" title="container容器"></a>container容器</h3><ul>
+<li><p>“一個運行中的docker image”</p>
+</li>
+<li><p>實質是複製image全在image最上層加上一層<code>read-write</code>的層(稱之為&#96;container layer，容器層)</p>
+</li>
+<li><p>基於同一個image可以創建多個container</p>
+<p><img src="https://i.imgur.com/NVZ3BEv.png" alt="docker-image-vs-container"></p>
+</li>
+</ul>
+<h2 id="docker-image的獲取方式"><a href="#docker-image的獲取方式" class="headerlink" title="docker image的獲取方式"></a>docker image的獲取方式</h2><ul>
+<li>自己製作</li>
+<li>從registry拉取(比如docker hub)</li>
+</ul>
+<h2 id="容器的基本操作"><a href="#容器的基本操作" class="headerlink" title="容器的基本操作"></a>容器的基本操作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">docker 版本</span></span><br><span class="line">dcoker version</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">docker 相關資訊，比如目前有幾個container、images、container運行狀態</span></span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">可以以看到列出了managment commands 、commands</span> </span><br><span class="line">docker</span><br><span class="line"></span><br><span class="line">Management Commands:</span><br><span class="line">  builder     Manage builds</span><br><span class="line">  buildx*     Docker Buildx (Docker Inc., v0.7.1)</span><br><span class="line">  compose*    Docker Compose (Docker Inc., v2.2.1)</span><br><span class="line">  config      Manage Docker configs</span><br><span class="line">  container   Manage containers</span><br><span class="line">  context     Manage contexts</span><br><span class="line">  image       Manage images</span><br><span class="line">  manifest    Manage Docker image manifests and manifest lists</span><br><span class="line">  network     Manage networks</span><br><span class="line">  node        Manage Swarm nodes</span><br><span class="line">  plugin      Manage plugins</span><br><span class="line">  scan*       Docker Scan (Docker Inc., 0.9.0)</span><br><span class="line">  secret      Manage Docker secrets</span><br><span class="line">  service     Manage services</span><br><span class="line">  stack       Manage Docker stacks</span><br><span class="line">  swarm       Manage Swarm</span><br><span class="line">  system      Manage Docker</span><br><span class="line">  trust       Manage trust on Docker images</span><br><span class="line">  volume      Manage volumes</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  attach      Attach local standard input, output, and error streams to a running container</span><br><span class="line">  build       Build an image from a Dockerfile</span><br><span class="line">  commit      Create a new image from a container&#x27;s changes</span><br><span class="line">  cp          Copy files/folders between a container and the local filesystem</span><br><span class="line">  create      Create a new container</span><br><span class="line">  diff        Inspect changes to files or directories on a container&#x27;s filesystem</span><br><span class="line">  events      Get real time events from the server</span><br><span class="line">  exec        Run a command in a running container</span><br><span class="line">  export      Export a container&#x27;s filesystem as a tar archive</span><br><span class="line">  history     Show the history of an image</span><br><span class="line">  images      List images</span><br><span class="line">  import      Import the contents from a tarball to create a filesystem image</span><br><span class="line">  info        Display system-wide information</span><br><span class="line">  inspect     Return low-level information on Docker objects</span><br><span class="line">  kill        Kill one or more running containers</span><br><span class="line">  load        Load an image from a tar archive or STDIN</span><br><span class="line">  login       Log in to a Docker registry</span><br><span class="line">  logout      Log out from a Docker registry</span><br><span class="line">  logs        Fetch the logs of a container</span><br><span class="line">  pause       Pause all processes within one or more containers</span><br><span class="line">  port        List port mappings or a specific mapping for the container</span><br><span class="line">  ps          List containers</span><br><span class="line">  pull        Pull an image or a repository from a registry</span><br><span class="line">  push        Push an image or a repository to a registry</span><br><span class="line">  rename      Rename a container</span><br><span class="line">  restart     Restart one or more containers</span><br><span class="line">  rm          Remove one or more containers</span><br><span class="line">  rmi         Remove one or more images</span><br><span class="line">  run         Run a command in a new container</span><br><span class="line">  save        Save one or more images to a tar archive (streamed to STDOUT by default)</span><br><span class="line">  search      Search the Docker Hub for images</span><br><span class="line">  start       Start one or more stopped containers</span><br><span class="line">  stats       Display a live stream of container(s) resource usage statistics</span><br><span class="line">  stop        Stop one or more running containers</span><br><span class="line">  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE</span><br><span class="line">  top         Display the running processes of a container</span><br><span class="line">  unpause     Unpause all processes within one or more containers</span><br><span class="line">  update      Update configuration of one or more containers</span><br><span class="line">  version     Show the Docker version information</span><br><span class="line">  wait        Block until one or more containers stop, then print their exit codes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">針對container 指令查看</span></span><br><span class="line">docker container --help</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">針對image 指令查看</span></span><br><span class="line">docker image --help</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">列出image</span></span><br><span class="line">docker image ls</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">刪除image</span></span><br><span class="line">docker image rm docker/getting-started</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">創建container</span></span><br><span class="line">docker container run </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">創建container nginx ,本地沒有找到直接去找docker hub 下載 並直接運行，並且是前台運行的container</span></span><br><span class="line">docker container run nginx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">列出container ，ps 為較舊版本的命令 ，<span class="built_in">ls</span>、ps效果是一樣的</span></span><br><span class="line">docker container ls</span><br><span class="line">docker container ps</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">列出container 包含stop的container</span></span><br><span class="line"></span><br><span class="line">docker container ps -a</span><br><span class="line">docker container ls -a</span><br><span class="line">docker ps -a</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">docker run 省略container 是較舊的寫法</span></span><br><span class="line">docker container run nginx </span><br><span class="line">docker run nginx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">停止容器</span></span><br><span class="line">docker container stop [NAMES] or [Container id]</span><br><span class="line">docker stop [NAMES] or [Container id]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">刪除容器</span></span><br><span class="line">docker container rm [NAMES] or [Container id]</span><br><span class="line">docker rm  [NAMES] or [Container id]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker container run nginx</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES</span><br><span class="line">343fd4031609   nginx     &quot;/docker-entrypoint.…&quot;   6 seconds ago   Up 5 seconds   80/tcp    xenodochial_clarke</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker container <span class="built_in">ls</span></span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES</span><br><span class="line">343fd4031609   nginx     &quot;/docker-entrypoint.…&quot;   14 seconds ago   Up 13 seconds   80/tcp    xenodochial_clarke</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker container stop 34</span></span><br><span class="line">34</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker container <span class="built_in">ls</span> -a</span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES</span><br><span class="line">343fd4031609   nginx     &quot;/docker-entrypoint.…&quot;   29 seconds ago   Exited (0) 5 seconds ago              xenodochial_clarke</span><br><span class="line">d9095daa8bcf   nginx     &quot;/docker-entrypoint.…&quot;   28 minutes ago   Exited (0) 28 minutes ago             suspicious_shamir</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker container <span class="built_in">rm</span> 34</span></span><br><span class="line">34</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker container <span class="built_in">ls</span> -a</span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES</span><br><span class="line">d9095daa8bcf   nginx     &quot;/docker-entrypoint.…&quot;   28 minutes ago   Exited (0) 28 minutes ago             suspicious_shamir</span><br><span class="line"><span class="meta prompt_">$</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="命令行小技巧之批次操作"><a href="#命令行小技巧之批次操作" class="headerlink" title="命令行小技巧之批次操作"></a>命令行小技巧之批次操作</h2><h3 id="批次停止"><a href="#批次停止" class="headerlink" title="批次停止"></a>批次停止</h3><p>先查詢目前的清單如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker container ps</span></span><br><span class="line"></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES</span><br><span class="line">cd3a825fedeb   nginx     &quot;/docker-entrypoint.…&quot;   7 seconds ago    Up 6 seconds    80/tcp    mystifying_leakey</span><br><span class="line">269494fe89fa   nginx     &quot;/docker-entrypoint.…&quot;   9 seconds ago    Up 8 seconds    80/tcp    funny_gauss</span><br><span class="line">34b68af9deef   nginx     &quot;/docker-entrypoint.…&quot;   12 seconds ago   Up 10 seconds   80/tcp    interesting_mahavira</span><br><span class="line">7513949674fc   nginx     &quot;/docker-entrypoint.…&quot;   13 seconds ago   Up 12 seconds   80/tcp    kind_nobel</span><br></pre></td></tr></table></figure>
+
+<p>方法1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">刪除多個container ，以下為例刪除4個container</span></span><br><span class="line">docker container stop af 87 c2 4c</span><br></pre></td></tr></table></figure>
+
+
+
+<p>方法2</p>
+<p>透過以下指令我們可以發現會出輸id清單</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">輸出 conainter <span class="built_in">id</span> list</span></span><br><span class="line">docker container ps -aq</span><br><span class="line"></span><br><span class="line">cd3a825fedeb</span><br><span class="line">269494fe89fa</span><br><span class="line">34b68af9deef</span><br><span class="line">7513949674fc</span><br></pre></td></tr></table></figure>
+
+<p>接著利用以下方式批次停用container</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container stop $(docker container ps -qa)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="批次刪除"><a href="#批次刪除" class="headerlink" title="批次刪除"></a>批次刪除</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">批次刪除</span></span><br><span class="line">docker container rm $(docker ps -aq)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">批次強制刪除</span></span><br><span class="line">docker container rm -f $(docker container ls -aq)</span><br></pre></td></tr></table></figure>
+
+<p>補充說明：</p>
+<ul>
+<li>container 在運行的過程中是不行刪除的，除非先stop。</li>
+</ul>
+<p>另一個方法是強制刪除，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container rm 704 -f</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以快速對系統進行清理，删除停止的容器，不用的image，等等</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker system prune -a -f</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="容器的attached和detached模式"><a href="#容器的attached和detached模式" class="headerlink" title="容器的attached和detached模式"></a>容器的attached和detached模式</h2><h3 id="attached"><a href="#attached" class="headerlink" title="attached"></a>attached</h3><p>前台的執行我們稱之為attached ，輸入輸出的結果attached本地的輸入輸出，也會將ctrl + c 輸入(反應)至容器內部。</p>
+<p>而windows 的attached 不是完整的attached，只有做到容器的輸出打印出來，無法接收ctrl + c 的輸入指令。(LINUX 是完整attach)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">前台模式執行docker</span></span><br><span class="line">docker container run -p 80:80 nginx</span><br></pre></td></tr></table></figure>
+
+<p>指令說明：<code>-p 80:80</code> 對外port:容器port ，也就是對外的80 port 映射容器 80 port</p>
+<h3 id="detached"><a href="#detached" class="headerlink" title="detached"></a>detached</h3><p>後台的執行我們稱之為detached </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">背景模式執行docker 以下二種都可以</span></span><br><span class="line">docker run --detach -p</span><br><span class="line">docker run -d -p</span><br></pre></td></tr></table></figure>
+
+<p>我們發現這樣執行後，只有拿到container id的輸出，我們看不到nginx 的log 輸出囉</p>
+<p>如果想要去attach這個容器，使用以下指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach [NAMES] or [Container id]</span><br></pre></td></tr></table></figure>
+
+<p>我們會發現再去打開瀏覽器刷新一下頁面(<code>http://localhost:80</code>)，回過頭來看terminal就會看到nginx有輸出log 囉。</p>
+<p><img src="https://i.imgur.com/DHpSx6M.png" alt="image-20220214133614727"></p>
+<p>小結：我們比較常用的是detached 創建容器。</p>
+<h2 id="容器的交互式模式"><a href="#容器的交互式模式" class="headerlink" title="容器的交互式模式"></a>容器的交互式模式</h2><h3 id="docker-container-logs-介紹"><a href="#docker-container-logs-介紹" class="headerlink" title="docker container logs 介紹"></a>docker container logs 介紹</h3><p>除了我們稍早講到的 <code>docker attch</code>指令方法得到相關log，也可以使用另外一個指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container logs [NAMES] or [Container id]</span><br></pre></td></tr></table></figure>
+
+<p>這個指令是取得<code>/docker-entrypoint.sh</code>腳本輸出。</p>
+<p><img src="https://i.imgur.com/Ag4rG8C.png" alt="image-20220214140333028"></p>
+<p>如果我們需要即時出輸log的話可以透過以下指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container logs -f [NAMES] or [Container id]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/fZVe3F9.png" alt="image-20220214140509765"></p>
+<p>接著，再去打開瀏覽器刷新一下頁面(<code>http://localhost:80</code>)，回過頭來看terminal就會看即時的log輸出囉</p>
+<p><img src="https://i.imgur.com/Myvxh17.png" alt="image-20220214140439035"></p>
+<p><img src="https://i.imgur.com/HinfKfJ.png" alt="image-20220214140415333"></p>
+<h3 id="創建容器時並進入交互式模式"><a href="#創建容器時並進入交互式模式" class="headerlink" title="創建容器時並進入交互式模式"></a>創建容器時並進入交互式模式</h3><p>透過以下指令可以進行交互模式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -it ubuntu sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/lyqVptM.png" alt="image-20220214140232538"></p>
+<p>進入到了container 內部，當要離開container 時只要輸入<code>exit</code>指令就行了。</p>
+<p>我們再去觀查<code>docker container ps -a</code> 會發現剛剛的ubuntu container 是停止的</p>
+<p><img src="https://i.imgur.com/g8jcwYt.png" alt="image-20220214140127592"></p>
+<h3 id="在一個已經運行的容器裡執行一個額外的command"><a href="#在一個已經運行的容器裡執行一個額外的command" class="headerlink" title="在一個已經運行的容器裡執行一個額外的command"></a>在一個已經運行的容器裡執行一個額外的command</h3><p>查看一下目前容器的狀態與ID</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/M3bXiWg.png" alt="image-20220214152023529"></p>
+<p>執行以下指令進入到容器內部</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it [NAMES] or [Container id] sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">例子</span></span><br><span class="line">docker exec -it ae4 sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/FXtsQ6T.png" alt="image-20220214152108100"></p>
+<h3 id="BusyBox-介紹"><a href="#BusyBox-介紹" class="headerlink" title="BusyBox 介紹"></a>BusyBox 介紹</h3><p><code>BusyBox</code>是一個集成了一百多個最常用linux命令和工具(如<code>cat</code>、<code>echo</code>、<code>grep</code>、<code>mount</code>‘、<code>telnet</code>等)的精簡工具箱，它只需要幾MB的大小，很方便進行個種快速驗證，被譽為”LINUX系統的瑞士軍刀”。</p>
+<p><code>BusyBox</code>可運行於多款<code>POSIX</code>環境的操作系統中，如<code>LINUX</code>(包括<code>android</code>)、<code>Hurd</code>、<code>FreeBSD</code>等。</p>
+<p><code>BusyBox</code> 鏡像雖然小巧，但包括了大量常見的 <code>Linux</code> 命令，讀者可以用它快速熟悉 <code>Linux</code> 命令。</p>
+<h2 id="容器和虛擬機-Container-vs-VM"><a href="#容器和虛擬機-Container-vs-VM" class="headerlink" title="容器和虛擬機 Container vs VM"></a>容器和虛擬機 Container vs VM</h2><p><img src="https://i.imgur.com/5K8U5Ms.jpg" alt="docker-vs-vm"></p>
+<h3 id="虛擬機"><a href="#虛擬機" class="headerlink" title="虛擬機"></a>虛擬機</h3><ul>
+<li>要虛擬出完整的系統包含了作業系統<ul>
+<li>需要Hypervisor支持，並且在這些軟件之上創建虛擬機<ul>
+<li>vmware</li>
+<li>virtual box</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><ul>
+<li>運行在container engine之上的虛擬容器</li>
+</ul>
+<h3 id="容器不是Mini虛擬機"><a href="#容器不是Mini虛擬機" class="headerlink" title="容器不是Mini虛擬機"></a>容器不是Mini虛擬機</h3><ul>
+<li>容器其實是進程 <ul>
+<li>Container are just processes</li>
+</ul>
+</li>
+<li>容器中的進程被限制了對CPU、記憶體等資源的訪問<ul>
+<li>我們可以對容器進行一些限制，比方說CPU使用2核、記憶體只能使用1G。這概念在VM也是可以的。</li>
+</ul>
+</li>
+<li>當進程停止後，容器就退出了。</li>
+</ul>
+<h3 id="證明容器即是process"><a href="#證明容器即是process" class="headerlink" title="證明容器即是process"></a>證明容器即是process</h3><p>首先使用 <code>docker ps</code> 找目前容器的id</p>
+<p><img src="https://i.imgur.com/uxAyoP5.png" alt="image-20220215152923918"></p>
+<p>我們會看到其實nginx 是執行一個 docker-entrypoint.sh 的一個腳本，這個腳本當然也就是自動啟用nginx的相關指令。</p>
+<p>我們輸入 <code>docker container top [Names] or [Container id]</code> ，會顯示出這個容器裡面運行了哪些進程，下圖我們試著輸入<code>docker container top 6cb</code></p>
+<p><img src="https://i.imgur.com/19MsVc1.png" alt="image-20220215153056159"></p>
+<p>我們可以看到在CMD有一個主進程(master process) ，而PPID欄位指的是此進程的父進程是誰，比方說4576、4577 的父進程都是指向4516 ，而我們再去找PID為4516的，我們會發現也就是我們剛剛講是主進程的那筆。</p>
+<p>接著，我們使用<code>ps aux |grep nginx</code> (我們的環境為ubuntu)，如下：</p>
+<p><img src="https://i.imgur.com/p1NSgWQ.png" alt="image-20220215160459890"></p>
+<p>在ubuntu 的進程裡，我們會發現 4516 這個id 也就是剛剛在container 裡面找到的master process，也就證明了，container 的確是一個進程。</p>
+<h4 id="透過pstree工具來查看進程的依賴關係"><a href="#透過pstree工具來查看進程的依賴關係" class="headerlink" title="透過pstree工具來查看進程的依賴關係"></a>透過pstree工具來查看進程的依賴關係</h4><p>接著，我們使用<code>pstree -halps 4576</code>，如下：</p>
+<p><img src="https://i.imgur.com/vCIbls6.png" alt="image-20220215160841953"></p>
+<p>我們可以看到進程的依賴關係。其中<code>containerd-shim</code>就是一個創建並啟動nginx的那個進程，後面的id也就是啟動之後的id名稱</p>
+<h3 id="container-內部進程跟host進程是對不上的，是怎麼回事？"><a href="#container-內部進程跟host進程是對不上的，是怎麼回事？" class="headerlink" title="container 內部進程跟host進程是對不上的，是怎麼回事？"></a>container 內部進程跟host進程是對不上的，是怎麼回事？</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在container 內的進程id 跟host 的進程id 剛好對上，但其實具體上container 並不是這個id，這個涉及到容器的命名空間原理、隔離等等觀念技術。後續會再講到。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>簡單的示例</strong></p>
+<p>我們啟動一個有多指令的容器<code>busybox</code>，並利用<code>docker container top dd4</code>查看進程資料。</p>
+<p><img src="https://i.imgur.com/H7VV5qA.png" alt="image-20220215162233126"></p>
+<p>另外下面這張圖是進入到容器內之後，下了<code>ps</code>指令，我們會發現跟上一張圖片對比的PID 是不一樣的。</p>
+<p><img src="https://i.imgur.com/bUZLyjb.png" alt="image-20220215162430641"></p>
+<h2 id="docker-container-run-背後發生了什麼？"><a href="#docker-container-run-背後發生了什麼？" class="headerlink" title="docker container run 背後發生了什麼？"></a>docker container run 背後發生了什麼？</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d --publish 80:80 --name webhost nginx</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-d 後台運行</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--publish 也就是先前的 -p 80:80</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--name 給這個容器取名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">nginx 後面可以再接執行的腳本名稱，如果沒有下，就會執行預設的腳本，後續會講到。</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<ul>
+<li>在本地查找是否有nginx這個image鏡像，但是沒有發現</li>
+<li>去遠程的image registry查找nginx鏡像(預設的registry是docker hub)</li>
+<li>下載最新版本的nginx鏡像(nginx:latest 預設)</li>
+<li>基於nginx鏡像來創建一個新的容器，並且準備運行</li>
+<li>docker enginer 分配給這個容器一個虛擬ip地址</li>
+<li>在宿主機上打開80port 並把容器的80port轉發到宿主(host)機上</li>
+<li>啟動容器，運行指定的命令(這裡是一個shell腳本去啟動nginx)</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/11/2022-02-11%20%E6%8A%BD%E7%8D%8E%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%E5%88%86%E4%BA%AB%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98/" rel="prev" title="抽獎系統設計分享心得筆記">
+      <i class="fa fa-chevron-left"></i> 抽獎系統設計分享心得筆記
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/02/18/2022-02-18%20Docker%20%E7%B3%BB%E5%88%97%20-%20(2)%20%E9%8F%A1%E5%83%8F%E7%9A%84%E5%89%B5%E5%BB%BA%E7%AE%A1%E7%90%86%E5%92%8C%E7%99%BC%E5%B8%83/" rel="next" title="docker 系列 - (2) 鏡像的創建管理和發布">
+      docker 系列 - (2) 鏡像的創建管理和發布 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">docker命令行的基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-vs-Container-%E9%8F%A1%E5%83%8F-vs-%E5%AE%B9%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">Image vs Container 鏡像 vs 容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#image%E9%8F%A1%E5%83%8F"><span class="nav-number">2.1.</span> <span class="nav-text">image鏡像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#container%E5%AE%B9%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">container容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-image%E7%9A%84%E7%8D%B2%E5%8F%96%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">docker image的獲取方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">容器的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">4.1.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8B%E6%89%B9%E6%AC%A1%E6%93%8D%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">命令行小技巧之批次操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E6%AC%A1%E5%81%9C%E6%AD%A2"><span class="nav-number">5.1.</span> <span class="nav-text">批次停止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E6%AC%A1%E5%88%AA%E9%99%A4"><span class="nav-number">5.2.</span> <span class="nav-text">批次刪除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84attached%E5%92%8Cdetached%E6%A8%A1%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">容器的attached和detached模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#attached"><span class="nav-number">6.1.</span> <span class="nav-text">attached</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#detached"><span class="nav-number">6.2.</span> <span class="nav-text">detached</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">容器的交互式模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-container-logs-%E4%BB%8B%E7%B4%B9"><span class="nav-number">7.1.</span> <span class="nav-text">docker container logs 介紹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B5%E5%BB%BA%E5%AE%B9%E5%99%A8%E6%99%82%E4%B8%A6%E9%80%B2%E5%85%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.2.</span> <span class="nav-text">創建容器時並進入交互式模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E4%B8%80%E5%80%8B%E5%B7%B2%E7%B6%93%E9%81%8B%E8%A1%8C%E7%9A%84%E5%AE%B9%E5%99%A8%E8%A3%A1%E5%9F%B7%E8%A1%8C%E4%B8%80%E5%80%8B%E9%A1%8D%E5%A4%96%E7%9A%84command"><span class="nav-number">7.3.</span> <span class="nav-text">在一個已經運行的容器裡執行一個額外的command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BusyBox-%E4%BB%8B%E7%B4%B9"><span class="nav-number">7.4.</span> <span class="nav-text">BusyBox 介紹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%92%8C%E8%99%9B%E6%93%AC%E6%A9%9F-Container-vs-VM"><span class="nav-number">8.</span> <span class="nav-text">容器和虛擬機 Container vs VM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9B%E6%93%AC%E6%A9%9F"><span class="nav-number">8.1.</span> <span class="nav-text">虛擬機</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8"><span class="nav-number">8.2.</span> <span class="nav-text">容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E4%B8%8D%E6%98%AFMini%E8%99%9B%E6%93%AC%E6%A9%9F"><span class="nav-number">8.3.</span> <span class="nav-text">容器不是Mini虛擬機</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AD%89%E6%98%8E%E5%AE%B9%E5%99%A8%E5%8D%B3%E6%98%AFprocess"><span class="nav-number">8.4.</span> <span class="nav-text">證明容器即是process</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%8F%E9%81%8Epstree%E5%B7%A5%E5%85%B7%E4%BE%86%E6%9F%A5%E7%9C%8B%E9%80%B2%E7%A8%8B%E7%9A%84%E4%BE%9D%E8%B3%B4%E9%97%9C%E4%BF%82"><span class="nav-number">8.4.1.</span> <span class="nav-text">透過pstree工具來查看進程的依賴關係</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#container-%E5%85%A7%E9%83%A8%E9%80%B2%E7%A8%8B%E8%B7%9Fhost%E9%80%B2%E7%A8%8B%E6%98%AF%E5%B0%8D%E4%B8%8D%E4%B8%8A%E7%9A%84%EF%BC%8C%E6%98%AF%E6%80%8E%E9%BA%BC%E5%9B%9E%E4%BA%8B%EF%BC%9F"><span class="nav-number">8.5.</span> <span class="nav-text">container 內部進程跟host進程是對不上的，是怎麼回事？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-container-run-%E8%83%8C%E5%BE%8C%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">docker container run 背後發生了什麼？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

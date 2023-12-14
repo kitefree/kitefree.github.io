@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="這篇講的是如何修改更刪除資料 Update在更新資料時使用的是put method，最後一個參數是id 12http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;1&#x2F;&#x2F;http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;id  此url對應的是update function() 1234public function update(Request $request, $id)&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP Laravel 系列 - (13) API開發_Update_and_Delete">
+<meta property="og:url" content="https://kitefree.github.io/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(13)%20API%E9%96%8B%E7%99%BC_Update_and_Delete/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="這篇講的是如何修改更刪除資料 Update在更新資料時使用的是put method，最後一個參數是id 12http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;1&#x2F;&#x2F;http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;id  此url對應的是update function() 1234public function update(Request $request, $id)&amp;#">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/x2X5Mjj.png">
+<meta property="og:image" content="https://i.imgur.com/m6heW3u.png">
+<meta property="og:image" content="https://i.imgur.com/2ktRTZ0.png">
+<meta property="og:image" content="https://i.imgur.com/fRlkNj3.png">
+<meta property="og:image" content="https://i.imgur.com/OTamD7K.png">
+<meta property="article:published_time" content="2021-10-17T15:12:00.000Z">
+<meta property="article:modified_time" content="2021-10-19T02:22:34.865Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="Laravel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/x2X5Mjj.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(13)%20API%E9%96%8B%E7%99%BC_Update_and_Delete/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>PHP Laravel 系列 - (13) API開發_Update_and_Delete | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(13)%20API%E9%96%8B%E7%99%BC_Update_and_Delete/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PHP Laravel 系列 - (13) API開發_Update_and_Delete
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-17 23:12:00" itemprop="dateCreated datePublished" datetime="2021-10-17T23:12:00+08:00">2021-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-19 10:22:34" itemprop="dateModified" datetime="2021-10-19T10:22:34+08:00">2021-10-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>這篇講的是如何修改更刪除資料</p>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><p>在更新資料時使用的是<code>put method</code>，最後一個參數是<code>id</code></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8000/products/1</span><br><span class="line">//http://localhost:8000/products/id</span><br></pre></td></tr></table></figure>
+
+<p>此url對應的是<code>update function()</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">Request <span class="variable">$request</span>, <span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">dd</span>(<span class="variable">$request</span>-&gt;<span class="title function_ invoke__">all</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用POSTMAN測試"><a href="#使用POSTMAN測試" class="headerlink" title="使用POSTMAN測試"></a>使用POSTMAN測試</h3><p>在使用<code>Laravel</code>時，測試<code>PUT</code>方法記得要選用的是<code>x-www-form-urlencoded</code></p>
+<p><img src="https://i.imgur.com/x2X5Mjj.png" alt="image-20211017232406618"></p>
+<h3 id="修改update-function"><a href="#修改update-function" class="headerlink" title="修改update function()"></a>修改update function()</h3><p>網址上的id對應<code>parameter</code> 的<code>$id</code>，試著模擬從資料庫取得資料後進行更新，並使用collect相關方法。</p>
+<p>寫起來有點像<code>c#</code>的<code>LINQ</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">Request <span class="variable">$request</span>, <span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//取得所有request資料</span></span><br><span class="line">    <span class="variable">$form</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">all</span>();</span><br><span class="line">    <span class="comment">//取得假資料並以where方式指定id，接著取第一筆資料</span></span><br><span class="line">    <span class="variable">$data</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getData</span>()-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>,<span class="variable">$id</span>)-&gt;<span class="title function_ invoke__">first</span>();</span><br><span class="line">    <span class="comment">//合併二個陣列，記得要先將$form轉型為collect</span></span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">merge</span>(<span class="title function_ invoke__">collect</span>(<span class="variable">$form</span>));</span><br><span class="line">    <span class="comment">//print訊息</span></span><br><span class="line">    <span class="title function_ invoke__">dd</span>(<span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">collect</span>([</span><br><span class="line">        <span class="title function_ invoke__">collect</span>([</span><br><span class="line">            <span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>,</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;aaa&#x27;</span>,</span><br><span class="line">        ]),</span><br><span class="line">        <span class="title function_ invoke__">collect</span>([</span><br><span class="line">            <span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>,</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;bbb&#x27;</span>,</span><br><span class="line">        ])            </span><br><span class="line">    ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> emp = Employee.GetAllEmp().Where(x =&gt; x.Name == <span class="string">&quot;Rahul&quot;</span>).First();  </span><br></pre></td></tr></table></figure>
+
+
+
+<p>用POSTMAN測試我們看到<strong>id &#x3D; 1</strong> 這筆的確被更新成功了。</p>
+<p><img src="https://i.imgur.com/m6heW3u.png" alt="image-20211017233957238"></p>
+<h3 id="在API常見的作法"><a href="#在API常見的作法" class="headerlink" title="在API常見的作法"></a>在API常見的作法</h3><p>將更新好的資料回傳回去，再稍微改一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">Request <span class="variable">$request</span>, <span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$form</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">all</span>();</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getData</span>()-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>,<span class="variable">$id</span>)-&gt;<span class="title function_ invoke__">first</span>();</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">merge</span>(<span class="title function_ invoke__">collect</span>(<span class="variable">$form</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前端就正常拿到JSON格式囉</p>
+<p><img src="https://i.imgur.com/2ktRTZ0.png" alt="image-20211017234653585"></p>
+<h3 id="dd-與dump差異"><a href="#dd-與dump差異" class="headerlink" title="dd 與dump差異"></a>dd 與dump差異</h3><p>使用<code>dd</code>的效果跟<code>dump</code>是一樣的，不過<code>dd</code>會中止之後程式碼執行</p>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><p>在刪除資料時使用的是<code>delete method</code>，最後一個參數是<code>id</code></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8000/products/1</span><br><span class="line">//http://localhost:8000/products/id</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改destroy-function"><a href="#修改destroy-function" class="headerlink" title="修改destroy function()"></a>修改destroy function()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">destroy</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//先取得假資料</span></span><br><span class="line">    <span class="variable">$data</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line">    <span class="comment">//利用filter函式留下此id以外的資料</span></span><br><span class="line">    <span class="comment">//closure要傳入外部參數要使用use</span></span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">filter</span>(function (<span class="variable">$product</span>) <span class="keyword">use</span> ($<span class="title">id</span>)&#123;</span><br><span class="line">        <span class="title">return</span> $<span class="title">product</span>[&#x27;<span class="title">id</span>&#x27;] != $<span class="title">id</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="variable">$data</span>);        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>跟js的狀況有一些像，都是需要經過特別的寫法去做到這件事情</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&quot;abc&quot;</span>, <span class="string">&quot;abcd&quot;</span>, <span class="string">&quot;abcde&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> string = &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;abc&quot;</span>&#125;;</span><br><span class="line">arr.<span class="title function_">filter</span>(<span class="keyword">function</span>(<span class="params">item, index, array</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> item == <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">&#125;,string)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用POSTMAN測試-1"><a href="#使用POSTMAN測試-1" class="headerlink" title="使用POSTMAN測試"></a>使用POSTMAN測試</h3><p>經由<code>filter function()</code>操作後，資料被重新整理了，因此會看到會多一層<code>&quot;1&quot;</code></p>
+<p><img src="https://i.imgur.com/fRlkNj3.png" alt="image-20211018002311594"></p>
+<h3 id="讓資料結構變好看"><a href="#讓資料結構變好看" class="headerlink" title="讓資料結構變好看"></a>讓資料結構變好看</h3><p>改寫一下在具有<code>collect</code>型別的<code>$data物件</code>加上<code>values()</code> ，資料結構就變乾淨囉</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">destroy</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">filter</span>(function (<span class="variable">$product</span>) <span class="keyword">use</span> ($<span class="title">id</span>)&#123;</span><br><span class="line">        <span class="title">return</span> $<span class="title">product</span>[&#x27;<span class="title">id</span>&#x27;] != $<span class="title">id</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="variable">$data</span>-&gt;<span class="title function_ invoke__">values</span>());<span class="comment">//加上values()   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/OTamD7K.png" alt="image-20211018002538390"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
+              <a href="/tags/Laravel/" rel="tag"># Laravel</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(12)%20Collection/" rel="prev" title="PHP Laravel 系列 - (12) Collection">
+      <i class="fa fa-chevron-left"></i> PHP Laravel 系列 - (12) Collection
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/24/2021-10-24%20Ionic%20%E7%B3%BB%E5%88%97%20-%20(1)%20%E4%BB%8B%E7%B4%B9%E8%88%87%E5%AE%89%E8%A3%9D/" rel="next" title="Ionic 系列 - (1) 介紹與安裝">
+      Ionic 系列 - (1) 介紹與安裝 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update"><span class="nav-number">1.</span> <span class="nav-text">Update</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8POSTMAN%E6%B8%AC%E8%A9%A6"><span class="nav-number">1.1.</span> <span class="nav-text">使用POSTMAN測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9update-function"><span class="nav-number">1.2.</span> <span class="nav-text">修改update function()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8API%E5%B8%B8%E8%A6%8B%E7%9A%84%E4%BD%9C%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">在API常見的作法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dd-%E8%88%87dump%E5%B7%AE%E7%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">dd 與dump差異</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete"><span class="nav-number">2.</span> <span class="nav-text">Delete</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9destroy-function"><span class="nav-number">2.1.</span> <span class="nav-text">修改destroy function()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8POSTMAN%E6%B8%AC%E8%A9%A6-1"><span class="nav-number">2.2.</span> <span class="nav-text">使用POSTMAN測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%93%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%AE%8A%E5%A5%BD%E7%9C%8B"><span class="nav-number">2.3.</span> <span class="nav-text">讓資料結構變好看</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Compose 簡介一個環境的建置可以透過compose 方式來設計與配置。  基本語法結構123456789101112131415version: &quot;3.8&quot; #compose 版本services: # 容器  servicename: # 服務名字，這個名字也是内部 bridge網路可以使用的 DNS name     image: # 鏡像的名字    command">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 系列 - (6) Docker compose">
+<meta property="og:url" content="https://kitefree.github.io/2022/03/05/2022-03-05%20Docker%20%E7%B3%BB%E5%88%97%20-%20(6)%20Docker%20compose/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="Compose 簡介一個環境的建置可以透過compose 方式來設計與配置。  基本語法結構123456789101112131415version: &quot;3.8&quot; #compose 版本services: # 容器  servicename: # 服務名字，這個名字也是内部 bridge網路可以使用的 DNS name     image: # 鏡像的名字    command">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/hVzonOL.png">
+<meta property="article:published_time" content="2022-03-05T09:14:00.000Z">
+<meta property="article:modified_time" content="2022-03-11T06:48:00.514Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/hVzonOL.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2022/03/05/2022-03-05%20Docker%20%E7%B3%BB%E5%88%97%20-%20(6)%20Docker%20compose/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>docker 系列 - (6) Docker compose | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/03/05/2022-03-05%20Docker%20%E7%B3%BB%E5%88%97%20-%20(6)%20Docker%20compose/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker 系列 - (6) Docker compose
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-03-05 17:14:00" itemprop="dateCreated datePublished" datetime="2022-03-05T17:14:00+08:00">2022-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-03-11 14:48:00" itemprop="dateModified" datetime="2022-03-11T14:48:00+08:00">2022-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>30 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Compose-簡介"><a href="#Compose-簡介" class="headerlink" title="Compose 簡介"></a>Compose 簡介</h2><p>一個環境的建置可以透過compose 方式來設計與配置。</p>
+<p><img src="https://i.imgur.com/hVzonOL.png" alt="docker-compose-intro"></p>
+<h2 id="基本語法結構"><a href="#基本語法結構" class="headerlink" title="基本語法結構"></a>基本語法結構</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span> <span class="comment">#compose 版本</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span> <span class="comment"># 容器</span></span><br><span class="line">  <span class="attr">servicename:</span> <span class="comment"># 服務名字，這個名字也是内部 bridge網路可以使用的 DNS name </span></span><br><span class="line">    <span class="attr">image:</span> <span class="comment"># 鏡像的名字</span></span><br><span class="line">    <span class="attr">command:</span> <span class="comment"># 可選，如果設置，則會覆蓋默認鏡像裡的 CMD命令</span></span><br><span class="line">    <span class="attr">environment:</span> <span class="comment"># 可選，相當於 docker run裡的 --env</span></span><br><span class="line">    <span class="attr">volumes:</span> <span class="comment"># 可選，相當於docker run裡的 -v</span></span><br><span class="line">    <span class="attr">networks:</span> <span class="comment"># 可選，相當於 docker run裡的 --network</span></span><br><span class="line">    <span class="attr">ports:</span> <span class="comment"># 可選，相當於 docker run裡的 -p</span></span><br><span class="line">  <span class="attr">servicename2:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span> <span class="comment"># 可選，相當於 docker volume create</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span> <span class="comment"># 可選，相當於 docker network create</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>以 Python Flask + Redis练习：为例子，改造成一个docker-compose文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker image pull redis</span><br><span class="line">docker image build -t flask-demo .</span><br><span class="line"></span><br><span class="line"><span class="comment"># create network</span></span><br><span class="line">docker network create -d bridge demo-network</span><br><span class="line"></span><br><span class="line"><span class="comment"># create container</span></span><br><span class="line">docker container run -d --name redis-server --network demo-network redis</span><br><span class="line">docker container run -d --network demo-network --name flask-demo --<span class="built_in">env</span> REDIS_HOST=redis-server -p 5000:5000 flask-demo</span><br></pre></td></tr></table></figure>
+
+<p>docker-compose.yml 文件如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">flask-demo:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">flask-demo:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REDIS_HOST=redis-server</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:5000</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:latest</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">demo-network:</span> <span class="comment">#創建一個deom-network網路，不填寫參數預設建立bridge type網路</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="docker-compose命令行基本使用"><a href="#docker-compose命令行基本使用" class="headerlink" title="docker-compose命令行基本使用"></a>docker-compose命令行基本使用</h2><p>先將<code>docker-compose.yml</code>檔案放到上次練習的資料夾底下，並使用之前建立好的<code>flask-demo</code>鏡像檔。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@host04:/home/kite/Desktop/flask_redis_practice# tree</span><br><span class="line">.</span><br><span class="line">├── app.py</span><br><span class="line">├── docker-compose.yml</span><br><span class="line">└── Dockerfile</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-up"><a href="#docker-compose-up" class="headerlink" title="docker-compose up"></a>docker-compose up</h3><p>我們開始學習的第一個指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+
+<p>我們會看到container 名稱會以資料夾名稱 + 鏡像名稱 + 數字(flask_redis_practice_redis-server_1) ，這個是跟後續擴容有關的設計，當然我們也可以在compose 檔設定自己定義的名稱</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose up</span><br><span class="line">Creating flask_redis_practice_flask-demo_1   ... done</span><br><span class="line">Creating flask_redis_practice_redis-server_1 ... done</span><br><span class="line">Attaching to flask_redis_practice_redis-server_1, flask_redis_practice_flask-demo_1</span><br><span class="line">redis-server_1  | 1:C 07 Mar 2022 02:41:20.371 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span><br><span class="line">redis-server_1  | 1:C 07 Mar 2022 02:41:20.371 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started</span><br><span class="line">redis-server_1  | 1:C 07 Mar 2022 02:41:20.371 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span><br><span class="line">redis-server_1  | 1:M 07 Mar 2022 02:41:20.372 * monotonic clock: POSIX clock_gettime</span><br><span class="line">redis-server_1  | 1:M 07 Mar 2022 02:41:20.372 * Running mode=standalone, port=6379.</span><br><span class="line">redis-server_1  | 1:M 07 Mar 2022 02:41:20.372 # Server initialized</span><br><span class="line">redis-server_1  | 1:M 07 Mar 2022 02:41:20.372 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &#x27;vm.overcommit_memory = 1&#x27; to /etc/sysctl.conf and then reboot or run the command &#x27;sysctl vm.overcommit_memory=1&#x27; for this to take effect.</span><br><span class="line">redis-server_1  | 1:M 07 Mar 2022 02:41:20.372 * Ready to accept connections</span><br><span class="line">flask-demo_1    |  * Serving Flask app &#x27;app.py&#x27; (lazy loading)</span><br><span class="line">flask-demo_1    |  * Environment: production</span><br><span class="line">flask-demo_1    |    WARNING: This is a development server. Do not use it in a production deployment.</span><br><span class="line">flask-demo_1    |    Use a production WSGI server instead.</span><br><span class="line">flask-demo_1    |  * Debug mode: off</span><br><span class="line">flask-demo_1    |  * Running on all addresses.</span><br><span class="line">flask-demo_1    |    WARNING: This is a development server. Do not use it in a production deployment.</span><br><span class="line">flask-demo_1    |  * Running on http://172.19.0.2:5000/ (Press CTRL+C to quit)</span><br><span class="line">flask-demo_1    | 172.19.0.1 - - [07/Mar/2022 02:41:39] &quot;GET / HTTP/1.1&quot; 200 -</span><br><span class="line">flask-demo_1    | 172.19.0.1 - - [07/Mar/2022 02:41:39] &quot;GET /favicon.ico HTTP/1.1&quot; 404 -</span><br><span class="line">flask-demo_1    | 172.19.0.1 - - [07/Mar/2022 02:41:40] &quot;GET / HTTP/1.1&quot; 200 -</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-compose-up-d"><a href="#docker-compose-up-d" class="headerlink" title="docker-compose up -d"></a>docker-compose up -d</h3><p><code>ctrl + c</code>退出互動模式後，如果想讓環境運行在後台，可加參數 <code>-d</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>執行如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose up -d</span><br><span class="line">Starting flask_redis_practice_redis-server_1 ... <span class="keyword">done</span></span><br><span class="line">Starting flask_redis_practice_flask-demo_1   ... <span class="keyword">done</span></span><br><span class="line">kite@host04:~/Desktop/flask_redis_practice$ </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-logs"><a href="#docker-compose-logs" class="headerlink" title="docker-compose logs"></a>docker-compose logs</h3><p>這個模式下，如果還想看相關log我們可以使用<code>docker-compose logs</code> 或<code>docker-compose logs -f</code>持續動態查看。</p>
+<h3 id="docker-compose-ps"><a href="#docker-compose-ps" class="headerlink" title="docker-compose ps"></a>docker-compose ps</h3><p>透過<code>docker-compose ps</code>查看運行的內容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose ps</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose ps</span><br><span class="line">               Name                              Command               State                    Ports                  </span><br><span class="line">-----------------------------------------------------------------------------------------------------------------------</span><br><span class="line">flask_redis_practice_flask-demo_1     flask run -h 0.0.0.0             Up      0.0.0.0:8080-&gt;5000/tcp,:::8080-&gt;5000/tcp</span><br><span class="line">flask_redis_practice_redis-server_1   docker-entrypoint.sh redis ...   Up      6379/tcp      </span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：這個指定一定要在docker-compose檔案所在的資料夾執行才有效</strong></p>
+<p>我們稍微看一下相關指令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ docker-compose</span><br><span class="line">Options:</span><br><span class="line">  -f, --file FILE             Specify an alternate compose file</span><br><span class="line">                              (default: docker-compose.yml)</span><br><span class="line">  -p, --project-name NAME     Specify an alternate project name</span><br><span class="line">                              (default: directory name)</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>如果compose檔名稱要指定的話，加<code>-f</code>參數即可，跟dockerfile的概念一樣。另外也有看到一個 <code>project-name</code>這個就是我們剛剛說的container名稱會以資料夾名稱的命名方式，如果不喜歡也可以使用<code>-p</code>的指令方式指定。</p>
+<h3 id="docker-compose-stop"><a href="#docker-compose-stop" class="headerlink" title="docker-compose stop"></a>docker-compose stop</h3><p>如果想要停止compose也是可以做到的，這個方式很聰明，可以一次性將整個環境的容器一起停止處理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose stop</span><br></pre></td></tr></table></figure>
+
+<p>如果去看docker container 、docker network 都會有compose 建立出來的容器與bridge</p>
+<p>刪除沒有被使用的資源可以使用以下指令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker system prune -f</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-compose-p"><a href="#docker-compose-p" class="headerlink" title="docker-compose -p"></a>docker-compose -p</h3><p>我們也可以自定義專案名稱</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose -p myproject up -d</span><br></pre></td></tr></table></figure>
+
+<p>使用指令查看</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose -p myproject ps</span><br><span class="line">          Name                        Command               State                    Ports                  </span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line">myproject_flask-demo_1     flask run -h 0.0.0.0             Up      0.0.0.0:8080-&gt;5000/tcp,:::8080-&gt;5000/tcp</span><br><span class="line">myproject_redis-server_1   docker-entrypoint.sh redis ...   Up      6379/tcp  </span><br></pre></td></tr></table></figure>
+
+<p>通過<code>stop</code>指令再批次停止</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose -p myproject stop</span><br><span class="line">Stopping myproject_redis-server_1 ... done</span><br><span class="line">Stopping myproject_flask-demo_1   ... done</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-rm"><a href="#docker-compose-rm" class="headerlink" title="docker-compose-rm"></a>docker-compose-rm</h3><p>通過<code>rm</code>指令刪除</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose -p myproject rm</span><br><span class="line">Going to remove myproject_redis-server_1, myproject_flask-demo_1</span><br><span class="line">Are you sure? [yN] y</span><br><span class="line">Removing myproject_redis-server_1 ... done</span><br><span class="line">Removing myproject_flask-demo_1   ... done</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-build"><a href="#docker-compose-build" class="headerlink" title="docker-compose build"></a>docker-compose build</h3><p>試著使用build方式來玩,，建立一個資料夾名稱為<code>flask_web</code>，將<code>app.py</code>、<code>Dockerfile</code>移至<code>flask_web</code>底下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ tree</span><br><span class="line">.</span><br><span class="line">├── docker-compose.yml</span><br><span class="line">└── flask_web</span><br><span class="line">    ├── app.py</span><br><span class="line">    └── Dockerfile</span><br></pre></td></tr></table></figure>
+
+<p><code>app.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> redis <span class="keyword">import</span> Redis</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">redis = Redis(host=os.environ.get(<span class="string">&#x27;REDIS_HOST&#x27;</span>, <span class="string">&#x27;127.0.0.1&#x27;</span>), port=<span class="number">6379</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    redis.incr(<span class="string">&#x27;hits&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;Hello Container World! I have been seen <span class="subst">&#123;redis.get(<span class="string">&#x27;hits&#x27;</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>)&#125;</span> times and my hostname is <span class="subst">&#123;socket.gethostname()&#125;</span>.\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Dockerfile</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.9</span>.<span class="number">5</span>-slim</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install flask redis &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    groupadd -r flask &amp;&amp; useradd -r -g flask flask &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mkdir</span> /src &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">chown</span> -R flask:flask /src</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> flask</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> app.py /src/app.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /src</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> FLASK_APP=app.py REDIS_HOST=redis</span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;flask&quot;</span>, <span class="string">&quot;run&quot;</span>, <span class="string">&quot;-h&quot;</span>, <span class="string">&quot;0.0.0.0&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>修改<code>docker-compose.yml</code> 檔：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">flask-demo:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./flask_web</span></span><br><span class="line">    <span class="comment">#image: flask-demo:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REDIS_HOST=redis-server</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:5000</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:latest</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">demo-network:</span></span><br></pre></td></tr></table></figure>
+
+<p>我們添加了<code>build: ./flask_web</code>，預設會抓這個資料夾底下的Dockerfile名稱進行build image</p>
+<p>compose build 指令玩一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose build</span><br><span class="line">redis-server uses an image, skipping</span><br><span class="line">Building flask-demo</span><br><span class="line">Sending build context to Docker daemon  3.072kB</span><br><span class="line">Step 1/8 : FROM python:3.9.5-slim</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">c71955050276</span></span><br><span class="line">Step 2/8 : RUN pip install flask redis &amp;&amp;     groupadd -r flask &amp;&amp; useradd -r -g flask flask &amp;&amp;     mkdir /src &amp;&amp;     chown -R ...</span><br><span class="line">...</span><br><span class="line">Successfully built 626b99e2547c</span><br><span class="line">Successfully tagged flask_redis_practice_flask-demo:latest</span><br><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker images </span><br></pre></td></tr></table></figure>
+
+<p>看一下image 清單，我們會發現image名稱會以當時的資料夾名稱為前綴：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker images </span><br><span class="line">REPOSITORY                        TAG                IMAGE ID       CREATED          SIZE</span><br><span class="line">flask_redis_practice_flask-demo   latest             626b99e2547c   36 seconds ago   129MB</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-build-文件格式-add-image-name"><a href="#docker-compose-build-文件格式-add-image-name" class="headerlink" title="docker-compose build 文件格式 - add image name"></a>docker-compose build 文件格式 - add image name</h3><p>也可以在docker-compose文件中指定image名稱：</p>
+<p><code>docker-compose.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">flask-demo:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./flask_web</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">flask-kite:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REDIS_HOST=redis-server</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:5000</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:latest</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">demo-network:</span></span><br></pre></td></tr></table></figure>
+
+<p>結果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker images </span><br><span class="line">REPOSITORY       TAG                IMAGE ID       CREATED          SIZE</span><br><span class="line">flask-kite       latest             33a0bf4d2428   11 seconds ago   129MB</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-build-文件格式-context、dockefile-name"><a href="#docker-compose-build-文件格式-context、dockefile-name" class="headerlink" title="docker-compose build 文件格式 - context、dockefile name"></a>docker-compose build 文件格式 - context、dockefile name</h3><p>先將<code>Dockerfile</code>名稱改為<code>Dockerfile.dev</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ tree</span><br><span class="line">.</span><br><span class="line">├── docker-compose.yml</span><br><span class="line">└── flask_web</span><br><span class="line">    ├── app.py</span><br><span class="line">    └── Dockerfile.dev</span><br></pre></td></tr></table></figure>
+
+<p>在docker-compose文件中指定dockerfile檔案名稱：</p>
+<p><code>docker-compose.dev</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">flask-demo:</span></span><br><span class="line">    <span class="attr">build:</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">./flask_web</span></span><br><span class="line">      <span class="attr">dockerfile:</span> <span class="string">Dockerfile.dev</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">flask-kite:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REDIS_HOST=redis-server</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:5000</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:latest</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">demo-network:</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-pull"><a href="#docker-compose-pull" class="headerlink" title="docker-compose pull"></a>docker-compose pull</h3><p>也可以使用docker-compose pull進行image build：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose pull</span><br><span class="line">Pulling flask-demo   ... done</span><br><span class="line">Pulling redis-server ... done</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-–help"><a href="#docker-compose-–help" class="headerlink" title="docker-compose –help"></a>docker-compose –help</h3><p>查找相關指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose --help</span><br><span class="line">Define and run multi-container applications with Docker.</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  docker-compose [-f &lt;arg&gt;...] [--profile &lt;name&gt;...] [options] [--] [COMMAND] [ARGS...]</span><br><span class="line">  docker-compose -h|--help</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -f, --file FILE             Specify an alternate compose file</span><br><span class="line">                              (default: docker-compose.yml)</span><br><span class="line">  -p, --project-name NAME     Specify an alternate project name</span><br><span class="line">                              (default: directory name)</span><br><span class="line">  --profile NAME              Specify a profile to enable</span><br><span class="line">  -c, --context NAME          Specify a context name</span><br><span class="line">  --verbose                   Show more output</span><br><span class="line">  --log-level LEVEL           Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)</span><br><span class="line">  --ansi (never|always|auto)  Control when to print ANSI control characters</span><br><span class="line">  --no-ansi                   Do not print ANSI control characters (DEPRECATED)</span><br><span class="line">  -v, --version               Print version and exit</span><br><span class="line">  -H, --host HOST             Daemon socket to connect to</span><br><span class="line"></span><br><span class="line">  --tls                       Use TLS; implied by --tlsverify</span><br><span class="line">  --tlscacert CA_PATH         Trust certs signed only by this CA</span><br><span class="line">  --tlscert CLIENT_CERT_PATH  Path to TLS certificate file</span><br><span class="line">  --tlskey TLS_KEY_PATH       Path to TLS key file</span><br><span class="line">  --tlsverify                 Use TLS and verify the remote</span><br><span class="line">  --skip-hostname-check       Don&#x27;t check the daemon&#x27;s hostname against the</span><br><span class="line">                              name specified in the client certificate</span><br><span class="line">  --project-directory PATH    Specify an alternate working directory</span><br><span class="line">                              (default: the path of the Compose file)</span><br><span class="line">  --compatibility             If set, Compose will attempt to convert keys</span><br><span class="line">                              in v3 files to their non-Swarm equivalent (DEPRECATED)</span><br><span class="line">  --env-file PATH             Specify an alternate environment file</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  build              Build or rebuild services</span><br><span class="line">  config             Validate and view the Compose file</span><br><span class="line">  create             Create services</span><br><span class="line">  down               Stop and remove resources</span><br><span class="line">  events             Receive real time events from containers</span><br><span class="line">  exec               Execute a command in a running container</span><br><span class="line">  help               Get help on a command</span><br><span class="line">  images             List images</span><br><span class="line">  kill               Kill containers</span><br><span class="line">  logs               View output from containers</span><br><span class="line">  pause              Pause services</span><br><span class="line">  port               Print the public port for a port binding</span><br><span class="line">  ps                 List containers</span><br><span class="line">  pull               Pull service images</span><br><span class="line">  push               Push service images</span><br><span class="line">  restart            Restart services</span><br><span class="line">  rm                 Remove stopped containers</span><br><span class="line">  run                Run a one-off command</span><br><span class="line">  scale              Set number of containers for a service</span><br><span class="line">  start              Start services</span><br><span class="line">  stop               Stop services</span><br><span class="line">  top                Display the running processes</span><br><span class="line">  unpause            Unpause services</span><br><span class="line">  up                 Create and start containers</span><br><span class="line">  version            Show version information and quit</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose build --help</span><br><span class="line">Build or rebuild services.</span><br><span class="line"></span><br><span class="line">Services are built once and then tagged as `project_service`,</span><br><span class="line">e.g. `composetest_db`. If you change a service&#x27;s `Dockerfile` or the</span><br><span class="line">contents of its build directory, you can run `docker-compose build` to rebuild it.</span><br><span class="line"></span><br><span class="line">Usage: build [options] [--build-arg key=val...] [--] [SERVICE...]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">    --build-arg key=val     Set build-time variables for services.</span><br><span class="line">    --compress              Compress the build context using gzip.</span><br><span class="line">    --force-rm              Always remove intermediate containers.</span><br><span class="line">    -m, --memory MEM        Set memory limit for the build container.</span><br><span class="line">    --no-cache              Do not use cache when building the image.</span><br><span class="line">    --no-rm                 Do not remove intermediate containers after a successful build.</span><br><span class="line">    --parallel              Build images in parallel.</span><br><span class="line">    --progress string       Set type of progress output (auto, plain, tty).</span><br><span class="line">    --pull                  Always attempt to pull a newer version of the image.</span><br><span class="line">    -q, --quiet             Don&#x27;t print anything to STDOUT</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="docker-compose-build-d-–build"><a href="#docker-compose-build-d-–build" class="headerlink" title="docker compose build -d –build"></a>docker compose build -d –build</h3><p>試著修改<code>app.py</code>檔</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> redis <span class="keyword">import</span> Redis</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">redis = Redis(host=os.environ.get(<span class="string">&#x27;REDIS_HOST&#x27;</span>, <span class="string">&#x27;127.0.0.1&#x27;</span>), port=<span class="number">6379</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    redis.incr(<span class="string">&#x27;hits&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;Hello Container World!I&#x27;m kite. I have been seen <span class="subst">&#123;redis.get(<span class="string">&#x27;hits&#x27;</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>)&#125;</span> times and my hostname is <span class="subst">&#123;socket.gethostname()&#125;</span>.\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在運行的過程中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose ps</span><br><span class="line">               Name                              Command               State                    Ports                  </span><br><span class="line">-----------------------------------------------------------------------------------------------------------------------</span><br><span class="line">flask_redis_practice_flask-demo_1     flask run -h 0.0.0.0             Up      0.0.0.0:8080-&gt;5000/tcp,:::8080-&gt;5000/tcp</span><br><span class="line">flask_redis_practice_redis-server_1   docker-entrypoint.sh redis ...   Up      6379/tcp   </span><br></pre></td></tr></table></figure>
+
+<p>使用<code>--build</code>指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose build -d --build</span><br></pre></td></tr></table></figure>
+
+<p>這個指令會發現檔案有發生改變，就會決定重新build，並且會直接重啟與運行容器，不用經過compose stop、compose rm、compose build、 compose up 過程，非常方便，結果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose up -d --build</span><br><span class="line">Building flask-demo</span><br><span class="line">Sending build context to Docker daemon  3.072kB</span><br><span class="line">Step 1/8 : FROM python:3.9.5-slim</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">c71955050276</span></span><br><span class="line">Step 2/8 : RUN pip install flask redis &amp;&amp;     groupadd -r flask &amp;&amp; useradd -r -g flask flask &amp;&amp;     mkdir /src &amp;&amp;     chown -R flask:flask /src</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">Using cache</span></span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">bbf517f842c7</span></span><br><span class="line">Step 3/8 : USER flask</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">Using cache</span></span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">7b1d7b6407b8</span></span><br><span class="line">Step 4/8 : COPY app.py /src/app.py</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">47b63bef74ff</span></span><br><span class="line">Step 5/8 : WORKDIR /src</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">Running <span class="keyword">in</span> 1da9b0391baf</span></span><br><span class="line">Removing intermediate container 1da9b0391baf</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">ccbca4bf8c09</span></span><br><span class="line">Step 6/8 : ENV FLASK_APP=app.py REDIS_HOST=redis</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">Running <span class="keyword">in</span> 74c8fbb7fd95</span></span><br><span class="line">Removing intermediate container 74c8fbb7fd95</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">cc12a2e1af00</span></span><br><span class="line">Step 7/8 : EXPOSE 5000</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">Running <span class="keyword">in</span> 201a42960e97</span></span><br><span class="line">Removing intermediate container 201a42960e97</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">3731d50ee226</span></span><br><span class="line">Step 8/8 : CMD [&quot;flask&quot;, &quot;run&quot;, &quot;-h&quot;, &quot;0.0.0.0&quot;]</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">Running <span class="keyword">in</span> 3f4fea9f7156</span></span><br><span class="line">Removing intermediate container 3f4fea9f7156</span><br><span class="line"><span class="meta prompt_"> ---&gt; </span><span class="language-bash">df6ac55a1b2d</span></span><br><span class="line">Successfully built df6ac55a1b2d</span><br><span class="line">Successfully tagged flask-kite:latest</span><br><span class="line">flask_redis_practice_redis-server_1 is up-to-date</span><br><span class="line">Recreating flask_redis_practice_flask-demo_1 ... done</span><br><span class="line">kite@host04:~/Desktop/flask_redis_practice$ </span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-compose-d"><a href="#docker-compose-d" class="headerlink" title="docker compose -d"></a>docker compose -d</h3><p>目前comopose狀態：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose ps</span><br><span class="line">[sudo] password for kite: </span><br><span class="line">               Name                              Command               State                    Ports                  </span><br><span class="line">-----------------------------------------------------------------------------------------------------------------------</span><br><span class="line">flask_redis_practice_flask-demo_1     flask run -h 0.0.0.0             Up      0.0.0.0:8080-&gt;5000/tcp,:::8080-&gt;5000/tcp</span><br><span class="line">flask_redis_practice_redis-server_1   docker-entrypoint.sh redis ...   Up      6379/tcp    </span><br></pre></td></tr></table></figure>
+
+<h4 id="add-image"><a href="#add-image" class="headerlink" title="add image"></a>add image</h4><p>我們添加一個busybox ，修改docker-compose檔</p>
+<p><code>docker-compose.dev</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">flask-demo:</span></span><br><span class="line">    <span class="attr">build:</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">./flask_web</span></span><br><span class="line">      <span class="attr">dockerfile:</span> <span class="string">Dockerfile.dev</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">flask-kite:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REDIS_HOST=redis-server</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:5000</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:latest</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line">  <span class="attr">busybox:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">busybox:latest</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">sh</span> <span class="string">-c</span> <span class="string">&quot;while true;do sleep 3600; done&quot;</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">demo-network:</span></span><br></pre></td></tr></table></figure>
+
+<p>接著，我們再試著下<code>docker-compose up -d</code>，我們會發現有出現create busybox的訊息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose up -d</span><br><span class="line">flask_redis_practice_flask-demo_1 is up-to-date</span><br><span class="line">flask_redis_practice_redis-server_1 is up-to-date</span><br><span class="line">Creating flask_redis_practice_busybox_1 ... done</span><br></pre></td></tr></table></figure>
+
+<h4 id="remove-image"><a href="#remove-image" class="headerlink" title="remove image"></a>remove image</h4><p>再試著將剛剛的busybox移除 ，修改docker-compose檔</p>
+<p><code>docker-compose.dev</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">flask-demo:</span></span><br><span class="line">    <span class="attr">build:</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">./flask_web</span></span><br><span class="line">      <span class="attr">dockerfile:</span> <span class="string">Dockerfile.dev</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">flask-kite:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REDIS_HOST=redis-server</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:5000</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:latest</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">demo-network</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">demo-network:</span></span><br></pre></td></tr></table></figure>
+
+<p>再執行一次<code>docker-compose up -d</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose up -d</span><br><span class="line">WARNING: Found orphan containers (flask_redis_practice_busybox_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.</span><br><span class="line">flask_redis_practice_flask-demo_1 is up-to-date</span><br><span class="line">flask_redis_practice_redis-server_1 is up-to-date</span><br></pre></td></tr></table></figure>
+
+<p>會出現警告：</p>
+<blockquote>
+<p>WARNING: Found orphan containers (flask_redis_practice_busybox_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the –remove-orphans flag to clean it up.</p>
+</blockquote>
+<p>照著指令操作，移除busybox的指令需要<code>--remove-orphans</code>，執行如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kite@host04:~/Desktop/flask_redis_practice$ sudo docker-compose up -d --remove-orphans</span><br><span class="line">Removing orphan container &quot;flask_redis_practice_busybox_1&quot;</span><br><span class="line">flask_redis_practice_flask-demo_1 is up-to-date</span><br><span class="line">flask_redis_practice_redis-server_1 is up-to-date</span><br><span class="line">kite@host04:~/Desktop/flask_redis_practice$ </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="container-配置文件修改"><a href="#container-配置文件修改" class="headerlink" title="container 配置文件修改"></a>container 配置文件修改</h4><p>通常container 配置文件(使用volume 掛載本地文件)修改之後，要重啟container。而在compose 可以透過<code>docker compose restart</code>指令重啟。</p>
+<p>這個指令只是重啟，並不是重新創建喔。</p>
+<h3 id="更新操作小總結"><a href="#更新操作小總結" class="headerlink" title="更新操作小總結"></a>更新操作小總結</h3><p>我們常在專案會時常更新，比如更新鏡像、配置文件、增加service、刪除service，最常用的有二種</p>
+<ol>
+<li><p>刪除未使用的service</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d --remove-orphans</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>container 配置文件修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>image 進行修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose -d --build</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="docker-compose網路-上"><a href="#docker-compose網路-上" class="headerlink" title="docker-compose網路(上)"></a>docker-compose網路(上)</h2><p>暫補</p>
+<h2 id="docker-compose網路-下"><a href="#docker-compose網路-下" class="headerlink" title="docker-compose網路(下)"></a>docker-compose網路(下)</h2><p>暫補</p>
+<p>各別指定network</p>
+<p>network default</p>
+<p>network subnet</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/03/2022-03-03%20Docker%20%E7%B3%BB%E5%88%97%20-%20(5)%20Docker%E7%9A%84%E7%B6%B2%E8%B7%AF/" rel="prev" title="docker 系列 - (5) Docker的網路">
+      <i class="fa fa-chevron-left"></i> docker 系列 - (5) Docker的網路
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/2022-04-29%20%E7%B7%A8%E7%A2%BC%E6%AD%B7%E5%8F%B2%E6%95%B4%E5%90%88%E5%8C%85/" rel="next" title="編碼歷史">
+      編碼歷史 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Compose-%E7%B0%A1%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Compose 簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">基本語法結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">docker-compose命令行基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-up"><span class="nav-number">3.1.</span> <span class="nav-text">docker-compose up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-up-d"><span class="nav-number">3.2.</span> <span class="nav-text">docker-compose up -d</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-logs"><span class="nav-number">3.3.</span> <span class="nav-text">docker-compose logs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-ps"><span class="nav-number">3.4.</span> <span class="nav-text">docker-compose ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-stop"><span class="nav-number">3.5.</span> <span class="nav-text">docker-compose stop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-p"><span class="nav-number">3.6.</span> <span class="nav-text">docker-compose -p</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-rm"><span class="nav-number">3.7.</span> <span class="nav-text">docker-compose-rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-build"><span class="nav-number">3.8.</span> <span class="nav-text">docker-compose build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-build-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-add-image-name"><span class="nav-number">3.9.</span> <span class="nav-text">docker-compose build 文件格式 - add image name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-build-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-context%E3%80%81dockefile-name"><span class="nav-number">3.10.</span> <span class="nav-text">docker-compose build 文件格式 - context、dockefile name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-pull"><span class="nav-number">3.11.</span> <span class="nav-text">docker-compose pull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-%E2%80%93help"><span class="nav-number">3.12.</span> <span class="nav-text">docker-compose –help</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-build-d-%E2%80%93build"><span class="nav-number">3.13.</span> <span class="nav-text">docker compose build -d –build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-d"><span class="nav-number">3.14.</span> <span class="nav-text">docker compose -d</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#add-image"><span class="nav-number">3.14.1.</span> <span class="nav-text">add image</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-image"><span class="nav-number">3.14.2.</span> <span class="nav-text">remove image</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#container-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9"><span class="nav-number">3.14.3.</span> <span class="nav-text">container 配置文件修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C%E5%B0%8F%E7%B8%BD%E7%B5%90"><span class="nav-number">3.15.</span> <span class="nav-text">更新操作小總結</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose%E7%B6%B2%E8%B7%AF-%E4%B8%8A"><span class="nav-number">4.</span> <span class="nav-text">docker-compose網路(上)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose%E7%B6%B2%E8%B7%AF-%E4%B8%8B"><span class="nav-number">5.</span> <span class="nav-text">docker-compose網路(下)</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

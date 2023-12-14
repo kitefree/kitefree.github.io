@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="容器儲存介紹預設情況下，在運行中的容器裡創建的文件，被保存在一個可寫的容器層：  如果容器被刪除了，則數據也沒有了 這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享  Docker主要提供了三種方式做數據的持久化  Data Volume  由Docker管理，(&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 系列 - (4) Dockerfile容器的儲存">
+<meta property="og:url" content="https://kitefree.github.io/2022/02/24/2022-02-23%20Docker%20%E7%B3%BB%E5%88%97%20-%20(4)%20Dockerfile%E5%AE%B9%E5%99%A8%E7%9A%84%E5%84%B2%E5%AD%98/index.html">
+<meta property="og:site_name" content="地球人的修練">
+<meta property="og:description" content="容器儲存介紹預設情況下，在運行中的容器裡創建的文件，被保存在一個可寫的容器層：  如果容器被刪除了，則數據也沒有了 這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享  Docker主要提供了三種方式做數據的持久化  Data Volume  由Docker管理，(&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;linux">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/HS1l6Zs.png">
+<meta property="og:image" content="https://i.imgur.com/9j4ef71.png">
+<meta property="article:published_time" content="2022-02-24T09:14:00.000Z">
+<meta property="article:modified_time" content="2022-02-25T03:44:34.799Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/HS1l6Zs.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2022/02/24/2022-02-23%20Docker%20%E7%B3%BB%E5%88%97%20-%20(4)%20Dockerfile%E5%AE%B9%E5%99%A8%E7%9A%84%E5%84%B2%E5%AD%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>docker 系列 - (4) Dockerfile容器的儲存 | 地球人的修練</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">地球人的修練</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/02/24/2022-02-23%20Docker%20%E7%B3%BB%E5%88%97%20-%20(4)%20Dockerfile%E5%AE%B9%E5%99%A8%E7%9A%84%E5%84%B2%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker 系列 - (4) Dockerfile容器的儲存
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2022-02-24 17:14:00" itemprop="dateCreated datePublished" datetime="2022-02-24T17:14:00+08:00">2022-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-02-25 11:44:34" itemprop="dateModified" datetime="2022-02-25T11:44:34+08:00">2022-02-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>9.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>18 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="容器儲存介紹"><a href="#容器儲存介紹" class="headerlink" title="容器儲存介紹"></a>容器儲存介紹</h2><p>預設情況下，在運行中的容器裡創建的文件，被保存在一個可寫的容器層：</p>
+<ul>
+<li>如果容器被刪除了，則數據也沒有了</li>
+<li>這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享</li>
+</ul>
+<p>Docker主要提供了三種方式做數據的持久化</p>
+<ul>
+<li><p>Data Volume</p>
+<ul>
+<li>由Docker管理，(&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;linux)，持久化數據的最好方式</li>
+</ul>
+</li>
+<li><p>Bind Mount</p>
+<ul>
+<li>由用戶指定存儲的數據具體mount在系統什麼位置</li>
+</ul>
+</li>
+<li><p>tmpfs Mount</p>
+<ul>
+<li>這個比較少用到，暫時先不進行介紹</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/HS1l6Zs.png" alt="docker-volume"></p>
+<h2 id="Data-Volume"><a href="#Data-Volume" class="headerlink" title="Data Volume"></a>Data Volume</h2><p>我們來探討如何進行數據的持久化。</p>
+<ul>
+<li>“一個運行中的docker image”</li>
+<li>實質是複製image全在image最上層加上一層<code>read-write</code>的層(稱之為container layer，容器層)</li>
+<li>基於同一個IMAGE可以創建多個container</li>
+</ul>
+<p><img src="https://i.imgur.com/9j4ef71.png" alt="img"></p>
+<h3 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h3><p>準備一個Dockerfile和一個my-cron的文件</p>
+<p><code>dockerfile-cron</code>檔</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> alpine:latest</span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apk update</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apk --no-cache add curl</span></span><br><span class="line"><span class="keyword">ENV</span> SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.<span class="number">1.12</span>/supercronic-linux-amd64 \</span><br><span class="line">    SUPERCRONIC=supercronic-linux-amd64 \</span><br><span class="line">    SUPERCRONIC_SHA1SUM=<span class="number">048</span>b95b48b708983effb2e5c935a1ef8483d9e3e</span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> curl -fsSLO <span class="string">&quot;<span class="variable">$SUPERCRONIC_URL</span>&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;SUPERCRONIC_SHA1SUM&#125;</span>  <span class="variable">$&#123;SUPERCRONIC&#125;</span>&quot;</span> | <span class="built_in">sha1sum</span> -c - \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">chmod</span> +x <span class="string">&quot;<span class="variable">$SUPERCRONIC</span>&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">mv</span> <span class="string">&quot;<span class="variable">$SUPERCRONIC</span>&quot;</span> <span class="string">&quot;/usr/local/bin/<span class="variable">$&#123;SUPERCRONIC&#125;</span>&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">ln</span> -s <span class="string">&quot;/usr/local/bin/<span class="variable">$&#123;SUPERCRONIC&#125;</span>&quot;</span> /usr/local/bin/supercronic</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> my-cron /app/my-cron</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#volume 可以定義多個，這邊只定義一個</span></span><br><span class="line"><span class="keyword">VOLUME</span><span class="language-bash"> [<span class="string">&quot;/app&quot;</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># RUN cron job</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;/usr/local/bin/supercronic&quot;</span>, <span class="string">&quot;/app/my-cron&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>my-cron</code>檔</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/1 * * * * date &gt;&gt; /app/test.txt</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>資料夾結構</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── dockerfile-cron</span><br><span class="line">├── my-cron</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="基本使用volume"><a href="#基本使用volume" class="headerlink" title="基本使用volume"></a>基本使用volume</h3><h4 id="搭建環境"><a href="#搭建環境" class="headerlink" title="搭建環境"></a>搭建環境</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立dockefile-cron檔案，請自行完成腳本內容</span></span><br><span class="line">kite@kite-virtual-machine:~/Desktop/genDockerImagesFolder$ touch dockerfile-cron</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立my-cron檔案，請自行完成腳本內容</span></span><br><span class="line">kite@kite-virtual-machine:~/Desktop/genDockerImagesFolder$ touch my-cron</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立鏡像檔</span></span><br><span class="line">kite@kite-virtual-machine:~/Desktop/genDockerImagesFolder$ sudo docker image build -f dockerfile-cron -t my-cron .</span><br><span class="line">Sending build context to Docker daemon  892.4kB</span><br><span class="line">Step 1/9 : FROM alpine:latest</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">Successfully built a5105bc596ec</span><br><span class="line">Successfully tagged my-cron:latest</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看鏡像檔清單</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker images</span><br><span class="line">REPOSITORY       TAG                IMAGE ID       CREATED          SIZE</span><br><span class="line">my-cron          latest             a6e1e40dd6bb   15 minutes ago   45MB</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">啟動並創建容器</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker run -d my-cron</span><br><span class="line">97d956e771f6a833368d6ecc693aa79fb300eb04cfc0b435bc665652013401ec</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看容器清單</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container ps -a</span><br><span class="line">CONTAINER ID   IMAGE    COMMAND                  CREATED         STATUS       PORTS   NAMES</span><br><span class="line">97d956e771f6   my-cron  &quot;/usr/local/bin/supe…&quot;   5 seconds ago   Up 4 seconds         tender_mahavira</span><br></pre></td></tr></table></figure>
+
+<h4 id="確認crontab執行狀況"><a href="#確認crontab執行狀況" class="headerlink" title="確認crontab執行狀況"></a>確認crontab執行狀況</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">進入容器</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker exec -it 97d9 sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查詢檔案</span></span><br><span class="line">/app # ls</span><br><span class="line">my-cron   test.txt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看test.txt檔案</span></span><br><span class="line">/app # more test.txt</span><br><span class="line">Wed Feb 23 02:11:00 UTC 2022</span><br><span class="line">Wed Feb 23 02:12:00 UTC 2022</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">離開容器</span></span><br><span class="line">/app # exit</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看host檔案路徑-Mountpoint"><a href="#查看host檔案路徑-Mountpoint" class="headerlink" title="查看host檔案路徑(Mountpoint)"></a>查看host檔案路徑(Mountpoint)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看volume 清單</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker volume ls</span><br><span class="line">DRIVER    VOLUME NAME</span><br><span class="line">local     05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看volume映射資料</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker volume inspect 05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;CreatedAt&quot;: &quot;2022-02-23T10:10:59+08:00&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Labels&quot;: null,</span><br><span class="line">        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5/_data&quot;,</span><br><span class="line">        &quot;Name&quot;: &quot;05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5&quot;,</span><br><span class="line">        &quot;Options&quot;: null,</span><br><span class="line">        &quot;Scope&quot;: &quot;local&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用<span class="built_in">ls</span> 加 mountpoint值的路徑，可以發現在host上也有test.txt檔案</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# ls /var/lib/docker/volumes/05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5/_data</span><br><span class="line">my-cron  test.txt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用more查看host的test.txt檔案，資料與容器內部一致</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# more /var/lib/docker/volumes/05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5/_data/test.txt</span><br><span class="line">Wed Feb 23 02:11:00 UTC 2022</span><br><span class="line">Wed Feb 23 02:12:00 UTC 2022</span><br></pre></td></tr></table></figure>
+
+<h4 id="驗證停止container後，host檔案是否仍存在"><a href="#驗證停止container後，host檔案是否仍存在" class="headerlink" title="驗證停止container後，host檔案是否仍存在"></a>驗證停止container後，host檔案是否仍存在</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">停止容器</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container stop 97d</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">驗證，就算停止容器host檔案還是存在的</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# more /var/lib/docker/volumes/05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5/_data/test.txt</span><br><span class="line">Wed Feb 23 02:11:00 UTC 2022</span><br><span class="line">Wed Feb 23 02:12:00 UTC 2022</span><br></pre></td></tr></table></figure>
+
+<h4 id="發現再啟用新的容器-volume重建一個新的區域"><a href="#發現再啟用新的容器-volume重建一個新的區域" class="headerlink" title="發現再啟用新的容器,volume重建一個新的區域"></a>發現再啟用新的容器,volume重建一個新的區域</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">再啟動一個新的container</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container run -d my-cron</span><br><span class="line">17f1ffa9999a697540fb4aa81a695b66d96b9f57ac05db6af8f9026da4bdb6a7</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看volume清單，會發現多了一個b49bbb，代表這個容器使用了一個新的硬碟空間</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker volume ls</span><br><span class="line">DRIVER    VOLUME NAME</span><br><span class="line">local     05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5</span><br><span class="line">local     b49bbb9e19dedb0bb36dc3b734ec354eb25e477212dbb5a5156416c63693a25d</span><br></pre></td></tr></table></figure>
+
+<h4 id="如何接續上一個volume資料？"><a href="#如何接續上一個volume資料？" class="headerlink" title="如何接續上一個volume資料？"></a>如何接續上一個volume資料？</h4><p>如果container停止後，再繼續啟用一個新的container，我們想要接續上一個container的資料繼續記錄。如何做到呢？</p>
+<p>首先，我們把之前實驗的資料進行清空的動作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看目前所有container包含停止的container</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container ps -a</span><br><span class="line">CONTAINER ID   IMAGE    COMMAND                  ...</span><br><span class="line">17f1ffa9999a   my-cron  &quot;/usr/local/bin/supe…&quot;   ...</span><br><span class="line">97d956e771f6   my-cron  &quot;/usr/local/bin/supe…&quot;   ...</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">強制停止container</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container rm -f 17f1 97d9</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">刪除所有volume，會詢問是否繼續</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker volume prune</span><br><span class="line">WARNING! This will remove all local volumes not used by at least one container.</span><br><span class="line">Are you sure you want to continue? [y/N] y</span><br><span class="line">Deleted Volumes:</span><br><span class="line">05b3074b5770b1a24b36493a3b1153a1070206d4600d19a1508714c9912dc5f5</span><br><span class="line">b49bbb9e19dedb0bb36dc3b734ec354eb25e477212dbb5a5156416c63693a25d</span><br><span class="line"></span><br><span class="line">Total reclaimed space: 1.402kB</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看volume 都清空了</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker volume ls</span><br><span class="line">DRIVER    VOLUME NAME</span><br></pre></td></tr></table></figure>
+
+
+
+<p>此項任務**<code>-v</code> 我是主角**：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -v [自定義volume名稱]:[dockerfile內必須有的設定值] [image name]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>執行過程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用 -v 參數，也就是代表volume的意思 cron-data volume 名稱，而冒號(:) 後面的 /app 必須是在dockerfile有指名的volume</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container run -d -v cron-data:/app my-cron</span><br><span class="line">6150f7169a578f27af13997ec8d8f9ca2610fa4c7aae0b97a57bef5bf9d845d6</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看一下volume 就會看到以cron-data為名稱的volume</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker volume ls</span><br><span class="line">DRIVER    VOLUME NAME</span><br><span class="line">local     cron-data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看volume資料，mountpoint路徑就變簡潔了</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker volume inspect cron-data</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;CreatedAt&quot;: &quot;2022-02-23T11:24:59+08:00&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Labels&quot;: null,</span><br><span class="line">        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/cron-data/_data&quot;,</span><br><span class="line">        &quot;Name&quot;: &quot;cron-data&quot;,</span><br><span class="line">        &quot;Options&quot;: null,</span><br><span class="line">        &quot;Scope&quot;: &quot;local&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>進行驗證，是否有接續之前的資料</strong></p>
+<p>我們會發現進入container後看<code>test.txt</code>文件內容，是有包含之前上一次container 的資料在裡面哦。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">先刪除之前的container</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container rm -f 6150</span><br><span class="line">6150</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">再次創建container</span> </span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker container run -d -v cron-data:/app my-cron</span><br><span class="line">f61223479947f23bb6750d25aa22427e3b8dbb92875af9d4c3dbac761703ea29</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">進入container</span> </span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/pythonworkspace# docker exec -it f6122 sh</span><br><span class="line">/app # ls</span><br><span class="line">my-cron   test.txt</span><br><span class="line">/app # more test.txt</span><br><span class="line">Wed Feb 23 03:25:00 UTC 2022</span><br><span class="line">Wed Feb 23 03:26:00 UTC 2022</span><br><span class="line">Wed Feb 23 03:27:00 UTC 2022</span><br><span class="line">Wed Feb 23 03:28:00 UTC 2022</span><br><span class="line">Wed Feb 23 03:29:00 UTC 2022</span><br><span class="line">Wed Feb 23 03:30:00 UTC 2022</span><br><span class="line">/app # exit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>註記：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">刪除所有鏡像</span></span><br><span class="line">docker system prune</span><br><span class="line"></span><br><span class="line">docker volume rm $(docker volume ls -qf dangling=true)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>網站推薦</p>
+<p><a target="_blank" rel="noopener" href="https://crontab.guru/">crontab轉換</a></p>
+<h2 id="數據持久化之Bind-Mount"><a href="#數據持久化之Bind-Mount" class="headerlink" title="數據持久化之Bind Mount"></a>數據持久化之Bind Mount</h2><p>複習一下在dockerfile裡面定義了<code>VOLUME</code>，如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> alpine:latest</span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apk update</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apk --no-cache add curl</span></span><br><span class="line"><span class="keyword">ENV</span> SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.<span class="number">1.12</span>/supercronic-linux-amd64 \</span><br><span class="line">    SUPERCRONIC=supercronic-linux-amd64 \</span><br><span class="line">    SUPERCRONIC_SHA1SUM=<span class="number">048</span>b95b48b708983effb2e5c935a1ef8483d9e3e</span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> curl -fsSLO <span class="string">&quot;<span class="variable">$SUPERCRONIC_URL</span>&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;SUPERCRONIC_SHA1SUM&#125;</span>  <span class="variable">$&#123;SUPERCRONIC&#125;</span>&quot;</span> | <span class="built_in">sha1sum</span> -c - \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">chmod</span> +x <span class="string">&quot;<span class="variable">$SUPERCRONIC</span>&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">mv</span> <span class="string">&quot;<span class="variable">$SUPERCRONIC</span>&quot;</span> <span class="string">&quot;/usr/local/bin/<span class="variable">$&#123;SUPERCRONIC&#125;</span>&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">ln</span> -s <span class="string">&quot;/usr/local/bin/<span class="variable">$&#123;SUPERCRONIC&#125;</span>&quot;</span> /usr/local/bin/supercronic</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> my-cron /app/my-cron</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#volume 可以定義多個，這邊只定義一個</span></span><br><span class="line"><span class="keyword">VOLUME</span><span class="language-bash"> [<span class="string">&quot;/app&quot;</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># RUN cron job</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;/usr/local/bin/supercronic&quot;</span>, <span class="string">&quot;/app/my-cron&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>如果希望都是以參數方式定義<code>VOLUME</code>的話，在dockerfile的部分就可以不用去寫這段語法。</p>
+<p>另外，windows 在使用volume時會有一些狀況。還記得windows的docker環境，其實是run在linux虛擬層裡。所以在使用<code>docker volume inspect</code>指令查閱<code>Mountpoint</code>的路徑是一個linux的路徑。但是在windows作業系統是摸不到這一層的。</p>
+<p>因此，在windows環境使用<code>Bind Mount</code>方式好用一些。試著在windows運行，延用先前的<code>dockerfile-cron</code>檔案及<code>my-cron</code>腳本，玩玩看：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看目前的images</span></span><br><span class="line"><span class="built_in">PS</span> E:\dockerworkspace&gt; docker images</span><br><span class="line">REPOSITORY                       TAG           IMAGE ID       CREATED          SIZE</span><br><span class="line">my<span class="literal">-cron</span>                          latest        f356932e5078   <span class="number">22</span> seconds ago   <span class="number">24.8</span>MB</span><br><span class="line"></span><br><span class="line"><span class="comment">#創建並運行容器,$&#123;pwd&#125; 指的是當前目錄</span></span><br><span class="line"><span class="built_in">PS</span> E:\dockerworkspace&gt; docker container run <span class="literal">-d</span> <span class="literal">-v</span> <span class="variable">$</span>&#123;<span class="built_in">pwd</span>&#125;:/app my<span class="literal">-cron</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#我們會看到在windows底下，排程時間到了就自動產生test.txt檔案</span></span><br><span class="line"><span class="built_in">PS</span> E:\dockerworkspace&gt; tree /f /a</span><br><span class="line">列出磁碟區 <span class="keyword">Data</span> 的資料夾 PATH</span><br><span class="line">磁碟區序號為 <span class="number">3</span>A21<span class="literal">-AA41</span></span><br><span class="line">E:.</span><br><span class="line">    Dockerfile</span><br><span class="line">    my<span class="literal">-cron</span></span><br><span class="line">    test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#輸出檔案內容</span></span><br><span class="line"><span class="built_in">PS</span> E:\dockerworkspace&gt; <span class="built_in">type</span> test.txt</span><br><span class="line">Wed Feb <span class="number">23</span> <span class="number">08</span>:<span class="number">38</span>:<span class="number">00</span> UTC <span class="number">2022</span></span><br><span class="line">Wed Feb <span class="number">23</span> <span class="number">08</span>:<span class="number">39</span>:<span class="number">00</span> UTC <span class="number">2022</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Bind-Mount練習之docker開發環境"><a href="#Bind-Mount練習之docker開發環境" class="headerlink" title="Bind Mount練習之docker開發環境"></a>Bind Mount練習之docker開發環境</h2><p>host沒有編譯環境，希望透過container來 bind相同的資料區塊，用這個方式的確很輕鬆產生編譯後的檔案。</p>
+<p>當前目錄指令說明</p>
+<ul>
+<li>linux<ul>
+<li>$(pwd)</li>
+</ul>
+</li>
+<li>windows<ul>
+<li>${pwd}</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看目前目錄檔案，目前只有一個hello.c</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/bindMountArea# ls</span><br><span class="line">hello.c</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">創建並運行container $(<span class="built_in">pwd</span>) 指的是當前目錄</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/bindMountArea# docker container run -it -v $(pwd):/app gcc:9.4</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">已進入容器，查看列表</span></span><br><span class="line">root@e058f803400b:/# ls                 </span><br><span class="line">app  bin  boot	dev  etc  home	lib  lib64  media  mnt	opt  proc  root  run  sbin  srv  sys  tmp  usr	var</span><br><span class="line"></span><br><span class="line">root@e058f803400b:/# cd app</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看的確在/app資料夾底下有跟host一樣的hello.c檔案</span></span><br><span class="line">root@e058f803400b:/app# ls</span><br><span class="line">hello.c</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">進行編譯</span></span><br><span class="line">root@e058f803400b:/app# gcc -o hello hello.c</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">編完譯後多出一個hello檔</span></span><br><span class="line">root@e058f803400b:/app# ls</span><br><span class="line">hello  hello.c</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">小玩一下</span></span><br><span class="line">root@e058f803400b:/app# ./hello abc</span><br><span class="line">hello abc</span><br><span class="line"></span><br><span class="line">root@e058f803400b:/app# ./hello kite</span><br><span class="line">hello kite</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">退出容器</span></span><br><span class="line">root@e058f803400b:/app# exit</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在host的確也有hello檔案</span></span><br><span class="line">root@kite-virtual-machine:/home/kite/Desktop/bindMountArea# ls</span><br><span class="line">hello  hello.c</span><br></pre></td></tr></table></figure>
+
+<h2 id="機器之間共享數據"><a href="#機器之間共享數據" class="headerlink" title="機器之間共享數據"></a>機器之間共享數據</h2><p>待補</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/22/2022-02-22%20Docker%20%E7%B3%BB%E5%88%97%20-%20(3)%20Dockerfile%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" rel="prev" title="docker 系列 - (3) Dockerfile完全指南">
+      <i class="fa fa-chevron-left"></i> docker 系列 - (3) Dockerfile完全指南
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/03/2022-03-03%20Docker%20%E7%B3%BB%E5%88%97%20-%20(5)%20Docker%E7%9A%84%E7%B6%B2%E8%B7%AF/" rel="next" title="docker 系列 - (5) Docker的網路">
+      docker 系列 - (5) Docker的網路 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%84%B2%E5%AD%98%E4%BB%8B%E7%B4%B9"><span class="nav-number">1.</span> <span class="nav-text">容器儲存介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Volume"><span class="nav-number">2.</span> <span class="nav-text">Data Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E6%BA%96%E5%82%99"><span class="nav-number">2.1.</span> <span class="nav-text">環境準備</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8volume"><span class="nav-number">2.2.</span> <span class="nav-text">基本使用volume</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%92%B0%E5%A2%83"><span class="nav-number">2.2.1.</span> <span class="nav-text">搭建環境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A2%BA%E8%AA%8Dcrontab%E5%9F%B7%E8%A1%8C%E7%8B%80%E6%B3%81"><span class="nav-number">2.2.2.</span> <span class="nav-text">確認crontab執行狀況</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bhost%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91-Mountpoint"><span class="nav-number">2.2.3.</span> <span class="nav-text">查看host檔案路徑(Mountpoint)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A9%97%E8%AD%89%E5%81%9C%E6%AD%A2container%E5%BE%8C%EF%BC%8Chost%E6%AA%94%E6%A1%88%E6%98%AF%E5%90%A6%E4%BB%8D%E5%AD%98%E5%9C%A8"><span class="nav-number">2.2.4.</span> <span class="nav-text">驗證停止container後，host檔案是否仍存在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BC%E7%8F%BE%E5%86%8D%E5%95%9F%E7%94%A8%E6%96%B0%E7%9A%84%E5%AE%B9%E5%99%A8-volume%E9%87%8D%E5%BB%BA%E4%B8%80%E5%80%8B%E6%96%B0%E7%9A%84%E5%8D%80%E5%9F%9F"><span class="nav-number">2.2.5.</span> <span class="nav-text">發現再啟用新的容器,volume重建一個新的區域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8E%A5%E7%BA%8C%E4%B8%8A%E4%B8%80%E5%80%8Bvolume%E8%B3%87%E6%96%99%EF%BC%9F"><span class="nav-number">2.2.6.</span> <span class="nav-text">如何接續上一個volume資料？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B8%E6%93%9A%E6%8C%81%E4%B9%85%E5%8C%96%E4%B9%8BBind-Mount"><span class="nav-number">3.</span> <span class="nav-text">數據持久化之Bind Mount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bind-Mount%E7%B7%B4%E7%BF%92%E4%B9%8Bdocker%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">Bind Mount練習之docker開發環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A9%9F%E5%99%A8%E4%B9%8B%E9%96%93%E5%85%B1%E4%BA%AB%E6%95%B8%E6%93%9A"><span class="nav-number">5.</span> <span class="nav-text">機器之間共享數據</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">10:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
