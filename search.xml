@@ -8971,6 +8971,8 @@
 <li><p>GitHub、Twitter、Stackoverflow、百度都在使用</p>
 </li>
 </ul>
+<span id="more"></span>
+
 <h2 id="2-Redis特點"><a href="#2-Redis特點" class="headerlink" title="2. Redis特點"></a>2. Redis特點</h2><ul>
 <li><p>高性能Key-Value</p>
 </li>
