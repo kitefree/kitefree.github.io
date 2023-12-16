@@ -189,6 +189,130 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/08/20/2021-08-20%20%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="地球人的修練">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/20/2021-08-20%20%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/" class="post-title-link" itemprop="url">前端測試</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-08-20 14:51:00" itemprop="dateCreated datePublished" datetime="2021-08-20T14:51:00+08:00">2021-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 10:33:50" itemprop="dateModified" datetime="2021-09-19T10:33:50+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>591</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="測試的差異"><a href="#測試的差異" class="headerlink" title="測試的差異"></a>測試的差異</h2><ul>
+<li>Unit 測試成本最低、速度最快</li>
+<li>UI測試成本最高、速度最慢</li>
+<li>E2E test 看起來跟selumium 滿像的，它還有儲檔截圖的概念，屬於使用UI的方式進行測試</li>
+</ul>
+<p><img src="https://i.imgur.com/Twzvwe4.png" alt="image-20210715153138009"></p>
+<p><code>puppeteer</code> 這個套件 是以UI的方式進行測試，要寫DOM元素來模擬填寫資料</p>
+<p><img src="https://i.imgur.com/ND2kiHi.png" alt="image-20210715171502770"></p>
+<h2 id="如何導入UNIT-TEST"><a href="#如何導入UNIT-TEST" class="headerlink" title="如何導入UNIT TEST"></a>如何導入UNIT TEST</h2><ul>
+<li>情境描述</li>
+<li><strong>測試的目標</strong>為何</li>
+<li><strong>導入要測試的函式</strong></li>
+<li><strong>測試的期望</strong>是什麼</li>
+</ul>
+<p><img src="https://i.imgur.com/1wl6idM.png" alt="image-20210715160413550"></p>
+<h2 id="安裝JEST"><a href="#安裝JEST" class="headerlink" title="安裝JEST"></a>安裝JEST</h2><p>npm init ，建立一個空的package 管理</p>
+<p><img src="https://i.imgur.com/rebkBba.png" alt="image-20210715164624123"></p>
+<p>VSCode 套件，這個套件可以即時存檔的時候，在function 前面立即有綠勾或紅叉，告訴你這個測試結果是否通過。</p>
+<p><img src="https://i.imgur.com/MvygGlJ.png" alt="image-20210715165151962"></p>
+<h2 id="JEST-測試開發"><a href="#JEST-測試開發" class="headerlink" title="JEST 測試開發"></a>JEST 測試開發</h2><h3 id="測試流程"><a href="#測試流程" class="headerlink" title="測試流程"></a>測試流程</h3><ol>
+<li>定義一段函式並匯出</li>
+<li>定義.test測試檔案，並匯入上方函式</li>
+<li>驗證結果</li>
+</ol>
+<p>筆記：使用node js 方式把 js export 出去</p>
+<p><img src="https://i.imgur.com/ElQItBc.png" alt="image-20210715164712315"></p>
+<p>筆記：再使用require 方式引入</p>
+<p><img src="https://i.imgur.com/Tw37OVs.png" alt="image-20210715164747521"></p>
+<p><img src="https://i.imgur.com/4LVAXFV.png" alt="image-20210715161350226"></p>
+<h3 id="JEST-IO-Docs"><a href="#JEST-IO-Docs" class="headerlink" title="JEST IO Docs"></a>JEST IO Docs</h3><p><img src="https://i.imgur.com/b3tNzFI.png" alt="image-20210715161637847"></p>
+<h3 id="相關測試函式"><a href="#相關測試函式" class="headerlink" title="相關測試函式"></a>相關測試函式</h3><p><img src="https://i.imgur.com/gH05LFE.png" alt="image-20210715165433056"></p>
+<p><img src="https://i.imgur.com/QQRb6IA.png" alt="image-20210715165523555"></p>
+<h4 id="驗證物件內容是否正確"><a href="#驗證物件內容是否正確" class="headerlink" title="驗證物件內容是否正確"></a>驗證物件內容是否正確</h4><p>物件本是是參考位置的概念，所以如果要驗證物件的內容是否相同可以使用<code>toEqual</code>方法，這個屬於深複製方式進行每一個key、value驗證</p>
+<p><img src="https://i.imgur.com/1nRZOsJ.png" alt="image-20210715163557279"></p>
+<h4 id="陣列是否包含特定值"><a href="#陣列是否包含特定值" class="headerlink" title="陣列是否包含特定值"></a>陣列是否包含特定值</h4><p><img src="https://i.imgur.com/VlThzeZ.png" alt="image-20210715163645518"></p>
+<p><img src="https://i.imgur.com/YBzZAFR.png" alt="image-20210715163706990"></p>
+<h4 id="數值必須大於300"><a href="#數值必須大於300" class="headerlink" title="數值必須大於300"></a>數值必須大於300</h4><p><img src="https://i.imgur.com/bpVPJ3w.png" alt="image-20210715163752310"></p>
+<h4 id="正規表達式email-驗證"><a href="#正規表達式email-驗證" class="headerlink" title="正規表達式email 驗證"></a>正規表達式email 驗證</h4><p><img src="https://i.imgur.com/iaChTFI.png" alt="image-20210715163827033"></p>
+<h3 id="describe-是一個群組的概念"><a href="#describe-是一個群組的概念" class="headerlink" title="describe 是一個群組的概念"></a>describe 是一個群組的概念</h3><p><img src="https://i.imgur.com/J2jbiHQ.png" alt="image-20210715163849282"></p>
+<p>我們可以看到使用npm run test 有群組的訊息分類</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p><img src="https://i.imgur.com/7W6Jc42.png" alt="image-20210715164302007"></p>
+<h3 id="非同步測試"><a href="#非同步測試" class="headerlink" title="非同步測試"></a>非同步測試</h3><p><img src="https://i.imgur.com/xAzfBgj.png" alt="image-20210715170005601"></p>
+<p><img src="https://i.imgur.com/8I1ZWRK.png" alt="image-20210715170654309"></p>
+<p><img src="https://i.imgur.com/pXVZK7e.png" alt="image-20210715170552237"></p>
+<p>以下兩個測試都是一樣的結果，使用<code>expct.assertions(1)</code> ，這個是一個斷言的東西，告訴程式非同步的等待會有幾個</p>
+<p><img src="https://i.imgur.com/cOsufGR.png" alt="image-20210715171030792"></p>
+<p>使用<code>await</code> 代表要等到拿到資料之後，才會往下執行<code>57</code>行程式</p>
+<p><img src="https://i.imgur.com/GYnh3a8.png" alt="image-20210715171103015"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/08/17/2021-08-17%20Neor%20Profile%20Sql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1681,177 +1805,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/06/19/2021-06-19%20CCNA_14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="地球人的修練">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/19/2021-06-19%20CCNA_14/" class="post-title-link" itemprop="url">CCNA_14</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-06-19 06:40:00" itemprop="dateCreated datePublished" datetime="2021-06-19T06:40:00+08:00">2021-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>2 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="14-Warm-Up-Packet-Tracer-and-IOS-Basic3-配置密码，密码恢复，系统日志，IOS版本号意义和License）"><a href="#14-Warm-Up-Packet-Tracer-and-IOS-Basic3-配置密码，密码恢复，系统日志，IOS版本号意义和License）" class="headerlink" title="14. Warm Up Packet Tracer and IOS Basic3(配置密码，密码恢复，系统日志，IOS版本号意义和License）"></a>14. Warm Up Packet Tracer and IOS Basic3(配置密码，密码恢复，系统日志，IOS版本号意义和License）</h2><h3 id="Enable-Password-Secret"><a href="#Enable-Password-Secret" class="headerlink" title="Enable Password&#x2F;Secret"></a>Enable Password&#x2F;Secret</h3><p><img src="https://i.imgur.com/NSuTVPz.png"></p>
-<ul>
-<li><p>Type 0 </p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enable password</span><br></pre></td></tr></table></figure>
-<p>  是一個明文的文檔</p>
-</li>
-<li><p>Type 7</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service password-encryption</span><br></pre></td></tr></table></figure>
-<p>  雖然有加密，但是其實是滿弱的<br>  可以上網找cisco type 7 decrypt 就可以破解了</p>
-</li>
-<li><p>Type 5</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enable secret</span><br></pre></td></tr></table></figure></li>
-<li><p>Type 4</p>
-<ul>
-<li>是一個失敗的開發，也不使用了</li>
-</ul>
-</li>
-<li><p>Type 8 </p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enable algorithm-type sha256</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在模擬器上無法模擬</li>
-</ul>
-</li>
-<li><p>Type 9 </p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enable algorithm-type scrypt secret</span><br></pre></td></tr></table></figure>
-<p>  建議都使用type9進行加密</p>
-</li>
-</ul>
-<h3 id="Recovering-Passwords"><a href="#Recovering-Passwords" class="headerlink" title="Recovering Passwords"></a>Recovering Passwords</h3><p><img src="https://i.imgur.com/SUu5Hgd.png"></p>
-<ul>
-<li><p>設定空白config</p>
-<ul>
-<li>演示過程中，先將電源重啟，接著再command 按下<code>ctrl + c</code>，就會進入到 <code>rommon 1</code> 模式底下。設定 0x2142 是為了要設定一個空白的config，而不要加載startup config  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">confreg 0x2142</span><br><span class="line">reset</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>覆蓋running-conifg</p>
-<ul>
-<li>藉由這樣的覆蓋之後，再重新設定密碼，而且覆蓋命令執行完，是可以不用輸入密碼的狀況，再重新設置密碼  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy startup-config running-config</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>設定不需要密碼</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no enable password</span><br></pre></td></tr></table></figure></li>
-<li><p>改回0x2102</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config-register 0x2102</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h3><p><img src="https://i.imgur.com/oLE9B1o.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show logging</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Console logging</p>
-<ul>
-<li>使用console cable 連線的logging 記錄</li>
-</ul>
-</li>
-<li><p>Terminal logging</p>
-<ul>
-<li>使用telnet,ssh 的連線記錄</li>
-</ul>
-</li>
-<li><p>Buffered logging</p>
-<ul>
-<li>系統日誌，會寫到某個txt檔上，可以查看</li>
-</ul>
-</li>
-<li><p>Syslog Server logging</p>
-<ul>
-<li>把系統日誌發送到遠端的server</li>
-</ul>
-</li>
-</ul>
-<p>開啟buffer logging</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging bufered</span><br></pre></td></tr></table></figure>
-
-<p>關閉console日誌</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no logging console</span><br></pre></td></tr></table></figure>
-
-<p>設定系統日誌到遠端</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logging 1.1.1.2</span><br><span class="line">do show logging</span><br></pre></td></tr></table></figure>
-
-<p>logging 總開關</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logging on</span><br><span class="line">no logging on</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Logging-Level"><a href="#Logging-Level" class="headerlink" title="Logging Level"></a>Logging Level</h3><p>0<del>7 最嚴重到最輕<br>通常不會看debug(7)，因為這個訊息太多了<br>通常我們會希望日誌是顯示6</del>0的系統日誌<br>你想知道日誌裡有哪些等級或者等級裡面有哪些日誌，可以去cisco上找文件<br><img src="https://i.imgur.com/VhcD9Ty.png"></p>
-<h3 id="Logging-Sync"><a href="#Logging-Sync" class="headerlink" title="Logging Sync"></a>Logging Sync</h3><p>主要說明了如果在敲打命令的時候，會因為日誌的輸入，而讓我們的打的字元被截斷，因此可以使用<br>logging synchronous 方式避免掉這個問題</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging synchronous</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/GdnM6eZ.png"></p>
-<h3 id="CISCO-IOS-VERSION"><a href="#CISCO-IOS-VERSION" class="headerlink" title="CISCO IOS VERSION"></a>CISCO IOS VERSION</h3><p><img src="https://i.imgur.com/qlhllIE.png"></p>
-<p>最優先請看major release<br>M 是穩定版<br>T 是測試版，沒問題之後，會再出個一穩定版<br>當然還有別的代號比如S、Y</p>
-<h3 id="CISCO-IOS-Packaging-before-15-0"><a href="#CISCO-IOS-Packaging-before-15-0" class="headerlink" title="CISCO IOS Packaging - before 15.0"></a>CISCO IOS Packaging - before 15.0</h3><p>15.0以前的版本，每買一個功能，都需要安裝新的IOS檔，重新灌系統<br><img src="https://i.imgur.com/M28RTAO.png"></p>
-<h3 id="CISCO-IOS-Packaging-after-15-0"><a href="#CISCO-IOS-Packaging-after-15-0" class="headerlink" title="CISCO IOS Packaging - after 15.0"></a>CISCO IOS Packaging - after 15.0</h3><p>15.0以後的版本，IOS檔已經包含所有功能了，只是個一function的開啟概念<br><img src="https://i.imgur.com/xGTjUUg.png"></p>
-<h3 id="Unversal-Image"><a href="#Unversal-Image" class="headerlink" title="Unversal Image"></a>Unversal Image</h3><p>激活新購買的模組流程<br>先在router 打上</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show license udi </span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/uAGNPPr.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1934,7 +1887,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-count">118</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1970,12 +1923,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">336k</span>
+    <span title="總字數">354k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:11</span>
+    <span title="所需總閱讀時間">10:44</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>
