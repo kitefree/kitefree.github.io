@@ -189,514 +189,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/03/08/2021-03-08%20JSON%20APIs(v1.0)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/08/2021-03-08%20JSON%20APIs(v1.0)/" class="post-title-link" itemprop="url">JSON APIs(v1.0)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-03-08 17:07:00" itemprop="dateCreated datePublished" datetime="2021-03-08T17:07:00+08:00">2021-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:46:37" itemprop="dateModified" datetime="2021-10-01T14:46:37+08:00">2021-10-01</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>5.2k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>9 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>這項技術是由originally drafted by Yehuda Katz in May of 2013 提出的。一個概念或技術的出現往往都有它的目的與精神，整理如下</p>
-<ul>
-<li><blockquote>
-<p>Its original goal was to create a communication model based around defined interactions,<strong>rather than leaning on per-application “ad-hoc” code</strong></p>
-</blockquote>
-</li>
-</ul>
-<p><code>ad-hoc</code>：「特設的、特定目的的、即席的、臨時的、將就的、專案的」</p>
-<ul>
-<li>官網</li>
-</ul>
-<blockquote>
-<p>JSON:API is a <strong>specification</strong> for how a client should request that resources be fetched or modified, and how a server should respond to those requests.<br>JSON:API is designed to <strong>minimize both the number of requests and the amount of data transmitted between clients and servers</strong>. This efficiency is achieved without compromising readability, flexibility, or discoverability.</p>
-</blockquote>
-<ul>
-<li>will 保哥</li>
-</ul>
-<blockquote>
-<p>JSON 幾乎成為 Web 業界的標準傳輸格式，不過由於 JSON 的格式非常彈性，不少人光是為了爭辯 JSON 到底該長得怎樣而吵半天，我也好幾次<strong>被客戶「自訂」的 JSON 格式打敗</strong>，不但<strong>缺發一致性</strong>，更有<strong>前後版本相容性的問題</strong>，身為前端攻城獅的你能不在乎嗎？！<br>現在有了 <strong>JSON API 這份標準規格</strong>，可以幫助你**增加效率 (減少溝通)**、套用工具支援 (或現有函式庫)、並且讓你專注在你的應用程式開發上，不再為了 JSON 的長相而煩惱！<br>目前實作 JSON API 的函式庫很多了，有支援 ASP.NET WebAPI, Json.NET, 與 Entity Framework 的 JSONAPI . NET，其他還有 PHP, node.js, Ruby, Python, Go 都有相對應的 Server&#x2F;Client 實作出現，使用上非常方便！</p>
-</blockquote>
-<ul>
-<li><p>自己的結語</p>
-<p>JSON APIs 的資料結構 很像是RMDBS 與SQL 的另一種形式呈現。</p>
-</li>
-</ul>
-<h2 id="Client-Server-Responsibilities"><a href="#Client-Server-Responsibilities" class="headerlink" title="Client &amp; Server Responsibilities"></a><a target="_blank" rel="noopener" href="https://jsonapi.org/format/#content-negotiation">Client &amp; Server Responsibilities</a></h2><p>在client 跟server 都有一些職責在，大家都必須在 header 中聲明<code>application/vnd.api+json</code></p>
-<p>而JSON API 已經在<code>IANA</code>機構完成註冊囉，它的MIME 類型就是<strong>application&#x2F;vnd.api+json</strong></p>
-<h2 id="Document-Structure"><a href="#Document-Structure" class="headerlink" title="Document Structure"></a>Document Structure</h2><h3 id="Top-Level"><a href="#Top-Level" class="headerlink" title="Top Level"></a>Top Level</h3><p>MUST</p>
-<ul>
-<li>data</li>
-<li>errors</li>
-<li>meta</li>
-</ul>
-<p>MAY</p>
-<ul>
-<li>jsonapi</li>
-<li>links</li>
-<li>included</li>
-</ul>
-<p>Primary data <strong>MUST</strong> be either:</p>
-<ul>
-<li>single resource object,resource identifier object, or null</li>
-<li>an array of resource objects</li>
-</ul>
-<p>Primary data <strong>MUST</strong> have type and id</p>
-<p>可以想像成是資料表與資料的ID</p>
-<h3 id="Resource-Objects"><a href="#Resource-Objects" class="headerlink" title="Resource Objects"></a>Resource Objects</h3><h4 id="Identification"><a href="#Identification" class="headerlink" title="Identification"></a>Identification</h4><p>每一個RO(Resource Objects) 都必須要有id,type，且必須是字串</p>
-<h4 id="Fields"><a href="#Fields" class="headerlink" title="Fields"></a>Fields</h4><p>attributes ,relationships 在這邊統稱<code>fields</code></p>
-<h4 id="Attributes"><a href="#Attributes" class="headerlink" title="Attributes"></a>Attributes</h4><p>表達資料的資訊，可以想像是我們在資料表欄位</p>
-<h4 id="Relationships"><a href="#Relationships" class="headerlink" title="Relationships"></a>Relationships</h4><p><strong>MUST</strong> contain at least one</p>
-<p>links</p>
-<ul>
-<li><p>self</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;relationships&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/relationships/author&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;related&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/author&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;people&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>relationships 下的 links-&gt;self 可以想像是依據文章編號1的作者，再反推找到所有文章?</p>
-</li>
-<li><p>related</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;relationships&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/relationships/author&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;related&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/author&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;people&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>取得文章編號1的作者資訊?</p>
-</li>
-</ul>
-<p>data</p>
-<p>此關聯資源的資料，一樣必須包含type,id</p>
-<p>meta</p>
-<h3 id="Related-Resource-Links"><a href="#Related-Resource-Links" class="headerlink" title="Related Resource Links"></a>Related Resource Links</h3><h3 id="Resource-Linkage"><a href="#Resource-Linkage" class="headerlink" title="Resource Linkage"></a>Resource Linkage</h3><h3 id="JSON-API-Object"><a href="#JSON-API-Object" class="headerlink" title="JSON:API Object"></a>JSON:API Object</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;jsonapi&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Compound-Documents"><a href="#Compound-Documents" class="headerlink" title="Compound Documents"></a>Compound Documents</h3><p>To reduce the number of HTTP requests, servers <strong>MAY</strong> allow responses that include related resources along with the requested primary resources. Such responses are called “compound documents.</p>
-<p>試著解釋以下文檔</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;articles&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;attributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;JSON:API paints my bikeshed!&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;relationships&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/relationships/author&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;related&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/author&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;people&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;comments&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/relationships/comments&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;related&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/articles/1/comments&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">          <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;comments&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;5&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;comments&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;12&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;included&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;people&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;attributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;first-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Dan&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;last-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Gebhardt&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;twitter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dgeb&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/people/9&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;comments&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;5&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;attributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="string">&quot;First!&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;relationships&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;people&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/comments/5&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;comments&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;12&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;attributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="string">&quot;I like XML better&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;relationships&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;people&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/comments/12&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://jsonapi.org/">JSON APIs en</a></li>
-<li><a target="_blank" rel="noopener" href="http://jsonapi.org.cn/">JSON APIs cn</a></li>
-<li><a target="_blank" rel="noopener" href="https://openhome.cc/Gossip/Spring/HATEOAS.html">聊聊 Spring HATEOAS</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.ithome.com.tw/voice/128528">你的REST不是REST？</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.ithome.com.tw/node/80062">重新認識HTTP請求方法</a></li>
-<li><a target="_blank" rel="noopener" href="https://raygun.com/blog/soap-vs-rest-vs-json/">soap-vs-rest-vs-json</a></li>
-<li><a target="_blank" rel="noopener" href="https://dri.es/headless-cms-rest-vs-jsonapi-vs-graphql">Headless CMS: REST vs JSON:API vs GraphQL</a></li>
-<li><a target="_blank" rel="noopener" href="https://nordicapis.com/how-does-jsonapi-compare-to-rest-and-graphql/">How Does JSON:API Compare To REST and GraphQL?</a></li>
-<li><a target="_blank" rel="noopener" href="https://raygun.com/blog/soap-vs-rest-vs-json/">SOAP vs REST vs JSON - a 2020 comparison</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/jsonapi-vs-cores-rest-module">REST 與JSON API 比較</a></li>
-<li>JSON API Server</li>
-<li>JSON API Client</li>
-<li>JsonApiDotNetCore</li>
-<li>JSONAPI 與 REST</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/03/03/2021-03-03%20RESTful%20API/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/03/2021-03-03%20RESTful%20API/" class="post-title-link" itemprop="url">RESTful API</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-03-03 19:26:00" itemprop="dateCreated datePublished" datetime="2021-03-03T19:26:00+08:00">2021-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:31:04" itemprop="dateModified" datetime="2021-10-01T14:31:04+08:00">2021-10-01</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>6.7k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>12 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-什麼是-API"><a href="#1-什麼是-API" class="headerlink" title="1. 什麼是 API?"></a>1. 什麼是 API?</h2><p>應用程式介面（英語：Application Programming Interface)</p>
-<p>想像API是服務員，你來到了餐廳，看了菜單(API Doc)，點了你想要的項目(Request)。經過廚師的努力(Server)，服務員將菜端出來(response)給你。</p>
-<p><a target="_blank" rel="noopener" href="https://youtu.be/s7wmiS2mSXY">What is an API?</a></p>
-<h3 id="1-1-以API-公開性大概可以分為三類"><a href="#1-1-以API-公開性大概可以分為三類" class="headerlink" title="1.1 以API 公開性大概可以分為三類"></a>1.1 以API 公開性大概可以分為三類</h3><ol>
-<li><strong>Open API又稱作Public API</strong><br>Developers(開發商)它還是需要去Register(註冊),Sign up 取得key。給大眾使用的API</li>
-<li><strong>Internal API</strong><br>公司內部使用，串聯不同service，不同team之間</li>
-<li><strong>Private API</strong><br>有授權使用，透過合作或付費方式</li>
-</ol>
-<h3 id="1-2-以-protocol-與-architectural角度來分"><a href="#1-2-以-protocol-與-architectural角度來分" class="headerlink" title="1.2 以 protocol 與 architectural角度來分"></a>1.2 以 protocol 與 architectural角度來分</h3><ol>
-<li><strong>Local APIs</strong><br>The original API, created to provide operating system or middleware services to application programs.</li>
-<li><strong>Web APIs</strong><br>Designed to represent widely used resources like HTML pages and are accessed using a simple HTTP protocol.Often called REST APIs or RESTful APIs.</li>
-<li><strong>Program APIs</strong><br>Based on RPC technology that makes a remote program component appear to be local to the rest of the software</li>
-</ol>
-<h2 id="2-什麼是-REST"><a href="#2-什麼是-REST" class="headerlink" title="2. 什麼是 REST?"></a>2. 什麼是 REST?</h2><p>REST 是 Representational State Transfer 的縮寫，可譯為「具象狀態傳輸」。由 Roy Fielding 博士在 2000 年的博士論文中所提出。他同時也是 HTTP 規範的主要作者之一。符合 REST 風格的網站架構可以稱為 RESTful。</p>
-<p>REST 是一種軟體架構風格（並非標準），目的是幫助在世界各地不同軟體、程式在網際網路中能夠互相傳遞訊息。每一個網頁都可視為一個資源（resource）提供使用者使用，而你可以透過 URL（Uniform Resource Locator），也就是這些資源的地址，來取得這些資源並在你的瀏覽器上使用。</p>
-<p>REST指的是網路中Client端和Server端的一種呼叫服務形式，透過既定的規則，滿足約束條件和原則的應用程式設計，對資源的操作包括獲取、創建、修改和刪除資源，這些操作就是依照我們前面所提到的HTTP Method: GET、POST、PUT、PATCH和DELETE。這正好會對應到資料庫基本操作CRUD。</p>
-<p>CRUD 為 Create(新增)、Read(讀取)、Update(更新)與Delete(刪除)的縮寫。</p>
-<h2 id="3-什麼是-RESTful"><a href="#3-什麼是-RESTful" class="headerlink" title="3. 什麼是 RESTful?"></a>3. 什麼是 RESTful?</h2><p>運用 HTTP 來表達語義的路由設計風格稱為 RESTful API。</p>
-<p>(Rest化 ＝ Restful，如果像小編一樣常常不知道講述的時候該用Rest或是Restful可以這樣去記，被轉化成Rest架構的Web API &#x3D; Restful API)</p>
-<p>HTTP 本身就是 REST 的實作</p>
-<h2 id="4-REST和RESTFUL的區別"><a href="#4-REST和RESTFUL的區別" class="headerlink" title="4. REST和RESTFUL的區別?"></a>4. REST和RESTFUL的區別?</h2><p>經過大量資料閱讀，我只能這樣詮釋：就好比Beauty和Beautiful的關係。</p>
-<h2 id="5-RESTful-API-主要由三種元件組成"><a href="#5-RESTful-API-主要由三種元件組成" class="headerlink" title="5. RESTful API 主要由三種元件組成"></a>5. RESTful API 主要由三種元件組成</h2><ol>
-<li><strong>Nouns 名詞</strong>：定義資源位置的 URL，每個資源在網路上都會有唯一的位置，就如每戶人家都有唯一的地址一樣。</li>
-<li><strong>Verbs 動詞</strong>：對資源要做的動作。</li>
-<li><strong>Content Types 資源呈現方式</strong>：API 資源可以以多種方式表現，最常用的是 JSON，較輕，也較好處理。</li>
-</ol>
-<p>不同公司，不一樣的工程師，設計的名稱都會不一樣，沒有統一的命名方式，造成在引用各家 API 時，都需要詳讀 API 文件，理解所有設計命名規則後，才可使用。</p>
-<h2 id="6-REST-優點與限制"><a href="#6-REST-優點與限制" class="headerlink" title="6. REST 優點與限制"></a>6. REST 優點與限制</h2><ol>
-<li>有唯一的URL表示資源位置，統一的 API 接口。(Uniform Interface)</li>
-<li>無狀態。(Stateless)<br>RESTful 的狀態，意即 HTTP 的請求狀態，一般 Web 服務中，Server 端和 Client 端交互的資訊，會存在 Server 端的 Session (例如：已登入狀態)，在 Client 端再次發送請求的時候，Server 端透過保存在 Server 端的 Session，去執行 request。無狀態的意思，即 Client 端自行保存狀態，在請求 Server 的時候，一併附上給 Server 端，Server 端無保存 Client 端的狀態資訊。<br>舉例來說，可能在用戶登錄系統時，Server 產生 token 紀錄 user 已登錄系統，然後把 token 還給 Client，在 Client 再次發送請求的時候，把 token 一起發給 Server，這樣 Server 就知道這一個 Client 是已經處於登錄的狀態。<br>意即所有的資源都可以 URI 定位，而且這個定位與其他資源無關，也不會因為其他資源的變化而變化，資源相互的依賴性降低。<br>舉一個白話一點的例子：查詢員工工資：<br>第一步：登錄系統。<br>第二步：進入查詢工資的頁面。<br>第三步：搜索該員工。<br>第四步：點擊姓名查看工資。<br>這樣的操作流程就是有狀態的，查詢工資的每一個步驟都依賴於前一個步驟，只要前置操作不成功，後續操作就無法執行。如果輸入一個URL就可以直接得到指定員工的工資，這種情況就是無狀態的，因為獲取工資不依賴於其他資源或狀態，這種情況下，員工工資是一個資源，由一個 URL 與之對應可以通過 HTTP 中的 GET 方法得到資源，這就是典型的 RESTful 風格。</li>
-<li>可更高效利用快取來提高回應速度 (Cachable)<br>在 server-side，GET 過的資源，如果沒有被變更過，可以利用 cache 機制減少 request。<br>在 client-side，透過 client 端 cache 紀錄 cache 版本，若向 server 要求資源時發現 server 最新版與 cache 相同，則 client 端直接取用本地資源即可，不需要再做一次查詢</li>
-<li>分層系統架構 (Layered System)</li>
-<li>客戶端服務器分離 (Client-Server)</li>
-<li>充份利用 HTTP protocal(GET&#x2F;POST&#x2F;PUT&#x2F;DELETE) (Manipulation of resources through representations)</li>
-<li>可執行程式碼的設計，像是 JavaScript（非必要實作項目） Code-On-Demand (optional)</li>
-</ol>
-<h3 id="好處"><a href="#好處" class="headerlink" title="好處"></a>好處</h3><p>RESTful 這種「和 CRUD 對齊」的特性會帶來一些溝通的便利性，客戶端只需要知道可用資源，就能依照約定俗成的邏輯，推測出相關的 API。<br>這種「約定俗成」的設計感也可以讓工程師規劃路由時減少一些煩惱。</p>
-<h3 id="壞處"><a href="#壞處" class="headerlink" title="壞處"></a>壞處</h3><p>REST 也不是萬能的，除了優點也是有許多在實務上應用的缺點。比如查詢時常被詬病資源相依結構鬆散問題，有時候取資料時都要呼叫好多次 API 才可以組合成完整的物件。舉個例子，想要取得文章與作者資訊，就必須先 GET &#x2F;文章&#x2F;{ID}，然後再透過取回的文章物件中的 Author 欄位再一次呼叫 GET &#x2F;使用者&#x2F;{NAME} 取得作者資訊，挺麻煩的。像是最近興起的 GraphQL (由 Facebook 發佈) 就可以解決 REST 取相依結構資料的問題，整體來說 ORM 的實踐概念更好了，也剛好呼應近幾年熱門的 NoSQL 設計</p>
-<p>當然，一個專案裡不可能所有的路由都在操作資料，因此不會每條路由都能完美對齊 RESTful，例如「登入」的路由通常設定為 <em><strong>POST &#x2F;login</strong></em>，就完全是以動詞為中心。身為專案的架構者，有時候還是需因地制宜，風格只是參考，不是阻礙。</p>
-<h2 id="7-PUT-需要注意"><a href="#7-PUT-需要注意" class="headerlink" title="7. PUT 需要注意"></a>7. PUT 需要注意</h2><p>POST／PUT 都可以用來新增，PATCH／PUT 都可以用來修改，但其中的差別在哪裡呢?</p>
-<p>POST的定義上屬於將原先沒有的資料去做一筆新增的動作，PATCH就是一般常見的修改，所以真的有問題的其實是PUT。<br>PUT在定義上(idempotent)無論做多少次，回傳結果都會一樣。</p>
-<p>以POST來說，我要一雙鞋，我就會得到一雙鞋。但是如果再用POST發一次我要一雙鞋，會出現兩種可能：</p>
-<ol>
-<li>我”再”得到一雙鞋，而且這雙鞋跟上一雙是不一樣的，以資料庫來說，就是ID不一樣。</li>
-<li>我只能有一雙鞋，所以他會跟我說”錯誤”，我已經得到一雙鞋了！</li>
-</ol>
-<h2 id="8-使用回傳-HTTP-狀態碼-Status-codes-來表示執行結果如何"><a href="#8-使用回傳-HTTP-狀態碼-Status-codes-來表示執行結果如何" class="headerlink" title="8. 使用回傳 HTTP 狀態碼 (Status codes) 來表示執行結果如何"></a>8. 使用回傳 HTTP 狀態碼 (Status codes) 來表示執行結果如何</h2><p>HTTP 中也規範了各種狀態碼，來表示請求是否被完成，因此 API 在回應時也應回傳適當的 HTTP 狀態碼，來表示執行結果。HTTP 狀態碼的大分類如下：<br>1XX 訊息 (Informational)<br>2XX 成功 (Successful)<br>3XX 重新導向 (Redirection)<br>4XX 請求錯誤 (Client Error)<br>5XX 伺服器錯誤 (Server Error)</p>
-<h2 id="9-實作"><a href="#9-實作" class="headerlink" title="9. 實作"></a>9. 實作</h2><p>PYTHON FAST API</p>
-<p><code>index.py</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"><span class="keyword">from</span> fastapi.middleware.cors <span class="keyword">import</span> CORSMiddleware</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">origins = [    </span><br><span class="line">    <span class="string">&quot;http://127.0.0.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;http://127.0.0.1:0000&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">app.add_middleware(</span><br><span class="line">    CORSMiddleware,</span><br><span class="line">    allow_origins=origins,</span><br><span class="line">    allow_credentials=<span class="literal">True</span>,</span><br><span class="line">    allow_methods=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">    allow_headers=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    name: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;2&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/file/&#123;name&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="keyword">return</span> name + <span class="string">&quot;..GET file(R)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/file&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">item: Item</span>):</span><br><span class="line">    <span class="keyword">return</span> item.name + <span class="string">&quot;..POST file(C)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.put(<span class="params"><span class="string">&quot;/file&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">item: Item</span>):</span><br><span class="line">    <span class="keyword">return</span> item.name + <span class="string">&quot;..UPDATE file(U)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.delete(<span class="params"><span class="string">&quot;/file&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file</span>(<span class="params">item: Item</span>):</span><br><span class="line">    <span class="keyword">return</span> item.name + <span class="string">&quot;..DELETE file(D)&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>index.html</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    uvicorn index:app --reload</span><br><span class="line">    &lt;button id=&quot;get&quot; onclick=&quot;apiget()&quot;&gt;get&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;post&quot; onclick=&quot;callapi(this.id)&quot;&gt;post&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;put&quot; onclick=&quot;callapi(this.id)&quot;&gt;put&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;delete&quot; onclick=&quot;callapi(this.id)&quot;&gt;delete&lt;/button&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line"></span><br><span class="line">        function apiget() &#123;</span><br><span class="line">            axios.get(&#x27;http://127.0.0.1:8000/file/kite file22&#x27;, &#123;                </span><br><span class="line">            &#125;).then(function (res) &#123;</span><br><span class="line">                console.log(res.data);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        function callapi(method) &#123;</span><br><span class="line">            axios(&#123;</span><br><span class="line">                method: method,</span><br><span class="line">                url: &#x27;http://127.0.0.1:8000/file&#x27;,</span><br><span class="line">                headers: &#123;</span><br><span class="line">                    &#x27;Content-Type&#x27;: &#x27;application/json;charset=UTF-8&#x27;</span><br><span class="line">                &#125;,</span><br><span class="line">                data: &#123;</span><br><span class="line"></span><br><span class="line">                    name: &quot;kite file&quot;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).then(function (res) &#123;</span><br><span class="line">                console.log(res.data);</span><br><span class="line">            &#125;)</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="10-其它ISSUE"><a href="#10-其它ISSUE" class="headerlink" title="10. 其它ISSUE"></a>10. 其它ISSUE</h2><p>避免API被攻擊，可以考慮啟用API調用速度限制(Rate limiting)，又或是HTTP Cache的機制</p>
-<p>狀態碼</p>
-<p>2xx &#x3D; Success（成功）</p>
-<p>3xx &#x3D; Redirect（重定向）</p>
-<p>4xx &#x3D; User error（客戶端錯誤）</p>
-<p>5xx &#x3D; Server error（伺服器端錯誤）</p>
-<h2 id="11-延伸閱讀"><a href="#11-延伸閱讀" class="headerlink" title="11. 延伸閱讀"></a>11. 延伸閱讀</h2><ol>
-<li>RPC</li>
-<li>SOAP</li>
-<li>REST</li>
-<li>GraphQL</li>
-</ol>
-<h3 id="WEB-SERVICE-分四種"><a href="#WEB-SERVICE-分四種" class="headerlink" title="WEB SERVICE 分四種"></a>WEB SERVICE 分四種</h3><ul>
-<li>JSON-RPC</li>
-<li>SOAP</li>
-<li>XML-RPC</li>
-<li>REST</li>
-</ul>
-<h2 id="12-參考文章"><a href="#12-參考文章" class="headerlink" title="12. 參考文章"></a>12. 參考文章</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://blog.enixjin.net/api_design_part1/">API设计，从RPC、SOAP、REST到GraphQL（一）</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/twtrubiks/django-rest-framework-tutorial/tree/master/RESTful-API-Tutorial">twtrubiks&#x2F;django-rest-framework-tutorial</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.webguide.nat.gov.tw/News_Content.aspx?n=531&s=2918">RESTful API 設計準則與實務經驗</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=R8GL5y49iJc">[ Alex 宅幹嘛 ] 👨‍💻 JSON 與 RESTFUL API 串接一次搞定</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://stoplight.io/api-types/">Types of API | Open Rest API Types for Enterprise | Types Of API Calls &amp; REST API Protocol</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.cevgroup.org/what-is-api/">What is API? - CUTTING EDGE VISIONARIES</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://rapidapi.com/blog/types-of-apis/">Types of APIs (and what’s the Difference?) [2021] | RapidAPI</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://tw.alphacamp.co/blog/rest-restful-api">什麼是REST? 認識 RESTful API 路由語義化設計風格｜ALPHA Camp Blog</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://medium.com/itsems-frontend/api-%E6%98%AF%E4%BB%80%E9%BA%BC-restful-api-%E5%8F%88%E6%98%AF%E4%BB%80%E9%BA%BC-a001a85ab638">API 是什麼? RESTful API 又是什麼?</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://progressbar.tw/posts/53">[不是工程師] 休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://noob.tw/restful-api/">API 實作(一)：規劃 RESTful API 要注意什麼</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/John_ToStr/article/details/103473077">RPC and REST</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/laomo_bible/article/details/79677677?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control&dist_request_id=1328593.8780.16147646030120667&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control">REST RPC</a></p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/12/27/2020-12-27%20bootstrap5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/27/2020-12-27%20bootstrap5/" class="post-title-link" itemprop="url">bootstrap5</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-12-27 19:11:00" itemprop="dateCreated datePublished" datetime="2020-12-27T19:11:00+08:00">2020-12-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:28:11" itemprop="dateModified" datetime="2021-10-01T14:28:11+08:00">2021-10-01</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>523</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>格線系統</p>
-<p>container-fluid 滿版容器<br>container 定寬容器</p>
-<p>手機、平板以上<br>col-12 col-md-3</p>
-<p>平板直向md<br>平板橫向lg<br>桌機xl</p>
-<p>不想管幾欄 就寫class&#x3D;”col”<br>自動欄寬 col</p>
-<p>col-4 ，如果有6個div 會自己換行<br>w-100 h-100</p>
-<p>breakpoint<br>用時寫sm 與md ，優先序是md會蓋掉sm</p>
-<p>col-12 col-md-4 col-lg-3 col-xxl-2<br>這個寫法用在col 上</p>
-<p>另一種寫法寫在row<br>row row-cols-md-3 row-cols-lg-4 row-cols-xl-6<br>欄位間距<br>g-5</p>
-<p>垂直居中<br>justify-content-center<br>align-items-center<br>col-8 col-md-6</p>
-<p>height:98vh  – &gt; vh 是什麼?<br>background-size:cover; –&gt; 是什麼?<br>mb4</p>
-<p>格線距離的控制</p>
-<p>圖片與寬高尺寸控制<br>class img-fluid 滿版圖片<br>css max-width:100%<br>w-100 與 max-width:100%</p>
-<p>共用項目margin padding</p>
-<p>卡片組件<br>.amos-card-img{<br>width:100%;<br>height:100%;<br>object-fit:cover;<br>}</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/11/07/2020-11-07%20git%2020%E9%81%93%E9%A1%8C%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/07/2020-11-07%20git%2020%E9%81%93%E9%A1%8C%E7%9B%AE/" class="post-title-link" itemprop="url">git 20道題目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-11-07 00:44:00" itemprop="dateCreated datePublished" datetime="2020-11-07T00:44:00+08:00">2020-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:27:21" itemprop="dateModified" datetime="2021-10-01T14:27:21+08:00">2021-10-01</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>360</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f7db497104dffa008bc801fb49230444">git commit</a><br>2.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=817c026fe90d09e67eb30946ef5d42fa">git head 技巧 I</a><br>3.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8dba225432eba46847beafd616042fc7">git head 技巧 II</a><br>4.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=81354f6467eeebfcbd81294787371458">分支合併(快轉模式)</a><br>5.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3821f5ac77cd68c20f7e5ac9ea4a4234">分支合併(非快轉模式 -no-ff) I</a><br>6.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=4ebc7d237aec42ba62f5d9484040d279">分支合併(非快轉模式 -no-ff) II</a><br>7.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=51dbe15aa9787175a8c4c34b8fa6ed12">分支合併(非快轉模式) I</a><br>8.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8a53b2a46b9fa9e963d0eb80b65f17bb">分支合併(非快轉模式) II</a><br>9.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=293df94156d03ffcb8ad2a796c3d1ebf">git clone</a><br>10.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=c350fdc6aa338549b6eb4b1499383fca">git push</a><br>11.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=96dd4464d93b751d3fc5d124663bdd73">git pull (可用 git fakeTeamwork)</a><br>12.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=fd0557f04608384f2d35c3814c088913">git fetch</a><br>13.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=9eddf30e74e1b1c089e83f7c265c192e">本地三個分支(master、dev、feature&#x2F;a)</a><br>14.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=20cf21dbc718a76cce6cd77363abe335">本地三個分支(master、dev、feature&#x2F;a) ，遠端有 master 分支，並擁有合併後的所有 commit</a><br>15.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f6e4b301996ac6c121b6d0fb25c51027">git reset 還原練習</a><br>16.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=40764d63ded638a1b48b2d9e3afeff09">git rebase 練習 I</a><br>17.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3148f8917a34af79cf9bd348cc99c3f8">git rebase 練習 II</a><br>18.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=0896114d1a1d3a66e022631dab133726">git cherry-pick 練習</a><br>19.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=6b282a154f95ba54844d6b747f65128a">git tag 練習</a><br>20.<a target="_blank" rel="noopener" href="https://pcottle.github.io/learnGitBranching/?gist_level_id=1cb0672c88c5f675ff393d010ef9deda">魔王題</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/11/07/2020-11-07%20XSS%20%E9%A1%9E%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -728,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:27:49" itemprop="dateModified" datetime="2021-10-01T14:27:49+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:55:24" itemprop="dateModified" datetime="2023-12-31T21:55:24+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -736,7 +228,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>78</span>
+              <span>82</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -754,7 +246,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
+          <span id="more"></span>
+
+
+<ol>
 <li>反射型</li>
 <li>存儲型</li>
 <li>DOM-Based型</li>
@@ -891,7 +386,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/21/2020-05-21%20python/" class="post-title-link" itemprop="url">python</a>
+            <a href="/2020/05/21/2020-05-21%20python/" class="post-title-link" itemprop="url">python筆記</a>
         </h2>
 
         <div class="post-meta">
@@ -908,7 +403,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:26:42" itemprop="dateModified" datetime="2021-10-01T14:26:42+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:54:48" itemprop="dateModified" datetime="2023-12-31T21:54:48+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -916,13 +411,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.9k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>3 分鐘</span>
+              <span>4 分鐘</span>
             </span>
 
         </div>
@@ -1042,7 +537,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:24:38" itemprop="dateModified" datetime="2021-10-01T14:24:38+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:54:30" itemprop="dateModified" datetime="2023-12-31T21:54:30+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -1050,7 +545,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.1k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -1073,29 +568,14 @@
 <li>檢查安裝是否成功</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-如果有重新安裝過python"><a href="#1-1-如果有重新安裝過python" class="headerlink" title="1.1 如果有重新安裝過python"></a>1.1 如果有重新安裝過python</h3><p>會遇到</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error in launcher: Unable to create process using</span><br></pre></td></tr></table></figure>
-
-<p>這個是因為在環境變數裡面有2個路徑說明了python,pip的位置。<br>可以利用以下指令確認路徑，並選擇刪除多餘的路徑參數</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">where python</span><br><span class="line">where pip</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-windows-pip-install"><a href="#2-windows-pip-install" class="headerlink" title="2. windows pip install"></a>2. windows pip install</h2><p>pip 基本上已經內鍵了<br>如果你安裝的Python版本，Python 2在2.7.9含以上或 Python 3在3.4含以上，則預設已經包含了pip。本範例為Python 3.7.3。<br>檢查安裝是否成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip --version</span><br></pre></td></tr></table></figure>
-
-<p>參考文章 &gt;&gt; <a target="_blank" rel="noopener" href="https://matthung0807.blogspot.com/2019/08/windows-pythonpip.html">Windows 安裝Python套件管理工具pip</a></p>
-<h2 id="3-virtualenv-install"><a href="#3-virtualenv-install" class="headerlink" title="3. virtualenv install"></a>3. virtualenv install</h2><p>這篇寫的很好，在裝opencv之前，先教你怎麼裝virtualenv<br><a target="_blank" rel="noopener" href="https://medium.com/@airwaves/opencv-%E5%9C%A8windows%E4%B8%AD%E5%AE%89%E8%A3%9D-opencv-python-295ae092ca57">OpenCV —在Windows中安裝 OpenCV-python</a></p>
-<h2 id="4-VSCode-install"><a href="#4-VSCode-install" class="headerlink" title="4. VSCode install"></a>4. VSCode install</h2><p>直接去官網上下載安裝</p>
-<h3 id="4-1-Pylint"><a href="#4-1-Pylint" class="headerlink" title="4.1 Pylint"></a>4.1 Pylint</h3><p>PyLint 是一種廣泛使用的工具，可檢查 Python 程式碼中的錯誤，有助於撰寫良好的 Python 程式碼模式，因此 Visual Studio 已針對 Python 專案整合這項工具。</p>
-<h3 id="4-2-VSCode-virtualenv"><a href="#4-2-VSCode-virtualenv" class="headerlink" title="4.2 VSCode &amp; virtualenv"></a>4.2 VSCode &amp; virtualenv</h3><p>自己實測，如果在terminal 下，弄出一個env,跑獨立環境是沒問題的<br>但是如果我們又想要在VSCode 下能在env底下run debug ，我目前成功的方式是將setting.json 裡面指向的python 指向到env&#x2F;Scripts</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;python.pythonPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;E:\\pythonworkspace\\venv2\\Scripts\\python.exe&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>我是也有看到有人改動lanuch.json ,讓運行的設定進行調改，但我沒成功.總覺得應該找時間把lanuch.json與vscode 的愛昧關係給搞定</p>
-<h2 id="5-其它遇到的問題"><a href="#5-其它遇到的問題" class="headerlink" title="5. 其它遇到的問題"></a>5. 其它遇到的問題</h2><ul>
-<li>opencv 讀取資料夾的時候最好不要有中文字，不然會讀取不到</li>
-<li>在用VSCode 結合virtualenv 時，debug run , terminal 會出現錯誤，但還是可以繼續debug 跟跑出結果，只是有點不順眼，查了一下怎麼解決不出現這個錯誤，可以參考這篇的教學&gt;&gt;<a target="_blank" rel="noopener" href="https://officeguide.cc/powershell-set-execution-policy-remote-signed/">PowerShell 更改執行原則，解決無法執行 ps1 指令稿問題</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/10/2020-05-10%20windows%20python%20environment%20install%20%E7%9B%B8%E9%97%9C%E8%A8%98%E9%8C%84/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1145,7 +625,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:21:21" itemprop="dateModified" datetime="2021-10-01T14:21:21+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:54:09" itemprop="dateModified" datetime="2023-12-31T21:54:09+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -1153,7 +633,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.4k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -1172,40 +652,14 @@
 
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前端開發人員寫 JS 遇到需要串接第三方 API，或是想存取第三方網站的資料時，遲早會遇到跨域限制的問題。</p>
-<p>跨域(Cross-Origin Resource Sharing)的原理可參考這篇「<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">跨來源資源共用</a>」，因為安全性考量，網站主幾可設定收到 HTTP 請求時，是否允許非主機網域的來源進行存取。例如自架站的圖片若不想被盜連，可以設定不允許其他網域存取。</p>
-<p>使用 JS 存取第三方 API 或網站資料時，若對方主機未允許 CORS，那麼前端人員可是一點辦法都沒有，只能求助於後端，利用伺服器端程式來繞過此問題。</p>
-<p>但是不太可能每個前端人員都自己架個伺服器，花這麼一大筆費用只為了處理跨域問題。值得慶幸的是，有國外免費服務架設伺服器，幫大家處理跨域存取的問題，本篇就來整理一些可用的選擇。</p>
-<h2 id="同源政策（same-origin-policy）"><a href="#同源政策（same-origin-policy）" class="headerlink" title="同源政策（same-origin policy）"></a>同源政策（same-origin policy）</h2><p>在同源政策（same-origin policy）中規範了那寫資源可以跨源存取，哪些會受到限制。</p>
-<p>同源的定義簡單如下：</p>
-<ul>
-<li>不同網域（Domain）</li>
-<li>不同通訊協定：HTTP, HTTPS, FTP</li>
-<li>不同連接埠號（Port）</li>
-<li>一般來說跨來源寫（Cross-origin writes）、跨來源嵌入（Cross-origin embedding）是被允許的，而跨來源讀取（Cross-origin reads）是受限制的。</li>
-</ul>
-<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><h3 id="1-後端程式人員幫忙解開限制-開啟跨來源請求"><a href="#1-後端程式人員幫忙解開限制-開啟跨來源請求" class="headerlink" title="1. 後端程式人員幫忙解開限制(開啟跨來源請求)"></a>1. 後端程式人員幫忙解開限制(開啟跨來源請求)</h3><p>若要開啟跨來源請求，必須在伺服器端做一些設定，像是在 Response Header 加上 Access-Control-Allow-Origin：</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>* # 允許所有網站發送的請求</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://foo.example   # 只允許 http://foo.example 的請求</span><br></pre></td></tr></table></figure>
-
-<p>也就是在後端程式碼要寫開放的規則</p>
-<h3 id="2-後端程式碼再包裝第三方API後，給前端調用"><a href="#2-後端程式碼再包裝第三方API後，給前端調用" class="headerlink" title="2. 後端程式碼再包裝第三方API後，給前端調用"></a>2. 後端程式碼再包裝第三方API後，給前端調用</h3><p>如果是第三方的API，沒辦法請對方幫我改後端，那要怎麼辦呢？<br>另外做個後端再包裝API，讓前端得以調用。這也是最常見的方式。</p>
-<h3 id="3-第三方服務代理請求"><a href="#3-第三方服務代理請求" class="headerlink" title="3. 第三方服務代理請求"></a>3. 第三方服務代理請求</h3><h4 id="CORS-ANYWHERE"><a href="#CORS-ANYWHERE" class="headerlink" title="CORS-ANYWHERE"></a>CORS-ANYWHERE</h4><p>API 使用很簡單，用以下格式即可：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cors-anywhere.herokuapp.com/第三方網址 </span><br></pre></td></tr></table></figure>
-
-<h4 id="CORSIO"><a href="#CORSIO" class="headerlink" title="CORSIO"></a>CORSIO</h4><p>API 使用很簡單，用以下格式即可：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cors.io/?第三方網址</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-JSONP"><a href="#4-JSONP" class="headerlink" title="4. JSONP"></a>4. JSONP</h3><h4 id="JSONP-的原理"><a href="#JSONP-的原理" class="headerlink" title="JSONP 的原理"></a>JSONP 的原理</h4><p>利用 script 標籤不受同源策略影響，可以跨域引入外部資源的特性，讓服務器端返回可執行的 JS 函數，將要返回的數據作為參數傳進函數，以此實現跨域加載數據的目的<br>此時，繞過 Ajax，並未使用它，但同樣達成了請求數據的目的<br>[](【備註】——script 標籤引用資源得本質是：<br>1）向 src 發送請求<br>2）將資源下載到當前頁面<br>3）當資源加載完畢後，把該資源當做 JS 代碼來立刻執行——【備註】)</p>
-<h4 id="JSONP-的使用"><a href="#JSONP-的使用" class="headerlink" title="JSONP 的使用"></a>JSONP 的使用</h4><p>動態創建 script 標籤，src 地址指向數據接口，並傳遞 callback 參數<br>定義數據處理函數<br>服務端接收請求，解析參數，計算數，返回回調函數字符串<br>將回調函數字符串引入頁面並作為 JS 去執行：此時會調用數據處理函數，數據會作為數據處理函數的參數被處理計算出一個結果</p>
-<h2 id="精華解析"><a href="#精華解析" class="headerlink" title="精華解析"></a>精華解析</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0446b5bcdbab">跨域之一：同源策略和跨域</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/94946ca90194">跨域之二：JSONP 和 CORS</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7666e1ffb8c6">跨域之三：降域 和 postMessage</a></li>
-</ul>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@brianwu291/jsonp-with-simple-example-4711e2a07443">[JS] 同源政策與跨來源資源共用（CORS）</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/94946ca90194">跨域之二：JSONP 和 CORS</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/06/2020-05-06%20CORS%20(Cross-Origin%20Resource%20Sharing)/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1255,7 +709,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:23:09" itemprop="dateModified" datetime="2021-10-01T14:23:09+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:54:21" itemprop="dateModified" datetime="2023-12-31T21:54:21+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -1263,7 +717,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>179</span>
+              <span>197</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -1286,9 +740,179 @@
 <li>Use parameters with stored procedures.</li>
 <li>Use parameters with dynamic SQL.</li>
 </ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.qa-knowhow.com/?p=131">SQL Injection 的測試與防範</a></li>
-<li><a target="_blank" rel="noopener" href="https://sites.google.com/site/chengshixuexipingtai/sql/ql-injection-de-jian-jie-yu-yu-fang">SQL injection的簡介與預防</a></li>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/06/2020-05-06%20SQL%20inject%20%E9%98%B2%E7%AF%84/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/" class="post-title-link" itemprop="url">CSRF Cross Site Request Forgery</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-06 11:11:00" itemprop="dateCreated datePublished" datetime="2020-05-06T11:11:00+08:00">2020-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 21:54:16" itemprop="dateModified" datetime="2023-12-31T21:54:16+08:00">2023-12-31</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>649</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="攻擊手段"><a href="#攻擊手段" class="headerlink" title="攻擊手段"></a><strong>攻擊手段</strong></h2><p>利用使用者已經登入過A系統之後，在B系統上偽造請求去做壞事情。比如影片中舉的例子轉帳金額跟對象參數偽造。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2017/10/02/2017-10-02%20C#%20Params/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/02/2017-10-02%20C#%20Params/" class="post-title-link" itemprop="url">C# Params</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2017-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-02T00:00:00+08:00">2017-10-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-15 17:46:38" itemprop="dateModified" datetime="2021-10-15T17:46:38+08:00">2021-10-15</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>606</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Sample-Code"><a href="#Sample-Code" class="headerlink" title="Sample Code"></a>Sample Code</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Call params method with one to four int arguments.</span></span><br><span class="line">        <span class="built_in">int</span> sum1 = SumParameters(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">int</span> sum2 = SumParameters(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">int</span> sum3 = SumParameters(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">        <span class="built_in">int</span> sum4 = SumParameters(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ... Write results of the method invocations.</span></span><br><span class="line">        Console.WriteLine(sum1);</span><br><span class="line">        Console.WriteLine(sum2);</span><br><span class="line">        Console.WriteLine(sum3);</span><br><span class="line">        Console.WriteLine(sum4);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">int</span> <span class="title">SumParameters</span>(<span class="params"><span class="keyword">params</span> <span class="built_in">int</span>[] values</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Loop through and sum the integers in the array.</span></span><br><span class="line">        <span class="built_in">int</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="built_in">int</span> <span class="keyword">value</span> <span class="keyword">in</span> values)</span><br><span class="line">        &#123;</span><br><span class="line">            total += <span class="keyword">value</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.dotnetperls.com/params">https://www.dotnetperls.com/params</a></li>
 </ul>
 
       
@@ -1308,7 +932,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span>
   </nav>
 
 
@@ -1374,7 +998,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1423,12 +1047,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

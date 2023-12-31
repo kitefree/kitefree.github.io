@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="CSS規範規定，每个元素都有display屬性，每個元素都有默認的display值，如div的display默認值为“block”，則為“區塊”元素；span默認display屬性值为“inline”，是“行内”元素。 特性1盡可能佔滿版本 特性2區塊元素會另起一行呈現 1.區塊(block)元素都會另起一行 2.高度，行高以及頂和底邊距都可控制； 3.默認情况下，其寬度自動填满其父元素寬度，即寬">
+  <meta name="description" content="CSS規範規定，每个元素都有display屬性，每個元素都有默認的display值，如div的display默認值为“block”，則為“區塊”元素；span默認display屬性值为“inline”，是“行内”元素。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 區塊元素">
 <meta property="og:url" content="https://kitefree.github.io/2021/09/30/2021-09-30%20CSS%E5%8D%80%E5%A1%8A%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="CSS規範規定，每个元素都有display屬性，每個元素都有默認的display值，如div的display默認值为“block”，則為“區塊”元素；span默認display屬性值为“inline”，是“行内”元素。 特性1盡可能佔滿版本 特性2區塊元素會另起一行呈現 1.區塊(block)元素都會另起一行 2.高度，行高以及頂和底邊距都可控制； 3.默認情况下，其寬度自動填满其父元素寬度，即寬">
+<meta property="og:description" content="CSS規範規定，每个元素都有display屬性，每個元素都有默認的display值，如div的display默認值为“block”，則為“區塊”元素；span默認display屬性值为“inline”，是“行内”元素。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/uK4POMJ.png">
 <meta property="article:published_time" content="2021-09-30T05:51:00.000Z">
-<meta property="article:modified_time" content="2021-09-30T07:41:07.325Z">
+<meta property="article:modified_time" content="2023-12-31T14:08:08.627Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
@@ -218,17 +218,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-30 13:51:00 / 修改時間：15:41:07" itemprop="dateCreated datePublished" datetime="2021-09-30T13:51:00+08:00">2021-09-30</time>
+              <time title="創建時間：2021-09-30 13:51:00" itemprop="dateCreated datePublished" datetime="2021-09-30T13:51:00+08:00">2021-09-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:08:08" itemprop="dateModified" datetime="2023-12-31T22:08:08+08:00">2023-12-31</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>302</span>
+              <span>321</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -247,8 +253,10 @@
 
       
         <p>CSS規範規定，每个元素都有display屬性，每個元素都有默認的display值，如div的display默認值为“block”，則為“區塊”元素；span默認display屬性值为“inline”，是“行内”元素。</p>
-<h2 id="特性1"><a href="#特性1" class="headerlink" title="特性1"></a>特性1</h2><p>盡可能佔滿版本</p>
-<h2 id="特性2"><a href="#特性2" class="headerlink" title="特性2"></a>特性2</h2><p>區塊元素會另起一行呈現</p>
+<span id="more"></span>
+
+<h2 id="1-特性1"><a href="#1-特性1" class="headerlink" title="1. 特性1"></a>1. 特性1</h2><p>盡可能佔滿版本</p>
+<h2 id="2-特性2"><a href="#2-特性2" class="headerlink" title="2. 特性2"></a>2. 特性2</h2><p>區塊元素會另起一行呈現</p>
 <p>1.區塊(block)元素都會另起一行 2.高度，行高以及頂和底邊距都可控制； 3.默認情况下，其寬度自動填满其父元素寬度，即寬度100% 4.可以設置寬高 width hight 區塊元素常見包括 div、p、h1~h6、 ul、ol、li、 dl、dt、dd、 form、table、hr、 blockquote 、 address、menu、pre…..等等</p>
 <p><img src="https://i.imgur.com/uK4POMJ.png" alt="https://miro.medium.com/max/245/1*WLuyoSotqmRdz2-2ZBsSHw.png"></p>
 
@@ -334,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A71"><span class="nav-number">1.</span> <span class="nav-text">特性1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A72"><span class="nav-number">2.</span> <span class="nav-text">特性2</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%89%B9%E6%80%A71"><span class="nav-text">1. 特性1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%89%B9%E6%80%A72"><span class="nav-text">2. 特性2</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -348,7 +356,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -397,12 +405,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

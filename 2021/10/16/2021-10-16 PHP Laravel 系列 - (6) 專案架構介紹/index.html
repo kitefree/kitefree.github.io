@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="完整專案架構截圖 app structure12345678910111213141516171819202122+---app|   +---Console|   |       Kernel.php|   |       |   +---Exceptions|   |       Handler.php|   |       |   +---Http|   |   |   Kernel.php">
+  <meta name="description" content="完整專案架構截圖">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP Laravel 系列 - (6) 專案架構介紹">
 <meta property="og:url" content="https://kitefree.github.io/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(6)%20%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="完整專案架構截圖 app structure12345678910111213141516171819202122+---app|   +---Console|   |       Kernel.php|   |       |   +---Exceptions|   |       Handler.php|   |       |   +---Http|   |   |   Kernel.php">
+<meta property="og:description" content="完整專案架構截圖">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/JkAghTK.png">
 <meta property="article:published_time" content="2021-10-16T03:44:00.000Z">
-<meta property="article:modified_time" content="2022-08-24T12:35:57.404Z">
+<meta property="article:modified_time" content="2023-12-31T13:50:18.298Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="PHP">
 <meta property="article:tag" content="Laravel">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-08-24 20:35:57" itemprop="dateModified" datetime="2022-08-24T20:35:57+08:00">2022-08-24</time>
+                <time title="修改時間：2023-12-31 21:50:18" itemprop="dateModified" datetime="2023-12-31T21:50:18+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,13 +244,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.1k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>2 分鐘</span>
+              <span>3 分鐘</span>
             </span>
 
         </div>
@@ -263,6 +263,9 @@
 
       
         <h2 id="完整專案架構截圖"><a href="#完整專案架構截圖" class="headerlink" title="完整專案架構截圖"></a>完整專案架構截圖</h2><p><img src="https://i.imgur.com/JkAghTK.png" alt="image-20211016113510041"></p>
+<span id="more"></span>
+
+
 <h2 id="app-structure"><a href="#app-structure" class="headerlink" title="app structure"></a>app structure</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">+---app</span><br><span class="line">|   +---Console</span><br><span class="line">|   |       Kernel.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Exceptions</span><br><span class="line">|   |       Handler.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Http</span><br><span class="line">|   |   |   Kernel.php</span><br><span class="line">|   |   |   </span><br><span class="line">|   |   +---Controllers</span><br><span class="line">|   |   |       Controller.php</span><br><span class="line">|   |   |       </span><br><span class="line">|   |   \---Middleware</span><br><span class="line">|   |           Authenticate.php</span><br><span class="line">|   |           EncryptCookies.php</span><br><span class="line">|   |           PreventRequestsDuringMaintenance.php</span><br><span class="line">|   |           RedirectIfAuthenticated.php</span><br><span class="line">|   |           TrimStrings.php</span><br><span class="line">|   |           TrustHosts.php</span><br><span class="line">|   |           TrustProxies.php</span><br><span class="line">|   |           VerifyCsrfToken.php</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -375,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E6%88%AA%E5%9C%96"><span class="nav-number">1.</span> <span class="nav-text">完整專案架構截圖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app-structure"><span class="nav-number">2.</span> <span class="nav-text">app structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app"><span class="nav-number">3.</span> <span class="nav-text">app</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Console"><span class="nav-number">3.1.</span> <span class="nav-text">Console</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exceptions"><span class="nav-number">3.2.</span> <span class="nav-text">Exceptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">3.3.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#controllers"><span class="nav-number">3.3.1.</span> <span class="nav-text">controllers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Middleware"><span class="nav-number">3.3.2.</span> <span class="nav-text">Middleware</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-number">3.4.</span> <span class="nav-text">Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Providers"><span class="nav-number">3.5.</span> <span class="nav-text">Providers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bootstrap"><span class="nav-number">4.</span> <span class="nav-text">bootstrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#config"><span class="nav-number">5.</span> <span class="nav-text">config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#database"><span class="nav-number">6.</span> <span class="nav-text">database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#public"><span class="nav-number">7.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resource-structure"><span class="nav-number">8.</span> <span class="nav-text">resource structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#css"><span class="nav-number">8.1.</span> <span class="nav-text">css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js"><span class="nav-number">8.2.</span> <span class="nav-text">js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#views"><span class="nav-number">8.3.</span> <span class="nav-text">views</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#routes"><span class="nav-number">9.</span> <span class="nav-text">routes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#storage"><span class="nav-number">10.</span> <span class="nav-text">storage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tests"><span class="nav-number">11.</span> <span class="nav-text">tests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vendor"><span class="nav-number">12.</span> <span class="nav-text">vendor</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E6%88%AA%E5%9C%96"><span class="nav-text">完整專案架構截圖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app-structure"><span class="nav-text">app structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app"><span class="nav-text">app</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Console"><span class="nav-text">Console</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exceptions"><span class="nav-text">Exceptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#controllers"><span class="nav-text">controllers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Middleware"><span class="nav-text">Middleware</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-text">Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Providers"><span class="nav-text">Providers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bootstrap"><span class="nav-text">bootstrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#config"><span class="nav-text">config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#database"><span class="nav-text">database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#public"><span class="nav-text">public</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resource-structure"><span class="nav-text">resource structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#css"><span class="nav-text">css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js"><span class="nav-text">js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#views"><span class="nav-text">views</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#routes"><span class="nav-text">routes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#storage"><span class="nav-text">storage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tests"><span class="nav-text">tests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vendor"><span class="nav-text">vendor</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -389,7 +392,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -438,12 +441,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

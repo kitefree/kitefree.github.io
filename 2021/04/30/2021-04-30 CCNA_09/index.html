@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="8. Subnetting 1Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍 為什麼要劃分?  More Secure 網路安全HR + IT + Sale 如果都在同一個網域裡，就可以直接訪問IT，顯然不安全…   Easier to Manager 好管理 比如針對IT部門做決策政策管理，就可以直接找同網段的IP即可     Save IP Address 節省地址空間以下">
+  <meta name="description" content="1. Subnetting 1Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍 為什麼要劃分?">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCNA_09">
 <meta property="og:url" content="https://kitefree.github.io/2021/04/30/2021-04-30%20CCNA_09/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="8. Subnetting 1Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍 為什麼要劃分?  More Secure 網路安全HR + IT + Sale 如果都在同一個網域裡，就可以直接訪問IT，顯然不安全…   Easier to Manager 好管理 比如針對IT部門做決策政策管理，就可以直接找同網段的IP即可     Save IP Address 節省地址空間以下">
+<meta property="og:description" content="1. Subnetting 1Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍 為什麼要劃分?">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/bF3RB7C.png">
 <meta property="og:image" content="https://i.imgur.com/WaYd8ge.png">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://i.imgur.com/iiqD35a.png">
 <meta property="og:image" content="https://i.imgur.com/vJD8OrS.png">
 <meta property="article:published_time" content="2021-04-30T11:35:00.000Z">
-<meta property="article:modified_time" content="2021-10-01T07:55:47.324Z">
+<meta property="article:modified_time" content="2023-12-31T13:58:58.733Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="CCNA">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 15:55:47" itemprop="dateModified" datetime="2021-10-01T15:55:47+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:58:58" itemprop="dateModified" datetime="2023-12-31T21:58:58+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -242,7 +242,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>872</span>
+              <span>966</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -260,8 +260,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="8-Subnetting-1"><a href="#8-Subnetting-1" class="headerlink" title="8. Subnetting 1"></a>8. Subnetting 1</h2><p>Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍</p>
+        <h2 id="1-Subnetting-1"><a href="#1-Subnetting-1" class="headerlink" title="1. Subnetting 1"></a>1. Subnetting 1</h2><p>Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍</p>
 <p>為什麼要劃分?</p>
+<span id="more"></span>
+
+
 <ul>
 <li>More Secure<ul>
 <li>網路安全<br>HR + IT + Sale 如果都在同一個網域裡，就可以直接訪問IT，顯然不安全…</li>
@@ -284,10 +287,10 @@
 </ul>
 </li>
 </ul>
-<h2 id="Why-you-need-subnetting"><a href="#Why-you-need-subnetting" class="headerlink" title="Why you need subnetting"></a>Why you need subnetting</h2><p>把一個網段劃分成若干網段<br><img src="https://i.imgur.com/WaYd8ge.png" alt="image"></p>
-<h2 id="How-to-create-subnets"><a href="#How-to-create-subnets" class="headerlink" title="How to create subnets"></a>How to create subnets</h2><p><img src="https://i.imgur.com/yFWbRUY.png" alt="image"></p>
+<h2 id="2-Why-you-need-subnetting"><a href="#2-Why-you-need-subnetting" class="headerlink" title="2. Why you need subnetting"></a>2. Why you need subnetting</h2><p>把一個網段劃分成若干網段<br><img src="https://i.imgur.com/WaYd8ge.png" alt="image"></p>
+<h2 id="3-How-to-create-subnets"><a href="#3-How-to-create-subnets" class="headerlink" title="3. How to create subnets"></a>3. How to create subnets</h2><p><img src="https://i.imgur.com/yFWbRUY.png" alt="image"></p>
 <p>Classful 沒進行子網劃分稱為有類<br>Classless 進擁子網劃分稱為無類<br>複習一下<br>Class A 8 + 24<br>Class B 16 + 16<br>Class C 24 + 8</p>
-<h2 id="Subnet-Mask"><a href="#Subnet-Mask" class="headerlink" title="Subnet Mask"></a>Subnet Mask</h2><p>給你這3個ip 是無法判斷是否為同網段</p>
+<h2 id="4-Subnet-Mask"><a href="#4-Subnet-Mask" class="headerlink" title="4. Subnet Mask"></a>4. Subnet Mask</h2><p>給你這3個ip 是無法判斷是否為同網段</p>
 <ul>
 <li>192.168.1.1</li>
 <li>192.168.1.129</li>
@@ -296,9 +299,9 @@
 <p>只有IP Address + Subnet Mask 才能判斷是否為同一個網段</p>
 <p><img src="https://i.imgur.com/FIisjlB.png" alt="image"></p>
 <p><img src="https://i.imgur.com/ZxUBMIy.png" alt="image"></p>
-<h2 id="Classless-Inter-Domain-Routing-CIDR"><a href="#Classless-Inter-Domain-Routing-CIDR" class="headerlink" title="Classless Inter-Domain Routing (CIDR)"></a>Classless Inter-Domain Routing (CIDR)</h2><p><img src="https://i.imgur.com/hANy2d0.png" alt="image"></p>
+<h2 id="5-Classless-Inter-Domain-Routing-CIDR"><a href="#5-Classless-Inter-Domain-Routing-CIDR" class="headerlink" title="5. Classless Inter-Domain Routing (CIDR)"></a>5. Classless Inter-Domain Routing (CIDR)</h2><p><img src="https://i.imgur.com/hANy2d0.png" alt="image"></p>
 <p>Subnet Mask<br>不能迅速告訴我借了多少bit給network，所以可以用CIDR<br>CIDR<br>又稱為Slash Notation<br>Prefix<br>&#x2F;8 代表有8個網路位<br>以&#x2F;26為例</p>
-<h2 id="Subnet-Mask-with-CIDR"><a href="#Subnet-Mask-with-CIDR" class="headerlink" title="Subnet Mask with CIDR"></a>Subnet Mask with CIDR</h2><p>思科設備大部分是以MASK 進行設定，其它廠商有時候會以CIDR進行設定<br><img src="https://i.imgur.com/5ED86zA.png" alt="image"></p>
+<h2 id="6-Subnet-Mask-with-CIDR"><a href="#6-Subnet-Mask-with-CIDR" class="headerlink" title="6. Subnet Mask with CIDR"></a>6. Subnet Mask with CIDR</h2><p>思科設備大部分是以MASK 進行設定，其它廠商有時候會以CIDR進行設定<br><img src="https://i.imgur.com/5ED86zA.png" alt="image"></p>
 <ul>
 <li>IP&#x2F;32<ul>
 <li>代表是一個主機</li>
@@ -321,7 +324,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Subnet-Zero"><a href="#Subnet-Zero" class="headerlink" title="Subnet Zero"></a>Subnet Zero</h2><p>思科設備在版本12.x 以前 subnet zero 是不允許使用的</p>
+<h2 id="7-Subnet-Zero"><a href="#7-Subnet-Zero" class="headerlink" title="7. Subnet Zero"></a>7. Subnet Zero</h2><p>思科設備在版本12.x 以前 subnet zero 是不允許使用的</p>
 <p><img src="https://i.imgur.com/vJD8OrS.png" alt="image"></p>
 
     </div>
@@ -406,7 +409,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Subnetting-1"><span class="nav-number">1.</span> <span class="nav-text">8. Subnetting 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-you-need-subnetting"><span class="nav-number">2.</span> <span class="nav-text">Why you need subnetting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-create-subnets"><span class="nav-number">3.</span> <span class="nav-text">How to create subnets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subnet-Mask"><span class="nav-number">4.</span> <span class="nav-text">Subnet Mask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classless-Inter-Domain-Routing-CIDR"><span class="nav-number">5.</span> <span class="nav-text">Classless Inter-Domain Routing (CIDR)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subnet-Mask-with-CIDR"><span class="nav-number">6.</span> <span class="nav-text">Subnet Mask with CIDR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subnet-Zero"><span class="nav-number">7.</span> <span class="nav-text">Subnet Zero</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Subnetting-1"><span class="nav-text">1. Subnetting 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Why-you-need-subnetting"><span class="nav-text">2. Why you need subnetting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-How-to-create-subnets"><span class="nav-text">3. How to create subnets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Subnet-Mask"><span class="nav-text">4. Subnet Mask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Classless-Inter-Domain-Routing-CIDR"><span class="nav-text">5. Classless Inter-Domain Routing (CIDR)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Subnet-Mask-with-CIDR"><span class="nav-text">6. Subnet Mask with CIDR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Subnet-Zero"><span class="nav-text">7. Subnet Zero</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -420,7 +423,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -469,12 +472,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

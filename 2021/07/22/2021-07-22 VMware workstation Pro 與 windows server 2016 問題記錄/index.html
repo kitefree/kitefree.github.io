@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="任務將從ESXi 的windows server 2016 映像檔下載下來後還原到VMware workstation pro 接著利用switch 接上所有PC，能讓所有PC 訪問這台裝有VMware workstation pro 的PC 如圖所示，感謝JAVA_Mars 幫忙畫的圖  主機說明 PC_A 有灌VMWare workstation pro   PC_B 扮演 client 端角">
+  <meta name="description" content="1. 任務將從ESXi 的windows server 2016 映像檔下載下來後還原到VMware workstation pro 接著利用switch 接上所有PC，能讓所有PC 訪問這台裝有VMware workstation pro 的PC 如圖所示，感謝JAVA_Mars 幫忙畫的圖">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VMware workstation Pro 與 windows server 2016 問題記錄">
 <meta property="og:url" content="https://kitefree.github.io/2021/07/22/2021-07-22%20VMware%20workstation%20Pro%20%E8%88%87%20windows%20server%202016%20%E5%95%8F%E9%A1%8C%E8%A8%98%E9%8C%84/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="任務將從ESXi 的windows server 2016 映像檔下載下來後還原到VMware workstation pro 接著利用switch 接上所有PC，能讓所有PC 訪問這台裝有VMware workstation pro 的PC 如圖所示，感謝JAVA_Mars 幫忙畫的圖  主機說明 PC_A 有灌VMWare workstation pro   PC_B 扮演 client 端角">
+<meta property="og:description" content="1. 任務將從ESXi 的windows server 2016 映像檔下載下來後還原到VMware workstation pro 接著利用switch 接上所有PC，能讓所有PC 訪問這台裝有VMware workstation pro 的PC 如圖所示，感謝JAVA_Mars 幫忙畫的圖">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/KlHo6Jc.jpg">
 <meta property="og:image" content="https://i.imgur.com/4acIEbK.png">
 <meta property="og:image" content="https://i.imgur.com/CX9UtGU.png">
 <meta property="article:published_time" content="2021-07-22T08:41:00.000Z">
-<meta property="article:modified_time" content="2021-09-19T01:19:33.048Z">
+<meta property="article:modified_time" content="2023-12-31T14:02:48.185Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="VMware">
 <meta property="article:tag" content="windows server 2016">
@@ -229,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+                <time title="修改時間：2023-12-31 22:02:48" itemprop="dateModified" datetime="2023-12-31T22:02:48+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -237,7 +237,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>839</span>
+              <span>947</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -255,11 +255,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="任務"><a href="#任務" class="headerlink" title="任務"></a>任務</h2><p>將從ESXi 的windows server 2016 映像檔下載下來後還原到VMware workstation pro</p>
+        <h2 id="1-任務"><a href="#1-任務" class="headerlink" title="1. 任務"></a>1. 任務</h2><p>將從ESXi 的windows server 2016 映像檔下載下來後還原到VMware workstation pro</p>
 <p>接著利用switch 接上所有PC，能讓所有PC 訪問這台裝有VMware workstation pro 的PC</p>
 <p>如圖所示，感謝JAVA_Mars 幫忙畫的圖</p>
 <p><img src="https://i.imgur.com/KlHo6Jc.jpg"></p>
-<h2 id="主機說明"><a href="#主機說明" class="headerlink" title="主機說明"></a>主機說明</h2><ul>
+<span id="more"></span>
+
+
+<h2 id="2-主機說明"><a href="#2-主機說明" class="headerlink" title="2. 主機說明"></a>2. 主機說明</h2><ul>
 <li>PC_A<ul>
 <li>有灌VMWare workstation pro</li>
 </ul>
@@ -273,19 +276,19 @@
 </ul>
 </li>
 </ul>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我們嘗試努力了很久，始終發現無法讓PC_B去訪問Gest_OS系統(windos server 2016)</p>
+<h2 id="3-背景"><a href="#3-背景" class="headerlink" title="3. 背景"></a>3. 背景</h2><p>我們嘗試努力了很久，始終發現無法讓PC_B去訪問Gest_OS系統(windos server 2016)</p>
 <p>於是…我們做了假設，如果模擬一般的WIN10 會不會有問題</p>
-<h2 id="實驗一"><a href="#實驗一" class="headerlink" title="實驗一"></a>實驗一</h2><p>我們實際測試如果是esxi 匯出的 win10 映像檔匯入 vmware workstation pro PC_A，</p>
+<h2 id="4-實驗一"><a href="#4-實驗一" class="headerlink" title="4. 實驗一"></a>4. 實驗一</h2><p>我們實際測試如果是esxi 匯出的 win10 映像檔匯入 vmware workstation pro PC_A，</p>
 <p>PC_B 是能 ping 到這個 vm win10 機器</p>
 <p>什麼!!!</p>
 <p><strong>PC_B 是能 ping 到這個 vm win10 機器</strong></p>
 <p><strong>PC_B 是能 ping 到這個 vm win10 機器</strong></p>
 <p><strong>PC_B 是能 ping 到這個 vm win10 機器</strong></p>
-<h2 id="經由實驗一…得出一個假設問題"><a href="#經由實驗一…得出一個假設問題" class="headerlink" title="經由實驗一…得出一個假設問題"></a>經由實驗一…得出一個假設問題</h2><p>開始懷疑是作業系統有關的問題，找了文章關鍵字發現vmware 官網有一些跟windows server2016 有關的issue</p>
+<h2 id="5-經由實驗一…得出一個假設問題"><a href="#5-經由實驗一…得出一個假設問題" class="headerlink" title="5. 經由實驗一…得出一個假設問題"></a>5. 經由實驗一…得出一個假設問題</h2><p>開始懷疑是作業系統有關的問題，找了文章關鍵字發現vmware 官網有一些跟windows server2016 有關的issue</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://communities.vmware.com/t5/VMware-Workstation-Pro/bridged-network-not-working-vmware-workstation-pro-14/m-p/470985">bridged network not working - vmware workstation pro 14</a></p>
 </blockquote>
-<h2 id="實驗步驟流程"><a href="#實驗步驟流程" class="headerlink" title="實驗步驟流程"></a>實驗步驟流程</h2><p>某個同事就開始試….以下是記錄實驗的流程</p>
+<h2 id="6-實驗步驟流程"><a href="#6-實驗步驟流程" class="headerlink" title="6. 實驗步驟流程"></a>6. 實驗步驟流程</h2><p>某個同事就開始試….以下是記錄實驗的流程</p>
 <ol>
 <li>我們的作法是先將 網卡裡面的vmware bridge protocol 移除</li>
 </ol>
@@ -323,8 +326,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/22/2021-07-22%20%E7%A7%BB%E8%BD%89%20Windows%20%E5%88%97%E5%8D%B0%E4%BC%BA%E6%9C%8D%E5%99%A8/" rel="prev" title="移轉 Windows 列印伺服器">
-      <i class="fa fa-chevron-left"></i> 移轉 Windows 列印伺服器
+    <a href="/2021/06/19/2021-06-19%20CCNA_14/" rel="prev" title="CCNA_14">
+      <i class="fa fa-chevron-left"></i> CCNA_14
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/07/22/2021-07-22%20MYSQL%20%E9%81%A0%E7%AB%AF%E9%80%A3%E7%B7%9A/" rel="next" title="MYSQL 遠端連線">
@@ -388,7 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8B%99"><span class="nav-number">1.</span> <span class="nav-text">任務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%A9%9F%E8%AA%AA%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">主機說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E9%A9%97%E4%B8%80"><span class="nav-number">4.</span> <span class="nav-text">實驗一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%93%E7%94%B1%E5%AF%A6%E9%A9%97%E4%B8%80%E2%80%A6%E5%BE%97%E5%87%BA%E4%B8%80%E5%80%8B%E5%81%87%E8%A8%AD%E5%95%8F%E9%A1%8C"><span class="nav-number">5.</span> <span class="nav-text">經由實驗一…得出一個假設問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E9%A9%97%E6%AD%A5%E9%A9%9F%E6%B5%81%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">實驗步驟流程</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%BB%E5%8B%99"><span class="nav-text">1. 任務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%BB%E6%A9%9F%E8%AA%AA%E6%98%8E"><span class="nav-text">2. 主機說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%83%8C%E6%99%AF"><span class="nav-text">3. 背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AF%A6%E9%A9%97%E4%B8%80"><span class="nav-text">4. 實驗一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%B6%93%E7%94%B1%E5%AF%A6%E9%A9%97%E4%B8%80%E2%80%A6%E5%BE%97%E5%87%BA%E4%B8%80%E5%80%8B%E5%81%87%E8%A8%AD%E5%95%8F%E9%A1%8C"><span class="nav-text">5. 經由實驗一…得出一個假設問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%AF%A6%E9%A9%97%E6%AD%A5%E9%A9%9F%E6%B5%81%E7%A8%8B"><span class="nav-text">6. 實驗步驟流程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -402,7 +405,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -451,12 +454,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

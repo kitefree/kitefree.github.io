@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. 消息隊列 Message Queue內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題 2. 為什麼需要消息隊列2.1. 工廠流水線大家在廠線上，只需要觀注自己的工作內容，意味著解耦了彼此的關係。  2.2. 水庫當發生大量的請求與流量時，可以保護我們的後端伺服器的穩定，扮演水庫角色，進行的控制與排放。  2.3. 倉庫可用途儲存半成品的存放站，後續再由它人去拿取半成">
+  <meta name="description" content="1. 消息隊列 Message Queue內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息隊列">
 <meta property="og:url" content="https://kitefree.github.io/2022/07/26/2022-07-26%20%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="1. 消息隊列 Message Queue內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題 2. 為什麼需要消息隊列2.1. 工廠流水線大家在廠線上，只需要觀注自己的工作內容，意味著解耦了彼此的關係。  2.2. 水庫當發生大量的請求與流量時，可以保護我們的後端伺服器的穩定，扮演水庫角色，進行的控制與排放。  2.3. 倉庫可用途儲存半成品的存放站，後續再由它人去拿取半成">
+<meta property="og:description" content="1. 消息隊列 Message Queue內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/bfpPK5p.png">
 <meta property="og:image" content="https://i.imgur.com/19z3MSg.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://i.imgur.com/ugqxhQ4.png">
 <meta property="og:image" content="https://i.imgur.com/2V6saL3.png">
 <meta property="article:published_time" content="2022-07-26T04:08:00.000Z">
-<meta property="article:modified_time" content="2022-07-26T15:06:26.158Z">
+<meta property="article:modified_time" content="2023-12-31T13:44:54.844Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server,Docker">
 <meta name="twitter:card" content="summary">
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2022-07-26 12:08:00 / 修改時間：23:06:26" itemprop="dateCreated datePublished" datetime="2022-07-26T12:08:00+08:00">2022-07-26</time>
+              <time title="創建時間：2022-07-26 12:08:00" itemprop="dateCreated datePublished" datetime="2022-07-26T12:08:00+08:00">2022-07-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 21:44:54" itemprop="dateModified" datetime="2023-12-31T21:44:54+08:00">2023-12-31</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -243,7 +249,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>2k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -262,6 +268,9 @@
 
       
         <h2 id="1-消息隊列-Message-Queue"><a href="#1-消息隊列-Message-Queue" class="headerlink" title="1. 消息隊列 Message Queue"></a>1. 消息隊列 Message Queue</h2><p>內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題</p>
+<span id="more"></span>
+
+
 <h2 id="2-為什麼需要消息隊列"><a href="#2-為什麼需要消息隊列" class="headerlink" title="2. 為什麼需要消息隊列"></a>2. 為什麼需要消息隊列</h2><h3 id="2-1-工廠流水線"><a href="#2-1-工廠流水線" class="headerlink" title="2.1. 工廠流水線"></a>2.1. 工廠流水線</h3><p>大家在廠線上，只需要觀注自己的工作內容，意味著解耦了彼此的關係。</p>
 <p><img src="https://i.imgur.com/bfpPK5p.png" alt="image-20220726121505581"></p>
 <h3 id="2-2-水庫"><a href="#2-2-水庫" class="headerlink" title="2.2. 水庫"></a>2.2. 水庫</h3><p>當發生大量的請求與流量時，可以保護我們的後端伺服器的穩定，扮演水庫角色，進行的控制與排放。</p>
@@ -343,8 +352,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/14/2022-07-14%20Vue3TypeScript(1)/" rel="prev" title="Vue3TypeScript(1)">
-      <i class="fa fa-chevron-left"></i> Vue3TypeScript(1)
+    <a href="/2022/06/18/2022-06-18%20OWASP%20ZAP%20%E5%BF%83%E5%BE%97/" rel="prev" title="OWASP ZAP 心得">
+      <i class="fa fa-chevron-left"></i> OWASP ZAP 心得
     </a></div>
       <div class="post-nav-item">
     <a href="/2022/07/28/2022-07-28%20typescript/" rel="next" title="typescript">
@@ -408,7 +417,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97-Message-Queue"><span class="nav-number">1.</span> <span class="nav-text">1. 消息隊列 Message Queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97"><span class="nav-number">2.</span> <span class="nav-text">2. 為什麼需要消息隊列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%B7%A5%E5%BB%A0%E6%B5%81%E6%B0%B4%E7%B7%9A"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 工廠流水線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%B0%B4%E5%BA%AB"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 水庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%80%89%E5%BA%AB"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 倉庫</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%A0%B4%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">3. 場景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%9D%9E%E5%90%8C%E6%AD%A5%E8%99%95%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 非同步處理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%87%89%E4%BB%98%E7%9E%AC%E9%96%93%E5%B7%A8%E9%87%8F"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 應付瞬間巨量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%B3%BB%E7%B5%B1%E9%96%93%E8%A7%A3%E8%80%A6-%E6%9C%8D%E5%8B%99%E8%A7%A3%E8%80%A6"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 系統間解耦(服務解耦)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97%E9%A1%9E%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">4. 消息隊列類型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%96%AE%E6%92%AD-1%E5%B0%8D1"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 單播 (1對1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%BB%A3%E6%92%AD-1%E5%B0%8D%E5%A4%9A"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 廣播 (1對多)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BA%8B%E5%8B%99"><span class="nav-number">5.</span> <span class="nav-text">5. 事務</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Half-Message-RocketMQ"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. Half Message - RocketMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-%E6%AD%BB%E4%BF%A1%E9%9A%8A%E5%88%97"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1. 死信隊列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-%E5%8F%8D%E6%9F%A5%E6%A9%9F%E5%88%B6"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2. 反查機制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C"><span class="nav-number">6.</span> <span class="nav-text">6. 消息隊列常見問題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%B6%88%E6%81%AF%E4%B8%9F%E5%A4%B1"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. 消息丟失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E9%87%8D%E8%A4%87%E6%B6%88%E6%81%AF"><span class="nav-number">6.2.</span> <span class="nav-text">6.2. 重複消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E6%B6%88%E6%81%AF%E7%A9%8D%E5%A3%93"><span class="nav-number">6.3.</span> <span class="nav-text">6.3. 消息積壓</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">7. 參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97-Message-Queue"><span class="nav-text">1. 消息隊列 Message Queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97"><span class="nav-text">2. 為什麼需要消息隊列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%B7%A5%E5%BB%A0%E6%B5%81%E6%B0%B4%E7%B7%9A"><span class="nav-text">2.1. 工廠流水線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%B0%B4%E5%BA%AB"><span class="nav-text">2.2. 水庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%80%89%E5%BA%AB"><span class="nav-text">2.3. 倉庫</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%A0%B4%E6%99%AF"><span class="nav-text">3. 場景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%9D%9E%E5%90%8C%E6%AD%A5%E8%99%95%E7%90%86"><span class="nav-text">3.1. 非同步處理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%87%89%E4%BB%98%E7%9E%AC%E9%96%93%E5%B7%A8%E9%87%8F"><span class="nav-text">3.2. 應付瞬間巨量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%B3%BB%E7%B5%B1%E9%96%93%E8%A7%A3%E8%80%A6-%E6%9C%8D%E5%8B%99%E8%A7%A3%E8%80%A6"><span class="nav-text">3.3. 系統間解耦(服務解耦)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97%E9%A1%9E%E5%9E%8B"><span class="nav-text">4. 消息隊列類型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%96%AE%E6%92%AD-1%E5%B0%8D1"><span class="nav-text">4.1. 單播 (1對1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%BB%A3%E6%92%AD-1%E5%B0%8D%E5%A4%9A"><span class="nav-text">4.2. 廣播 (1對多)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BA%8B%E5%8B%99"><span class="nav-text">5. 事務</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Half-Message-RocketMQ"><span class="nav-text">5.1. Half Message - RocketMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-%E6%AD%BB%E4%BF%A1%E9%9A%8A%E5%88%97"><span class="nav-text">5.1.1. 死信隊列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-%E5%8F%8D%E6%9F%A5%E6%A9%9F%E5%88%B6"><span class="nav-text">5.1.2. 反查機制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C"><span class="nav-text">6. 消息隊列常見問題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%B6%88%E6%81%AF%E4%B8%9F%E5%A4%B1"><span class="nav-text">6.1. 消息丟失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E9%87%8D%E8%A4%87%E6%B6%88%E6%81%AF"><span class="nav-text">6.2. 重複消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E6%B6%88%E6%81%AF%E7%A9%8D%E5%A3%93"><span class="nav-text">6.3. 消息積壓</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">7. 參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -422,7 +431,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -471,12 +480,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

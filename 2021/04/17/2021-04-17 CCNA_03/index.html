@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="3. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）Protocol-協議系統與系統之間講的是一個協議，只有2個系統用一個協議才能進行通訊系統的內部我們使用了通訊模型每一層都代表了不同模型，把它拼接起來就是一套系統 Layered Communication Model 好處  Products from different vendors">
+  <meta name="description" content="1. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）1.1. Protocol-協議系統與系統之間講的是一個協議，只有2個系統用一個協議才能進行通訊系統的內部我們使用了通訊模型每一層都代表了不同模型，把它拼接起來就是一套系統">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCNA_03">
 <meta property="og:url" content="https://kitefree.github.io/2021/04/17/2021-04-17%20CCNA_03/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="3. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）Protocol-協議系統與系統之間講的是一個協議，只有2個系統用一個協議才能進行通訊系統的內部我們使用了通訊模型每一層都代表了不同模型，把它拼接起來就是一套系統 Layered Communication Model 好處  Products from different vendors">
+<meta property="og:description" content="1. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）1.1. Protocol-協議系統與系統之間講的是一個協議，只有2個系統用一個協議才能進行通訊系統的內部我們使用了通訊模型每一層都代表了不同模型，把它拼接起來就是一套系統">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/UF2XO5V.png">
 <meta property="og:image" content="https://i.imgur.com/5Qu4PgB.png">
@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://i.imgur.com/bNAbazi.png">
 <meta property="og:image" content="https://i.imgur.com/pEVoNmv.png">
 <meta property="article:published_time" content="2021-04-17T12:52:00.000Z">
-<meta property="article:modified_time" content="2021-10-01T07:52:49.957Z">
+<meta property="article:modified_time" content="2023-12-31T13:57:30.179Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="CCNA">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 15:52:49" itemprop="dateModified" datetime="2021-10-01T15:52:49+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:57:30" itemprop="dateModified" datetime="2023-12-31T21:57:30+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -243,7 +243,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.8k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -261,7 +261,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="3-TCP-IP-Protocol-Suite-1-協議的定義，TCP-IP協議族的歷史及定義）"><a href="#3-TCP-IP-Protocol-Suite-1-協議的定義，TCP-IP協議族的歷史及定義）" class="headerlink" title="3. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）"></a>3. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）</h2><h3 id="Protocol-協議"><a href="#Protocol-協議" class="headerlink" title="Protocol-協議"></a>Protocol-協議</h3><p>系統與系統之間講的是一個協議，只有2個系統用一個協議才能進行通訊<br>系統的內部我們使用了通訊模型<br>每一層都代表了不同模型，把它拼接起來就是一套系統</p>
+        <h2 id="1-TCP-IP-Protocol-Suite-1-協議的定義，TCP-IP協議族的歷史及定義）"><a href="#1-TCP-IP-Protocol-Suite-1-協議的定義，TCP-IP協議族的歷史及定義）" class="headerlink" title="1. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）"></a>1. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）</h2><h3 id="1-1-Protocol-協議"><a href="#1-1-Protocol-協議" class="headerlink" title="1.1. Protocol-協議"></a>1.1. Protocol-協議</h3><p>系統與系統之間講的是一個協議，只有2個系統用一個協議才能進行通訊<br>系統的內部我們使用了通訊模型<br>每一層都代表了不同模型，把它拼接起來就是一套系統</p>
+<span id="more"></span>
+
+
 <p>Layered Communication Model 好處</p>
 <ul>
 <li>Products from different vendors can work together<ul>
@@ -288,8 +291,8 @@
 </li>
 </ul>
 <p>重要規則，只有同一層才能互相通訊<br>四樓只能跟四樓的講話<br><img src="https://i.imgur.com/UF2XO5V.png" alt="image"></p>
-<h3 id="通信的流程"><a href="#通信的流程" class="headerlink" title="通信的流程"></a>通信的流程</h3><p><img src="https://i.imgur.com/5Qu4PgB.png" alt="image"><br>假如4樓的想跟對面4樓的說話，寫了一個信封，<br>到了第3層會用再大一點的信封把它包起來，<br>到了第2層會用再大一點的信封把它包起來，<br>到了第1層會用再大一點的信封把它包起來，<br>交由派送員傳到對面<br>接著，經過每一層再逐一拆解最外面的信封。<br>最終第四樓的人就看得到訊息囉</p>
-<h3 id="學習通訊模型"><a href="#學習通訊模型" class="headerlink" title="學習通訊模型"></a>學習通訊模型</h3><h4 id="OSI-Model"><a href="#OSI-Model" class="headerlink" title="OSI Model"></a>OSI Model</h4><ul>
+<h3 id="1-2-通信的流程"><a href="#1-2-通信的流程" class="headerlink" title="1.2. 通信的流程"></a>1.2. 通信的流程</h3><p><img src="https://i.imgur.com/5Qu4PgB.png" alt="image"><br>假如4樓的想跟對面4樓的說話，寫了一個信封，<br>到了第3層會用再大一點的信封把它包起來，<br>到了第2層會用再大一點的信封把它包起來，<br>到了第1層會用再大一點的信封把它包起來，<br>交由派送員傳到對面<br>接著，經過每一層再逐一拆解最外面的信封。<br>最終第四樓的人就看得到訊息囉</p>
+<h3 id="1-3-學習通訊模型"><a href="#1-3-學習通訊模型" class="headerlink" title="1.3. 學習通訊模型"></a>1.3. 學習通訊模型</h3><h4 id="1-3-1-OSI-Model"><a href="#1-3-1-OSI-Model" class="headerlink" title="1.3.1. OSI Model"></a>1.3.1. OSI Model</h4><ul>
 <li><p>最早的通訊模型</p>
 </li>
 <li><p>是一個Reference Model</p>
@@ -311,10 +314,10 @@
 </ul>
 </li>
 </ul>
-<h4 id="DoD-Model-Department-of-Defense"><a href="#DoD-Model-Department-of-Defense" class="headerlink" title="DoD Model (Department of Defense)"></a>DoD Model (Department of Defense)</h4><ul>
+<h4 id="1-3-2-DoD-Model-Department-of-Defense"><a href="#1-3-2-DoD-Model-Department-of-Defense" class="headerlink" title="1.3.2. DoD Model (Department of Defense)"></a>1.3.2. DoD Model (Department of Defense)</h4><ul>
 <li>美國國防部開發出來的<br><img src="https://i.imgur.com/chtlDsm.png" alt="image"></li>
 </ul>
-<h4 id="TCP-IP-Model-Protocol-Suite"><a href="#TCP-IP-Model-Protocol-Suite" class="headerlink" title="TCP&#x2F;IP Model(Protocol Suite)"></a>TCP&#x2F;IP Model(Protocol Suite)</h4><ul>
+<h4 id="1-3-3-TCP-IP-Model-Protocol-Suite"><a href="#1-3-3-TCP-IP-Model-Protocol-Suite" class="headerlink" title="1.3.3. TCP&#x2F;IP Model(Protocol Suite)"></a>1.3.3. TCP&#x2F;IP Model(Protocol Suite)</h4><ul>
 <li>我們現在實際使用的模型</li>
 <li>可以看作一個水果籃<ul>
 <li>每一種水果就相對是一種協議<ul>
@@ -372,7 +375,7 @@
 </ul>
 <p>比如我的MAC是屬於MAC4，所以我們就轉發到區域4，當到達到區域4之後，這個MAC4的地址就會被丟棄掉，在第四區會重新獲得一個新的MAC地址，會問區域4的快遞員說，你要往3走還是往2走?以此類推走到目的地。這個就是基本的通訊原理</p>
 <p><img src="https://i.imgur.com/yVz6Vvo.png" alt="image"></p>
-<h3 id="Data-Encapsulation"><a href="#Data-Encapsulation" class="headerlink" title="Data Encapsulation"></a>Data Encapsulation</h3><p><img src="https://i.imgur.com/bNAbazi.png" alt="image"></p>
+<h3 id="1-4-Data-Encapsulation"><a href="#1-4-Data-Encapsulation" class="headerlink" title="1.4. Data Encapsulation"></a>1.4. Data Encapsulation</h3><p><img src="https://i.imgur.com/bNAbazi.png" alt="image"></p>
 <ul>
 <li><p>應用層</p>
 <ul>
@@ -420,7 +423,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="History-of-TCP-IP-Protocol-Suite"><a href="#History-of-TCP-IP-Protocol-Suite" class="headerlink" title="History of TCP&#x2F;IP Protocol Suite"></a>History of TCP&#x2F;IP Protocol Suite</h3><p><img src="https://i.imgur.com/pEVoNmv.png" alt="image"><br>TCP 負擔太大把IP分出來<br>TCP UDP IP 是裡面最重要的協議</p>
+<h3 id="1-5-History-of-TCP-IP-Protocol-Suite"><a href="#1-5-History-of-TCP-IP-Protocol-Suite" class="headerlink" title="1.5. History of TCP&#x2F;IP Protocol Suite"></a>1.5. History of TCP&#x2F;IP Protocol Suite</h3><p><img src="https://i.imgur.com/pEVoNmv.png" alt="image"><br>TCP 負擔太大把IP分出來<br>TCP UDP IP 是裡面最重要的協議</p>
 
     </div>
 
@@ -504,7 +507,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-TCP-IP-Protocol-Suite-1-%E5%8D%94%E8%AD%B0%E7%9A%84%E5%AE%9A%E7%BE%A9%EF%BC%8CTCP-IP%E5%8D%94%E8%AD%B0%E6%97%8F%E7%9A%84%E6%AD%B7%E5%8F%B2%E5%8F%8A%E5%AE%9A%E7%BE%A9%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">3. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-%E5%8D%94%E8%AD%B0"><span class="nav-number">1.1.</span> <span class="nav-text">Protocol-協議</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">通信的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E9%80%9A%E8%A8%8A%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">學習通訊模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#OSI-Model"><span class="nav-number">1.3.1.</span> <span class="nav-text">OSI Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DoD-Model-Department-of-Defense"><span class="nav-number">1.3.2.</span> <span class="nav-text">DoD Model (Department of Defense)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-IP-Model-Protocol-Suite"><span class="nav-number">1.3.3.</span> <span class="nav-text">TCP&#x2F;IP Model(Protocol Suite)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Encapsulation"><span class="nav-number">1.4.</span> <span class="nav-text">Data Encapsulation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#History-of-TCP-IP-Protocol-Suite"><span class="nav-number">1.5.</span> <span class="nav-text">History of TCP&#x2F;IP Protocol Suite</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TCP-IP-Protocol-Suite-1-%E5%8D%94%E8%AD%B0%E7%9A%84%E5%AE%9A%E7%BE%A9%EF%BC%8CTCP-IP%E5%8D%94%E8%AD%B0%E6%97%8F%E7%9A%84%E6%AD%B7%E5%8F%B2%E5%8F%8A%E5%AE%9A%E7%BE%A9%EF%BC%89"><span class="nav-text">1. TCP IP Protocol Suite 1(協議的定義，TCP&#x2F;IP協議族的歷史及定義）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Protocol-%E5%8D%94%E8%AD%B0"><span class="nav-text">1.1. Protocol-協議</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%80%9A%E4%BF%A1%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-text">1.2. 通信的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%AD%B8%E7%BF%92%E9%80%9A%E8%A8%8A%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.3. 學習通訊模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-OSI-Model"><span class="nav-text">1.3.1. OSI Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-DoD-Model-Department-of-Defense"><span class="nav-text">1.3.2. DoD Model (Department of Defense)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-TCP-IP-Model-Protocol-Suite"><span class="nav-text">1.3.3. TCP&#x2F;IP Model(Protocol Suite)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Data-Encapsulation"><span class="nav-text">1.4. Data Encapsulation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-History-of-TCP-IP-Protocol-Suite"><span class="nav-text">1.5. History of TCP&#x2F;IP Protocol Suite</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,7 +521,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -567,12 +570,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言前端開發人員寫 JS 遇到需要串接第三方 API，或是想存取第三方網站的資料時，遲早會遇到跨域限制的問題。 跨域(Cross-Origin Resource Sharing)的原理可參考這篇「跨來源資源共用」，因為安全性考量，網站主幾可設定收到 HTTP 請求時，是否允許非主機網域的來源進行存取。例如自架站的圖片若不想被盜連，可以設定不允許其他網域存取。 使用 JS 存取第三方 API 或網站">
+  <meta name="description" content="前言前端開發人員寫 JS 遇到需要串接第三方 API，或是想存取第三方網站的資料時，遲早會遇到跨域限制的問題。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CORS (Cross-Origin Resource Sharing)">
 <meta property="og:url" content="https://kitefree.github.io/2020/05/06/2020-05-06%20CORS%20(Cross-Origin%20Resource%20Sharing)/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="前言前端開發人員寫 JS 遇到需要串接第三方 API，或是想存取第三方網站的資料時，遲早會遇到跨域限制的問題。 跨域(Cross-Origin Resource Sharing)的原理可參考這篇「跨來源資源共用」，因為安全性考量，網站主幾可設定收到 HTTP 請求時，是否允許非主機網域的來源進行存取。例如自架站的圖片若不想被盜連，可以設定不允許其他網域存取。 使用 JS 存取第三方 API 或網站">
+<meta property="og:description" content="前言前端開發人員寫 JS 遇到需要串接第三方 API，或是想存取第三方網站的資料時，遲早會遇到跨域限制的問題。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-05-06T07:35:00.000Z">
-<meta property="article:modified_time" content="2021-10-01T06:21:21.791Z">
+<meta property="article:modified_time" content="2023-12-31T13:54:09.780Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="資安">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 14:21:21" itemprop="dateModified" datetime="2021-10-01T14:21:21+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:54:09" itemprop="dateModified" datetime="2023-12-31T21:54:09+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -232,7 +232,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.4k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -251,6 +251,8 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前端開發人員寫 JS 遇到需要串接第三方 API，或是想存取第三方網站的資料時，遲早會遇到跨域限制的問題。</p>
+<span id="more"></span>
+
 <p>跨域(Cross-Origin Resource Sharing)的原理可參考這篇「<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">跨來源資源共用</a>」，因為安全性考量，網站主幾可設定收到 HTTP 請求時，是否允許非主機網域的來源進行存取。例如自架站的圖片若不想被盜連，可以設定不允許其他網域存取。</p>
 <p>使用 JS 存取第三方 API 或網站資料時，若對方主機未允許 CORS，那麼前端人員可是一點辦法都沒有，只能求助於後端，利用伺服器端程式來繞過此問題。</p>
 <p>但是不太可能每個前端人員都自己架個伺服器，花這麼一大筆費用只為了處理跨域問題。值得慶幸的是，有國外免費服務架設伺服器，幫大家處理跨域存取的問題，本篇就來整理一些可用的選擇。</p>
@@ -367,7 +369,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%BA%90%E6%94%BF%E7%AD%96%EF%BC%88same-origin-policy%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">同源政策（same-origin policy）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">解決方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BE%8C%E7%AB%AF%E7%A8%8B%E5%BC%8F%E4%BA%BA%E5%93%A1%E5%B9%AB%E5%BF%99%E8%A7%A3%E9%96%8B%E9%99%90%E5%88%B6-%E9%96%8B%E5%95%9F%E8%B7%A8%E4%BE%86%E6%BA%90%E8%AB%8B%E6%B1%82"><span class="nav-number">3.1.</span> <span class="nav-text">1. 後端程式人員幫忙解開限制(開啟跨來源請求)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BE%8C%E7%AB%AF%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%86%8D%E5%8C%85%E8%A3%9D%E7%AC%AC%E4%B8%89%E6%96%B9API%E5%BE%8C%EF%BC%8C%E7%B5%A6%E5%89%8D%E7%AB%AF%E8%AA%BF%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2. 後端程式碼再包裝第三方API後，給前端調用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8B%99%E4%BB%A3%E7%90%86%E8%AB%8B%E6%B1%82"><span class="nav-number">3.3.</span> <span class="nav-text">3. 第三方服務代理請求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS-ANYWHERE"><span class="nav-number">3.3.1.</span> <span class="nav-text">CORS-ANYWHERE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORSIO"><span class="nav-number">3.3.2.</span> <span class="nav-text">CORSIO</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-JSONP"><span class="nav-number">3.4.</span> <span class="nav-text">4. JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP-%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">3.4.1.</span> <span class="nav-text">JSONP 的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.4.2.</span> <span class="nav-text">JSONP 的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E8%8F%AF%E8%A7%A3%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">精華解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%BA%90%E6%94%BF%E7%AD%96%EF%BC%88same-origin-policy%EF%BC%89"><span class="nav-text">同源政策（same-origin policy）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"><span class="nav-text">解決方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BE%8C%E7%AB%AF%E7%A8%8B%E5%BC%8F%E4%BA%BA%E5%93%A1%E5%B9%AB%E5%BF%99%E8%A7%A3%E9%96%8B%E9%99%90%E5%88%B6-%E9%96%8B%E5%95%9F%E8%B7%A8%E4%BE%86%E6%BA%90%E8%AB%8B%E6%B1%82"><span class="nav-text">1. 後端程式人員幫忙解開限制(開啟跨來源請求)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BE%8C%E7%AB%AF%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%86%8D%E5%8C%85%E8%A3%9D%E7%AC%AC%E4%B8%89%E6%96%B9API%E5%BE%8C%EF%BC%8C%E7%B5%A6%E5%89%8D%E7%AB%AF%E8%AA%BF%E7%94%A8"><span class="nav-text">2. 後端程式碼再包裝第三方API後，給前端調用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8B%99%E4%BB%A3%E7%90%86%E8%AB%8B%E6%B1%82"><span class="nav-text">3. 第三方服務代理請求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS-ANYWHERE"><span class="nav-text">CORS-ANYWHERE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORSIO"><span class="nav-text">CORSIO</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-JSONP"><span class="nav-text">4. JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP-%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">JSONP 的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">JSONP 的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E8%8F%AF%E8%A7%A3%E6%9E%90"><span class="nav-text">精華解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -381,7 +383,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -430,12 +432,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

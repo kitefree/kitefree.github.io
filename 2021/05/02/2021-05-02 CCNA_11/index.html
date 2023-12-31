@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="11. Physical Layer物理層拓璞 Network Cabling 網路線只要可以傳播數據的我們都可以稱為是網線  Ethernet Cabling最常見的為雙絞線 Twisted Pair Cable UTP STP 減少電磁波的干擾    STP 相對貴一些但是現在的UTP 其實不太影響，除非是很特殊的環境  UTP CategoriesCAT 是指Categories UTP C">
+  <meta name="description" content="1. Physical Layer1.1. 物理層拓璞">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCNA_11">
 <meta property="og:url" content="https://kitefree.github.io/2021/05/02/2021-05-02%20CCNA_11/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="11. Physical Layer物理層拓璞 Network Cabling 網路線只要可以傳播數據的我們都可以稱為是網線  Ethernet Cabling最常見的為雙絞線 Twisted Pair Cable UTP STP 減少電磁波的干擾    STP 相對貴一些但是現在的UTP 其實不太影響，除非是很特殊的環境  UTP CategoriesCAT 是指Categories UTP C">
+<meta property="og:description" content="1. Physical Layer1.1. 物理層拓璞">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/u9mPd2p.png">
 <meta property="og:image" content="https://i.imgur.com/cwwmAnQ.png">
@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://i.imgur.com/hVtzUOF.png">
 <meta property="og:image" content="https://i.imgur.com/pLeHZmW.png">
 <meta property="article:published_time" content="2021-05-02T09:22:00.000Z">
-<meta property="article:modified_time" content="2021-09-19T01:19:33.040Z">
+<meta property="article:modified_time" content="2023-12-31T13:59:18.799Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="CCNA">
 <meta name="twitter:card" content="summary">
@@ -243,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+                <time title="修改時間：2023-12-31 21:59:18" itemprop="dateModified" datetime="2023-12-31T21:59:18+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -251,7 +251,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.2k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -269,11 +269,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="11-Physical-Layer"><a href="#11-Physical-Layer" class="headerlink" title="11. Physical Layer"></a>11. Physical Layer</h2><h3 id="物理層拓璞"><a href="#物理層拓璞" class="headerlink" title="物理層拓璞"></a>物理層拓璞</h3><p><img src="https://i.imgur.com/u9mPd2p.png"></p>
-<h3 id="Network-Cabling-網路線"><a href="#Network-Cabling-網路線" class="headerlink" title="Network Cabling 網路線"></a>Network Cabling 網路線</h3><p>只要可以傳播數據的我們都可以稱為是網線</p>
+        <h2 id="1-Physical-Layer"><a href="#1-Physical-Layer" class="headerlink" title="1. Physical Layer"></a>1. Physical Layer</h2><h3 id="1-1-物理層拓璞"><a href="#1-1-物理層拓璞" class="headerlink" title="1.1. 物理層拓璞"></a>1.1. 物理層拓璞</h3><p><img src="https://i.imgur.com/u9mPd2p.png"></p>
+<span id="more"></span>
+
+
+<h3 id="1-2-Network-Cabling-網路線"><a href="#1-2-Network-Cabling-網路線" class="headerlink" title="1.2. Network Cabling 網路線"></a>1.2. Network Cabling 網路線</h3><p>只要可以傳播數據的我們都可以稱為是網線</p>
 <p><img src="https://i.imgur.com/cwwmAnQ.png"></p>
-<h3 id="Ethernet-Cabling"><a href="#Ethernet-Cabling" class="headerlink" title="Ethernet Cabling"></a>Ethernet Cabling</h3><p>最常見的為雙絞線<br><img src="https://i.imgur.com/NoGy76d.png"></p>
-<h3 id="Twisted-Pair-Cable"><a href="#Twisted-Pair-Cable" class="headerlink" title="Twisted Pair Cable"></a>Twisted Pair Cable</h3><ul>
+<h3 id="1-3-Ethernet-Cabling"><a href="#1-3-Ethernet-Cabling" class="headerlink" title="1.3. Ethernet Cabling"></a>1.3. Ethernet Cabling</h3><p>最常見的為雙絞線<br><img src="https://i.imgur.com/NoGy76d.png"></p>
+<h3 id="1-4-Twisted-Pair-Cable"><a href="#1-4-Twisted-Pair-Cable" class="headerlink" title="1.4. Twisted Pair Cable"></a>1.4. Twisted Pair Cable</h3><ul>
 <li>UTP</li>
 <li>STP<ul>
 <li>減少電磁波的干擾</li>
@@ -282,24 +285,24 @@
 </ul>
 <p>STP 相對貴一些<br>但是現在的UTP 其實不太影響，除非是很特殊的環境</p>
 <p><img src="https://i.imgur.com/SAODf43.png"></p>
-<h3 id="UTP-Categories"><a href="#UTP-Categories" class="headerlink" title="UTP Categories"></a>UTP Categories</h3><p>CAT 是指Categories<br><img src="https://i.imgur.com/OyKQUb6.png"></p>
-<h3 id="UTP-Connector"><a href="#UTP-Connector" class="headerlink" title="UTP Connector"></a>UTP Connector</h3><p>凹的是JACK<br>凸的是PLUG<br><img src="https://i.imgur.com/1qQEKCM.png"></p>
-<h3 id="RJ-45-接線標準"><a href="#RJ-45-接線標準" class="headerlink" title="RJ-45 接線標準"></a>RJ-45 接線標準</h3><p><img src="https://i.imgur.com/JsWt4mG.png"><br>現在常用的是T568B<br>白橙橙白綠藍白藍綠白棕棕<br>RJ-11 電話線</p>
-<h3 id="Straight-Through-Cable"><a href="#Straight-Through-Cable" class="headerlink" title="Straight-Through Cable"></a>Straight-Through Cable</h3><p>不同種類的設備的連線</p>
+<h3 id="1-5-UTP-Categories"><a href="#1-5-UTP-Categories" class="headerlink" title="1.5. UTP Categories"></a>1.5. UTP Categories</h3><p>CAT 是指Categories<br><img src="https://i.imgur.com/OyKQUb6.png"></p>
+<h3 id="1-6-UTP-Connector"><a href="#1-6-UTP-Connector" class="headerlink" title="1.6. UTP Connector"></a>1.6. UTP Connector</h3><p>凹的是JACK<br>凸的是PLUG<br><img src="https://i.imgur.com/1qQEKCM.png"></p>
+<h3 id="1-7-RJ-45-接線標準"><a href="#1-7-RJ-45-接線標準" class="headerlink" title="1.7. RJ-45 接線標準"></a>1.7. RJ-45 接線標準</h3><p><img src="https://i.imgur.com/JsWt4mG.png"><br>現在常用的是T568B<br>白橙橙白綠藍白藍綠白棕棕<br>RJ-11 電話線</p>
+<h3 id="1-8-Straight-Through-Cable"><a href="#1-8-Straight-Through-Cable" class="headerlink" title="1.8. Straight-Through Cable"></a>1.8. Straight-Through Cable</h3><p>不同種類的設備的連線</p>
 <ul>
 <li>Host to Switch</li>
 <li>Router to Switch</li>
 <li>Host to Router</li>
 </ul>
-<h3 id="Crossover-Cable"><a href="#Crossover-Cable" class="headerlink" title="Crossover Cable"></a>Crossover Cable</h3><p>同種設備的連線</p>
+<h3 id="1-9-Crossover-Cable"><a href="#1-9-Crossover-Cable" class="headerlink" title="1.9. Crossover Cable"></a>1.9. Crossover Cable</h3><p>同種設備的連線</p>
 <ul>
 <li>Host to Host</li>
 <li>Switch to Switch </li>
 <li>Router to Router</li>
 </ul>
 <p>不過目前是可以直接使用Straight-Through Cable ,系統偵測如果線序是不一致的，會進行跳線轉換<br>Automatic Medium-Dependent Interface Crossover(Auto-MDIX)<br><img src="https://i.imgur.com/mXvVaq7.png"></p>
-<h3 id="Rolled-Cable"><a href="#Rolled-Cable" class="headerlink" title="Rolled Cable"></a>Rolled Cable</h3><p>Console cable 就是用這種線序<br><img src="https://i.imgur.com/AlcnAUf.png"></p>
-<h3 id="Fiber-Optic"><a href="#Fiber-Optic" class="headerlink" title="Fiber Optic"></a>Fiber Optic</h3><ul>
+<h3 id="1-10-Rolled-Cable"><a href="#1-10-Rolled-Cable" class="headerlink" title="1.10. Rolled Cable"></a>1.10. Rolled Cable</h3><p>Console cable 就是用這種線序<br><img src="https://i.imgur.com/AlcnAUf.png"></p>
+<h3 id="1-11-Fiber-Optic"><a href="#1-11-Fiber-Optic" class="headerlink" title="1.11. Fiber Optic"></a>1.11. Fiber Optic</h3><ul>
 <li>Single-mode 單模<ul>
 <li>遠距離傳輸</li>
 <li>較貴</li>
@@ -319,16 +322,16 @@
 </li>
 </ul>
 <p><img src="https://i.imgur.com/1T6GPQT.jpg"></p>
-<h3 id="OM-Optical-Multimode"><a href="#OM-Optical-Multimode" class="headerlink" title="OM (Optical Multimode)"></a>OM (Optical Multimode)</h3><p>大部分會使用OM3</p>
+<h3 id="1-12-OM-Optical-Multimode"><a href="#1-12-OM-Optical-Multimode" class="headerlink" title="1.12. OM (Optical Multimode)"></a>1.12. OM (Optical Multimode)</h3><p>大部分會使用OM3</p>
 <ul>
 <li>OM1</li>
 <li>OM2</li>
 <li>OM3</li>
 <li>OM4<br><img src="https://i.imgur.com/YB3GL9Z.png"><br><img src="https://i.imgur.com/OKsNXuq.png"></li>
 </ul>
-<h3 id="Fiber-Connector"><a href="#Fiber-Connector" class="headerlink" title="Fiber Connector"></a>Fiber Connector</h3><p>光纖的接口叫connect<br>最常見的是SC、LC<br>比較舊的設備是用SC<br>現在比較常用的是LC<br><img src="https://i.imgur.com/TLXpuJ3.png"><br><img src="https://i.imgur.com/1RbmFrt.png"></p>
-<h3 id="SFP-Transceiver"><a href="#SFP-Transceiver" class="headerlink" title="SFP Transceiver"></a>SFP Transceiver</h3><p>當有了線有了頭，還要一個東西就是這個，這個東西叫模塊<br>買交接機的時候要注意一下後面是固定的RJ-45接口呢還是空的位置讓你插<br>SFP 也可以拿來接RJ-45的哦!!<br><img src="https://i.imgur.com/1Lub1X1.png"></p>
-<h3 id="Transceiver-Code"><a href="#Transceiver-Code" class="headerlink" title="Transceiver Code"></a>Transceiver Code</h3><p>太多種了，只講以下兩種</p>
+<h3 id="1-13-Fiber-Connector"><a href="#1-13-Fiber-Connector" class="headerlink" title="1.13. Fiber Connector"></a>1.13. Fiber Connector</h3><p>光纖的接口叫connect<br>最常見的是SC、LC<br>比較舊的設備是用SC<br>現在比較常用的是LC<br><img src="https://i.imgur.com/TLXpuJ3.png"><br><img src="https://i.imgur.com/1RbmFrt.png"></p>
+<h3 id="1-14-SFP-Transceiver"><a href="#1-14-SFP-Transceiver" class="headerlink" title="1.14. SFP Transceiver"></a>1.14. SFP Transceiver</h3><p>當有了線有了頭，還要一個東西就是這個，這個東西叫模塊<br>買交接機的時候要注意一下後面是固定的RJ-45接口呢還是空的位置讓你插<br>SFP 也可以拿來接RJ-45的哦!!<br><img src="https://i.imgur.com/1Lub1X1.png"></p>
+<h3 id="1-15-Transceiver-Code"><a href="#1-15-Transceiver-Code" class="headerlink" title="1.15. Transceiver Code"></a>1.15. Transceiver Code</h3><p>太多種了，只講以下兩種</p>
 <ul>
 <li>SR stnads for Short Reach(10GBase-SR)<ul>
 <li>Short Range</li>
@@ -343,7 +346,7 @@
 </ul>
 <p>當在買模塊的時候，要考慮線材是多模的還是單模的，再去挑對應的模塊代號</p>
 <p><img src="https://i.imgur.com/58n2Igo.png"></p>
-<h3 id="Simple-HalfDuplex-Duplex"><a href="#Simple-HalfDuplex-Duplex" class="headerlink" title="Simple ,HalfDuplex ,Duplex"></a>Simple ,HalfDuplex ,Duplex</h3><ul>
+<h3 id="1-16-Simple-HalfDuplex-Duplex"><a href="#1-16-Simple-HalfDuplex-Duplex" class="headerlink" title="1.16. Simple ,HalfDuplex ,Duplex"></a>1.16. Simple ,HalfDuplex ,Duplex</h3><ul>
 <li>單工<ul>
 <li>單行道</li>
 <li>只能單向傳輸</li>
@@ -361,7 +364,7 @@
 </ul>
 <p>如果兩個交換機 之間是 1 Gbps &#x2F;Full Duplex<br>那我們在講吞吐量的時候會說有2gbps，但是一樣每一個方向最多是1g</p>
 <p><img src="https://i.imgur.com/hVtzUOF.png"></p>
-<h3 id="Simplex-Duplex-Fiber-Optic-Cables"><a href="#Simplex-Duplex-Fiber-Optic-Cables" class="headerlink" title="Simplex &amp; Duplex Fiber Optic Cables"></a>Simplex &amp; Duplex Fiber Optic Cables</h3><p>Tx<br>Rx</p>
+<h3 id="1-17-Simplex-Duplex-Fiber-Optic-Cables"><a href="#1-17-Simplex-Duplex-Fiber-Optic-Cables" class="headerlink" title="1.17. Simplex &amp; Duplex Fiber Optic Cables"></a>1.17. Simplex &amp; Duplex Fiber Optic Cables</h3><p>Tx<br>Rx</p>
 <p><img src="https://i.imgur.com/pLeHZmW.png"></p>
 
     </div>
@@ -446,7 +449,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Physical-Layer"><span class="nav-number">1.</span> <span class="nav-text">11. Physical Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%A4%E6%8B%93%E7%92%9E"><span class="nav-number">1.1.</span> <span class="nav-text">物理層拓璞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-Cabling-%E7%B6%B2%E8%B7%AF%E7%B7%9A"><span class="nav-number">1.2.</span> <span class="nav-text">Network Cabling 網路線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ethernet-Cabling"><span class="nav-number">1.3.</span> <span class="nav-text">Ethernet Cabling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Twisted-Pair-Cable"><span class="nav-number">1.4.</span> <span class="nav-text">Twisted Pair Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UTP-Categories"><span class="nav-number">1.5.</span> <span class="nav-text">UTP Categories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UTP-Connector"><span class="nav-number">1.6.</span> <span class="nav-text">UTP Connector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RJ-45-%E6%8E%A5%E7%B7%9A%E6%A8%99%E6%BA%96"><span class="nav-number">1.7.</span> <span class="nav-text">RJ-45 接線標準</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Straight-Through-Cable"><span class="nav-number">1.8.</span> <span class="nav-text">Straight-Through Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Crossover-Cable"><span class="nav-number">1.9.</span> <span class="nav-text">Crossover Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rolled-Cable"><span class="nav-number">1.10.</span> <span class="nav-text">Rolled Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fiber-Optic"><span class="nav-number">1.11.</span> <span class="nav-text">Fiber Optic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OM-Optical-Multimode"><span class="nav-number">1.12.</span> <span class="nav-text">OM (Optical Multimode)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fiber-Connector"><span class="nav-number">1.13.</span> <span class="nav-text">Fiber Connector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SFP-Transceiver"><span class="nav-number">1.14.</span> <span class="nav-text">SFP Transceiver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transceiver-Code"><span class="nav-number">1.15.</span> <span class="nav-text">Transceiver Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-HalfDuplex-Duplex"><span class="nav-number">1.16.</span> <span class="nav-text">Simple ,HalfDuplex ,Duplex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simplex-Duplex-Fiber-Optic-Cables"><span class="nav-number">1.17.</span> <span class="nav-text">Simplex &amp; Duplex Fiber Optic Cables</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Physical-Layer"><span class="nav-text">1. Physical Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%89%A9%E7%90%86%E5%B1%A4%E6%8B%93%E7%92%9E"><span class="nav-text">1.1. 物理層拓璞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Network-Cabling-%E7%B6%B2%E8%B7%AF%E7%B7%9A"><span class="nav-text">1.2. Network Cabling 網路線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Ethernet-Cabling"><span class="nav-text">1.3. Ethernet Cabling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Twisted-Pair-Cable"><span class="nav-text">1.4. Twisted Pair Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-UTP-Categories"><span class="nav-text">1.5. UTP Categories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-UTP-Connector"><span class="nav-text">1.6. UTP Connector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-RJ-45-%E6%8E%A5%E7%B7%9A%E6%A8%99%E6%BA%96"><span class="nav-text">1.7. RJ-45 接線標準</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-Straight-Through-Cable"><span class="nav-text">1.8. Straight-Through Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-Crossover-Cable"><span class="nav-text">1.9. Crossover Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-Rolled-Cable"><span class="nav-text">1.10. Rolled Cable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-11-Fiber-Optic"><span class="nav-text">1.11. Fiber Optic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-12-OM-Optical-Multimode"><span class="nav-text">1.12. OM (Optical Multimode)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-13-Fiber-Connector"><span class="nav-text">1.13. Fiber Connector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-14-SFP-Transceiver"><span class="nav-text">1.14. SFP Transceiver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-15-Transceiver-Code"><span class="nav-text">1.15. Transceiver Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-16-Simple-HalfDuplex-Duplex"><span class="nav-text">1.16. Simple ,HalfDuplex ,Duplex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-17-Simplex-Duplex-Fiber-Optic-Cables"><span class="nav-text">1.17. Simplex &amp; Duplex Fiber Optic Cables</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -460,7 +463,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -509,12 +512,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

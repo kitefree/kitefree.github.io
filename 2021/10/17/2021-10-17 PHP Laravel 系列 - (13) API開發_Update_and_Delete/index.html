@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="這篇講的是如何修改更刪除資料 Update在更新資料時使用的是put method，最後一個參數是id 12http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;1&#x2F;&#x2F;http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;id  此url對應的是update function() 1234public function update(Request $request, $id)&amp;#">
+  <meta name="description" content="這篇講的是如何修改更刪除資料">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP Laravel 系列 - (13) API開發_Update_and_Delete">
 <meta property="og:url" content="https://kitefree.github.io/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(13)%20API%E9%96%8B%E7%99%BC_Update_and_Delete/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="這篇講的是如何修改更刪除資料 Update在更新資料時使用的是put method，最後一個參數是id 12http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;1&#x2F;&#x2F;http:&#x2F;&#x2F;localhost:8000&#x2F;products&#x2F;id  此url對應的是update function() 1234public function update(Request $request, $id)&amp;#">
+<meta property="og:description" content="這篇講的是如何修改更刪除資料">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/x2X5Mjj.png">
 <meta property="og:image" content="https://i.imgur.com/m6heW3u.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://i.imgur.com/fRlkNj3.png">
 <meta property="og:image" content="https://i.imgur.com/OTamD7K.png">
 <meta property="article:published_time" content="2021-10-17T15:12:00.000Z">
-<meta property="article:modified_time" content="2021-10-19T02:22:34.865Z">
+<meta property="article:modified_time" content="2023-12-31T13:48:58.966Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="PHP">
 <meta property="article:tag" content="Laravel">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-19 10:22:34" itemprop="dateModified" datetime="2021-10-19T10:22:34+08:00">2021-10-19</time>
+                <time title="修改時間：2023-12-31 21:48:58" itemprop="dateModified" datetime="2023-12-31T21:48:58+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,13 +248,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>2.3k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>4 分鐘</span>
+              <span>5 分鐘</span>
             </span>
 
         </div>
@@ -267,6 +267,9 @@
 
       
         <p>這篇講的是如何修改更刪除資料</p>
+<span id="more"></span>
+
+
 <h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><p>在更新資料時使用的是<code>put method</code>，最後一個參數是<code>id</code></p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8000/products/1</span><br><span class="line">//http://localhost:8000/products/id</span><br></pre></td></tr></table></figure>
 
@@ -389,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update"><span class="nav-number">1.</span> <span class="nav-text">Update</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8POSTMAN%E6%B8%AC%E8%A9%A6"><span class="nav-number">1.1.</span> <span class="nav-text">使用POSTMAN測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9update-function"><span class="nav-number">1.2.</span> <span class="nav-text">修改update function()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8API%E5%B8%B8%E8%A6%8B%E7%9A%84%E4%BD%9C%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">在API常見的作法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dd-%E8%88%87dump%E5%B7%AE%E7%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">dd 與dump差異</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete"><span class="nav-number">2.</span> <span class="nav-text">Delete</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9destroy-function"><span class="nav-number">2.1.</span> <span class="nav-text">修改destroy function()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8POSTMAN%E6%B8%AC%E8%A9%A6-1"><span class="nav-number">2.2.</span> <span class="nav-text">使用POSTMAN測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%93%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%AE%8A%E5%A5%BD%E7%9C%8B"><span class="nav-number">2.3.</span> <span class="nav-text">讓資料結構變好看</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update"><span class="nav-text">Update</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8POSTMAN%E6%B8%AC%E8%A9%A6"><span class="nav-text">使用POSTMAN測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9update-function"><span class="nav-text">修改update function()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8API%E5%B8%B8%E8%A6%8B%E7%9A%84%E4%BD%9C%E6%B3%95"><span class="nav-text">在API常見的作法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dd-%E8%88%87dump%E5%B7%AE%E7%95%B0"><span class="nav-text">dd 與dump差異</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete"><span class="nav-text">Delete</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9destroy-function"><span class="nav-text">修改destroy function()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8POSTMAN%E6%B8%AC%E8%A9%A6-1"><span class="nav-text">使用POSTMAN測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%93%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%AE%8A%E5%A5%BD%E7%9C%8B"><span class="nav-text">讓資料結構變好看</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -403,7 +406,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -452,12 +455,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="CI&#x2F;CD 運作流程 CI&#x2F;CD 優缺點 CI&#x2F;CD Pipeline CI&#x2F;CD 節省成本 工具介紹自動化測試工具 程式碼掃描工具  Jenkins Blue Ocean可以利用這套系統來建立pipeline  Maven 打包工具 Jenkins CI&#x2F;CD flow  參考資料技術小聚｜CICD 好自動！你準備好 CICD 了嗎？">
+  <meta name="description" content="CI&#x2F;CD 運作流程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CICD好自動">
 <meta property="og:url" content="https://kitefree.github.io/2021/11/15/2021-11-15%20CICD%20%E5%A5%BD%E8%87%AA%E5%8B%95/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="CI&#x2F;CD 運作流程 CI&#x2F;CD 優缺點 CI&#x2F;CD Pipeline CI&#x2F;CD 節省成本 工具介紹自動化測試工具 程式碼掃描工具  Jenkins Blue Ocean可以利用這套系統來建立pipeline  Maven 打包工具 Jenkins CI&#x2F;CD flow  參考資料技術小聚｜CICD 好自動！你準備好 CICD 了嗎？">
+<meta property="og:description" content="CI&#x2F;CD 運作流程">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/tTOyZLE.png">
 <meta property="og:image" content="https://i.imgur.com/B16BKW2.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://i.imgur.com/oIAdmuD.png">
 <meta property="og:image" content="https://i.imgur.com/obOTo7U.png">
 <meta property="article:published_time" content="2021-11-15T01:53:00.000Z">
-<meta property="article:modified_time" content="2021-12-14T06:31:47.551Z">
+<meta property="article:modified_time" content="2023-12-31T13:47:49.889Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="CICD">
@@ -237,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-14 14:31:47" itemprop="dateModified" datetime="2021-12-14T14:31:47+08:00">2021-12-14</time>
+                <time title="修改時間：2023-12-31 21:47:49" itemprop="dateModified" datetime="2023-12-31T21:47:49+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>170</span>
+              <span>182</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -273,6 +273,9 @@
 
       
         <h2 id="CI-CD-運作流程"><a href="#CI-CD-運作流程" class="headerlink" title="CI&#x2F;CD 運作流程"></a>CI&#x2F;CD 運作流程</h2><p><img src="https://i.imgur.com/tTOyZLE.png" alt="image-20211115101210773"></p>
+<span id="more"></span>
+
+
 <h2 id="CI-CD-優缺點"><a href="#CI-CD-優缺點" class="headerlink" title="CI&#x2F;CD 優缺點"></a>CI&#x2F;CD 優缺點</h2><p><img src="https://i.imgur.com/B16BKW2.png" alt="image-20211115101254784"></p>
 <h2 id="CI-CD-Pipeline"><a href="#CI-CD-Pipeline" class="headerlink" title="CI&#x2F;CD Pipeline"></a>CI&#x2F;CD Pipeline</h2><p><img src="https://i.imgur.com/QXqF4Rt.png" alt="image-20211115101501789"></p>
 <h2 id="CI-CD-節省成本"><a href="#CI-CD-節省成本" class="headerlink" title="CI&#x2F;CD 節省成本"></a>CI&#x2F;CD 節省成本</h2><p><img src="https://i.imgur.com/olraQ4a.png" alt="image-20211115101831573"></p>
@@ -369,7 +372,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-%E9%81%8B%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">CI&#x2F;CD 運作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-%E5%84%AA%E7%BC%BA%E9%BB%9E"><span class="nav-number">2.</span> <span class="nav-text">CI&#x2F;CD 優缺點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-Pipeline"><span class="nav-number">3.</span> <span class="nav-text">CI&#x2F;CD Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-%E7%AF%80%E7%9C%81%E6%88%90%E6%9C%AC"><span class="nav-number">4.</span> <span class="nav-text">CI&#x2F;CD 節省成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9"><span class="nav-number">5.</span> <span class="nav-text">工具介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E5%B7%A5%E5%85%B7"><span class="nav-number">5.1.</span> <span class="nav-text">自動化測試工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%8E%83%E6%8F%8F%E5%B7%A5%E5%85%B7"><span class="nav-number">5.2.</span> <span class="nav-text">程式碼掃描工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins-Blue-Ocean"><span class="nav-number">5.3.</span> <span class="nav-text">Jenkins Blue Ocean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7"><span class="nav-number">5.4.</span> <span class="nav-text">Maven 打包工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-CI-CD-flow"><span class="nav-number">6.</span> <span class="nav-text">Jenkins CI&#x2F;CD flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-%E9%81%8B%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">CI&#x2F;CD 運作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-%E5%84%AA%E7%BC%BA%E9%BB%9E"><span class="nav-text">CI&#x2F;CD 優缺點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-Pipeline"><span class="nav-text">CI&#x2F;CD Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD-%E7%AF%80%E7%9C%81%E6%88%90%E6%9C%AC"><span class="nav-text">CI&#x2F;CD 節省成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9"><span class="nav-text">工具介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E5%B7%A5%E5%85%B7"><span class="nav-text">自動化測試工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%8E%83%E6%8F%8F%E5%B7%A5%E5%85%B7"><span class="nav-text">程式碼掃描工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins-Blue-Ocean"><span class="nav-text">Jenkins Blue Ocean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7"><span class="nav-text">Maven 打包工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-CI-CD-flow"><span class="nav-text">Jenkins CI&#x2F;CD flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -383,7 +386,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -432,12 +435,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

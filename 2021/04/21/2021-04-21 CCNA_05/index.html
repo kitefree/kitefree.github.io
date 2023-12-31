@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="5. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)Layered System Review TCP&#x2F;UDP Port Number 我們在講端口號(Port Number) 時，記得要講清楚是UDP 還是TCP，意味著這2個是不同的應用程序 Port Number 範圍與規範">
+  <meta name="description" content="1. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCNA_05">
 <meta property="og:url" content="https://kitefree.github.io/2021/04/21/2021-04-21%20CCNA_05/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="5. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)Layered System Review TCP&#x2F;UDP Port Number 我們在講端口號(Port Number) 時，記得要講清楚是UDP 還是TCP，意味著這2個是不同的應用程序 Port Number 範圍與規範">
+<meta property="og:description" content="1. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/QYbUcHW.png">
 <meta property="og:image" content="https://i.imgur.com/ov3P7IB.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://i.imgur.com/UPwucgs.png">
 <meta property="og:image" content="https://i.imgur.com/vTQ2nKy.png">
 <meta property="article:published_time" content="2021-04-21T15:49:00.000Z">
-<meta property="article:modified_time" content="2021-10-01T07:54:28.734Z">
+<meta property="article:modified_time" content="2023-12-31T13:57:57.667Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="CCNA">
 <meta property="article:tag" content="Port Number">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 15:54:28" itemprop="dateModified" datetime="2021-10-01T15:54:28+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:57:57" itemprop="dateModified" datetime="2023-12-31T21:57:57+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -241,13 +241,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>790</span>
+              <span>908</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>1 分鐘</span>
+              <span>2 分鐘</span>
             </span>
 
         </div>
@@ -259,10 +259,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="5-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number"><a href="#5-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number" class="headerlink" title="5. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)"></a>5. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)</h2><h3 id="Layered-System-Review"><a href="#Layered-System-Review" class="headerlink" title="Layered System Review"></a>Layered System Review</h3><p><img src="https://i.imgur.com/QYbUcHW.png" alt="image"></p>
-<h3 id="TCP-UDP-Port-Number"><a href="#TCP-UDP-Port-Number" class="headerlink" title="TCP&#x2F;UDP Port Number"></a>TCP&#x2F;UDP Port Number</h3><p><img src="https://i.imgur.com/ov3P7IB.png" alt="image"></p>
+        <h2 id="1-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number"><a href="#1-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number" class="headerlink" title="1. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)"></a>1. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)</h2><span id="more"></span>
+
+
+<h3 id="1-1-Layered-System-Review"><a href="#1-1-Layered-System-Review" class="headerlink" title="1.1. Layered System Review"></a>1.1. Layered System Review</h3><p><img src="https://i.imgur.com/QYbUcHW.png" alt="image"></p>
+<h3 id="1-2-TCP-UDP-Port-Number"><a href="#1-2-TCP-UDP-Port-Number" class="headerlink" title="1.2. TCP&#x2F;UDP Port Number"></a>1.2. TCP&#x2F;UDP Port Number</h3><p><img src="https://i.imgur.com/ov3P7IB.png" alt="image"></p>
 <p>我們在講端口號(Port Number) 時，記得要講清楚是UDP 還是TCP，意味著這2個是不同的應用程序</p>
-<h4 id="Port-Number-範圍與規範"><a href="#Port-Number-範圍與規範" class="headerlink" title="Port Number 範圍與規範"></a>Port Number 範圍與規範</h4><ul>
+<h4 id="1-2-1-Port-Number-範圍與規範"><a href="#1-2-1-Port-Number-範圍與規範" class="headerlink" title="1.2.1. Port Number 範圍與規範"></a>1.2.1. Port Number 範圍與規範</h4><ul>
 <li>0 to 65535 (TCP &amp; UDP)</li>
 <li>0 to 1024<ul>
 <li>分配給最常用的應用程序, 比如80 http</li>
@@ -277,7 +280,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="NIC-Ethernet-Type-Protocol-Number"><a href="#NIC-Ethernet-Type-Protocol-Number" class="headerlink" title="NIC,Ethernet Type,Protocol Number"></a>NIC,Ethernet Type,Protocol Number</h3><h4 id="NIC-network-interface-controller-網路介面控制器"><a href="#NIC-network-interface-controller-網路介面控制器" class="headerlink" title="NIC(network interface controller) - 網路介面控制器"></a>NIC(network interface controller) - 網路介面控制器</h4><p>第一層 Physical layer</p>
+<h3 id="1-3-NIC-Ethernet-Type-Protocol-Number"><a href="#1-3-NIC-Ethernet-Type-Protocol-Number" class="headerlink" title="1.3. NIC,Ethernet Type,Protocol Number"></a>1.3. NIC,Ethernet Type,Protocol Number</h3><h4 id="1-3-1-NIC-network-interface-controller-網路介面控制器"><a href="#1-3-1-NIC-network-interface-controller-網路介面控制器" class="headerlink" title="1.3.1. NIC(network interface controller) - 網路介面控制器"></a>1.3.1. NIC(network interface controller) - 網路介面控制器</h4><p>第一層 Physical layer</p>
 <ul>
 <li>銅線</li>
 <li>光纖</li>
@@ -287,9 +290,9 @@
 </li>
 </ul>
 <p>銅線和光纖都是根據乙太網協議設計的<br>而串口是根據PPP協議設計的<br><img src="https://i.imgur.com/5nOlzDy.jpg" alt="image"></p>
-<h4 id="Ethernet-Type"><a href="#Ethernet-Type" class="headerlink" title="Ethernet Type"></a>Ethernet Type</h4><p>第二層<br>如何判斷要給IPv4 還是IPv6 協議呢??<br>判斷 EtherNet Type <code>0x0800 = IPv4</code> <code>0x86DD = IPv6</code><br><img src="https://i.imgur.com/XyZae4N.png" alt="image"></p>
-<h4 id="Protocol-Number"><a href="#Protocol-Number" class="headerlink" title="Protocol Number"></a>Protocol Number</h4><p>第三層<br>到了IP這層header 會記錄 Protocol Number<br>如果header記錄了<code>6</code>那就知道下一步轉發到上一層TCP<br>如果header<code>89</code>那就知道下一步先平行移動轉發到OSPF<br><img src="https://i.imgur.com/UPwucgs.png" alt="image"></p>
-<h3 id="Host-to-Host-Communication"><a href="#Host-to-Host-Communication" class="headerlink" title="Host to Host Communication"></a>Host to Host Communication</h3><p>寫下IP之後，接下來通過路由協議來查看地圖，如果有路由到SERVER，我就把封包往下發送<br>OSPF EIGRP 來確認是否有辦法達到SERVER的路由</p>
+<h4 id="1-3-2-Ethernet-Type"><a href="#1-3-2-Ethernet-Type" class="headerlink" title="1.3.2. Ethernet Type"></a>1.3.2. Ethernet Type</h4><p>第二層<br>如何判斷要給IPv4 還是IPv6 協議呢??<br>判斷 EtherNet Type <code>0x0800 = IPv4</code> <code>0x86DD = IPv6</code><br><img src="https://i.imgur.com/XyZae4N.png" alt="image"></p>
+<h4 id="1-3-3-Protocol-Number"><a href="#1-3-3-Protocol-Number" class="headerlink" title="1.3.3. Protocol Number"></a>1.3.3. Protocol Number</h4><p>第三層<br>到了IP這層header 會記錄 Protocol Number<br>如果header記錄了<code>6</code>那就知道下一步轉發到上一層TCP<br>如果header<code>89</code>那就知道下一步先平行移動轉發到OSPF<br><img src="https://i.imgur.com/UPwucgs.png" alt="image"></p>
+<h3 id="1-4-Host-to-Host-Communication"><a href="#1-4-Host-to-Host-Communication" class="headerlink" title="1.4. Host to Host Communication"></a>1.4. Host to Host Communication</h3><p>寫下IP之後，接下來通過路由協議來查看地圖，如果有路由到SERVER，我就把封包往下發送<br>OSPF EIGRP 來確認是否有辦法達到SERVER的路由</p>
 <p>ARP是在做IP與MAC的對應</p>
 <p><img src="https://i.imgur.com/vTQ2nKy.png" alt="image"></p>
 
@@ -377,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-TCP-IP-Protocol-Suite-3-%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E8%AF%86%E5%88%AB%E5%90%84%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%8CEthernet-Type%EF%BC%8CProtocol-Number%E5%8F%8APort-Number"><span class="nav-number">1.</span> <span class="nav-text">5. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Layered-System-Review"><span class="nav-number">1.1.</span> <span class="nav-text">Layered System Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-UDP-Port-Number"><span class="nav-number">1.2.</span> <span class="nav-text">TCP&#x2F;UDP Port Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Port-Number-%E7%AF%84%E5%9C%8D%E8%88%87%E8%A6%8F%E7%AF%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">Port Number 範圍與規範</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NIC-Ethernet-Type-Protocol-Number"><span class="nav-number">1.3.</span> <span class="nav-text">NIC,Ethernet Type,Protocol Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NIC-network-interface-controller-%E7%B6%B2%E8%B7%AF%E4%BB%8B%E9%9D%A2%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">NIC(network interface controller) - 網路介面控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ethernet-Type"><span class="nav-number">1.3.2.</span> <span class="nav-text">Ethernet Type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Protocol-Number"><span class="nav-number">1.3.3.</span> <span class="nav-text">Protocol Number</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Host-to-Host-Communication"><span class="nav-number">1.4.</span> <span class="nav-text">Host to Host Communication</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TCP-IP-Protocol-Suite-3-%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E8%AF%86%E5%88%AB%E5%90%84%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%8CEthernet-Type%EF%BC%8CProtocol-Number%E5%8F%8APort-Number"><span class="nav-text">1. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Layered-System-Review"><span class="nav-text">1.1. Layered System Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-TCP-UDP-Port-Number"><span class="nav-text">1.2. TCP&#x2F;UDP Port Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-Port-Number-%E7%AF%84%E5%9C%8D%E8%88%87%E8%A6%8F%E7%AF%84"><span class="nav-text">1.2.1. Port Number 範圍與規範</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-NIC-Ethernet-Type-Protocol-Number"><span class="nav-text">1.3. NIC,Ethernet Type,Protocol Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-NIC-network-interface-controller-%E7%B6%B2%E8%B7%AF%E4%BB%8B%E9%9D%A2%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">1.3.1. NIC(network interface controller) - 網路介面控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-Ethernet-Type"><span class="nav-text">1.3.2. Ethernet Type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-Protocol-Number"><span class="nav-text">1.3.3. Protocol Number</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Host-to-Host-Communication"><span class="nav-text">1.4. Host to Host Communication</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -391,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -440,12 +443,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

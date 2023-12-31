@@ -189,138 +189,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(7)%20Route%20and%20Controller/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(7)%20Route%20and%20Controller/" class="post-title-link" itemprop="url">PHP Laravel 系列 - (7) Route and Controller</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-10-16 17:12:00" itemprop="dateCreated datePublished" datetime="2021-10-16T17:12:00+08:00">2021-10-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-06-01 00:04:19" itemprop="dateModified" datetime="2023-06-01T00:04:19+08:00">2023-06-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>4 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="簡單介紹-Http-Methods"><a href="#簡單介紹-Http-Methods" class="headerlink" title="簡單介紹 Http Methods"></a>簡單介紹 Http Methods</h2><p><img src="https://i.imgur.com/kgK29WP.png" alt="image-20211016115313736"></p>
-<p>可以做到<code>url相同</code>因<code>方法不同</code>，執行不同的程式區段</p>
-<p><img src="https://i.imgur.com/94uUqWE.png" alt="image-20211016115542702"></p>
-<h2 id="加入route規則"><a href="#加入route規則" class="headerlink" title="加入route規則"></a>加入route規則</h2><p>請打開<code>routes\web.php</code>檔案加入以下規則</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//個別指定方法 controller@m</span></span><br><span class="line"><span class="title class_">Route</span>::<span class="title function_ invoke__">post</span>(<span class="string">&#x27;/&#x27;</span>,<span class="string">&#x27;ProductController@create&#x27;</span>);</span><br><span class="line"><span class="comment">//這樣的寫法是CRUD</span></span><br><span class="line"><span class="title class_">Route</span>::<span class="title function_ invoke__">resource</span>(<span class="string">&#x27;products&#x27;</span>,<span class="string">&#x27;ProductController&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用artisan指令建立controller"><a href="#使用artisan指令建立controller" class="headerlink" title="使用artisan指令建立controller"></a>使用artisan指令建立controller</h2><p>在這個project的根路徑下執行以下指令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:controller ProductController</span><br></pre></td></tr></table></figure>
-
-<p>接著我們會看到在<code>app\Http\Controllers</code>底下產生了一個<code>PorductController.php</code>檔案</p>
-<p><img src="https://i.imgur.com/GEVE9tg.png" alt="image-20211016160637461"></p>
-<p><code>ProductController.php</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">App</span>\<span class="title class_">Http</span>\<span class="title class_">Controllers</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用artisan指令建立常見的CRUD-Controller-範本"><a href="#使用artisan指令建立常見的CRUD-Controller-範本" class="headerlink" title="使用artisan指令建立常見的CRUD Controller 範本"></a>使用artisan指令建立常見的CRUD Controller 範本</h2><p>先把剛剛的檔案刪掉，再執行以下指令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:controller ProductController --resource</span><br></pre></td></tr></table></figure>
-
-<p><code>ProductController.php</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">App</span>\<span class="title class_">Http</span>\<span class="title class_">Controllers</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Display a listing of the resource.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> \Illuminate\Http\Response</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Show the form for creating a new resource.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> \Illuminate\Http\Response</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Store a newly created resource in storage.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \Illuminate\Http\Request  $request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> \Illuminate\Http\Response</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">store</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Display the specified resource.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  int  $id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> \Illuminate\Http\Response</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Show the form for editing the specified resource.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  int  $id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> \Illuminate\Http\Response</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">edit</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Update the specified resource in storage.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \Illuminate\Http\Request  $request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  int  $id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> \Illuminate\Http\Response</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">Request <span class="variable">$request</span>, <span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Remove the specified resource from storage.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  int  $id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> \Illuminate\Http\Response</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">destroy</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><code>ctrl + 左鍵</code> 點擊<code>Request</code>就會跳到該程式碼囉</p>
-<p><img src="https://i.imgur.com/BFL1ZHK.png" alt="image-20211016161352536"></p>
-<p>use 是使用這個物件</p>
-<h2 id="使用artisan指令查看目前的route-list"><a href="#使用artisan指令查看目前的route-list" class="headerlink" title="使用artisan指令查看目前的route list"></a>使用artisan指令查看目前的route list</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan route:list</span><br></pre></td></tr></table></figure>
-
-<h3 id="出錯啦"><a href="#出錯啦" class="headerlink" title="出錯啦"></a>出錯啦</h3><p><code>Illuminate\Contracts\Container\BindingResolutionException</code></p>
-<p><img src="https://i.imgur.com/36U0dK2.png" alt="image-20211016161916118"></p>
-<p>我們去<code>app\Providers\RouteServiceProvider.php</code>編輯一下，加入下一行程式</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="variable">$namespace</span> = <span class="string">&#x27;App\Http\Controllers&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/MucE74w.png" alt="image-20211016162209726"></p>
-<p>接著再執行一次</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan route:list</span><br></pre></td></tr></table></figure>
-
-<p>就正常啦，我們可以看到出現了跟products有關的route囉</p>
-<p><img src="https://i.imgur.com/JPKpc6a.png" alt="image-20211016163954265"></p>
-<h2 id="執行更新"><a href="#執行更新" class="headerlink" title="執行更新"></a>執行更新</h2><p>當有新增檔案之後，有時候會讀取不到，所以下這個指令是進行更新的意思</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer dump-autoload</span><br></pre></td></tr></table></figure>
-
-<h2 id="簡單瀏覽"><a href="#簡單瀏覽" class="headerlink" title="簡單瀏覽"></a>簡單瀏覽</h2><h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/products</span><br></pre></td></tr></table></figure>
-
-<h3 id="create"><a href="#create" class="headerlink" title="create"></a>create</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/products/create</span><br></pre></td></tr></table></figure>
-
-<h3 id="show"><a href="#show" class="headerlink" title="show"></a>show</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/products/1</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h2><h3 id="如何添加artisan"><a href="#如何添加artisan" class="headerlink" title="如何添加artisan"></a>如何添加artisan</h3><h3 id="php-namespace"><a href="#php-namespace" class="headerlink" title="php namespace"></a>php namespace</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(8)%20request%E8%88%87response/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -352,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-19 10:22:34" itemprop="dateModified" datetime="2021-10-19T10:22:34+08:00">2021-10-19</time>
+                <time title="修改時間：2023-12-31 21:49:32" itemprop="dateModified" datetime="2023-12-31T21:49:32+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -369,7 +237,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.2k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -388,47 +256,14 @@
 
       
           <h2 id="dump"><a href="#dump" class="headerlink" title="dump"></a>dump</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="variable">$request</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/9kgXgjs.png" alt="image-20211016172425590"></p>
-<p>加入參數</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/products?name=kite</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/Qf23pLH.png" alt="image-20211016172520072"></p>
-<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>相關get參數會在這兒</p>
-<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><p>本身這台server的info</p>
-<p><img src="https://i.imgur.com/QSh3Wed.png" alt="image-20211016172835394"></p>
-<h3 id="files"><a href="#files" class="headerlink" title="files"></a>files</h3><p>有上傳檔案的話，會在這邊出現</p>
-<h3 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h3><p>暫存資料會用cookies，或者一些廣告的功能，其實也是用cookies方式在記錄。</p>
-<h3 id="headers"><a href="#headers" class="headerlink" title="headers"></a>headers</h3><p>http 的協議header </p>
-<p>記載比如chrome 瀏覽器等等訊息</p>
-<p><img src="https://i.imgur.com/wgUreWk.png" alt="image-20211016173158410"></p>
-<h2 id="request-基本用法"><a href="#request-基本用法" class="headerlink" title="request 基本用法"></a>request 基本用法</h2><h3 id="request-all"><a href="#request-all" class="headerlink" title="$request-&gt;all()"></a>$request-&gt;all()</h3><p>列出所有傳遞過來的參數</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="variable">$request</span>-&gt;<span class="title function_ invoke__">all</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/oge5BXt.png" alt="image-20211016173355573"></p>
-<h3 id="request-path"><a href="#request-path" class="headerlink" title="$request-&gt;path()"></a>$request-&gt;path()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="variable">$request</span>-&gt;<span class="title function_ invoke__">path</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/6TEs0Hp.png" alt="image-20211016191655577"></p>
-<h3 id="request-input"><a href="#request-input" class="headerlink" title="$request-&gt;input()"></a>$request-&gt;input()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="variable">$request</span>-&gt;<span class="title function_ invoke__">input</span>(<span class="string">&quot;name&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/eZPCpq2.png" alt="image-20211016191802383"></p>
-<h4 id="如果取了一個沒有的值如何預設？"><a href="#如果取了一個沒有的值如何預設？" class="headerlink" title="如果取了一個沒有的值如何預設？"></a>如果取了一個沒有的值如何預設？</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="variable">$request</span>-&gt;<span class="title function_ invoke__">input</span>(<span class="string">&quot;age&quot;</span>,<span class="number">20</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="request-query"><a href="#request-query" class="headerlink" title="$request-&gt;query()"></a>$request-&gt;query()</h3><p>取得網址列的參數，如果是post method使用這個方式是取不到的。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="response-基本用法"><a href="#response-基本用法" class="headerlink" title="response 基本用法"></a>response 基本用法</h2><h3 id="回傳字串"><a href="#回傳字串" class="headerlink" title="回傳字串"></a>回傳字串</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">    <span class="comment">// return &#x27;hello&#x27;;//效果一樣</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="loadview"><a href="#loadview" class="headerlink" title="loadview"></a>loadview</h3><p>載入在<code>resources\views</code>底下的view頁面</p>
-<p><img src="https://i.imgur.com/xy7B6hl.png" alt="image-20211016193028804"></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>()-&gt;<span class="title function_ invoke__">view</span>(<span class="string">&#x27;welcome&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="http-status"><a href="#http-status" class="headerlink" title="http status"></a>http status</h3><p>定義回傳http狀態</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="number">400</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/26q21dS.png" alt="image-20211016192758858"></p>
-<h3 id="redirect"><a href="#redirect" class="headerlink" title="redirect"></a>redirect</h3><p>導回首頁</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">redirect</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(8)%20request%E8%88%87response/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -478,7 +313,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-08-24 20:35:57" itemprop="dateModified" datetime="2022-08-24T20:35:57+08:00">2022-08-24</time>
+                <time title="修改時間：2023-12-31 21:50:18" itemprop="dateModified" datetime="2023-12-31T21:50:18+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -495,13 +330,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.1k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>2 分鐘</span>
+              <span>3 分鐘</span>
             </span>
 
         </div>
@@ -514,35 +349,14 @@
 
       
           <h2 id="完整專案架構截圖"><a href="#完整專案架構截圖" class="headerlink" title="完整專案架構截圖"></a>完整專案架構截圖</h2><p><img src="https://i.imgur.com/JkAghTK.png" alt="image-20211016113510041"></p>
-<h2 id="app-structure"><a href="#app-structure" class="headerlink" title="app structure"></a>app structure</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">+---app</span><br><span class="line">|   +---Console</span><br><span class="line">|   |       Kernel.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Exceptions</span><br><span class="line">|   |       Handler.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Http</span><br><span class="line">|   |   |   Kernel.php</span><br><span class="line">|   |   |   </span><br><span class="line">|   |   +---Controllers</span><br><span class="line">|   |   |       Controller.php</span><br><span class="line">|   |   |       </span><br><span class="line">|   |   \---Middleware</span><br><span class="line">|   |           Authenticate.php</span><br><span class="line">|   |           EncryptCookies.php</span><br><span class="line">|   |           PreventRequestsDuringMaintenance.php</span><br><span class="line">|   |           RedirectIfAuthenticated.php</span><br><span class="line">|   |           TrimStrings.php</span><br><span class="line">|   |           TrustHosts.php</span><br><span class="line">|   |           TrustProxies.php</span><br><span class="line">|   |           VerifyCsrfToken.php</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在windows 要輸出這樣的結構可以使用cmd指令產出</p>
-<p>tree &gt; dir.txt &#x2F;a &#x2F;f</p>
-</blockquote>
-<h2 id="app"><a href="#app" class="headerlink" title="app"></a>app</h2><p>程式最常修改的地方</p>
-<h3 id="Console"><a href="#Console" class="headerlink" title="Console"></a>Console</h3><p>可以寫一些指令相關的檔案，前期暫時不會使用到它</p>
-<h3 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h3><p>做一些除錯相關的檔案，前期暫時不會使用到它</p>
-<h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>這是一個很重要的folder</p>
-<h4 id="controllers"><a href="#controllers" class="headerlink" title="controllers"></a>controllers</h4><p>使用者進入程式的進入點設定</p>
-<h4 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h4><p>比較進階的模塊</p>
-<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>擺放一些資料模塊</p>
-<h3 id="Providers"><a href="#Providers" class="headerlink" title="Providers"></a>Providers</h3><p>有些邏輯可以包成一些服務，可以放在這兒。</p>
-<p>或者是套件的一些使用方式都會在這邊</p>
-<h2 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h2><p>是比較進階的，跟程式運作有關，很少會碰到它</p>
-<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>可以去設定一些參數，比方說要連到哪個資料庫、email要發到哪個server ip</p>
-<h2 id="database"><a href="#database" class="headerlink" title="database"></a>database</h2><p>跟資料庫操作有關的，或者是要做一些假資料，或者是啟動server時預設產生的資料等等</p>
-<h2 id="public"><a href="#public" class="headerlink" title="public"></a>public</h2><p>放的是靜態檔案 比方說圖片或pdf等等</p>
-<h2 id="resource-structure"><a href="#resource-structure" class="headerlink" title="resource structure"></a>resource structure</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+---resources</span><br><span class="line">|   +---css</span><br><span class="line">|   |       app.css</span><br><span class="line">|   |       </span><br><span class="line">|   +---js</span><br><span class="line">|   |       app.js</span><br><span class="line">|   |       bootstrap.js</span><br><span class="line">|   |       </span><br><span class="line">|   +---lang</span><br><span class="line">|   |   \---en</span><br><span class="line">|   |           auth.php</span><br><span class="line">|   |           pagination.php</span><br><span class="line">|   |           passwords.php</span><br><span class="line">|   |           validation.php</span><br><span class="line">|   |           </span><br><span class="line">|   \---views</span><br><span class="line">|           welcome.blade.php</span><br></pre></td></tr></table></figure>
-
-<h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><p>可以放一些前端必備的檔案</p>
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>可以放一些前端必備的檔案</p>
-<h3 id="views"><a href="#views" class="headerlink" title="views"></a>views</h3><p>view有關的程式碼</p>
-<h2 id="routes"><a href="#routes" class="headerlink" title="routes"></a>routes</h2><p>使用者透過網址拜訪網站，透過路由決定要執行哪一段程式，下一章節會介紹</p>
-<h2 id="storage"><a href="#storage" class="headerlink" title="storage"></a>storage</h2><p>使用者上傳檔案，或者是你要產生暫時檔案，都在這邊哦</p>
-<h2 id="tests"><a href="#tests" class="headerlink" title="tests"></a>tests</h2><p>進行程式測試使用的</p>
-<h2 id="vendor"><a href="#vendor" class="headerlink" title="vendor"></a>vendor</h2><p>這個專案用到的套件</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(6)%20%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -747,7 +561,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-19 10:22:34" itemprop="dateModified" datetime="2021-10-19T10:22:34+08:00">2021-10-19</time>
+                <time title="修改時間：2023-12-31 21:50:57" itemprop="dateModified" datetime="2023-12-31T21:50:57+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -764,7 +578,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>762</span>
+              <span>802</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -784,48 +598,14 @@
       
           <h2 id="召喚composer"><a href="#召喚composer" class="headerlink" title="召喚composer"></a>召喚composer</h2><p>它是一個php的套件管理工具，可以讓composer去召喚<code>third party</code>套件。</p>
 <p>角色類似於<code>c#</code> 的<code>nuget</code>、<code>nodejs</code> 的<code>npm</code>、<code>python</code> 的 <code>pip</code></p>
-<h2 id="到官網下載安裝檔"><a href="#到官網下載安裝檔" class="headerlink" title="到官網下載安裝檔"></a>到官網下載安裝檔</h2><p><a target="_blank" rel="noopener" href="https://getcomposer.org/download/">官網</a></p>
-<h3 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h3><p><img src="https://i.imgur.com/aKPL0Bs.png" alt="image-20211014222904333"></p>
-<h3 id="安裝畫面"><a href="#安裝畫面" class="headerlink" title="安裝畫面"></a>安裝畫面</h3><p>過程中會問php檔在哪裡，筆者是放在c槽</p>
-<p><img src="https://i.imgur.com/xnfVLDW.png" alt="image-20211014223118594"></p>
-<h2 id="將-php-ini-development-更名為php-ini"><a href="#將-php-ini-development-更名為php-ini" class="headerlink" title="將 php.ini-development 更名為php.ini"></a>將 php.ini-development 更名為php.ini</h2><p>在之前安裝的時候就裝在c槽底下</p>
-<p>路徑參考</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\php-7.4.15\php.ini-development</span><br></pre></td></tr></table></figure>
-
-<p>複製一份<code>php.ini-development</code> 更名為<code>php.ini</code></p>
-<h2 id="啟用fileinfo-extension"><a href="#啟用fileinfo-extension" class="headerlink" title="啟用fileinfo extension"></a>啟用fileinfo extension</h2><p>編輯<code>php.ini</code> 尋找<code>fileinfo</code>，分號為註解，請解開註解</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=fileinfo</span><br></pre></td></tr></table></figure>
-
-<h2 id="確認是否安裝成功"><a href="#確認是否安裝成功" class="headerlink" title="確認是否安裝成功"></a>確認是否安裝成功</h2><p>打開command line 輸入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer -v</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/UZuCcjk.png" alt="image-20211014223256919"></p>
-<p>總算這次的召喚沒有白消耗<code>魔法寶石*3</code>，魅力值夠，ㄏㄏ。(天堂迷…誤)</p>
-<h2 id="召喚主角Laravel"><a href="#召喚主角Laravel" class="headerlink" title="召喚主角Laravel"></a>召喚主角Laravel</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer global require &quot;laravel/installer&quot;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/FqBWXeK.png" alt="image-20211014224410769"></p>
-<p>我們可以看到綠色字中有描述到安裝路徑</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\kite\AppData\Roaming\Composer</span><br></pre></td></tr></table></figure>
-
-<p>好奇看一下</p>
-<p><img src="https://i.imgur.com/sdLV2hE.png" alt="image-20211014224621076"></p>
-<p>打開<code>composer.json</code></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;laravel/installer&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.2&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>這是一個全域的安裝，跟<code>npm</code> 的<code>package.json</code> 87像</p>
-<p>我們的召喚獸在這個底下</p>
-<p><img src="https://i.imgur.com/jD9iK8T.png" alt="image-20211014224818954"></p>
-<h2 id="建立Laravel專案"><a href="#建立Laravel專案" class="headerlink" title="建立Laravel專案"></a>建立Laravel專案</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new laravel_blog</span><br></pre></td></tr></table></figure>
-
-<p>會跑一陣子</p>
-<h2 id="啟動Larvael專案"><a href="#啟動Larvael專案" class="headerlink" title="啟動Larvael專案"></a>啟動Larvael專案</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan serve</span><br></pre></td></tr></table></figure>
-
-<p>輸入完指令後，可以看到服務已經run起來囉</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.0.1:8000</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/d0vIcqK.png" alt="image-20211014234857214"></p>
-<p><img src="https://i.imgur.com/kdGZZgU.png" alt="image-20211014234936195"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/14/2021-10-14%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(5)%20Composer%20%E5%A5%97%E4%BB%B6%E5%AE%89%E8%A3%9D%E8%88%87%E4%BB%8B%E7%B4%B9/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -875,7 +655,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-15 13:34:38" itemprop="dateModified" datetime="2021-10-15T13:34:38+08:00">2021-10-15</time>
+                <time title="修改時間：2023-12-31 21:51:04" itemprop="dateModified" datetime="2023-12-31T21:51:04+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -892,7 +672,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>2.6k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -912,37 +692,14 @@
       
           <h2 id="array-column"><a href="#array-column" class="headerlink" title="array_column"></a>array_column</h2><p>依照指定<code>欄位名稱(key)</code>取出陣列</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];</span><br><span class="line">    </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_column</span>(<span class="variable">$records</span>,<span class="string">&#x27;first_name&#x27;</span>));</span><br></pre></td></tr></table></figure>
-
-<h2 id="array-keys"><a href="#array-keys" class="headerlink" title="array_keys"></a>array_keys</h2><p>回傳指定陣列的<code>key</code>  </p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];   </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_keys</span>(<span class="variable">$records</span>[<span class="number">0</span>]));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[0] =&gt; id</span></span><br><span class="line"><span class="comment">	[1] =&gt; first_name</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="array-values"><a href="#array-values" class="headerlink" title="array_values"></a>array_values</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];  </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_values</span>(<span class="variable">$records</span>[<span class="number">0</span>]));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[0] =&gt; 1</span></span><br><span class="line"><span class="comment">	[1] =&gt; kite</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_values</span>(<span class="variable">$records</span>));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[0] =&gt; 0</span></span><br><span class="line"><span class="comment">	[1] =&gt; 1</span></span><br><span class="line"><span class="comment">	[2] =&gt; 2	</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="array-map"><a href="#array-map" class="headerlink" title="array_map"></a>array_map</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$newRecords</span> = <span class="title function_ invoke__">array_map</span>(function(<span class="variable">$record</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable">$record</span>[<span class="string">&#x27;id&#x27;</span>] = <span class="variable">$record</span>[<span class="string">&#x27;id&#x27;</span>] * <span class="number">5</span>;</span><br><span class="line">              &#125;,<span class="variable">$records</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$newRecords</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; 5</span></span><br><span class="line"><span class="comment">    [1] =&gt; 10</span></span><br><span class="line"><span class="comment">    [2] =&gt; 15</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="array-filter"><a href="#array-filter" class="headerlink" title="array_filter"></a>array_filter</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$newRecords</span> = <span class="title function_ invoke__">array_filter</span>(</span><br><span class="line">    <span class="variable">$records</span>,</span><br><span class="line">    function(<span class="variable">$record</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="variable">$record</span>[<span class="string">&#x27;id&#x27;</span>] &gt;=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$newRecords</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="array-push"><a href="#array-push" class="headerlink" title="array_push"></a>array_push</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$num</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="title function_ invoke__">array_push</span>(<span class="variable">$nums</span>,<span class="number">8</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="array-pop"><a href="#array-pop" class="headerlink" title="array_pop"></a>array_pop</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$num</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="title function_ invoke__">array_pop</span>(<span class="variable">$num</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="array-merge"><a href="#array-merge" class="headerlink" title="array_merge"></a>array_merge</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$person</span> = [<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">5</span>, <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>];</span><br><span class="line"><span class="variable">$person</span> = <span class="title function_ invoke__">array_merge</span>(</span><br><span class="line">	<span class="variable">$person</span>,</span><br><span class="line">	[<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>, <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">10</span>]</span><br><span class="line">);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [id] =&gt; 5</span></span><br><span class="line"><span class="comment">    [name] =&gt; bubu</span></span><br><span class="line"><span class="comment">    [age] =&gt; 10</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="asort"><a href="#asort" class="headerlink" title="asort"></a>asort</h2><p>value排序</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$arr</span> = [<span class="string">&#x27;d&#x27;</span> =&gt;<span class="string">&#x27;bubu&#x27;</span> ,<span class="string">&#x27;c&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>,<span class="string">&#x27;b&#x27;</span>=&gt; <span class="string">&#x27;kite&#x27;</span> , <span class="string">&#x27;a&#x27;</span> =&gt;<span class="string">&#x27;apple&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">sort</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; apple</span></span><br><span class="line"><span class="comment">    [1] =&gt; bubu</span></span><br><span class="line"><span class="comment">    [2] =&gt; kite</span></span><br><span class="line"><span class="comment">    [3] =&gt; snow</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="ksort"><a href="#ksort" class="headerlink" title="ksort"></a>ksort</h2><p>key排序</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$arr</span> = [<span class="string">&#x27;d&#x27;</span> =&gt;<span class="string">&#x27;bubu&#x27;</span> ,<span class="string">&#x27;c&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>,<span class="string">&#x27;b&#x27;</span>=&gt; <span class="string">&#x27;kite&#x27;</span> , <span class="string">&#x27;a&#x27;</span> =&gt;<span class="string">&#x27;apple&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">ksort</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$arr</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; apple</span></span><br><span class="line"><span class="comment">    [1] =&gt; bubu</span></span><br><span class="line"><span class="comment">    [2] =&gt; kite</span></span><br><span class="line"><span class="comment">    [3] =&gt; snow</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="array-search"><a href="#array-search" class="headerlink" title="array_search"></a>array_search</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$people</span> = [<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;kite&#x27;</span>];</span><br><span class="line"><span class="keyword">echo</span>(<span class="title function_ invoke__">array_search</span>(<span class="string">&#x27;kite&#x27;</span>,<span class="variable">$people</span>));</span><br><span class="line"><span class="comment">//3</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="array-unique"><a href="#array-unique" class="headerlink" title="array_unique"></a>array_unique</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$people</span> = [<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>,<span class="string">&#x27;kite&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_unique</span>(<span class="variable">$people</span>));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; john</span></span><br><span class="line"><span class="comment">    [1] =&gt; tim</span></span><br><span class="line"><span class="comment">    [3] =&gt; kite</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="array-sum"><a href="#array-sum" class="headerlink" title="array_sum"></a>array_sum</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$nums</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>];</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_sum</span>(<span class="variable">$nums</span>));</span><br></pre></td></tr></table></figure>
-
-<h2 id="count"><a href="#count" class="headerlink" title="count"></a>count</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$nums</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>];</span><br><span class="line"><span class="keyword">echo</span>(<span class="title function_ invoke__">count</span>(<span class="variable">$nums</span>));</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/14/2021-10-14%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(4)%20%E5%B8%B8%E8%A6%8B%E5%87%BD%E5%BC%8F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -992,7 +749,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-15 13:34:29" itemprop="dateModified" datetime="2021-10-15T13:34:29+08:00">2021-10-15</time>
+                <time title="修改時間：2023-12-31 21:51:07" itemprop="dateModified" datetime="2023-12-31T21:51:07+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1009,7 +766,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>554</span>
+              <span>614</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -1028,12 +785,14 @@
 
       
           <h2 id="陣列"><a href="#陣列" class="headerlink" title="陣列"></a>陣列</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$people</span> = [<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;may&#x27;</span>,<span class="string">&#x27;tim&#x27;</span>];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [name] =&gt; john</span></span><br><span class="line"><span class="comment">    [age] =&gt; 55   </span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="字典式陣列"><a href="#字典式陣列" class="headerlink" title="字典式陣列"></a>字典式陣列</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$student</span> = [<span class="string">&#x27;name&#x27;</span>=&gt;<span class="string">&#x27;john&#x27;</span>,<span class="string">&#x27;age&#x27;</span>=&gt; <span class="number">55</span>];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [name] =&gt; john</span></span><br><span class="line"><span class="comment">    [age] =&gt; 55</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="迴圈操作"><a href="#迴圈操作" class="headerlink" title="迴圈操作"></a>迴圈操作</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$students</span> = [</span><br><span class="line">    [<span class="string">&#x27;name&#x27;</span>=&gt; <span class="string">&#x27;kite&#x27;</span> , <span class="string">&#x27;grade&#x27;</span>=&gt; <span class="number">100</span>]</span><br><span class="line">    ,[<span class="string">&#x27;name&#x27;</span>=&gt; <span class="string">&#x27;snow&#x27;</span> , <span class="string">&#x27;grade&#x27;</span>=&gt; <span class="number">85</span>]</span><br><span class="line"></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$students</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$student</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> (<span class="string">&#x27;第&#x27;</span>.<span class="variable">$key</span>.<span class="string">&#x27;個學生&#x27;</span>.<span class="variable">$student</span>[<span class="string">&#x27;name&#x27;</span>]. <span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">第0個學生kite</span></span><br><span class="line"><span class="comment">第1個學生snow</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/12/2021-10-12%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(3)%20%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%EF%BC%8C%E8%B3%87%E6%96%99%E9%87%8F%E4%B8%80%E5%A4%9A%EF%BC%8C%E6%AD%A3%E8%A6%8F%E7%9A%84%E5%84%B2%E5%AD%98%E6%96%B9%E5%BC%8F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1083,7 +842,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-19 10:22:34" itemprop="dateModified" datetime="2021-10-19T10:22:34+08:00">2021-10-19</time>
+                <time title="修改時間：2023-12-31 21:51:11" itemprop="dateModified" datetime="2023-12-31T21:51:11+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1100,7 +859,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>27</span>
+              <span>32</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -1120,14 +879,14 @@
       
           <p>找檔案</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + p</span><br></pre></td></tr></table></figure>
-
-<p>開啟終端機</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + `</span><br></pre></td></tr></table></figure>
-
-
-
-<p>more …</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/11/2021-10-11%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(2)%20VScode/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1177,7 +936,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-15 13:34:35" itemprop="dateModified" datetime="2021-10-15T13:34:35+08:00">2021-10-15</time>
+                <time title="修改時間：2023-12-31 21:51:22" itemprop="dateModified" datetime="2023-12-31T21:51:22+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1194,7 +953,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>40</span>
+              <span>41</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -1214,12 +973,107 @@
       
           <p><a target="_blank" rel="noopener" href="https://www.php.net/">官網</a>下載stable 版之後</p>
 <p>放置於c槽</p>
-<p><img src="https://i.imgur.com/k1oLAQN.png" alt="image-20211011173713765"></p>
-<p>接著在環境變數設定上相關路徑</p>
-<p><img src="https://i.imgur.com/FXMY3KN.png" alt="image-20211011173314068"></p>
-<p>命令提示字元確認</p>
-<p><img src="https://i.imgur.com/EaK93EV.png" alt="image-20211011173244580"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/11/2021-10-11%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(1)%20Windows%20%E5%AE%89%E8%A3%9Dphp/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/10/02/2021-10-02%20Git%E7%AD%86%E8%A8%98part2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/02/2021-10-02%20Git%E7%AD%86%E8%A8%98part2/" class="post-title-link" itemprop="url">Git筆記part2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-02 13:53:47" itemprop="dateCreated datePublished" datetime="2021-10-02T13:53:47+08:00">2021-10-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 21:51:41" itemprop="dateModified" datetime="2023-12-31T21:51:41+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>27 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-檢查版號指令"><a href="#1-檢查版號指令" class="headerlink" title="1. 檢查版號指令"></a>1. 檢查版號指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/02/2021-10-02%20Git%E7%AD%86%E8%A8%98part2/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1237,7 +1091,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1303,7 +1157,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1352,12 +1206,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

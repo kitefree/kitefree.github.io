@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://i.imgur.com/JwookYX.png">
 <meta property="og:image" content="https://i.imgur.com/bZiat6r.png">
 <meta property="article:published_time" content="2021-04-14T13:15:00.000Z">
-<meta property="article:modified_time" content="2021-10-01T07:57:00.095Z">
+<meta property="article:modified_time" content="2023-12-31T13:56:36.010Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="網路知識">
 <meta property="article:tag" content="NAT">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 15:57:00" itemprop="dateModified" datetime="2021-10-01T15:57:00+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:56:36" itemprop="dateModified" datetime="2023-12-31T21:56:36+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -239,13 +239,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.8k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>3 分鐘</span>
+              <span>4 分鐘</span>
             </span>
 
         </div>
@@ -261,6 +261,9 @@
 <ul>
 <li>Cisco設備中，NAT會被應用在Cisco路由器上</li>
 </ul>
+<span id="more"></span>
+
+
 <h2 id="NAT-伺服器的原理"><a href="#NAT-伺服器的原理" class="headerlink" title="NAT 伺服器的原理"></a>NAT 伺服器的原理</h2><p>NAT 伺服器的連接方式如＜圖一＞所示，一端連接私有網路（內部網路），由企業內部網管人員自行設定私有 IP，可以自由設定但是不可以重覆，不需要支付費用，而且可以減少真實 IP 的使用量；一端連接外部網路（網際網路），由企業向網際網路服務供應商（例如：中華電信）申請真實 IP，必須支付費用。</p>
 <p>假設台大電機系的網管人員將網路切割為內部與外部，內部網路的網址設定為 192.168.1.1、192.168.1.2、192.168.1.3；而外部網路的網址為 140.112.66.88，則 NAT 伺服器的功能就是更改封包表頭的傳送端 IP 位址與接收端 IP 位址。</p>
 <p>➤傳送封包：假設私有網路（內部網路）的電腦 A 要傳送封包到網際網路（外部網路），所以將封包表頭內的傳送端 IP 位址設定為 192.168.1.1，如（a）所示。</p>
@@ -417,7 +420,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">NAT 伺服器的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">NAT 伺服器的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E6%8A%80%E8%A1%93%E7%94%A8%E8%AA%9E"><span class="nav-number">3.</span> <span class="nav-text">NAT技術用語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89IP%E4%BD%8D%E5%9D%80"><span class="nav-number">4.</span> <span class="nav-text">私有IP位址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E9%81%8B%E8%A1%8C%E7%A8%AE%E9%A1%9E"><span class="nav-number">5.</span> <span class="nav-text">NAT運行種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E7%A9%BF%E9%80%8F%E6%8A%80%E8%A1%93%E7%9B%B8%E9%97%9CRFC%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">NAT穿透技術相關RFC文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">7.</span> <span class="nav-text">參考連結</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">NAT 伺服器的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">NAT 伺服器的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E6%8A%80%E8%A1%93%E7%94%A8%E8%AA%9E"><span class="nav-text">NAT技術用語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89IP%E4%BD%8D%E5%9D%80"><span class="nav-text">私有IP位址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E9%81%8B%E8%A1%8C%E7%A8%AE%E9%A1%9E"><span class="nav-text">NAT運行種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E7%A9%BF%E9%80%8F%E6%8A%80%E8%A1%93%E7%9B%B8%E9%97%9CRFC%E6%96%87%E4%BB%B6"><span class="nav-text">NAT穿透技術相關RFC文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">參考連結</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -431,7 +434,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -480,12 +483,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

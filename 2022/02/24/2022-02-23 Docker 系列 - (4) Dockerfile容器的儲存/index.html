@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="容器儲存介紹預設情況下，在運行中的容器裡創建的文件，被保存在一個可寫的容器層：  如果容器被刪除了，則數據也沒有了 這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享  Docker主要提供了三種方式做數據的持久化  Data Volume  由Docker管理，(&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;linux">
+  <meta name="description" content="容器儲存介紹預設情況下，在運行中的容器裡創建的文件，被保存在一個可寫的容器層：  如果容器被刪除了，則數據也沒有了 這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker 系列 - (4) Dockerfile容器的儲存">
 <meta property="og:url" content="https://kitefree.github.io/2022/02/24/2022-02-23%20Docker%20%E7%B3%BB%E5%88%97%20-%20(4)%20Dockerfile%E5%AE%B9%E5%99%A8%E7%9A%84%E5%84%B2%E5%AD%98/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="容器儲存介紹預設情況下，在運行中的容器裡創建的文件，被保存在一個可寫的容器層：  如果容器被刪除了，則數據也沒有了 這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享  Docker主要提供了三種方式做數據的持久化  Data Volume  由Docker管理，(&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;linux">
+<meta property="og:description" content="容器儲存介紹預設情況下，在運行中的容器裡創建的文件，被保存在一個可寫的容器層：  如果容器被刪除了，則數據也沒有了 這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/HS1l6Zs.png">
 <meta property="og:image" content="https://i.imgur.com/9j4ef71.png">
 <meta property="article:published_time" content="2022-02-24T09:14:00.000Z">
-<meta property="article:modified_time" content="2022-02-25T03:44:34.799Z">
+<meta property="article:modified_time" content="2023-12-31T13:46:26.923Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-02-25 11:44:34" itemprop="dateModified" datetime="2022-02-25T11:44:34+08:00">2022-02-25</time>
+                <time title="修改時間：2023-12-31 21:46:26" itemprop="dateModified" datetime="2023-12-31T21:46:26+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,13 +244,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>9.8k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>18 分鐘</span>
+              <span>20 分鐘</span>
             </span>
 
         </div>
@@ -267,6 +267,9 @@
 <li>如果容器被刪除了，則數據也沒有了</li>
 <li>這個可寫的容器層是和特定的容器綁定的，也就是這些數據無法方便的和其它容器共享</li>
 </ul>
+<span id="more"></span>
+
+
 <p>Docker主要提供了三種方式做數據的持久化</p>
 <ul>
 <li><p>Data Volume</p>
@@ -456,7 +459,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%84%B2%E5%AD%98%E4%BB%8B%E7%B4%B9"><span class="nav-number">1.</span> <span class="nav-text">容器儲存介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Volume"><span class="nav-number">2.</span> <span class="nav-text">Data Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E6%BA%96%E5%82%99"><span class="nav-number">2.1.</span> <span class="nav-text">環境準備</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8volume"><span class="nav-number">2.2.</span> <span class="nav-text">基本使用volume</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%92%B0%E5%A2%83"><span class="nav-number">2.2.1.</span> <span class="nav-text">搭建環境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A2%BA%E8%AA%8Dcrontab%E5%9F%B7%E8%A1%8C%E7%8B%80%E6%B3%81"><span class="nav-number">2.2.2.</span> <span class="nav-text">確認crontab執行狀況</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bhost%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91-Mountpoint"><span class="nav-number">2.2.3.</span> <span class="nav-text">查看host檔案路徑(Mountpoint)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A9%97%E8%AD%89%E5%81%9C%E6%AD%A2container%E5%BE%8C%EF%BC%8Chost%E6%AA%94%E6%A1%88%E6%98%AF%E5%90%A6%E4%BB%8D%E5%AD%98%E5%9C%A8"><span class="nav-number">2.2.4.</span> <span class="nav-text">驗證停止container後，host檔案是否仍存在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BC%E7%8F%BE%E5%86%8D%E5%95%9F%E7%94%A8%E6%96%B0%E7%9A%84%E5%AE%B9%E5%99%A8-volume%E9%87%8D%E5%BB%BA%E4%B8%80%E5%80%8B%E6%96%B0%E7%9A%84%E5%8D%80%E5%9F%9F"><span class="nav-number">2.2.5.</span> <span class="nav-text">發現再啟用新的容器,volume重建一個新的區域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8E%A5%E7%BA%8C%E4%B8%8A%E4%B8%80%E5%80%8Bvolume%E8%B3%87%E6%96%99%EF%BC%9F"><span class="nav-number">2.2.6.</span> <span class="nav-text">如何接續上一個volume資料？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B8%E6%93%9A%E6%8C%81%E4%B9%85%E5%8C%96%E4%B9%8BBind-Mount"><span class="nav-number">3.</span> <span class="nav-text">數據持久化之Bind Mount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bind-Mount%E7%B7%B4%E7%BF%92%E4%B9%8Bdocker%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">Bind Mount練習之docker開發環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A9%9F%E5%99%A8%E4%B9%8B%E9%96%93%E5%85%B1%E4%BA%AB%E6%95%B8%E6%93%9A"><span class="nav-number">5.</span> <span class="nav-text">機器之間共享數據</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%84%B2%E5%AD%98%E4%BB%8B%E7%B4%B9"><span class="nav-text">容器儲存介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Volume"><span class="nav-text">Data Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E6%BA%96%E5%82%99"><span class="nav-text">環境準備</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8volume"><span class="nav-text">基本使用volume</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%92%B0%E5%A2%83"><span class="nav-text">搭建環境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A2%BA%E8%AA%8Dcrontab%E5%9F%B7%E8%A1%8C%E7%8B%80%E6%B3%81"><span class="nav-text">確認crontab執行狀況</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bhost%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91-Mountpoint"><span class="nav-text">查看host檔案路徑(Mountpoint)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A9%97%E8%AD%89%E5%81%9C%E6%AD%A2container%E5%BE%8C%EF%BC%8Chost%E6%AA%94%E6%A1%88%E6%98%AF%E5%90%A6%E4%BB%8D%E5%AD%98%E5%9C%A8"><span class="nav-text">驗證停止container後，host檔案是否仍存在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BC%E7%8F%BE%E5%86%8D%E5%95%9F%E7%94%A8%E6%96%B0%E7%9A%84%E5%AE%B9%E5%99%A8-volume%E9%87%8D%E5%BB%BA%E4%B8%80%E5%80%8B%E6%96%B0%E7%9A%84%E5%8D%80%E5%9F%9F"><span class="nav-text">發現再啟用新的容器,volume重建一個新的區域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8E%A5%E7%BA%8C%E4%B8%8A%E4%B8%80%E5%80%8Bvolume%E8%B3%87%E6%96%99%EF%BC%9F"><span class="nav-text">如何接續上一個volume資料？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B8%E6%93%9A%E6%8C%81%E4%B9%85%E5%8C%96%E4%B9%8BBind-Mount"><span class="nav-text">數據持久化之Bind Mount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bind-Mount%E7%B7%B4%E7%BF%92%E4%B9%8Bdocker%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="nav-text">Bind Mount練習之docker開發環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A9%9F%E5%99%A8%E4%B9%8B%E9%96%93%E5%85%B1%E4%BA%AB%E6%95%B8%E6%93%9A"><span class="nav-text">機器之間共享數據</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -470,7 +473,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -519,12 +522,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="可以找出內存泄漏、併發與同步 性能指標 響應時間(Response Time:RT) 響應時間指用戶從客戶端發起一個請求開始，到客戶端接收到服務器端返回的響應結束，整個過程所耗費的時間。   HPS 每秒點擊次數，單位是次&#x2F;秒   TPS 系統每秒處理交易數，單位是筆&#x2F;秒   QPS 系統每秒處理查詢次數，單位是次&#x2F;秒    無論TPS、QPS、HPS，此指標是衡量系">
+  <meta name="description" content="可以找出內存泄漏、併發與同步">
 <meta property="og:type" content="article">
 <meta property="og:title" content="壓力測試">
 <meta property="og:url" content="https://kitefree.github.io/2021/09/30/2021-09-30%20%E5%A3%93%E5%8A%9B%E6%B8%AC%E8%A9%A6/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="可以找出內存泄漏、併發與同步 性能指標 響應時間(Response Time:RT) 響應時間指用戶從客戶端發起一個請求開始，到客戶端接收到服務器端返回的響應結束，整個過程所耗費的時間。   HPS 每秒點擊次數，單位是次&#x2F;秒   TPS 系統每秒處理交易數，單位是筆&#x2F;秒   QPS 系統每秒處理查詢次數，單位是次&#x2F;秒    無論TPS、QPS、HPS，此指標是衡量系">
+<meta property="og:description" content="可以找出內存泄漏、併發與同步">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-30T06:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-01T02:55:00.165Z">
+<meta property="article:modified_time" content="2023-12-31T13:52:25.210Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="壓力測試">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 10:55:00" itemprop="dateModified" datetime="2021-10-01T10:55:00+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 21:52:25" itemprop="dateModified" datetime="2023-12-31T21:52:25+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -232,7 +232,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>694</span>
+              <span>698</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -251,6 +251,9 @@
 
       
         <p>可以找出內存泄漏、併發與同步</p>
+<span id="more"></span>
+
+
 <h2 id="性能指標"><a href="#性能指標" class="headerlink" title="性能指標"></a>性能指標</h2><ul>
 <li>響應時間(Response Time:RT)<ul>
 <li>響應時間指用戶從客戶端發起一個請求開始，到客戶端接收到服務器端返回的響應結束，整個過程所耗費的時間。</li>
@@ -417,7 +420,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A8%99"><span class="nav-number">1.</span> <span class="nav-text">性能指標</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A8%99"><span class="nav-text">性能指標</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -431,7 +434,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -480,12 +483,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="13. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)Line總類分別  CTY(console port) TTY AUX VTY(virtual terminal,telnet,SSH)  目前只要學CTY、UTY如果你從SSH登入，那LINE TYPE就是VTY正常我們就只會有一個CTY，因為實際">
+  <meta name="description" content="1. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)1.1. Line總類分別  CTY(console port) TTY AUX VTY(virtual terminal,telnet,SSH)  目前只要學CTY、UTY如果你從SSH登入，那LINE TYPE就是VTY正常我們就只會有一個CTY，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCNA_13">
 <meta property="og:url" content="https://kitefree.github.io/2021/06/16/2021-06-16%20CCNA_13/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="13. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)Line總類分別  CTY(console port) TTY AUX VTY(virtual terminal,telnet,SSH)  目前只要學CTY、UTY如果你從SSH登入，那LINE TYPE就是VTY正常我們就只會有一個CTY，因為實際">
+<meta property="og:description" content="1. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)1.1. Line總類分別  CTY(console port) TTY AUX VTY(virtual terminal,telnet,SSH)  目前只要學CTY、UTY如果你從SSH登入，那LINE TYPE就是VTY正常我們就只會有一個CTY，">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/UmJOrhS.png">
 <meta property="og:image" content="https://i.imgur.com/s5t4LDc.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://i.imgur.com/gqqRjRC.png">
 <meta property="og:image" content="https://i.imgur.com/mbUZyfn.png">
 <meta property="article:published_time" content="2021-06-16T02:12:00.000Z">
-<meta property="article:modified_time" content="2021-09-19T01:19:33.046Z">
+<meta property="article:modified_time" content="2023-12-31T14:02:11.458Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="CCNA">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
+                <time title="修改時間：2023-12-31 22:02:11" itemprop="dateModified" datetime="2023-12-31T22:02:11+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -238,7 +238,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -256,7 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="13-Warm-Up-Packet-Tracer-and-IOS-Basic-2-配置line，Telnet，SSH，Message和Banner"><a href="#13-Warm-Up-Packet-Tracer-and-IOS-Basic-2-配置line，Telnet，SSH，Message和Banner" class="headerlink" title="13. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)"></a>13. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)</h2><h3 id="Line"><a href="#Line" class="headerlink" title="Line"></a>Line</h3><p>總類分別</p>
+        <h2 id="1-Warm-Up-Packet-Tracer-and-IOS-Basic-2-配置line，Telnet，SSH，Message和Banner"><a href="#1-Warm-Up-Packet-Tracer-and-IOS-Basic-2-配置line，Telnet，SSH，Message和Banner" class="headerlink" title="1. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)"></a>1. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)</h2><h3 id="1-1-Line"><a href="#1-1-Line" class="headerlink" title="1.1. Line"></a>1.1. Line</h3><p>總類分別</p>
 <ul>
 <li>CTY(console port)</li>
 <li>TTY</li>
@@ -269,40 +269,41 @@
 
 <p>查目前line狀況</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show line</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
 
-<h3 id="console-物理端口"><a href="#console-物理端口" class="headerlink" title="console(物理端口)"></a>console(物理端口)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">line con 0</span><br><span class="line">password cisco</span><br><span class="line">login</span><br><span class="line">exec-timeout 0 0 --分 秒</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-console-物理端口"><a href="#1-2-console-物理端口" class="headerlink" title="1.2. console(物理端口)"></a>1.2. console(物理端口)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">line con 0</span><br><span class="line">password cisco</span><br><span class="line">login</span><br><span class="line">exec-timeout 0 0 --分 秒</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/s5t4LDc.png"></p>
-<h3 id="telnet-VTY-遠程登入"><a href="#telnet-VTY-遠程登入" class="headerlink" title="telnet - VTY(遠程登入)"></a>telnet - VTY(遠程登入)</h3><p>設定可以有幾個vty使用者</p>
+<h3 id="1-3-telnet-VTY-遠程登入"><a href="#1-3-telnet-VTY-遠程登入" class="headerlink" title="1.3. telnet - VTY(遠程登入)"></a>1.3. telnet - VTY(遠程登入)</h3><p>設定可以有幾個vty使用者</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br></pre></td></tr></table></figure>
 <p>設定驗證機制三種方式</p>
-<h4 id="1-no-login"><a href="#1-no-login" class="headerlink" title="1. no login"></a>1. no login</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">no login</span><br><span class="line">n○ password abc123</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-1-no-login"><a href="#1-3-1-no-login" class="headerlink" title="1.3.1. no login"></a>1.3.1. no login</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">no login</span><br><span class="line">n○ password abc123</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-login-僅密碼"><a href="#2-login-僅密碼" class="headerlink" title="2. login 僅密碼"></a>2. login 僅密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">password abc123</span><br><span class="line">login</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-2-login-僅密碼"><a href="#1-3-2-login-僅密碼" class="headerlink" title="1.3.2. login 僅密碼"></a>1.3.2. login 僅密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">password abc123</span><br><span class="line">login</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-login-帳號、密碼"><a href="#3-login-帳號、密碼" class="headerlink" title="3. login 帳號、密碼"></a>3. login 帳號、密碼</h4><p>創建帳號<br>回到config</p>
+<h4 id="1-3-3-login-帳號、密碼"><a href="#1-3-3-login-帳號、密碼" class="headerlink" title="1.3.3. login 帳號、密碼"></a>1.3.3. login 帳號、密碼</h4><p>創建帳號<br>回到config</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username abc password abc123</span><br></pre></td></tr></table></figure>
 
 <p>設定vty帳號密碼</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">login local</span><br></pre></td></tr></table></figure>
 
-<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>RSA 演算法<br><img src="https://i.imgur.com/C7SBme4.png"></p>
+<h3 id="1-4-SSH"><a href="#1-4-SSH" class="headerlink" title="1.4. SSH"></a>1.4. SSH</h3><p>RSA 演算法<br><img src="https://i.imgur.com/C7SBme4.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hostname sw -- 命名交換機的名稱</span><br><span class="line">conf t</span><br><span class="line">ip domain name ccna++.com</span><br><span class="line">crypto key generate rsa</span><br><span class="line">會問 How many bits in the modules [512]: 2048</span><br><span class="line">ip ssh version 2</span><br></pre></td></tr></table></figure>
 <p>目前rsa 的bit 512 是默認，但不安全，可以填2048</p>
-<h4 id="1-no-login-1"><a href="#1-no-login-1" class="headerlink" title="1. no login"></a>1. no login</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">no login</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-1-no-login"><a href="#1-4-1-no-login" class="headerlink" title="1.4.1. no login"></a>1.4.1. no login</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">no login</span><br></pre></td></tr></table></figure>
 
 <p>雖然在ssh 登入的時候會問你，但是你隨便key還是進得去</p>
-<h4 id="2-無帳號有密碼"><a href="#2-無帳號有密碼" class="headerlink" title="2. 無帳號有密碼"></a>2. 無帳號有密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">password cisco</span><br><span class="line">login</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-2-無帳號有密碼"><a href="#1-4-2-無帳號有密碼" class="headerlink" title="1.4.2. 無帳號有密碼"></a>1.4.2. 無帳號有密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line vty 0 4</span><br><span class="line">password cisco</span><br><span class="line">login</span><br></pre></td></tr></table></figure>
 
 
-<h4 id="3-有帳號有密碼"><a href="#3-有帳號有密碼" class="headerlink" title="3. 有帳號有密碼"></a>3. 有帳號有密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">username cisco password cisco </span><br><span class="line">line vty 0 4</span><br><span class="line">password cisco </span><br><span class="line">login local</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-3-有帳號有密碼"><a href="#1-4-3-有帳號有密碼" class="headerlink" title="1.4.3. 有帳號有密碼"></a>1.4.3. 有帳號有密碼</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">username cisco password cisco </span><br><span class="line">line vty 0 4</span><br><span class="line">password cisco </span><br><span class="line">login local</span><br></pre></td></tr></table></figure>
 
 <p>但是未限制ssh</p>
-<h4 id="4-限制ssh方式"><a href="#4-限制ssh方式" class="headerlink" title="4. 限制ssh方式"></a>4. 限制ssh方式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">username cisco password cisco</span><br><span class="line">line vty 0 4 </span><br><span class="line">login local </span><br><span class="line">transport input ssh</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-4-限制ssh方式"><a href="#1-4-4-限制ssh方式" class="headerlink" title="1.4.4. 限制ssh方式"></a>1.4.4. 限制ssh方式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">username cisco password cisco</span><br><span class="line">line vty 0 4 </span><br><span class="line">login local </span><br><span class="line">transport input ssh</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="Send-message"><a href="#Send-message" class="headerlink" title="Send message"></a>Send message</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">send *</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-Send-message"><a href="#1-5-Send-message" class="headerlink" title="1.5. Send message"></a>1.5. Send message</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">send *</span><br></pre></td></tr></table></figure>
 
 <p>使用方法</p>
 <ul>
@@ -310,7 +311,7 @@
 <li>透過發訊息的方式，確認講的是同一台交換機</li>
 </ul>
 <p><img src="https://i.imgur.com/gqqRjRC.png"></p>
-<h3 id="BANNER"><a href="#BANNER" class="headerlink" title="BANNER"></a>BANNER</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner motd ! --驚嘆號是一個起始符號，當然也可以是別的特殊符號，結束也要打這個</span><br></pre></td></tr></table></figure>
+<h3 id="1-6-BANNER"><a href="#1-6-BANNER" class="headerlink" title="1.6. BANNER"></a>1.6. BANNER</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">banner motd ! --驚嘆號是一個起始符號，當然也可以是別的特殊符號，結束也要打這個</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://i.imgur.com/mbUZyfn.png"></p>
 
@@ -396,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Warm-Up-Packet-Tracer-and-IOS-Basic-2-%E9%85%8D%E7%BD%AEline%EF%BC%8CTelnet%EF%BC%8CSSH%EF%BC%8CMessage%E5%92%8CBanner"><span class="nav-number">1.</span> <span class="nav-text">13. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Line"><span class="nav-number">1.1.</span> <span class="nav-text">Line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#console-%E7%89%A9%E7%90%86%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.2.</span> <span class="nav-text">console(物理端口)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#telnet-VTY-%E9%81%A0%E7%A8%8B%E7%99%BB%E5%85%A5"><span class="nav-number">1.3.</span> <span class="nav-text">telnet - VTY(遠程登入)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-no-login"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. no login</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-login-%E5%83%85%E5%AF%86%E7%A2%BC"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. login 僅密碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-login-%E5%B8%B3%E8%99%9F%E3%80%81%E5%AF%86%E7%A2%BC"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. login 帳號、密碼</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH"><span class="nav-number">1.4.</span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-no-login-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. no login</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%84%A1%E5%B8%B3%E8%99%9F%E6%9C%89%E5%AF%86%E7%A2%BC"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 無帳號有密碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9C%89%E5%B8%B3%E8%99%9F%E6%9C%89%E5%AF%86%E7%A2%BC"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 有帳號有密碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%99%90%E5%88%B6ssh%E6%96%B9%E5%BC%8F"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 限制ssh方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Send-message"><span class="nav-number">1.5.</span> <span class="nav-text">Send message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BANNER"><span class="nav-number">1.6.</span> <span class="nav-text">BANNER</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Warm-Up-Packet-Tracer-and-IOS-Basic-2-%E9%85%8D%E7%BD%AEline%EF%BC%8CTelnet%EF%BC%8CSSH%EF%BC%8CMessage%E5%92%8CBanner"><span class="nav-text">1. Warm Up Packet Tracer and IOS Basic 2(配置line，Telnet，SSH，Message和Banner)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Line"><span class="nav-text">1.1. Line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-console-%E7%89%A9%E7%90%86%E7%AB%AF%E5%8F%A3"><span class="nav-text">1.2. console(物理端口)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-telnet-VTY-%E9%81%A0%E7%A8%8B%E7%99%BB%E5%85%A5"><span class="nav-text">1.3. telnet - VTY(遠程登入)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-no-login"><span class="nav-text">1.3.1. no login</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-login-%E5%83%85%E5%AF%86%E7%A2%BC"><span class="nav-text">1.3.2. login 僅密碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-login-%E5%B8%B3%E8%99%9F%E3%80%81%E5%AF%86%E7%A2%BC"><span class="nav-text">1.3.3. login 帳號、密碼</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-SSH"><span class="nav-text">1.4. SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-no-login"><span class="nav-text">1.4.1. no login</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-%E7%84%A1%E5%B8%B3%E8%99%9F%E6%9C%89%E5%AF%86%E7%A2%BC"><span class="nav-text">1.4.2. 無帳號有密碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-%E6%9C%89%E5%B8%B3%E8%99%9F%E6%9C%89%E5%AF%86%E7%A2%BC"><span class="nav-text">1.4.3. 有帳號有密碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-%E9%99%90%E5%88%B6ssh%E6%96%B9%E5%BC%8F"><span class="nav-text">1.4.4. 限制ssh方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Send-message"><span class="nav-text">1.5. Send message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-BANNER"><span class="nav-text">1.6. BANNER</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -410,7 +411,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -459,12 +460,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

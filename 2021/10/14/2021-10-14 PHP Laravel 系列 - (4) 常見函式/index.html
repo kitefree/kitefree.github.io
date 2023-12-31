@@ -28,7 +28,7 @@
 <meta property="og:description" content="array_column依照指定欄位名稱(key)取出陣列 1234567$records &#x3D;[	[&#x27;id&#x27; &#x3D;&gt; 1, &#x27;first_name&#x27; &#x3D;&gt; &#x27;kite&#x27;],	[&#x27;id&#x27; &#x3D;&gt; 2, &#x27;first_name&#x27; &#x3D;&gt; &#x27;snow&#x27;],	[&amp;#x2">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-10-14T05:53:47.000Z">
-<meta property="article:modified_time" content="2021-10-15T05:34:38.700Z">
+<meta property="article:modified_time" content="2023-12-31T13:51:04.639Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="PHP">
 <meta property="article:tag" content="Laravel">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-15 13:34:38" itemprop="dateModified" datetime="2021-10-15T13:34:38+08:00">2021-10-15</time>
+                <time title="修改時間：2023-12-31 21:51:04" itemprop="dateModified" datetime="2023-12-31T21:51:04+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>2.6k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -262,6 +262,7 @@
       
         <h2 id="array-column"><a href="#array-column" class="headerlink" title="array_column"></a>array_column</h2><p>依照指定<code>欄位名稱(key)</code>取出陣列</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];</span><br><span class="line">    </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_column</span>(<span class="variable">$records</span>,<span class="string">&#x27;first_name&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
 <h2 id="array-keys"><a href="#array-keys" class="headerlink" title="array_keys"></a>array_keys</h2><p>回傳指定陣列的<code>key</code>  </p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$records</span> =[</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;kite&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;snow&#x27;</span>],</span><br><span class="line">	[<span class="string">&#x27;id&#x27;</span> =&gt; <span class="number">3</span>, <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;bubu&#x27;</span>],    </span><br><span class="line">];   </span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">array_keys</span>(<span class="variable">$records</span>[<span class="number">0</span>]));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[0] =&gt; id</span></span><br><span class="line"><span class="comment">	[1] =&gt; first_name</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
@@ -376,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#array-column"><span class="nav-number">1.</span> <span class="nav-text">array_column</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-keys"><span class="nav-number">2.</span> <span class="nav-text">array_keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-values"><span class="nav-number">3.</span> <span class="nav-text">array_values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-map"><span class="nav-number">4.</span> <span class="nav-text">array_map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-filter"><span class="nav-number">5.</span> <span class="nav-text">array_filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-push"><span class="nav-number">6.</span> <span class="nav-text">array_push</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-pop"><span class="nav-number">7.</span> <span class="nav-text">array_pop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-merge"><span class="nav-number">8.</span> <span class="nav-text">array_merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#asort"><span class="nav-number">9.</span> <span class="nav-text">asort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ksort"><span class="nav-number">10.</span> <span class="nav-text">ksort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-search"><span class="nav-number">11.</span> <span class="nav-text">array_search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-unique"><span class="nav-number">12.</span> <span class="nav-text">array_unique</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-sum"><span class="nav-number">13.</span> <span class="nav-text">array_sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count"><span class="nav-number">14.</span> <span class="nav-text">count</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#array-column"><span class="nav-text">array_column</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-keys"><span class="nav-text">array_keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-values"><span class="nav-text">array_values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-map"><span class="nav-text">array_map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-filter"><span class="nav-text">array_filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-push"><span class="nav-text">array_push</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-pop"><span class="nav-text">array_pop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-merge"><span class="nav-text">array_merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#asort"><span class="nav-text">asort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ksort"><span class="nav-text">ksort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-search"><span class="nav-text">array_search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-unique"><span class="nav-text">array_unique</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-sum"><span class="nav-text">array_sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count"><span class="nav-text">count</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -390,7 +391,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -439,12 +440,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">355k</span>
+    <span title="總字數">396k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:46</span>
+    <span title="所需總閱讀時間">12:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>
