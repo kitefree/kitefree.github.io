@@ -296,10 +296,10 @@
 <p>1.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f7db497104dffa008bc801fb49230444">git commit</a><br>2.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=817c026fe90d09e67eb30946ef5d42fa">git head 技巧 I</a><br>3.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8dba225432eba46847beafd616042fc7">git head 技巧 II</a><br>4.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=81354f6467eeebfcbd81294787371458">分支合併(快轉模式)</a><br>5.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3821f5ac77cd68c20f7e5ac9ea4a4234">分支合併(非快轉模式 -no-ff) I</a><br>6.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=4ebc7d237aec42ba62f5d9484040d279">分支合併(非快轉模式 -no-ff) II</a><br>7.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=51dbe15aa9787175a8c4c34b8fa6ed12">分支合併(非快轉模式) I</a><br>8.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8a53b2a46b9fa9e963d0eb80b65f17bb">分支合併(非快轉模式) II</a><br>9.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=293df94156d03ffcb8ad2a796c3d1ebf">git clone</a><br>10.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=c350fdc6aa338549b6eb4b1499383fca">git push</a><br>11.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=96dd4464d93b751d3fc5d124663bdd73">git pull (可用 git fakeTeamwork)</a><br>12.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=fd0557f04608384f2d35c3814c088913">git fetch</a><br>13.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=9eddf30e74e1b1c089e83f7c265c192e">本地三個分支(master、dev、feature&#x2F;a)</a><br>14.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=20cf21dbc718a76cce6cd77363abe335">本地三個分支(master、dev、feature&#x2F;a) ，遠端有 master 分支，並擁有合併後的所有 commit</a><br>15.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f6e4b301996ac6c121b6d0fb25c51027">git reset 還原練習</a><br>16.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=40764d63ded638a1b48b2d9e3afeff09">git rebase 練習 I</a><br>17.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3148f8917a34af79cf9bd348cc99c3f8">git rebase 練習 II</a><br>18.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=0896114d1a1d3a66e022631dab133726">git cherry-pick 練習</a><br>19.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=6b282a154f95ba54844d6b747f65128a">git tag 練習</a><br>20.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=1cb0672c88c5f675ff393d010ef9deda">魔王題</a></p>
 ]]></content>
       <categories>
-        <category>git</category>
+        <category>Git</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -323,10 +323,10 @@
 ]]></content>
       <categories>
         <category>CSS FrameWork</category>
-        <category>bootstrap5</category>
+        <category>Bootstrap5</category>
       </categories>
       <tags>
-        <tag>bootstrap5</tag>
+        <tag>Bootstrap5</tag>
       </tags>
   </entry>
   <entry>
@@ -2400,9 +2400,9 @@
         <category>Bootstrap5</category>
       </categories>
       <tags>
+        <tag>Bootstrap5</tag>
         <tag>CSS</tag>
         <tag>RWD</tag>
-        <tag>Bootstrap5</tag>
       </tags>
   </entry>
   <entry>
@@ -2507,9 +2507,9 @@
         <category>Bootstrap5</category>
       </categories>
       <tags>
+        <tag>Bootstrap5</tag>
         <tag>CSS</tag>
         <tag>RWD</tag>
-        <tag>Bootstrap5</tag>
       </tags>
   </entry>
   <entry>
@@ -2557,55 +2557,6 @@
 <p>  <img src="https://i.imgur.com/M5cFjwi.jpg" alt="2021_05_16_10_59_07_3.png"></p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-        <tag>RWD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>伸縮自如的RWD排版術(下)</title>
-    <url>/2021/09/30/2021-05-27%20%E4%BC%B8%E7%B8%AE%E8%87%AA%E5%A6%82%E7%9A%84RWD%E6%8E%92%E7%89%88%E8%A1%93(%E4%B8%8B)/</url>
-    <content><![CDATA[<ul>
-<li><p>max-width 與 width 差異</p>
-<p>  max-width 最大就是1200 不會再大了</p>
-<p>  如果螢幕寬度為768 ，那max-width 就會自動縮到768</p>
-<p>  <img src="https://i.imgur.com/9PNSi10.png" alt="2021_05_16_18_20_42_511.png"></p>
-<p>  <img src="https://i.imgur.com/TuXYfoW.png" alt="2021_05_16_18_20_50_32.png"></p>
-</li>
-</ul>
-<p>rwd img css，可當作是css reset 其中一個</p>
-<span id="more"></span>
-
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br><span class="line"><span class="attribute">height</span>:auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果客戶使用了單眼相機上傳照片，width 很有可能是4800 ，用這個方法，可以避免版型破掉</p>
-<p>全域 border box</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">::before</span>,*<span class="selector-pseudo">::after</span>&#123;</span><br><span class="line"><span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>市場手機大小</p>
-<ul>
-<li>iphone 7~ 11 375px</li>
-<li>iphone plus  414px</li>
-<li>ipad 768px</li>
-<li>PC 1140px 1200px</li>
-</ul>
-<p>media query 要從最大寫到最小</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span>(max-width:768px)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span>(max-width:568px)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>業務潛規則 就會去客戶 把它們在用的載具都記錄起來，給設計稿可以剛好符合</p>
-<p>版型有很多種做法，都可以做得出來，最後你會找出自己的維護風格</p>
-<p>適時的使用display:none ，因為不見得在手機的資訊量是需要這麼多的</p>
-<p>設定767px 直接全吃小於ipad 的裝置</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span>(max-width:767px)&#123;</span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>ipad 大於768px</p>
-<p>斷點越少越好,設計給pad mobile 吃</p>
-<p>不要超過5個，儘量3個</p>
 ]]></content>
       <categories>
         <category>CSS</category>
@@ -2898,6 +2849,81 @@
       </tags>
   </entry>
   <entry>
+    <title>伸縮自如的RWD排版術(下)</title>
+    <url>/2021/09/30/2021-05-27%20%E4%BC%B8%E7%B8%AE%E8%87%AA%E5%A6%82%E7%9A%84RWD%E6%8E%92%E7%89%88%E8%A1%93(%E4%B8%8B)/</url>
+    <content><![CDATA[<ul>
+<li><p>max-width 與 width 差異</p>
+<p>  max-width 最大就是1200 不會再大了</p>
+<p>  如果螢幕寬度為768 ，那max-width 就會自動縮到768</p>
+<p>  <img src="https://i.imgur.com/9PNSi10.png" alt="2021_05_16_18_20_42_511.png"></p>
+<p>  <img src="https://i.imgur.com/TuXYfoW.png" alt="2021_05_16_18_20_50_32.png"></p>
+</li>
+</ul>
+<p>rwd img css，可當作是css reset 其中一個</p>
+<span id="more"></span>
+
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br><span class="line"><span class="attribute">height</span>:auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果客戶使用了單眼相機上傳照片，width 很有可能是4800 ，用這個方法，可以避免版型破掉</p>
+<p>全域 border box</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">::before</span>,*<span class="selector-pseudo">::after</span>&#123;</span><br><span class="line"><span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>市場手機大小</p>
+<ul>
+<li>iphone 7~ 11 375px</li>
+<li>iphone plus  414px</li>
+<li>ipad 768px</li>
+<li>PC 1140px 1200px</li>
+</ul>
+<p>media query 要從最大寫到最小</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span>(max-width:768px)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span>(max-width:568px)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>業務潛規則 就會去客戶 把它們在用的載具都記錄起來，給設計稿可以剛好符合</p>
+<p>版型有很多種做法，都可以做得出來，最後你會找出自己的維護風格</p>
+<p>適時的使用display:none ，因為不見得在手機的資訊量是需要這麼多的</p>
+<p>設定767px 直接全吃小於ipad 的裝置</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span>(max-width:767px)&#123;</span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ipad 大於768px</p>
+<p>斷點越少越好,設計給pad mobile 吃</p>
+<p>不要超過5個，儘量3個</p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+        <tag>RWD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>排程備份記錄</title>
+    <url>/2021/06/01/2021-06-01%20%E6%8E%92%E7%A8%8B%E5%82%99%E4%BB%BD%E8%A8%98%E9%8C%84/</url>
+    <content><![CDATA[<p>要注意系統預設的日期格式，當時在開發的時候是在這個格式底下進行開發的，如果有切換到別的格式日期，那腳本的跟有日期計算的要再重新疏理一遍。</p>
+<p><img src="https://i.imgur.com/sFGHFNM.jpg"></p>
+<span id="more"></span>
+
+
+<h2 id="1-MYSQL-資料庫備份"><a href="#1-MYSQL-資料庫備份" class="headerlink" title="1. MYSQL 資料庫備份"></a>1. MYSQL 資料庫備份</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DB_NAME=exam2018_api</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/TQE_SERVER/DB_BAK/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=%DB_NAME%_db__D%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;C:\xampp\mysql\bin\mysqldump&quot;</span> --add-drop-database --add-drop-table --allow-keywords -QqceKf --routines --create-options --flush-privileges --insert-ignore --databases -r <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.sql&quot;</span> -uroot -prootNaerTqa %DB_NAME% </span><br><span class="line"><span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx9 <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.sql&quot;</span></span><br><span class="line"><span class="keyword">if</span> exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> <span class="built_in">cd</span> /d %DATA_DEST_FOLDER_PATH% &amp;&amp; del %DATA_DEST_FILE_NAME%.sql</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 資料庫名稱 %DB_NAME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 mysqldump database output</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_FOLDER_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-WEB-程式備份"><a href="#2-WEB-程式備份" class="headerlink" title="2. WEB 程式備份"></a>2. WEB 程式備份</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DATA_SOURCE_PATH=C:/xampp/htdocs/exam2018*</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/TQE_SERVER/WEB_BAK/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=exam_web__D%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_FOLDER_PATH% &amp;&amp; <span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx9 %DATA_DEST_FILE_NAME%.7z -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_SOURCE_PATH%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 應用程式名稱 exam2018*</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 %DATA_SOURCE_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_ROOT_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-檔案備份"><a href="#3-檔案備份" class="headerlink" title="3. 檔案備份"></a>3. 檔案備份</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DATA_SOURCE_PATH=D:/掃描文件/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/OES_DATA/掃描文件/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=掃描文件_data__D%CUR_DAY%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx=0 -v1024m <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_SOURCE_PATH%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 %DATA_SOURCE_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_ROOT_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-參考連結"><a href="#4-參考連結" class="headerlink" title="4. 參考連結"></a>4. 參考連結</h2><p><a href="https://www.youtube.com/watch?v=g7yTpi_u0Z8&list=PLWg9zacwOnweUO4gfbSUPMVguIz_ONIEF&index=1">初學者的命令行</a></p>
+]]></content>
+      <categories>
+        <category>備份</category>
+      </categories>
+      <tags>
+        <tag>備份</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SASS筆記</title>
     <url>/2021/06/12/2021-06-12%20SASS%E7%AD%86%E8%A8%98/</url>
     <content><![CDATA[<h2 id="1-SASS原理"><a href="#1-SASS原理" class="headerlink" title="1. SASS原理"></a>1. SASS原理</h2><p><img src="https://i.imgur.com/Jmbx6B8.png"></p>
@@ -2957,29 +2983,34 @@
       </tags>
   </entry>
   <entry>
-    <title>排程備份記錄</title>
-    <url>/2021/06/01/2021-06-01%20%E6%8E%92%E7%A8%8B%E5%82%99%E4%BB%BD%E8%A8%98%E9%8C%84/</url>
-    <content><![CDATA[<p>要注意系統預設的日期格式，當時在開發的時候是在這個格式底下進行開發的，如果有切換到別的格式日期，那腳本的跟有日期計算的要再重新疏理一遍。</p>
-<p><img src="https://i.imgur.com/sFGHFNM.jpg"></p>
-<span id="more"></span>
-
-
-<h2 id="1-MYSQL-資料庫備份"><a href="#1-MYSQL-資料庫備份" class="headerlink" title="1. MYSQL 資料庫備份"></a>1. MYSQL 資料庫備份</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DB_NAME=exam2018_api</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/TQE_SERVER/DB_BAK/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=%DB_NAME%_db__D%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;C:\xampp\mysql\bin\mysqldump&quot;</span> --add-drop-database --add-drop-table --allow-keywords -QqceKf --routines --create-options --flush-privileges --insert-ignore --databases -r <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.sql&quot;</span> -uroot -prootNaerTqa %DB_NAME% </span><br><span class="line"><span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx9 <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.sql&quot;</span></span><br><span class="line"><span class="keyword">if</span> exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> <span class="built_in">cd</span> /d %DATA_DEST_FOLDER_PATH% &amp;&amp; del %DATA_DEST_FILE_NAME%.sql</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 資料庫名稱 %DB_NAME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 mysqldump database output</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_FOLDER_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="2-WEB-程式備份"><a href="#2-WEB-程式備份" class="headerlink" title="2. WEB 程式備份"></a>2. WEB 程式備份</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DATA_SOURCE_PATH=C:/xampp/htdocs/exam2018*</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/TQE_SERVER/WEB_BAK/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=exam_web__D%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_FOLDER_PATH% &amp;&amp; <span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx9 %DATA_DEST_FILE_NAME%.7z -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_SOURCE_PATH%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 應用程式名稱 exam2018*</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 %DATA_SOURCE_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_ROOT_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-檔案備份"><a href="#3-檔案備份" class="headerlink" title="3. 檔案備份"></a>3. 檔案備份</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">chcp 65001</span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 設定與備份</span><br><span class="line">@rem =========================================</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> CUR_DAY=%<span class="built_in">date</span>:~11,2%</span><br><span class="line"><span class="built_in">set</span> START_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> DATA_SOURCE_PATH=D:/掃描文件/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_ROOT_PATH=D:/TQE_backup/OES_DATA/掃描文件/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FOLDER_PATH=%DATA_DEST_ROOT_PATH%%CUR_DAY%/</span><br><span class="line"><span class="built_in">set</span> DATA_DEST_FILE_NAME=掃描文件_data__D%CUR_DAY%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d %DATA_DEST_ROOT_PATH%</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not exist <span class="string">&quot;%DATA_DEST_FOLDER_PATH%/&quot;</span> <span class="built_in">mkdir</span> %CUR_DAY%</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;C:\Program Files\7-Zip\7z&quot;</span> a -t7z -mx=0 -v1024m <span class="string">&quot;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.7z&quot;</span> -p<span class="string">&quot;ej;2u,654yji4j06t/6vu;&quot;</span> -mhe <span class="string">&quot;%DATA_SOURCE_PATH%&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> END_DATETIME=<span class="string">&quot;%date% %time%&quot;</span></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 寫LOG</span><br><span class="line">@rem =========================================</span><br><span class="line">(	</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_來源路徑 %DATA_SOURCE_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_目的路徑 %DATA_DEST_ROOT_PATH%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_開始時間 %START_DATETIME%</span><br><span class="line">	<span class="built_in">echo</span> 檔案備份_結束時間 %END_DATETIME%	</span><br><span class="line">	<span class="built_in">echo</span> 工作排程檔名 %0</span><br><span class="line">) &gt;%DATA_DEST_FOLDER_PATH%%DATA_DEST_FILE_NAME%.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 擷取前 N 天日期</span><br><span class="line">@rem =========================================</span><br><span class="line">@<span class="built_in">echo</span> wscript.echo dateadd(<span class="string">&quot;d&quot;</span>,-5,<span class="built_in">date</span>) &gt; %tmp%\tmp.vbs</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> y=%%i</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> m=%%j</span><br><span class="line">@<span class="keyword">for</span> /f <span class="string">&quot;tokens=1,2,3 delims=/- &quot;</span> %%i <span class="keyword">in</span> (<span class="string">&#x27;cscript /nologo %tmp%\tmp.vbs&#x27;</span>) <span class="keyword">do</span> <span class="built_in">set</span> d=%%k</span><br><span class="line">@<span class="keyword">if</span> %m% LSS 9 <span class="built_in">set</span> m=0%m%</span><br><span class="line">@<span class="keyword">if</span> %d% LSS 9 <span class="built_in">set</span> d=0%d%</span><br><span class="line">@<span class="built_in">set</span> yesterday=%y%%m%%d%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@rem =========================================</span><br><span class="line">@rem 釋放硬碟空間，進行刪除</span><br><span class="line">@rem LOCAL SERVER 保留五天資料</span><br><span class="line">@rem NAS          保留31天資料</span><br><span class="line">@rem =========================================</span><br><span class="line"><span class="built_in">rmdir</span> /s/q <span class="string">&quot;%DATA_DEST_ROOT_PATH%%d%&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="4-參考連結"><a href="#4-參考連結" class="headerlink" title="4. 參考連結"></a>4. 參考連結</h2><p><a href="https://www.youtube.com/watch?v=g7yTpi_u0Z8&list=PLWg9zacwOnweUO4gfbSUPMVguIz_ONIEF&index=1">初學者的命令行</a></p>
+    <title>無障礙網頁筆記</title>
+    <url>/2021/06/15/2021-06-15%20%E7%84%A1%E9%9A%9C%E7%A4%99%E7%B6%B2%E9%A0%81%E7%AD%86%E8%A8%98/</url>
+    <content><![CDATA[<ol>
+<li>圖片加alt</li>
+<li>導航磚(accesskey) 常見的有ULC</li>
+<li>製作網站導覽頁，聲明有無障礙設計</li>
+<li>影音影片配合文字說明</li>
+<li><code>&lt;noscript&gt;使用&lt;/noscript&gt;</code></li>
+<li>table th,td 用法</li>
+<li>軟體檢測 freego</li>
+<li>人工檢測  7-14天，審核是需要時間，不要一口答應可以馬上一個月就搞定</li>
+<li>語音驗證碼</li>
+<li>手機的無障礙 ios voice over</li>
+<li>label 與 input 設計</li>
+<li>須符合W3C 規格語句結構</li>
+<li>政府、公家機關都會符合無障礙網站</li>
+<li>A、AA、AAA 越來越難，比方說在AAA需要加入手語</li>
+<li>通常大家都只做到A等級</li>
+<li>H2 UL LI 結構</li>
+<li>H1 每個網頁最重要的說明，且只能有一個</li>
+<li>減少動畫效果，癲癇的人會發作</li>
+</ol>
 ]]></content>
       <categories>
-        <category>備份</category>
+        <category>無障礙網頁</category>
       </categories>
       <tags>
-        <tag>備份</tag>
+        <tag>無障礙網頁</tag>
       </tags>
   </entry>
   <entry>
@@ -3158,37 +3189,6 @@
       </categories>
       <tags>
         <tag>CCNA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>無障礙網頁筆記</title>
-    <url>/2021/06/15/2021-06-15%20%E7%84%A1%E9%9A%9C%E7%A4%99%E7%B6%B2%E9%A0%81%E7%AD%86%E8%A8%98/</url>
-    <content><![CDATA[<ol>
-<li>圖片加alt</li>
-<li>導航磚(accesskey) 常見的有ULC</li>
-<li>製作網站導覽頁，聲明有無障礙設計</li>
-<li>影音影片配合文字說明</li>
-<li><code>&lt;noscript&gt;使用&lt;/noscript&gt;</code></li>
-<li>table th,td 用法</li>
-<li>軟體檢測 freego</li>
-<li>人工檢測  7-14天，審核是需要時間，不要一口答應可以馬上一個月就搞定</li>
-<li>語音驗證碼</li>
-<li>手機的無障礙 ios voice over</li>
-<li>label 與 input 設計</li>
-<li>須符合W3C 規格語句結構</li>
-<li>政府、公家機關都會符合無障礙網站</li>
-<li>A、AA、AAA 越來越難，比方說在AAA需要加入手語</li>
-<li>通常大家都只做到A等級</li>
-<li>H2 UL LI 結構</li>
-<li>H1 每個網頁最重要的說明，且只能有一個</li>
-<li>減少動畫效果，癲癇的人會發作</li>
-</ol>
-]]></content>
-      <categories>
-        <category>無障礙網頁</category>
-      </categories>
-      <tags>
-        <tag>無障礙網頁</tag>
       </tags>
   </entry>
   <entry>
@@ -4790,22 +4790,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS 常用</title>
-    <url>/2021/09/30/2021-09-30%20CSS%E5%B8%B8%E7%94%A8/</url>
-    <content><![CDATA[<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*, *<span class="selector-pseudo">:after</span>, *<span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">  -webkit-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">     -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: border-box;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="圖片最大寬度"><a href="#圖片最大寬度" class="headerlink" title="圖片最大寬度"></a>圖片最大寬度</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="高滿版"><a href="#高滿版" class="headerlink" title="高滿版"></a>高滿版</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">原文網址：https://kknews.cc/code/gznznay.html</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS 常錯</title>
     <url>/2021/09/30/2021-09-30%20CSS%E5%B8%B8%E9%8C%AF/</url>
     <content><![CDATA[<p><img src="https://i.imgur.com/vub8VJB.png" alt="_2021_05_17_17_30_14_13"></p>
@@ -4817,6 +4801,22 @@
 </ul>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS 常用</title>
+    <url>/2021/09/30/2021-09-30%20CSS%E5%B8%B8%E7%94%A8/</url>
+    <content><![CDATA[<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*, *<span class="selector-pseudo">:after</span>, *<span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">  -webkit-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">     -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: border-box;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="圖片最大寬度"><a href="#圖片最大寬度" class="headerlink" title="圖片最大寬度"></a>圖片最大寬度</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="高滿版"><a href="#高滿版" class="headerlink" title="高滿版"></a>高滿版</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">原文網址：https://kknews.cc/code/gznznay.html</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>CSS</category>
@@ -5994,6 +5994,31 @@
       </tags>
   </entry>
   <entry>
+    <title>PHP Laravel 系列 - (9) POSTMAN</title>
+    <url>/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(9)%20POSTMAN/</url>
+    <content><![CDATA[<h2 id="1-POSTMAN介紹"><a href="#1-POSTMAN介紹" class="headerlink" title="1. POSTMAN介紹"></a>1. POSTMAN介紹</h2><p>測試API的好工具，業界非常主流的測試API工具</p>
+<span id="more"></span>
+
+
+<h2 id="2-測試網址"><a href="#2-測試網址" class="headerlink" title="2. 測試網址"></a>2. 測試網址</h2><figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://dog.ceo/api/breeds/image/random</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-可以產生簡易的code"><a href="#3-可以產生簡易的code" class="headerlink" title="3. 可以產生簡易的code"></a>3. 可以產生簡易的code</h2><p><img src="https://i.imgur.com/g7VdQlt.png" alt="image-20211017012203995"></p>
+<p>比方說選JS的fetch方法</p>
+<p><img src="https://i.imgur.com/pdUZbrb.png" alt="image-20211017012242986"></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> requestOptions = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="string">&#x27;follow&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;https://dog.ceo/api/breeds/image/random&quot;</span>, requestOptions)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">text</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(result))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, error));</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>PHP</category>
+        <category>Laravel</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Laravel</tag>
+        <tag>POSTMAN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP Laravel 系列 - (13) API開發_Update_and_Delete</title>
     <url>/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(13)%20API%E9%96%8B%E7%99%BC_Update_and_Delete/</url>
     <content><![CDATA[<p>這篇講的是如何修改更刪除資料</p>
@@ -6046,31 +6071,6 @@
       <tags>
         <tag>PHP</tag>
         <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP Laravel 系列 - (9) POSTMAN</title>
-    <url>/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(9)%20POSTMAN/</url>
-    <content><![CDATA[<h2 id="1-POSTMAN介紹"><a href="#1-POSTMAN介紹" class="headerlink" title="1. POSTMAN介紹"></a>1. POSTMAN介紹</h2><p>測試API的好工具，業界非常主流的測試API工具</p>
-<span id="more"></span>
-
-
-<h2 id="2-測試網址"><a href="#2-測試網址" class="headerlink" title="2. 測試網址"></a>2. 測試網址</h2><figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://dog.ceo/api/breeds/image/random</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-可以產生簡易的code"><a href="#3-可以產生簡易的code" class="headerlink" title="3. 可以產生簡易的code"></a>3. 可以產生簡易的code</h2><p><img src="https://i.imgur.com/g7VdQlt.png" alt="image-20211017012203995"></p>
-<p>比方說選JS的fetch方法</p>
-<p><img src="https://i.imgur.com/pdUZbrb.png" alt="image-20211017012242986"></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> requestOptions = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="string">&#x27;follow&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;https://dog.ceo/api/breeds/image/random&quot;</span>, requestOptions)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">text</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(result))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, error));</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>PHP</category>
-        <category>Laravel</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Laravel</tag>
-        <tag>POSTMAN</tag>
       </tags>
   </entry>
   <entry>
