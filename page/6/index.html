@@ -220,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 10:55:00" itemprop="dateModified" datetime="2021-10-01T10:55:00+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 22:37:12" itemprop="dateModified" datetime="2023-12-31T22:37:12+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -228,7 +228,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.6k</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -246,35 +246,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前專案階段已經進入到軟體功能驗收階段，在進行驗收時需要將問題一一的列出來。</p>
+          <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>目前專案階段已經進入到軟體功能驗收階段，在進行驗收時需要將問題一一的列出來。</p>
 <p>為了溝通與協同作業方便，於是選用了google sheets 進行分享。但後續想想，如果哪天一不小心出現了傻瓜或者其它意外，這份資料就不見了…</p>
 <p>於是開始研究如何自動備份google sheets 資料。以下是<code>問題管制表</code>：</p>
 <p><img src="https://i.imgur.com/p6YMezX.png" alt="image-20210930203829852"></p>
-<h2 id="流程說明"><a href="#流程說明" class="headerlink" title="流程說明"></a>流程說明</h2><h3 id="建立新資料夾"><a href="#建立新資料夾" class="headerlink" title="建立新資料夾"></a>建立新資料夾</h3><p>比方說在問題管制表底下建立個一名稱為<code>Backups</code>資料夾，接著點擊到<code>Backups</code>這一層，我們要取出紅色線條部份的ID字串，這個屬於<code>資料夾ID</code>，待會會用到。</p>
+<h2 id="2-流程說明"><a href="#2-流程說明" class="headerlink" title="2. 流程說明"></a>2. 流程說明</h2><h3 id="2-1-建立新資料夾"><a href="#2-1-建立新資料夾" class="headerlink" title="2.1. 建立新資料夾"></a>2.1. 建立新資料夾</h3><p>比方說在問題管制表底下建立個一名稱為<code>Backups</code>資料夾，接著點擊到<code>Backups</code>這一層，我們要取出紅色線條部份的ID字串，這個屬於<code>資料夾ID</code>，待會會用到。</p>
 <p><img src="https://i.imgur.com/vGDICPQ.png" alt="image-20210930203614781"></p>
-<h3 id="指令碼編輯器"><a href="#指令碼編輯器" class="headerlink" title="指令碼編輯器"></a>指令碼編輯器</h3><p>到你要備份的對象sheet 打開，接著找到<code>工具</code>→<code>指令碼編輯器</code> ，點擊它到下一步驟畫面</p>
+<h3 id="2-2-指令碼編輯器"><a href="#2-2-指令碼編輯器" class="headerlink" title="2.2. 指令碼編輯器"></a>2.2. 指令碼編輯器</h3><p>到你要備份的對象sheet 打開，接著找到<code>工具</code>→<code>指令碼編輯器</code> ，點擊它到下一步驟畫面</p>
 <p><img src="https://i.imgur.com/qcphhpd.png" alt="image-20210930200414943"></p>
-<h3 id="貼上程式碼"><a href="#貼上程式碼" class="headerlink" title="貼上程式碼"></a>貼上程式碼</h3><p>接著會看到右邊有程式碼可以貼，請貼上以下程式碼，這個畫面是貼完之後的結果。</p>
+<h3 id="2-3-貼上程式碼"><a href="#2-3-貼上程式碼" class="headerlink" title="2.3. 貼上程式碼"></a>2.3. 貼上程式碼</h3><p>接著會看到右邊有程式碼可以貼，請貼上以下程式碼，這個畫面是貼完之後的結果。</p>
 <p>重點在<code>第10行</code> code </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">DriveAPP</span>.<span class="title function_">getFolderById</span>(<span class="string">&#x27;your backup bolder id&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>有注意到嗎？其實就是要貼上剛剛在建立資料夾步驟要留意的資料夾ID，請貼到這裡。</p>
 <p>之後請記得按下<code>儲存</code>，長的像磁片正方形的那個。</p>
 <p><img src="https://i.imgur.com/aRKSUw9.png" alt="image-20210930200620937"></p>
-<h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">makeCopy</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// generates the timestamp and stores in variable formattedDate as year-month-date hour-minute-second</span></span><br><span class="line"><span class="keyword">var</span> formattedDate = <span class="title class_">Utilities</span>.<span class="title function_">formatDate</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(), <span class="string">&quot;GMT&quot;</span>, <span class="string">&quot;yyyy-MM-dd&#x27; &#x27;HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the name of the original file and appends the word &quot;copy&quot; followed by the timestamp stored in formattedDate</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getName</span>() + <span class="string">&quot; Copy &quot;</span> + formattedDate;</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the destination folder by their ID. REPLACE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx with your folder&#x27;s ID that you can get by opening the folder in Google Drive and checking the URL in the browser&#x27;s address bar</span></span><br><span class="line"><span class="keyword">var</span> destination = <span class="title class_">DriveApp</span>.<span class="title function_">getFolderById</span>(<span class="string">&quot;your backup folder name&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the current Google Sheet file</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="title class_">DriveApp</span>.<span class="title function_">getFileById</span>(<span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getId</span>())</span><br><span class="line"></span><br><span class="line"><span class="comment">// makes copy of &quot;file&quot; with &quot;name&quot; at the &quot;destination&quot;</span></span><br><span class="line">file.<span class="title function_">makeCopy</span>(name, destination);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-程式碼"><a href="#2-4-程式碼" class="headerlink" title="2.4. 程式碼"></a>2.4. 程式碼</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">makeCopy</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// generates the timestamp and stores in variable formattedDate as year-month-date hour-minute-second</span></span><br><span class="line"><span class="keyword">var</span> formattedDate = <span class="title class_">Utilities</span>.<span class="title function_">formatDate</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(), <span class="string">&quot;GMT&quot;</span>, <span class="string">&quot;yyyy-MM-dd&#x27; &#x27;HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the name of the original file and appends the word &quot;copy&quot; followed by the timestamp stored in formattedDate</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getName</span>() + <span class="string">&quot; Copy &quot;</span> + formattedDate;</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the destination folder by their ID. REPLACE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx with your folder&#x27;s ID that you can get by opening the folder in Google Drive and checking the URL in the browser&#x27;s address bar</span></span><br><span class="line"><span class="keyword">var</span> destination = <span class="title class_">DriveApp</span>.<span class="title function_">getFolderById</span>(<span class="string">&quot;your backup folder name&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// gets the current Google Sheet file</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="title class_">DriveApp</span>.<span class="title function_">getFileById</span>(<span class="title class_">SpreadsheetApp</span>.<span class="title function_">getActiveSpreadsheet</span>().<span class="title function_">getId</span>())</span><br><span class="line"></span><br><span class="line"><span class="comment">// makes copy of &quot;file&quot; with &quot;name&quot; at the &quot;destination&quot;</span></span><br><span class="line">file.<span class="title function_">makeCopy</span>(name, destination);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="設定觸發條件"><a href="#設定觸發條件" class="headerlink" title="設定觸發條件"></a>設定觸發條件</h3><p>左邊選單有一個小時鐘的就是我們的主角，要設定時間備份，就是在這裡</p>
+<h3 id="2-5-設定觸發條件"><a href="#2-5-設定觸發條件" class="headerlink" title="2.5. 設定觸發條件"></a>2.5. 設定觸發條件</h3><p>左邊選單有一個小時鐘的就是我們的主角，要設定時間備份，就是在這裡</p>
 <p><img src="https://i.imgur.com/s8ohZyd.png" alt="image-20210930201927739"></p>
-<h3 id="選擇時間驅動"><a href="#選擇時間驅動" class="headerlink" title="選擇時間驅動"></a>選擇時間驅動</h3><p>因為我的目的是想要定時備份，所以這次是選<code>時間驅動</code>的選項</p>
+<h3 id="2-6-選擇時間驅動"><a href="#2-6-選擇時間驅動" class="headerlink" title="2.6. 選擇時間驅動"></a>2.6. 選擇時間驅動</h3><p>因為我的目的是想要定時備份，所以這次是選<code>時間驅動</code>的選項</p>
 <p><img src="https://i.imgur.com/dgHuwGh.png" alt="image-20210930202210516"></p>
-<h3 id="定時顆粒度"><a href="#定時顆粒度" class="headerlink" title="定時顆粒度"></a>定時顆粒度</h3><p><img src="https://i.imgur.com/la7gpRy.png" alt="image-20210930202310015"></p>
-<h3 id="最後完成的設定"><a href="#最後完成的設定" class="headerlink" title="最後完成的設定"></a>最後完成的設定</h3><p>設定完之後，按下<code>儲存</code></p>
+<h3 id="2-7-定時顆粒度"><a href="#2-7-定時顆粒度" class="headerlink" title="2.7. 定時顆粒度"></a>2.7. 定時顆粒度</h3><p><img src="https://i.imgur.com/la7gpRy.png" alt="image-20210930202310015"></p>
+<h3 id="2-8-最後完成的設定"><a href="#2-8-最後完成的設定" class="headerlink" title="2.8. 最後完成的設定"></a>2.8. 最後完成的設定</h3><p>設定完之後，按下<code>儲存</code></p>
 <p><img src="https://i.imgur.com/G4Giboi.png" alt="image-20210930202358258"></p>
-<h3 id="觸發條件清單"><a href="#觸發條件清單" class="headerlink" title="觸發條件清單"></a>觸發條件清單</h3><p>按下儲存後，這時候畫面會直接導向到這個清單，紅色部分就是我們剛剛設定的。</p>
+<h3 id="2-9-觸發條件清單"><a href="#2-9-觸發條件清單" class="headerlink" title="2.9. 觸發條件清單"></a>2.9. 觸發條件清單</h3><p>按下儲存後，這時候畫面會直接導向到這個清單，紅色部分就是我們剛剛設定的。</p>
 <p>眼針的我們可以發現它多了一個觸發器，這個觸發器是設定在<code>文件開啟時</code>。</p>
 <p>後來實測只要使用者有去開啟這個sheet，就會自動備一份，這也是不錯的備份方式，所以我就沒有刪掉它。</p>
 <p><img src="https://i.imgur.com/f5Ughop.png" alt="image-20210930202803058"></p>
-<h2 id="最後完成"><a href="#最後完成" class="headerlink" title="最後完成"></a>最後完成</h2><p>完成囉，在這個備份的資料夾，時間一到就會多一份囉。</p>
+<h2 id="3-最後完成"><a href="#3-最後完成" class="headerlink" title="3. 最後完成"></a>3. 最後完成</h2><p>完成囉，在這個備份的資料夾，時間一到就會多一份囉。</p>
 <p><img src="https://i.imgur.com/wJLEu5V.png" alt="image-20210930203214080"></p>
 
       
@@ -326,7 +326,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:52:25" itemprop="dateModified" datetime="2023-12-31T21:52:25+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:36:01" itemprop="dateModified" datetime="2023-12-31T22:36:01+08:00">2023-12-31</time>
               </span>
 
           <br>
@@ -334,7 +334,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>698</span>
+              <span>701</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -410,15 +410,24 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:51:50" itemprop="dateModified" datetime="2023-12-31T21:51:50+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:34:39" itemprop="dateModified" datetime="2023-12-31T22:34:39+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">資訊安全</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>554</span>
+              <span>578</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -436,7 +445,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="資安的問題不再是資安系統層面了"><a href="#資安的問題不再是資安系統層面了" class="headerlink" title="資安的問題不再是資安系統層面了"></a>資安的問題不再是資安系統層面了</h2><p>資料多樣性<br>很多的資料傳遞方式、來源、去向</p>
+          <h2 id="1-資安的問題不再是資安系統層面了"><a href="#1-資安的問題不再是資安系統層面了" class="headerlink" title="1. 資安的問題不再是資安系統層面了"></a>1. 資安的問題不再是資安系統層面了</h2><p>資料多樣性<br>很多的資料傳遞方式、來源、去向</p>
 <p>即時性<br>比如金融服務</p>
 <p>巨量<br>可能會同時影響到上萬筆資料</p>
           <!--noindex-->
@@ -496,8 +505,21 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 22:00:23" itemprop="dateModified" datetime="2023-12-31T22:00:23+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:57:43" itemprop="dateModified" datetime="2023-12-31T22:57:43+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/RWD/" itemprop="url" rel="index"><span itemprop="name">RWD</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
@@ -591,8 +613,21 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 22:00:42" itemprop="dateModified" datetime="2023-12-31T22:00:42+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:57:41" itemprop="dateModified" datetime="2023-12-31T22:57:41+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/RWD/" itemprop="url" rel="index"><span itemprop="name">RWD</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
@@ -683,8 +718,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 22:08:02" itemprop="dateModified" datetime="2023-12-31T22:08:02+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:39:22" itemprop="dateModified" datetime="2023-12-31T22:39:22+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
@@ -767,8 +811,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 22:08:08" itemprop="dateModified" datetime="2023-12-31T22:08:08+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:39:17" itemprop="dateModified" datetime="2023-12-31T22:39:17+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
@@ -851,15 +904,24 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-01 10:54:50" itemprop="dateModified" datetime="2021-10-01T10:54:50+08:00">2021-10-01</time>
+                <time title="修改時間：2023-12-31 23:20:54" itemprop="dateModified" datetime="2023-12-31T23:20:54+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>255</span>
+              <span>285</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -924,9 +986,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-30 13:51:00 / 修改時間：15:42:57" itemprop="dateCreated datePublished" datetime="2021-09-30T13:51:00+08:00">2021-09-30</time>
+              <time title="創建時間：2021-09-30 13:51:00" itemprop="dateCreated datePublished" datetime="2021-09-30T13:51:00+08:00">2021-09-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:39:12" itemprop="dateModified" datetime="2023-12-31T22:39:12+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
             </span>
 
           <br>
@@ -934,7 +1011,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>161</span>
+              <span>189</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -1011,8 +1088,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:53:09" itemprop="dateModified" datetime="2023-12-31T21:53:09+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:39:15" itemprop="dateModified" datetime="2023-12-31T22:39:15+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
@@ -1133,13 +1219,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1175,12 +1261,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

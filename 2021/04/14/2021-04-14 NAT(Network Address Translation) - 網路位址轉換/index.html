@@ -33,9 +33,8 @@
 <meta property="og:image" content="https://i.imgur.com/JwookYX.png">
 <meta property="og:image" content="https://i.imgur.com/bZiat6r.png">
 <meta property="article:published_time" content="2021-04-14T13:15:00.000Z">
-<meta property="article:modified_time" content="2023-12-31T13:56:36.010Z">
+<meta property="article:modified_time" content="2023-12-31T15:16:50.509Z">
 <meta property="article:author" content="kite">
-<meta property="article:tag" content="網路知識">
 <meta property="article:tag" content="NAT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/OL1dxor.jpg">
@@ -231,15 +230,24 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:56:36" itemprop="dateModified" datetime="2023-12-31T21:56:36+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 23:16:50" itemprop="dateModified" datetime="2023-12-31T23:16:50+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NAT/" itemprop="url" rel="index"><span itemprop="name">NAT</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.9k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -264,19 +272,19 @@
 <span id="more"></span>
 
 
-<h2 id="NAT-伺服器的原理"><a href="#NAT-伺服器的原理" class="headerlink" title="NAT 伺服器的原理"></a>NAT 伺服器的原理</h2><p>NAT 伺服器的連接方式如＜圖一＞所示，一端連接私有網路（內部網路），由企業內部網管人員自行設定私有 IP，可以自由設定但是不可以重覆，不需要支付費用，而且可以減少真實 IP 的使用量；一端連接外部網路（網際網路），由企業向網際網路服務供應商（例如：中華電信）申請真實 IP，必須支付費用。</p>
+<h2 id="1-NAT-伺服器的原理"><a href="#1-NAT-伺服器的原理" class="headerlink" title="1. NAT 伺服器的原理"></a>1. NAT 伺服器的原理</h2><p>NAT 伺服器的連接方式如＜圖一＞所示，一端連接私有網路（內部網路），由企業內部網管人員自行設定私有 IP，可以自由設定但是不可以重覆，不需要支付費用，而且可以減少真實 IP 的使用量；一端連接外部網路（網際網路），由企業向網際網路服務供應商（例如：中華電信）申請真實 IP，必須支付費用。</p>
 <p>假設台大電機系的網管人員將網路切割為內部與外部，內部網路的網址設定為 192.168.1.1、192.168.1.2、192.168.1.3；而外部網路的網址為 140.112.66.88，則 NAT 伺服器的功能就是更改封包表頭的傳送端 IP 位址與接收端 IP 位址。</p>
 <p>➤傳送封包：假設私有網路（內部網路）的電腦 A 要傳送封包到網際網路（外部網路），所以將封包表頭內的傳送端 IP 位址設定為 192.168.1.1，如（a）所示。</p>
 <p>➤轉送封包：NAT 伺服器將封包表頭的傳送端 IP 位址改成 140.112.66.88 再傳送到網際網路（外部網路），並且記錄這個封包來自電腦 A，如（b）所示。</p>
 <p>➤接收封包：網際網路（外部網路）要傳送封包到電腦 A，但是封包表頭的接收端 IP 位址設定為 140.112.66.88，因此先由 NAT 伺服器接收進來，如（c）所示。</p>
 <p>➤轉送封包：NAT 伺服器將封包表頭的接收端 IP 位址改成 192.168.1.1 再傳送到私有網路（內部網路）的電腦 A，如（d）所示。</p>
 <p><img src="https://i.imgur.com/OL1dxor.jpg" alt="image"></p>
-<h2 id="NAT-伺服器的功能"><a href="#NAT-伺服器的功能" class="headerlink" title="NAT 伺服器的功能"></a>NAT 伺服器的功能</h2><p>➤封包偽裝（IP masquerade）：可以將私有 IP（內部IP）改變成真實 IP（外部 IP）再傳送到網際網路，使網路上的人無法得知私有網路的 IP 分配情形而增加網路安全性。</p>
+<h2 id="2-NAT-伺服器的功能"><a href="#2-NAT-伺服器的功能" class="headerlink" title="2. NAT 伺服器的功能"></a>2. NAT 伺服器的功能</h2><p>➤封包偽裝（IP masquerade）：可以將私有 IP（內部IP）改變成真實 IP（外部 IP）再傳送到網際網路，使網路上的人無法得知私有網路的 IP 分配情形而增加網路安全性。</p>
 <p>➤封包過濾：可以攔截網際網路進入私有網路的封包，阻擋怪客（Cracker）的攻擊，所以 NAT 伺服器是最重要的防火牆成員，也是一種「封包過濾器（Packet filter）」。</p>
 <p>➤平衡負載：通常使用在網頁伺服器（Web server），一般公司的網頁伺服器同時可能會有數千人連線上來，如果只使用一台主機，一定無法負荷這麼多電腦的連線，我們可以在入口處加裝一台 NAT 伺服器，改變網際網路（外部網路）進入私有網路（內部網路）封包表頭的接收端 IP 位址，使進入的封包分散到不同的主機上，可以減輕單一主機的負擔，也可以增加網路安全性，如下圖所示：</p>
 <p><img src="https://i.imgur.com/92gzAXV.jpg" alt="image"></p>
 <p><img src="https://i.imgur.com/wNW6xnq.png" alt="image"></p>
-<h2 id="NAT技術用語"><a href="#NAT技術用語" class="headerlink" title="NAT技術用語"></a>NAT技術用語</h2><ul>
+<h2 id="3-NAT技術用語"><a href="#3-NAT技術用語" class="headerlink" title="3. NAT技術用語"></a>3. NAT技術用語</h2><ul>
 <li>內部網路(Inside Network)</li>
 <li>外部網路(Outside Network)</li>
 <li>Inside Global位址<ul>
@@ -296,7 +304,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="私有IP位址"><a href="#私有IP位址" class="headerlink" title="私有IP位址"></a>私有IP位址</h2><ul>
+<h2 id="4-私有IP位址"><a href="#4-私有IP位址" class="headerlink" title="4. 私有IP位址"></a>4. 私有IP位址</h2><ul>
 <li><p>私有IP位置定義在RFC1918規格中</p>
 <ul>
 <li>當電腦不需要存取網際網路時，可以只用私有IP位置。私有IP不需要註冊。</li>
@@ -316,7 +324,7 @@
 <li><p>私有IP範圍<br><img src="https://i.imgur.com/JwookYX.png" alt="image"></p>
 </li>
 </ul>
-<h2 id="NAT運行種類"><a href="#NAT運行種類" class="headerlink" title="NAT運行種類"></a>NAT運行種類</h2><ul>
+<h2 id="5-NAT運行種類"><a href="#5-NAT運行種類" class="headerlink" title="5. NAT運行種類"></a>5. NAT運行種類</h2><ul>
 <li>靜態（Static）<ul>
 <li>將私有IP位址對應用公有IP位址，採用對應方式一對一，屬於最基本的NAT</li>
 </ul>
@@ -330,8 +338,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="NAT穿透技術相關RFC文件"><a href="#NAT穿透技術相關RFC文件" class="headerlink" title="NAT穿透技術相關RFC文件"></a>NAT穿透技術相關RFC文件</h2><p><img src="https://i.imgur.com/bZiat6r.png" alt="image"></p>
-<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><ul>
+<h2 id="6-NAT穿透技術相關RFC文件"><a href="#6-NAT穿透技術相關RFC文件" class="headerlink" title="6. NAT穿透技術相關RFC文件"></a>6. NAT穿透技術相關RFC文件</h2><p><img src="https://i.imgur.com/bZiat6r.png" alt="image"></p>
+<h2 id="7-參考連結"><a href="#7-參考連結" class="headerlink" title="7. 參考連結"></a>7. 參考連結</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.stockfeel.com.tw/nat-%E4%BC%BA%E6%9C%8D%E5%99%A8%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%8B%E7%94%A8%EF%BC%9F/">nat-伺服器是什麼？如何運用</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.netadmin.com.tw/netadmin/zh-tw/technology/9E69BC3BDD3E427C8D1DAF3272983130?page=1">NAT穿透技術 從外部直接溝通私有IP</a></li>
 <li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10209590">30-28之 WebRTC 連線前傳 - 為什麼 P2P 連線很麻煩 ? ( NAT )</a></li>
@@ -345,7 +353,6 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/" rel="tag"># 網路知識</a>
               <a href="/tags/NAT/" rel="tag"># NAT</a>
           </div>
 
@@ -355,8 +362,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/14/2021-04-14%20WAF(Web%20Application%20Firewall)%20-%20%E7%B6%B2%E8%B7%AF%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E9%98%B2%E7%81%AB%E7%89%86/" rel="prev" title="WAF(Web Application Firewall) - 網路應用程式防火牆">
-      <i class="fa fa-chevron-left"></i> WAF(Web Application Firewall) - 網路應用程式防火牆
+    <a href="/2021/04/14/2021-04-14%20VDI(Virtual%20Desktop%20Infrastructure)%20-%20%E9%9B%B2%E7%AB%AF%E6%A1%8C%E9%9D%A2(%E6%A1%8C%E9%9D%A2%E8%99%9B%E6%93%AC%E5%8C%96)/" rel="prev" title="VDI(Virtual Desktop Infrastructure)  - 雲端桌面(桌面虛擬化)">
+      <i class="fa fa-chevron-left"></i> VDI(Virtual Desktop Infrastructure)  - 雲端桌面(桌面虛擬化)
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/04/14/2021-04-14%20Latency%20and%20Throughput%20-%20%E5%BB%B6%E9%81%B2%E8%88%87%E5%90%9E%E5%90%90%E9%87%8F/" rel="next" title="Latency and Throughput - 延遲與吞吐量">
@@ -420,7 +427,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">NAT 伺服器的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">NAT 伺服器的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E6%8A%80%E8%A1%93%E7%94%A8%E8%AA%9E"><span class="nav-text">NAT技術用語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89IP%E4%BD%8D%E5%9D%80"><span class="nav-text">私有IP位址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E9%81%8B%E8%A1%8C%E7%A8%AE%E9%A1%9E"><span class="nav-text">NAT運行種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E7%A9%BF%E9%80%8F%E6%8A%80%E8%A1%93%E7%9B%B8%E9%97%9CRFC%E6%96%87%E4%BB%B6"><span class="nav-text">NAT穿透技術相關RFC文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">參考連結</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">1. NAT 伺服器的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-NAT-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">2. NAT 伺服器的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-NAT%E6%8A%80%E8%A1%93%E7%94%A8%E8%AA%9E"><span class="nav-text">3. NAT技術用語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%A7%81%E6%9C%89IP%E4%BD%8D%E5%9D%80"><span class="nav-text">4. 私有IP位址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-NAT%E9%81%8B%E8%A1%8C%E7%A8%AE%E9%A1%9E"><span class="nav-text">5. NAT運行種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-NAT%E7%A9%BF%E9%80%8F%E6%8A%80%E8%A1%93%E7%9B%B8%E9%97%9CRFC%E6%96%87%E4%BB%B6"><span class="nav-text">6. NAT穿透技術相關RFC文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">7. 參考連結</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -441,13 +448,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -483,12 +490,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

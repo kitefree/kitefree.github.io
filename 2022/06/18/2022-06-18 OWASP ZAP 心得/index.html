@@ -22,7 +22,7 @@
 
   <meta name="description" content="1. 前言客戶的案子希望提供簡單的弱點掃描服務，這次使用OWASP ZAP 2.11.1版本進行掃描測試。如何修復弱點…過程是痛苦的(可能心中只想寫程式…)，於是決定寫下筆記，或許之後會用得上。(朋友提醒我，要注意軟體有沒有誤判)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OWASP ZAP 心得">
+<meta property="og:title" content="OWASP ZAP 筆記">
 <meta property="og:url" content="https://kitefree.github.io/2022/06/18/2022-06-18%20OWASP%20ZAP%20%E5%BF%83%E5%BE%97/index.html">
 <meta property="og:site_name" content="Kite的筆記">
 <meta property="og:description" content="1. 前言客戶的案子希望提供簡單的弱點掃描服務，這次使用OWASP ZAP 2.11.1版本進行掃描測試。如何修復弱點…過程是痛苦的(可能心中只想寫程式…)，於是決定寫下筆記，或許之後會用得上。(朋友提醒我，要注意軟體有沒有誤判)">
@@ -59,9 +59,9 @@
 <meta property="og:image" content="https://i.imgur.com/SITrgSd.png">
 <meta property="og:image" content="https://i.imgur.com/7w8At1b.png">
 <meta property="article:published_time" content="2022-06-18T03:23:00.000Z">
-<meta property="article:modified_time" content="2023-12-31T13:45:45.282Z">
+<meta property="article:modified_time" content="2023-12-31T14:30:13.084Z">
 <meta property="article:author" content="kite">
-<meta property="article:tag" content="資安">
+<meta property="article:tag" content="資訊安全">
 <meta property="article:tag" content="弱點掃描">
 <meta property="article:tag" content="IIS">
 <meta name="twitter:card" content="summary">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>OWASP ZAP 心得 | Kite的筆記</title>
+  <title>OWASP ZAP 筆記 | Kite的筆記</title>
   
 
 
@@ -241,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          OWASP ZAP 心得
+          OWASP ZAP 筆記
         </h1>
 
         <div class="post-meta">
@@ -258,7 +258,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:45:45" itemprop="dateModified" datetime="2023-12-31T21:45:45+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:30:13" itemprop="dateModified" datetime="2023-12-31T22:30:13+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,11 +266,11 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B3%87%E5%AE%89/" itemprop="url" rel="index"><span itemprop="name">資安</span></a>
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">資訊安全</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B3%87%E5%AE%89/OWASP-ZAP/" itemprop="url" rel="index"><span itemprop="name">OWASP ZAP</span></a>
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/OWASP-ZAP/" itemprop="url" rel="index"><span itemprop="name">OWASP ZAP</span></a>
                 </span>
             </span>
 
@@ -299,7 +299,6 @@
       
         <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>客戶的案子希望提供簡單的弱點掃描服務，這次使用OWASP ZAP 2.11.1版本進行掃描測試。如何修復弱點…過程是痛苦的(可能心中只想寫程式…)，於是決定寫下筆記，或許之後會用得上。(朋友提醒我，要注意軟體有沒有誤判)</p>
 <span id="more"></span>
-
 
 <h2 id="2-Missing-Anti-clickjacking-Header-風險：中"><a href="#2-Missing-Anti-clickjacking-Header-風險：中" class="headerlink" title="2. Missing Anti-clickjacking Header (風險：中)"></a>2. Missing Anti-clickjacking Header (風險：中)</h2><p><img src="https://i.imgur.com/lEtVkxN.png" alt="image-20220618144640064"></p>
 <h3 id="2-1-Description"><a href="#2-1-Description" class="headerlink" title="2.1. Description"></a>2.1. Description</h3><blockquote>
@@ -494,7 +493,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%B3%87%E5%AE%89/" rel="tag"># 資安</a>
+              <a href="/tags/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" rel="tag"># 資訊安全</a>
               <a href="/tags/%E5%BC%B1%E9%BB%9E%E6%8E%83%E6%8F%8F/" rel="tag"># 弱點掃描</a>
               <a href="/tags/IIS/" rel="tag"># IIS</a>
           </div>
@@ -591,13 +590,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -633,12 +632,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

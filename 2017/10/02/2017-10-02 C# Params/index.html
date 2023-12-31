@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Sample Code12345678910111213141516171819202122232425262728class Program&#123;    static void Main()    &#123;        &#x2F;&#x2F; Call params method with one to four int arguments.        int sum1 &#x3D; SumParamete">
+  <meta name="description" content="1. Sample Code12345678910111213141516171819202122232425262728class Program&#123;    static void Main()    &#123;        &#x2F;&#x2F; Call params method with one to four int arguments.        int sum1 &#x3D; SumParam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# Params">
 <meta property="og:url" content="https://kitefree.github.io/2017/10/02/2017-10-02%20C#%20Params/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="Sample Code12345678910111213141516171819202122232425262728class Program&#123;    static void Main()    &#123;        &#x2F;&#x2F; Call params method with one to four int arguments.        int sum1 &#x3D; SumParamete">
+<meta property="og:description" content="1. Sample Code12345678910111213141516171819202122232425262728class Program&#123;    static void Main()    &#123;        &#x2F;&#x2F; Call params method with one to four int arguments.        int sum1 &#x3D; SumParam">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-10-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-15T09:46:38.312Z">
+<meta property="article:modified_time" content="2023-12-31T15:14:53.982Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
@@ -224,21 +224,30 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-15 17:46:38" itemprop="dateModified" datetime="2021-10-15T17:46:38+08:00">2021-10-15</time>
+                <time title="修改時間：2023-12-31 23:14:53" itemprop="dateModified" datetime="2023-12-31T23:14:53+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>606</span>
+              <span>837</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>1 分鐘</span>
+              <span>2 分鐘</span>
             </span>
 
         </div>
@@ -250,11 +259,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Sample-Code"><a href="#Sample-Code" class="headerlink" title="Sample Code"></a>Sample Code</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Call params method with one to four int arguments.</span></span><br><span class="line">        <span class="built_in">int</span> sum1 = SumParameters(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">int</span> sum2 = SumParameters(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">int</span> sum3 = SumParameters(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">        <span class="built_in">int</span> sum4 = SumParameters(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ... Write results of the method invocations.</span></span><br><span class="line">        Console.WriteLine(sum1);</span><br><span class="line">        Console.WriteLine(sum2);</span><br><span class="line">        Console.WriteLine(sum3);</span><br><span class="line">        Console.WriteLine(sum4);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">int</span> <span class="title">SumParameters</span>(<span class="params"><span class="keyword">params</span> <span class="built_in">int</span>[] values</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Loop through and sum the integers in the array.</span></span><br><span class="line">        <span class="built_in">int</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="built_in">int</span> <span class="keyword">value</span> <span class="keyword">in</span> values)</span><br><span class="line">        &#123;</span><br><span class="line">            total += <span class="keyword">value</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="1-Sample-Code"><a href="#1-Sample-Code" class="headerlink" title="1. Sample Code"></a>1. Sample Code</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Call params method with one to four int arguments.</span></span><br><span class="line">        <span class="built_in">int</span> sum1 = SumParameters(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">int</span> sum2 = SumParameters(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">int</span> sum3 = SumParameters(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">        <span class="built_in">int</span> sum4 = SumParameters(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ... Write results of the method invocations.</span></span><br><span class="line">        Console.WriteLine(sum1);</span><br><span class="line">        Console.WriteLine(sum2);</span><br><span class="line">        Console.WriteLine(sum3);</span><br><span class="line">        Console.WriteLine(sum4);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">int</span> <span class="title">SumParameters</span>(<span class="params"><span class="keyword">params</span> <span class="built_in">int</span>[] values</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Loop through and sum the integers in the array.</span></span><br><span class="line">        <span class="built_in">int</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="built_in">int</span> <span class="keyword">value</span> <span class="keyword">in</span> values)</span><br><span class="line">        &#123;</span><br><span class="line">            total += <span class="keyword">value</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><ul>
+<h2 id="2-參考網站"><a href="#2-參考網站" class="headerlink" title="2. 參考網站"></a>2. 參考網站</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.dotnetperls.com/params">https://www.dotnetperls.com/params</a></li>
 </ul>
 
@@ -337,7 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Code"><span class="nav-text">Sample Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E7%B6%B2%E7%AB%99"><span class="nav-text">參考網站</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Sample-Code"><span class="nav-text">1. Sample Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%83%E8%80%83%E7%B6%B2%E7%AB%99"><span class="nav-text">2. 參考網站</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -358,13 +367,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -400,12 +409,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

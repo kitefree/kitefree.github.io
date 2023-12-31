@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="簡介collection提供一個流暢、便利的封裝來操控陣列資料，比原本的array提供更多功能， 相關可用的方法可以參考台灣官網，記得只有Laravel才有哦。  有些第三方的套件使用的方法還是array 型別，所以千萬別覺得array就不重要了">
+  <meta name="description" content="1. 簡介collection提供一個流暢、便利的封裝來操控陣列資料，比原本的array提供更多功能， 相關可用的方法可以參考台灣官網，記得只有Laravel才有哦。  有些第三方的套件使用的方法還是array 型別，所以千萬別覺得array就不重要了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP Laravel 系列 - (12) Collection">
 <meta property="og:url" content="https://kitefree.github.io/2021/10/17/2021-10-17%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(12)%20Collection/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="簡介collection提供一個流暢、便利的封裝來操控陣列資料，比原本的array提供更多功能， 相關可用的方法可以參考台灣官網，記得只有Laravel才有哦。  有些第三方的套件使用的方法還是array 型別，所以千萬別覺得array就不重要了">
+<meta property="og:description" content="1. 簡介collection提供一個流暢、便利的封裝來操控陣列資料，比原本的array提供更多功能， 相關可用的方法可以參考台灣官網，記得只有Laravel才有哦。  有些第三方的套件使用的方法還是array 型別，所以千萬別覺得array就不重要了">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/uDYKt5W.png">
 <meta property="og:image" content="https://i.imgur.com/kIK3gAX.png">
 <meta property="og:image" content="https://i.imgur.com/5pP81Ij.png">
 <meta property="og:image" content="https://i.imgur.com/T8Gw2dv.png">
 <meta property="article:published_time" content="2021-10-17T11:25:00.000Z">
-<meta property="article:modified_time" content="2023-12-31T13:49:05.799Z">
+<meta property="article:modified_time" content="2023-12-31T14:31:30.578Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="PHP">
 <meta property="article:tag" content="Laravel">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:49:05" itemprop="dateModified" datetime="2023-12-31T21:49:05+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:31:30" itemprop="dateModified" datetime="2023-12-31T22:31:30+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,6 +239,10 @@
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/Laravel/" itemprop="url" rel="index"><span itemprop="name">Laravel</span></a>
                 </span>
             </span>
 
@@ -265,7 +269,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><code>collection</code>提供一個流暢、便利的封裝來操控<strong>陣列資料</strong>，比原本的array提供更多功能，</p>
+        <h2 id="1-簡介"><a href="#1-簡介" class="headerlink" title="1. 簡介"></a>1. 簡介</h2><p><code>collection</code>提供一個流暢、便利的封裝來操控<strong>陣列資料</strong>，比原本的array提供更多功能，</p>
 <p>相關可用的方法可以參考<a target="_blank" rel="noopener" href="https://laravel.tw/docs/5.2/collections">台灣官網</a>，記得只有Laravel才有哦。</p>
 <blockquote>
 <p>有些第三方的套件使用的方法還是array 型別，所以千萬別覺得array就不重要了</p>
@@ -273,8 +277,8 @@
 <span id="more"></span>
 
 
-<h2 id="動手改寫getData"><a href="#動手改寫getData" class="headerlink" title="動手改寫getData()"></a>動手改寫getData()</h2><p>原本我們的<code>getData()</code>  array object to collection object</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;aaa&#x27;</span>,</span><br><span class="line">        ],</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;bbb&#x27;</span>,</span><br><span class="line">        ]            </span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-動手改寫getData"><a href="#2-動手改寫getData" class="headerlink" title="2. 動手改寫getData()"></a>2. 動手改寫getData()</h2><p>原本我們的<code>getData()</code>  array object to collection object</p>
+<h3 id="2-1-Code"><a href="#2-1-Code" class="headerlink" title="2.1. Code"></a>2.1. Code</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;aaa&#x27;</span>,</span><br><span class="line">        ],</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;bbb&#x27;</span>,</span><br><span class="line">        ]            </span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>改寫成</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">collect</span>([</span><br><span class="line">        <span class="title function_ invoke__">collect</span>([</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;aaa&#x27;</span>,</span><br><span class="line">        ]),</span><br><span class="line">        <span class="title function_ invoke__">collect</span>([</span><br><span class="line">            <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;content&#x27;</span> =&gt; <span class="string">&#x27;bbb&#x27;</span>,</span><br><span class="line">        ])            </span><br><span class="line">    ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -282,14 +286,14 @@
 <p>順便把<code>index()</code>改一下，讓我們來觀查狀況</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="variable">$this</span>-&gt;<span class="title function_ invoke__">getData</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>我們再啟用服務之後，瀏覽</p>
+<h3 id="2-2-Result"><a href="#2-2-Result" class="headerlink" title="2.2. Result"></a>2.2. Result</h3><p>我們再啟用服務之後，瀏覽</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/products</span><br></pre></td></tr></table></figure>
 
 <p>改前</p>
 <p><img src="https://i.imgur.com/uDYKt5W.png" alt="image-20211017195023070"></p>
 <p>改後</p>
 <p><img src="https://i.imgur.com/kIK3gAX.png" alt="image-20211017194944275"></p>
-<h2 id="動手改寫store"><a href="#動手改寫store" class="headerlink" title="動手改寫store()"></a>動手改寫store()</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">store</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line">    <span class="variable">$newData</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">all</span>();</span><br><span class="line">    <span class="title function_ invoke__">array_push</span>(<span class="variable">$data</span>,<span class="variable">$newData</span>);<span class="comment">//原生php array_push 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="variable">$data</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-動手改寫store"><a href="#3-動手改寫store" class="headerlink" title="3. 動手改寫store()"></a>3. 動手改寫store()</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">store</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line">    <span class="variable">$newData</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">all</span>();</span><br><span class="line">    <span class="title function_ invoke__">array_push</span>(<span class="variable">$data</span>,<span class="variable">$newData</span>);<span class="comment">//原生php array_push 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">response</span>(<span class="variable">$data</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -384,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8B%95%E6%89%8B%E6%94%B9%E5%AF%ABgetData"><span class="nav-text">動手改寫getData()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-text">Result</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8B%95%E6%89%8B%E6%94%B9%E5%AF%ABstore"><span class="nav-text">動手改寫store()</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%B0%A1%E4%BB%8B"><span class="nav-text">1. 簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8B%95%E6%89%8B%E6%94%B9%E5%AF%ABgetData"><span class="nav-text">2. 動手改寫getData()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Code"><span class="nav-text">2.1. Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Result"><span class="nav-text">2.2. Result</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8B%95%E6%89%8B%E6%94%B9%E5%AF%ABstore"><span class="nav-text">3. 動手改寫store()</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,13 +409,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -447,12 +451,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

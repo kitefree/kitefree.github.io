@@ -20,16 +20,17 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection： Constrain input. Use parameters with stored procedures. Use parameters with dynamic SQL.">
+  <meta name="description" content="1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection： Constrain input. Use parameters with stored procedures. Use parameters with dynamic SQL.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL inject 防範">
 <meta property="og:url" content="https://kitefree.github.io/2020/05/06/2020-05-06%20SQL%20inject%20%E9%98%B2%E7%AF%84/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection： Constrain input. Use parameters with stored procedures. Use parameters with dynamic SQL.">
+<meta property="og:description" content="1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection： Constrain input. Use parameters with stored procedures. Use parameters with dynamic SQL.">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-05-06T03:21:00.000Z">
-<meta property="article:modified_time" content="2023-12-31T13:54:21.882Z">
+<meta property="article:modified_time" content="2023-12-31T15:15:03.818Z">
 <meta property="article:author" content="kite">
+<meta property="article:tag" content="資訊安全">
 <meta property="article:tag" content="SQL injection">
 <meta name="twitter:card" content="summary">
 
@@ -224,15 +225,28 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:54:21" itemprop="dateModified" datetime="2023-12-31T21:54:21+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 23:15:03" itemprop="dateModified" datetime="2023-12-31T23:15:03+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">資訊安全</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/SQL-injection/" itemprop="url" rel="index"><span itemprop="name">SQL injection</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>197</span>
+              <span>203</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -250,7 +264,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection："><a href="#在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection：" class="headerlink" title="在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection："></a>在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection：</h2><ol>
+        <h2 id="1-在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection："><a href="#1-在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection：" class="headerlink" title="1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection："></a>1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection：</h2><ol>
 <li>Constrain input.</li>
 <li>Use parameters with stored procedures.</li>
 <li>Use parameters with dynamic SQL.</li>
@@ -258,7 +272,7 @@
 <span id="more"></span>
 
 
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<h2 id="2-參考資料"><a href="#2-參考資料" class="headerlink" title="2. 參考資料"></a>2. 參考資料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.qa-knowhow.com/?p=131">SQL Injection 的測試與防範</a></li>
 <li><a target="_blank" rel="noopener" href="https://sites.google.com/site/chengshixuexipingtai/sql/ql-injection-de-jian-jie-yu-yu-fang">SQL injection的簡介與預防</a></li>
 </ul>
@@ -271,6 +285,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" rel="tag"># 資訊安全</a>
               <a href="/tags/SQL-injection/" rel="tag"># SQL injection</a>
           </div>
 
@@ -345,7 +360,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-patterns-practices-Developer-Center%E7%B0%A1%E5%96%AE%E6%AD%B8%E7%B4%8D%E5%87%BA%E4%B8%89%E5%80%8B%E6%AD%A5%E9%A9%9F%E9%98%B2%E6%AD%A2SQL-injection%EF%BC%9A"><span class="nav-text">在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%9C%A8-patterns-practices-Developer-Center%E7%B0%A1%E5%96%AE%E6%AD%B8%E7%B4%8D%E5%87%BA%E4%B8%89%E5%80%8B%E6%AD%A5%E9%A9%9F%E9%98%B2%E6%AD%A2SQL-injection%EF%BC%9A"><span class="nav-text">1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">2. 參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -366,13 +381,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -408,12 +423,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

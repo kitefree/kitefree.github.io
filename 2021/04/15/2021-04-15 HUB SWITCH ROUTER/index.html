@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Hub L1 - 實體層(TCP&#x2F;IP第一層) 每個PORT是互通的 收到封包時，每個PORT上的PC都會收到封包，而其他的PC不處理，所以會丟棄">
+  <meta name="description" content="1. Hub L1 - 實體層(TCP&#x2F;IP第一層) 每個PORT是互通的 收到封包時，每個PORT上的PC都會收到封包，而其他的PC不處理，所以會丟棄">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HUB&amp;SWITCH&amp;ROUTER">
 <meta property="og:url" content="https://kitefree.github.io/2021/04/15/2021-04-15%20HUB%20SWITCH%20ROUTER/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="Hub L1 - 實體層(TCP&#x2F;IP第一層) 每個PORT是互通的 收到封包時，每個PORT上的PC都會收到封包，而其他的PC不處理，所以會丟棄">
+<meta property="og:description" content="1. Hub L1 - 實體層(TCP&#x2F;IP第一層) 每個PORT是互通的 收到封包時，每個PORT上的PC都會收到封包，而其他的PC不處理，所以會丟棄">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/vKIhQA9.png">
 <meta property="og:image" content="https://i.imgur.com/zxGKaBg.png">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://i.imgur.com/Dy0l5ae.png">
 <meta property="og:image" content="https://i.imgur.com/pjQJeD2.jpg">
 <meta property="article:published_time" content="2021-04-14T23:14:00.000Z">
-<meta property="article:modified_time" content="2023-12-31T13:57:09.059Z">
+<meta property="article:modified_time" content="2023-12-31T15:14:21.659Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="網路知識">
 <meta property="article:tag" content="HUB">
@@ -237,15 +237,36 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:57:09" itemprop="dateModified" datetime="2023-12-31T21:57:09+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 23:14:21" itemprop="dateModified" datetime="2023-12-31T23:14:21+08:00">2023-12-31</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/" itemprop="url" rel="index"><span itemprop="name">網路知識</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/HUB/" itemprop="url" rel="index"><span itemprop="name">HUB</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/HUB/SWITCH/" itemprop="url" rel="index"><span itemprop="name">SWITCH</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B6%B2%E8%B7%AF%E7%9F%A5%E8%AD%98/HUB/SWITCH/ROUTER/" itemprop="url" rel="index"><span itemprop="name">ROUTER</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.7k</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -263,7 +284,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Hub"><a href="#Hub" class="headerlink" title="Hub"></a>Hub</h2><ul>
+        <h2 id="1-Hub"><a href="#1-Hub" class="headerlink" title="1. Hub"></a>1. Hub</h2><ul>
 <li>L1 - 實體層(TCP&#x2F;IP第一層)</li>
 <li>每個PORT是互通的</li>
 <li>收到封包時，每個PORT上的PC都會收到封包，而其他的PC不處理，所以會丟棄</li>
@@ -272,7 +293,7 @@
 
 
 <p><img src="https://i.imgur.com/vKIhQA9.png" alt="image"></p>
-<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><ul>
+<h2 id="2-Switch"><a href="#2-Switch" class="headerlink" title="2. Switch"></a>2. Switch</h2><ul>
 <li>L2 - 資料鏈結層(TCP&#x2F;IP的第二層(MAC))</li>
 <li>每個PORT都是個別區隔<ul>
 <li>原因在於每個PORT會自動記憶電腦的MAC Address(switch table)</li>
@@ -282,15 +303,15 @@
 </ul>
 <p><img src="https://i.imgur.com/zxGKaBg.png" alt="image"></p>
 <p><img src="https://i.imgur.com/nrIPlCz.png" alt="image"></p>
-<h2 id="Switch-Layer3"><a href="#Switch-Layer3" class="headerlink" title="Switch Layer3"></a>Switch Layer3</h2><p>同switch，多了routing(路由)的功能</p>
+<h2 id="3-Switch-Layer3"><a href="#3-Switch-Layer3" class="headerlink" title="3. Switch Layer3"></a>3. Switch Layer3</h2><p>同switch，多了routing(路由)的功能</p>
 <ul>
 <li>L3 - 網路層(TCP&#x2F;IP的第二層及第三、四層(MAC、IP及TCP&#x2F;UDP Port)</li>
 <li>仍無法做NAT(網路位置轉譯)功能，除非要像CISCO 65XX 等級的 layer3 switch</li>
 </ul>
-<h3 id="Switch-交換機樣式"><a href="#Switch-交換機樣式" class="headerlink" title="Switch 交換機樣式"></a>Switch 交換機樣式</h3><p>盒式（箱式）交換機<br><img src="https://i.imgur.com/aHOAwEr.jpg" alt="image"></p>
+<h3 id="3-1-Switch-交換機樣式"><a href="#3-1-Switch-交換機樣式" class="headerlink" title="3.1. Switch 交換機樣式"></a>3.1. Switch 交換機樣式</h3><p>盒式（箱式）交換機<br><img src="https://i.imgur.com/aHOAwEr.jpg" alt="image"></p>
 <p>桌面式交換機<br><img src="https://i.imgur.com/5QDk9zq.jpg" alt="image"></p>
 <p>機櫃式交換機<br><img src="https://i.imgur.com/AVIZ9hC.jpg" alt="image"></p>
-<h3 id="Switch當有數據經過時，如何運作的呢"><a href="#Switch當有數據經過時，如何運作的呢" class="headerlink" title="Switch當有數據經過時，如何運作的呢??"></a>Switch當有數據經過時，如何運作的呢??</h3><ul>
+<h3 id="3-2-Switch當有數據經過時，如何運作的呢"><a href="#3-2-Switch當有數據經過時，如何運作的呢" class="headerlink" title="3.2. Switch當有數據經過時，如何運作的呢??"></a>3.2. Switch當有數據經過時，如何運作的呢??</h3><ul>
 <li>直通轉發<ul>
 <li>直接看送信到哪個MAC，就直接投遞訊息，速度快。仰賴ASIC與FPGA晶片的硬體作用</li>
 </ul>
@@ -305,7 +326,7 @@
 </li>
 </ul>
 <p>這3類可以看到速度是由快而慢的，可靠性是逐漸上升的。</p>
-<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><p>交換不同網段的封包、決定封包的傳送方向及路徑</p>
+<h2 id="4-Router"><a href="#4-Router" class="headerlink" title="4. Router"></a>4. Router</h2><p>交換不同網段的封包、決定封包的傳送方向及路徑</p>
 <ul>
 <li>L3、L4 - 網路層、傳輸層(TCP&#x2F;IP的第三層及第四層(IP和TCP&#x2F;UDP Port)</li>
 <li>功能列表<ul>
@@ -334,23 +355,23 @@
 </ul>
 <p><img src="https://i.imgur.com/pEOxGn4.png" alt="image"></p>
 <p><img src="https://i.imgur.com/Dy0l5ae.png" alt="image"></p>
-<h3 id="Switch-與-Hub"><a href="#Switch-與-Hub" class="headerlink" title="Switch 與 Hub"></a>Switch 與 Hub</h3><ul>
+<h3 id="4-1-Switch-與-Hub"><a href="#4-1-Switch-與-Hub" class="headerlink" title="4.1. Switch 與 Hub"></a>4.1. Switch 與 Hub</h3><ul>
 <li>Switch HUB比 HUB 更有安全性，減少封包碰撞，傳輸更有效率。</li>
 <li>使用sniffer 之類的軟體聽取封包，Swtich 無法讓你監聽PC跟ROUTER之間的封包訊息。但是如果是 HUB，無論是這個線段網路上的任何資料，每個Port都收得到。</li>
 </ul>
-<h3 id="switch-與-router"><a href="#switch-與-router" class="headerlink" title="switch 與 router"></a>switch 與 router</h3><ul>
+<h3 id="4-2-switch-與-router"><a href="#4-2-switch-與-router" class="headerlink" title="4.2. switch 與 router"></a>4.2. switch 與 router</h3><ul>
 <li>switch &amp; hub  are used to create networks</li>
 <li>Routers are used to connect networks</li>
 </ul>
-<h2 id="Hub、Switch、Router共同點"><a href="#Hub、Switch、Router共同點" class="headerlink" title="Hub、Switch、Router共同點"></a>Hub、Switch、Router共同點</h2><p>連結多台電腦、傳遞封包，延伸網路範圍、進行廣播。可在區域網路內使用。</p>
-<h2 id="說明L2-L3"><a href="#說明L2-L3" class="headerlink" title="說明L2 L3"></a>說明L2 L3</h2><p>L2、L3、L4、L7  的L  指的是OSI模型中的Layer層</p>
+<h2 id="5-Hub、Switch、Router共同點"><a href="#5-Hub、Switch、Router共同點" class="headerlink" title="5. Hub、Switch、Router共同點"></a>5. Hub、Switch、Router共同點</h2><p>連結多台電腦、傳遞封包，延伸網路範圍、進行廣播。可在區域網路內使用。</p>
+<h2 id="6-說明L2-L3"><a href="#6-說明L2-L3" class="headerlink" title="6. 說明L2 L3"></a>6. 說明L2 L3</h2><p>L2、L3、L4、L7  的L  指的是OSI模型中的Layer層</p>
 <p>L3 的交換器又稱為IP Switch 或 Switch Router</p>
-<h2 id="TCP-IP-MODEL-VS-OSI-MODEL"><a href="#TCP-IP-MODEL-VS-OSI-MODEL" class="headerlink" title="TCP&#x2F;IP MODEL VS OSI MODEL"></a>TCP&#x2F;IP MODEL VS OSI MODEL</h2><p><img src="https://i.imgur.com/pjQJeD2.jpg" alt="image"></p>
+<h2 id="7-TCP-IP-MODEL-VS-OSI-MODEL"><a href="#7-TCP-IP-MODEL-VS-OSI-MODEL" class="headerlink" title="7. TCP&#x2F;IP MODEL VS OSI MODEL"></a>7. TCP&#x2F;IP MODEL VS OSI MODEL</h2><p><img src="https://i.imgur.com/pjQJeD2.jpg" alt="image"></p>
 <p>Layer2<br>L2將實體在網路之間建立邏輯連結，在傳輸過程中處理流量控制及錯誤偵測，L2將實體層的數位訊號封裝成訊框(data frame)，其中訊框包含資料鏈結層的MAC位址，用以識別主機資料來源位址。主要用於區域網路上。</p>
 <p>Layer3<br>運用在網路層，在傳輸中將IP位址加入資料組成封包，L3主要以IP運作為主，相比於L2 可橫跨不同實體區域或VLAN的IP路由，在不同網段間互相連通。</p>
 <p>Layer4<br>用於傳輸層中，可辨識傳輸層內TCP或UDP埠號(port)，判斷封包是使用哪一種應用協定(http或ftp等)，在傳遞的封包中加入控制信息，以增加服務品質，達成重新導向(redirect)或伺服器的負載平衡(Load Balancing)</p>
 <p>Layer7<br>用於應用層中，提供網路應用服務，包含DHCP或瀏覽器(www、http)等，可做Cookie Switch、Session Switch、Url Switch 或是 CDN。</p>
-<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><ul>
+<h2 id="8-參考連結"><a href="#8-參考連結" class="headerlink" title="8. 參考連結"></a>8. 參考連結</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://hivenson.pixnet.net/blog/post/225842720-l2-switch-%E8%88%87-l3-switch-%E5%B7%AE%E5%88%A5">l2-switch-與-l3-switch-差別</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.coolsun.idv.tw/modules/xhnewbb/viewtopic.php?topic_id=353">一網情深 : [分享]L2與L3 Switch的差別</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=1z0ULvg_pW8">集線器，交換機和路由器解釋 - 有什麼區別？</a></li>
@@ -442,7 +463,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hub"><span class="nav-text">Hub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch"><span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Layer3"><span class="nav-text">Switch Layer3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-%E4%BA%A4%E6%8F%9B%E6%A9%9F%E6%A8%A3%E5%BC%8F"><span class="nav-text">Switch 交換機樣式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch%E7%95%B6%E6%9C%89%E6%95%B8%E6%93%9A%E7%B6%93%E9%81%8E%E6%99%82%EF%BC%8C%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C%E7%9A%84%E5%91%A2"><span class="nav-text">Switch當有數據經過時，如何運作的呢??</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Router"><span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-%E8%88%87-Hub"><span class="nav-text">Switch 與 Hub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch-%E8%88%87-router"><span class="nav-text">switch 與 router</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hub%E3%80%81Switch%E3%80%81Router%E5%85%B1%E5%90%8C%E9%BB%9E"><span class="nav-text">Hub、Switch、Router共同點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AA%AA%E6%98%8EL2-L3"><span class="nav-text">說明L2 L3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP-MODEL-VS-OSI-MODEL"><span class="nav-text">TCP&#x2F;IP MODEL VS OSI MODEL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">參考連結</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Hub"><span class="nav-text">1. Hub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Switch"><span class="nav-text">2. Switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Switch-Layer3"><span class="nav-text">3. Switch Layer3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Switch-%E4%BA%A4%E6%8F%9B%E6%A9%9F%E6%A8%A3%E5%BC%8F"><span class="nav-text">3.1. Switch 交換機樣式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Switch%E7%95%B6%E6%9C%89%E6%95%B8%E6%93%9A%E7%B6%93%E9%81%8E%E6%99%82%EF%BC%8C%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C%E7%9A%84%E5%91%A2"><span class="nav-text">3.2. Switch當有數據經過時，如何運作的呢??</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Router"><span class="nav-text">4. Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Switch-%E8%88%87-Hub"><span class="nav-text">4.1. Switch 與 Hub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-switch-%E8%88%87-router"><span class="nav-text">4.2. switch 與 router</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Hub%E3%80%81Switch%E3%80%81Router%E5%85%B1%E5%90%8C%E9%BB%9E"><span class="nav-text">5. Hub、Switch、Router共同點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%AA%AA%E6%98%8EL2-L3"><span class="nav-text">6. 說明L2 L3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-TCP-IP-MODEL-VS-OSI-MODEL"><span class="nav-text">7. TCP&#x2F;IP MODEL VS OSI MODEL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">8. 參考連結</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -463,13 +484,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -505,12 +526,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

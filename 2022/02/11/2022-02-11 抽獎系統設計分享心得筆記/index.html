@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="心得來自保哥的youtube影片 &gt;&gt; 那些年我們實作過的抽獎系統 一、抽獎在業務跟系統扮演什麼角色抽獎是一個常見的工具 拉新 dau 日活躍人數 月活躍人數 拉活 有帳號的人，但是太久沒有用 透過活動拉新、拉活。達到預期收益pm、markting人員 模型要確定下來行銷預算 + 函式  &#x3D; 預期收益">
+  <meta name="description" content="心得來自保哥的youtube影片 &gt;&gt; 那些年我們實作過的抽獎系統 1. 一、抽獎在業務跟系統扮演什麼角色抽獎是一個常見的工具 拉新 dau 日活躍人數 月活躍人數 拉活 有帳號的人，但是太久沒有用 透過活動拉新、拉活。達到預期收益pm、markting人員 模型要確定下來行銷預算 + 函式  &#x3D; 預期收益">
 <meta property="og:type" content="article">
 <meta property="og:title" content="抽獎系統設計分享心得筆記">
 <meta property="og:url" content="https://kitefree.github.io/2022/02/11/2022-02-11%20%E6%8A%BD%E7%8D%8E%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%E5%88%86%E4%BA%AB%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="心得來自保哥的youtube影片 &gt;&gt; 那些年我們實作過的抽獎系統 一、抽獎在業務跟系統扮演什麼角色抽獎是一個常見的工具 拉新 dau 日活躍人數 月活躍人數 拉活 有帳號的人，但是太久沒有用 透過活動拉新、拉活。達到預期收益pm、markting人員 模型要確定下來行銷預算 + 函式  &#x3D; 預期收益">
+<meta property="og:description" content="心得來自保哥的youtube影片 &gt;&gt; 那些年我們實作過的抽獎系統 1. 一、抽獎在業務跟系統扮演什麼角色抽獎是一個常見的工具 拉新 dau 日活躍人數 月活躍人數 拉活 有帳號的人，但是太久沒有用 透過活動拉新、拉活。達到預期收益pm、markting人員 模型要確定下來行銷預算 + 函式  &#x3D; 預期收益">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2022-02-11T07:42:00.000Z">
-<meta property="article:modified_time" content="2023-12-31T13:46:57.319Z">
+<meta property="article:modified_time" content="2023-12-31T14:27:00.656Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="系統架構">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 21:46:57" itemprop="dateModified" datetime="2023-12-31T21:46:57+08:00">2023-12-31</time>
+                <time title="修改時間：2023-12-31 22:27:00" itemprop="dateModified" datetime="2023-12-31T22:27:00+08:00">2023-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,7 +241,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.6k</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -260,23 +260,23 @@
 
       
         <p>心得來自保哥的youtube影片 &gt;&gt; <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=e3DDXSMWr5w">那些年我們實作過的抽獎系統</a></p>
-<h2 id="一、抽獎在業務跟系統扮演什麼角色"><a href="#一、抽獎在業務跟系統扮演什麼角色" class="headerlink" title="一、抽獎在業務跟系統扮演什麼角色"></a>一、抽獎在業務跟系統扮演什麼角色</h2><p>抽獎是一個常見的工具</p>
+<h2 id="1-一、抽獎在業務跟系統扮演什麼角色"><a href="#1-一、抽獎在業務跟系統扮演什麼角色" class="headerlink" title="1. 一、抽獎在業務跟系統扮演什麼角色"></a>1. 一、抽獎在業務跟系統扮演什麼角色</h2><p>抽獎是一個常見的工具</p>
 <p>拉新 dau 日活躍人數 月活躍人數</p>
 <p>拉活 有帳號的人，但是太久沒有用</p>
 <p>透過活動拉新、拉活。達到預期收益<br>pm、markting人員 模型要確定下來<br>行銷預算 + 函式  &#x3D; 預期收益</p>
 <span id="more"></span>
 
 
-<h2 id="二、機率設計"><a href="#二、機率設計" class="headerlink" title="二、機率設計"></a>二、機率設計</h2><h3 id="五個維度"><a href="#五個維度" class="headerlink" title="五個維度"></a>五個維度</h3><h4 id="抽獎活動的週期"><a href="#抽獎活動的週期" class="headerlink" title="抽獎活動的週期"></a>抽獎活動的週期</h4><p>確定、不確定<br>確定的：比如某兩個禮拜。<br>不確定的：比如每消費金額之後，小小抽。</p>
-<h4 id="開獎方式"><a href="#開獎方式" class="headerlink" title="開獎方式"></a>開獎方式</h4><p>立即開獎、一段時間開獎<br>立即：馬上知道有沒有中獎</p>
+<h2 id="2-二、機率設計"><a href="#2-二、機率設計" class="headerlink" title="2. 二、機率設計"></a>2. 二、機率設計</h2><h3 id="2-1-五個維度"><a href="#2-1-五個維度" class="headerlink" title="2.1. 五個維度"></a>2.1. 五個維度</h3><h4 id="2-1-1-抽獎活動的週期"><a href="#2-1-1-抽獎活動的週期" class="headerlink" title="2.1.1. 抽獎活動的週期"></a>2.1.1. 抽獎活動的週期</h4><p>確定、不確定<br>確定的：比如某兩個禮拜。<br>不確定的：比如每消費金額之後，小小抽。</p>
+<h4 id="2-1-2-開獎方式"><a href="#2-1-2-開獎方式" class="headerlink" title="2.1.2. 開獎方式"></a>2.1.2. 開獎方式</h4><p>立即開獎、一段時間開獎<br>立即：馬上知道有沒有中獎</p>
 <p>一段時間：一段時間公布，會需要有公證的操作或證人</p>
-<h4 id="抽獎人數"><a href="#抽獎人數" class="headerlink" title="抽獎人數"></a>抽獎人數</h4><p>確定、不確定<br>確定：通常來說公司尾牙就是確定人數<br>不確定：街口的雙11活動，參加人就不是確定</p>
-<h4 id="抽獎次數"><a href="#抽獎次數" class="headerlink" title="抽獎次數"></a>抽獎次數</h4><p>確定、不確定<br>確定：公司尾牙就是確定的<br>不確定：街口雙11或百貨公司活動就是不確定的。</p>
-<h4 id="獎品數量"><a href="#獎品數量" class="headerlink" title="獎品數量"></a>獎品數量</h4><p>確定、不確定<br>確定：ps5 1台，就是確定<br>不確定：ubereats 新人首單 100元，就是不確定的</p>
-<h3 id="獎項設計"><a href="#獎項設計" class="headerlink" title="獎項設計"></a>獎項設計</h3><p>0 ~ 0.5 中iphone ，隨機random<br>rand seed 常用 block chain hash</p>
-<h4 id="大獎設計"><a href="#大獎設計" class="headerlink" title="大獎設計"></a>大獎設計</h4><p>10 台iphone 在1個禮拜內送完，但需要跟行銷討論想要的效果<br>有可能是每1最多抽到1台，在雙11當天活動高潮 就送5台之類。</p>
-<h4 id="小獎設計"><a href="#小獎設計" class="headerlink" title="小獎設計"></a>小獎設計</h4><p>常見作法：機率獎品對照表</p>
-<h2 id="三、業務風險的控管及系統的風險控制與注意事項"><a href="#三、業務風險的控管及系統的風險控制與注意事項" class="headerlink" title="三、業務風險的控管及系統的風險控制與注意事項"></a>三、業務風險的控管及系統的風險控制與注意事項</h2><ol>
+<h4 id="2-1-3-抽獎人數"><a href="#2-1-3-抽獎人數" class="headerlink" title="2.1.3. 抽獎人數"></a>2.1.3. 抽獎人數</h4><p>確定、不確定<br>確定：通常來說公司尾牙就是確定人數<br>不確定：街口的雙11活動，參加人就不是確定</p>
+<h4 id="2-1-4-抽獎次數"><a href="#2-1-4-抽獎次數" class="headerlink" title="2.1.4. 抽獎次數"></a>2.1.4. 抽獎次數</h4><p>確定、不確定<br>確定：公司尾牙就是確定的<br>不確定：街口雙11或百貨公司活動就是不確定的。</p>
+<h4 id="2-1-5-獎品數量"><a href="#2-1-5-獎品數量" class="headerlink" title="2.1.5. 獎品數量"></a>2.1.5. 獎品數量</h4><p>確定、不確定<br>確定：ps5 1台，就是確定<br>不確定：ubereats 新人首單 100元，就是不確定的</p>
+<h3 id="2-2-獎項設計"><a href="#2-2-獎項設計" class="headerlink" title="2.2. 獎項設計"></a>2.2. 獎項設計</h3><p>0 ~ 0.5 中iphone ，隨機random<br>rand seed 常用 block chain hash</p>
+<h4 id="2-2-1-大獎設計"><a href="#2-2-1-大獎設計" class="headerlink" title="2.2.1. 大獎設計"></a>2.2.1. 大獎設計</h4><p>10 台iphone 在1個禮拜內送完，但需要跟行銷討論想要的效果<br>有可能是每1最多抽到1台，在雙11當天活動高潮 就送5台之類。</p>
+<h4 id="2-2-2-小獎設計"><a href="#2-2-2-小獎設計" class="headerlink" title="2.2.2. 小獎設計"></a>2.2.2. 小獎設計</h4><p>常見作法：機率獎品對照表</p>
+<h2 id="3-三、業務風險的控管及系統的風險控制與注意事項"><a href="#3-三、業務風險的控管及系統的風險控制與注意事項" class="headerlink" title="3. 三、業務風險的控管及系統的風險控制與注意事項"></a>3. 三、業務風險的控管及系統的風險控制與注意事項</h2><ol>
 <li><p>一定要限制抽獎次數 30次，怕有bug，這個次數可以很大，但不能是無限。</p>
 </li>
 <li><p>獎品送的狀況超出預期，需要有緊急狀況的計劃</p>
@@ -301,14 +301,14 @@
 <p>資料庫：QPS 20 左右<br>redis ：QPS 幾千沒問題</p>
 </li>
 </ol>
-<h2 id="問題時間"><a href="#問題時間" class="headerlink" title="問題時間"></a>問題時間</h2><h3 id="Q1-資訊架構的錢怎麼預估"><a href="#Q1-資訊架構的錢怎麼預估" class="headerlink" title="Q1 資訊架構的錢怎麼預估"></a>Q1 資訊架構的錢怎麼預估</h3><p>可以先探討是在地端還是雲端。(我們電資(電商)不能上雲)</p>
+<h2 id="4-問題時間"><a href="#4-問題時間" class="headerlink" title="4. 問題時間"></a>4. 問題時間</h2><h3 id="4-1-Q1-資訊架構的錢怎麼預估"><a href="#4-1-Q1-資訊架構的錢怎麼預估" class="headerlink" title="4.1. Q1 資訊架構的錢怎麼預估"></a>4.1. Q1 資訊架構的錢怎麼預估</h3><p>可以先探討是在地端還是雲端。(我們電資(電商)不能上雲)</p>
 <p>另外就是核心關鍵業務指標來評量，比方說<br>日活躍人數多少?( Daily Active User，DAU )<br>月活躍人數多少?<br>小活動的用戶活動參與度多少?<br>手機的nofication ，用戶點擊會是多少?(街口這項是滿高的)</p>
 <p>街口案例(假設)：</p>
 <p>假設日活10萬、月活30萬，大型活動 日活 拉到2~3倍。</p>
 <p>以雙11為例，11整點 抓30萬 request 流量，鋒直流量可能再用反推maybe可能是需要1000qps</p>
 <p>1000qps 再往下分解，可能需要5台、6台機器 可能在nginx 流量截取層需不需要做一些其它節點的配置</p>
 <p>雙11時大概20幾分鐘不能work，原因是因為我們的防火牆被打爆了，流量最大，內部系統風平浪靜<br>ap節點 做到 stateless 水平擴容</p>
-<h2 id="閒聊"><a href="#閒聊" class="headerlink" title="閒聊"></a>閒聊</h2><h3 id="壓測工具討論"><a href="#壓測工具討論" class="headerlink" title="壓測工具討論"></a>壓測工具討論</h3><ul>
+<h2 id="5-閒聊"><a href="#5-閒聊" class="headerlink" title="5. 閒聊"></a>5. 閒聊</h2><h3 id="5-1-壓測工具討論"><a href="#5-1-壓測工具討論" class="headerlink" title="5.1. 壓測工具討論"></a>5.1. 壓測工具討論</h3><ul>
 <li>k6 javascript 寫script壓測工具 保哥推薦 ，底層是用go</li>
 <li>jmeter</li>
 </ul>
@@ -398,7 +398,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8A%BD%E7%8D%8E%E5%9C%A8%E6%A5%AD%E5%8B%99%E8%B7%9F%E7%B3%BB%E7%B5%B1%E6%89%AE%E6%BC%94%E4%BB%80%E9%BA%BC%E8%A7%92%E8%89%B2"><span class="nav-text">一、抽獎在業務跟系統扮演什麼角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A9%9F%E7%8E%87%E8%A8%AD%E8%A8%88"><span class="nav-text">二、機率設計</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E5%80%8B%E7%B6%AD%E5%BA%A6"><span class="nav-text">五個維度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E7%8D%8E%E6%B4%BB%E5%8B%95%E7%9A%84%E9%80%B1%E6%9C%9F"><span class="nav-text">抽獎活動的週期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%96%8B%E7%8D%8E%E6%96%B9%E5%BC%8F"><span class="nav-text">開獎方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E7%8D%8E%E4%BA%BA%E6%95%B8"><span class="nav-text">抽獎人數</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E7%8D%8E%E6%AC%A1%E6%95%B8"><span class="nav-text">抽獎次數</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8D%8E%E5%93%81%E6%95%B8%E9%87%8F"><span class="nav-text">獎品數量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8D%8E%E9%A0%85%E8%A8%AD%E8%A8%88"><span class="nav-text">獎項設計</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E7%8D%8E%E8%A8%AD%E8%A8%88"><span class="nav-text">大獎設計</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%8D%8E%E8%A8%AD%E8%A8%88"><span class="nav-text">小獎設計</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A5%AD%E5%8B%99%E9%A2%A8%E9%9A%AA%E7%9A%84%E6%8E%A7%E7%AE%A1%E5%8F%8A%E7%B3%BB%E7%B5%B1%E7%9A%84%E9%A2%A8%E9%9A%AA%E6%8E%A7%E5%88%B6%E8%88%87%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-text">三、業務風險的控管及系統的風險控制與注意事項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E6%99%82%E9%96%93"><span class="nav-text">問題時間</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q1-%E8%B3%87%E8%A8%8A%E6%9E%B6%E6%A7%8B%E7%9A%84%E9%8C%A2%E6%80%8E%E9%BA%BC%E9%A0%90%E4%BC%B0"><span class="nav-text">Q1 資訊架構的錢怎麼預估</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%92%E8%81%8A"><span class="nav-text">閒聊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E8%A8%8E%E8%AB%96"><span class="nav-text">壓測工具討論</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%80%E3%80%81%E6%8A%BD%E7%8D%8E%E5%9C%A8%E6%A5%AD%E5%8B%99%E8%B7%9F%E7%B3%BB%E7%B5%B1%E6%89%AE%E6%BC%94%E4%BB%80%E9%BA%BC%E8%A7%92%E8%89%B2"><span class="nav-text">1. 一、抽獎在業務跟系統扮演什麼角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BA%8C%E3%80%81%E6%A9%9F%E7%8E%87%E8%A8%AD%E8%A8%88"><span class="nav-text">2. 二、機率設計</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BA%94%E5%80%8B%E7%B6%AD%E5%BA%A6"><span class="nav-text">2.1. 五個維度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E6%8A%BD%E7%8D%8E%E6%B4%BB%E5%8B%95%E7%9A%84%E9%80%B1%E6%9C%9F"><span class="nav-text">2.1.1. 抽獎活動的週期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-%E9%96%8B%E7%8D%8E%E6%96%B9%E5%BC%8F"><span class="nav-text">2.1.2. 開獎方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-%E6%8A%BD%E7%8D%8E%E4%BA%BA%E6%95%B8"><span class="nav-text">2.1.3. 抽獎人數</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-4-%E6%8A%BD%E7%8D%8E%E6%AC%A1%E6%95%B8"><span class="nav-text">2.1.4. 抽獎次數</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-5-%E7%8D%8E%E5%93%81%E6%95%B8%E9%87%8F"><span class="nav-text">2.1.5. 獎品數量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%8D%8E%E9%A0%85%E8%A8%AD%E8%A8%88"><span class="nav-text">2.2. 獎項設計</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E5%A4%A7%E7%8D%8E%E8%A8%AD%E8%A8%88"><span class="nav-text">2.2.1. 大獎設計</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E5%B0%8F%E7%8D%8E%E8%A8%AD%E8%A8%88"><span class="nav-text">2.2.2. 小獎設計</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%B8%89%E3%80%81%E6%A5%AD%E5%8B%99%E9%A2%A8%E9%9A%AA%E7%9A%84%E6%8E%A7%E7%AE%A1%E5%8F%8A%E7%B3%BB%E7%B5%B1%E7%9A%84%E9%A2%A8%E9%9A%AA%E6%8E%A7%E5%88%B6%E8%88%87%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-text">3. 三、業務風險的控管及系統的風險控制與注意事項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%95%8F%E9%A1%8C%E6%99%82%E9%96%93"><span class="nav-text">4. 問題時間</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Q1-%E8%B3%87%E8%A8%8A%E6%9E%B6%E6%A7%8B%E7%9A%84%E9%8C%A2%E6%80%8E%E9%BA%BC%E9%A0%90%E4%BC%B0"><span class="nav-text">4.1. Q1 資訊架構的錢怎麼預估</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%96%92%E8%81%8A"><span class="nav-text">5. 閒聊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E8%A8%8E%E8%AB%96"><span class="nav-text">5.1. 壓測工具討論</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -419,13 +419,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -461,12 +461,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">396k</span>
+    <span title="總字數">401k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:01</span>
+    <span title="所需總閱讀時間">12:10</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>
