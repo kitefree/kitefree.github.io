@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Kite的筆記">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="kite">
-<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server,Docker">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://kitefree.github.io/page/14/">
@@ -189,6 +189,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/" class="post-title-link" itemprop="url">CSRF Cross Site Request Forgery</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-06 11:11:00" itemprop="dateCreated datePublished" datetime="2020-05-06T11:11:00+08:00">2020-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-01 15:12:01" itemprop="dateModified" datetime="2021-10-01T15:12:01+08:00">2021-10-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>592</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="攻擊手段"><a href="#攻擊手段" class="headerlink" title="攻擊手段"></a><strong>攻擊手段</strong></h2><p>利用使用者已經登入過A系統之後，在B系統上偽造請求去做壞事情。比如影片中舉的例子轉帳金額跟對象參數偽造。</p>
+<p>CSRF 就是在不同的 domain 底下卻能夠偽造出「使用者本人發出的 request」。要達成這件事也很簡單，因為瀏覽器的機制，你只要發送 request 給某個網域，就會把關聯的 cookie 一起帶上去。如果使用者是登入狀態，那這個 request 就理所當然包含了他的資訊（例如說 session id），這 request 看起來就像是使用者本人發出的。</p>
+<h2 id="防禦手段"><a href="#防禦手段" class="headerlink" title="防禦手段"></a><strong>防禦手段</strong></h2><ol>
+<li>儘量使用POST</li>
+<li>加入驗證碼(比如圖形驗證碼、滑塊驗證、簡訊驗證碼)</li>
+<li>檢驗HTTP Referer(確認是否從允許的網站過來的請求)</li>
+<li>Anti CSRF Token</li>
+</ol>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre><code>    * 在form表單隱藏token 或者是在 head 的 meta attribute
+
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;csrf-token&quot;</span> <span class="attr">content</span>=<span class="string">&quot;GBU1HKZpy3N2grxxoR...&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+    * 後端檢驗時確認是否是存在的token(可以放在資料庫比對或在session上記錄)
+</code></pre>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>利用framework 提供的內鍵library,比如PHP CodeIgniter 本身就有<br>5. 加入自定義 Header<br>    這個概念我覺得應該跟平常在設計JWT或WEB API時考量資安問題的方式一樣</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=gEPii2y3ISQ">CSRF 攻击和防御 - Web 安全常识</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2017/02/25/csrf-introduction/">讓我們來談談 CSRF</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2017/10/02/2017-10-02%20C#%20Params/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -337,7 +432,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -350,7 +445,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -391,7 +486,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:45</span>
+    <span title="所需總閱讀時間">10:46</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

@@ -9377,4 +9377,46 @@
         <tag>高可用</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Gitea搭配MSSQL筆記</title>
+    <url>/2023/12/30/2023-12-30%20Gitea%E6%90%AD%E9%85%8DMSSQL%E7%AD%86%E8%A8%98/</url>
+    <content><![CDATA[<h2 id="安裝Gitea搭配MSSQL"><a href="#安裝Gitea搭配MSSQL" class="headerlink" title="安裝Gitea搭配MSSQL"></a>安裝Gitea搭配MSSQL</h2><h3 id="DB-SQL-SERVER-相關設定"><a href="#DB-SQL-SERVER-相關設定" class="headerlink" title="DB:SQL SERVER 相關設定"></a>DB:SQL SERVER 相關設定</h3><h4 id="開放1433-port"><a href="#開放1433-port" class="headerlink" title="開放1433 port"></a>開放1433 port</h4><p>開放資料庫<code>1433</code>port 對外開放，gitea才能訪問。</p>
+<p><img src="https://i.imgur.com/TbBrb4z.png" alt="001"></p>
+<h4 id="建立使用者帳號與資料庫"><a href="#建立使用者帳號與資料庫" class="headerlink" title="建立使用者帳號與資料庫"></a>建立使用者帳號與資料庫</h4><p><img src="https://i.imgur.com/1G7BpMR.png" alt="002"></p>
+<p>連線物件，確認開放兩種驗證模式</p>
+<p><img src="https://i.imgur.com/x2Js2G5.png" alt="003"></p>
+<h4 id="設定gitea角色可使用gitea資料庫"><a href="#設定gitea角色可使用gitea資料庫" class="headerlink" title="設定gitea角色可使用gitea資料庫"></a>設定gitea角色可使用gitea資料庫</h4><p><img src="https://i.imgur.com/oAJhvqT.png" alt="004"></p>
+<h3 id="Gitea-伺服器對外網路防火牆設定"><a href="#Gitea-伺服器對外網路防火牆設定" class="headerlink" title="Gitea:伺服器對外網路防火牆設定"></a>Gitea:伺服器對外網路防火牆設定</h3><h4 id="新增規則"><a href="#新增規則" class="headerlink" title="新增規則"></a>新增規則</h4><p><img src="https://i.imgur.com/Fc0HdhV.png" alt="007"></p>
+<h4 id="連接埠"><a href="#連接埠" class="headerlink" title="連接埠"></a>連接埠</h4><p><img src="https://i.imgur.com/Qx0YtoQ.png" alt="008"></p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p><img src="https://i.imgur.com/Re9l7an.png" alt="009"></p>
+<h4 id="允許連線"><a href="#允許連線" class="headerlink" title="允許連線"></a>允許連線</h4><p><img src="https://i.imgur.com/zOb7LZX.png" alt="010"></p>
+<h4 id="何時套用規則"><a href="#何時套用規則" class="headerlink" title="何時套用規則"></a>何時套用規則</h4><p><img src="https://i.imgur.com/BPlDghW.png" alt="011"></p>
+<h4 id="取名稱"><a href="#取名稱" class="headerlink" title="取名稱"></a>取名稱</h4><p><img src="https://i.imgur.com/WSSQhKW.png" alt="012"></p>
+<h3 id="Gitea-安裝"><a href="#Gitea-安裝" class="headerlink" title="Gitea 安裝"></a>Gitea 安裝</h3><h4 id="下載、擺放、執行啟動"><a href="#下載、擺放、執行啟動" class="headerlink" title="下載、擺放、執行啟動"></a>下載、擺放、執行啟動</h4><p>把下載的<code>gitea.exe</code> 放在<code>C:\gitea</code>資料夾底下，並執行<code>gitea.exe</code>，結果如下：</p>
+<p><img src="https://i.imgur.com/RThtEtB.png" alt="image-20231228164806393"></p>
+<h4 id="訪問網站、安裝設定"><a href="#訪問網站、安裝設定" class="headerlink" title="訪問網站、安裝設定"></a>訪問網站、安裝設定</h4><p>輸入<code>localhost:3000</code>進行訪問，在<code>初始組態</code>區塊資料庫類型選擇<code>MSSQL</code>，主機、帳號、密碼、資料庫名稱請依序填齊。</p>
+<p><img src="https://i.imgur.com/Sw49GWD.png" alt="image-20231228164931216"></p>
+<p><code>可選設定區塊</code>建立一個管理員帳號。</p>
+<p><img src="https://i.imgur.com/KZX36DV.png" alt="image-20231228165338531"></p>
+<h4 id="安裝完成"><a href="#安裝完成" class="headerlink" title="安裝完成"></a>安裝完成</h4><p><img src="https://i.imgur.com/SFzdBwN.png" alt="image-20231228165450016"></p>
+<h4 id="看資料夾變化"><a href="#看資料夾變化" class="headerlink" title="看資料夾變化"></a>看資料夾變化</h4><p>安裝完成後就會多以下資料夾，其中<code>C:\gitea\custom\conf</code>路徑底下有<code>app.ini</code>，之後相關系統設定都可以在這邊再進行調整，例如port 3000 改為 port 80  等等。</p>
+<p><img src="https://i.imgur.com/5Vb7lO2.png" alt="image-20231228165612768"></p>
+<h3 id="加入服務，自動啟動"><a href="#加入服務，自動啟動" class="headerlink" title="加入服務，自動啟動"></a>加入服務，自動啟動</h3><p>透過指令新增：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sc create gitea start= auto binPath= <span class="string">&quot;&quot;</span>C:\gitea\gitea.exe<span class="string">&quot; web --config &quot;</span>C:\gitea\custom\conf\app.ini<span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/rVhFto0.png" alt="005"></p>
+<h4 id="檢查加入服務是否成功"><a href="#檢查加入服務是否成功" class="headerlink" title="檢查加入服務是否成功"></a>檢查加入服務是否成功</h4><p><img src="https://i.imgur.com/jPShE0r.png" alt="006"></p>
+<h3 id="連結參考"><a href="#連結參考" class="headerlink" title="連結參考"></a>連結參考</h3><ul>
+<li><a href="https://anemology.cc/post/sql-server-enabled-sa-account-and-1433-port/">MS SQL Server 啟用 sa 帳戶與 1433 連接埠</a></li>
+<li><a href="https://medium.com/@jeff163552/sql-server-%E7%99%BB%E5%85%A5%E9%8C%AF%E8%AA%A4-18456-9d70af0e0532">SQL Server 登入錯誤:18456</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Gitea</tag>
+        <tag>MSSQL</tag>
+      </tags>
+  </entry>
 </search>

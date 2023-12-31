@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Kite的筆記">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="kite">
-<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server,Docker">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://kitefree.github.io/">
@@ -185,6 +185,121 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2023/12/30/2023-12-30%20Gitea%E6%90%AD%E9%85%8DMSSQL%E7%AD%86%E8%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/30/2023-12-30%20Gitea%E6%90%AD%E9%85%8DMSSQL%E7%AD%86%E8%A8%98/" class="post-title-link" itemprop="url">Gitea搭配MSSQL筆記</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-12-30 18:00:00" itemprop="dateCreated datePublished" datetime="2023-12-30T18:00:00+08:00">2023-12-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 21:33:07" itemprop="dateModified" datetime="2023-12-31T21:33:07+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>634</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安裝Gitea搭配MSSQL"><a href="#安裝Gitea搭配MSSQL" class="headerlink" title="安裝Gitea搭配MSSQL"></a>安裝Gitea搭配MSSQL</h2><h3 id="DB-SQL-SERVER-相關設定"><a href="#DB-SQL-SERVER-相關設定" class="headerlink" title="DB:SQL SERVER 相關設定"></a>DB:SQL SERVER 相關設定</h3><h4 id="開放1433-port"><a href="#開放1433-port" class="headerlink" title="開放1433 port"></a>開放1433 port</h4><p>開放資料庫<code>1433</code>port 對外開放，gitea才能訪問。</p>
+<p><img src="https://i.imgur.com/TbBrb4z.png" alt="001"></p>
+<h4 id="建立使用者帳號與資料庫"><a href="#建立使用者帳號與資料庫" class="headerlink" title="建立使用者帳號與資料庫"></a>建立使用者帳號與資料庫</h4><p><img src="https://i.imgur.com/1G7BpMR.png" alt="002"></p>
+<p>連線物件，確認開放兩種驗證模式</p>
+<p><img src="https://i.imgur.com/x2Js2G5.png" alt="003"></p>
+<h4 id="設定gitea角色可使用gitea資料庫"><a href="#設定gitea角色可使用gitea資料庫" class="headerlink" title="設定gitea角色可使用gitea資料庫"></a>設定gitea角色可使用gitea資料庫</h4><p><img src="https://i.imgur.com/oAJhvqT.png" alt="004"></p>
+<h3 id="Gitea-伺服器對外網路防火牆設定"><a href="#Gitea-伺服器對外網路防火牆設定" class="headerlink" title="Gitea:伺服器對外網路防火牆設定"></a>Gitea:伺服器對外網路防火牆設定</h3><h4 id="新增規則"><a href="#新增規則" class="headerlink" title="新增規則"></a>新增規則</h4><p><img src="https://i.imgur.com/Fc0HdhV.png" alt="007"></p>
+<h4 id="連接埠"><a href="#連接埠" class="headerlink" title="連接埠"></a>連接埠</h4><p><img src="https://i.imgur.com/Qx0YtoQ.png" alt="008"></p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p><img src="https://i.imgur.com/Re9l7an.png" alt="009"></p>
+<h4 id="允許連線"><a href="#允許連線" class="headerlink" title="允許連線"></a>允許連線</h4><p><img src="https://i.imgur.com/zOb7LZX.png" alt="010"></p>
+<h4 id="何時套用規則"><a href="#何時套用規則" class="headerlink" title="何時套用規則"></a>何時套用規則</h4><p><img src="https://i.imgur.com/BPlDghW.png" alt="011"></p>
+<h4 id="取名稱"><a href="#取名稱" class="headerlink" title="取名稱"></a>取名稱</h4><p><img src="https://i.imgur.com/WSSQhKW.png" alt="012"></p>
+<h3 id="Gitea-安裝"><a href="#Gitea-安裝" class="headerlink" title="Gitea 安裝"></a>Gitea 安裝</h3><h4 id="下載、擺放、執行啟動"><a href="#下載、擺放、執行啟動" class="headerlink" title="下載、擺放、執行啟動"></a>下載、擺放、執行啟動</h4><p>把下載的<code>gitea.exe</code> 放在<code>C:\gitea</code>資料夾底下，並執行<code>gitea.exe</code>，結果如下：</p>
+<p><img src="https://i.imgur.com/RThtEtB.png" alt="image-20231228164806393"></p>
+<h4 id="訪問網站、安裝設定"><a href="#訪問網站、安裝設定" class="headerlink" title="訪問網站、安裝設定"></a>訪問網站、安裝設定</h4><p>輸入<code>localhost:3000</code>進行訪問，在<code>初始組態</code>區塊資料庫類型選擇<code>MSSQL</code>，主機、帳號、密碼、資料庫名稱請依序填齊。</p>
+<p><img src="https://i.imgur.com/Sw49GWD.png" alt="image-20231228164931216"></p>
+<p><code>可選設定區塊</code>建立一個管理員帳號。</p>
+<p><img src="https://i.imgur.com/KZX36DV.png" alt="image-20231228165338531"></p>
+<h4 id="安裝完成"><a href="#安裝完成" class="headerlink" title="安裝完成"></a>安裝完成</h4><p><img src="https://i.imgur.com/SFzdBwN.png" alt="image-20231228165450016"></p>
+<h4 id="看資料夾變化"><a href="#看資料夾變化" class="headerlink" title="看資料夾變化"></a>看資料夾變化</h4><p>安裝完成後就會多以下資料夾，其中<code>C:\gitea\custom\conf</code>路徑底下有<code>app.ini</code>，之後相關系統設定都可以在這邊再進行調整，例如port 3000 改為 port 80  等等。</p>
+<p><img src="https://i.imgur.com/5Vb7lO2.png" alt="image-20231228165612768"></p>
+<h3 id="加入服務，自動啟動"><a href="#加入服務，自動啟動" class="headerlink" title="加入服務，自動啟動"></a>加入服務，自動啟動</h3><p>透過指令新增：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc create gitea start= auto binPath= <span class="string">&quot;&quot;</span>C:\gitea\gitea.exe<span class="string">&quot; web --config &quot;</span>C:\gitea\custom\conf\app.ini<span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/rVhFto0.png" alt="005"></p>
+<h4 id="檢查加入服務是否成功"><a href="#檢查加入服務是否成功" class="headerlink" title="檢查加入服務是否成功"></a>檢查加入服務是否成功</h4><p><img src="https://i.imgur.com/jPShE0r.png" alt="006"></p>
+<h3 id="連結參考"><a href="#連結參考" class="headerlink" title="連結參考"></a>連結參考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://anemology.cc/post/sql-server-enabled-sa-account-and-1433-port/">MS SQL Server 啟用 sa 帳戶與 1433 連接埠</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@jeff163552/sql-server-%E7%99%BB%E5%85%A5%E9%8C%AF%E8%AA%A4-18456-9d70af0e0532">SQL Server 登入錯誤:18456</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1291,152 +1406,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/07/26/2022-07-26%20%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/26/2022-07-26%20%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97/" class="post-title-link" itemprop="url">消息隊列</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
-
-              <time title="創建時間：2022-07-26 12:08:00 / 修改時間：23:06:26" itemprop="dateCreated datePublished" datetime="2022-07-26T12:08:00+08:00">2022-07-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">後端</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>4 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-消息隊列-Message-Queue"><a href="#1-消息隊列-Message-Queue" class="headerlink" title="1. 消息隊列 Message Queue"></a>1. 消息隊列 Message Queue</h2><p>內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題</p>
-<h2 id="2-為什麼需要消息隊列"><a href="#2-為什麼需要消息隊列" class="headerlink" title="2. 為什麼需要消息隊列"></a>2. 為什麼需要消息隊列</h2><h3 id="2-1-工廠流水線"><a href="#2-1-工廠流水線" class="headerlink" title="2.1. 工廠流水線"></a>2.1. 工廠流水線</h3><p>大家在廠線上，只需要觀注自己的工作內容，意味著解耦了彼此的關係。</p>
-<p><img src="https://i.imgur.com/bfpPK5p.png" alt="image-20220726121505581"></p>
-<h3 id="2-2-水庫"><a href="#2-2-水庫" class="headerlink" title="2.2. 水庫"></a>2.2. 水庫</h3><p>當發生大量的請求與流量時，可以保護我們的後端伺服器的穩定，扮演水庫角色，進行的控制與排放。</p>
-<p><img src="https://i.imgur.com/19z3MSg.png" alt="image-20220726121556180"></p>
-<h3 id="2-3-倉庫"><a href="#2-3-倉庫" class="headerlink" title="2.3. 倉庫"></a>2.3. 倉庫</h3><p>可用途儲存半成品的存放站，後續再由它人去拿取半成品商品進行處理。</p>
-<p><img src="https://i.imgur.com/EN8QPDP.png" alt="image-20220726122222781"></p>
-<h2 id="3-場景"><a href="#3-場景" class="headerlink" title="3. 場景"></a>3. 場景</h2><h3 id="3-1-非同步處理"><a href="#3-1-非同步處理" class="headerlink" title="3.1. 非同步處理"></a>3.1. 非同步處理</h3><p>同步處理</p>
-<p>響應一個用戶的請求，需要完成4個步驟，每個模塊都有自己的運行時間，這樣的話運行時間就會相對較長。</p>
-<p>並且，往往在過程當中，只有一步或二步是重要的關鍵步驟，其餘的步驟往往都沒有那麼重要…比如發郵件或簡訊通知訂單完成之類的訊息</p>
-<p>亦或者是數據統計之類的工作。</p>
-<p>異步處理</p>
-<p>加入了隊列請求後，對於一個用戶的請求，我們只需要完成一個最核心的業務邏輯操作，完成後直接返回請求。</p>
-<p>我們引入消息隊列，使這些模塊監聽消息隊列中的事件，這些模塊只要異步操作完即可。</p>
-<p>異步處理，可以大大縮短響應用戶的請求</p>
-<p><img src="https://i.imgur.com/Toubbsh.png" alt="MQ同步、異步"></p>
-<h3 id="3-2-應付瞬間巨量"><a href="#3-2-應付瞬間巨量" class="headerlink" title="3.2. 應付瞬間巨量"></a>3.2. 應付瞬間巨量</h3><p>秒殺活動流量較大，透過網關導向到隊列中，隊列在這當中扮演了很大的保護作用，可避免後端服務器崩潰。![MQ_流量控制](E:\1. kite\GitWorkSpace\kite_hexo\source_posts\2022-07-26 消息隊列.assets\MQ_流量控制.png)</p>
-<h3 id="3-3-系統間解耦-服務解耦"><a href="#3-3-系統間解耦-服務解耦" class="headerlink" title="3.3. 系統間解耦(服務解耦)"></a>3.3. 系統間解耦(服務解耦)</h3><p>如果沒有導入<code>MessageQueue</code>時，可以說每個模塊之間的接口耦合，又或者說每個微服務之間的RPC耦合。</p>
-<p>如果某一個模塊出現了問題，又或者需要重新佈署，這些與它相依賴的模塊有可能會受到影響。</p>
-<p>引入了MessageQueue之後，每個模塊就可以觀注在自己的事情上面，完全不用考慮體會上游或下游的情況。去掉耦合之後，我們的微服務佈署也好，項目維護也好，包括項目的高可用性，帶來不錯的效益。</p>
-<p><img src="https://i.imgur.com/7dpxUxQ.png" alt="MQ_服務解耦"></p>
-<h2 id="4-消息隊列類型"><a href="#4-消息隊列類型" class="headerlink" title="4. 消息隊列類型"></a>4. 消息隊列類型</h2><p>分為兩大類，分為單播、廣播。現在有很多消息隊列是能同時支援兩種類型的，比如<code>RabbitMQ</code>、<code>Kafka</code></p>
-<h3 id="4-1-單播-1對1"><a href="#4-1-單播-1對1" class="headerlink" title="4.1. 單播 (1對1)"></a>4.1. 單播 (1對1)</h3><p>一個<code>消息發佈者</code>對應一個<code>消息消費者</code>，就算<code>MQ</code>中有多個消息，<strong>每一個消息</strong>都還是對應<strong>一個</strong><code>消息消費者</code>。很像我們平常在用的數據模式，先進先出。</p>
-<p><img src="https://i.imgur.com/ugqxhQ4.png" alt="MQ_單播"></p>
-<h3 id="4-2-廣播-1對多"><a href="#4-2-廣播-1對多" class="headerlink" title="4.2. 廣播 (1對多)"></a>4.2. 廣播 (1對多)</h3><p>多個<code>消息消費者</code>監聽一個<code>消息發佈者</code>。舉例來說，一個訂單成立之後，後續流程各自展開「開始通知整貨作業、簡訊通知訂單成立、郵件通知訂單成立、統計數據」，多個模塊都需要知道一個消息發佈者的完整訊息。</p>
-<p><img src="https://i.imgur.com/2V6saL3.png" alt="MQ_多播"></p>
-<h2 id="5-事務"><a href="#5-事務" class="headerlink" title="5. 事務"></a>5. 事務</h2><p>什麼是事務，簡單來說它是一組操作，需要滿足這些操作全部完成或者這些操作全部都沒有完成</p>
-<h3 id="5-1-Half-Message-RocketMQ"><a href="#5-1-Half-Message-RocketMQ" class="headerlink" title="5.1. Half Message - RocketMQ"></a>5.1. Half Message - RocketMQ</h3><p>我們無法保證網路傳輸是穩定的，因此，如何提高事務的完整性(ACID，Atomicity 原子性 )，就需要透過一些設計方法與思維，其中，Half Message就是一個解決方法。它是一個有順序流程性的設計：</p>
-<ol>
-<li><p>在開始執行業務邏輯之前，會先發送一條半消息到<code>MQ</code>，提醒<code>MQ</code>說我們的業務邏輯即將開始了。</p>
-</li>
-<li><p><code>MQ</code>會回覆收到<code>半消息</code>的確認，如果這一步就錯誤了，我們就必須在業務邏輯上註記(返回)失敗。</p>
-</li>
-<li><p>真正開始業務邏輯(這段覺得很怪<code>業務模組</code>告訴<code>消息發佈者</code>)</p>
-</li>
-<li><p>由消息發佈者進行提交&#x2F;回滾消息給<code>MQ</code>，當<code>MQ</code>收到提交(業務邏輯執行成功)，則將<code>半消息</code>改狀態變為正常的消息(可見的)</p>
-</li>
-<li><p><code>消費消費者</code>自然可以去取得<code>MQ</code>的訊息</p>
-<blockquote>
-<p>確認如何畫圖</p>
-</blockquote>
-</li>
-</ol>
-<p>而<code>半消息</code>的定義是這條訊息在消費者那邊是不可見的。</p>
-<h4 id="5-1-1-死信隊列"><a href="#5-1-1-死信隊列" class="headerlink" title="5.1.1. 死信隊列"></a>5.1.1. 死信隊列</h4><p>以上5個步驟只是確保<code>MQ</code>、<code>Publisher</code>、<code>業務</code>的<code>原子性</code>，無法確保<code>Consumer</code>的原子性。因此，在Consumer與MQ之間，會允許嘗試try catch 多次(maybe 3~5次的限制)，如果是失敗3次了，則進入到死信的隊列。其實死信隊列就是記錄了consumer操作失敗訊息，我們可以定期查詢死信隊列的記錄，進行手動修復，這樣就是最大成度的保證原子性。</p>
-<h4 id="5-1-2-反查機制"><a href="#5-1-2-反查機制" class="headerlink" title="5.1.2. 反查機制"></a>5.1.2. 反查機制</h4><p>我們繼續考慮一個例外狀況，當第4步驟沒有執行的時候，那MQ就會無法得知實際狀況，變成死等。因此，我們可以利用一個回調函式提供MQ去反查確認消費發佈者的狀況，maybe是一個定期器，預計10秒內應該得到回應，如果沒有就去反查<code>消費發佈者</code></p>
-<h2 id="6-消息隊列常見問題"><a href="#6-消息隊列常見問題" class="headerlink" title="6. 消息隊列常見問題"></a>6. 消息隊列常見問題</h2><h3 id="6-1-消息丟失"><a href="#6-1-消息丟失" class="headerlink" title="6.1. 消息丟失"></a>6.1. 消息丟失</h3><p>P 發送 MQ</p>
-<p>MQ發送確認P</p>
-<p>MQ發送C</p>
-<p>C發送確認MQ</p>
-<h3 id="6-2-重複消息"><a href="#6-2-重複消息" class="headerlink" title="6.2. 重複消息"></a>6.2. 重複消息</h3><p>幂等性:Idempotence</p>
-<p>重傳保證結果不會影響最終結果</p>
-<h3 id="6-3-消息積壓"><a href="#6-3-消息積壓" class="headerlink" title="6.3. 消息積壓"></a>6.3. 消息積壓</h3><ul>
-<li>水平擴容queue&#x2F;partition的數量，以及consumer實例的數量<ul>
-<li>兩邊要等量的增加，單獨增加一邊是沒有效益的</li>
-</ul>
-</li>
-<li>排查日誌，確保隊列層正常送達消息</li>
-<li>在producer段，服務降級<ul>
-<li>提供重要邏輯的優先度</li>
-</ul>
-</li>
-</ul>
-<h2 id="7-參考資料"><a href="#7-參考資料" class="headerlink" title="7. 參考資料"></a>7. 參考資料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=M7v1rlgpgec&ab_channel=JimmyCoding">Message Queue 消息队列：最强大的web后端组件</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=E1pxP0wuGso">91APP 電商技術大解密 (2020 線上分享系列)：解密 91APP Queue System</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1506,7 +1475,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1519,7 +1488,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1560,7 +1529,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:45</span>
+    <span title="所需總閱讀時間">10:46</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

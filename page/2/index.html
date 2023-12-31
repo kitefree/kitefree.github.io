@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Kite的筆記">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="kite">
-<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server,Docker">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://kitefree.github.io/page/2/">
@@ -185,6 +185,152 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/07/26/2022-07-26%20%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/26/2022-07-26%20%E6%B6%88%E6%81%AF%E9%9A%8A%E5%88%97/" class="post-title-link" itemprop="url">消息隊列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-07-26 12:08:00 / 修改時間：23:06:26" itemprop="dateCreated datePublished" datetime="2022-07-26T12:08:00+08:00">2022-07-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%8C%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">後端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-消息隊列-Message-Queue"><a href="#1-消息隊列-Message-Queue" class="headerlink" title="1. 消息隊列 Message Queue"></a>1. 消息隊列 Message Queue</h2><p>內容包含記錄了對於主題與隊列、消息隊列的一致性、消息的丟失、重複、積壓問題</p>
+<h2 id="2-為什麼需要消息隊列"><a href="#2-為什麼需要消息隊列" class="headerlink" title="2. 為什麼需要消息隊列"></a>2. 為什麼需要消息隊列</h2><h3 id="2-1-工廠流水線"><a href="#2-1-工廠流水線" class="headerlink" title="2.1. 工廠流水線"></a>2.1. 工廠流水線</h3><p>大家在廠線上，只需要觀注自己的工作內容，意味著解耦了彼此的關係。</p>
+<p><img src="https://i.imgur.com/bfpPK5p.png" alt="image-20220726121505581"></p>
+<h3 id="2-2-水庫"><a href="#2-2-水庫" class="headerlink" title="2.2. 水庫"></a>2.2. 水庫</h3><p>當發生大量的請求與流量時，可以保護我們的後端伺服器的穩定，扮演水庫角色，進行的控制與排放。</p>
+<p><img src="https://i.imgur.com/19z3MSg.png" alt="image-20220726121556180"></p>
+<h3 id="2-3-倉庫"><a href="#2-3-倉庫" class="headerlink" title="2.3. 倉庫"></a>2.3. 倉庫</h3><p>可用途儲存半成品的存放站，後續再由它人去拿取半成品商品進行處理。</p>
+<p><img src="https://i.imgur.com/EN8QPDP.png" alt="image-20220726122222781"></p>
+<h2 id="3-場景"><a href="#3-場景" class="headerlink" title="3. 場景"></a>3. 場景</h2><h3 id="3-1-非同步處理"><a href="#3-1-非同步處理" class="headerlink" title="3.1. 非同步處理"></a>3.1. 非同步處理</h3><p>同步處理</p>
+<p>響應一個用戶的請求，需要完成4個步驟，每個模塊都有自己的運行時間，這樣的話運行時間就會相對較長。</p>
+<p>並且，往往在過程當中，只有一步或二步是重要的關鍵步驟，其餘的步驟往往都沒有那麼重要…比如發郵件或簡訊通知訂單完成之類的訊息</p>
+<p>亦或者是數據統計之類的工作。</p>
+<p>異步處理</p>
+<p>加入了隊列請求後，對於一個用戶的請求，我們只需要完成一個最核心的業務邏輯操作，完成後直接返回請求。</p>
+<p>我們引入消息隊列，使這些模塊監聽消息隊列中的事件，這些模塊只要異步操作完即可。</p>
+<p>異步處理，可以大大縮短響應用戶的請求</p>
+<p><img src="https://i.imgur.com/Toubbsh.png" alt="MQ同步、異步"></p>
+<h3 id="3-2-應付瞬間巨量"><a href="#3-2-應付瞬間巨量" class="headerlink" title="3.2. 應付瞬間巨量"></a>3.2. 應付瞬間巨量</h3><p>秒殺活動流量較大，透過網關導向到隊列中，隊列在這當中扮演了很大的保護作用，可避免後端服務器崩潰。![MQ_流量控制](E:\1. kite\GitWorkSpace\kite_hexo\source_posts\2022-07-26 消息隊列.assets\MQ_流量控制.png)</p>
+<h3 id="3-3-系統間解耦-服務解耦"><a href="#3-3-系統間解耦-服務解耦" class="headerlink" title="3.3. 系統間解耦(服務解耦)"></a>3.3. 系統間解耦(服務解耦)</h3><p>如果沒有導入<code>MessageQueue</code>時，可以說每個模塊之間的接口耦合，又或者說每個微服務之間的RPC耦合。</p>
+<p>如果某一個模塊出現了問題，又或者需要重新佈署，這些與它相依賴的模塊有可能會受到影響。</p>
+<p>引入了MessageQueue之後，每個模塊就可以觀注在自己的事情上面，完全不用考慮體會上游或下游的情況。去掉耦合之後，我們的微服務佈署也好，項目維護也好，包括項目的高可用性，帶來不錯的效益。</p>
+<p><img src="https://i.imgur.com/7dpxUxQ.png" alt="MQ_服務解耦"></p>
+<h2 id="4-消息隊列類型"><a href="#4-消息隊列類型" class="headerlink" title="4. 消息隊列類型"></a>4. 消息隊列類型</h2><p>分為兩大類，分為單播、廣播。現在有很多消息隊列是能同時支援兩種類型的，比如<code>RabbitMQ</code>、<code>Kafka</code></p>
+<h3 id="4-1-單播-1對1"><a href="#4-1-單播-1對1" class="headerlink" title="4.1. 單播 (1對1)"></a>4.1. 單播 (1對1)</h3><p>一個<code>消息發佈者</code>對應一個<code>消息消費者</code>，就算<code>MQ</code>中有多個消息，<strong>每一個消息</strong>都還是對應<strong>一個</strong><code>消息消費者</code>。很像我們平常在用的數據模式，先進先出。</p>
+<p><img src="https://i.imgur.com/ugqxhQ4.png" alt="MQ_單播"></p>
+<h3 id="4-2-廣播-1對多"><a href="#4-2-廣播-1對多" class="headerlink" title="4.2. 廣播 (1對多)"></a>4.2. 廣播 (1對多)</h3><p>多個<code>消息消費者</code>監聽一個<code>消息發佈者</code>。舉例來說，一個訂單成立之後，後續流程各自展開「開始通知整貨作業、簡訊通知訂單成立、郵件通知訂單成立、統計數據」，多個模塊都需要知道一個消息發佈者的完整訊息。</p>
+<p><img src="https://i.imgur.com/2V6saL3.png" alt="MQ_多播"></p>
+<h2 id="5-事務"><a href="#5-事務" class="headerlink" title="5. 事務"></a>5. 事務</h2><p>什麼是事務，簡單來說它是一組操作，需要滿足這些操作全部完成或者這些操作全部都沒有完成</p>
+<h3 id="5-1-Half-Message-RocketMQ"><a href="#5-1-Half-Message-RocketMQ" class="headerlink" title="5.1. Half Message - RocketMQ"></a>5.1. Half Message - RocketMQ</h3><p>我們無法保證網路傳輸是穩定的，因此，如何提高事務的完整性(ACID，Atomicity 原子性 )，就需要透過一些設計方法與思維，其中，Half Message就是一個解決方法。它是一個有順序流程性的設計：</p>
+<ol>
+<li><p>在開始執行業務邏輯之前，會先發送一條半消息到<code>MQ</code>，提醒<code>MQ</code>說我們的業務邏輯即將開始了。</p>
+</li>
+<li><p><code>MQ</code>會回覆收到<code>半消息</code>的確認，如果這一步就錯誤了，我們就必須在業務邏輯上註記(返回)失敗。</p>
+</li>
+<li><p>真正開始業務邏輯(這段覺得很怪<code>業務模組</code>告訴<code>消息發佈者</code>)</p>
+</li>
+<li><p>由消息發佈者進行提交&#x2F;回滾消息給<code>MQ</code>，當<code>MQ</code>收到提交(業務邏輯執行成功)，則將<code>半消息</code>改狀態變為正常的消息(可見的)</p>
+</li>
+<li><p><code>消費消費者</code>自然可以去取得<code>MQ</code>的訊息</p>
+<blockquote>
+<p>確認如何畫圖</p>
+</blockquote>
+</li>
+</ol>
+<p>而<code>半消息</code>的定義是這條訊息在消費者那邊是不可見的。</p>
+<h4 id="5-1-1-死信隊列"><a href="#5-1-1-死信隊列" class="headerlink" title="5.1.1. 死信隊列"></a>5.1.1. 死信隊列</h4><p>以上5個步驟只是確保<code>MQ</code>、<code>Publisher</code>、<code>業務</code>的<code>原子性</code>，無法確保<code>Consumer</code>的原子性。因此，在Consumer與MQ之間，會允許嘗試try catch 多次(maybe 3~5次的限制)，如果是失敗3次了，則進入到死信的隊列。其實死信隊列就是記錄了consumer操作失敗訊息，我們可以定期查詢死信隊列的記錄，進行手動修復，這樣就是最大成度的保證原子性。</p>
+<h4 id="5-1-2-反查機制"><a href="#5-1-2-反查機制" class="headerlink" title="5.1.2. 反查機制"></a>5.1.2. 反查機制</h4><p>我們繼續考慮一個例外狀況，當第4步驟沒有執行的時候，那MQ就會無法得知實際狀況，變成死等。因此，我們可以利用一個回調函式提供MQ去反查確認消費發佈者的狀況，maybe是一個定期器，預計10秒內應該得到回應，如果沒有就去反查<code>消費發佈者</code></p>
+<h2 id="6-消息隊列常見問題"><a href="#6-消息隊列常見問題" class="headerlink" title="6. 消息隊列常見問題"></a>6. 消息隊列常見問題</h2><h3 id="6-1-消息丟失"><a href="#6-1-消息丟失" class="headerlink" title="6.1. 消息丟失"></a>6.1. 消息丟失</h3><p>P 發送 MQ</p>
+<p>MQ發送確認P</p>
+<p>MQ發送C</p>
+<p>C發送確認MQ</p>
+<h3 id="6-2-重複消息"><a href="#6-2-重複消息" class="headerlink" title="6.2. 重複消息"></a>6.2. 重複消息</h3><p>幂等性:Idempotence</p>
+<p>重傳保證結果不會影響最終結果</p>
+<h3 id="6-3-消息積壓"><a href="#6-3-消息積壓" class="headerlink" title="6.3. 消息積壓"></a>6.3. 消息積壓</h3><ul>
+<li>水平擴容queue&#x2F;partition的數量，以及consumer實例的數量<ul>
+<li>兩邊要等量的增加，單獨增加一邊是沒有效益的</li>
+</ul>
+</li>
+<li>排查日誌，確保隊列層正常送達消息</li>
+<li>在producer段，服務降級<ul>
+<li>提供重要邏輯的優先度</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-參考資料"><a href="#7-參考資料" class="headerlink" title="7. 參考資料"></a>7. 參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=M7v1rlgpgec&ab_channel=JimmyCoding">Message Queue 消息队列：最强大的web后端组件</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=E1pxP0wuGso">91APP 電商技術大解密 (2020 線上分享系列)：解密 91APP Queue System</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -2899,138 +3045,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2022/02/11/2022-02-11%20%E6%8A%BD%E7%8D%8E%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%E5%88%86%E4%BA%AB%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/11/2022-02-11%20%E6%8A%BD%E7%8D%8E%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%E5%88%86%E4%BA%AB%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98/" class="post-title-link" itemprop="url">抽獎系統設計分享心得筆記</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
-
-              <time title="創建時間：2022-02-11 15:42:00 / 修改時間：16:29:33" itemprop="dateCreated datePublished" datetime="2022-02-11T15:42:00+08:00">2022-02-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B/" itemprop="url" rel="index"><span itemprop="name">系統架構</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>3 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>心得來自保哥的youtube影片 &gt;&gt; <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=e3DDXSMWr5w">那些年我們實作過的抽獎系統</a></p>
-<h2 id="一、抽獎在業務跟系統扮演什麼角色"><a href="#一、抽獎在業務跟系統扮演什麼角色" class="headerlink" title="一、抽獎在業務跟系統扮演什麼角色"></a>一、抽獎在業務跟系統扮演什麼角色</h2><p>抽獎是一個常見的工具</p>
-<p>拉新 dau 日活躍人數 月活躍人數</p>
-<p>拉活 有帳號的人，但是太久沒有用</p>
-<p>透過活動拉新、拉活。達到預期收益<br>pm、markting人員 模型要確定下來<br>行銷預算 + 函式  &#x3D; 預期收益</p>
-<h2 id="二、機率設計"><a href="#二、機率設計" class="headerlink" title="二、機率設計"></a>二、機率設計</h2><h3 id="五個維度"><a href="#五個維度" class="headerlink" title="五個維度"></a>五個維度</h3><h4 id="抽獎活動的週期"><a href="#抽獎活動的週期" class="headerlink" title="抽獎活動的週期"></a>抽獎活動的週期</h4><p>確定、不確定<br>確定的：比如某兩個禮拜。<br>不確定的：比如每消費金額之後，小小抽。</p>
-<h4 id="開獎方式"><a href="#開獎方式" class="headerlink" title="開獎方式"></a>開獎方式</h4><p>立即開獎、一段時間開獎<br>立即：馬上知道有沒有中獎</p>
-<p>一段時間：一段時間公布，會需要有公證的操作或證人</p>
-<h4 id="抽獎人數"><a href="#抽獎人數" class="headerlink" title="抽獎人數"></a>抽獎人數</h4><p>確定、不確定<br>確定：通常來說公司尾牙就是確定人數<br>不確定：街口的雙11活動，參加人就不是確定</p>
-<h4 id="抽獎次數"><a href="#抽獎次數" class="headerlink" title="抽獎次數"></a>抽獎次數</h4><p>確定、不確定<br>確定：公司尾牙就是確定的<br>不確定：街口雙11或百貨公司活動就是不確定的。</p>
-<h4 id="獎品數量"><a href="#獎品數量" class="headerlink" title="獎品數量"></a>獎品數量</h4><p>確定、不確定<br>確定：ps5 1台，就是確定<br>不確定：ubereats 新人首單 100元，就是不確定的</p>
-<h3 id="獎項設計"><a href="#獎項設計" class="headerlink" title="獎項設計"></a>獎項設計</h3><p>0 ~ 0.5 中iphone ，隨機random<br>rand seed 常用 block chain hash</p>
-<h4 id="大獎設計"><a href="#大獎設計" class="headerlink" title="大獎設計"></a>大獎設計</h4><p>10 台iphone 在1個禮拜內送完，但需要跟行銷討論想要的效果<br>有可能是每1最多抽到1台，在雙11當天活動高潮 就送5台之類。</p>
-<h4 id="小獎設計"><a href="#小獎設計" class="headerlink" title="小獎設計"></a>小獎設計</h4><p>常見作法：機率獎品對照表</p>
-<h2 id="三、業務風險的控管及系統的風險控制與注意事項"><a href="#三、業務風險的控管及系統的風險控制與注意事項" class="headerlink" title="三、業務風險的控管及系統的風險控制與注意事項"></a>三、業務風險的控管及系統的風險控制與注意事項</h2><ol>
-<li><p>一定要限制抽獎次數 30次，怕有bug，這個次數可以很大，但不能是無限。</p>
-</li>
-<li><p>獎品送的狀況超出預期，需要有緊急狀況的計劃</p>
-</li>
-<li><p>限制次數</p>
-<ol>
-<li>業務層限制次數</li>
-<li>在nginx module 限制來自某個ip的流量等等<br>業務層或網管層限制某個用戶id 做限流，防止用戶大量請求。</li>
-</ol>
-</li>
-<li><p>攔截一些無效流量</p>
-<p>無效流量的效果大神說很有感</p>
-<p>比如momo幣 10點搶，10點01分進來1000個用戶，前面10個做完業務邏輯，後面990個可以都不做一些邏輯判斷，減輕系統的負擔，直接return。</p>
-</li>
-<li><p>前端的部分</p>
-<p>按了請求之後馬上disable按鈕，10秒後再解開之類的</p>
-</li>
-<li><p>redis使用</p>
-<p>如果做一個select update 或一個很大的trasaction 基本上系統就等著掛掉。流量尖鋒的資料庫壓力，超時原因都是各式各樣的資料庫鎖，很大呈度可以減少這個問題。</p>
-<p>因此，要搶秒殺或福袋建議大家可以看redis 的<code>lua腳本</code>來實現扣減庫存的方案，把需要資料庫完成的強一致性減庫存操作轉換為redis 的記憶體操作<br>之後再透過某種方式再同步回資料庫，去實際做減庫存的工作。可以非常有效減緩系統壓力。</p>
-<p>QPS說明</p>
-<p>資料庫：QPS 20 左右<br>redis ：QPS 幾千沒問題</p>
-</li>
-</ol>
-<h2 id="問題時間"><a href="#問題時間" class="headerlink" title="問題時間"></a>問題時間</h2><h3 id="Q1-資訊架構的錢怎麼預估"><a href="#Q1-資訊架構的錢怎麼預估" class="headerlink" title="Q1 資訊架構的錢怎麼預估"></a>Q1 資訊架構的錢怎麼預估</h3><p>可以先探討是在地端還是雲端。(我們電資(電商)不能上雲)</p>
-<p>另外就是核心關鍵業務指標來評量，比方說<br>日活躍人數多少?( Daily Active User，DAU )<br>月活躍人數多少?<br>小活動的用戶活動參與度多少?<br>手機的nofication ，用戶點擊會是多少?(街口這項是滿高的)</p>
-<p>街口案例(假設)：</p>
-<p>假設日活10萬、月活30萬，大型活動 日活 拉到2~3倍。</p>
-<p>以雙11為例，11整點 抓30萬 request 流量，鋒直流量可能再用反推maybe可能是需要1000qps</p>
-<p>1000qps 再往下分解，可能需要5台、6台機器 可能在nginx 流量截取層需不需要做一些其它節點的配置</p>
-<p>雙11時大概20幾分鐘不能work，原因是因為我們的防火牆被打爆了，流量最大，內部系統風平浪靜<br>ap節點 做到 stateless 水平擴容</p>
-<h2 id="閒聊"><a href="#閒聊" class="headerlink" title="閒聊"></a>閒聊</h2><h3 id="壓測工具討論"><a href="#壓測工具討論" class="headerlink" title="壓測工具討論"></a>壓測工具討論</h3><ul>
-<li>k6 javascript 寫script壓測工具 保哥推薦 ，底層是用go</li>
-<li>jmeter</li>
-</ul>
-<p>壓測有分為單點壓測、情境壓測</p>
-<p>cpu 超過90%沒意義，講師想糾正大家對於壓測的觀念，不是說壓測一定要把系統搞到爆才叫壓測。<br>cpu 50%、60% 就已經有點不穩定的感覺。</p>
-<p>比如在cpu 20%、30% 使用率，已經有達標需求了，這樣也是壓測的很好結果。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3100,7 +3114,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -3113,7 +3127,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -3154,7 +3168,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:45</span>
+    <span title="所需總閱讀時間">10:46</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

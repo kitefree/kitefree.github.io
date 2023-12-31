@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Kite的筆記">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="kite">
-<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server">
+<meta property="article:tag" content="c#,Asp.net,Asp.net MVC,Net Core,後端,WebApi,SQL,SQL Server,Docker">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://kitefree.github.io/page/8/">
@@ -185,6 +185,149 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/08/20/2021-08-20%20%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/20/2021-08-20%20%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6/" class="post-title-link" itemprop="url">軟體測試</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-08-20 19:56:00" itemprop="dateCreated datePublished" datetime="2021-08-20T19:56:00+08:00">2021-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-19 10:30:29" itemprop="dateModified" datetime="2021-09-19T10:30:29+08:00">2021-09-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="https://i.imgur.com/PMB1jqi.png"></p>
+<p><img src="https://i.imgur.com/BJ6f941.png"></p>
+<h2 id="單元測試"><a href="#單元測試" class="headerlink" title="單元測試"></a>單元測試</h2><p>最小單位、測試範圍小、測試速度快</p>
+<ul>
+<li>越是符合SOLID的架構則Unit Test越好寫</li>
+</ul>
+<h3 id="舉例"><a href="#舉例" class="headerlink" title="舉例"></a>舉例</h3><p>最小單位在實際的角度來說，不同場點嚴謹有不同做法。</p>
+<p>舉例來說，以class為最小單位，那我們就針對每個method去做測試，看class method 是否符合他的文件(method comment)所說的功能</p>
+<h2 id="整合測試"><a href="#整合測試" class="headerlink" title="整合測試"></a>整合測試</h2><p>測試範圍介於單元測試與E2E測試之間</p>
+<p>測試速度慢</p>
+<p>多個單元互相整合再一起做測試。主要針對不同模組互動下去做測試</p>
+<p>需要準備更完整的模擬環境來完成測試工作</p>
+<p>可以針對必要的咚咚去做整合測試即可</p>
+<p><img src="https://i.imgur.com/sYNrj7s.png"></p>
+<h3 id="舉例-1"><a href="#舉例-1" class="headerlink" title="舉例"></a>舉例</h3><p>資料庫連接的部分是一個模組</p>
+<p>而讀取資料庫的資料進來說，做一些商業邏輯的部分又是另一個模組</p>
+<p>我們想針對這兩個模組的互動去做測試，看看他們的互動後會不會產生各種奇琶結果。</p>
+<p>測試案例成為整合測試的關鍵點是：<strong>測試案例是否包含與外部環境交互的邏輯</strong>，如時間、Session、Cookie、資料庫，硬體，網路等等不受程式控制的因素。</p>
+<p>簡單來說，若測試案例無與外部環境交互的邏輯，則可以將測試案例視為單元測試：<br><img src="https://i.imgur.com/Ykr3j6R.png" alt="單元測試只與系統內部的程式交互"></p>
+<p>反之，若測試案例中包含與外部環境交互的邏輯，那麼這個測試案例就是一個整合測試：<br><img src="https://i.imgur.com/oP4wsp4.png" alt="整合測試會與外部環境交互"></p>
+<h2 id="端對端測試"><a href="#端對端測試" class="headerlink" title="端對端測試"></a>端對端測試</h2><p>測試範圍大</p>
+<p>以USER的角度去做測試，通常需要模擬最完整的環境去做測試</p>
+<p>對選各種我寫的功能，看看這些功能是不是做了他們應該要做的事情</p>
+<p>也就是針對User Interface使用者介面去做測試</p>
+<p>目前的End to End 的framework很多</p>
+<p>比較流行的有<a target="_blank" rel="noopener" href="https://www.selenium.dev/">https://www.selenium.dev/</a></p>
+<h2 id="寫測試須知"><a href="#寫測試須知" class="headerlink" title="寫測試須知"></a>寫測試須知</h2><ul>
+<li>不是所有的程式都可以測試</li>
+<li>實際寫過測試，才知道之前寫的code能不能被測試</li>
+</ul>
+<h2 id="如何命名測試function名稱"><a href="#如何命名測試function名稱" class="headerlink" title="如何命名測試function名稱"></a>如何命名測試function名稱</h2><ul>
+<li>要被測試的方法名稱</li>
+<li>測試的情境(input)</li>
+<li>預期行為(output)</li>
+</ul>
+<p><img src="https://i.imgur.com/ywokryS.png"></p>
+<h2 id="測試function的內容架構"><a href="#測試function的內容架構" class="headerlink" title="測試function的內容架構"></a>測試function的內容架構</h2><ul>
+<li>準備</li>
+<li>執行</li>
+<li>驗證</li>
+</ul>
+<p><img src="https://i.imgur.com/OpE9DBL.png"></p>
+<h2 id="什麼是好的測試"><a href="#什麼是好的測試" class="headerlink" title="什麼是好的測試"></a>什麼是好的測試</h2><p><img src="https://i.imgur.com/obzWkZw.png"></p>
+<h2 id="應該避免的測試寫法"><a href="#應該避免的測試寫法" class="headerlink" title="應該避免的測試寫法"></a>應該避免的測試寫法</h2><p><img src="https://i.imgur.com/5cODxhM.png"></p>
+<p><img src="https://i.imgur.com/zeJ10rJ.png"></p>
+<p><img src="https://i.imgur.com/4fBUyLp.png"></p>
+<h2 id="再提升一點"><a href="#再提升一點" class="headerlink" title="再提升一點"></a>再提升一點</h2><ul>
+<li>同一個測試，用不同參數組合測試-參數化測試<ul>
+<li>每個assert都要執行到(parameterized,self.subTest())</li>
+</ul>
+</li>
+<li>搭配面對面的code review勝過100% 覆蓋率</li>
+</ul>
+<h3 id="參數化測試案例"><a href="#參數化測試案例" class="headerlink" title="參數化測試案例"></a>參數化測試案例</h3><p><img src="https://i.imgur.com/po2rKf9.png"></p>
+<p><img src="https://i.imgur.com/Z6bHOLe.png"></p>
+<h2 id="軟體工具"><a href="#軟體工具" class="headerlink" title="軟體工具"></a>軟體工具</h2><p>市面上現有的 E2E 框架非常多，知名的有 <a target="_blank" rel="noopener" href="http://www.protractortest.org/">Protractor</a>、<a target="_blank" rel="noopener" href="http://casperjs.org/">CasperJS</a>、<a target="_blank" rel="noopener" href="http://nightwatchjs.org/">Nightwatch.js</a>、<a target="_blank" rel="noopener" href="https://devexpress.github.io/testcafe/">Testcafe</a>、<a target="_blank" rel="noopener" href="https://www.cypress.io/">Cypress</a> 等等。</p>
+<h2 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h2><h3 id="何謂最小單位"><a href="#何謂最小單位" class="headerlink" title="何謂最小單位"></a>何謂最小單位</h3><h3 id="撰寫測試程式的價值"><a href="#撰寫測試程式的價值" class="headerlink" title="撰寫測試程式的價值"></a>撰寫測試程式的價值</h3><h3 id="誰該學單元測試"><a href="#誰該學單元測試" class="headerlink" title="誰該學單元測試?"></a>誰該學單元測試?</h3><h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=QoR8xBcxuQs">單元測試(unit test)的心法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=0bLBv5KL7aE">【 .NET 測試入門】#1 什麼是單元測試 &amp; 整合測試 &amp; 端對端測試？ | HiSKIO 程式語言線上教學</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.miniasp.com/post/2019/02/18/Unit-testing-Integration-testing-e2e-testing">一次搞懂單元測試、整合測試、端對端測試之間的差異</a></li>
+<li><a target="_blank" rel="noopener" href="https://wadehuanglearning.blogspot.com/2020/01/blog-post.html">探討單元測試和整合測試的涵蓋範圍</a></li>
+<li><a target="_blank" rel="noopener" href="https://progressbar.tw/posts/11">軟體上線就等於今晚不用回家? 學”單元測試”可能有辦法挽救您的婚姻</a></li>
+</ul>
+<h3 id="未看"><a href="#未看" class="headerlink" title="未看"></a>未看</h3><p><a target="_blank" rel="noopener" href="http://www.tw511.com/24/276/9932.html">http://www.tw511.com/24/276/9932.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Neeo/articles/11809457.html">https://www.cnblogs.com/Neeo/articles/11809457.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://jchu.cc/2018/08/16-test.html">https://jchu.cc/2018/08/16-test.html</a></p>
+<p>[Day 01] 自動化測試最簡單也最困難</p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10214329">https://ithelp.ithome.com.tw/articles/10214329</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1705,106 +1848,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/07/22/2021-07-22%20%E7%A7%BB%E8%BD%89%20Windows%20%E5%88%97%E5%8D%B0%E4%BC%BA%E6%9C%8D%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/22/2021-07-22%20%E7%A7%BB%E8%BD%89%20Windows%20%E5%88%97%E5%8D%B0%E4%BC%BA%E6%9C%8D%E5%99%A8/" class="post-title-link" itemprop="url">移轉 Windows 列印伺服器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-07-22 16:35:00" itemprop="dateCreated datePublished" datetime="2021-07-22T16:35:00+08:00">2021-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-19 09:19:33" itemprop="dateModified" datetime="2021-09-19T09:19:33+08:00">2021-09-19</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>229</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>※以 WS2012 R2 移轉至 WS2019 為例。</p>
-<p><strong>其一、以GUI方式</strong></p>
-<h1 id="匯出印表機相關設定資料："><a href="#匯出印表機相關設定資料：" class="headerlink" title="匯出印表機相關設定資料："></a><strong>匯出印表機相關設定資料：</strong></h1><p><img src="https://dl.dropbox.com/s/14nneiz8u7lt9fd/2021-03-06_152858.png" alt="https://dl.dropbox.com/s/14nneiz8u7lt9fd/2021-03-06_152858.png"></p>
-<p><img src="https://dl.dropbox.com/s/337qg7nri632oc9/2021-03-06_153045.png" alt="https://dl.dropbox.com/s/337qg7nri632oc9/2021-03-06_153045.png"></p>
-<p><img src="https://dl.dropbox.com/s/20ne2qdvegj89tw/2021-03-06_153159.png" alt="https://dl.dropbox.com/s/20ne2qdvegj89tw/2021-03-06_153159.png"></p>
-<p><img src="https://dl.dropbox.com/s/wtjngcpipbzrdyh/2021-03-06_153213.png" alt="https://dl.dropbox.com/s/wtjngcpipbzrdyh/2021-03-06_153213.png"></p>
-<p><img src="https://dl.dropbox.com/s/q9v4shgllx51xky/2021-03-06_153433.png" alt="https://dl.dropbox.com/s/q9v4shgllx51xky/2021-03-06_153433.png"></p>
-<h1 id="匯入印表機相關設定資料："><a href="#匯入印表機相關設定資料：" class="headerlink" title="匯入印表機相關設定資料："></a><strong>匯入印表機相關設定資料：</strong></h1><p><img src="https://dl.dropbox.com/s/mr504ro70s32dam/2021-03-06_154010.png" alt="https://dl.dropbox.com/s/mr504ro70s32dam/2021-03-06_154010.png"></p>
-<p><img src="https://dl.dropbox.com/s/d214bmfgw5x23f2/2021-03-06_154140.png" alt="https://dl.dropbox.com/s/d214bmfgw5x23f2/2021-03-06_154140.png"></p>
-<p><img src="https://dl.dropbox.com/s/rkqqqy3hdirt0ce/2021-03-06_154331.png" alt="https://dl.dropbox.com/s/rkqqqy3hdirt0ce/2021-03-06_154331.png"></p>
-<p><img src="https://dl.dropbox.com/s/9f0gfxfz408ejzm/2021-03-06_154351.png" alt="https://dl.dropbox.com/s/9f0gfxfz408ejzm/2021-03-06_154351.png"></p>
-<p><img src="https://dl.dropbox.com/s/31r0g988z05qzgv/2021-03-06_154917.png" alt="https://dl.dropbox.com/s/31r0g988z05qzgv/2021-03-06_154917.png"></p>
-<p><img src="https://dl.dropbox.com/s/431u07h18nc2eyy/2021-03-06_155355.png" alt="https://dl.dropbox.com/s/431u07h18nc2eyy/2021-03-06_155355.png"></p>
-<p><strong>優點：簡單明瞭，易操作。</strong></p>
-<p><strong>缺點：執行時間久，會有當機的感覺。</strong></p>
-<hr>
-<p><strong>其二、以CLI方式</strong></p>
-<h1 id="匯出印表機相關設定資料：-1"><a href="#匯出印表機相關設定資料：-1" class="headerlink" title="匯出印表機相關設定資料："></a><strong>匯出印表機相關設定資料：</strong></h1><p><strong>command:   PrintBrm.exe -b -f ps</strong></p>
-<p><img src="https://dl.dropbox.com/s/but746z9goqx1as/2021-03-06_162839.png" alt="https://dl.dropbox.com/s/but746z9goqx1as/2021-03-06_162839.png"></p>
-<h1 id="匯入印表機相關設定資料：-1"><a href="#匯入印表機相關設定資料：-1" class="headerlink" title="匯入印表機相關設定資料："></a><strong>匯入印表機相關設定資料：</strong></h1><p><strong>command: PrintBrm.exe -r -f ps</strong></p>
-<p><img src="https://dl.dropbox.com/s/boo2ke4hv79ijxj/2021-03-06_161908.png" alt="https://dl.dropbox.com/s/boo2ke4hv79ijxj/2021-03-06_161908.png"></p>
-<p><strong>優點：執行速度快。</strong></p>
-<p><strong>缺點：要懂操作相關指令。</strong></p>
-<p>PS:  PrintBrm.exe  使用方法：  <strong>PrintBrm.exe –?  或上網查。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1874,7 +1917,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1887,7 +1930,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1928,7 +1971,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">10:45</span>
+    <span title="所需總閱讀時間">10:46</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>
