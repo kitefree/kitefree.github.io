@@ -9769,7 +9769,12 @@
   <entry>
     <title>ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄</title>
     <url>/2024/01/20/2024-01-20%20ASP.NET%E3%80%81NetCoreAPI%E6%95%B4%E5%90%88reCAPTCHA%20V2%E8%A8%98%E9%8C%84/</url>
-    <content><![CDATA[<h3 id="Google-服務申請與設定"><a href="#Google-服務申請與設定" class="headerlink" title="Google 服務申請與設定"></a>Google 服務申請與設定</h3><h4 id="註冊新網站"><a href="#註冊新網站" class="headerlink" title="註冊新網站"></a>註冊新網站</h4><p>輸入以下網址，會看到下圖的結果。要填的資料有：</p>
+    <content><![CDATA[<h3 id="Google-服務申請與設定"><a href="#Google-服務申請與設定" class="headerlink" title="Google 服務申請與設定"></a>Google 服務申請與設定</h3><h4 id="註冊新網站"><a href="#註冊新網站" class="headerlink" title="註冊新網站"></a>註冊新網站</h4><p>輸入以下網址，會看到下圖的結果：</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://www.google.com/recaptcha/admin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/33ZQ6qQ.png" alt="image-20240117093252504"></p>
+<span id="more"></span>
+
 <ul>
 <li><p>標籤</p>
 <ul>
@@ -9787,9 +9792,6 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://www.google.com/recaptcha/admin</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/33ZQ6qQ.png" alt="image-20240117093252504"></p>
 <h4 id="產生金鑰"><a href="#產生金鑰" class="headerlink" title="產生金鑰"></a>產生金鑰</h4><p>點選<code>提交</code>按鈕後，會跳轉到下圖的頁面，其中有兩個金鑰後續會使用</p>
 <p><img src="https://i.imgur.com/PaBCrX2.png" alt="image-20240117093016927"></p>
 <h4 id="重新進入admin介面"><a href="#重新進入admin介面" class="headerlink" title="重新進入admin介面"></a>重新進入admin介面</h4><figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://www.google.com/recaptcha/admin</span><br></pre></td></tr></table></figure>
