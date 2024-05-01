@@ -9914,7 +9914,7 @@
       </tags>
   </entry>
   <entry>
-    <title>ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄</title>
+    <title>Gitea 定期備份 與 SQLSERVER 定期備份筆記</title>
     <url>/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/</url>
     <content><![CDATA[<h2 id="1-Gitea-定期備份-與-SQLSERVER-定期備份筆記"><a href="#1-Gitea-定期備份-與-SQLSERVER-定期備份筆記" class="headerlink" title="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記"></a>1. Gitea 定期備份 與 SQLSERVER 定期備份筆記</h2><h3 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1. 前言"></a>1.1. 前言</h3><p>架設<code>Gitea Server</code>時是搭配<code>MSSQL</code>。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的…</p>
 <p>並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。</p>
