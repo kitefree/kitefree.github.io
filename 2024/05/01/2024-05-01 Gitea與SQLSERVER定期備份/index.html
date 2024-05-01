@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記1.1. 前言架設Gitea Server時是搭配MSSQL。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的… 並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。 接下來，會以gitea備份與維護計劃備份進行筆記記錄">
+  <meta name="description" content="1.Gitea與SQLSERVER定期備份1.1. 前言架設Gitea Server時是搭配MSSQL。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的… 並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。 接下來，會以gitea備份與維護計劃備份進行筆記記錄。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gitea 定期備份 與 SQLSERVER 定期備份筆記">
-<meta property="og:url" content="https://kitefree.github.io/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/index.html">
+<meta property="og:title" content="Gitea與SQLSERVER定期備份">
+<meta property="og:url" content="https://kitefree.github.io/2024/05/01/2024-05-01%20Gitea%E8%88%87SQLSERVER%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記1.1. 前言架設Gitea Server時是搭配MSSQL。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的… 並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。 接下來，會以gitea備份與維護計劃備份進行筆記記錄">
+<meta property="og:description" content="1.Gitea與SQLSERVER定期備份1.1. 前言架設Gitea Server時是搭配MSSQL。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的… 並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。 接下來，會以gitea備份與維護計劃備份進行筆記記錄。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/fEQ81Zd.png">
 <meta property="og:image" content="https://i.imgur.com/PVGx6Ga.png">
@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://i.imgur.com/fY5JKr0.png">
 <meta property="og:image" content="https://i.imgur.com/6jdndZG.png">
 <meta property="article:published_time" content="2024-05-01T09:01:00.000Z">
-<meta property="article:modified_time" content="2024-05-01T10:51:30.198Z">
+<meta property="article:modified_time" content="2024-05-01T11:06:13.586Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Gitea">
@@ -52,7 +52,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/fEQ81Zd.png">
 
-<link rel="canonical" href="https://kitefree.github.io/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/">
+<link rel="canonical" href="https://kitefree.github.io/2024/05/01/2024-05-01%20Gitea%E8%88%87SQLSERVER%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD/">
 
 
 <script id="page-configurations">
@@ -65,7 +65,7 @@
   };
 </script>
 
-  <title>Gitea 定期備份 與 SQLSERVER 定期備份筆記 | Kite的筆記</title>
+  <title>Gitea與SQLSERVER定期備份 | Kite的筆記</title>
   
 
 
@@ -213,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2024/05/01/2024-05-01%20Gitea%E8%88%87SQLSERVER%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Gitea 定期備份 與 SQLSERVER 定期備份筆記
+          Gitea與SQLSERVER定期備份
         </h1>
 
         <div class="post-meta">
@@ -237,7 +237,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2024-05-01 17:01:00 / 修改時間：18:51:30" itemprop="dateCreated datePublished" datetime="2024-05-01T17:01:00+08:00">2024-05-01</time>
+              <time title="創建時間：2024-05-01 17:01:00 / 修改時間：19:06:13" itemprop="dateCreated datePublished" datetime="2024-05-01T17:01:00+08:00">2024-05-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,7 +272,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-Gitea-定期備份-與-SQLSERVER-定期備份筆記"><a href="#1-Gitea-定期備份-與-SQLSERVER-定期備份筆記" class="headerlink" title="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記"></a>1. Gitea 定期備份 與 SQLSERVER 定期備份筆記</h2><h3 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1. 前言"></a>1.1. 前言</h3><p>架設<code>Gitea Server</code>時是搭配<code>MSSQL</code>。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的…</p>
+        <h2 id="1-Gitea與SQLSERVER定期備份"><a href="#1-Gitea與SQLSERVER定期備份" class="headerlink" title="1.Gitea與SQLSERVER定期備份"></a>1.Gitea與SQLSERVER定期備份</h2><h3 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1. 前言"></a>1.1. 前言</h3><p>架設<code>Gitea Server</code>時是搭配<code>MSSQL</code>。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的…</p>
 <p>並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。</p>
 <p>接下來，會以<code>gitea備份</code>與<code>維護計劃備份</code>進行筆記記錄。</p>
 <span id="more"></span>
@@ -370,7 +370,10 @@
     <a href="/2024/01/20/2024-01-20%20ASP.NET%E3%80%81NetCoreAPI%E6%95%B4%E5%90%88reCAPTCHA%20V2%E8%A8%98%E9%8C%84/" rel="prev" title="ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄">
       <i class="fa fa-chevron-left"></i> ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/05/01/2024-05-01%20Gitea%E8%88%87MSSQL%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F%E6%95%B4%E7%90%86%E7%89%88/" rel="next" title="Gitea與MSSQL備份與還原整理版">
+      Gitea與MSSQL備份與還原整理版 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -429,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Gitea-%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD-%E8%88%87-SQLSERVER-%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD%E7%AD%86%E8%A8%98"><span class="nav-text">1. Gitea 定期備份 與 SQLSERVER 定期備份筆記</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%89%8D%E8%A8%80"><span class="nav-text">1.1. 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Gitea-%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD"><span class="nav-text">1.2. Gitea 定期備份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-Gitea-%E5%82%99%E4%BB%BD%E6%8C%87%E4%BB%A4"><span class="nav-text">1.2.1. Gitea 備份指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E6%92%B0%E5%AF%ABBAT%E8%85%B3%E6%9C%AC"><span class="nav-text">1.2.2. 撰寫BAT腳本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E9%80%A0%E5%81%87%E8%B3%87%E6%96%99%E6%B8%AC%E8%A9%A6%E5%82%99%E4%BB%BD%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C"><span class="nav-text">1.2.3. 造假資料測試備份運行結果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E7%B6%AD%E8%AD%B7%E8%A8%88%E7%95%AB%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD"><span class="nav-text">1.3. 維護計畫定期備份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-%E5%AE%89%E8%A3%9D%E8%B3%87%E8%A8%8A"><span class="nav-text">1.3.1. 安裝資訊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-%E7%A2%BA%E8%AA%8D%E7%89%88%E6%9C%AC"><span class="nav-text">1.3.2. 確認版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-%E5%8B%BE%E9%81%B8Integration-Services"><span class="nav-text">1.3.3. 勾選Integration Services</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4-%E9%80%A3%E7%B7%9A%E8%87%B3%E6%96%B0%E5%80%8B%E9%AB%94"><span class="nav-text">1.3.4. 連線至新個體</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-5-SSMS%E5%B7%A5%E5%85%B7%E7%A2%BA%E8%AA%8D%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E9%81%B8%E9%A0%85"><span class="nav-text">1.3.5. SSMS工具確認維護計劃選項</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-6-%E7%A2%BA%E8%AA%8D%E5%95%9F%E5%8B%95SQL-Server-Agent"><span class="nav-text">1.3.6. 確認啟動SQL Server Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-7-%E6%9C%8D%E5%8B%99%E5%95%9F%E5%8B%95%E8%A8%AD%E5%AE%9A%E7%A2%BA%E8%AA%8D"><span class="nav-text">1.3.7. 服務啟動設定確認</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-8-%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E5%82%99%E4%BB%BD"><span class="nav-text">1.3.8. 維護計劃備份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-9-%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E6%B8%85%E9%99%A4"><span class="nav-text">1.3.9. 維護計劃清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-10-%E7%A2%BA%E8%AA%8D%E5%82%99%E4%BB%BD%E7%B5%90%E6%9E%9C"><span class="nav-text">1.3.10. 確認備份結果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">1.4. 參考連結</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Gitea%E8%88%87SQLSERVER%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD"><span class="nav-text">1.Gitea與SQLSERVER定期備份</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%89%8D%E8%A8%80"><span class="nav-text">1.1. 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Gitea-%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD"><span class="nav-text">1.2. Gitea 定期備份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-Gitea-%E5%82%99%E4%BB%BD%E6%8C%87%E4%BB%A4"><span class="nav-text">1.2.1. Gitea 備份指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E6%92%B0%E5%AF%ABBAT%E8%85%B3%E6%9C%AC"><span class="nav-text">1.2.2. 撰寫BAT腳本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E9%80%A0%E5%81%87%E8%B3%87%E6%96%99%E6%B8%AC%E8%A9%A6%E5%82%99%E4%BB%BD%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C"><span class="nav-text">1.2.3. 造假資料測試備份運行結果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E7%B6%AD%E8%AD%B7%E8%A8%88%E7%95%AB%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD"><span class="nav-text">1.3. 維護計畫定期備份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-%E5%AE%89%E8%A3%9D%E8%B3%87%E8%A8%8A"><span class="nav-text">1.3.1. 安裝資訊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-%E7%A2%BA%E8%AA%8D%E7%89%88%E6%9C%AC"><span class="nav-text">1.3.2. 確認版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-%E5%8B%BE%E9%81%B8Integration-Services"><span class="nav-text">1.3.3. 勾選Integration Services</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4-%E9%80%A3%E7%B7%9A%E8%87%B3%E6%96%B0%E5%80%8B%E9%AB%94"><span class="nav-text">1.3.4. 連線至新個體</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-5-SSMS%E5%B7%A5%E5%85%B7%E7%A2%BA%E8%AA%8D%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E9%81%B8%E9%A0%85"><span class="nav-text">1.3.5. SSMS工具確認維護計劃選項</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-6-%E7%A2%BA%E8%AA%8D%E5%95%9F%E5%8B%95SQL-Server-Agent"><span class="nav-text">1.3.6. 確認啟動SQL Server Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-7-%E6%9C%8D%E5%8B%99%E5%95%9F%E5%8B%95%E8%A8%AD%E5%AE%9A%E7%A2%BA%E8%AA%8D"><span class="nav-text">1.3.7. 服務啟動設定確認</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-8-%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E5%82%99%E4%BB%BD"><span class="nav-text">1.3.8. 維護計劃備份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-9-%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E6%B8%85%E9%99%A4"><span class="nav-text">1.3.9. 維護計劃清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-10-%E7%A2%BA%E8%AA%8D%E5%82%99%E4%BB%BD%E7%B5%90%E6%9E%9C"><span class="nav-text">1.3.10. 確認備份結果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">1.4. 參考連結</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,7 +446,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-count">131</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -456,7 +459,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-count">117</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -492,12 +495,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">417k</span>
+    <span title="總字數">418k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:39</span>
+    <span title="所需總閱讀時間">12:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

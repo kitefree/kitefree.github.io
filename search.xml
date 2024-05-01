@@ -9914,9 +9914,88 @@
       </tags>
   </entry>
   <entry>
-    <title>Gitea 定期備份 與 SQLSERVER 定期備份筆記</title>
-    <url>/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/</url>
-    <content><![CDATA[<h2 id="1-Gitea-定期備份-與-SQLSERVER-定期備份筆記"><a href="#1-Gitea-定期備份-與-SQLSERVER-定期備份筆記" class="headerlink" title="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記"></a>1. Gitea 定期備份 與 SQLSERVER 定期備份筆記</h2><h3 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1. 前言"></a>1.1. 前言</h3><p>架設<code>Gitea Server</code>時是搭配<code>MSSQL</code>。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的…</p>
+    <title>Gitea與MSSQL備份與還原整理版</title>
+    <url>/2024/05/01/2024-05-01%20Gitea%E8%88%87MSSQL%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F%E6%95%B4%E7%90%86%E7%89%88/</url>
+    <content><![CDATA[<h2 id="1-Gitea與MSSQL備份與還原整理版"><a href="#1-Gitea與MSSQL備份與還原整理版" class="headerlink" title="1. Gitea與MSSQL備份與還原整理版"></a>1. Gitea與MSSQL備份與還原整理版</h2><h3 id="1-1-Gitea-資料夾備份"><a href="#1-1-Gitea-資料夾備份" class="headerlink" title="1.1. Gitea 資料夾備份"></a>1.1. Gitea 資料夾備份</h3><h4 id="1-1-1-腳本路徑"><a href="#1-1-1-腳本路徑" class="headerlink" title="1.1.1. 腳本路徑"></a>1.1.1. 腳本路徑</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\bat\gitea_backup.bat</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-2-腳本內容"><a href="#1-1-2-腳本內容" class="headerlink" title="1.1.2. 腳本內容"></a>1.1.2. 腳本內容</h4><p>此腳本可進行備份，並刪除 7 天前的檔案。</p>
+<p><code>gitea_backup.bat</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">REM 更改當前的字符編碼頁（code page）。而 65001 是 Unicode UTF-8 的字符編碼頁。</span><br><span class="line">chcp 65001</span><br><span class="line"></span><br><span class="line">REM 停止gitea</span><br><span class="line">sc.exe stop gitea</span><br><span class="line"></span><br><span class="line">REM 睡10秒</span><br><span class="line"><span class="built_in">timeout</span> /t 10</span><br><span class="line"></span><br><span class="line">REM 設定備份目的路徑</span><br><span class="line"><span class="built_in">set</span> backup_directory=<span class="string">&quot;C:\Backup\Gitea&quot;</span></span><br><span class="line"></span><br><span class="line">REM 設定檔案格式</span><br><span class="line"><span class="built_in">set</span> yyyyMMdd=%<span class="built_in">date</span>:~3,4%%<span class="built_in">date</span>:~8,2%%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line">REM 使用gitea dump 指令進行備份</span><br><span class="line">C:\gitea\gitea dump --file <span class="string">&quot;%backup_directory%\%yyyyMMdd%&quot;</span></span><br><span class="line"></span><br><span class="line">REM 睡10秒</span><br><span class="line"><span class="built_in">timeout</span> /t 10</span><br><span class="line"></span><br><span class="line">REM 啟動gitea</span><br><span class="line">sc.exe start gitea</span><br><span class="line"></span><br><span class="line">REM 刪除7天前的檔案</span><br><span class="line">forfiles /p %backup_directory% /s /m *.zip /d -7 /c <span class="string">&quot;cmd /c del @file&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-3-工作排程器設定"><a href="#1-1-3-工作排程器設定" class="headerlink" title="1.1.3. 工作排程器設定"></a>1.1.3. 工作排程器設定</h4><p><img src="https://i.imgur.com/vBQzhYk.png" alt="image-20240124132631256"></p>
+<h4 id="1-1-4-備份結果"><a href="#1-1-4-備份結果" class="headerlink" title="1.1.4. 備份結果"></a>1.1.4. 備份結果</h4><p><img src="https://i.imgur.com/kc2qHJM.png" alt="image-20240124132830356"></p>
+<h3 id="1-2-Gitea-資料夾還原"><a href="#1-2-Gitea-資料夾還原" class="headerlink" title="1.2. Gitea 資料夾還原"></a>1.2. Gitea 資料夾還原</h3><p>解壓縮<code>20240124.zip</code>檔案如下：</p>
+<p><img src="https://i.imgur.com/7JxgY60.png" alt="image-20240124135906933"></p>
+<p>將<code>custom</code>、<code>data</code>資料夾貼到<code>C:\gitea</code>路徑底下進行覆蓋即可</p>
+<p><img src="https://i.imgur.com/1hy4uBw.png" alt="image-20240124135834219"></p>
+<h3 id="1-3-MSSQL-資料庫備份"><a href="#1-3-MSSQL-資料庫備份" class="headerlink" title="1.3. MSSQL 資料庫備份"></a>1.3. MSSQL 資料庫備份</h3><h4 id="1-3-1-環境說明"><a href="#1-3-1-環境說明" class="headerlink" title="1.3.1. 環境說明"></a>1.3.1. 環境說明</h4><p>MSSQL 版本必須是<code>Microsoft SQL Server Developer (64-bit)</code>，才有內鍵<code>維護計劃</code>工具可使用</p>
+<p><img src="https://i.imgur.com/KpO1UyP.png" alt="image-20240124133648883"></p>
+<h4 id="1-3-2-維護計劃精靈工具設定"><a href="#1-3-2-維護計劃精靈工具設定" class="headerlink" title="1.3.2. 維護計劃精靈工具設定"></a>1.3.2. 維護計劃精靈工具設定</h4><h5 id="1-3-2-1-設定備份"><a href="#1-3-2-1-設定備份" class="headerlink" title="1.3.2.1. 設定備份"></a>1.3.2.1. 設定備份</h5><p><strong>步驟 1</strong></p>
+<p><img src="https://i.imgur.com/r4zsiep.png" alt="image-20240124133726128"></p>
+<p><strong>步驟 2</strong></p>
+<p><img src="https://i.imgur.com/Qo33UU0.png" alt="image-20240124133742424"></p>
+<p><strong>步驟 3</strong></p>
+<p><img src="https://i.imgur.com/b5Tdf4t.png" alt="image-20240124133829226"></p>
+<p><strong>步驟 4</strong></p>
+<p><img src="https://i.imgur.com/DOK9hbu.png" alt="image-20240124133845282"></p>
+<p><strong>步驟 5</strong></p>
+<p><img src="https://i.imgur.com/G3WhFaX.png" alt="image-20240124133900947"></p>
+<p><strong>步驟 6</strong></p>
+<p><img src="https://i.imgur.com/AShixzP.png" alt="image-20240124133918626"></p>
+<p><strong>步驟 7</strong></p>
+<p><img src="https://i.imgur.com/ZGGD9kL.png" alt="image-20240124133948068"></p>
+<p><strong>步驟 8</strong></p>
+<p><img src="https://i.imgur.com/Y3tgiZt.png" alt="image-20240124134014968"></p>
+<p><strong>步驟 9</strong></p>
+<p><img src="https://i.imgur.com/KcnTKNE.png" alt="image-20240124134034370"></p>
+<p><strong>步驟 10</strong></p>
+<p><img src="https://i.imgur.com/2wRlg3o.png" alt="image-20240124134049838"></p>
+<p><strong>步驟 11</strong></p>
+<p><img src="https://i.imgur.com/9WA3JM0.png" alt="image-20240124134254312"></p>
+<h5 id="1-3-2-2-清除備份"><a href="#1-3-2-2-清除備份" class="headerlink" title="1.3.2.2. 清除備份"></a>1.3.2.2. 清除備份</h5><p>保留 7 天備份檔案</p>
+<p><strong>步驟 1</strong></p>
+<p><img src="https://i.imgur.com/TaaZTYI.png" alt="image-20240124134810711"></p>
+<p><strong>步驟 2</strong></p>
+<p><img src="https://i.imgur.com/0uiId1l.png" alt="image-20240124134824144"></p>
+<p><strong>步驟 3</strong></p>
+<p><img src="https://i.imgur.com/zdRcvd4.png" alt="image-20240124134835369"></p>
+<p><strong>步驟 4</strong></p>
+<p><img src="https://i.imgur.com/evSyL5g.png" alt="image-20240124135148124"></p>
+<p><strong>步驟 5</strong></p>
+<p><img src="https://i.imgur.com/npPEFxO.png" alt="image-20240124134954969"></p>
+<p><strong>步驟 6</strong></p>
+<p><img src="https://i.imgur.com/Dfzml5c.png" alt="image-20240124135009939"></p>
+<p><strong>步驟 7</strong></p>
+<p><img src="https://i.imgur.com/9ubOboh.png" alt="image-20240124135036376"></p>
+<p><strong>步驟 8</strong></p>
+<p><img src="https://i.imgur.com/Z7KbstI.png" alt="image-20240124135254928"></p>
+<h5 id="1-3-2-3-備份結果"><a href="#1-3-2-3-備份結果" class="headerlink" title="1.3.2.3. 備份結果"></a>1.3.2.3. 備份結果</h5><p><img src="https://i.imgur.com/VW8UH9B.png" alt="image-20240124135343880"></p>
+<h3 id="1-4-MSSQL-資料庫還原"><a href="#1-4-MSSQL-資料庫還原" class="headerlink" title="1.4. MSSQL 資料庫還原"></a>1.4. MSSQL 資料庫還原</h3><p><strong>步驟1</strong></p>
+<p><img src="https://i.imgur.com/Yc8N1OY.png" alt="image-20240124142957369"></p>
+<p><strong>步驟2</strong></p>
+<p><img src="https://i.imgur.com/9lKApEy.png" alt="image-20240124143120100"></p>
+<p><strong>步驟3</strong></p>
+<p><img src="https://i.imgur.com/OHCwubQ.png" alt="image-20240124143300877"></p>
+<p><strong>步驟4</strong></p>
+<p><img src="https://i.imgur.com/SZvN5E2.png" alt="image-20240124143317403"></p>
+<p><strong>步驟5</strong></p>
+<p><img src="https://i.imgur.com/UFM4XFG.png" alt="image-20240124143335389"></p>
+]]></content>
+      <categories>
+        <category>Gitea</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>Gitea</tag>
+        <tag>MSSQL</tag>
+        <tag>定期備份</tag>
+        <tag>還原</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gitea與SQLSERVER定期備份</title>
+    <url>/2024/05/01/2024-05-01%20Gitea%E8%88%87SQLSERVER%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD/</url>
+    <content><![CDATA[<h2 id="1-Gitea與SQLSERVER定期備份"><a href="#1-Gitea與SQLSERVER定期備份" class="headerlink" title="1.Gitea與SQLSERVER定期備份"></a>1.Gitea與SQLSERVER定期備份</h2><h3 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1. 前言"></a>1.1. 前言</h3><p>架設<code>Gitea Server</code>時是搭配<code>MSSQL</code>。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的…</p>
 <p>並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。</p>
 <p>接下來，會以<code>gitea備份</code>與<code>維護計劃備份</code>進行筆記記錄。</p>
 <span id="more"></span>
