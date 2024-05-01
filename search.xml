@@ -9916,7 +9916,10 @@
   <entry>
     <title>Gitea與MSSQL備份與還原整理版</title>
     <url>/2024/05/01/2024-05-01%20Gitea%E8%88%87MSSQL%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F%E6%95%B4%E7%90%86%E7%89%88/</url>
-    <content><![CDATA[<h2 id="1-Gitea與MSSQL備份與還原整理版"><a href="#1-Gitea與MSSQL備份與還原整理版" class="headerlink" title="1. Gitea與MSSQL備份與還原整理版"></a>1. Gitea與MSSQL備份與還原整理版</h2><h3 id="1-1-Gitea-資料夾備份"><a href="#1-1-Gitea-資料夾備份" class="headerlink" title="1.1. Gitea 資料夾備份"></a>1.1. Gitea 資料夾備份</h3><h4 id="1-1-1-腳本路徑"><a href="#1-1-1-腳本路徑" class="headerlink" title="1.1.1. 腳本路徑"></a>1.1.1. 腳本路徑</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\bat\gitea_backup.bat</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="1-Gitea與MSSQL備份與還原整理版"><a href="#1-Gitea與MSSQL備份與還原整理版" class="headerlink" title="1. Gitea與MSSQL備份與還原整理版"></a>1. Gitea與MSSQL備份與還原整理版</h2><p>這篇筆記是包含備份與還原的筆記整理</p>
+<span id="more"></span>
+
+<h3 id="1-1-Gitea-資料夾備份"><a href="#1-1-Gitea-資料夾備份" class="headerlink" title="1.1. Gitea 資料夾備份"></a>1.1. Gitea 資料夾備份</h3><h4 id="1-1-1-腳本路徑"><a href="#1-1-1-腳本路徑" class="headerlink" title="1.1.1. 腳本路徑"></a>1.1.1. 腳本路徑</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\bat\gitea_backup.bat</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-1-2-腳本內容"><a href="#1-1-2-腳本內容" class="headerlink" title="1.1.2. 腳本內容"></a>1.1.2. 腳本內容</h4><p>此腳本可進行備份，並刪除 7 天前的檔案。</p>
 <p><code>gitea_backup.bat</code></p>
