@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記1.1. 前言架設Gitea Server時是搭配MSSQL。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的… 並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。 接下來，會以gitea備份與維護計劃備份進行筆記記錄">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄">
+<meta property="og:url" content="https://kitefree.github.io/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/index.html">
+<meta property="og:site_name" content="Kite的筆記">
+<meta property="og:description" content="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記1.1. 前言架設Gitea Server時是搭配MSSQL。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的… 並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。 接下來，會以gitea備份與維護計劃備份進行筆記記錄">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/fEQ81Zd.png">
+<meta property="og:image" content="https://i.imgur.com/PVGx6Ga.png">
+<meta property="og:image" content="https://i.imgur.com/usFWl1A.png">
+<meta property="og:image" content="https://i.imgur.com/uH0csmX.png">
+<meta property="og:image" content="https://i.imgur.com/DurvOPy.png">
+<meta property="og:image" content="https://i.imgur.com/f86A5fD.png">
+<meta property="og:image" content="https://i.imgur.com/SQjaQ6k.png">
+<meta property="og:image" content="https://i.imgur.com/qleGjXY.png">
+<meta property="og:image" content="https://i.imgur.com/FsLLXxC.png">
+<meta property="og:image" content="https://i.imgur.com/nqkTGDQ.png">
+<meta property="og:image" content="https://i.imgur.com/76CCuqG.png">
+<meta property="og:image" content="https://i.imgur.com/8wpMGbP.png">
+<meta property="og:image" content="https://i.imgur.com/R5AdLPJ.png">
+<meta property="og:image" content="https://i.imgur.com/fY5JKr0.png">
+<meta property="og:image" content="https://i.imgur.com/6jdndZG.png">
+<meta property="article:published_time" content="2024-05-01T09:01:00.000Z">
+<meta property="article:modified_time" content="2024-05-01T09:07:02.027Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Gitea">
+<meta property="article:tag" content="MSSQL">
+<meta property="article:tag" content="定期備份">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/fEQ81Zd.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄 | Kite的筆記</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kite的筆記</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2024/05/01/2024-05-01%20SQLSERVER%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2024-05-01 17:01:00 / 修改時間：17:07:02" itemprop="dateCreated datePublished" datetime="2024-05-01T17:01:00+08:00">2024-05-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Gitea/" itemprop="url" rel="index"><span itemprop="name">Gitea</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>7 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-Gitea-定期備份-與-SQLSERVER-定期備份筆記"><a href="#1-Gitea-定期備份-與-SQLSERVER-定期備份筆記" class="headerlink" title="1. Gitea 定期備份 與 SQLSERVER 定期備份筆記"></a>1. Gitea 定期備份 與 SQLSERVER 定期備份筆記</h2><h3 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1. 前言"></a>1.1. 前言</h3><p>架設<code>Gitea Server</code>時是搭配<code>MSSQL</code>。同時研究gitea內鍵備份功能中，發現備份方式是以SQL指令進行備份，這個部分預期的結果不會是我想要的…</p>
+<p>並試著還原…還原過程不是很順暢，如果災害發生時，時間通常較為緊急。所以，才想到要搭配維護計畫的方式進行資料庫備份。</p>
+<p>接下來，會以<code>gitea備份</code>與<code>維護計劃備份</code>進行筆記記錄。</p>
+<span id="more"></span>
+
+<h3 id="1-2-Gitea-定期備份"><a href="#1-2-Gitea-定期備份" class="headerlink" title="1.2. Gitea 定期備份"></a>1.2. Gitea 定期備份</h3><h4 id="1-2-1-Gitea-備份指令"><a href="#1-2-1-Gitea-備份指令" class="headerlink" title="1.2.1. Gitea 備份指令"></a>1.2.1. Gitea 備份指令</h4><p>在使用<code>gitea dump</code>指令時，請先關閉gitea服務，備份時command line 才不會噴錯誤，指令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\gitea&gt;gitea dump</span><br></pre></td></tr></table></figure>
+
+<p>執行後結果如下：</p>
+<p><img src="https://i.imgur.com/fEQ81Zd.png" alt="image-20240103093416807"></p>
+<p>在c槽會看到一個壓縮檔</p>
+<p><img src="https://i.imgur.com/PVGx6Ga.png" alt="image-20240103093513456"></p>
+<p>解壓縮內容如下</p>
+<p><img src="https://i.imgur.com/usFWl1A.png" alt="image-20240103093635864"></p>
+<p>打開<code>gitea-db.sql</code>查看</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Generated by xorm 2024-01-03 09:22:54, from mssql to mssql*/</span></span><br><span class="line"></span><br><span class="line">IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> [name] <span class="keyword">FROM</span> sys.tables <span class="keyword">WHERE</span> [name] <span class="operator">=</span> <span class="string">&#x27;[oauth2_application]&#x27;</span> ) <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [oauth2_application] ([id] <span class="type">BIGINT</span> <span class="keyword">PRIMARY</span> KEY <span class="keyword">IDENTITY</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, [uid] <span class="type">BIGINT</span> <span class="keyword">NULL</span>, [name] NVARCHAR(<span class="number">255</span>) <span class="keyword">NULL</span>, [client_id] NVARCHAR(<span class="number">255</span>) <span class="keyword">NULL</span>, [client_secret] NVARCHAR(<span class="number">255</span>) <span class="keyword">NULL</span>, [confidential_client] BIT <span class="keyword">DEFAULT</span> <span class="number">1</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, [redirect_uris] NVARCHAR(MAX) <span class="keyword">NULL</span>, [created_unix] <span class="type">BIGINT</span> <span class="keyword">NULL</span>, [updated_unix] <span class="type">BIGINT</span> <span class="keyword">NULL</span>);</span><br><span class="line"><span class="keyword">SET</span> IDENTITY_INSERT [oauth2_application] <span class="keyword">ON</span>;</span><br><span class="line"><span class="keyword">CREATE</span> INDEX [IDX_oauth2_application_uid] <span class="keyword">ON</span> [oauth2_application] ([uid]);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX [UQE_oauth2_application_client_id] <span class="keyword">ON</span> [oauth2_application] ([client_id]);</span><br><span class="line"><span class="keyword">CREATE</span> INDEX [IDX_oauth2_application_created_unix] <span class="keyword">ON</span> [oauth2_application] ([created_unix]);</span><br><span class="line"><span class="keyword">CREATE</span> INDEX [IDX_oauth2_application_updated_unix] <span class="keyword">ON</span> [oauth2_application] ([updated_unix]);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> [oauth2_application] ([id], [uid], [name], [client_id], [client_secret], [confidential_client], [redirect_uris], [created_unix], [updated_unix]) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">0</span>,N<span class="string">&#x27;Git Credential Manager&#x27;</span>,N<span class="string">&#x27;e90ee53c-94e2-48ac-9358-a874fb9e0662&#x27;</span>,<span class="string">&#x27;&#x27;</span>,<span class="number">0</span>,N<span class="string">&#x27;[&quot;http://127.0.0.1&quot;,&quot;https://127.0.0.1&quot;]&#x27;</span>,<span class="number">1704186188</span>,<span class="number">1704186188</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> [oauth2_application] ([id], [uid], [name], [client_id], [client_secret], [confidential_client], [redirect_uris], [created_unix], [updated_unix]) <span class="keyword">VALUES</span> (<span class="number">2</span>,<span class="number">0</span>,N<span class="string">&#x27;git-credential-oauth&#x27;</span>,N<span class="string">&#x27;a4792ccc-144e-407e-86c9-5e7d8d9c3269&#x27;</span>,<span class="string">&#x27;&#x27;</span>,<span class="number">0</span>,N<span class="string">&#x27;[&quot;http://127.0.0.1&quot;,&quot;https://127.0.0.1&quot;]&#x27;</span>,<span class="number">1704186188</span>,<span class="number">1704186188</span>);</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-2-撰寫BAT腳本"><a href="#1-2-2-撰寫BAT腳本" class="headerlink" title="1.2.2. 撰寫BAT腳本"></a>1.2.2. 撰寫BAT腳本</h4><p><code>gitea_backup.bat</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">REM 更改當前的字符編碼頁（code page）。而 65001 是 Unicode UTF-8 的字符編碼頁。</span><br><span class="line">chcp 65001</span><br><span class="line"></span><br><span class="line">REM 停止gitea</span><br><span class="line">sc.exe stop gitea</span><br><span class="line"></span><br><span class="line">REM 睡10秒，讓gitea可以順利休眠完畢再執行備份。秒數可調</span><br><span class="line"><span class="built_in">timeout</span> /t 10</span><br><span class="line"></span><br><span class="line">REM 設定備份目的路徑</span><br><span class="line"><span class="built_in">set</span> backup_directory=<span class="string">&quot;C:\Backup\Gitea&quot;</span></span><br><span class="line"></span><br><span class="line">REM 設定檔案格式</span><br><span class="line"><span class="built_in">set</span> yyyyMMdd=%<span class="built_in">date</span>:~3,4%%<span class="built_in">date</span>:~8,2%%<span class="built_in">date</span>:~11,2%</span><br><span class="line"></span><br><span class="line">REM 使用gitea dump 指令進行備份</span><br><span class="line">C:\gitea\gitea dump --file <span class="string">&quot;%backup_directory%\%yyyyMMdd%&quot;</span></span><br><span class="line"></span><br><span class="line">REM 睡10秒，讓gitea可以順利備份完後，再執行啟動。秒數可調</span><br><span class="line"><span class="built_in">timeout</span> /t 10</span><br><span class="line"></span><br><span class="line">REM 啟動gitea</span><br><span class="line">sc.exe start gitea</span><br><span class="line"></span><br><span class="line">REM 刪除7天前的檔案</span><br><span class="line">forfiles /p %backup_directory% /s /m *.zip /d -7 /c <span class="string">&quot;cmd /c del @file&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>延伸學習</p>
+<blockquote>
+<p>forfiles &#x2F;p C:\Backup\Gitea\ &#x2F;s &#x2F;m *.zip &#x2F;d -7 &#x2F;c “cmd &#x2F;c echo @file the zip file is over 7days”</p>
+</blockquote>
+<p>以上指令會print出符合刪除條件的檔案</p>
+<h4 id="1-2-3-造假資料測試備份運行結果"><a href="#1-2-3-造假資料測試備份運行結果" class="headerlink" title="1.2.3. 造假資料測試備份運行結果"></a>1.2.3. 造假資料測試備份運行結果</h4><p>這邊造假了好幾個zip檔案如下：</p>
+<p><img src="https://i.imgur.com/uH0csmX.png" alt="image-20240103113004435"></p>
+<p>因為<code>forfiles</code>指令會看建立日期，因此再透過以下指令(powershell)，修改檔案的日期：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span>(<span class="built_in">Get-Item</span> C:\Backup\Gitea\<span class="number">20231226</span>.zip).creationtime=<span class="variable">$</span>(<span class="built_in">Get-Date</span> <span class="string">&quot;12/26/2023&quot;</span>)</span><br><span class="line"><span class="variable">$</span>(<span class="built_in">Get-Item</span> C:\Backup\Gitea\<span class="number">20231226</span>.zip).lastaccesstime=<span class="variable">$</span>(<span class="built_in">Get-Date</span> <span class="string">&quot;12/26/2023&quot;</span>)</span><br><span class="line"><span class="variable">$</span>(<span class="built_in">Get-Item</span> C:\Backup\Gitea\<span class="number">20231226</span>.zip).lastwritetime=<span class="variable">$</span>(<span class="built_in">Get-Date</span> <span class="string">&quot;12/26/2023&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>不過，這個備份檔還是有一些其它以檔案形式存在的資料，之後還原還是會用到，記得之後再設定排程定期備份。</p>
+<h3 id="1-3-維護計畫定期備份"><a href="#1-3-維護計畫定期備份" class="headerlink" title="1.3. 維護計畫定期備份"></a>1.3. 維護計畫定期備份</h3><h4 id="1-3-1-安裝資訊"><a href="#1-3-1-安裝資訊" class="headerlink" title="1.3.1. 安裝資訊"></a>1.3.1. 安裝資訊</h4><ul>
+<li>SQLSERVER 2022 Developer版</li>
+<li>SSMS 19.2</li>
+</ul>
+<h4 id="1-3-2-確認版本"><a href="#1-3-2-確認版本" class="headerlink" title="1.3.2. 確認版本"></a>1.3.2. 確認版本</h4><p><img src="https://i.imgur.com/DurvOPy.png" alt="image-20240103085339474"></p>
+<h4 id="1-3-3-勾選Integration-Services"><a href="#1-3-3-勾選Integration-Services" class="headerlink" title="1.3.3. 勾選Integration Services"></a>1.3.3. 勾選Integration Services</h4><p><img src="https://i.imgur.com/f86A5fD.png" alt="image-20240103085542055"></p>
+<p>因為之前已經安裝過了，所以上圖看起來已經是預設打勾，無法取消勾選。簡單來說，這項要勾。</p>
+<h4 id="1-3-4-連線至新個體"><a href="#1-3-4-連線至新個體" class="headerlink" title="1.3.4. 連線至新個體"></a>1.3.4. 連線至新個體</h4><p>使用瀏覽其他</p>
+<p><img src="https://i.imgur.com/SQjaQ6k.png" alt="image-20240103094320630"></p>
+<p>資料庫引擎下，就會看到剛剛新增的個體</p>
+<p><img src="https://i.imgur.com/qleGjXY.png" alt="image-20240103094436800"></p>
+<h4 id="1-3-5-SSMS工具確認維護計劃選項"><a href="#1-3-5-SSMS工具確認維護計劃選項" class="headerlink" title="1.3.5. SSMS工具確認維護計劃選項"></a>1.3.5. SSMS工具確認維護計劃選項</h4><p>在<code>developer</code>版本下，並且在之前有勾選<code>Integration Services</code>安裝，正常在這邊就會看到下圖的選項<code>維護計畫</code></p>
+<p><img src="https://i.imgur.com/FsLLXxC.png" alt="image-20240103085850724"></p>
+<h4 id="1-3-6-確認啟動SQL-Server-Agent"><a href="#1-3-6-確認啟動SQL-Server-Agent" class="headerlink" title="1.3.6. 確認啟動SQL Server Agent"></a>1.3.6. 確認啟動SQL Server Agent</h4><p>在使用<code>維護計畫</code>功能時，請先確認<code>SQL Server Agent</code>是否有啟動</p>
+<p><img src="https://i.imgur.com/nqkTGDQ.png" alt="image-20240103090759304"></p>
+<h4 id="1-3-7-服務啟動設定確認"><a href="#1-3-7-服務啟動設定確認" class="headerlink" title="1.3.7. 服務啟動設定確認"></a>1.3.7. 服務啟動設定確認</h4><p>同樣，再次檢查服務這邊是否有啟動</p>
+<p><img src="https://i.imgur.com/76CCuqG.png" alt="image-20240103091057493"></p>
+<h4 id="1-3-8-維護計劃備份"><a href="#1-3-8-維護計劃備份" class="headerlink" title="1.3.8. 維護計劃備份"></a>1.3.8. 維護計劃備份</h4><p>設定定期每日備份</p>
+<p><img src="https://i.imgur.com/8wpMGbP.png" alt="image-20240103091625187"></p>
+<h4 id="1-3-9-維護計劃清除"><a href="#1-3-9-維護計劃清除" class="headerlink" title="1.3.9. 維護計劃清除"></a>1.3.9. 維護計劃清除</h4><p>定期清除，僅保留7天，可以透過這個方式達成。</p>
+<p><img src="https://i.imgur.com/R5AdLPJ.png" alt="image-20240103092146200"></p>
+<p>下圖是維護清除工作的設定細項，其中可以看到可以設定7天的選項</p>
+<p><img src="https://i.imgur.com/fY5JKr0.png" alt="image-20240103092023146"></p>
+<h4 id="1-3-10-確認備份結果"><a href="#1-3-10-確認備份結果" class="headerlink" title="1.3.10. 確認備份結果"></a>1.3.10. 確認備份結果</h4><p>可以看到有一個名字很常的，副檔名為bak的就是我們的備份檔案囉，如下：</p>
+<p><img src="https://i.imgur.com/6jdndZG.png" alt="image-20240103095305344"></p>
+<h3 id="1-4-參考連結"><a href="#1-4-參考連結" class="headerlink" title="1.4. 參考連結"></a>1.4. 參考連結</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10282099">SQL Server 每日定期備份與定期刪除舊有備份檔</a><ul>
+<li>這篇有詳細的截圖教如何設定維護計畫</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://blog.miniasp.com/post/2009/06/24/Sleep-command-in-Batch">如何在批次檔(Batch)中實現 sleep 命令讓任務暫停執行 n 秒</a><ul>
+<li>參考保哥的文章說明</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://itorz324.blogspot.com/2020/05/windows-command-forfiles.html">forfiles Command 教學 | 教你使用forfiles 尋找及刪除過期的檔案</a><ul>
+<li>這篇針對forfiles的說明很有幫助</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://new.atsit.in/bc/posts/673614104/">如何使用 PowerShell 變更建立日期、存取日期和修改日期屬性</a><ul>
+<li>從這篇參考修改日期的方法</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/Gitea/" rel="tag"># Gitea</a>
+              <a href="/tags/MSSQL/" rel="tag"># MSSQL</a>
+              <a href="/tags/%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD/" rel="tag"># 定期備份</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/20/2024-01-20%20ASP.NET%E3%80%81NetCoreAPI%E6%95%B4%E5%90%88reCAPTCHA%20V2%E8%A8%98%E9%8C%84/" rel="prev" title="ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄">
+      <i class="fa fa-chevron-left"></i> ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Gitea-%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD-%E8%88%87-SQLSERVER-%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD%E7%AD%86%E8%A8%98"><span class="nav-text">1. Gitea 定期備份 與 SQLSERVER 定期備份筆記</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%89%8D%E8%A8%80"><span class="nav-text">1.1. 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Gitea-%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD"><span class="nav-text">1.2. Gitea 定期備份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-Gitea-%E5%82%99%E4%BB%BD%E6%8C%87%E4%BB%A4"><span class="nav-text">1.2.1. Gitea 備份指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E6%92%B0%E5%AF%ABBAT%E8%85%B3%E6%9C%AC"><span class="nav-text">1.2.2. 撰寫BAT腳本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E9%80%A0%E5%81%87%E8%B3%87%E6%96%99%E6%B8%AC%E8%A9%A6%E5%82%99%E4%BB%BD%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C"><span class="nav-text">1.2.3. 造假資料測試備份運行結果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E7%B6%AD%E8%AD%B7%E8%A8%88%E7%95%AB%E5%AE%9A%E6%9C%9F%E5%82%99%E4%BB%BD"><span class="nav-text">1.3. 維護計畫定期備份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-%E5%AE%89%E8%A3%9D%E8%B3%87%E8%A8%8A"><span class="nav-text">1.3.1. 安裝資訊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-%E7%A2%BA%E8%AA%8D%E7%89%88%E6%9C%AC"><span class="nav-text">1.3.2. 確認版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-%E5%8B%BE%E9%81%B8Integration-Services"><span class="nav-text">1.3.3. 勾選Integration Services</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4-%E9%80%A3%E7%B7%9A%E8%87%B3%E6%96%B0%E5%80%8B%E9%AB%94"><span class="nav-text">1.3.4. 連線至新個體</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-5-SSMS%E5%B7%A5%E5%85%B7%E7%A2%BA%E8%AA%8D%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E9%81%B8%E9%A0%85"><span class="nav-text">1.3.5. SSMS工具確認維護計劃選項</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-6-%E7%A2%BA%E8%AA%8D%E5%95%9F%E5%8B%95SQL-Server-Agent"><span class="nav-text">1.3.6. 確認啟動SQL Server Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-7-%E6%9C%8D%E5%8B%99%E5%95%9F%E5%8B%95%E8%A8%AD%E5%AE%9A%E7%A2%BA%E8%AA%8D"><span class="nav-text">1.3.7. 服務啟動設定確認</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-8-%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E5%82%99%E4%BB%BD"><span class="nav-text">1.3.8. 維護計劃備份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-9-%E7%B6%AD%E8%AD%B7%E8%A8%88%E5%8A%83%E6%B8%85%E9%99%A4"><span class="nav-text">1.3.9. 維護計劃清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-10-%E7%A2%BA%E8%AA%8D%E5%82%99%E4%BB%BD%E7%B5%90%E6%9E%9C"><span class="nav-text">1.3.10. 確認備份結果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-text">1.4. 參考連結</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">417k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">12:39</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
