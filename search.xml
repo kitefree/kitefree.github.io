@@ -10118,6 +10118,8 @@
     <url>/2024/11/04/2024-06-11%20CLT%E8%AA%8D%E7%9F%A5%E8%B2%A0%E8%8D%B7%E7%90%86%E8%AB%96/</url>
     <content><![CDATA[<h2 id="深度理解"><a href="#深度理解" class="headerlink" title="深度理解"></a>深度理解</h2><p>如何達到深度理解？</p>
 <p>首先先了解什麼是<code>理解</code></p>
+<span id="more"></span>
+
 <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>理解 VS 記憶</p>
 <p>我們面對一個複雜的問題，我們之所以沒有辦法達成理解，一個很基礎性的原因是我們的腦子不夠用(工作記憶容量限制)。</p>
 <p>為什麼有些專家能想清楚更複雜的事情呢？</p>
@@ -10128,13 +10130,13 @@
 <p>需要親手寫下它，需要5~7歲</p>
 <h2 id="刻意練習"><a href="#刻意練習" class="headerlink" title="刻意練習"></a>刻意練習</h2><p>Anders Ericsson</p>
 <p>將與完成任務有關的心理表徵保存在長期記憶中。</p>
-<p><img src="/./assets/image-20240611103712212.png" alt="image-20240611103712212"></p>
-<p><img src="/./assets/image-20240611103842564.png" alt="image-20240611103842564"></p>
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20240611103712212.png" alt="image-20240611103712212"></p>
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20240611103842564.png" alt="image-20240611103842564"></p>
 <h2 id="前知識"><a href="#前知識" class="headerlink" title="前知識"></a>前知識</h2><p>長時記憶中的組塊其實就是這些前知識</p>
-<p><img src="/./assets/image-20240611104014245.png" alt="image-20240611104014245"></p>
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20240611104014245.png" alt="image-20240611104014245"></p>
 <p>工作記憶是整個理解鏈路上的幾乎是唯一的瓶頸。</p>
 <p>基於工作記憶的階導致的理解困難，學者創了一套理論「認知負荷理論」</p>
-<p><img src="/./assets/image-20240611104345899.png" alt="image-20240611104345899"></p>
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20240611104345899.png" alt="image-20240611104345899"></p>
 ]]></content>
       <categories>
         <category>學習</category>
@@ -10148,6 +10150,8 @@
     <url>/2024/11/04/2024-11-04%20Looker%20Studio/</url>
     <content><![CDATA[<h2 id="複製樣式"><a href="#複製樣式" class="headerlink" title="複製樣式"></a>複製樣式</h2><p>圖表之間可以複製樣式</p>
 <p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/202409171213.gif" alt="202409171213"></p>
+<span id="more"></span>
+
 <h2 id="圖表樣式"><a href="#圖表樣式" class="headerlink" title="圖表樣式"></a>圖表樣式</h2><p>透過樣式設定，讓該欄資訊擁有<code>熱點圖</code>效果、<code>長條圖</code>效果、<code>顯示號碼</code>效果、<code>密集數字</code>效果</p>
 <p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/%E5%8B%95%E7%95%AB02.gif" alt="動畫02"></p>
 <h2 id="交叉篩選"><a href="#交叉篩選" class="headerlink" title="交叉篩選"></a>交叉篩選</h2><p>啟用交叉篩選功能，讓圖表之間依據<code>點擊</code>該列示為條件，動態重新計算其它圖表進行呈現。</p>
