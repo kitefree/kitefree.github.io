@@ -189,6 +189,331 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/08/13/2021-08-13%207zip%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/13/2021-08-13%207zip%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">7zip 常用指令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-08-13 11:06:00" itemprop="dateCreated datePublished" datetime="2021-08-13T11:06:00+08:00">2021-08-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:53:30" itemprop="dateModified" datetime="2023-12-31T22:53:30+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/7zip/" itemprop="url" rel="index"><span itemprop="name">7zip</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="0-1-排除特定類型的檔案不要進壓縮檔"><a href="#0-1-排除特定類型的檔案不要進壓縮檔" class="headerlink" title="0.1. 排除特定類型的檔案不要進壓縮檔"></a>0.1. 排除特定類型的檔案不要進壓縮檔</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z a dir1.zip &quot;dir1\&quot; &quot;-xr!*.pdb&quot; &quot;-xr!web.config&quot;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\dir2\*&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-2-指定壓縮檔案類型"><a href="#0-2-指定壓縮檔案類型" class="headerlink" title="0.2. 指定壓縮檔案類型"></a>0.2. 指定壓縮檔案類型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot; -r &quot;dir1\*.aspx&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-3-指定多個壓縮檔案類型"><a href="#0-3-指定多個壓縮檔案類型" class="headerlink" title="0.3. 指定多個壓縮檔案類型"></a>0.3. 指定多個壓縮檔案類型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot; -r &quot;dir1\*.aspx&quot; &quot;dir1\*.dll&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-4-加入密碼"><a href="#0-4-加入密碼" class="headerlink" title="0.4. 加入密碼"></a>0.4. 加入密碼</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1/&quot; -p&quot;1q2w3e4r&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z a &quot;dir1.7z&quot; &quot;dir1/&quot; -p&quot;1q2w3e4r&quot;  -mhe</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>檔名一起加密，必須輸入完密碼後，才能看到裡面檔案名稱</p>
+</blockquote>
+<h2 id="1-unzip"><a href="#1-unzip" class="headerlink" title="1. unzip"></a>1. unzip</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot; -o&quot;dir1&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此寫法可解決路徑有空白的問題</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot; -o&quot;C:\Program Files\&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：在 -o 與 Path 中間不能有任何空白字元！</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z e &quot;dir1.zip&quot; -o&quot;dir1&quot; -r &quot;*.js&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解壓縮指定類型檔案</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z e &quot;dir1.zip&quot; -o&quot;dir1&quot; -r &quot;*.dll&quot; -y</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果不想提示直接覆蓋，可以加上 -y 參數</p>
+</blockquote>
+<h2 id="2-其它"><a href="#2-其它" class="headerlink" title="2. 其它"></a>2. 其它</h2><h3 id="2-1-列出所有檔案清單"><a href="#2-1-列出所有檔案清單" class="headerlink" title="2.1. 列出所有檔案清單"></a>2.1. 列出所有檔案清單</h3><p>我們在自動化的過程中可能會需要先知道壓縮檔中有什麼檔案，此時可以利用 7z 的 l (List) 命令達成這個目的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z l &quot;dir1.zip&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-參考連結"><a href="#3-參考連結" class="headerlink" title="3. 參考連結"></a>3. 參考連結</h2><p><a target="_blank" rel="noopener" href="https://blog.miniasp.com/post/2021/07/07/Useful-7-Zip-7z-CLI-Command-Options?fbclid=IwAR0AF7VqcBB55W2P4jUy-X5rmciWIVIY9mWPa6XsM6FiJwAUvQDZ9uQ8UZ8">分享幾個常用的 7-Zip 壓縮與解壓縮命令</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/08/12/2021-08-12%20Phaser%20%E6%95%99%E5%AD%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/12/2021-08-12%20Phaser%20%E6%95%99%E5%AD%B8/" class="post-title-link" itemprop="url">Phaser 教學</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-08-12 08:35:00" itemprop="dateCreated datePublished" datetime="2021-08-12T08:35:00+08:00">2021-08-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:53:49" itemprop="dateModified" datetime="2023-12-31T22:53:49+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Phaser/" itemprop="url" rel="index"><span itemprop="name">Phaser</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>9.7k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>18 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Phaser-是什麼"><a href="#1-Phaser-是什麼" class="headerlink" title="1. Phaser 是什麼"></a>1. Phaser 是什麼</h2><ul>
+<li>一個快速、免費、開源的H5遊戲框架</li>
+<li>支持WEBGL和Canvas兩種渲染方式，並支持桌面和移動web瀏覽器</li>
+<li>甚至可以使用第三方工具編譯打包成ios、android和桌面app</li>
+<li>phaser CE 與 phaser3</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/12/2021-08-12%20Phaser%20%E6%95%99%E5%AD%B8/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/07/22/2021-07-22%20MYSQL%20%E9%81%A0%E7%AB%AF%E9%80%A3%E7%B7%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/22/2021-07-22%20MYSQL%20%E9%81%A0%E7%AB%AF%E9%80%A3%E7%B7%9A/" class="post-title-link" itemprop="url">MYSQL 遠端連線</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-07-22 17:00:00" itemprop="dateCreated datePublished" datetime="2021-07-22T17:00:00+08:00">2021-07-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:54:04" itemprop="dateModified" datetime="2023-12-31T22:54:04+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MYSQL/" itemprop="url" rel="index"><span itemprop="name">MYSQL</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>561</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>自己用VMware workstation pro run 了2個 win10 虛擬機進行實驗，跑以下流程來練習自己設定資料庫遠端連線的設定。</p>
+<ol>
+<li><p>開啟 Port 3306</p>
+<p> MySQL 預設的 Port 是 3306，必須先開啟伺服器的連接埠，並確認防火牆的設定。尤其如果是建立在 GCP、AWS等雲端伺服器上，也要同時確認專案的防火牆設定。</p>
+</li>
+<li><p>建立使用者名稱及密碼</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;PASSWORD&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>給定使用者存取權限</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="operator">&gt;</span> <span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> database_name.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新載入使用者權限設定</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>改程式DB connection</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$GLOBALS[<span class="string">&#x27;db&#x27;</span>] <span class="operator">=</span> <span class="keyword">new</span> db(<span class="string">&#x27;mysql:host=192.168.152.128;dbname=exam2018&#x27;</span>,<span class="string">&#x27;kite&#x27;</span>,<span class="string">&#x27;0000&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="https://i.imgur.com/qlAcY4V.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/07/22/2021-07-22%20VMware%20workstation%20Pro%20%E8%88%87%20windows%20server%202016%20%E5%95%8F%E9%A1%8C%E8%A8%98%E9%8C%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -882,296 +1207,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/30/2021-05-30%20%E4%BB%80%E9%BA%BC%E6%98%AF%E8%B2%A0%E8%BC%89%E5%B9%B3%E8%A1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/30/2021-05-30%20%E4%BB%80%E9%BA%BC%E6%98%AF%E8%B2%A0%E8%BC%89%E5%B9%B3%E8%A1%A1/" class="post-title-link" itemprop="url">什麼是負載平衡?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-05-30 09:39:00" itemprop="dateCreated datePublished" datetime="2021-05-30T09:39:00+08:00">2021-05-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 22:55:45" itemprop="dateModified" datetime="2023-12-31T22:55:45+08:00">2023-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B2%A0%E8%BC%89%E5%B9%B3%E8%A1%A1/" itemprop="url" rel="index"><span itemprop="name">負載平衡</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>400</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-什麼是負載平衡"><a href="#1-什麼是負載平衡" class="headerlink" title="1. 什麼是負載平衡?"></a>1. 什麼是負載平衡?</h3><ul>
-<li><p>頻寬管理</p>
-<ul>
-<li>LAN Load Balance</li>
-<li>WAN Load Balance<br>  WAN Load Balance（WLB），一般也稱為Multi-Homing設備。當企業對外線路有兩條以上的時候，WLB就可以擔負起網際網路（Internet）與內部網路（Intranet）之間多條連外線路流量平衡的工作。 LAN Load Balance針對區域網路，設置在封包類別較複雜的節點，有助於調整、控制封包的進出順序。</li>
-</ul>
-</li>
-<li><p>應用管理</p>
-<ul>
-<li>Server Load Balance<br>  Server Load Balance（SLB）是最早發展的一塊，其功能在於將企業內多部伺服器的負載量作平衡，將過大流量轉向相同功能的其他伺服器，讓每一部伺服器工作量維持平均，保持服務不因流量過大而變慢或中斷。SLB主要應用在入口端的網頁分流，透過SLB轉址到各個伺服器，平均分配網路流量。</li>
-</ul>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.ithome.com.tw/node/26592">ITHOME-什麼是負載平衡？</a></p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/29/2021-05-29%20%E6%87%89%E7%94%A8%E6%9E%B6%E6%A7%8B%E5%AD%B8%E7%BF%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/2021-05-29%20%E6%87%89%E7%94%A8%E6%9E%B6%E6%A7%8B%E5%AD%B8%E7%BF%92/" class="post-title-link" itemprop="url">應用架構學習</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-05-29 19:17:00" itemprop="dateCreated datePublished" datetime="2021-05-29T19:17:00+08:00">2021-05-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 22:56:39" itemprop="dateModified" datetime="2023-12-31T22:56:39+08:00">2023-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%87%89%E7%94%A8%E6%9E%B6%E6%A7%8B/" itemprop="url" rel="index"><span itemprop="name">應用架構</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>4 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-最簡單架構"><a href="#1-最簡單架構" class="headerlink" title="1. 最簡單架構"></a>1. 最簡單架構</h2><p>剛開始應用沒有太多訪問量，所以只需要一台服務器<br><img src="https://i.imgur.com/FWy7Rin.png"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/29/2021-05-29%20%E6%87%89%E7%94%A8%E6%9E%B6%E6%A7%8B%E5%AD%B8%E7%BF%92/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/" class="post-title-link" itemprop="url">21天Bootstrap5新手實戰營-格式系統(上)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-05-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 23:41:13" itemprop="dateModified" datetime="2023-12-31T23:41:13+08:00">2023-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS-FrameWork/" itemprop="url" rel="index"><span itemprop="name">CSS FrameWork</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS-FrameWork/Bootstrap5/" itemprop="url" rel="index"><span itemprop="name">Bootstrap5</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>3 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-活動連結"><a href="#1-活動連結" class="headerlink" title="1. 活動連結"></a>1. 活動連結</h2><p><a target="_blank" rel="noopener" href="https://hackmd.io/@YmcMgo-NSKOqgTGAjl_5tg/ryar-vGOd/%2FNdGKchTeRBqbkTMiQ2HSmw">21 天帶您做出 Bootstrap 5 募資網站</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8A)/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1241,20 +1276,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">134</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">117</span>
+        <span class="site-state-item-count">121</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1290,12 +1325,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">418k</span>
+    <span title="總字數">423k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:41</span>
+    <span title="所需總閱讀時間">12:49</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

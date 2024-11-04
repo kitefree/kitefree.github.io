@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在網頁設計中，提醒用戶網路離線的最佳方式應該是簡潔、明確且不干擾用戶體驗。以下是一些設計建議： 1. 顯示明確的離線提示在頁面上方或底部顯示一個橫幅，告知用戶他們已經離線。這個橫幅應該易於識別並且包含明確的文字提示，例如「您目前處於離線狀態」。 2. 使用顏色和圖標利用顏色（如紅色或橙色）和圖標（如斷開的Wi-Fi圖標或感嘆號）來強調離線狀態。這可以幫助用戶更快速地注意到提示。 3. 動態檢測網路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS網路監控">
+<meta property="og:url" content="https://kitefree.github.io/2024/05/29/2024-05-29%20JS%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%8E%A7/index.html">
+<meta property="og:site_name" content="Kite的筆記">
+<meta property="og:description" content="在網頁設計中，提醒用戶網路離線的最佳方式應該是簡潔、明確且不干擾用戶體驗。以下是一些設計建議： 1. 顯示明確的離線提示在頁面上方或底部顯示一個橫幅，告知用戶他們已經離線。這個橫幅應該易於識別並且包含明確的文字提示，例如「您目前處於離線狀態」。 2. 使用顏色和圖標利用顏色（如紅色或橙色）和圖標（如斷開的Wi-Fi圖標或感嘆號）來強調離線狀態。這可以幫助用戶更快速地注意到提示。 3. 動態檢測網路">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20240529095314145.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20240529095409295.png">
+<meta property="article:published_time" content="2024-05-29T01:51:00.000Z">
+<meta property="article:modified_time" content="2024-05-29T09:34:18.000Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20240529095314145.png">
+
+<link rel="canonical" href="https://kitefree.github.io/2024/05/29/2024-05-29%20JS%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%8E%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>JS網路監控 | Kite的筆記</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kite的筆記</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2024/05/29/2024-05-29%20JS%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%8E%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS網路監控
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2024-05-29 09:51:00 / 修改時間：17:34:18" itemprop="dateCreated datePublished" datetime="2024-05-29T09:51:00+08:00">2024-05-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>5 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在網頁設計中，提醒用戶網路離線的最佳方式應該是簡潔、明確且不干擾用戶體驗。以下是一些設計建議：</p>
+<h3 id="1-顯示明確的離線提示"><a href="#1-顯示明確的離線提示" class="headerlink" title="1. 顯示明確的離線提示"></a>1. 顯示明確的離線提示</h3><p>在頁面上方或底部顯示一個橫幅，告知用戶他們已經離線。這個橫幅應該易於識別並且包含明確的文字提示，例如「您目前處於離線狀態」。</p>
+<h3 id="2-使用顏色和圖標"><a href="#2-使用顏色和圖標" class="headerlink" title="2. 使用顏色和圖標"></a>2. 使用顏色和圖標</h3><p>利用顏色（如紅色或橙色）和圖標（如斷開的Wi-Fi圖標或感嘆號）來強調離線狀態。這可以幫助用戶更快速地注意到提示。</p>
+<h3 id="3-動態檢測網路狀態"><a href="#3-動態檢測網路狀態" class="headerlink" title="3. 動態檢測網路狀態"></a>3. 動態檢測網路狀態</h3><p>實現動態檢測，用戶重新連接網路時，自動更新提示信息。例如，使用JavaScript的 <code>navigator.onLine</code> 屬性和 <code>online</code>&#x2F;<code>offline</code> 事件來檢測網路狀態變化。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;offline&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">innerText</span> = <span class="string">&#x27;您目前處於離線狀態&#x27;</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;block&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;online&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">innerText</span> = <span class="string">&#x27;您已重新連接網路&#x27;</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">    &#125;, <span class="number">3000</span>); <span class="comment">// 3秒後隱藏提示</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-提供離線模式支持"><a href="#4-提供離線模式支持" class="headerlink" title="4. 提供離線模式支持"></a>4. 提供離線模式支持</h3><p>如果您的網站有可能被用戶在離線狀態下訪問，考慮提供一個基本的離線模式。例如，讓用戶仍能查看已經緩存的內容，並告知用戶當前訪問的數據可能不是最新的。</p>
+<h3 id="5-簡單的提示框設計"><a href="#5-簡單的提示框設計" class="headerlink" title="5. 簡單的提示框設計"></a>5. 簡單的提示框設計</h3><p>設計一個簡單的提示框或對話框，告訴用戶他們已經離線。這個提示框應該能夠輕鬆關閉，不會過度干擾用戶的操作。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;network-status&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none; position:fixed; top:0; width:100%; background-color:red; color:white; text-align:center; padding:10px;&quot;</span>&gt;</span></span><br><span class="line">    您目前處於離線狀態</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-提供解決方案或建議"><a href="#6-提供解決方案或建議" class="headerlink" title="6. 提供解決方案或建議"></a>6. 提供解決方案或建議</h3><p>在提示信息中，可以包含一些建議，例如「請檢查您的網路連接」或「重試連接」。這些建議可以幫助用戶解決問題。</p>
+<h3 id="7-優化移動端體驗"><a href="#7-優化移動端體驗" class="headerlink" title="7. 優化移動端體驗"></a>7. 優化移動端體驗</h3><p>確保離線提示在移動端也能友好顯示。可以使用響應式設計，確保提示框在各種設備上都能良好顯示。</p>
+<h3 id="綜合設計範例"><a href="#綜合設計範例" class="headerlink" title="綜合設計範例"></a>綜合設計範例</h3><p>結合上述建議，以下是一個完整的實現範例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh-Hant&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>網路狀態提示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#network-status</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>: white;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">1000</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;network-status&quot;</span>&gt;</span>您目前處於離線狀態<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">updateNetworkStatus</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> statusDiv = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (navigator.<span class="property">onLine</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      statusDiv.<span class="property">innerText</span> = <span class="string">&#x27;您已重新連接網路&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">      statusDiv.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">&#x27;green&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        statusDiv.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">      &#125;, <span class="number">3000</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      statusDiv.<span class="property">innerText</span> = <span class="string">&#x27;您目前處於離線狀態&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">      statusDiv.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">&#x27;red&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">      statusDiv.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;block&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;offline&#x27;</span>, updateNetworkStatus);</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;online&#x27;</span>, updateNetworkStatus);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 初始檢查網路狀態</span></span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">updateNetworkStatus</span>();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣的設計既能確保用戶清楚地了解自己的網路狀態，又不會過多打擾用戶的正常操作。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20240529095314145.png" alt="image-20240529095314145"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20240529095409295.png" alt="image-20240529095409295"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/05/01/2024-05-01%20Gitea%E8%88%87MSSQL%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F%E6%95%B4%E7%90%86%E7%89%88/" rel="prev" title="Gitea與MSSQL備份與還原整理版">
+      <i class="fa fa-chevron-left"></i> Gitea與MSSQL備份與還原整理版
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/11/04/2024-11-04%20Looker%20Studio/" rel="next" title="Looker Studio 筆記">
+      Looker Studio 筆記 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%A1%AF%E7%A4%BA%E6%98%8E%E7%A2%BA%E7%9A%84%E9%9B%A2%E7%B7%9A%E6%8F%90%E7%A4%BA"><span class="nav-text">1. 顯示明確的離線提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E9%A1%8F%E8%89%B2%E5%92%8C%E5%9C%96%E6%A8%99"><span class="nav-text">2. 使用顏色和圖標</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8B%95%E6%85%8B%E6%AA%A2%E6%B8%AC%E7%B6%B2%E8%B7%AF%E7%8B%80%E6%85%8B"><span class="nav-text">3. 動態檢測網路狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%8F%90%E4%BE%9B%E9%9B%A2%E7%B7%9A%E6%A8%A1%E5%BC%8F%E6%94%AF%E6%8C%81"><span class="nav-text">4. 提供離線模式支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%B0%A1%E5%96%AE%E7%9A%84%E6%8F%90%E7%A4%BA%E6%A1%86%E8%A8%AD%E8%A8%88"><span class="nav-text">5. 簡單的提示框設計</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%8F%90%E4%BE%9B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88%E6%88%96%E5%BB%BA%E8%AD%B0"><span class="nav-text">6. 提供解決方案或建議</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%84%AA%E5%8C%96%E7%A7%BB%E5%8B%95%E7%AB%AF%E9%AB%94%E9%A9%97"><span class="nav-text">7. 優化移動端體驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B6%9C%E5%90%88%E8%A8%AD%E8%A8%88%E7%AF%84%E4%BE%8B"><span class="nav-text">綜合設計範例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">134</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">121</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">423k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">12:49</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
