@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20240529095314145.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20240529095409295.png">
 <meta property="article:published_time" content="2024-05-29T01:51:00.000Z">
-<meta property="article:modified_time" content="2024-05-29T09:34:18.000Z">
+<meta property="article:modified_time" content="2024-11-04T14:42:05.245Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="HTML">
 <meta property="article:tag" content="JavaScript">
@@ -220,10 +220,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2024-05-29 09:51:00 / 修改時間：17:34:18" itemprop="dateCreated datePublished" datetime="2024-05-29T09:51:00+08:00">2024-05-29</time>
+              <time title="創建時間：2024-05-29 09:51:00" itemprop="dateCreated datePublished" datetime="2024-05-29T09:51:00+08:00">2024-05-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-11-04 22:42:05" itemprop="dateModified" datetime="2024-11-04T22:42:05+08:00">2024-11-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -261,6 +267,8 @@
 <h3 id="1-顯示明確的離線提示"><a href="#1-顯示明確的離線提示" class="headerlink" title="1. 顯示明確的離線提示"></a>1. 顯示明確的離線提示</h3><p>在頁面上方或底部顯示一個橫幅，告知用戶他們已經離線。這個橫幅應該易於識別並且包含明確的文字提示，例如「您目前處於離線狀態」。</p>
 <h3 id="2-使用顏色和圖標"><a href="#2-使用顏色和圖標" class="headerlink" title="2. 使用顏色和圖標"></a>2. 使用顏色和圖標</h3><p>利用顏色（如紅色或橙色）和圖標（如斷開的Wi-Fi圖標或感嘆號）來強調離線狀態。這可以幫助用戶更快速地注意到提示。</p>
 <h3 id="3-動態檢測網路狀態"><a href="#3-動態檢測網路狀態" class="headerlink" title="3. 動態檢測網路狀態"></a>3. 動態檢測網路狀態</h3><p>實現動態檢測，用戶重新連接網路時，自動更新提示信息。例如，使用JavaScript的 <code>navigator.onLine</code> 屬性和 <code>online</code>&#x2F;<code>offline</code> 事件來檢測網路狀態變化。</p>
+<span id="more"></span>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;offline&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">innerText</span> = <span class="string">&#x27;您目前處於離線狀態&#x27;</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;block&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;online&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">innerText</span> = <span class="string">&#x27;您已重新連接網路&#x27;</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">    &#125;, <span class="number">3000</span>); <span class="comment">// 3秒後隱藏提示</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-提供離線模式支持"><a href="#4-提供離線模式支持" class="headerlink" title="4. 提供離線模式支持"></a>4. 提供離線模式支持</h3><p>如果您的網站有可能被用戶在離線狀態下訪問，考慮提供一個基本的離線模式。例如，讓用戶仍能查看已經緩存的內容，並告知用戶當前訪問的數據可能不是最新的。</p>
@@ -373,20 +381,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">134</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-count">70</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">121</span>
+        <span class="site-state-item-count">123</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -422,12 +430,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">423k</span>
+    <span title="總字數">440k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">12:49</span>
+    <span title="所需總閱讀時間">13:20</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

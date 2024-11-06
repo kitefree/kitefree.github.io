@@ -10090,6 +10090,8 @@
 <h3 id="1-顯示明確的離線提示"><a href="#1-顯示明確的離線提示" class="headerlink" title="1. 顯示明確的離線提示"></a>1. 顯示明確的離線提示</h3><p>在頁面上方或底部顯示一個橫幅，告知用戶他們已經離線。這個橫幅應該易於識別並且包含明確的文字提示，例如「您目前處於離線狀態」。</p>
 <h3 id="2-使用顏色和圖標"><a href="#2-使用顏色和圖標" class="headerlink" title="2. 使用顏色和圖標"></a>2. 使用顏色和圖標</h3><p>利用顏色（如紅色或橙色）和圖標（如斷開的Wi-Fi圖標或感嘆號）來強調離線狀態。這可以幫助用戶更快速地注意到提示。</p>
 <h3 id="3-動態檢測網路狀態"><a href="#3-動態檢測網路狀態" class="headerlink" title="3. 動態檢測網路狀態"></a>3. 動態檢測網路狀態</h3><p>實現動態檢測，用戶重新連接網路時，自動更新提示信息。例如，使用JavaScript的 <code>navigator.onLine</code> 屬性和 <code>online</code>&#x2F;<code>offline</code> 事件來檢測網路狀態變化。</p>
+<span id="more"></span>
+
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;offline&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">innerText</span> = <span class="string">&#x27;您目前處於離線狀態&#x27;</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;block&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;online&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">innerText</span> = <span class="string">&#x27;您已重新連接網路&#x27;</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;network-status&#x27;</span>).<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">    &#125;, <span class="number">3000</span>); <span class="comment">// 3秒後隱藏提示</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-提供離線模式支持"><a href="#4-提供離線模式支持" class="headerlink" title="4. 提供離線模式支持"></a>4. 提供離線模式支持</h3><p>如果您的網站有可能被用戶在離線狀態下訪問，考慮提供一個基本的離線模式。例如，讓用戶仍能查看已經緩存的內容，並告知用戶當前訪問的數據可能不是最新的。</p>
@@ -10218,6 +10220,295 @@
       <tags>
         <tag>report</tag>
         <tag>look studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SOLID 筆記</title>
+    <url>/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98/</url>
+    <content><![CDATA[<h2 id="一、OOP的四個特性"><a href="#一、OOP的四個特性" class="headerlink" title="一、OOP的四個特性"></a>一、OOP的四個特性</h2><h2 id="在程式開發的過程會遇到各種情境"><a href="#在程式開發的過程會遇到各種情境" class="headerlink" title="在程式開發的過程會遇到各種情境"></a>在程式開發的過程會遇到各種情境</h2><ul>
+<li><p>開發的時間較長？還是維護的時間較長？</p>
+</li>
+<li><p>有團隊一起進行開發？還是一個人寫CODE？</p>
+</li>
+<li><p>一個長期維護的專案，需求變更的頻繁程度？</p>
+</li>
+<li><p>你如何讓程式碼具備有<code>可讀性</code>與<code>擴充性</code>？</p>
+</li>
+<li><p>如何避免修改程式的過程中引發連鎖反應？(改A壞B)</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="物件導向程式設計的4個重要特性"><a href="#物件導向程式設計的4個重要特性" class="headerlink" title="物件導向程式設計的4個重要特性"></a>物件導向程式設計的4個重要特性</h2><h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3><ul>
+<li>將真實世界的需求轉換成為OOP中的類別</li>
+<li>類別可以包含狀態(屬性)與行為(方法)</li>
+</ul>
+<p>例如我們要做一個CRM，然後分析需要哪些TABLE，接著建立出相對應的類別，類別裡面就有屬性跟方法，這個過程我們叫做抽象。</p>
+<blockquote>
+<p>抽象是從需求轉換而來的</p>
+</blockquote>
+<h3 id="封裝"><a href="#封裝" class="headerlink" title="封裝"></a>封裝</h3><ul>
+<li>隱藏&#x2F;保護內部實作的細節，並可以對屬性或方法設定存取層級(public,private,protected)。</li>
+</ul>
+<h3 id="繼承"><a href="#繼承" class="headerlink" title="繼承"></a>繼承</h3><ul>
+<li>可讓您建立新類別以重複使用、擴充和修改其他類別中定義的行為。</li>
+</ul>
+<h3 id="多型"><a href="#多型" class="headerlink" title="多型"></a>多型</h3><ul>
+<li>在相同的介面下，可以用不同的型別來實現。</li>
+<li>多型有分成好幾種不同類型。</li>
+</ul>
+<h3 id="從需求或規格中的進行”抽象化”的過程"><a href="#從需求或規格中的進行”抽象化”的過程" class="headerlink" title="從需求或規格中的進行”抽象化”的過程"></a>從需求或規格中的進行”抽象化”的過程</h3><ul>
+<li>我們將建立新客戶管理系統</li>
+<li>該系統必須管理商業、住宅、政府、和教育類型的<code>客戶</code></li>
+<li>我們必須最小程度地紀錄客戶的<code>姓名</code>、<code>姓氏</code>、<code>名字</code>、<code>電子郵件地址</code>以及<code>住家地址</code>和<code>工作地址</code></li>
+<li>它必須管理<code>產品</code>，我們必須最小程度地記錄<code>產品名稱</code>、<code>描述</code>和<code>當前價格</code></li>
+</ul>
+<h4 id="透過”抽象化”過程定義出類別"><a href="#透過”抽象化”過程定義出類別" class="headerlink" title="透過”抽象化”過程定義出類別"></a>透過”抽象化”過程定義出類別</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Customer</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> CustomerId &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> LastName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> FirstName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> EmailAddress &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> HomeAddress &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> WorkAddress &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">Validate</span>()</span> &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Save</span>()</span> &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Load</span>()</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Product</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> ProductId &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ProductName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ProductDescription &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">decimal</span>? CurrentPrice &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="對實作的細節進行”封裝”-隱藏、保護"><a href="#對實作的細節進行”封裝”-隱藏、保護" class="headerlink" title="對實作的細節進行”封裝”(隱藏、保護)"></a>對實作的細節進行”封裝”(隱藏、保護)</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Product</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Product</span>(<span class="params"><span class="built_in">int</span> productId</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.ProductId = productId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> ProductId &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ProductName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ProductDescription &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">decimal</span>? currentPrice;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">decimal</span>? CurrentPrice</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> currentPrice; &#125;</span><br><span class="line">        <span class="keyword">set</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">value</span> == <span class="literal">null</span> || <span class="keyword">value</span> &gt;= <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                currentPrice = <span class="keyword">value</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                currentPrice = <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Product <span class="title">Retrieve</span>(<span class="params"><span class="built_in">int</span> productId</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 在這邊撰寫用來擷取Product物件的程式碼</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Product();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="built_in">bool</span> <span class="title">Save</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 在這邊撰寫用來儲存Product物件的程式碼</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="built_in">bool</span> <span class="title">Validate</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> isValid = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(ProductName))</span><br><span class="line">            isValid = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (CurrentPrice == <span class="literal">null</span>)</span><br><span class="line">            isValid = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> isValid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="透過”繼承”來重複利用、擴充和修改基底類別的定義"><a href="#透過”繼承”來重複利用、擴充和修改基底類別的定義" class="headerlink" title="透過”繼承”來重複利用、擴充和修改基底類別的定義"></a>透過”繼承”來重複利用、擴充和修改基底類別的定義</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">BaseClass</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Output</span>()</span> =&gt; Console.WriteLine(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BaseClass</span>(<span class="params"><span class="built_in">string</span> name</span>)</span> =&gt; Name = name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BaseClass</span>()</span> =&gt; Name = <span class="string">&quot;&quot;</span>; <span class="comment">// 預設(無參數)建構函式</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">DerivedClass</span> : <span class="title">BaseClass</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Department &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DerivedClass</span>() : <span class="title">base</span>(<span class="params"><span class="string">&quot;Default&quot;</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">base</span>.Age = <span class="number">18</span>;       <span class="comment">// 設定基底類別屬性</span></span><br><span class="line">        <span class="comment">// base.Department = &quot;IT&quot;; // 基底類別沒有該屬性</span></span><br><span class="line">        <span class="keyword">base</span>.Output();       <span class="comment">// 執行基底類別方法</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.Age = <span class="number">19</span>;       <span class="comment">// 設定衍生類別屬性</span></span><br><span class="line">        <span class="keyword">this</span>.Department = <span class="string">&quot;IT&quot;</span>;</span><br><span class="line">        <span class="keyword">this</span>.Output();       <span class="comment">// 執行衍生類別方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Output</span>()</span> =&gt; Console.WriteLine(<span class="string">&quot;Hello !!&quot;</span>); <span class="comment">// 覆寫方法 (overriding)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="在C-中所有類型都是-“多型”"><a href="#在C-中所有類型都是-“多型”" class="headerlink" title="在C#中所有類型都是 “多型”"></a>在C#中所有類型都是 “多型”</h2><ul>
+<li><p>在設計時期(Design Time)</p>
+<ul>
+<li>基底類別可以定義和實作「虛擬」屬性或方法(virtual)</li>
+<li>衍生類別可以「覆寫」這些虛擬的屬性或方法(override)</li>
+</ul>
+</li>
+<li><p>在執行時期(Runtime)</p>
+<ul>
+<li><p>當手叫基底類別的虛擬方法時，會改呼叫子類別覆寫的方法</p>
+</li>
+<li><p>常見的多型範例</p>
+</li>
+<li><pre><code class="c#">public class Shape
+&#123;
+    // A few example members
+    public int X &#123; get; private set; &#125;
+    public int Y &#123; get; private set; &#125;
+    public int Height &#123; get; set; &#125;
+    public int Width &#123; get; set; &#125;
+
+    // Virtual method
+    public virtual void Draw()
+    &#123;
+        Console.WriteLine(&quot;Performing base class drawing tasks&quot;);
+    &#125;
+&#125;
+
+public class Circle : Shape
+&#123;
+    public override void Draw()
+    &#123;
+        // Code to draw a circle...
+        Console.WriteLine(&quot;Drawing a circle&quot;);
+        base.Draw();
+    &#125;
+&#125;
+public class Rectangle : Shape
+&#123;
+    public override void Draw()
+    &#123;
+        // Code to draw a rectangle...
+        Console.WriteLine(&quot;Drawing a rectangle&quot;);
+        base.Draw();
+    &#125;
+&#125;
+public class Triangle : Shape
+&#123;
+    public override void Draw()
+    &#123;
+        // Code to draw a triangle...
+        Console.WriteLine(&quot;Drawing a triangle&quot;);
+        base.Draw();
+    &#125;
+&#125;
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 在C#中，所有類型都是多型類型</span><br><span class="line"></span><br><span class="line">  - 因為所有類型(包括使用者定義的類型)都是繼承自Object</span><br><span class="line">- 如果要在C#中設計防止衍生類別覆寫虛擬成員</span><br><span class="line"></span><br><span class="line">  - ``` C# public sealed override void DoWork()&#123;&#125;```</span><br><span class="line">  - 範例程式</span><br><span class="line">- 多載(Overloading)比較有點爭議(有些人認為這不算多型)</span><br><span class="line"></span><br><span class="line">  - 範例程式</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 二、內聚力與耦合力</span><br><span class="line"></span><br><span class="line">### 何謂&quot;模組&quot; (Module)</span><br><span class="line"></span><br><span class="line">- 一種抽象的概念</span><br><span class="line"></span><br><span class="line">- 其實C#沒有Module概念</span><br><span class="line"></span><br><span class="line">- 以C#舉例</span><br><span class="line"></span><br><span class="line">  - 可能是一個「類別」(class)</span><br><span class="line">  - 可能是一個「方法」(method)</span><br><span class="line">  - 可能是一個「組件」(assembly)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 內聚力 Cohesion</span><br><span class="line"></span><br><span class="line">- 在一個&quot;模組&quot; 內完成 &quot;一件工作&quot; 的度量指標</span><br><span class="line">- 內聚一次只專注做一件事</span><br><span class="line"></span><br><span class="line">#### 高內聚力</span><br><span class="line"></span><br><span class="line">- 在一個&quot;模組&quot;內只完成一件工作</span><br><span class="line">- 內聚力高，意味著該模組可以獨立運作，也意味著更容易重複利用</span><br><span class="line">- 範例：一個class只負責一件事情(例如寄送郵件)</span><br><span class="line"></span><br><span class="line">#### 低內聚力</span><br><span class="line"></span><br><span class="line">- 在一個&quot;模組&quot;內完成多份工作</span><br><span class="line">- 內聚力低，意味著這個棤組會造成難以維護/測試/重用/理解</span><br><span class="line">- 範例：所有功能寫在一個class裡面或一個method有5000行程式碼</span><br><span class="line"></span><br><span class="line">#### 最佳實務</span><br><span class="line"></span><br><span class="line">- 在設計模組的時候，要盡量設計出`高內聚力`的程式碼。</span><br><span class="line">- 若要在一個模組內完成多項工作，建議拆成多個不同的類別</span><br><span class="line">- 實現`SRP`就是實現「`提高內聚力`」的一種表現</span><br><span class="line"></span><br><span class="line">### 耦合力 Coupling</span><br><span class="line"></span><br><span class="line">- 模組與模組之間的關聯強度</span><br><span class="line">  - 模組之間相互依賴的程度</span><br><span class="line">  - 衡量兩個模組的緊密連接程度</span><br><span class="line">  - 範例：在ClassB裡面，直接&quot;建立&quot;了ClassA的物件實體，就會建立ClassA與ClassB之間的&quot;耦合關係&quot;。</span><br><span class="line"></span><br><span class="line">#### 高耦合力</span><br><span class="line"></span><br><span class="line">- 意著當改了A模組時，相關的B模組就會容易被影響(改A壞B)</span><br><span class="line"></span><br><span class="line">#### 低耦合力</span><br><span class="line"></span><br><span class="line">- 當在修改模組的時候，有越少的模組被影響，就意味著耦合力較低。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 最佳實務</span><br><span class="line"></span><br><span class="line">- 在設計不同模組的時候，要盡量設計出`低耦合力`的程式碼。</span><br><span class="line">- 實現`DIP`就是實現「降低耦合力」的一個原則。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 隨堂測驗</span><br><span class="line"></span><br><span class="line">```C#</span><br><span class="line">public class InvitationService public</span><br><span class="line"></span><br><span class="line">public void SendInvite (string elail, string firstName, string lastName)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    if (String.IsNullOrWhiteSpace(firstName) || String.IsNullOrWhiteSpace(lastName))&#123;</span><br><span class="line">        throw new Exception(&quot;Name is not valid!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!email.Contains(&quot;@&quot;) || !email.Contains(&quot;.&quot;))&#123;</span><br><span class="line">    	throw new Exception(&quot;Email is not valid!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SmtpClient client = new SmtpClient();</span><br><span class="line"></span><br><span class="line">    client.Send(new MailMessage(&quot;mysite@nowhere.com&quot;, email) &#123; Subject &quot;Please join me at my party!&quot; &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>這段代碼中的 <code>InvitationService</code> 類與以下幾個類發生了耦合關係：</p>
+<ul>
+<li><p><code>String</code> 類 - 用於驗證 <code>firstName</code> 和 <code>lastName</code> 是否為空或空白字串。</p>
+<p>方法：<code>String.IsNullOrWhiteSpace</code></p>
+</li>
+<li><p><code>Exception</code> 類 - 用於在驗證失敗時拋出異常。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Name is not valid!&quot;</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid!&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>SmtpClient</code> 類 - 用於發送電子郵件。</p>
+<p>創建了 <code>SmtpClient</code> 實例 <code>client</code>。</p>
+</li>
+<li><p><code>MailMessage</code> 類 - 用於構造電子郵件訊息。</p>
+<p>創建了 <code>MailMessage</code> 物件，設置發件人和收件人資訊以及郵件主題。</p>
+</li>
+</ul>
+<h4 id="隨堂測驗"><a href="#隨堂測驗" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>耦合是不可避免的</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Order</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> ShoppingCartContents cart;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> salestax;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Order</span>(<span class="params">ShoppingCartContents cart, <span class="built_in">float</span> salesTax</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.cart = cart;</span><br><span class="line">        <span class="keyword">this</span>.salesTax = salesTax;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCart</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> Price;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Quantity;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">float</span> <span class="title">OrderTotal</span>()</span> &#123;</span><br><span class="line">        <span class="built_in">float</span> cartTotal = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; cart.items.length; i++) &#123;</span><br><span class="line">            cartTotal += cart.items[i].Price * cart.items[i].Quantity;</span><br><span class="line">        &#125;</span><br><span class="line">        cartTotal += cartTotal * salestax;</span><br><span class="line">        <span class="keyword">return</span> cartTotal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCartContents</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ShoppingCart[] items;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@startuml</span><br><span class="line">class Order &#123;</span><br><span class="line">    - ShoppingCartContents cart</span><br><span class="line">    - float salestax</span><br><span class="line">    + Order(ShoppingCartContents, float)</span><br><span class="line">    + OrderTotal(): float</span><br><span class="line">&#125;</span><br><span class="line">class ShoppingCartContents &#123;</span><br><span class="line">    - ShoppingCart[] items</span><br><span class="line">&#125;</span><br><span class="line">class ShoppingCart &#123;</span><br><span class="line">    + float Price</span><br><span class="line">    + int Quantity</span><br><span class="line">&#125;</span><br><span class="line">Order --&gt; ShoppingCartContents</span><br><span class="line">ShoppingCartContents --&gt; ShoppingCart</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/RP312i8m38RlVOeSDsPVm8CCzW0gxYOUIXUrqAMZpK0HtzrWUn1fRad-B_cJFh69lCvUMMzIWdsSCC9BWOI6qpqiYwFR89eX42Dn0Yj9wLzzC0p9U9GnZs-nooEQ6hh9GFih70CRtxJRt5BlugEwkMRhV077EASgMOYk63r4Px5K734SLqFi-2bilblhNNMpgjhvLwiUQP9NVW00" alt="img"></p>
+<h2 id="三、介紹SOLID物件導向設計原則"><a href="#三、介紹SOLID物件導向設計原則" class="headerlink" title="三、介紹SOLID物件導向設計原則"></a>三、介紹SOLID物件導向設計原則</h2><h3 id="何謂”原則”-Principle"><a href="#何謂”原則”-Principle" class="headerlink" title="何謂”原則”(Principle)"></a>何謂”原則”(Principle)</h3><ul>
+<li><p>A <code>principle</code> is a concept or value that is a guid for <code>behavior</code> or <code>evaluation</code></p>
+</li>
+<li><p>所謂「原則」就是一種「概念」或「價值」用來導引你產生<code>適切的行為</code>與<code>價值評量方法</code>。</p>
+</li>
+<li><p>白話文解釋</p>
+<ul>
+<li>依循SOLID原則，可以<code>寫出比較好的程式碼</code></li>
+<li>依循SOLID原則，能夠<code>判斷程式碼的好壞</code>(Code Smell)</li>
+</ul>
+</li>
+</ul>
+<h3 id="OOP物件導向程式設計SOLID設計原則"><a href="#OOP物件導向程式設計SOLID設計原則" class="headerlink" title="OOP物件導向程式設計SOLID設計原則"></a>OOP物件導向程式設計SOLID設計原則</h3><p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20241106202817116.png" alt="image-20241106202817116"></p>
+<h3 id="學習SOLID物件導向設計原則的好處"><a href="#學習SOLID物件導向設計原則的好處" class="headerlink" title="學習SOLID物件導向設計原則的好處"></a>學習SOLID物件導向設計原則的好處</h3><ul>
+<li>降低程式碼複雜程度</li>
+<li>具有較佳程式碼可讀性</li>
+<li>提升模組可重複利用性</li>
+<li>讓模組具有高內聚力、低耦合力</li>
+<li>面臨變更需求時可以減少破壞現有模組的風險</li>
+</ul>
+<h2 id="四、單一責任原則-SRP-Single-Responsibility-Principle"><a href="#四、單一責任原則-SRP-Single-Responsibility-Principle" class="headerlink" title="四、單一責任原則 SRP  Single Responsibility Principle"></a>四、單一責任原則 SRP  Single Responsibility Principle</h2><ul>
+<li>A <code>class</code> should have <code>only one</code> reason to change</li>
+<li>一個類別應該只有一個改變的理由！</li>
+</ul>
+<h3 id="何謂-“責任”-Responsibility"><a href="#何謂-“責任”-Responsibility" class="headerlink" title="何謂 “責任” (Responsibility)"></a>何謂 “責任” (Responsibility)</h3><ul>
+<li>責任 &#x3D; reason to change (改變的理由)</li>
+<li>當一個類別擁有多個不同的責任<ul>
+<li>意味著一個類別負責多項不同的工作</li>
+<li>當需求變更時，更動一個類別的理由也可能不只一個</li>
+</ul>
+</li>
+</ul>
+<h3 id="隨堂問題"><a href="#隨堂問題" class="headerlink" title="隨堂問題"></a>隨堂問題</h3><p>請問以下類別有多少責任？</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">LoadOrder</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">// 1.建立資料庫連線(包含寫死的連接字串)</span></span><br><span class="line">		<span class="comment">// 2.執行 ADO.NET 資料存取(包含資料篩選)</span></span><br><span class="line">		<span class="comment">// 3.附迴圈取得資料(包含資料格式轉換)</span></span><br><span class="line">		<span class="comment">// 4.回傳資料</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這個<code>OrderManager</code>類別中，<code>LoadOrder</code>方法承擔了以下四個主要責任： </p>
+<ol>
+<li><strong>建立資料庫連線</strong>：負責建立與資料庫的連接，且連接字串是寫死的，這可能會降低靈活性與可維護性。若資料庫連接資訊有所變更，就需要修改這個方法的程式碼。 </li>
+<li><strong>執行資料存取</strong>：進行 ADO.NET 資料存取操作，並且還包含了資料篩選的邏輯。這使得資料存取和篩選的邏輯與建立連接及其他操作混合在一起，增加了方法的複雜性。 </li>
+<li><strong>循環取得並轉換資料格式</strong>：透過循環取得資料，並進行資料格式轉換。這又增加了一個不同的功能到此方法中，使得方法的職責更加多樣化。 </li>
+<li><strong>回傳資料</strong>：最後，還負責將取得的資料回傳出去。 總的來說，這個方法承擔了過多的責任，違反了單一職責原則。理想情況下，這些不同的功能應該分別由不同的方法或類別來處理，以提高程式碼的可維護性、可讀性以及可測試性。</li>
+</ol>
+<h3 id="關於SRP的基本精神"><a href="#關於SRP的基本精神" class="headerlink" title="關於SRP的基本精神"></a>關於SRP的基本精神</h3><ul>
+<li>一個”類別”負擔太多責任時，意味著該類別可以被切割<ul>
+<li>可以透過定義一個全新的”類別”輕鬆做到</li>
+<li>對類別進行適度的切割，方便日後管理與維護！</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><code>SRP</code> 主要精神就是<code>提高內聚力</code></p>
+<p><code>高內聚力</code>意味著你可以想到<code>一個清楚的理由</code>去改它！</p>
+</blockquote>
+<h3 id="常見的設計問題"><a href="#常見的設計問題" class="headerlink" title="常見的設計問題"></a>常見的設計問題</h3><ul>
+<li>將所有功能寫在一個類別中</li>
+<li>類別複雜度過高</li>
+<li>維護時經常找不到應該要改哪裡</li>
+<li>發生邏輯問題時找不到Bug在哪裡</li>
+<li>使用類別時不知道應該要呼叫哪個方法</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReportGenerator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GenerateReport</span>(<span class="params">Data data</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 處理數據</span></span><br><span class="line">        ProcessData(data);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 格式化數據</span></span><br><span class="line">        FormatData(data);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 輸出至PDF</span></span><br><span class="line">        ExportToPDF(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DataProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Process</span>(<span class="params">Data data</span>)</span> &#123; <span class="comment">/* 處理數據 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DataFormatter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Format</span>(<span class="params">Data data</span>)</span> &#123; <span class="comment">/* 格式化數據 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PDFExporter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Export</span>(<span class="params">Data data</span>)</span> &#123; <span class="comment">/* 輸出至PDF */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用這些類別</span></span><br><span class="line"><span class="keyword">var</span> processor = <span class="keyword">new</span> DataProcessor();</span><br><span class="line"><span class="keyword">var</span> formatter = <span class="keyword">new</span> DataFormatter();</span><br><span class="line"><span class="keyword">var</span> exporter = <span class="keyword">new</span> PDFExporter();</span><br><span class="line"></span><br><span class="line">processor.Process(data);</span><br><span class="line">formatter.Format(data);</span><br><span class="line">exporter.Export(data);</span><br></pre></td></tr></table></figure>
+
+<h3 id="關於SRP的使用時機"><a href="#關於SRP的使用時機" class="headerlink" title="關於SRP的使用時機"></a>關於SRP的使用時機</h3><ul>
+<li><p><code>兩個責任</code>會在<code>不同時間點</code>產生變更需求</p>
+<ul>
+<li>當你<code>想改資料庫查詢語法</code>與修<code>改系統紀錄的邏輯</code>時，都會改到同一個類別，那就需要拆開！</li>
+</ul>
+</li>
+<li><p>類別中有一段程式碼有<code>重複利用</code>的需求</p>
+<ul>
+<li>這段程式碼在其他類別也用的到</li>
+</ul>
+</li>
+<li><p>系統中有個<code>非必要</code>的功能(未來需求)，老闆又逼你要實作時</p>
+<ul>
+<li>責任會直接依附在類別中，但對維護造成困擾</li>
+</ul>
+</li>
+</ul>
+<h3 id="SRP討論事項"><a href="#SRP討論事項" class="headerlink" title="SRP討論事項"></a>SRP討論事項</h3><ul>
+<li>你怎樣確認一個類別被賦予了過多的責任？<ul>
+<li>在開發系統時，不可能完全通盤了解需求才開設計系統。雖然SRP精神很簡單，但實現很難…(面對現況)</li>
+</ul>
+</li>
+<li>套用SRP可能會有副作用，因為類別變多導致耦合力增加。<ul>
+<li>從類別A中，拆出不同責任方法到類別B(新類別)中，使其關注點分離。</li>
+<li><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20241106220831383.png" alt="image-20241106220831383"></li>
+</ul>
+</li>
+</ul>
+<h3 id="關於SRP還需要注意的事"><a href="#關於SRP還需要注意的事" class="headerlink" title="關於SRP還需要注意的事"></a>關於SRP還需要注意的事</h3><ul>
+<li>參考<code>YAGNI</code>(You Ain’t Gonna Need It) 原則<ul>
+<li>不用急於在第一時間就專注於分離責任</li>
+<li>尚未出現的需求(未來的需求)不需要預先分離責任</li>
+<li>當需求變更的時候，再進行類別分割即可！</li>
+</ul>
+</li>
+</ul>
+<h4 id="隨堂測驗-1"><a href="#隨堂測驗-1" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        DataAccess.InsertData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">DataAccess</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertData</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Data inserted into database successfully&quot;</span>);</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Logged Time:&quot;</span> + DateTime.Now.ToLongTimeString() + <span class="string">&quot; Log Data insertion completed successfully&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改後</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">DataAccess</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertData</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Data inserted into database successfully&quot;</span>);</span><br><span class="line">        Logger.writeLog();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeLog</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Logged Time:&quot;</span> + DateTime.Now.ToLongTimeString() + <span class="string">&quot;Log Data insertion completed successfully&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="隨堂測驗-2"><a href="#隨堂測驗-2" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Net.Mail;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRegistrationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RegisterUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 驗證使用者</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(username))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Username is not valid&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(password) || password.Length &lt; <span class="number">6</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Password must be at least 6 characters&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(email) || !email.Contains(<span class="string">&quot;@&quot;</span>))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 將使用者存入資料庫（此處假設使用假代碼）</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Saving user to database...&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 發送確認郵件</span></span><br><span class="line">        SmtpClient client = <span class="keyword">new</span> SmtpClient();</span><br><span class="line">        MailMessage mailMessage = <span class="keyword">new</span> MailMessage(<span class="string">&quot;admin@example.com&quot;</span>, email);</span><br><span class="line">        mailMessage.Subject = <span class="string">&quot;Registration Confirmation&quot;</span>;</span><br><span class="line">        mailMessage.Body = <span class="string">&quot;Thank you for registering!&quot;</span>;</span><br><span class="line">        client.Send(mailMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>修改後</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Net.Mail;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserValidator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Validate</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(username))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Username is not valid&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(password) || password.Length &lt; <span class="number">6</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Password must be at least 6 characters&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(email) || !email.Contains(<span class="string">&quot;@&quot;</span>))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRepository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SaveUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 將使用者存入資料庫（假設此處使用假代碼）</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Saving user to database...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EmailService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendConfirmationEmail</span>(<span class="params"><span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        SmtpClient client = <span class="keyword">new</span> SmtpClient();</span><br><span class="line">        MailMessage mailMessage = <span class="keyword">new</span> MailMessage(<span class="string">&quot;admin@example.com&quot;</span>, email);</span><br><span class="line">        mailMessage.Subject = <span class="string">&quot;Registration Confirmation&quot;</span>;</span><br><span class="line">        mailMessage.Body = <span class="string">&quot;Thank you for registering!&quot;</span>;</span><br><span class="line">        client.Send(mailMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRegistrationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> UserValidator _validator;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> UserRepository _repository;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> EmailService _emailService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserRegistrationService</span>(<span class="params">UserValidator validator, UserRepository repository, EmailService emailService</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _validator = validator;</span><br><span class="line">        _repository = repository;</span><br><span class="line">        _emailService = emailService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RegisterUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _validator.Validate(username, password, email);  <span class="comment">// 驗證使用者</span></span><br><span class="line">        _repository.SaveUser(username, password, email); <span class="comment">// 保存使用者</span></span><br><span class="line">        _emailService.SendConfirmationEmail(email);      <span class="comment">// 發送確認郵件</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="補充非必要功能，如何透過SRP抽離與設計"><a href="#補充非必要功能，如何透過SRP抽離與設計" class="headerlink" title="補充非必要功能，如何透過SRP抽離與設計"></a>補充非必要功能，如何透過SRP抽離與設計</h3><p><strong>需求情境</strong></p>
+<p>假設我們有一個用戶註冊系統，並且需求突然提出希望在用戶註冊完成後額外「記錄用戶行為」（例如記錄註冊時間和 IP 地址）。此功能並非系統核心，僅為輔助紀錄，屬於非必要功能。</p>
+<p><strong>修改前</strong></p>
+<p>初版的註冊服務可能如下所示：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRegistrationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> UserValidator _validator;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> UserRepository _repository;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> EmailService _emailService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserRegistrationService</span>(<span class="params">UserValidator validator, UserRepository repository, EmailService emailService</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _validator = validator;</span><br><span class="line">        _repository = repository;</span><br><span class="line">        _emailService = emailService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RegisterUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 驗證使用者</span></span><br><span class="line">        _validator.Validate(username, password, email);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 保存使用者</span></span><br><span class="line">        _repository.SaveUser(username, password, email);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 發送確認郵件</span></span><br><span class="line">        _emailService.SendConfirmationEmail(email);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 紀錄用戶行為（非必要功能，耦合進了主要流程）</span></span><br><span class="line">        LogUserActivity(username, email);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">LogUserActivity</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;User <span class="subst">&#123;username&#125;</span> registered with email <span class="subst">&#123;email&#125;</span> at <span class="subst">&#123;DateTime.Now&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這個程式碼中，<code>LogUserActivity</code> 被耦合到主業務流程中，增加了 <code>UserRegistrationService</code> 類的複雜度。這違反了 SRP，因為它同時包含了「用戶註冊」和「行為紀錄」兩個職責。</p>
+<p><strong>修改後</strong></p>
+<p>運用 SRP，我們可以將非必要的用戶行為紀錄功能抽離到一個獨立的類別，並透過依賴注入的方式，在需要時才使用它。</p>
+<p><strong>抽離非必要功能</strong></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserActivityLogger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LogActivity</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;User <span class="subst">&#123;username&#125;</span> registered with email <span class="subst">&#123;email&#125;</span> at <span class="subst">&#123;DateTime.Now&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>更新 <code>UserRegistrationService</code> 類</strong></p>
+<p>可以通過依賴注入將 <code>UserActivityLogger</code> 類作為可選項添加到 <code>UserRegistrationService</code> 中，讓它變成一個可插拔的功能。</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRegistrationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> UserValidator _validator;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> UserRepository _repository;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> EmailService _emailService;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> UserActivityLogger _activityLogger;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserRegistrationService</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">        UserValidator validator,</span></span></span><br><span class="line"><span class="params"><span class="function">        UserRepository repository,</span></span></span><br><span class="line"><span class="params"><span class="function">        EmailService emailService,</span></span></span><br><span class="line"><span class="params"><span class="function">        UserActivityLogger activityLogger = <span class="literal">null</span></span>) <span class="comment">// 可選參數</span></span></span><br><span class="line">    &#123;</span><br><span class="line">        _validator = validator;</span><br><span class="line">        _repository = repository;</span><br><span class="line">        _emailService = emailService;</span><br><span class="line">        _activityLogger = activityLogger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RegisterUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 驗證使用者</span></span><br><span class="line">        _validator.Validate(username, password, email);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 保存使用者</span></span><br><span class="line">        _repository.SaveUser(username, password, email);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 發送確認郵件</span></span><br><span class="line">        _emailService.SendConfirmationEmail(email);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果提供了紀錄器，則記錄用戶行為</span></span><br><span class="line">        _activityLogger?.LogActivity(username, email);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>類別或方法的功能過於複雜</strong>：如果一個類別或方法具有多個不相關的功能，這會使得類別變得難以維護、測試和擴展。例如，如果一個類別同時負責數據處理和資料庫儲存，這些職責應分開。</p>
+<p><strong>頻繁的變更需求</strong>：當一個類別或方法頻繁因不同的需求而修改，這表示它可能擁有多重職責。例如，假設你有一個「報表生成器」類別，既要處理數據格式化，又要負責文件匯出。若需求變更，你可能只想修改數據格式化部分，但匯出功能也可能受到影響。將不同的功能分離，可以讓變更更專注於單一職責，不會影響其他功能。</p>
+<p><strong>難以重用</strong>：當一個類別包含多種職責，這會限制重用性，因為在新環境中，並不總是需要該類別的所有職責。分離不同的功能後，每個類別只專注於一個職責，使得它們更容易重用。</p>
+<p><strong>測試困難</strong>：具有多重職責的類別通常難以測試，因為它需要配置不同的依賴關係來涵蓋所有職責。通過實踐SRP，可以使類別更易於單元測試，因為每個類別只需測試其單一職責。</p>
+<p><strong>耦合度過高</strong>：當某個類別與多個其他類別有大量的依賴或耦合，這表示它可能包含了多個職責。將不同的職責抽取到不同的類別，可以減少耦合，使系統更具可維護性。</p>
+]]></content>
+      <categories>
+        <category>SOLID</category>
+      </categories>
+      <tags>
+        <tag>SOLID</tag>
+        <tag>程式設計基礎</tag>
       </tags>
   </entry>
 </search>
