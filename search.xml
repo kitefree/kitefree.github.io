@@ -10286,54 +10286,81 @@
 </li>
 <li><p>常見的多型範例</p>
 </li>
-<li><pre><code class="c#">public class Shape
-&#123;
-    // A few example members
-    public int X &#123; get; private set; &#125;
-    public int Y &#123; get; private set; &#125;
-    public int Height &#123; get; set; &#125;
-    public int Width &#123; get; set; &#125;
-
-    // Virtual method
-    public virtual void Draw()
-    &#123;
-        Console.WriteLine(&quot;Performing base class drawing tasks&quot;);
-    &#125;
-&#125;
-
-public class Circle : Shape
-&#123;
-    public override void Draw()
-    &#123;
-        // Code to draw a circle...
-        Console.WriteLine(&quot;Drawing a circle&quot;);
-        base.Draw();
-    &#125;
-&#125;
-public class Rectangle : Shape
-&#123;
-    public override void Draw()
-    &#123;
-        // Code to draw a rectangle...
-        Console.WriteLine(&quot;Drawing a rectangle&quot;);
-        base.Draw();
-    &#125;
-&#125;
-public class Triangle : Shape
-&#123;
-    public override void Draw()
-    &#123;
-        // Code to draw a triangle...
-        Console.WriteLine(&quot;Drawing a triangle&quot;);
-        base.Draw();
-    &#125;
-&#125;
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 在C#中，所有類型都是多型類型</span><br><span class="line"></span><br><span class="line">  - 因為所有類型(包括使用者定義的類型)都是繼承自Object</span><br><span class="line">- 如果要在C#中設計防止衍生類別覆寫虛擬成員</span><br><span class="line"></span><br><span class="line">  - ``` C# public sealed override void DoWork()&#123;&#125;```</span><br><span class="line">  - 範例程式</span><br><span class="line">- 多載(Overloading)比較有點爭議(有些人認為這不算多型)</span><br><span class="line"></span><br><span class="line">  - 範例程式</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 二、內聚力與耦合力</span><br><span class="line"></span><br><span class="line">### 何謂&quot;模組&quot; (Module)</span><br><span class="line"></span><br><span class="line">- 一種抽象的概念</span><br><span class="line"></span><br><span class="line">- 其實C#沒有Module概念</span><br><span class="line"></span><br><span class="line">- 以C#舉例</span><br><span class="line"></span><br><span class="line">  - 可能是一個「類別」(class)</span><br><span class="line">  - 可能是一個「方法」(method)</span><br><span class="line">  - 可能是一個「組件」(assembly)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 內聚力 Cohesion</span><br><span class="line"></span><br><span class="line">- 在一個&quot;模組&quot; 內完成 &quot;一件工作&quot; 的度量指標</span><br><span class="line">- 內聚一次只專注做一件事</span><br><span class="line"></span><br><span class="line">#### 高內聚力</span><br><span class="line"></span><br><span class="line">- 在一個&quot;模組&quot;內只完成一件工作</span><br><span class="line">- 內聚力高，意味著該模組可以獨立運作，也意味著更容易重複利用</span><br><span class="line">- 範例：一個class只負責一件事情(例如寄送郵件)</span><br><span class="line"></span><br><span class="line">#### 低內聚力</span><br><span class="line"></span><br><span class="line">- 在一個&quot;模組&quot;內完成多份工作</span><br><span class="line">- 內聚力低，意味著這個棤組會造成難以維護/測試/重用/理解</span><br><span class="line">- 範例：所有功能寫在一個class裡面或一個method有5000行程式碼</span><br><span class="line"></span><br><span class="line">#### 最佳實務</span><br><span class="line"></span><br><span class="line">- 在設計模組的時候，要盡量設計出`高內聚力`的程式碼。</span><br><span class="line">- 若要在一個模組內完成多項工作，建議拆成多個不同的類別</span><br><span class="line">- 實現`SRP`就是實現「`提高內聚力`」的一種表現</span><br><span class="line"></span><br><span class="line">### 耦合力 Coupling</span><br><span class="line"></span><br><span class="line">- 模組與模組之間的關聯強度</span><br><span class="line">  - 模組之間相互依賴的程度</span><br><span class="line">  - 衡量兩個模組的緊密連接程度</span><br><span class="line">  - 範例：在ClassB裡面，直接&quot;建立&quot;了ClassA的物件實體，就會建立ClassA與ClassB之間的&quot;耦合關係&quot;。</span><br><span class="line"></span><br><span class="line">#### 高耦合力</span><br><span class="line"></span><br><span class="line">- 意著當改了A模組時，相關的B模組就會容易被影響(改A壞B)</span><br><span class="line"></span><br><span class="line">#### 低耦合力</span><br><span class="line"></span><br><span class="line">- 當在修改模組的時候，有越少的模組被影響，就意味著耦合力較低。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 最佳實務</span><br><span class="line"></span><br><span class="line">- 在設計不同模組的時候，要盡量設計出`低耦合力`的程式碼。</span><br><span class="line">- 實現`DIP`就是實現「降低耦合力」的一個原則。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 隨堂測驗</span><br><span class="line"></span><br><span class="line">```C#</span><br><span class="line">public class InvitationService public</span><br><span class="line"></span><br><span class="line">public void SendInvite (string elail, string firstName, string lastName)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    if (String.IsNullOrWhiteSpace(firstName) || String.IsNullOrWhiteSpace(lastName))&#123;</span><br><span class="line">        throw new Exception(&quot;Name is not valid!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!email.Contains(&quot;@&quot;) || !email.Contains(&quot;.&quot;))&#123;</span><br><span class="line">    	throw new Exception(&quot;Email is not valid!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SmtpClient client = new SmtpClient();</span><br><span class="line"></span><br><span class="line">    client.Send(new MailMessage(&quot;mysite@nowhere.com&quot;, email) &#123; Subject &quot;Please join me at my party!&quot; &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
 </ul>
 </li>
 </ul>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// A few example members</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> X &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Y &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Height &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Width &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Virtual method</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Draw</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Performing base class drawing tasks&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Circle</span> : <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Draw</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Code to draw a circle...</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Drawing a circle&quot;</span>);</span><br><span class="line">        <span class="keyword">base</span>.Draw();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Rectangle</span> : <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Draw</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Code to draw a rectangle...</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Drawing a rectangle&quot;</span>);</span><br><span class="line">        <span class="keyword">base</span>.Draw();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Triangle</span> : <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Draw</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Code to draw a triangle...</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Drawing a triangle&quot;</span>);</span><br><span class="line">        <span class="keyword">base</span>.Draw();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在C#中，所有類型都是多型類型</p>
+<ul>
+<li>因為所有類型(包括使用者定義的類型)都是繼承自Object</li>
+</ul>
+</li>
+<li><p>如果要在C#中設計防止衍生類別覆寫虛擬成員</p>
+</li>
+</ul>
+<p><code> C# public sealed override void DoWork()&#123;&#125;</code></p>
+<ul>
+<li><p>範例程式</p>
+</li>
+<li><p>多載(Overloading)比較有點爭議(有些人認為這不算多型)</p>
+<ul>
+<li>範例程式</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、內聚力與耦合力"><a href="#二、內聚力與耦合力" class="headerlink" title="二、內聚力與耦合力"></a>二、內聚力與耦合力</h2><h3 id="何謂”模組”-Module"><a href="#何謂”模組”-Module" class="headerlink" title="何謂”模組” (Module)"></a>何謂”模組” (Module)</h3><ul>
+<li><p>一種抽象的概念</p>
+</li>
+<li><p>其實C#沒有Module概念</p>
+</li>
+<li><p>以C#舉例</p>
+<ul>
+<li>可能是一個「類別」(class)</li>
+<li>可能是一個「方法」(method)</li>
+<li>可能是一個「組件」(assembly)</li>
+</ul>
+</li>
+</ul>
+<h3 id="內聚力-Cohesion"><a href="#內聚力-Cohesion" class="headerlink" title="內聚力 Cohesion"></a>內聚力 Cohesion</h3><ul>
+<li>在一個”模組” 內完成 “一件工作” 的度量指標</li>
+<li>內聚一次只專注做一件事</li>
+</ul>
+<h4 id="高內聚力"><a href="#高內聚力" class="headerlink" title="高內聚力"></a>高內聚力</h4><ul>
+<li>在一個”模組”內只完成一件工作</li>
+<li>內聚力高，意味著該模組可以獨立運作，也意味著更容易重複利用</li>
+<li>範例：一個class只負責一件事情(例如寄送郵件)</li>
+</ul>
+<h4 id="低內聚力"><a href="#低內聚力" class="headerlink" title="低內聚力"></a>低內聚力</h4><ul>
+<li>在一個”模組”內完成多份工作</li>
+<li>內聚力低，意味著這個棤組會造成難以維護&#x2F;測試&#x2F;重用&#x2F;理解</li>
+<li>範例：所有功能寫在一個class裡面或一個method有5000行程式碼</li>
+</ul>
+<h4 id="最佳實務"><a href="#最佳實務" class="headerlink" title="最佳實務"></a>最佳實務</h4><ul>
+<li>在設計模組的時候，要盡量設計出<code>高內聚力</code>的程式碼。</li>
+<li>若要在一個模組內完成多項工作，建議拆成多個不同的類別</li>
+<li>實現<code>SRP</code>就是實現「<code>提高內聚力</code>」的一種表現</li>
+</ul>
+<h3 id="耦合力-Coupling"><a href="#耦合力-Coupling" class="headerlink" title="耦合力 Coupling"></a>耦合力 Coupling</h3><ul>
+<li>模組與模組之間的關聯強度<ul>
+<li>模組之間相互依賴的程度</li>
+<li>衡量兩個模組的緊密連接程度</li>
+<li>範例：在ClassB裡面，直接”建立”了ClassA的物件實體，就會建立ClassA與ClassB之間的”耦合關係”。</li>
+</ul>
+</li>
+</ul>
+<h4 id="高耦合力"><a href="#高耦合力" class="headerlink" title="高耦合力"></a>高耦合力</h4><ul>
+<li>意著當改了A模組時，相關的B模組就會容易被影響(改A壞B)</li>
+</ul>
+<h4 id="低耦合力"><a href="#低耦合力" class="headerlink" title="低耦合力"></a>低耦合力</h4><ul>
+<li>當在修改模組的時候，有越少的模組被影響，就意味著耦合力較低。</li>
+</ul>
+<h4 id="最佳實務-1"><a href="#最佳實務-1" class="headerlink" title="最佳實務"></a>最佳實務</h4><ul>
+<li>在設計不同模組的時候，要盡量設計出<code>低耦合力</code>的程式碼。</li>
+<li>實現<code>DIP</code>就是實現「降低耦合力」的一個原則。</li>
+</ul>
+<h4 id="隨堂測驗"><a href="#隨堂測驗" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> InvitationService <span class="keyword">public</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendInvite</span> (<span class="params"><span class="built_in">string</span> elail, <span class="built_in">string</span> firstName, <span class="built_in">string</span> lastName</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (String.IsNullOrWhiteSpace(firstName) || String.IsNullOrWhiteSpace(lastName))&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Name is not valid!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!email.Contains(<span class="string">&quot;@&quot;</span>) || !email.Contains(<span class="string">&quot;.&quot;</span>))&#123;</span><br><span class="line">    	<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid!!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SmtpClient client = <span class="keyword">new</span> SmtpClient();</span><br><span class="line"></span><br><span class="line">    client.Send(<span class="keyword">new</span> MailMessage(<span class="string">&quot;mysite@nowhere.com&quot;</span>, email) &#123; Subject <span class="string">&quot;Please join me at my party!&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>這段代碼中的 <code>InvitationService</code> 類與以下幾個類發生了耦合關係：</p>
 <ul>
 <li><p><code>String</code> 類 - 用於驗證 <code>firstName</code> 和 <code>lastName</code> 是否為空或空白字串。</p>
@@ -10349,7 +10376,7 @@ public class Triangle : Shape
 <p>創建了 <code>MailMessage</code> 物件，設置發件人和收件人資訊以及郵件主題。</p>
 </li>
 </ul>
-<h4 id="隨堂測驗"><a href="#隨堂測驗" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>耦合是不可避免的</p>
+<h4 id="隨堂測驗-1"><a href="#隨堂測驗-1" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>耦合是不可避免的</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Order</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> ShoppingCartContents cart;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> salestax;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Order</span>(<span class="params">ShoppingCartContents cart, <span class="built_in">float</span> salesTax</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.cart = cart;</span><br><span class="line">        <span class="keyword">this</span>.salesTax = salesTax;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCart</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> Price;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Quantity;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">float</span> <span class="title">OrderTotal</span>()</span> &#123;</span><br><span class="line">        <span class="built_in">float</span> cartTotal = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; cart.items.length; i++) &#123;</span><br><span class="line">            cartTotal += cart.items[i].Price * cart.items[i].Quantity;</span><br><span class="line">        &#125;</span><br><span class="line">        cartTotal += cartTotal * salestax;</span><br><span class="line">        <span class="keyword">return</span> cartTotal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCartContents</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ShoppingCart[] items;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -10461,7 +10488,7 @@ public class Triangle : Shape
 </ul>
 </li>
 </ul>
-<h4 id="隨堂測驗-1"><a href="#隨堂測驗-1" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<h4 id="隨堂測驗-2"><a href="#隨堂測驗-2" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        DataAccess.InsertData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">DataAccess</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertData</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Data inserted into database successfully&quot;</span>);</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Logged Time:&quot;</span> + DateTime.Now.ToLongTimeString() + <span class="string">&quot; Log Data insertion completed successfully&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>修改後</p>
@@ -10469,7 +10496,7 @@ public class Triangle : Shape
 
 
 
-<h4 id="隨堂測驗-2"><a href="#隨堂測驗-2" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<h4 id="隨堂測驗-3"><a href="#隨堂測驗-3" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Net.Mail;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRegistrationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RegisterUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 驗證使用者</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(username))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Username is not valid&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(password) || password.Length &lt; <span class="number">6</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Password must be at least 6 characters&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(email) || !email.Contains(<span class="string">&quot;@&quot;</span>))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 將使用者存入資料庫（此處假設使用假代碼）</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Saving user to database...&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 發送確認郵件</span></span><br><span class="line">        SmtpClient client = <span class="keyword">new</span> SmtpClient();</span><br><span class="line">        MailMessage mailMessage = <span class="keyword">new</span> MailMessage(<span class="string">&quot;admin@example.com&quot;</span>, email);</span><br><span class="line">        mailMessage.Subject = <span class="string">&quot;Registration Confirmation&quot;</span>;</span><br><span class="line">        mailMessage.Body = <span class="string">&quot;Thank you for registering!&quot;</span>;</span><br><span class="line">        client.Send(mailMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
