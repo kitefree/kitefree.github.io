@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="內聚力與耦合力何謂”模組” (Module) 一種抽象的概念  其實C#沒有Module概念  以C#舉例  可能是一個「類別」(class) 可能是一個「方法」(method) 可能是一個「組件」(assembly)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SOLID 筆記 - (2)內聚力與耦合力">
+<meta property="og:url" content="https://kitefree.github.io/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(2)%E5%85%A7%E8%81%9A%E5%8A%9B%E8%88%87%E8%80%A6%E5%90%88%E5%8A%9B/index.html">
+<meta property="og:site_name" content="Kite的筆記">
+<meta property="og:description" content="內聚力與耦合力何謂”模組” (Module) 一種抽象的概念  其實C#沒有Module概念  以C#舉例  可能是一個「類別」(class) 可能是一個「方法」(method) 可能是一個「組件」(assembly)">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://raw.githubusercontent.com/kitefree/images/main/data/RP312i8m38RlVOeSDsPVm8CCzW0gxYOUIXUrqAMZpK0HtzrWUn1fRad-B_cJFh69lCvUMMzIWdsSCC9BWOI6qpqiYwFR89eX42Dn0Yj9wLzzC0p9U9GnZs-nooEQ6hh9GFih70CRtxJRt5BlugEwkMRhV077EASgMOYk63r4Px5K734SLqFi-2bilblhNNMpgjhvLwiUQP9NVW00">
+<meta property="article:published_time" content="2024-11-05T04:39:00.000Z">
+<meta property="article:modified_time" content="2024-11-10T07:57:00.466Z">
+<meta property="article:author" content="kite">
+<meta property="article:tag" content="SOLID">
+<meta property="article:tag" content="程式設計基礎">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/kitefree/images/main/data/RP312i8m38RlVOeSDsPVm8CCzW0gxYOUIXUrqAMZpK0HtzrWUn1fRad-B_cJFh69lCvUMMzIWdsSCC9BWOI6qpqiYwFR89eX42Dn0Yj9wLzzC0p9U9GnZs-nooEQ6hh9GFih70CRtxJRt5BlugEwkMRhV077EASgMOYk63r4Px5K734SLqFi-2bilblhNNMpgjhvLwiUQP9NVW00">
+
+<link rel="canonical" href="https://kitefree.github.io/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(2)%E5%85%A7%E8%81%9A%E5%8A%9B%E8%88%87%E8%80%A6%E5%90%88%E5%8A%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>SOLID 筆記 - (2)內聚力與耦合力 | Kite的筆記</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kite的筆記</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>網站地圖</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(2)%E5%85%A7%E8%81%9A%E5%8A%9B%E8%88%87%E8%80%A6%E5%90%88%E5%8A%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SOLID 筆記 - (2)內聚力與耦合力
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-11-05 12:39:00" itemprop="dateCreated datePublished" datetime="2024-11-05T12:39:00+08:00">2024-11-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-11-10 15:57:00" itemprop="dateModified" datetime="2024-11-10T15:57:00+08:00">2024-11-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SOLID/" itemprop="url" rel="index"><span itemprop="name">SOLID</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>5 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="內聚力與耦合力"><a href="#內聚力與耦合力" class="headerlink" title="內聚力與耦合力"></a>內聚力與耦合力</h2><h3 id="何謂”模組”-Module"><a href="#何謂”模組”-Module" class="headerlink" title="何謂”模組” (Module)"></a>何謂”模組” (Module)</h3><ul>
+<li><p>一種抽象的概念</p>
+</li>
+<li><p>其實C#沒有Module概念</p>
+</li>
+<li><p>以C#舉例</p>
+<ul>
+<li>可能是一個「類別」(class)</li>
+<li>可能是一個「方法」(method)</li>
+<li>可能是一個「組件」(assembly)</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+
+<h3 id="內聚力-Cohesion"><a href="#內聚力-Cohesion" class="headerlink" title="內聚力 Cohesion"></a>內聚力 Cohesion</h3><ul>
+<li>在一個”模組” 內完成 “一件工作” 的度量指標</li>
+<li>內聚一次只專注做一件事</li>
+</ul>
+<h4 id="高內聚力"><a href="#高內聚力" class="headerlink" title="高內聚力"></a>高內聚力</h4><ul>
+<li>在一個”模組”內只完成一件工作</li>
+<li>內聚力高，意味著該模組可以獨立運作，也意味著更容易重複利用</li>
+<li>範例：一個class只負責一件事情(例如寄送郵件)</li>
+</ul>
+<h4 id="低內聚力"><a href="#低內聚力" class="headerlink" title="低內聚力"></a>低內聚力</h4><ul>
+<li>在一個”模組”內完成多份工作</li>
+<li>內聚力低，意味著這個棤組會造成難以維護&#x2F;測試&#x2F;重用&#x2F;理解</li>
+<li>範例：所有功能寫在一個class裡面或一個method有5000行程式碼</li>
+</ul>
+<h4 id="最佳實務"><a href="#最佳實務" class="headerlink" title="最佳實務"></a>最佳實務</h4><ul>
+<li>在設計模組的時候，要盡量設計出<code>高內聚力</code>的程式碼。</li>
+<li>若要在一個模組內完成多項工作，建議拆成多個不同的類別</li>
+<li>實現<code>SRP</code>就是實現「<code>提高內聚力</code>」的一種表現</li>
+</ul>
+<h3 id="耦合力-Coupling"><a href="#耦合力-Coupling" class="headerlink" title="耦合力 Coupling"></a>耦合力 Coupling</h3><ul>
+<li>模組與模組之間的關聯強度<ul>
+<li>模組之間相互依賴的程度</li>
+<li>衡量兩個模組的緊密連接程度</li>
+<li>範例：在ClassB裡面，直接”建立”了ClassA的物件實體，就會建立ClassA與ClassB之間的”耦合關係”。</li>
+</ul>
+</li>
+</ul>
+<h4 id="高耦合力"><a href="#高耦合力" class="headerlink" title="高耦合力"></a>高耦合力</h4><ul>
+<li>意著當改了A模組時，相關的B模組就會容易被影響(改A壞B)</li>
+</ul>
+<h4 id="低耦合力"><a href="#低耦合力" class="headerlink" title="低耦合力"></a>低耦合力</h4><ul>
+<li>當在修改模組的時候，有越少的模組被影響，就意味著耦合力較低。</li>
+</ul>
+<h4 id="最佳實務-1"><a href="#最佳實務-1" class="headerlink" title="最佳實務"></a>最佳實務</h4><ul>
+<li>在設計不同模組的時候，要盡量設計出<code>低耦合力</code>的程式碼。</li>
+<li>實現<code>DIP</code>就是實現「降低耦合力」的一個原則。</li>
+</ul>
+<h4 id="隨堂測驗"><a href="#隨堂測驗" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> InvitationService <span class="keyword">public</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendInvite</span> (<span class="params"><span class="built_in">string</span> elail, <span class="built_in">string</span> firstName, <span class="built_in">string</span> lastName</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (String.IsNullOrWhiteSpace(firstName) || String.IsNullOrWhiteSpace(lastName))&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Name is not valid!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!email.Contains(<span class="string">&quot;@&quot;</span>) || !email.Contains(<span class="string">&quot;.&quot;</span>))&#123;</span><br><span class="line">    	<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid!!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SmtpClient client = <span class="keyword">new</span> SmtpClient();</span><br><span class="line"></span><br><span class="line">    client.Send(<span class="keyword">new</span> MailMessage(<span class="string">&quot;mysite@nowhere.com&quot;</span>, email) &#123; Subject <span class="string">&quot;Please join me at my party!&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段代碼中的 <code>InvitationService</code> 類與以下幾個類發生了耦合關係：</p>
+<ul>
+<li><p><code>String</code> 類 - 用於驗證 <code>firstName</code> 和 <code>lastName</code> 是否為空或空白字串。</p>
+<p>方法：<code>String.IsNullOrWhiteSpace</code></p>
+</li>
+<li><p><code>Exception</code> 類 - 用於在驗證失敗時拋出異常。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Name is not valid!&quot;</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid!&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>SmtpClient</code> 類 - 用於發送電子郵件。</p>
+<p>創建了 <code>SmtpClient</code> 實例 <code>client</code>。</p>
+</li>
+<li><p><code>MailMessage</code> 類 - 用於構造電子郵件訊息。</p>
+<p>創建了 <code>MailMessage</code> 物件，設置發件人和收件人資訊以及郵件主題。</p>
+</li>
+</ul>
+<h4 id="隨堂測驗-1"><a href="#隨堂測驗-1" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>耦合是不可避免的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Order</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> ShoppingCartContents cart;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> salestax;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Order</span>(<span class="params">ShoppingCartContents cart, <span class="built_in">float</span> salesTax</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.cart = cart;</span><br><span class="line">        <span class="keyword">this</span>.salesTax = salesTax;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCart</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> Price;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Quantity;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">float</span> <span class="title">OrderTotal</span>()</span> &#123;</span><br><span class="line">        <span class="built_in">float</span> cartTotal = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; cart.items.length; i++) &#123;</span><br><span class="line">            cartTotal += cart.items[i].Price * cart.items[i].Quantity;</span><br><span class="line">        &#125;</span><br><span class="line">        cartTotal += cartTotal * salestax;</span><br><span class="line">        <span class="keyword">return</span> cartTotal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCartContents</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ShoppingCart[] items;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">class Order &#123;</span><br><span class="line">    - ShoppingCartContents cart</span><br><span class="line">    - float salestax</span><br><span class="line">    + Order(ShoppingCartContents, float)</span><br><span class="line">    + OrderTotal(): float</span><br><span class="line">&#125;</span><br><span class="line">class ShoppingCartContents &#123;</span><br><span class="line">    - ShoppingCart[] items</span><br><span class="line">&#125;</span><br><span class="line">class ShoppingCart &#123;</span><br><span class="line">    + float Price</span><br><span class="line">    + int Quantity</span><br><span class="line">&#125;</span><br><span class="line">Order --&gt; ShoppingCartContents</span><br><span class="line">ShoppingCartContents --&gt; ShoppingCart</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/RP312i8m38RlVOeSDsPVm8CCzW0gxYOUIXUrqAMZpK0HtzrWUn1fRad-B_cJFh69lCvUMMzIWdsSCC9BWOI6qpqiYwFR89eX42Dn0Yj9wLzzC0p9U9GnZs-nooEQ6hh9GFih70CRtxJRt5BlugEwkMRhV077EASgMOYk63r4Px5K734SLqFi-2bilblhNNMpgjhvLwiUQP9NVW00" alt="img"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SOLID/" rel="tag"># SOLID</a>
+              <a href="/tags/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E/" rel="tag"># 程式設計基礎</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(3)%E4%BB%8B%E7%B4%B9SOLID%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87/" rel="prev" title="SOLID 筆記 - (3)介紹SOLID物件導向設計原則">
+      <i class="fa fa-chevron-left"></i> SOLID 筆記 - (3)介紹SOLID物件導向設計原則
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(1)OOP%E7%9A%84%E5%9B%9B%E5%80%8B%E7%89%B9%E6%80%A7/" rel="next" title="SOLID 筆記 - (1)OOP的四個特性">
+      SOLID 筆記 - (1)OOP的四個特性 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A7%E8%81%9A%E5%8A%9B%E8%88%87%E8%80%A6%E5%90%88%E5%8A%9B"><span class="nav-text">內聚力與耦合力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E8%AC%82%E2%80%9D%E6%A8%A1%E7%B5%84%E2%80%9D-Module"><span class="nav-text">何謂”模組” (Module)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A7%E8%81%9A%E5%8A%9B-Cohesion"><span class="nav-text">內聚力 Cohesion</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E5%85%A7%E8%81%9A%E5%8A%9B"><span class="nav-text">高內聚力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%8E%E5%85%A7%E8%81%9A%E5%8A%9B"><span class="nav-text">低內聚力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AF%A6%E5%8B%99"><span class="nav-text">最佳實務</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%A6%E5%90%88%E5%8A%9B-Coupling"><span class="nav-text">耦合力 Coupling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E8%80%A6%E5%90%88%E5%8A%9B"><span class="nav-text">高耦合力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%8E%E8%80%A6%E5%90%88%E5%8A%9B"><span class="nav-text">低耦合力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AF%A6%E5%8B%99-1"><span class="nav-text">最佳實務</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97"><span class="nav-text">隨堂測驗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97-1"><span class="nav-text">隨堂測驗</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kite</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">123</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">449k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">13:36</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

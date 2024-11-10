@@ -189,6 +189,471 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/12/2021-05-12%20CCNA_12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/12/2021-05-12%20CCNA_12/" class="post-title-link" itemprop="url">CCNA_12</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-12 19:07:00" itemprop="dateCreated datePublished" datetime="2021-05-12T19:07:00+08:00">2021-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:58:39" itemprop="dateModified" datetime="2023-12-31T22:58:39+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCNA/" itemprop="url" rel="index"><span itemprop="name">CCNA</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="12-Warm-Up-Packet-Tracer-and-IOS-Basic"><a href="#12-Warm-Up-Packet-Tracer-and-IOS-Basic" class="headerlink" title="12. Warm Up Packet Tracer and IOS Basic"></a>12. Warm Up Packet Tracer and IOS Basic</h2><p>IOS 是思科網路的系統名稱</p>
+<h3 id="Bring-Up-a-Device"><a href="#Bring-Up-a-Device" class="headerlink" title="Bring Up a Device"></a>Bring Up a Device</h3><p>Router Bootup Process</p>
+<ul>
+<li><ol>
+<li>Perform POST</li>
+</ol>
+<ul>
+<li>Power-on Self-test(POST) - 通電自檢</li>
+<li>對於硬件做基本檢測</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>Load Bootstrap</li>
+</ol>
+<ul>
+<li>當當於電腦的BIOS</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>Locate IOS</li>
+</ol>
+<ul>
+<li>啟動系統二種方法<ul>
+<li>啟動一個文件，存在於flash上，相當於本地硬盤一樣</li>
+<li>存取TFTP Server 上的文件進行啟動<ul>
+<li>跟無盤工作站概念很相似</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>Load IOS</li>
+</ol>
+<ul>
+<li>加載系統</li>
+<li>加載完過後，要加載配置文件</li>
+</ul>
+</li>
+<li><ol start="5">
+<li>Locate the Configuration File</li>
+</ol>
+<ul>
+<li>NVRAM</li>
+<li>TFTP Server</li>
+<li>Console</li>
+</ul>
+</li>
+<li><ol start="6">
+<li>Execute the Configuration File or enter “Setup” mode</li>
+</ol>
+</li>
+</ul>
+<p>NVRAM 斷電之後，儲存在裡面的資料不會流失</p>
+<p><img src="https://i.imgur.com/l5Up7Eq.png"></p>
+<h3 id="Different-Modes"><a href="#Different-Modes" class="headerlink" title="Different Modes"></a>Different Modes</h3><h4 id="USER-MODE"><a href="#USER-MODE" class="headerlink" title="USER MODE"></a>USER MODE</h4><p>show users<br>show version<br>無法進行配置</p>
+<h4 id="PRIVILEGED-MODE"><a href="#PRIVILEGED-MODE" class="headerlink" title="PRIVILEGED MODE"></a>PRIVILEGED MODE</h4><p>enable<br>也無法進行配置<br>?<br>接口地址、接口路由，在這邊也無法配置</p>
+<h4 id="CONFIGURE-MODE"><a href="#CONFIGURE-MODE" class="headerlink" title="CONFIGURE MODE"></a>CONFIGURE MODE</h4><p>指令<br>configure terminal<br>exit<br>或者打<br>config<br>t</p>
+<p>可以對系統配置進行修改<br>要配置接口就必須在 interface 模式以此類推…</p>
+<p><img src="https://i.imgur.com/LQZxGjS.png"></p>
+<p><img src="https://i.imgur.com/2wVngsm.png"></p>
+<p><img src="https://i.imgur.com/oJs1Xzw.png"></p>
+<h4 id="Viewing-Saving-and-Erasing-Configurations"><a href="#Viewing-Saving-and-Erasing-Configurations" class="headerlink" title="Viewing,Saving, and Erasing Configurations"></a>Viewing,Saving, and Erasing Configurations</h4><p>Running configuration<br>正在敲打配置命令時，是存在於RAM裡面的</p>
+<p>要經過<br>copy running-config startup-config<br>才會寫到NVRAM</p>
+<p>系統reboot時都是找Startup configuration</p>
+<p>系統上敲打wr 跟copy running-config 效果是一樣的</p>
+<p><img src="https://i.imgur.com/HN9aOVM.png"></p>
+<h4 id="Configuration-Register"><a href="#Configuration-Register" class="headerlink" title="Configuration Register"></a>Configuration Register</h4><p>IOS 要去找starup-config 是由configuration register 控制的<br>改完之後不會馬上生效<br>在這個模式要加上do 指令才能show</p>
+<p><img src="https://i.imgur.com/zVyonJg.png"></p>
+<h4 id="Boot-System"><a href="#Boot-System" class="headerlink" title="Boot System"></a>Boot System</h4><p>系統要從哪裡啟動</p>
+<ul>
+<li>本地硬碟</li>
+<li>TFTP</li>
+</ul>
+<p>可以先備份舊系統到別台服務器，以便還原<br>請操作練習<br><img src="https://i.imgur.com/PGq1cdw.png"></p>
+<h4 id="ROM-Monitor-ROMMON"><a href="#ROM-Monitor-ROMMON" class="headerlink" title="ROM Monitor(ROMMON)"></a>ROM Monitor(ROMMON)</h4><p>作業系統丟失時，比方說斷電導致IOS死掉，可以用ROM Monitor 進行recover</p>
+<p>圖中所列出的指令，記得大小寫是有差的。<br><img src="https://i.imgur.com/KeCQrbt.png"></p>
+<h4 id="Cisco-IOS-FILE-SYSTEM-IFS"><a href="#Cisco-IOS-FILE-SYSTEM-IFS" class="headerlink" title="Cisco IOS FILE SYSTEM(IFS)"></a>Cisco IOS FILE SYSTEM(IFS)</h4><ul>
+<li><p>dir</p>
+</li>
+<li><p>copy</p>
+</li>
+<li><p>show file</p>
+</li>
+<li><p>delete</p>
+</li>
+<li><p>erase</p>
+</li>
+<li><p>cd&#x2F;pwd</p>
+</li>
+<li><p>mkdir&#x2F;rmdir</p>
+</li>
+<li><p>ctrl + a</p>
+</li>
+<li><p>ctrl + e</p>
+</li>
+<li><p>ctrl + u</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/9qr0d0V.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">DRY、KISS、YAGNI三原則的理解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-06 11:47:00" itemprop="dateCreated datePublished" datetime="2021-05-06T11:47:00+08:00">2021-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:58:56" itemprop="dateModified" datetime="2023-12-31T22:58:56+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BB%9F%E9%AB%94%E6%80%9D%E7%B6%AD/" itemprop="url" rel="index"><span itemprop="name">軟體思維</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>軟件三原則的個人理解<br>在軟件的設計當中前人已經總結了許多的設計原則和設計模式。例如SOLID，GRASP設計原則，這些原則都是基於面向對象設計總結而來的。而GOF23是基於許多常見的場景總結出了一套設計模式，在我們遇到類似的場景，都可以套用設計模式。而今天所講到的軟件三原則是適用於在軟件設計的各個層面的。它不僅適用於面向對象的設計，也適用於面向過程的程序設計；不僅適用於類的設計，也適用於模塊、子系統的設計。就連在項目架構運維部署中也適用於這一套簡單的法則。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/03/2021-05-03%20CCNA_10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/03/2021-05-03%20CCNA_10/" class="post-title-link" itemprop="url">CCNA_10</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-03 17:27:00" itemprop="dateCreated datePublished" datetime="2021-05-03T17:27:00+08:00">2021-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:59:08" itemprop="dateModified" datetime="2023-12-31T22:59:08+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCNA/" itemprop="url" rel="index"><span itemprop="name">CCNA</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>256</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Subnetting-2"><a href="#1-Subnetting-2" class="headerlink" title="1. Subnetting 2"></a>1. Subnetting 2</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/03/2021-05-03%20CCNA_10/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/05/02/2021-05-02%20CCNA_11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kite">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kite的筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/02/2021-05-02%20CCNA_11/" class="post-title-link" itemprop="url">CCNA_11</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-05-02 17:22:00" itemprop="dateCreated datePublished" datetime="2021-05-02T17:22:00+08:00">2021-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-12-31 22:59:22" itemprop="dateModified" datetime="2023-12-31T22:59:22+08:00">2023-12-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCNA/" itemprop="url" rel="index"><span itemprop="name">CCNA</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Physical-Layer"><a href="#1-Physical-Layer" class="headerlink" title="1. Physical Layer"></a>1. Physical Layer</h2><h3 id="1-1-物理層拓璞"><a href="#1-1-物理層拓璞" class="headerlink" title="1.1. 物理層拓璞"></a>1.1. 物理層拓璞</h3><p><img src="https://i.imgur.com/u9mPd2p.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/02/2021-05-02%20CCNA_11/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/30/2021-04-30%20CCNA_09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -753,382 +1218,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/23/2021-04-23%20CCNA_06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/2021-04-23%20CCNA_06/" class="post-title-link" itemprop="url">CCNA_06</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-04-23 11:52:00" itemprop="dateCreated datePublished" datetime="2021-04-23T11:52:00+08:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 23:39:19" itemprop="dateModified" datetime="2023-12-31T23:39:19+08:00">2023-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CCNA/" itemprop="url" rel="index"><span itemprop="name">CCNA</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>662</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-TCP-IP-Protocol-Suite-4"><a href="#1-TCP-IP-Protocol-Suite-4" class="headerlink" title="1. TCP IP Protocol Suite 4"></a>1. TCP IP Protocol Suite 4</h2><h3 id="1-1-TCP-UDP-形容圖"><a href="#1-1-TCP-UDP-形容圖" class="headerlink" title="1.1. TCP UDP 形容圖"></a>1.1. TCP UDP 形容圖</h3><p><img src="https://i.imgur.com/Yj1XQAh.png" alt="image"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/23/2021-04-23%20CCNA_06/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/21/2021-04-21%20CCNA_05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/21/2021-04-21%20CCNA_05/" class="post-title-link" itemprop="url">CCNA_05</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-04-21 23:49:00" itemprop="dateCreated datePublished" datetime="2021-04-21T23:49:00+08:00">2021-04-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 23:39:04" itemprop="dateModified" datetime="2023-12-31T23:39:04+08:00">2023-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CCNA/" itemprop="url" rel="index"><span itemprop="name">CCNA</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>908</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>2 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number"><a href="#1-TCP-IP-Protocol-Suite-3-系统如何识别各层协议，Ethernet-Type，Protocol-Number及Port-Number" class="headerlink" title="1. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)"></a>1. TCP IP Protocol Suite 3(系统如何识别各层协议，Ethernet Type，Protocol Number及Port Number)</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/21/2021-04-21%20CCNA_05/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/18/2021-04-18%20DNS%E4%BB%8B%E7%B4%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/18/2021-04-18%20DNS%E4%BB%8B%E7%B4%B9/" class="post-title-link" itemprop="url">DNS介紹</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-04-18 01:03:00" itemprop="dateCreated datePublished" datetime="2021-04-18T01:03:00+08:00">2021-04-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 23:17:15" itemprop="dateModified" datetime="2023-12-31T23:17:15+08:00">2023-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DNS/" itemprop="url" rel="index"><span itemprop="name">DNS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>3 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>透過 <strong>hosts</strong> 設定檔手動設定主機名稱與 IP 位址是系統與網站管理者常用的除錯技巧，以下我們將介紹這個好用小功能該怎麼使用。</p>
-<p>在架設網站時，除了伺服主機的網路設定之外，還要配合 DNS 伺服器才能讓網站正常運作，而 DNS 上面的記錄在變更之後，通常都會需要幾個小時才會生效，所以很多人在架設網站初期都會浪費許多時間在等待 DNS 生效，才進行後續的設定，其實我們可以在 DNS 生效之前，以動的方式自行先設定自己電腦上的 hosts 檔，加速網站的建置工作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/18/2021-04-18%20DNS%E4%BB%8B%E7%B4%B9/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://kitefree.github.io/2021/04/18/2021-04-18%20Ubuntu%20FTP%20Server%20%E5%AE%89%E8%A3%9D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kite">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kite的筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/18/2021-04-18%20Ubuntu%20FTP%20Server%20%E5%AE%89%E8%A3%9D/" class="post-title-link" itemprop="url">Ubuntu FTP Server 安裝</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-04-18 00:21:00" itemprop="dateCreated datePublished" datetime="2021-04-18T00:21:00+08:00">2021-04-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-31 23:20:43" itemprop="dateModified" datetime="2023-12-31T23:20:43+08:00">2023-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/FTP-Server/" itemprop="url" rel="index"><span itemprop="name">FTP Server</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>605</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>安裝vsftpd</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/18/2021-04-18%20Ubuntu%20FTP%20Server%20%E5%AE%89%E8%A3%9D/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1198,7 +1287,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">135</span>
+          <span class="site-state-item-count">139</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1247,12 +1336,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">440k</span>
+    <span title="總字數">449k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">13:20</span>
+    <span title="所需總閱讀時間">13:36</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>

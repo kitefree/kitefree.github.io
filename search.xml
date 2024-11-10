@@ -10223,9 +10223,9 @@
       </tags>
   </entry>
   <entry>
-    <title>SOLID 筆記</title>
-    <url>/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98/</url>
-    <content><![CDATA[<h2 id="一、OOP的四個特性"><a href="#一、OOP的四個特性" class="headerlink" title="一、OOP的四個特性"></a>一、OOP的四個特性</h2><h3 id="在程式開發的過程會遇到各種情境"><a href="#在程式開發的過程會遇到各種情境" class="headerlink" title="在程式開發的過程會遇到各種情境"></a>在程式開發的過程會遇到各種情境</h3><ul>
+    <title>SOLID 筆記 - (1)OOP的四個特性</title>
+    <url>/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(1)OOP%E7%9A%84%E5%9B%9B%E5%80%8B%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<h2 id="OOP的四個特性"><a href="#OOP的四個特性" class="headerlink" title="OOP的四個特性"></a>OOP的四個特性</h2><h3 id="在程式開發的過程會遇到各種情境"><a href="#在程式開發的過程會遇到各種情境" class="headerlink" title="在程式開發的過程會遇到各種情境"></a>在程式開發的過程會遇到各種情境</h3><ul>
 <li><p>開發的時間較長？還是維護的時間較長？</p>
 </li>
 <li><p>有團隊一起進行開發？還是一個人寫CODE？</p>
@@ -10310,7 +10310,19 @@
 </ul>
 </li>
 </ul>
-<h2 id="二、內聚力與耦合力"><a href="#二、內聚力與耦合力" class="headerlink" title="二、內聚力與耦合力"></a>二、內聚力與耦合力</h2><h3 id="何謂”模組”-Module"><a href="#何謂”模組”-Module" class="headerlink" title="何謂”模組” (Module)"></a>何謂”模組” (Module)</h3><ul>
+]]></content>
+      <categories>
+        <category>SOLID</category>
+      </categories>
+      <tags>
+        <tag>SOLID</tag>
+        <tag>程式設計基礎</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SOLID 筆記 - (2)內聚力與耦合力</title>
+    <url>/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(2)%E5%85%A7%E8%81%9A%E5%8A%9B%E8%88%87%E8%80%A6%E5%90%88%E5%8A%9B/</url>
+    <content><![CDATA[<h2 id="內聚力與耦合力"><a href="#內聚力與耦合力" class="headerlink" title="內聚力與耦合力"></a>內聚力與耦合力</h2><h3 id="何謂”模組”-Module"><a href="#何謂”模組”-Module" class="headerlink" title="何謂”模組” (Module)"></a>何謂”模組” (Module)</h3><ul>
 <li><p>一種抽象的概念</p>
 </li>
 <li><p>其實C#沒有Module概念</p>
@@ -10323,6 +10335,9 @@
 </ul>
 </li>
 </ul>
+<span id="more"></span>
+
+
 <h3 id="內聚力-Cohesion"><a href="#內聚力-Cohesion" class="headerlink" title="內聚力 Cohesion"></a>內聚力 Cohesion</h3><ul>
 <li>在一個”模組” 內完成 “一件工作” 的度量指標</li>
 <li>內聚一次只專注做一件事</li>
@@ -10387,7 +10402,19 @@
 
 
 <p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/RP312i8m38RlVOeSDsPVm8CCzW0gxYOUIXUrqAMZpK0HtzrWUn1fRad-B_cJFh69lCvUMMzIWdsSCC9BWOI6qpqiYwFR89eX42Dn0Yj9wLzzC0p9U9GnZs-nooEQ6hh9GFih70CRtxJRt5BlugEwkMRhV077EASgMOYk63r4Px5K734SLqFi-2bilblhNNMpgjhvLwiUQP9NVW00" alt="img"></p>
-<h2 id="三、介紹SOLID物件導向設計原則"><a href="#三、介紹SOLID物件導向設計原則" class="headerlink" title="三、介紹SOLID物件導向設計原則"></a>三、介紹SOLID物件導向設計原則</h2><h3 id="何謂”原則”-Principle"><a href="#何謂”原則”-Principle" class="headerlink" title="何謂”原則”(Principle)"></a>何謂”原則”(Principle)</h3><ul>
+]]></content>
+      <categories>
+        <category>SOLID</category>
+      </categories>
+      <tags>
+        <tag>SOLID</tag>
+        <tag>程式設計基礎</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SOLID 筆記 - (3)介紹SOLID物件導向設計原則</title>
+    <url>/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(3)%E4%BB%8B%E7%B4%B9SOLID%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87/</url>
+    <content><![CDATA[<h2 id="介紹SOLID物件導向設計原則"><a href="#介紹SOLID物件導向設計原則" class="headerlink" title="介紹SOLID物件導向設計原則"></a>介紹SOLID物件導向設計原則</h2><h3 id="何謂”原則”-Principle"><a href="#何謂”原則”-Principle" class="headerlink" title="何謂”原則”(Principle)"></a>何謂”原則”(Principle)</h3><ul>
 <li><p>A <code>principle</code> is a concept or value that is a guid for <code>behavior</code> or <code>evaluation</code></p>
 </li>
 <li><p>所謂「原則」就是一種「概念」或「價值」用來導引你產生<code>適切的行為</code>與<code>價值評量方法</code>。</p>
@@ -10399,6 +10426,8 @@
 </ul>
 </li>
 </ul>
+<span id="more"></span>
+
 <h3 id="OOP物件導向程式設計SOLID設計原則"><a href="#OOP物件導向程式設計SOLID設計原則" class="headerlink" title="OOP物件導向程式設計SOLID設計原則"></a>OOP物件導向程式設計SOLID設計原則</h3><p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20241106202817116.png" alt="image-20241106202817116"></p>
 <h3 id="學習SOLID物件導向設計原則的好處"><a href="#學習SOLID物件導向設計原則的好處" class="headerlink" title="學習SOLID物件導向設計原則的好處"></a>學習SOLID物件導向設計原則的好處</h3><ul>
 <li>降低程式碼複雜程度</li>
@@ -10407,7 +10436,19 @@
 <li>讓模組具有高內聚力、低耦合力</li>
 <li>面臨變更需求時可以減少破壞現有模組的風險</li>
 </ul>
-<h2 id="四、單一責任原則-SRP-Single-Responsibility-Principle"><a href="#四、單一責任原則-SRP-Single-Responsibility-Principle" class="headerlink" title="四、單一責任原則 SRP  Single Responsibility Principle"></a>四、單一責任原則 SRP  Single Responsibility Principle</h2><ul>
+]]></content>
+      <categories>
+        <category>SOLID</category>
+      </categories>
+      <tags>
+        <tag>SOLID</tag>
+        <tag>程式設計基礎</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SOLID 筆記 - (4)單一責任原則 SRP  Single Responsibility Principle</title>
+    <url>/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(4)%E5%96%AE%E4%B8%80%E8%B2%AC%E4%BB%BB%E5%8E%9F%E5%89%87%20SRP%20%20Single%20Responsibility%20Principle/</url>
+    <content><![CDATA[<h2 id="單一責任原則-SRP-Single-Responsibility-Principle"><a href="#單一責任原則-SRP-Single-Responsibility-Principle" class="headerlink" title="單一責任原則 SRP  Single Responsibility Principle"></a>單一責任原則 SRP  Single Responsibility Principle</h2><ul>
 <li>A <code>class</code> should have <code>only one</code> reason to change</li>
 <li>一個類別應該只有一個改變的理由！</li>
 </ul>
@@ -10419,6 +10460,8 @@
 </ul>
 </li>
 </ul>
+<span id="more"></span>
+
 <h3 id="隨堂問題"><a href="#隨堂問題" class="headerlink" title="隨堂問題"></a>隨堂問題</h3><p>請問以下類別有多少責任？</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">LoadOrder</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">// 1.建立資料庫連線(包含寫死的連接字串)</span></span><br><span class="line">		<span class="comment">// 2.執行 ADO.NET 資料存取(包含資料篩選)</span></span><br><span class="line">		<span class="comment">// 3.附迴圈取得資料(包含資料格式轉換)</span></span><br><span class="line">		<span class="comment">// 4.回傳資料</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -10488,8 +10531,13 @@
 <li>當需求變更的時候，再進行類別分割即可！</li>
 </ul>
 </li>
+<li>SRP是SOLID中最簡單的，但卻是最難做到的<ul>
+<li>需要不斷提升你的<strong>開發經驗</strong>與<strong>重構技術</strong></li>
+<li>如果你沒有足夠的經驗去定義一個物件的Responsibility，那麼建議你不要過早進行SRP規劃！</li>
 </ul>
-<h4 id="隨堂測驗-2"><a href="#隨堂測驗-2" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+</li>
+</ul>
+<h4 id="隨堂測驗"><a href="#隨堂測驗" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        DataAccess.InsertData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">DataAccess</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertData</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Data inserted into database successfully&quot;</span>);</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Logged Time:&quot;</span> + DateTime.Now.ToLongTimeString() + <span class="string">&quot; Log Data insertion completed successfully&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>修改後</p>
@@ -10497,7 +10545,7 @@
 
 
 
-<h4 id="隨堂測驗-3"><a href="#隨堂測驗-3" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<h4 id="隨堂測驗-1"><a href="#隨堂測驗-1" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Net.Mail;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRegistrationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RegisterUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 驗證使用者</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(username))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Username is not valid&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(password) || password.Length &lt; <span class="number">6</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Password must be at least 6 characters&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(email) || !email.Contains(<span class="string">&quot;@&quot;</span>))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 將使用者存入資料庫（此處假設使用假代碼）</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Saving user to database...&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 發送確認郵件</span></span><br><span class="line">        SmtpClient client = <span class="keyword">new</span> SmtpClient();</span><br><span class="line">        MailMessage mailMessage = <span class="keyword">new</span> MailMessage(<span class="string">&quot;admin@example.com&quot;</span>, email);</span><br><span class="line">        mailMessage.Subject = <span class="string">&quot;Registration Confirmation&quot;</span>;</span><br><span class="line">        mailMessage.Body = <span class="string">&quot;Thank you for registering!&quot;</span>;</span><br><span class="line">        client.Send(mailMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -10507,7 +10555,14 @@
 
 
 
-<h3 id="補充非必要功能，如何透過SRP抽離與設計"><a href="#補充非必要功能，如何透過SRP抽離與設計" class="headerlink" title="補充非必要功能，如何透過SRP抽離與設計"></a>補充非必要功能，如何透過SRP抽離與設計</h3><p><strong>需求情境</strong></p>
+<h4 id="隨堂測驗-2"><a href="#隨堂測驗-2" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderManager</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Product&gt; products = <span class="keyword">new</span> List&lt;Product&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Processing</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 1. 檢查商品庫存數量是否足夠</span></span><br><span class="line">        <span class="comment">// 2. 執行付款處理程序</span></span><br><span class="line">        <span class="comment">// 3. 進行送貨處理程序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改後</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Product</span> &#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Customer</span> &#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Stock</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CheckAvailability</span>(<span class="params">IEnumerable&lt;Product&gt; products</span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Payment</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Processing</span>(<span class="params">Customer customer, IEnumerable&lt;Product&gt; products</span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Shipment</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendProducts</span>(<span class="params">Customer customer, IEnumerable&lt;Product&gt; products</span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Product&gt; Products &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> Customer Customer &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderManager</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Products = <span class="keyword">new</span> List&lt;Product&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Processing</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> stock = <span class="keyword">new</span> Stock();</span><br><span class="line">        stock.CheckAvailability(Products);</span><br><span class="line">        <span class="keyword">var</span> payment = <span class="keyword">new</span> Payment();</span><br><span class="line">        payment.Processing(Customer, Products);</span><br><span class="line">        <span class="keyword">var</span> shipment = <span class="keyword">new</span> Shipment();</span><br><span class="line">        shipment.SendProducts(Customer, Products);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因為現在<code>OrderManager</code> 耦合 <code>Payment</code>，所以如果後續發生付款方式增加LINE PAY ，則有可能既有其中一個的<code>OrderManager</code> 會被改壞(改A壞B)，這時候就需要下一個原則。</p>
+<h3 id="補充：遇到非必要需求，如何透過SRP抽離與設計"><a href="#補充：遇到非必要需求，如何透過SRP抽離與設計" class="headerlink" title="補充：遇到非必要需求，如何透過SRP抽離與設計"></a>補充：遇到非必要需求，如何透過SRP抽離與設計</h3><p><strong>需求情境</strong></p>
 <p>假設我們有一個用戶註冊系統，並且需求突然提出希望在用戶註冊完成後額外「記錄用戶行為」（例如記錄註冊時間和 IP 地址）。此功能並非系統核心，僅為輔助紀錄，屬於非必要功能。</p>
 <p><strong>修改前</strong></p>
 <p>初版的註冊服務可能如下所示：</p>
@@ -10530,6 +10585,95 @@
 <p><strong>難以重用</strong>：當一個類別包含多種職責，這會限制重用性，因為在新環境中，並不總是需要該類別的所有職責。分離不同的功能後，每個類別只專注於一個職責，使得它們更容易重用。</p>
 <p><strong>測試困難</strong>：具有多重職責的類別通常難以測試，因為它需要配置不同的依賴關係來涵蓋所有職責。通過實踐SRP，可以使類別更易於單元測試，因為每個類別只需測試其單一職責。</p>
 <p><strong>耦合度過高</strong>：當某個類別與多個其他類別有大量的依賴或耦合，這表示它可能包含了多個職責。將不同的職責抽取到不同的類別，可以減少耦合，使系統更具可維護性。</p>
+]]></content>
+      <categories>
+        <category>SOLID</category>
+      </categories>
+      <tags>
+        <tag>SOLID</tag>
+        <tag>程式設計基礎</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SOLID 筆記 - (5)開放封閉原則 OCP Open Closed Principle</title>
+    <url>/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(5)%E9%96%8B%E6%94%BE%E5%B0%81%E9%96%89%E5%8E%9F%E5%89%87%20OCP%20Open%20Closed%20Principle/</url>
+    <content><![CDATA[<h2 id="開放封閉原則-OCP-Open-Closed-Principle"><a href="#開放封閉原則-OCP-Open-Closed-Principle" class="headerlink" title="開放封閉原則 OCP Open Closed Principle"></a>開放封閉原則 OCP Open Closed Principle</h2><ul>
+<li><p>Software entities(classes,modules,functions,etc.)</p>
+<p>should be <code>open for extension</code> but <code>closed for modification</code></p>
+</li>
+<li><p>軟體實體(類別、模組、函式等)應該<code>開放擴充</code>但<code>封閉修改</code></p>
+</li>
+<li><p>藉由<code>增加新的程式碼</code>來擴充系統的功能，而不是藉由<code>修改原本已經存在的程式碼</code>來擴充系統。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="關於OCP的基本精神"><a href="#關於OCP的基本精神" class="headerlink" title="關於OCP的基本精神"></a>關於OCP的基本精神</h3><ul>
+<li>一個”類別”需要<code>開放</code>，意味著 該類別可以被擴充！<ul>
+<li>可以透過<code>繼承</code>輕鬆做到<ul>
+<li>我有一個類別我繼承它，然後把新的功能寫在新的類別裡，也剛好符合SRP</li>
+<li>新的版本用新的類別，舊的版本用舊的類別，舊的CODE絕對不會壞掉。</li>
+</ul>
+</li>
+<li>C# 還有<code>擴充方法</code>可以輕鬆擴充既有類別<ul>
+<li>讓您不用改到原本的CODE，就可以擴充原本code沒有的功能。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>補充說明擴充方法</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Globalization;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">StringExtensions</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">ToTitleCase</span>(<span class="params"><span class="keyword">this</span> <span class="built_in">string</span> str</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrEmpty(str))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;</span><br><span class="line">        <span class="keyword">return</span> textInfo.ToTitleCase(str.ToLower());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用範例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> text = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">        Console.WriteLine(text.ToTitleCase()); <span class="comment">// 輸出：Hello World</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一個”類別”需要<code>封閉</code>，意味著有其他人正在使用這個類別！<ul>
+<li>如果程式已經編譯，但又已經有人在使用原本的類別</li>
+<li>封閉修改可以有效避免未知的問題發生</li>
+</ul>
+</li>
+</ul>
+<h3 id="常見的設計問題"><a href="#常見的設計問題" class="headerlink" title="常見的設計問題"></a>常見的設計問題</h3><ul>
+<li>耦合力過高、擴充不易</li>
+</ul>
+<h3 id="關於OCP的實作方式"><a href="#關於OCP的實作方式" class="headerlink" title="關於OCP的實作方式"></a>關於OCP的實作方式</h3><ul>
+<li>採用分離與相依的技巧(相依於抽象)<ul>
+<li>抽象型別可以是<code>一般類別</code>、<code>抽象類別</code>、<code>介面</code><ul>
+<li>類別A相依於這個抽象型別，原本寫的code還是在類別B、C、D，只是再相依於這個抽象型別</li>
+<li>如果你在過去專案有看到大量的interface是因為他希望你做到更好的擴充</li>
+</ul>
+</li>
+<li>缺點：需要針對原有程式碼進行重構</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/image-20241108175120685.png" alt="image-20241108175120685"></p>
+<h3 id="關於OCP的C-範例"><a href="#關於OCP的C-範例" class="headerlink" title="關於OCP的C#範例"></a>關於OCP的C#範例</h3><ul>
+<li>透過<code>抽象類別</code>限制其修改，並透過繼承開放擴充不同實作</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DataProvider</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="隨堂測驗"><a href="#隨堂測驗" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">&#123;	</span><br><span class="line">    DataProvider DataProviderObject = <span class="keyword">new</span> SqlDataProvider(); </span><br><span class="line">	DataProviderObject.OpenConnection();</span><br><span class="line">    DataProviderObject.ExecuteCommand();</span><br><span class="line">    DataProviderObject.CloseConnection();</span><br><span class="line">	</span><br><span class="line">    DataProviderObject = <span class="keyword">new</span> OracleDataProvider();</span><br><span class="line">    DataProviderObject.OpenConnection(); </span><br><span class="line">	DataProviderObject.ExecuteCommand();</span><br><span class="line">    DataProviderObject.CloseConnection();    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span>;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">SqlDataProvider</span> : <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SqlDataProvider</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\nCreate SqlDataProvider&quot;</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection opened successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection closed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection executed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">OracleDataProvider</span> : <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">OracleDataProvider</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\nCreate OracleDataProvider&quot;</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection opened successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection closed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection executed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">OledbDataProvider</span> : <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection opened successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection closed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection executed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改為<code>interface</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">&#123;	</span><br><span class="line">    DataProvider DataProviderObject = <span class="keyword">new</span> SqlDataProvider(); </span><br><span class="line">	DataProviderObject.OpenConnection();</span><br><span class="line">    DataProviderObject.ExecuteCommand();</span><br><span class="line">    DataProviderObject.CloseConnection();</span><br><span class="line">	</span><br><span class="line">    DataProviderObject = <span class="keyword">new</span> OracleDataProvider();</span><br><span class="line">    DataProviderObject.OpenConnection(); </span><br><span class="line">	DataProviderObject.ExecuteCommand();</span><br><span class="line">    DataProviderObject.CloseConnection();    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span>;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">SqlDataProvider</span> : <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SqlDataProvider</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\nCreate SqlDataProvider&quot;</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection opened successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection closed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection executed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">OracleDataProvider</span> : <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">OracleDataProvider</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\nCreate OracleDataProvider&quot;</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection opened successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection closed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection executed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">OledbDataProvider</span> : <span class="title">DataProvider</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">OpenConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection opened successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">CloseConnection</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection closed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">ExecuteCommand</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;\nSql Connection executed successfully&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@startuml</span><br><span class="line">package &quot;OCP&quot; &#123;</span><br><span class="line">    class Main &#123;</span><br><span class="line">        +main()</span><br><span class="line">    &#125;</span><br><span class="line">    interface DataProvider &#123;</span><br><span class="line">        +OpenConnection(): int</span><br><span class="line">        +CloseConnection(): int</span><br><span class="line">        +ExecuteCommand(): int</span><br><span class="line">    &#125;</span><br><span class="line">    class SqlDataProvider &#123;</span><br><span class="line">        +SqlDataProvider()</span><br><span class="line">        +OpenConnection(): int</span><br><span class="line">        +CloseConnection(): int</span><br><span class="line">        +ExecuteCommand(): int</span><br><span class="line">    &#125;</span><br><span class="line">    class OracleDataProvider &#123;</span><br><span class="line">        +OracleDataProvider()</span><br><span class="line">        +OpenConnection(): int</span><br><span class="line">        +CloseConnection(): int</span><br><span class="line">        +ExecuteCommand(): int</span><br><span class="line">    &#125;</span><br><span class="line">    class OledbDataProvider &#123;</span><br><span class="line">        +OpenConnection(): int</span><br><span class="line">        +CloseConnection(): int</span><br><span class="line">        +ExecuteCommand(): int</span><br><span class="line">    &#125;</span><br><span class="line">    Main --&gt; DataProvider : depends on</span><br><span class="line">    SqlDataProvider --|&gt; DataProvider</span><br><span class="line">    OracleDataProvider --|&gt; DataProvider</span><br><span class="line">    OledbDataProvider --|&gt; DataProvider</span><br><span class="line">&#125;</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/nLDB2i8m4Dtt5A4hHNg1BgHGNKeBdc1CHWdcKvDK1EtTJKF1VgpBEel0vBt7lCnCCkl0k5gAg09wXGkIkCZBc3mZueCAi9OSWAlkeesDzFbg7V8cd5mvD6UWI7RWe3JwpXcQlgIeKELQAQIEQozEMyq7peMs-0FVFv3MpZEa1CNwSDFpURo9kVeZg7E_dBN201Kusvq9khn1WUpqf-c5_KgIxN1xKiBGrsMMQ1Leu_4coMie2QmldPuXJbuyvJLHvXtut_46" alt="img"></p>
+<h3 id="關於OCP的使用時機"><a href="#關於OCP的使用時機" class="headerlink" title="關於OCP的使用時機"></a>關於OCP的使用時機</h3><ul>
+<li>你既有的類別<code>已經被清楚定義</code>，處於一個<code>強調穩定</code>的狀態</li>
+<li>你需要擴充現有的類別，加入新需求的屬性或方法</li>
+<li>你擔心修改現有程式碼會破壞現有系統的運作</li>
+<li>系統剛開始設計時就決定要採用OCP模式<ul>
+<li>可以透過<code>介面</code> 或<code>抽象類別</code>進行實作</li>
+</ul>
+</li>
+</ul>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://www.youtube.com/watch?v=HcRUf2MRRgg">Visual Studio Code Map</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>SOLID</category>
