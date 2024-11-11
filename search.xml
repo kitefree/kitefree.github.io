@@ -10618,7 +10618,7 @@
 </li>
 <li>C# 還有<code>擴充方法</code>可以輕鬆擴充既有類別<ul>
 <li>讓您不用改到原本的CODE，就可以擴充原本code沒有的功能。 </li>
-<li><a href="##%E8%A3%9C%E5%85%85%E8%AA%AA%E6%98%8E%EF%BC%9A%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95">補充說明：擴充方法</a></li>
+<li><a href="#%E8%A3%9C%E5%85%85%E8%AA%AA%E6%98%8E%EF%BC%9A%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95">補充說明：擴充方法</a></li>
 </ul>
 </li>
 </ul>
@@ -10694,6 +10694,7 @@
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">string</span> <span class="title">MakeSound</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">MovingAnimal</span> : <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">string</span> <span class="title">Move</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Dog</span> : <span class="title">MovingAnimal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">MakeSound</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Bark&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">Move</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Run&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>此例中，我們使用新的<code>MovingAnimal</code>類別，讓具有移動行為的動物繼承此類別，保持<code>Animal</code>類別的封閉性，並對擴展開放。</p>
+<p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/SoWkIImgAStDuKfCAYufIamkKKZEIImkLd3CoynDp56evb800csu993Ap4jNy4tCJWtEByrBqT3agkL2r-kRNmPK13KXjQ8aDI-5e87vPQaGio16kEIdmtMY60VLZyKTAE9muw3QR6fqTL4Cua8n5ImDj9FB0MWZA3G0" alt="img"></p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
 <li><a href="https://www.youtube.com/watch?v=HcRUf2MRRgg">Visual Studio Code Map</a></li>
 </ul>
