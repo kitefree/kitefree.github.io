@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"kitefree.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="單一責任原則 SRP  Single Responsibility Principle A class should have only one reason to change 一個類別應該只有一個改變的理由！  何謂 “責任” (Responsibility) 責任 &#x3D; reason to change (改變的理由) 當一個類別擁有多個不同的責任 意味著一個類別負責多項不同的工作">
+  <meta name="description" content="1. 單一責任原則 SRP  Single Responsibility Principle A class should have only one reason to change 一個類別應該只有一個改變的理由！  2. 何謂 “責任” (Responsibility) 責任 &#x3D; reason to change (改變的理由) 當一個類別擁有多個不同的責任 意味著一個類別負責多項">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SOLID 筆記 - (4)單一責任原則 SRP  Single Responsibility Principle">
 <meta property="og:url" content="https://kitefree.github.io/2024/11/05/2024-11-05%20SOLID%20%E7%AD%86%E8%A8%98%20-%20(4)%E5%96%AE%E4%B8%80%E8%B2%AC%E4%BB%BB%E5%8E%9F%E5%89%87%20SRP%20%20Single%20Responsibility%20Principle/index.html">
 <meta property="og:site_name" content="Kite的筆記">
-<meta property="og:description" content="單一責任原則 SRP  Single Responsibility Principle A class should have only one reason to change 一個類別應該只有一個改變的理由！  何謂 “責任” (Responsibility) 責任 &#x3D; reason to change (改變的理由) 當一個類別擁有多個不同的責任 意味著一個類別負責多項不同的工作">
+<meta property="og:description" content="1. 單一責任原則 SRP  Single Responsibility Principle A class should have only one reason to change 一個類別應該只有一個改變的理由！  2. 何謂 “責任” (Responsibility) 責任 &#x3D; reason to change (改變的理由) 當一個類別擁有多個不同的責任 意味著一個類別負責多項">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://raw.githubusercontent.com/kitefree/images/main/data/image-20241106220831383.png">
 <meta property="article:published_time" content="2024-11-05T04:39:00.000Z">
-<meta property="article:modified_time" content="2024-11-10T07:57:21.954Z">
+<meta property="article:modified_time" content="2024-11-11T12:52:12.442Z">
 <meta property="article:author" content="kite">
 <meta property="article:tag" content="SOLID">
 <meta property="article:tag" content="程式設計基礎">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-11-10 15:57:21" itemprop="dateModified" datetime="2024-11-10T15:57:21+08:00">2024-11-10</time>
+                <time title="修改時間：2024-11-11 20:52:12" itemprop="dateModified" datetime="2024-11-11T20:52:12+08:00">2024-11-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,11 +262,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="單一責任原則-SRP-Single-Responsibility-Principle"><a href="#單一責任原則-SRP-Single-Responsibility-Principle" class="headerlink" title="單一責任原則 SRP  Single Responsibility Principle"></a>單一責任原則 SRP  Single Responsibility Principle</h2><ul>
+        <h2 id="1-單一責任原則-SRP-Single-Responsibility-Principle"><a href="#1-單一責任原則-SRP-Single-Responsibility-Principle" class="headerlink" title="1. 單一責任原則 SRP  Single Responsibility Principle"></a>1. 單一責任原則 SRP  Single Responsibility Principle</h2><ul>
 <li>A <code>class</code> should have <code>only one</code> reason to change</li>
 <li>一個類別應該只有一個改變的理由！</li>
 </ul>
-<h3 id="何謂-“責任”-Responsibility"><a href="#何謂-“責任”-Responsibility" class="headerlink" title="何謂 “責任” (Responsibility)"></a>何謂 “責任” (Responsibility)</h3><ul>
+<h2 id="2-何謂-“責任”-Responsibility"><a href="#2-何謂-“責任”-Responsibility" class="headerlink" title="2. 何謂 “責任” (Responsibility)"></a>2. 何謂 “責任” (Responsibility)</h2><ul>
 <li>責任 &#x3D; reason to change (改變的理由)</li>
 <li>當一個類別擁有多個不同的責任<ul>
 <li>意味著一個類別負責多項不同的工作</li>
@@ -276,7 +276,7 @@
 </ul>
 <span id="more"></span>
 
-<h3 id="隨堂問題"><a href="#隨堂問題" class="headerlink" title="隨堂問題"></a>隨堂問題</h3><p>請問以下類別有多少責任？</p>
+<h3 id="2-1-隨堂問題"><a href="#2-1-隨堂問題" class="headerlink" title="2.1. 隨堂問題"></a>2.1. 隨堂問題</h3><p>請問以下類別有多少責任？</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">LoadOrder</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">// 1.建立資料庫連線(包含寫死的連接字串)</span></span><br><span class="line">		<span class="comment">// 2.執行 ADO.NET 資料存取(包含資料篩選)</span></span><br><span class="line">		<span class="comment">// 3.附迴圈取得資料(包含資料格式轉換)</span></span><br><span class="line">		<span class="comment">// 4.回傳資料</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在這個<code>OrderManager</code>類別中，<code>LoadOrder</code>方法承擔了以下四個主要責任： </p>
@@ -286,7 +286,7 @@
 <li><strong>循環取得並轉換資料格式</strong>：透過循環取得資料，並進行資料格式轉換。這又增加了一個不同的功能到此方法中，使得方法的職責更加多樣化。 </li>
 <li><strong>回傳資料</strong>：最後，還負責將取得的資料回傳出去。 總的來說，這個方法承擔了過多的責任，違反了單一職責原則。理想情況下，這些不同的功能應該分別由不同的方法或類別來處理，以提高程式碼的可維護性、可讀性以及可測試性。</li>
 </ol>
-<h3 id="關於SRP的基本精神"><a href="#關於SRP的基本精神" class="headerlink" title="關於SRP的基本精神"></a>關於SRP的基本精神</h3><ul>
+<h2 id="3-關於SRP的基本精神"><a href="#3-關於SRP的基本精神" class="headerlink" title="3. 關於SRP的基本精神"></a>3. 關於SRP的基本精神</h2><ul>
 <li>一個”類別”負擔太多責任時，意味著該類別可以被切割<ul>
 <li>可以透過定義一個全新的”類別”輕鬆做到</li>
 <li>對類別進行適度的切割，方便日後管理與維護！</li>
@@ -297,7 +297,7 @@
 <p><code>SRP</code> 主要精神就是<code>提高內聚力</code></p>
 <p><code>高內聚力</code>意味著你可以想到<code>一個清楚的理由</code>去改它！</p>
 </blockquote>
-<h3 id="常見的設計問題"><a href="#常見的設計問題" class="headerlink" title="常見的設計問題"></a>常見的設計問題</h3><ul>
+<h2 id="4-常見的設計問題"><a href="#4-常見的設計問題" class="headerlink" title="4. 常見的設計問題"></a>4. 常見的設計問題</h2><ul>
 <li>將所有功能寫在一個類別中</li>
 <li>類別複雜度過高</li>
 <li>維護時經常找不到應該要改哪裡</li>
@@ -310,7 +310,7 @@
 
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DataProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Process</span>(<span class="params">Data data</span>)</span> &#123; <span class="comment">/* 處理數據 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DataFormatter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Format</span>(<span class="params">Data data</span>)</span> &#123; <span class="comment">/* 格式化數據 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PDFExporter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Export</span>(<span class="params">Data data</span>)</span> &#123; <span class="comment">/* 輸出至PDF */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用這些類別</span></span><br><span class="line"><span class="keyword">var</span> processor = <span class="keyword">new</span> DataProcessor();</span><br><span class="line"><span class="keyword">var</span> formatter = <span class="keyword">new</span> DataFormatter();</span><br><span class="line"><span class="keyword">var</span> exporter = <span class="keyword">new</span> PDFExporter();</span><br><span class="line"></span><br><span class="line">processor.Process(data);</span><br><span class="line">formatter.Format(data);</span><br><span class="line">exporter.Export(data);</span><br></pre></td></tr></table></figure>
 
-<h3 id="關於SRP的使用時機"><a href="#關於SRP的使用時機" class="headerlink" title="關於SRP的使用時機"></a>關於SRP的使用時機</h3><ul>
+<h2 id="5-關於SRP的使用時機"><a href="#5-關於SRP的使用時機" class="headerlink" title="5. 關於SRP的使用時機"></a>5. 關於SRP的使用時機</h2><ul>
 <li><p><code>兩個責任</code>會在<code>不同時間點</code>產生變更需求</p>
 <ul>
 <li>當你<code>想改資料庫查詢語法</code>與修<code>改系統紀錄的邏輯</code>時，都會改到同一個類別，那就需要拆開！</li>
@@ -327,7 +327,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="SRP討論事項"><a href="#SRP討論事項" class="headerlink" title="SRP討論事項"></a>SRP討論事項</h3><ul>
+<h2 id="6-SRP討論事項"><a href="#6-SRP討論事項" class="headerlink" title="6. SRP討論事項"></a>6. SRP討論事項</h2><ul>
 <li>你怎樣確認一個類別被賦予了過多的責任？<ul>
 <li>在開發系統時，不可能完全通盤了解需求才開設計系統。雖然SRP精神很簡單，但實現很難…(面對現況)</li>
 </ul>
@@ -338,7 +338,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="關於SRP還需要注意的事"><a href="#關於SRP還需要注意的事" class="headerlink" title="關於SRP還需要注意的事"></a>關於SRP還需要注意的事</h3><ul>
+<h2 id="7-關於SRP還需要注意的事"><a href="#7-關於SRP還需要注意的事" class="headerlink" title="7. 關於SRP還需要注意的事"></a>7. 關於SRP還需要注意的事</h2><ul>
 <li>參考<code>YAGNI</code>(You Ain’t Gonna Need It) 原則<ul>
 <li>不用急於在第一時間就專注於分離責任</li>
 <li>尚未出現的需求(未來的需求)不需要預先分離責任</li>
@@ -351,7 +351,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="隨堂測驗"><a href="#隨堂測驗" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<h3 id="7-1-隨堂測驗"><a href="#7-1-隨堂測驗" class="headerlink" title="7.1. 隨堂測驗"></a>7.1. 隨堂測驗</h3><p>修改前</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        DataAccess.InsertData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">DataAccess</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertData</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Data inserted into database successfully&quot;</span>);</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Logged Time:&quot;</span> + DateTime.Now.ToLongTimeString() + <span class="string">&quot; Log Data insertion completed successfully&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>修改後</p>
@@ -359,7 +359,7 @@
 
 
 
-<h4 id="隨堂測驗-1"><a href="#隨堂測驗-1" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<h3 id="7-2-隨堂測驗"><a href="#7-2-隨堂測驗" class="headerlink" title="7.2. 隨堂測驗"></a>7.2. 隨堂測驗</h3><p>修改前</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Net.Mail;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRegistrationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RegisterUser</span>(<span class="params"><span class="built_in">string</span> username, <span class="built_in">string</span> password, <span class="built_in">string</span> email</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 驗證使用者</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(username))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Username is not valid&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(password) || password.Length &lt; <span class="number">6</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Password must be at least 6 characters&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(email) || !email.Contains(<span class="string">&quot;@&quot;</span>))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 將使用者存入資料庫（此處假設使用假代碼）</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Saving user to database...&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 發送確認郵件</span></span><br><span class="line">        SmtpClient client = <span class="keyword">new</span> SmtpClient();</span><br><span class="line">        MailMessage mailMessage = <span class="keyword">new</span> MailMessage(<span class="string">&quot;admin@example.com&quot;</span>, email);</span><br><span class="line">        mailMessage.Subject = <span class="string">&quot;Registration Confirmation&quot;</span>;</span><br><span class="line">        mailMessage.Body = <span class="string">&quot;Thank you for registering!&quot;</span>;</span><br><span class="line">        client.Send(mailMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -369,14 +369,14 @@
 
 
 
-<h4 id="隨堂測驗-2"><a href="#隨堂測驗-2" class="headerlink" title="隨堂測驗"></a>隨堂測驗</h4><p>修改前</p>
+<h3 id="7-3-隨堂測驗"><a href="#7-3-隨堂測驗" class="headerlink" title="7.3. 隨堂測驗"></a>7.3. 隨堂測驗</h3><p>修改前</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderManager</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Product&gt; products = <span class="keyword">new</span> List&lt;Product&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Processing</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 1. 檢查商品庫存數量是否足夠</span></span><br><span class="line">        <span class="comment">// 2. 執行付款處理程序</span></span><br><span class="line">        <span class="comment">// 3. 進行送貨處理程序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>修改後</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Product</span> &#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Customer</span> &#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Stock</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CheckAvailability</span>(<span class="params">IEnumerable&lt;Product&gt; products</span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Payment</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Processing</span>(<span class="params">Customer customer, IEnumerable&lt;Product&gt; products</span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Shipment</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendProducts</span>(<span class="params">Customer customer, IEnumerable&lt;Product&gt; products</span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Product&gt; Products &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> Customer Customer &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderManager</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Products = <span class="keyword">new</span> List&lt;Product&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Processing</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> stock = <span class="keyword">new</span> Stock();</span><br><span class="line">        stock.CheckAvailability(Products);</span><br><span class="line">        <span class="keyword">var</span> payment = <span class="keyword">new</span> Payment();</span><br><span class="line">        payment.Processing(Customer, Products);</span><br><span class="line">        <span class="keyword">var</span> shipment = <span class="keyword">new</span> Shipment();</span><br><span class="line">        shipment.SendProducts(Customer, Products);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>因為現在<code>OrderManager</code> 耦合 <code>Payment</code>，所以如果後續發生付款方式增加LINE PAY ，則有可能既有其中一個的<code>OrderManager</code> 會被改壞(改A壞B)，這時候就需要下一個原則。</p>
-<h3 id="補充：遇到非必要需求，如何透過SRP抽離與設計"><a href="#補充：遇到非必要需求，如何透過SRP抽離與設計" class="headerlink" title="補充：遇到非必要需求，如何透過SRP抽離與設計"></a>補充：遇到非必要需求，如何透過SRP抽離與設計</h3><p><strong>需求情境</strong></p>
+<h2 id="8-補充說明：遇到非必要需求，如何透過SRP抽離與設計"><a href="#8-補充說明：遇到非必要需求，如何透過SRP抽離與設計" class="headerlink" title="8. 補充說明：遇到非必要需求，如何透過SRP抽離與設計"></a>8. 補充說明：遇到非必要需求，如何透過SRP抽離與設計</h2><p><strong>需求情境</strong></p>
 <p>假設我們有一個用戶註冊系統，並且需求突然提出希望在用戶註冊完成後額外「記錄用戶行為」（例如記錄註冊時間和 IP 地址）。此功能並非系統核心，僅為輔助紀錄，屬於非必要功能。</p>
 <p><strong>修改前</strong></p>
 <p>初版的註冊服務可能如下所示：</p>
@@ -483,7 +483,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%96%AE%E4%B8%80%E8%B2%AC%E4%BB%BB%E5%8E%9F%E5%89%87-SRP-Single-Responsibility-Principle"><span class="nav-text">單一責任原則 SRP  Single Responsibility Principle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E8%AC%82-%E2%80%9C%E8%B2%AC%E4%BB%BB%E2%80%9D-Responsibility"><span class="nav-text">何謂 “責任” (Responsibility)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%A8%E5%A0%82%E5%95%8F%E9%A1%8C"><span class="nav-text">隨堂問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%9C%E6%96%BCSRP%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B2%BE%E7%A5%9E"><span class="nav-text">關於SRP的基本精神</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E7%9A%84%E8%A8%AD%E8%A8%88%E5%95%8F%E9%A1%8C"><span class="nav-text">常見的設計問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%9C%E6%96%BCSRP%E7%9A%84%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F"><span class="nav-text">關於SRP的使用時機</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRP%E8%A8%8E%E8%AB%96%E4%BA%8B%E9%A0%85"><span class="nav-text">SRP討論事項</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%9C%E6%96%BCSRP%E9%82%84%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B"><span class="nav-text">關於SRP還需要注意的事</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97"><span class="nav-text">隨堂測驗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97-1"><span class="nav-text">隨堂測驗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97-2"><span class="nav-text">隨堂測驗</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%9C%E5%85%85%EF%BC%9A%E9%81%87%E5%88%B0%E9%9D%9E%E5%BF%85%E8%A6%81%E9%9C%80%E6%B1%82%EF%BC%8C%E5%A6%82%E4%BD%95%E9%80%8F%E9%81%8ESRP%E6%8A%BD%E9%9B%A2%E8%88%87%E8%A8%AD%E8%A8%88"><span class="nav-text">補充：遇到非必要需求，如何透過SRP抽離與設計</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%96%AE%E4%B8%80%E8%B2%AC%E4%BB%BB%E5%8E%9F%E5%89%87-SRP-Single-Responsibility-Principle"><span class="nav-text">1. 單一責任原則 SRP  Single Responsibility Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BD%95%E8%AC%82-%E2%80%9C%E8%B2%AC%E4%BB%BB%E2%80%9D-Responsibility"><span class="nav-text">2. 何謂 “責任” (Responsibility)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%9A%A8%E5%A0%82%E5%95%8F%E9%A1%8C"><span class="nav-text">2.1. 隨堂問題</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%97%9C%E6%96%BCSRP%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B2%BE%E7%A5%9E"><span class="nav-text">3. 關於SRP的基本精神</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%B8%B8%E8%A6%8B%E7%9A%84%E8%A8%AD%E8%A8%88%E5%95%8F%E9%A1%8C"><span class="nav-text">4. 常見的設計問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%97%9C%E6%96%BCSRP%E7%9A%84%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F"><span class="nav-text">5. 關於SRP的使用時機</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-SRP%E8%A8%8E%E8%AB%96%E4%BA%8B%E9%A0%85"><span class="nav-text">6. SRP討論事項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E9%97%9C%E6%96%BCSRP%E9%82%84%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B"><span class="nav-text">7. 關於SRP還需要注意的事</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97"><span class="nav-text">7.1. 隨堂測驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97"><span class="nav-text">7.2. 隨堂測驗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E9%9A%A8%E5%A0%82%E6%B8%AC%E9%A9%97"><span class="nav-text">7.3. 隨堂測驗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E8%A3%9C%E5%85%85%E8%AA%AA%E6%98%8E%EF%BC%9A%E9%81%87%E5%88%B0%E9%9D%9E%E5%BF%85%E8%A6%81%E9%9C%80%E6%B1%82%EF%BC%8C%E5%A6%82%E4%BD%95%E9%80%8F%E9%81%8ESRP%E6%8A%BD%E9%9B%A2%E8%88%87%E8%A8%AD%E8%A8%88"><span class="nav-text">8. 補充說明：遇到非必要需求，如何透過SRP抽離與設計</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -546,12 +546,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">450k</span>
+    <span title="總字數">453k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">13:38</span>
+    <span title="所需總閱讀時間">13:44</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>
