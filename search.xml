@@ -10766,4 +10766,77 @@
         <tag>程式設計基礎</tag>
       </tags>
   </entry>
+  <entry>
+    <title>WCAG標準-色彩對比度</title>
+    <url>/2024/11/05/2024-11-13%20WCAG%E6%A8%99%E6%BA%96-%E8%89%B2%E5%BD%A9%E5%B0%8D%E6%AF%94%E5%BA%A6/</url>
+    <content><![CDATA[<h2 id="1-色彩對比度"><a href="#1-色彩對比度" class="headerlink" title="1. 色彩對比度"></a>1. 色彩對比度</h2><p><img src="https://raw.githubusercontent.com/kitefree/images/main/data/slqkdhl1.ufz.jpg" alt="政府網站無障礙空間檢測"></p>
+<p><a href="https://moda.gov.tw/digital-affairs/digital-service/operations/228">圖片參考來源：台灣數位發展部</a></p>
+<p>腦袋需要簡單記一下的基本比例</p>
+<p><strong>AA 級對比度</strong></p>
+<p>文本和文本圖像的視覺呈現至少需有 <code>4.5:1</code> 的對比度。</p>
+<p>大文本（加粗的 14pt&#x2F;普通的 18pt 及以上）和大文本圖像的對比度至少需為 <code>3:1</code>。</p>
+<p><strong>AAA 級對比度</strong></p>
+<p>文本和文本圖像的視覺呈現至少需有 <code>7:1</code> 的對比度。</p>
+<p>大文本（加粗的 14pt&#x2F;普通的 18pt 及以上）和大文本圖像的對比度至少需為 <code>4.5:1</code>。</p>
+<p>參考 <code>Material Design</code> 和 iOS 人機交互規範，基本都是以滿足 AA 級標準為主。在特殊情況下才要求滿足 AAA 級標準。</p>
+<span id="more"></span>
+
+<h2 id="2-顏色對比度公式"><a href="#2-顏色對比度公式" class="headerlink" title="2. 顏色對比度公式"></a>2. 顏色對比度公式</h2><p>稍微了解一下對比度的公式，簡單來說就是RGB去乘上係數再做一些轉換…頭昏請跳過。</p>
+<p>顏色對比度的計算公式源自 WCAG（Web Content Accessibility Guidelines，網頁內容無障礙指引），透過比較兩個顏色的亮度來得到對比比率，以衡量文字與背景之間的清晰度。</p>
+<p>對比度比率計算公式：<br>$$<br>\begin{align*}<br>\text{Contrast Ratio} &#x3D; \frac{L_1 + 0.05}{L_2 + 0.05}<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>其中 L_1 是兩個顏色中亮度較高的那個顏色的亮度值。<br>L_2 是 亮度較低的那個顏色的亮度值。<br>\end{align*}<br>$$</p>
+<p>亮度L的計算公式：<br>$$<br>\begin{align*}<br>L &#x3D; 0.2126 \times R + 0.7152 \times G + 0.0722 \times B<br>\end{align*}<br>$$<br>在此公式中，( R )、( G )、( B ) 分別為顏色的紅、綠、藍通道值，它們需要先經過線性轉換。若原始的 RGB 值在 0–255 範圍內，首先應進行歸一化（除以 255）並進行線性化處理：</p>
+<p><strong>RGB 值的線性化處理</strong></p>
+<p>對於每個顏色通道的值 v，按以下方式轉換：</p>
+<p>$$<br>\begin{align*}<br>若  v \leq 0.03928 ：則  v &#x3D; \frac{v}{12.92}<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>若v &gt; 0.03928 ：則  v &#x3D; \left(\frac{v + 0.055}{1.055}\right)^{2.4}<br>\end{align*}<br>$$</p>
+<p><strong>計算步驟示例</strong></p>
+<ol>
+<li><p><strong>取得顏色的 RGB 值</strong>（例如 #FFFFFF 的 RGB 值為 255, 255, 255）。</p>
+</li>
+<li><p><strong>進行 RGB 值的歸一化</strong>（例如 255 變成 1.0，0 變成 0.0）。</p>
+</li>
+<li><p><strong>線性化每個通道</strong>，然後代入亮度公式<br>$$<br>\begin{align*}<br> L &#x3D; 0.2126 \times R + 0.7152 \times G + 0.0722 \times B<br>\end{align*}<br>$$</p>
+</li>
+<li><p><strong>將亮度值代入對比度公式</strong>計算比率，並確保亮度較大的顏色作為 ( L1 )，亮度較小的顏色作為 ( L2 )。</p>
+</li>
+</ol>
+<p><strong>對比比率的解釋</strong></p>
+<ul>
+<li><strong>1:1</strong> 表示完全無對比（如兩個相同的顏色）。</li>
+<li><strong>21:1</strong> 表示最高對比度（黑與白）。</li>
+</ul>
+<p>符合 WCAG 標準的常見對比度要求為：</p>
+<ul>
+<li>正文字體的對比度需達到 <strong>4.5:1</strong>。</li>
+<li>大字體（18pt 或更大；14pt 粗體或更大）需達到 <strong>3:1</strong>。</li>
+</ul>
+<h2 id="3-JS程式實踐"><a href="#3-JS程式實踐" class="headerlink" title="3. JS程式實踐"></a>3. JS程式實踐</h2><p>好奇程式會怎麼寫，於是…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 將 HEX 顏色轉換為 RGB</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hexToRgb</span>(<span class="params">hex</span>) &#123;</span><br><span class="line">    <span class="comment">// 去掉開頭的 `#` 字元</span></span><br><span class="line">    hex = hex.<span class="title function_">replace</span>(<span class="string">&quot;#&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析 HEX，轉換為 RGB</span></span><br><span class="line">    <span class="keyword">let</span> bigint = <span class="built_in">parseInt</span>(hex, <span class="number">16</span>);</span><br><span class="line">    <span class="keyword">let</span> r = (bigint &gt;&gt; <span class="number">16</span>) &amp; <span class="number">255</span>;</span><br><span class="line">    <span class="keyword">let</span> g = (bigint &gt;&gt; <span class="number">8</span>) &amp; <span class="number">255</span>;</span><br><span class="line">    <span class="keyword">let</span> b = bigint &amp; <span class="number">255</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [r, g, b];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 計算 RGB 顏色的相對亮度</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getRelativeLuminance</span>(<span class="params">r, g, b</span>) &#123;</span><br><span class="line">    <span class="comment">// 歸一化 RGB 值，範圍為 0 到 1</span></span><br><span class="line">    r /= <span class="number">255</span>;</span><br><span class="line">    g /= <span class="number">255</span>;</span><br><span class="line">    b /= <span class="number">255</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// RGB 的線性化處理</span></span><br><span class="line">    r = (r &lt;= <span class="number">0.03928</span>) ? r / <span class="number">12.92</span> : <span class="title class_">Math</span>.<span class="title function_">pow</span>((r + <span class="number">0.055</span>) / <span class="number">1.055</span>, <span class="number">2.4</span>);</span><br><span class="line">    g = (g &lt;= <span class="number">0.03928</span>) ? g / <span class="number">12.92</span> : <span class="title class_">Math</span>.<span class="title function_">pow</span>((g + <span class="number">0.055</span>) / <span class="number">1.055</span>, <span class="number">2.4</span>);</span><br><span class="line">    b = (b &lt;= <span class="number">0.03928</span>) ? b / <span class="number">12.92</span> : <span class="title class_">Math</span>.<span class="title function_">pow</span>((b + <span class="number">0.055</span>) / <span class="number">1.055</span>, <span class="number">2.4</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 計算相對亮度</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.2126</span> * r + <span class="number">0.7152</span> * g + <span class="number">0.0722</span> * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 計算兩個顏色的對比度</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getContrastRatio</span>(<span class="params">hexColor1, hexColor2</span>) &#123;</span><br><span class="line">    <span class="comment">// 轉換 HEX 顏色為 RGB</span></span><br><span class="line">    <span class="keyword">const</span> [r1, g1, b1] = <span class="title function_">hexToRgb</span>(hexColor1);</span><br><span class="line">    <span class="keyword">const</span> [r2, g2, b2] = <span class="title function_">hexToRgb</span>(hexColor2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 計算兩個顏色的相對亮度</span></span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">L1</span> = <span class="title function_">getRelativeLuminance</span>(r1, g1, b1);</span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">L2</span> = <span class="title function_">getRelativeLuminance</span>(r2, g2, b2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 計算對比度比率</span></span><br><span class="line">    <span class="keyword">const</span> contrastRatio = (<span class="variable constant_">L1</span> + <span class="number">0.05</span>) / (<span class="variable constant_">L2</span> + <span class="number">0.05</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 回傳對比度，確保 L1 是亮度較高的顏色</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable constant_">L1</span> &gt; <span class="variable constant_">L2</span> ? contrastRatio : <span class="number">1</span> / contrastRatio;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 範例測試</span></span><br><span class="line"><span class="keyword">const</span> color1 = <span class="string">&quot;#FFFFFF&quot;</span>; <span class="comment">// 白色</span></span><br><span class="line"><span class="keyword">const</span> color2 = <span class="string">&quot;#000000&quot;</span>; <span class="comment">// 黑色</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;對比度比率:&quot;</span>, <span class="title function_">getContrastRatio</span>(color1, color2)); <span class="comment">// 期望輸出 21:1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-網站實際應用"><a href="#4-網站實際應用" class="headerlink" title="4. 網站實際應用"></a>4. 網站實際應用</h2><p>在螢光筆的顏色選擇上考量顏色對比度問題，特別轉換計算結果，確保有符合AA要求。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitefree/images@main/data/image-20241112095035413.png" alt="image-20241112095035413"></p>
+<h2 id="5-參考連結"><a href="#5-參考連結" class="headerlink" title="5. 參考連結"></a>5. 參考連結</h2><ul>
+<li><p>工具</p>
+<ul>
+<li><a href="https://webaim.org/resources/contrastchecker/">WebAIM’s Color Contrast Checker</a></li>
+<li><a href="https://dequeuniversity.com/rules/axe/4.9/color-contrast">Elements must meet minimum color contrast ratio thresholds</a></li>
+</ul>
+</li>
+<li><p>參考文章</p>
+<ul>
+<li><a href="https://www.uisdc.com/wcag">从3个方面，帮你从零开始掌握WCAG色彩对比度</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>無障疑設計</category>
+      </categories>
+      <tags>
+        <tag>WCAG</tag>
+        <tag>UX</tag>
+        <tag>顏色對比度</tag>
+      </tags>
+  </entry>
 </search>
