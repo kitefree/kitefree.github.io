@@ -68,28 +68,38 @@
       </tags>
   </entry>
   <entry>
-    <title>SQL inject 防範</title>
-    <url>/2020/05/06/2020-05-06%20SQL%20inject%20%E9%98%B2%E7%AF%84/</url>
-    <content><![CDATA[<h2 id="1-在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection："><a href="#1-在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection：" class="headerlink" title="1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection："></a>1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection：</h2><ol>
-<li>Constrain input.</li>
-<li>Use parameters with stored procedures.</li>
-<li>Use parameters with dynamic SQL.</li>
-</ol>
+    <title>CSRF Cross Site Request Forgery</title>
+    <url>/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/</url>
+    <content><![CDATA[<h2 id="1-攻擊手段"><a href="#1-攻擊手段" class="headerlink" title="1. 攻擊手段"></a>1. <strong>攻擊手段</strong></h2><p>利用使用者已經登入過A系統之後，在B系統上偽造請求去做壞事情。比如影片中舉的例子轉帳金額跟對象參數偽造。</p>
 <span id="more"></span>
 
 
-<h2 id="2-參考資料"><a href="#2-參考資料" class="headerlink" title="2. 參考資料"></a>2. 參考資料</h2><ul>
-<li><a href="https://www.qa-knowhow.com/?p=131">SQL Injection 的測試與防範</a></li>
-<li><a href="https://sites.google.com/site/chengshixuexipingtai/sql/ql-injection-de-jian-jie-yu-yu-fang">SQL injection的簡介與預防</a></li>
+<p>CSRF 就是在不同的 domain 底下卻能夠偽造出「使用者本人發出的 request」。要達成這件事也很簡單，因為瀏覽器的機制，你只要發送 request 給某個網域，就會把關聯的 cookie 一起帶上去。如果使用者是登入狀態，那這個 request 就理所當然包含了他的資訊（例如說 session id），這 request 看起來就像是使用者本人發出的。</p>
+<h2 id="2-防禦手段"><a href="#2-防禦手段" class="headerlink" title="2. 防禦手段"></a>2. <strong>防禦手段</strong></h2><ol>
+<li>儘量使用POST</li>
+<li>加入驗證碼(比如圖形驗證碼、滑塊驗證、簡訊驗證碼)</li>
+<li>檢驗HTTP Referer(確認是否從允許的網站過來的請求)</li>
+<li>Anti CSRF Token</li>
+</ol>
+<h3 id="2-1-方法一"><a href="#2-1-方法一" class="headerlink" title="2.1. 方法一"></a>2.1. 方法一</h3><pre><code>    * 在form表單隱藏token 或者是在 head 的 meta attribute
+
+        <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;csrf-token&quot;</span> <span class="attr">content</span>=<span class="string">&quot;GBU1HKZpy3N2grxxoR...&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+    * 後端檢驗時確認是否是存在的token(可以放在資料庫比對或在session上記錄)
+</code></pre>
+<h3 id="2-2-方法二"><a href="#2-2-方法二" class="headerlink" title="2.2. 方法二"></a>2.2. 方法二</h3><p>利用framework 提供的內鍵library,比如PHP CodeIgniter 本身就有<br>5. 加入自定義 Header<br>    這個概念我覺得應該跟平常在設計JWT或WEB API時考量資安問題的方式一樣</p>
+<h2 id="3-參考資料"><a href="#3-參考資料" class="headerlink" title="3. 參考資料"></a>3. 參考資料</h2><ul>
+<li><a href="https://www.youtube.com/watch?v=gEPii2y3ISQ">CSRF 攻击和防御 - Web 安全常识</a></li>
+<li><a href="https://blog.techbridge.cc/2017/02/25/csrf-introduction/">讓我們來談談 CSRF</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>資訊安全</category>
-        <category>SQL injection</category>
+        <category>CSRF</category>
       </categories>
       <tags>
         <tag>資訊安全</tag>
-        <tag>SQL injection</tag>
+        <tag>CSRF</tag>
       </tags>
   </entry>
   <entry>
@@ -134,62 +144,28 @@
       </tags>
   </entry>
   <entry>
-    <title>CSRF Cross Site Request Forgery</title>
-    <url>/2020/05/06/2020-05-06%20CSRF%20Cross%20Site%20Request%20Forgery/</url>
-    <content><![CDATA[<h2 id="1-攻擊手段"><a href="#1-攻擊手段" class="headerlink" title="1. 攻擊手段"></a>1. <strong>攻擊手段</strong></h2><p>利用使用者已經登入過A系統之後，在B系統上偽造請求去做壞事情。比如影片中舉的例子轉帳金額跟對象參數偽造。</p>
+    <title>SQL inject 防範</title>
+    <url>/2020/05/06/2020-05-06%20SQL%20inject%20%E9%98%B2%E7%AF%84/</url>
+    <content><![CDATA[<h2 id="1-在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection："><a href="#1-在-patterns-practices-Developer-Center簡單歸納出三個步驟防止SQL-injection：" class="headerlink" title="1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection："></a>1. 在 patterns &amp; practices Developer Center簡單歸納出三個步驟防止SQL injection：</h2><ol>
+<li>Constrain input.</li>
+<li>Use parameters with stored procedures.</li>
+<li>Use parameters with dynamic SQL.</li>
+</ol>
 <span id="more"></span>
 
 
-<p>CSRF 就是在不同的 domain 底下卻能夠偽造出「使用者本人發出的 request」。要達成這件事也很簡單，因為瀏覽器的機制，你只要發送 request 給某個網域，就會把關聯的 cookie 一起帶上去。如果使用者是登入狀態，那這個 request 就理所當然包含了他的資訊（例如說 session id），這 request 看起來就像是使用者本人發出的。</p>
-<h2 id="2-防禦手段"><a href="#2-防禦手段" class="headerlink" title="2. 防禦手段"></a>2. <strong>防禦手段</strong></h2><ol>
-<li>儘量使用POST</li>
-<li>加入驗證碼(比如圖形驗證碼、滑塊驗證、簡訊驗證碼)</li>
-<li>檢驗HTTP Referer(確認是否從允許的網站過來的請求)</li>
-<li>Anti CSRF Token</li>
-</ol>
-<h3 id="2-1-方法一"><a href="#2-1-方法一" class="headerlink" title="2.1. 方法一"></a>2.1. 方法一</h3><pre><code>    * 在form表單隱藏token 或者是在 head 的 meta attribute
-
-        <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;csrf-token&quot;</span> <span class="attr">content</span>=<span class="string">&quot;GBU1HKZpy3N2grxxoR...&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-    * 後端檢驗時確認是否是存在的token(可以放在資料庫比對或在session上記錄)
-</code></pre>
-<h3 id="2-2-方法二"><a href="#2-2-方法二" class="headerlink" title="2.2. 方法二"></a>2.2. 方法二</h3><p>利用framework 提供的內鍵library,比如PHP CodeIgniter 本身就有<br>5. 加入自定義 Header<br>    這個概念我覺得應該跟平常在設計JWT或WEB API時考量資安問題的方式一樣</p>
-<h2 id="3-參考資料"><a href="#3-參考資料" class="headerlink" title="3. 參考資料"></a>3. 參考資料</h2><ul>
-<li><a href="https://www.youtube.com/watch?v=gEPii2y3ISQ">CSRF 攻击和防御 - Web 安全常识</a></li>
-<li><a href="https://blog.techbridge.cc/2017/02/25/csrf-introduction/">讓我們來談談 CSRF</a></li>
+<h2 id="2-參考資料"><a href="#2-參考資料" class="headerlink" title="2. 參考資料"></a>2. 參考資料</h2><ul>
+<li><a href="https://www.qa-knowhow.com/?p=131">SQL Injection 的測試與防範</a></li>
+<li><a href="https://sites.google.com/site/chengshixuexipingtai/sql/ql-injection-de-jian-jie-yu-yu-fang">SQL injection的簡介與預防</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>資訊安全</category>
-        <category>CSRF</category>
+        <category>SQL injection</category>
       </categories>
       <tags>
         <tag>資訊安全</tag>
-        <tag>CSRF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>網頁切版筆記</title>
-    <url>/2020/09/15/2020-09-15%20%E7%B6%B2%E9%A0%81%E5%88%87%E7%89%88%E7%AD%86%E8%A8%98/</url>
-    <content><![CDATA[<p>上課筆記</p>
-<span id="more"></span>
-<p>行內元素包在區塊元素內<br>標籤選擇器<br>類別選擇器<br>後代選擇器</p>
-<p>表頭<br>選單<br>內容<br>表尾</p>
-<p>margin<br>區塊元素儘量不要寫死高度<br>不然內容會超出區塊元素</p>
-<p>box model</p>
-<p>margin-left auto<br>margin-right auto<br>自適應父元素的width ，左右置中</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;form action=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">&lt;laber <span class="keyword">for</span>=<span class="string">&quot;account&quot;</span>&gt;帳號&lt;/laber&gt;</span><br><span class="line">&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;text&quot;</span> <span class="built_in">id</span>=<span class="string">&quot;account&quot;</span> placeholder=<span class="string">&quot;請輸入帳號&quot;</span>&gt;</span><br><span class="line">&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;送出&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-
-<p>http 就像暴露狂<br>https 安全</p>
-<p>coreui<br>ckeditor</p>
-<p>bs4 裡面的精神</p>
-<p>aplha2 &gt; aplha3&gt;beta公開測試&gt;正式</p>
-]]></content>
-      <categories>
-        <category>網頁切版</category>
-      </categories>
-      <tags>
-        <tag>網頁切版</tag>
+        <tag>SQL injection</tag>
       </tags>
   </entry>
   <entry>
@@ -262,6 +238,30 @@
       </tags>
   </entry>
   <entry>
+    <title>網頁切版筆記</title>
+    <url>/2020/09/15/2020-09-15%20%E7%B6%B2%E9%A0%81%E5%88%87%E7%89%88%E7%AD%86%E8%A8%98/</url>
+    <content><![CDATA[<p>上課筆記</p>
+<span id="more"></span>
+<p>行內元素包在區塊元素內<br>標籤選擇器<br>類別選擇器<br>後代選擇器</p>
+<p>表頭<br>選單<br>內容<br>表尾</p>
+<p>margin<br>區塊元素儘量不要寫死高度<br>不然內容會超出區塊元素</p>
+<p>box model</p>
+<p>margin-left auto<br>margin-right auto<br>自適應父元素的width ，左右置中</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;form action=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">&lt;laber <span class="keyword">for</span>=<span class="string">&quot;account&quot;</span>&gt;帳號&lt;/laber&gt;</span><br><span class="line">&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;text&quot;</span> <span class="built_in">id</span>=<span class="string">&quot;account&quot;</span> placeholder=<span class="string">&quot;請輸入帳號&quot;</span>&gt;</span><br><span class="line">&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;送出&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<p>http 就像暴露狂<br>https 安全</p>
+<p>coreui<br>ckeditor</p>
+<p>bs4 裡面的精神</p>
+<p>aplha2 &gt; aplha3&gt;beta公開測試&gt;正式</p>
+]]></content>
+      <categories>
+        <category>網頁切版</category>
+      </categories>
+      <tags>
+        <tag>網頁切版</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>XSS 類型</title>
     <url>/2020/11/07/2020-11-07%20XSS%20%E9%A1%9E%E5%9E%8B/</url>
     <content><![CDATA[<span id="more"></span>
@@ -285,6 +285,21 @@
       <tags>
         <tag>資訊安全</tag>
         <tag>XSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 20道題目</title>
+    <url>/2020/11/07/2020-11-07%20git%2020%E9%81%93%E9%A1%8C%E7%9B%AE/</url>
+    <content><![CDATA[<h2 id="1-git-20道題目"><a href="#1-git-20道題目" class="headerlink" title="1. git 20道題目"></a>1. git 20道題目</h2><span id="more"></span>
+
+
+<p>1.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f7db497104dffa008bc801fb49230444">git commit</a><br>2.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=817c026fe90d09e67eb30946ef5d42fa">git head 技巧 I</a><br>3.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8dba225432eba46847beafd616042fc7">git head 技巧 II</a><br>4.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=81354f6467eeebfcbd81294787371458">分支合併(快轉模式)</a><br>5.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3821f5ac77cd68c20f7e5ac9ea4a4234">分支合併(非快轉模式 -no-ff) I</a><br>6.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=4ebc7d237aec42ba62f5d9484040d279">分支合併(非快轉模式 -no-ff) II</a><br>7.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=51dbe15aa9787175a8c4c34b8fa6ed12">分支合併(非快轉模式) I</a><br>8.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8a53b2a46b9fa9e963d0eb80b65f17bb">分支合併(非快轉模式) II</a><br>9.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=293df94156d03ffcb8ad2a796c3d1ebf">git clone</a><br>10.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=c350fdc6aa338549b6eb4b1499383fca">git push</a><br>11.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=96dd4464d93b751d3fc5d124663bdd73">git pull (可用 git fakeTeamwork)</a><br>12.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=fd0557f04608384f2d35c3814c088913">git fetch</a><br>13.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=9eddf30e74e1b1c089e83f7c265c192e">本地三個分支(master、dev、feature&#x2F;a)</a><br>14.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=20cf21dbc718a76cce6cd77363abe335">本地三個分支(master、dev、feature&#x2F;a) ，遠端有 master 分支，並擁有合併後的所有 commit</a><br>15.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f6e4b301996ac6c121b6d0fb25c51027">git reset 還原練習</a><br>16.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=40764d63ded638a1b48b2d9e3afeff09">git rebase 練習 I</a><br>17.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3148f8917a34af79cf9bd348cc99c3f8">git rebase 練習 II</a><br>18.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=0896114d1a1d3a66e022631dab133726">git cherry-pick 練習</a><br>19.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=6b282a154f95ba54844d6b747f65128a">git tag 練習</a><br>20.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=1cb0672c88c5f675ff393d010ef9deda">魔王題</a></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -312,21 +327,6 @@
       </categories>
       <tags>
         <tag>Bootstrap5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git 20道題目</title>
-    <url>/2020/11/07/2020-11-07%20git%2020%E9%81%93%E9%A1%8C%E7%9B%AE/</url>
-    <content><![CDATA[<h2 id="1-git-20道題目"><a href="#1-git-20道題目" class="headerlink" title="1. git 20道題目"></a>1. git 20道題目</h2><span id="more"></span>
-
-
-<p>1.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f7db497104dffa008bc801fb49230444">git commit</a><br>2.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=817c026fe90d09e67eb30946ef5d42fa">git head 技巧 I</a><br>3.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8dba225432eba46847beafd616042fc7">git head 技巧 II</a><br>4.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=81354f6467eeebfcbd81294787371458">分支合併(快轉模式)</a><br>5.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3821f5ac77cd68c20f7e5ac9ea4a4234">分支合併(非快轉模式 -no-ff) I</a><br>6.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=4ebc7d237aec42ba62f5d9484040d279">分支合併(非快轉模式 -no-ff) II</a><br>7.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=51dbe15aa9787175a8c4c34b8fa6ed12">分支合併(非快轉模式) I</a><br>8.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=8a53b2a46b9fa9e963d0eb80b65f17bb">分支合併(非快轉模式) II</a><br>9.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=293df94156d03ffcb8ad2a796c3d1ebf">git clone</a><br>10.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=c350fdc6aa338549b6eb4b1499383fca">git push</a><br>11.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=96dd4464d93b751d3fc5d124663bdd73">git pull (可用 git fakeTeamwork)</a><br>12.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=fd0557f04608384f2d35c3814c088913">git fetch</a><br>13.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=9eddf30e74e1b1c089e83f7c265c192e">本地三個分支(master、dev、feature&#x2F;a)</a><br>14.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=20cf21dbc718a76cce6cd77363abe335">本地三個分支(master、dev、feature&#x2F;a) ，遠端有 master 分支，並擁有合併後的所有 commit</a><br>15.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=f6e4b301996ac6c121b6d0fb25c51027">git reset 還原練習</a><br>16.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=40764d63ded638a1b48b2d9e3afeff09">git rebase 練習 I</a><br>17.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=3148f8917a34af79cf9bd348cc99c3f8">git rebase 練習 II</a><br>18.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=0896114d1a1d3a66e022631dab133726">git cherry-pick 練習</a><br>19.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=6b282a154f95ba54844d6b747f65128a">git tag 練習</a><br>20.<a href="https://pcottle.github.io/learnGitBranching/?gist_level_id=1cb0672c88c5f675ff393d010ef9deda">魔王題</a></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -545,79 +545,6 @@
       </tags>
   </entry>
   <entry>
-    <title>前後端分離架構探討</title>
-    <url>/2021/03/30/2021-03-30%20%E5%89%8D%E5%BE%8C%E7%AB%AF%E5%88%86%E9%9B%A2%E6%9E%B6%E6%A7%8B%E6%8E%A2%E8%A8%8E/</url>
-    <content><![CDATA[<h2 id="1-好處"><a href="#1-好處" class="headerlink" title="1. 好處"></a>1. 好處</h2><h3 id="1-1-解耦了前後端的工作人員"><a href="#1-1-解耦了前後端的工作人員" class="headerlink" title="1.1. 解耦了前後端的工作人員"></a>1.1. 解耦了前後端的工作人員</h3><p>讓前端和後端分別交給更擅長的人來做，細化了工種，可以更加的專精。前端人員來關心使用者體驗、UI設計、互動渲染；後端人員更關注業務邏輯、效能保障、安全等方面。在專案進度方面，前後端可以並行開發，而互不影響，加快了整體的專案進度。</p>
-<span id="more"></span>
-
-
-<h3 id="1-2-解耦了前後端的程式碼"><a href="#1-2-解耦了前後端的程式碼" class="headerlink" title="1.2. 解耦了前後端的程式碼"></a>1.2. 解耦了前後端的程式碼</h3><p>後端只需提供API服務，不再與靜態檔案互動。後端可以使用更復雜的分散式、微服務架構，提供更好的效能和穩定性保障。同時前端除了PC端之外，移動端也可以使用相同的一套後端服務。</p>
-<h2 id="2-適專案考慮是否要前後端分離"><a href="#2-適專案考慮是否要前後端分離" class="headerlink" title="2. 適專案考慮是否要前後端分離"></a>2. 適專案考慮是否要前後端分離</h2><p>並不是所有的專案都需要前後端分離，像是大型的專案，開發人員很多，人員分工明確，這種團隊配置下，使用前後端分離可增加工作效率提高系統質量。但是團隊人員少，分工不那麼明確的情況下，再採用前後端分離的架構，只會增加開發成本和系統複雜度。前後端分離是一個好的架構思路，但是需要看具體的業務和人員情況，切勿盲目的跟從。</p>
-<h3 id="2-1-前後端分離常用的認證方式"><a href="#2-1-前後端分離常用的認證方式" class="headerlink" title="2.1. 前後端分離常用的認證方式"></a>2.1. 前後端分離常用的認證方式</h3><p>前後端分離中前後端的互動是通過API進行的，那麼其中的認證是少不了的。前後端分離中常用的認證方式有下面幾種：</p>
-<ul>
-<li>Session-Cookie</li>
-<li>Token 驗證</li>
-<li>OAuth(開放授權)</li>
-</ul>
-<h3 id="2-2-參考連結"><a href="#2-2-參考連結" class="headerlink" title="2.2. 參考連結"></a>2.2. 參考連結</h3><ul>
-<li><a href="https://segmentfault.com/a/1190000024571092">談談前後端分離及認證選擇</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>應用架構</category>
-        <category>前後端分離</category>
-      </categories>
-      <tags>
-        <tag>應用架構</tag>
-        <tag>前後端分離</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CCNA_01</title>
-    <url>/2021/04/13/2021-04-13%20CCNA_01/</url>
-    <content><![CDATA[<h2 id="1-課程理念及自我介紹"><a href="#1-課程理念及自我介紹" class="headerlink" title="1. 課程理念及自我介紹"></a>1. 課程理念及自我介紹</h2><p><img src="https://i.imgur.com/N8AKFeC.png" alt="image"></p>
-<ul>
-<li>CCIE</li>
-<li>CCNP</li>
-<li>CCNA Cisco Certified Network Associate</li>
-<li>CCENT</li>
-</ul>
-<span id="more"></span>
-
-
-<p>需不需要買真實的機器嗎?</p>
-<blockquote>
-<p>可以用軟體去模擬練習</p>
-</blockquote>
-<p>有沒有必要學CCENT呢?</p>
-<blockquote>
-<p>沒有必要學CCENT，CCENT是把CCNA分成2個部分，這樣要考兩次試。</p>
-</blockquote>
-<p>如何學習呢?</p>
-<blockquote>
-<p>搞懂視頻之外，再找CCNA的書藉來看</p>
-</blockquote>
-<h2 id="2-網路資源"><a href="#2-網路資源" class="headerlink" title="2. 網路資源"></a>2. 網路資源</h2><ul>
-<li><p><a href="http://www.csie.sju.edu.tw/cm/course/ccnalist.htm">CCNA綜合實驗練習總覽表(影音教學版)</a></p>
-</li>
-<li><p><a href="https://www.youtube.com/channel/UCOp_kACnYZL9AOWGBbLvseg/videos">https://www.youtube.com/channel/UCOp_kACnYZL9AOWGBbLvseg/videos</a></p>
-</li>
-<li><p><a href="https://www.stockfeel.com.tw/tag/topic-server/">https://www.stockfeel.com.tw/tag/topic-server/</a></p>
-</li>
-<li><p><a href="https://notfalse.net/">https://notfalse.net/</a></p>
-</li>
-<li><p><a href="https://notfalse.net/66/repeater-hub-bridge-switch">https://notfalse.net/66/repeater-hub-bridge-switch</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CCNA</category>
-      </categories>
-      <tags>
-        <tag>CCNA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CCNA_02</title>
     <url>/2021/04/13/2021-04-13%20CCNA_02/</url>
     <content><![CDATA[<h2 id="1-THE-Bassic-internet"><a href="#1-THE-Bassic-internet" class="headerlink" title="1. THE Bassic internet"></a>1. THE Bassic internet</h2><span id="more"></span>
@@ -719,6 +646,34 @@
       </tags>
   </entry>
   <entry>
+    <title>前後端分離架構探討</title>
+    <url>/2021/03/30/2021-03-30%20%E5%89%8D%E5%BE%8C%E7%AB%AF%E5%88%86%E9%9B%A2%E6%9E%B6%E6%A7%8B%E6%8E%A2%E8%A8%8E/</url>
+    <content><![CDATA[<h2 id="1-好處"><a href="#1-好處" class="headerlink" title="1. 好處"></a>1. 好處</h2><h3 id="1-1-解耦了前後端的工作人員"><a href="#1-1-解耦了前後端的工作人員" class="headerlink" title="1.1. 解耦了前後端的工作人員"></a>1.1. 解耦了前後端的工作人員</h3><p>讓前端和後端分別交給更擅長的人來做，細化了工種，可以更加的專精。前端人員來關心使用者體驗、UI設計、互動渲染；後端人員更關注業務邏輯、效能保障、安全等方面。在專案進度方面，前後端可以並行開發，而互不影響，加快了整體的專案進度。</p>
+<span id="more"></span>
+
+
+<h3 id="1-2-解耦了前後端的程式碼"><a href="#1-2-解耦了前後端的程式碼" class="headerlink" title="1.2. 解耦了前後端的程式碼"></a>1.2. 解耦了前後端的程式碼</h3><p>後端只需提供API服務，不再與靜態檔案互動。後端可以使用更復雜的分散式、微服務架構，提供更好的效能和穩定性保障。同時前端除了PC端之外，移動端也可以使用相同的一套後端服務。</p>
+<h2 id="2-適專案考慮是否要前後端分離"><a href="#2-適專案考慮是否要前後端分離" class="headerlink" title="2. 適專案考慮是否要前後端分離"></a>2. 適專案考慮是否要前後端分離</h2><p>並不是所有的專案都需要前後端分離，像是大型的專案，開發人員很多，人員分工明確，這種團隊配置下，使用前後端分離可增加工作效率提高系統質量。但是團隊人員少，分工不那麼明確的情況下，再採用前後端分離的架構，只會增加開發成本和系統複雜度。前後端分離是一個好的架構思路，但是需要看具體的業務和人員情況，切勿盲目的跟從。</p>
+<h3 id="2-1-前後端分離常用的認證方式"><a href="#2-1-前後端分離常用的認證方式" class="headerlink" title="2.1. 前後端分離常用的認證方式"></a>2.1. 前後端分離常用的認證方式</h3><p>前後端分離中前後端的互動是通過API進行的，那麼其中的認證是少不了的。前後端分離中常用的認證方式有下面幾種：</p>
+<ul>
+<li>Session-Cookie</li>
+<li>Token 驗證</li>
+<li>OAuth(開放授權)</li>
+</ul>
+<h3 id="2-2-參考連結"><a href="#2-2-參考連結" class="headerlink" title="2.2. 參考連結"></a>2.2. 參考連結</h3><ul>
+<li><a href="https://segmentfault.com/a/1190000024571092">談談前後端分離及認證選擇</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>應用架構</category>
+        <category>前後端分離</category>
+      </categories>
+      <tags>
+        <tag>應用架構</tag>
+        <tag>前後端分離</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CDN(Content Delivery Network) - 內容傳遞網路</title>
     <url>/2021/04/14/2021-04-14%20CDN(Content%20Delivery%20Network)%20-%20%E5%85%A7%E5%AE%B9%E5%82%B3%E9%81%9E%E7%B6%B2%E8%B7%AF/</url>
     <content><![CDATA[<p><img src="https://i.imgur.com/kOVMSky.png" alt="image"></p>
@@ -738,22 +693,48 @@
       </tags>
   </entry>
   <entry>
-    <title>DLP(Data Loss Prevention) - 資料外洩防護</title>
-    <url>/2021/04/14/2021-04-14%20DLP(Data%20Loss%20Prevention)%20-%20%E8%B3%87%E6%96%99%E5%A4%96%E6%B4%A9%E9%98%B2%E8%AD%B7/</url>
-    <content><![CDATA[<p>保護您的資料，降低資料外洩成本。</p>
+    <title>CCNA_01</title>
+    <url>/2021/04/13/2021-04-13%20CCNA_01/</url>
+    <content><![CDATA[<h2 id="1-課程理念及自我介紹"><a href="#1-課程理念及自我介紹" class="headerlink" title="1. 課程理念及自我介紹"></a>1. 課程理念及自我介紹</h2><p><img src="https://i.imgur.com/N8AKFeC.png" alt="image"></p>
+<ul>
+<li>CCIE</li>
+<li>CCNP</li>
+<li>CCNA Cisco Certified Network Associate</li>
+<li>CCENT</li>
+</ul>
 <span id="more"></span>
 
 
-<ul>
-<li><a href="https://www.youtube.com/watch?v=3lxHUay3QzI">Demo | 8.7 | Forcepoint DLP Endpoint
-</a><br>-<a href="https://www.trendmicro.com/zh_tw/business/products/user-protection/sps/endpoint/integrated-data-loss-prevention.html">趨勢科技</a></li>
+<p>需不需要買真實的機器嗎?</p>
+<blockquote>
+<p>可以用軟體去模擬練習</p>
+</blockquote>
+<p>有沒有必要學CCENT呢?</p>
+<blockquote>
+<p>沒有必要學CCENT，CCENT是把CCNA分成2個部分，這樣要考兩次試。</p>
+</blockquote>
+<p>如何學習呢?</p>
+<blockquote>
+<p>搞懂視頻之外，再找CCNA的書藉來看</p>
+</blockquote>
+<h2 id="2-網路資源"><a href="#2-網路資源" class="headerlink" title="2. 網路資源"></a>2. 網路資源</h2><ul>
+<li><p><a href="http://www.csie.sju.edu.tw/cm/course/ccnalist.htm">CCNA綜合實驗練習總覽表(影音教學版)</a></p>
+</li>
+<li><p><a href="https://www.youtube.com/channel/UCOp_kACnYZL9AOWGBbLvseg/videos">https://www.youtube.com/channel/UCOp_kACnYZL9AOWGBbLvseg/videos</a></p>
+</li>
+<li><p><a href="https://www.stockfeel.com.tw/tag/topic-server/">https://www.stockfeel.com.tw/tag/topic-server/</a></p>
+</li>
+<li><p><a href="https://notfalse.net/">https://notfalse.net/</a></p>
+</li>
+<li><p><a href="https://notfalse.net/66/repeater-hub-bridge-switch">https://notfalse.net/66/repeater-hub-bridge-switch</a></p>
+</li>
 </ul>
 ]]></content>
       <categories>
-        <category>DLP</category>
+        <category>CCNA</category>
       </categories>
       <tags>
-        <tag>DLP</tag>
+        <tag>CCNA</tag>
       </tags>
   </entry>
   <entry>
@@ -808,6 +789,25 @@
       <tags>
         <tag>Latency</tag>
         <tag>Throughput</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DLP(Data Loss Prevention) - 資料外洩防護</title>
+    <url>/2021/04/14/2021-04-14%20DLP(Data%20Loss%20Prevention)%20-%20%E8%B3%87%E6%96%99%E5%A4%96%E6%B4%A9%E9%98%B2%E8%AD%B7/</url>
+    <content><![CDATA[<p>保護您的資料，降低資料外洩成本。</p>
+<span id="more"></span>
+
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=3lxHUay3QzI">Demo | 8.7 | Forcepoint DLP Endpoint
+</a><br>-<a href="https://www.trendmicro.com/zh_tw/business/products/user-protection/sps/endpoint/integrated-data-loss-prevention.html">趨勢科技</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>DLP</category>
+      </categories>
+      <tags>
+        <tag>DLP</tag>
       </tags>
   </entry>
   <entry>
@@ -1774,6 +1774,46 @@
       </tags>
   </entry>
   <entry>
+    <title>CCNA_08</title>
+    <url>/2021/04/28/2021-04-28%20CCNA_08/</url>
+    <content><![CDATA[<h2 id="1-IP-Address"><a href="#1-IP-Address" class="headerlink" title="1. IP Address"></a>1. IP Address</h2><h3 id="1-1-Hierarchical-IP-Addressing"><a href="#1-1-Hierarchical-IP-Addressing" class="headerlink" title="1.1. Hierarchical IP Addressing"></a>1.1. Hierarchical IP Addressing</h3><p>MAC address is <strong>flat</strong> or <strong>non-hierarchical</strong> schema</p>
+<p>如果用MAC 地址當作互相聯基礎，這樣每個node都必須儲存所有node資訊，搜尋效率也比較慢</p>
+<p><img src="https://i.imgur.com/XGPcDLz.png" alt="image"></p>
+<span id="more"></span>
+
+
+<h3 id="1-2-IP-Address-Class"><a href="#1-2-IP-Address-Class" class="headerlink" title="1.2. IP Address Class"></a>1.2. IP Address Class</h3><p><img src="https://i.imgur.com/SM18cie.png" alt="image"></p>
+<p>IP Address &#x3D; Network Address + Node(host) Address<br>網段 + 每一台電腦的主機地址</p>
+<p>Class A 與 Class C 比較說明</p>
+<h3 id="1-3-Identify-the-Class"><a href="#1-3-Identify-the-Class" class="headerlink" title="1.3. Identify the Class"></a>1.3. Identify the Class</h3><p><img src="https://i.imgur.com/78eaxoN.png" alt="image"></p>
+<ul>
+<li>127.0.0.1<ul>
+<li>指自己的電腦</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/Q2EtNoz.png" alt="image"><br><img src="https://i.imgur.com/5ZZN5L1.png" alt="image"><br><img src="https://i.imgur.com/wmkBDrX.png" alt="image"></p>
+<p><img src="https://i.imgur.com/uoizwQV.png" alt="image"></p>
+<p>私有不可以在互聯網路由<br>NAT<br>公有轉私有<br>私有轉公有</p>
+<h3 id="1-4-ARP"><a href="#1-4-ARP" class="headerlink" title="1.4. ARP"></a>1.4. ARP</h3><p>2.5 層<br>要Ping 地址，會經過學習.<br>如圖廣播一樣<br>確認了對方的MAC 之後，就會記錄起來了，之後再進行通訊</p>
+<p><img src="https://i.imgur.com/5jY6pYl.png" alt="image"></p>
+<p><img src="https://i.imgur.com/qum2Hno.png" alt="image"><br><img src="https://i.imgur.com/XO3MBLu.png" alt="image"><br><img src="https://i.imgur.com/YHcAUF8.png" alt="image"></p>
+<h3 id="1-5-Layer-2-Broadcast"><a href="#1-5-Layer-2-Broadcast" class="headerlink" title="1.5. Layer 2 Broadcast"></a>1.5. Layer 2 Broadcast</h3><p>如何得知這個封包是廣播封包<br>呢?<br>確認目標地址</p>
+<ul>
+<li>ff:ff:ff:ff:ff:ff<br><img src="https://i.imgur.com/ZrFQ6jb.png" alt="image"><br><img src="https://i.imgur.com/xUM8KfL.png" alt="image"></li>
+</ul>
+<h3 id="1-6-Layer-3-Broadcast"><a href="#1-6-Layer-3-Broadcast" class="headerlink" title="1.6. Layer 3 Broadcast"></a>1.6. Layer 3 Broadcast</h3><p>當ping 192.168.1.255 時，在第二層MAC 目標地址會自動變成 ff:ff:ff:ff:ff:ff<br>交換機(L2)收到的時候，才會知道這個是廣播封包。<br><img src="https://i.imgur.com/JpIiaoF.png" alt="image"></p>
+<h3 id="1-7-Unicast"><a href="#1-7-Unicast" class="headerlink" title="1.7. Unicast"></a>1.7. Unicast</h3><p><img src="https://i.imgur.com/AwTJP2w.png" alt="image"></p>
+<h2 id="2-Multicast"><a href="#2-Multicast" class="headerlink" title="2. Multicast"></a>2. Multicast</h2><p><img src="https://i.imgur.com/Ye53ZWp.png" alt="image"></p>
+]]></content>
+      <categories>
+        <category>CCNA</category>
+      </categories>
+      <tags>
+        <tag>CCNA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CCNA_09</title>
     <url>/2021/04/30/2021-04-30%20CCNA_09/</url>
     <content><![CDATA[<h2 id="1-Subnetting-1"><a href="#1-Subnetting-1" class="headerlink" title="1. Subnetting 1"></a>1. Subnetting 1</h2><p>Subnetting 劃分子網，大的網路地址劃分地小的網路地址範圍</p>
@@ -1851,43 +1891,62 @@
       </tags>
   </entry>
   <entry>
-    <title>CCNA_08</title>
-    <url>/2021/04/28/2021-04-28%20CCNA_08/</url>
-    <content><![CDATA[<h2 id="1-IP-Address"><a href="#1-IP-Address" class="headerlink" title="1. IP Address"></a>1. IP Address</h2><h3 id="1-1-Hierarchical-IP-Addressing"><a href="#1-1-Hierarchical-IP-Addressing" class="headerlink" title="1.1. Hierarchical IP Addressing"></a>1.1. Hierarchical IP Addressing</h3><p>MAC address is <strong>flat</strong> or <strong>non-hierarchical</strong> schema</p>
-<p>如果用MAC 地址當作互相聯基礎，這樣每個node都必須儲存所有node資訊，搜尋效率也比較慢</p>
-<p><img src="https://i.imgur.com/XGPcDLz.png" alt="image"></p>
+    <title>Ubuntu SSH Server 安裝</title>
+    <url>/2021/04/30/2021-04-30%20Ubuntu%20SSH%20Server%20%E5%AE%89%E8%A3%9D/</url>
+    <content><![CDATA[<ol>
+<li><p>開啟 Terminal</p>
+</li>
+<li><p>安裝openSSH Server</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y openssh-server</span><br></pre></td></tr></table></figure></li>
+</ol>
 <span id="more"></span>
 
 
-<h3 id="1-2-IP-Address-Class"><a href="#1-2-IP-Address-Class" class="headerlink" title="1.2. IP Address Class"></a>1.2. IP Address Class</h3><p><img src="https://i.imgur.com/SM18cie.png" alt="image"></p>
-<p>IP Address &#x3D; Network Address + Node(host) Address<br>網段 + 每一台電腦的主機地址</p>
-<p>Class A 與 Class C 比較說明</p>
-<h3 id="1-3-Identify-the-Class"><a href="#1-3-Identify-the-Class" class="headerlink" title="1.3. Identify the Class"></a>1.3. Identify the Class</h3><p><img src="https://i.imgur.com/78eaxoN.png" alt="image"></p>
-<ul>
-<li>127.0.0.1<ul>
-<li>指自己的電腦</li>
-</ul>
+<ol start="3">
+<li><p>確認SSH服務</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service ssh status</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<p><img src="https://i.imgur.com/Q2EtNoz.png" alt="image"><br><img src="https://i.imgur.com/5ZZN5L1.png" alt="image"><br><img src="https://i.imgur.com/wmkBDrX.png" alt="image"></p>
-<p><img src="https://i.imgur.com/uoizwQV.png" alt="image"></p>
-<p>私有不可以在互聯網路由<br>NAT<br>公有轉私有<br>私有轉公有</p>
-<h3 id="1-4-ARP"><a href="#1-4-ARP" class="headerlink" title="1.4. ARP"></a>1.4. ARP</h3><p>2.5 層<br>要Ping 地址，會經過學習.<br>如圖廣播一樣<br>確認了對方的MAC 之後，就會記錄起來了，之後再進行通訊</p>
-<p><img src="https://i.imgur.com/5jY6pYl.png" alt="image"></p>
-<p><img src="https://i.imgur.com/qum2Hno.png" alt="image"><br><img src="https://i.imgur.com/XO3MBLu.png" alt="image"><br><img src="https://i.imgur.com/YHcAUF8.png" alt="image"></p>
-<h3 id="1-5-Layer-2-Broadcast"><a href="#1-5-Layer-2-Broadcast" class="headerlink" title="1.5. Layer 2 Broadcast"></a>1.5. Layer 2 Broadcast</h3><p>如何得知這個封包是廣播封包<br>呢?<br>確認目標地址</p>
-<ul>
-<li>ff:ff:ff:ff:ff:ff<br><img src="https://i.imgur.com/ZrFQ6jb.png" alt="image"><br><img src="https://i.imgur.com/xUM8KfL.png" alt="image"></li>
-</ul>
-<h3 id="1-6-Layer-3-Broadcast"><a href="#1-6-Layer-3-Broadcast" class="headerlink" title="1.6. Layer 3 Broadcast"></a>1.6. Layer 3 Broadcast</h3><p>當ping 192.168.1.255 時，在第二層MAC 目標地址會自動變成 ff:ff:ff:ff:ff:ff<br>交換機(L2)收到的時候，才會知道這個是廣播封包。<br><img src="https://i.imgur.com/JpIiaoF.png" alt="image"></p>
-<h3 id="1-7-Unicast"><a href="#1-7-Unicast" class="headerlink" title="1.7. Unicast"></a>1.7. Unicast</h3><p><img src="https://i.imgur.com/AwTJP2w.png" alt="image"></p>
-<h2 id="2-Multicast"><a href="#2-Multicast" class="headerlink" title="2. Multicast"></a>2. Multicast</h2><p><img src="https://i.imgur.com/Ye53ZWp.png" alt="image"></p>
+<li><p>安裝網路指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install net-tools</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查詢IP</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 PuTTY or ZOC 軟體連線</p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>CCNA</category>
+        <category>SSH</category>
       </categories>
       <tags>
-        <tag>CCNA</tag>
+        <tag>SSH</tag>
+        <tag>SSH Server</tag>
+        <tag>SSH Client</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DRY、KISS、YAGNI三原則的理解</title>
+    <url>/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/</url>
+    <content><![CDATA[<p>軟件三原則的個人理解<br>在軟件的設計當中前人已經總結了許多的設計原則和設計模式。例如SOLID，GRASP設計原則，這些原則都是基於面向對象設計總結而來的。而GOF23是基於許多常見的場景總結出了一套設計模式，在我們遇到類似的場景，都可以套用設計模式。而今天所講到的軟件三原則是適用於在軟件設計的各個層面的。它不僅適用於面向對象的設計，也適用於面向過程的程序設計；不僅適用於類的設計，也適用於模塊、子系統的設計。就連在項目架構運維部署中也適用於這一套簡單的法則。</p>
+<span id="more"></span>
+
+
+<h2 id="1-DRY-Don’t-Repeat-Yourself"><a href="#1-DRY-Don’t-Repeat-Yourself" class="headerlink" title="1. DRY - Don’t Repeat Yourself"></a>1. DRY - Don’t Repeat Yourself</h2><p>第一條準則是千萬不要重複你自身。盡量在項目中減少重複的代碼行，重複的方法，重複的模塊。其實許多設計原則和模式最本質的思想都是在消除重複。&#x3D;&#x3D;我們經常提起的重用性和可維護性其實是基於減少重複這一簡單的思想&#x3D;&#x3D;。為什麼現在微服務盛行呢？正是因為將系統中的服務進行抽取的話，便減少了重複。重複冗餘在維護代碼的時候將是非常困難的。 DRY意味著系統內的每一個部件都應該是唯一的並且是不模糊的。我們可以&#x3D;&#x3D;通過應用單一職責接口隔離等原則盡量拆分系統，模塊，類，方法·。使其每一個部件都是職責明確的並且可重用的。&#x3D;&#x3D;</p>
+<h2 id="2-KISS-Keep-It-Simple-Stupid"><a href="#2-KISS-Keep-It-Simple-Stupid" class="headerlink" title="2. KISS - Keep It Simple &amp; Stupid"></a>2. KISS - Keep It Simple &amp; Stupid</h2><p>第二條準則是保持簡單易懂。從小到幾行代碼的寫法大到整個系統的架構我們都應該保持簡單易懂。高手高就高在可以將復雜的東西“簡單”的實現出來。剛入行的時候，我總喜歡用三目運算符將復雜的邏輯用一句冗長的代碼行寫出來。後面才發現這是非常愚蠢的。到了重構或者需求變更的時候，連我自己寫的代碼我都看著非常費勁難以下手。所以我們應該致力於代碼的可理解性。降低複雜度也意味著維護變得簡單。 &#x3D;&#x3D;Martin Flower在《重構》中有一句經典的話：”任何一個傻瓜都能寫出計算機可以理解的程序，只有寫出人類容易理解的程序才是優秀的程序員。”&#x3D;&#x3D; 其實不光是程序，這個原則也可以延伸到產品的設計，業務的設計，項目結構的設計上。</p>
+<h2 id="3-YAGNI-You-Ain’t-Gonna-Need-It"><a href="#3-YAGNI-You-Ain’t-Gonna-Need-It" class="headerlink" title="3. YAGNI - You Ain’t Gonna Need It"></a>3. YAGNI - You Ain’t Gonna Need It</h2><p>&#x3D;&#x3D;第三條準則是你將不會需要它。千萬不要進行過度設計。&#x3D;&#x3D; 我們經常會在開發當中盡可能的迎合未來可能的需求。而為了迎合某些產生概率極低的需求而設計的成本是非常高的，這種過度設計的收益非常低。可能你深思熟慮的設計花了不少時間成本，卻在未來的兩三年內這個設計卻完全沒有派上用場。一些設計是否必要，更多的應該基於當前的情況。而不是為了應對未來的各種變化，畫蛇添足的設計。如果淘寶一開始就往日均交易上億的情況進行設計的話，那麼可能就不會有今天的淘寶了。因為創業公司的時間是非常寶貴的，比其他公司早一步退出新的服務就能搶占先機。並不是說淘寶不需要考慮以後交易量暴增的情況，而是不應該以當前日均交易才幾萬的情況下去設計編碼日均交易上億的項目。過度設計往往會延緩開發迭代的速度。</p>
+<blockquote>
+<p>YAGNI 原則想到想當在讀易讀程式碼之美學時，也有講到類似的概念，主要是釐清需求範圍跟可能發生的狀況，將會大大減少不必要的開發成本與過度開發可能沒用到的功能</p>
+</blockquote>
+<h3 id="3-1-參考資料"><a href="#3-1-參考資料" class="headerlink" title="3.1. 參考資料"></a>3.1. 參考資料</h3><ul>
+<li><a href="https://juejin.im/post/5d65da856fb9a06ac93cdf5a#heading-3">DRY、KISS、YAGNI三原则的理解</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>軟體思維</category>
+      </categories>
+      <tags>
+        <tag>軟體思維</tag>
       </tags>
   </entry>
   <entry>
@@ -1999,41 +2058,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu SSH Server 安裝</title>
-    <url>/2021/04/30/2021-04-30%20Ubuntu%20SSH%20Server%20%E5%AE%89%E8%A3%9D/</url>
-    <content><![CDATA[<ol>
-<li><p>開啟 Terminal</p>
-</li>
-<li><p>安裝openSSH Server</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y openssh-server</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-
-<ol start="3">
-<li><p>確認SSH服務</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service ssh status</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安裝網路指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install net-tools</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查詢IP</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 PuTTY or ZOC 軟體連線</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>SSH</category>
-      </categories>
-      <tags>
-        <tag>SSH</tag>
-        <tag>SSH Server</tag>
-        <tag>SSH Client</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CCNA_10</title>
     <url>/2021/05/03/2021-05-03%20CCNA_10/</url>
     <content><![CDATA[<h2 id="1-Subnetting-2"><a href="#1-Subnetting-2" class="headerlink" title="1. Subnetting 2"></a>1. Subnetting 2</h2><span id="more"></span>
@@ -2060,57 +2084,6 @@
       </categories>
       <tags>
         <tag>CCNA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DRY、KISS、YAGNI三原則的理解</title>
-    <url>/2021/05/06/2021-05-06%20DRY%E3%80%81KISS%E3%80%81YAGNI%E4%B8%89%E5%8E%9F%E5%89%87%E7%9A%84%E7%90%86%E8%A7%A3/</url>
-    <content><![CDATA[<p>軟件三原則的個人理解<br>在軟件的設計當中前人已經總結了許多的設計原則和設計模式。例如SOLID，GRASP設計原則，這些原則都是基於面向對象設計總結而來的。而GOF23是基於許多常見的場景總結出了一套設計模式，在我們遇到類似的場景，都可以套用設計模式。而今天所講到的軟件三原則是適用於在軟件設計的各個層面的。它不僅適用於面向對象的設計，也適用於面向過程的程序設計；不僅適用於類的設計，也適用於模塊、子系統的設計。就連在項目架構運維部署中也適用於這一套簡單的法則。</p>
-<span id="more"></span>
-
-
-<h2 id="1-DRY-Don’t-Repeat-Yourself"><a href="#1-DRY-Don’t-Repeat-Yourself" class="headerlink" title="1. DRY - Don’t Repeat Yourself"></a>1. DRY - Don’t Repeat Yourself</h2><p>第一條準則是千萬不要重複你自身。盡量在項目中減少重複的代碼行，重複的方法，重複的模塊。其實許多設計原則和模式最本質的思想都是在消除重複。&#x3D;&#x3D;我們經常提起的重用性和可維護性其實是基於減少重複這一簡單的思想&#x3D;&#x3D;。為什麼現在微服務盛行呢？正是因為將系統中的服務進行抽取的話，便減少了重複。重複冗餘在維護代碼的時候將是非常困難的。 DRY意味著系統內的每一個部件都應該是唯一的並且是不模糊的。我們可以&#x3D;&#x3D;通過應用單一職責接口隔離等原則盡量拆分系統，模塊，類，方法·。使其每一個部件都是職責明確的並且可重用的。&#x3D;&#x3D;</p>
-<h2 id="2-KISS-Keep-It-Simple-Stupid"><a href="#2-KISS-Keep-It-Simple-Stupid" class="headerlink" title="2. KISS - Keep It Simple &amp; Stupid"></a>2. KISS - Keep It Simple &amp; Stupid</h2><p>第二條準則是保持簡單易懂。從小到幾行代碼的寫法大到整個系統的架構我們都應該保持簡單易懂。高手高就高在可以將復雜的東西“簡單”的實現出來。剛入行的時候，我總喜歡用三目運算符將復雜的邏輯用一句冗長的代碼行寫出來。後面才發現這是非常愚蠢的。到了重構或者需求變更的時候，連我自己寫的代碼我都看著非常費勁難以下手。所以我們應該致力於代碼的可理解性。降低複雜度也意味著維護變得簡單。 &#x3D;&#x3D;Martin Flower在《重構》中有一句經典的話：”任何一個傻瓜都能寫出計算機可以理解的程序，只有寫出人類容易理解的程序才是優秀的程序員。”&#x3D;&#x3D; 其實不光是程序，這個原則也可以延伸到產品的設計，業務的設計，項目結構的設計上。</p>
-<h2 id="3-YAGNI-You-Ain’t-Gonna-Need-It"><a href="#3-YAGNI-You-Ain’t-Gonna-Need-It" class="headerlink" title="3. YAGNI - You Ain’t Gonna Need It"></a>3. YAGNI - You Ain’t Gonna Need It</h2><p>&#x3D;&#x3D;第三條準則是你將不會需要它。千萬不要進行過度設計。&#x3D;&#x3D; 我們經常會在開發當中盡可能的迎合未來可能的需求。而為了迎合某些產生概率極低的需求而設計的成本是非常高的，這種過度設計的收益非常低。可能你深思熟慮的設計花了不少時間成本，卻在未來的兩三年內這個設計卻完全沒有派上用場。一些設計是否必要，更多的應該基於當前的情況。而不是為了應對未來的各種變化，畫蛇添足的設計。如果淘寶一開始就往日均交易上億的情況進行設計的話，那麼可能就不會有今天的淘寶了。因為創業公司的時間是非常寶貴的，比其他公司早一步退出新的服務就能搶占先機。並不是說淘寶不需要考慮以後交易量暴增的情況，而是不應該以當前日均交易才幾萬的情況下去設計編碼日均交易上億的項目。過度設計往往會延緩開發迭代的速度。</p>
-<blockquote>
-<p>YAGNI 原則想到想當在讀易讀程式碼之美學時，也有講到類似的概念，主要是釐清需求範圍跟可能發生的狀況，將會大大減少不必要的開發成本與過度開發可能沒用到的功能</p>
-</blockquote>
-<h3 id="3-1-參考資料"><a href="#3-1-參考資料" class="headerlink" title="3.1. 參考資料"></a>3.1. 參考資料</h3><ul>
-<li><a href="https://juejin.im/post/5d65da856fb9a06ac93cdf5a#heading-3">DRY、KISS、YAGNI三原则的理解</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>軟體思維</category>
-      </categories>
-      <tags>
-        <tag>軟體思維</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS權重考題</title>
-    <url>/2021/05/13/2021-05-13%20CSS%E6%AC%8A%E9%87%8D%E8%80%83%E9%A1%8C/</url>
-    <content><![CDATA[<span id="more"></span>
-
-
-<h3 id="1-第一題"><a href="#1-第一題" class="headerlink" title="1. 第一題"></a>1. 第一題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-第二題"><a href="#2-第二題" class="headerlink" title="2. 第二題"></a>2. 第二題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-第三題"><a href="#3-第三題" class="headerlink" title="3. 第三題"></a>3. 第三題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-class">.title1</span><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -2223,6 +2196,140 @@
       </categories>
       <tags>
         <tag>CCNA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS權重考題</title>
+    <url>/2021/05/13/2021-05-13%20CSS%E6%AC%8A%E9%87%8D%E8%80%83%E9%A1%8C/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+<h3 id="1-第一題"><a href="#1-第一題" class="headerlink" title="1. 第一題"></a>1. 第一題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-第二題"><a href="#2-第二題" class="headerlink" title="2. 第二題"></a>2. 第二題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-第三題"><a href="#3-第三題" class="headerlink" title="3. 第三題"></a>3. 第三題</h3><p>請問以下的 HTML 裡面的 h1 是什麼顏色？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title1 title2&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--  CSS --&gt;</span><br><span class="line"><span class="selector-class">.title1</span><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>:orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title2</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: black</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title1</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>21天Bootstrap5新手實戰營-格線系統(下)</title>
+    <url>/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/</url>
+    <content><![CDATA[<h2 id="1-格線系統斷點設計"><a href="#1-格線系統斷點設計" class="headerlink" title="1. 格線系統斷點設計"></a>1. 格線系統斷點設計</h2><p>下面區塊你會切6還是12呢?<br><img src="https://i.imgur.com/ZAbPfZg.jpg" alt="2021_05_22_01_41_01_697.png"></p>
+<blockquote>
+<p>12比較好，未來字長度變了，還有空間<br>老師也有可能只會用container , 連row 都不用</p>
+</blockquote>
+<span id="more"></span>
+
+
+<p>老師切版參考答案</p>
+<blockquote>
+<p><img src="https://i.imgur.com/OJ8q4IZ.jpg" alt="2021_05_22_01_16_50_432.png"></p>
+</blockquote>
+<ul>
+<li>網格系統再次強調不要動margin,padding</li>
+<li>可以在上面加顏色、背景圖片、文字樣式等等</li>
+<li>col-4,col-8寫法 是手機優先的寫法</li>
+<li>我們在做網站通常都是從PC版的開始開發，會從md大小開始</li>
+<li>若想先做 PC 版，可用 md、lg 當起手式</li>
+<li>老師斷點通常會寫3個，比如當md,lg不滿足就會是手機版格式</li>
+</ul>
+<h2 id="2-格線系統與元件整合"><a href="#2-格線系統與元件整合" class="headerlink" title="2. 格線系統與元件整合"></a>2. 格線系統與元件整合</h2><p><img src="https://i.imgur.com/86BsgeN.png" alt="Untitled.png"></p>
+<ul>
+<li>容器裡放元件</li>
+<li>鉛筆盒 是容器 象皮擦是元件</li>
+</ul>
+<h2 id="3-容器與元件分離-內容與樣式分離"><a href="#3-容器與元件分離-內容與樣式分離" class="headerlink" title="3. 容器與元件分離? 內容與樣式分離?"></a>3. 容器與元件分離? 內容與樣式分離?</h2><p>這樣寫有沒有問題?<br><img src="https://i.imgur.com/moZmDbK.png" alt="2021_05_22_02_00_49_631.png"></p>
+<blockquote>
+<p>容器與元件各司其職，拆開寫</p>
+</blockquote>
+<p><img src="https://i.imgur.com/Yw92gU3.png" alt="2021_05_22_02_03_04_140.png"></p>
+<p>請說出容器與元件的行數<br><img src="https://i.imgur.com/7CrjdnY.png" alt="2021_05_22_02_04_43_916.png"></p>
+<h2 id="4-通用類別搭配"><a href="#4-通用類別搭配" class="headerlink" title="4. 通用類別搭配"></a>4. 通用類別搭配</h2><ul>
+<li>我希望在md 平板大小時隱藏</li>
+<li>厲害之處是結合了斷點組合了常用的功能</li>
+</ul>
+<p><img src="https://i.imgur.com/G875Os4.png" alt="2021_05_22_02_13_28_553.png"></p>
+<h2 id="5-問題時間-網站範例"><a href="#5-問題時間-網站範例" class="headerlink" title="5. 問題時間-網站範例"></a>5. 問題時間-網站範例</h2><p><a href="https://www.hexschool.com/">六角學院</a></p>
+<h3 id="5-1-判斷哪些地方有用到-row-哪些地方沒有"><a href="#5-1-判斷哪些地方有用到-row-哪些地方沒有" class="headerlink" title="5.1. 判斷哪些地方有用到 .row 哪些地方沒有"></a>5.1. 判斷哪些地方有用到 .row 哪些地方沒有</h3><p><img src="https://i.imgur.com/pyUtqSd.jpg" alt="2021_05_24_11_16_06_80.png"></p>
+<blockquote>
+<p>通常選單不會切row column,因為選單的選項會一直增加，要切column 會一直調整。可以使用<a href="https://bootstrap5.hexschool.com/docs/5.0/components/navbar/">導覽列 (Navbar)</a></p>
+</blockquote>
+<h3 id="5-2-這個區塊會使用到row-column-嗎"><a href="#5-2-這個區塊會使用到row-column-嗎" class="headerlink" title="5.2. 這個區塊會使用到row column 嗎?"></a>5.2. 這個區塊會使用到row column 嗎?</h3><p><img src="https://i.imgur.com/sAyuQiL.png" alt="2021_05_24_11_17_23_599.png"></p>
+<blockquote>
+<p>會</p>
+</blockquote>
+<h3 id="5-3-有用到格線系統嗎"><a href="#5-3-有用到格線系統嗎" class="headerlink" title="5.3. 有用到格線系統嗎?"></a>5.3. 有用到格線系統嗎?</h3><p><img src="https://i.imgur.com/rGA5rO7.png" alt="2021_05_24_11_28_36_368.png"></p>
+<blockquote>
+<p>有</p>
+</blockquote>
+<h3 id="5-4-補充說明"><a href="#5-4-補充說明" class="headerlink" title="5.4. 補充說明"></a>5.4. 補充說明</h3><ul>
+<li>另外Flex 也有通用類別</li>
+<li>老師習慣class 由小寫到大(手機到平板到桌機)</li>
+<li>範例<br><img src="https://i.imgur.com/UDpfrBp.jpg" alt="2021_05_24_12_05_14_723.png"></li>
+</ul>
+<h3 id="5-5-表尾，會使用到格線系統嗎"><a href="#5-5-表尾，會使用到格線系統嗎" class="headerlink" title="5.5. 表尾，會使用到格線系統嗎?"></a>5.5. 表尾，會使用到格線系統嗎?</h3><blockquote>
+<p>會<br>另外提醒，盡量不要算的剛好。<br>要自己買保險啊，孩子。<br>老師自己又說自己可以用boostrap 的其它方式達成，不見得一定要用格線系統<br><img src="https://i.imgur.com/5j8FT1o.png" alt="2021_05_24_12_27_48_867.png"></p>
+</blockquote>
+<ol>
+<li>會嗎?</li>
+</ol>
+<ul>
+<li><p>答案</p>
+<p>  會</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/hkvhqRF.jpg" alt="2021_05_24_12_31_02_351.png"></p>
+<h3 id="5-6-有用到格線系統嗎"><a href="#5-6-有用到格線系統嗎" class="headerlink" title="5.6. 有用到格線系統嗎??"></a>5.6. 有用到格線系統嗎??</h3><blockquote>
+<p>有<br><img src="https://i.imgur.com/i67JS8r.jpg" alt="2021_05_24_12_33_22_499.png"></p>
+</blockquote>
+<p>補充說明：</p>
+<p>在boostrap版型應該都有要格線。</p>
+<p>像button 的部分 設計師沒有follow 格線系統，因此我們自己在切版的時候，就可以照自己的方式達到就好</p>
+<p><img src="https://i.imgur.com/cs1VgAs.jpg" alt="2021_05_24_12_36_13_651.png"></p>
+<h3 id="5-7-會用到格線系統嗎"><a href="#5-7-會用到格線系統嗎" class="headerlink" title="5.7. 會用到格線系統嗎??"></a>5.7. 會用到格線系統嗎??</h3><blockquote>
+<p>不會<br><img src="https://i.imgur.com/FK53y5e.png" alt="2021_05_24_12_42_14_733.png"></p>
+</blockquote>
+<p>補充說明：</p>
+<p>如果自己要開版設計稿，格線的圖可以哪裡找?</p>
+<p>可用軟體如下</p>
+<ul>
+<li>Adobe XD</li>
+<li>sketch</li>
+<li>figma</li>
+</ul>
+<p><a href="https://bootstrapmade.com/">Free Bootstrap Templates</a></p>
+<h3 id="5-8-需要格線系統嗎"><a href="#5-8-需要格線系統嗎" class="headerlink" title="5.8. 需要格線系統嗎?"></a>5.8. 需要格線系統嗎?</h3><blockquote>
+<p>要<br><img src="https://i.imgur.com/UM5IwAU.png" alt="2021_05_24_12_45_33_367.png"></p>
+</blockquote>
+<h2 id="6-問題解答-column-再包row-column-能不能"><a href="#6-問題解答-column-再包row-column-能不能" class="headerlink" title="6. 問題解答 column 再包row column 能不能?"></a>6. 問題解答 column 再包row column 能不能?</h2><p><img src="https://i.imgur.com/mzUWZdK.png" alt="2021_05_24_13_21_12_769.png"></p>
+<h2 id="7-主線及每日任務"><a href="#7-主線及每日任務" class="headerlink" title="7. 主線及每日任務"></a>7. 主線及每日任務</h2><h3 id="7-1-通用類別前3名"><a href="#7-1-通用類別前3名" class="headerlink" title="7.1. 通用類別前3名"></a>7.1. 通用類別前3名</h3><ul>
+<li>display</li>
+<li>flex</li>
+<li>spacing</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CSS FrameWork</category>
+        <category>Bootstrap5</category>
+      </categories>
+      <tags>
+        <tag>Bootstrap5</tag>
+        <tag>CSS</tag>
+        <tag>RWD</tag>
       </tags>
   </entry>
   <entry>
@@ -2394,113 +2501,6 @@
 <p>header ,footer 想要滿版</p>
 <p>container 裡面符合名言</p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>CSS FrameWork</category>
-        <category>Bootstrap5</category>
-      </categories>
-      <tags>
-        <tag>Bootstrap5</tag>
-        <tag>CSS</tag>
-        <tag>RWD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>21天Bootstrap5新手實戰營-格線系統(下)</title>
-    <url>/2021/05/27/2021-05-27%2021%E5%A4%A9Bootstrap5%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0%E7%87%9F-%E6%A0%BC%E5%BC%8F%E7%B3%BB%E7%B5%B1(%E4%B8%8B)/</url>
-    <content><![CDATA[<h2 id="1-格線系統斷點設計"><a href="#1-格線系統斷點設計" class="headerlink" title="1. 格線系統斷點設計"></a>1. 格線系統斷點設計</h2><p>下面區塊你會切6還是12呢?<br><img src="https://i.imgur.com/ZAbPfZg.jpg" alt="2021_05_22_01_41_01_697.png"></p>
-<blockquote>
-<p>12比較好，未來字長度變了，還有空間<br>老師也有可能只會用container , 連row 都不用</p>
-</blockquote>
-<span id="more"></span>
-
-
-<p>老師切版參考答案</p>
-<blockquote>
-<p><img src="https://i.imgur.com/OJ8q4IZ.jpg" alt="2021_05_22_01_16_50_432.png"></p>
-</blockquote>
-<ul>
-<li>網格系統再次強調不要動margin,padding</li>
-<li>可以在上面加顏色、背景圖片、文字樣式等等</li>
-<li>col-4,col-8寫法 是手機優先的寫法</li>
-<li>我們在做網站通常都是從PC版的開始開發，會從md大小開始</li>
-<li>若想先做 PC 版，可用 md、lg 當起手式</li>
-<li>老師斷點通常會寫3個，比如當md,lg不滿足就會是手機版格式</li>
-</ul>
-<h2 id="2-格線系統與元件整合"><a href="#2-格線系統與元件整合" class="headerlink" title="2. 格線系統與元件整合"></a>2. 格線系統與元件整合</h2><p><img src="https://i.imgur.com/86BsgeN.png" alt="Untitled.png"></p>
-<ul>
-<li>容器裡放元件</li>
-<li>鉛筆盒 是容器 象皮擦是元件</li>
-</ul>
-<h2 id="3-容器與元件分離-內容與樣式分離"><a href="#3-容器與元件分離-內容與樣式分離" class="headerlink" title="3. 容器與元件分離? 內容與樣式分離?"></a>3. 容器與元件分離? 內容與樣式分離?</h2><p>這樣寫有沒有問題?<br><img src="https://i.imgur.com/moZmDbK.png" alt="2021_05_22_02_00_49_631.png"></p>
-<blockquote>
-<p>容器與元件各司其職，拆開寫</p>
-</blockquote>
-<p><img src="https://i.imgur.com/Yw92gU3.png" alt="2021_05_22_02_03_04_140.png"></p>
-<p>請說出容器與元件的行數<br><img src="https://i.imgur.com/7CrjdnY.png" alt="2021_05_22_02_04_43_916.png"></p>
-<h2 id="4-通用類別搭配"><a href="#4-通用類別搭配" class="headerlink" title="4. 通用類別搭配"></a>4. 通用類別搭配</h2><ul>
-<li>我希望在md 平板大小時隱藏</li>
-<li>厲害之處是結合了斷點組合了常用的功能</li>
-</ul>
-<p><img src="https://i.imgur.com/G875Os4.png" alt="2021_05_22_02_13_28_553.png"></p>
-<h2 id="5-問題時間-網站範例"><a href="#5-問題時間-網站範例" class="headerlink" title="5. 問題時間-網站範例"></a>5. 問題時間-網站範例</h2><p><a href="https://www.hexschool.com/">六角學院</a></p>
-<h3 id="5-1-判斷哪些地方有用到-row-哪些地方沒有"><a href="#5-1-判斷哪些地方有用到-row-哪些地方沒有" class="headerlink" title="5.1. 判斷哪些地方有用到 .row 哪些地方沒有"></a>5.1. 判斷哪些地方有用到 .row 哪些地方沒有</h3><p><img src="https://i.imgur.com/pyUtqSd.jpg" alt="2021_05_24_11_16_06_80.png"></p>
-<blockquote>
-<p>通常選單不會切row column,因為選單的選項會一直增加，要切column 會一直調整。可以使用<a href="https://bootstrap5.hexschool.com/docs/5.0/components/navbar/">導覽列 (Navbar)</a></p>
-</blockquote>
-<h3 id="5-2-這個區塊會使用到row-column-嗎"><a href="#5-2-這個區塊會使用到row-column-嗎" class="headerlink" title="5.2. 這個區塊會使用到row column 嗎?"></a>5.2. 這個區塊會使用到row column 嗎?</h3><p><img src="https://i.imgur.com/sAyuQiL.png" alt="2021_05_24_11_17_23_599.png"></p>
-<blockquote>
-<p>會</p>
-</blockquote>
-<h3 id="5-3-有用到格線系統嗎"><a href="#5-3-有用到格線系統嗎" class="headerlink" title="5.3. 有用到格線系統嗎?"></a>5.3. 有用到格線系統嗎?</h3><p><img src="https://i.imgur.com/rGA5rO7.png" alt="2021_05_24_11_28_36_368.png"></p>
-<blockquote>
-<p>有</p>
-</blockquote>
-<h3 id="5-4-補充說明"><a href="#5-4-補充說明" class="headerlink" title="5.4. 補充說明"></a>5.4. 補充說明</h3><ul>
-<li>另外Flex 也有通用類別</li>
-<li>老師習慣class 由小寫到大(手機到平板到桌機)</li>
-<li>範例<br><img src="https://i.imgur.com/UDpfrBp.jpg" alt="2021_05_24_12_05_14_723.png"></li>
-</ul>
-<h3 id="5-5-表尾，會使用到格線系統嗎"><a href="#5-5-表尾，會使用到格線系統嗎" class="headerlink" title="5.5. 表尾，會使用到格線系統嗎?"></a>5.5. 表尾，會使用到格線系統嗎?</h3><blockquote>
-<p>會<br>另外提醒，盡量不要算的剛好。<br>要自己買保險啊，孩子。<br>老師自己又說自己可以用boostrap 的其它方式達成，不見得一定要用格線系統<br><img src="https://i.imgur.com/5j8FT1o.png" alt="2021_05_24_12_27_48_867.png"></p>
-</blockquote>
-<ol>
-<li>會嗎?</li>
-</ol>
-<ul>
-<li><p>答案</p>
-<p>  會</p>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/hkvhqRF.jpg" alt="2021_05_24_12_31_02_351.png"></p>
-<h3 id="5-6-有用到格線系統嗎"><a href="#5-6-有用到格線系統嗎" class="headerlink" title="5.6. 有用到格線系統嗎??"></a>5.6. 有用到格線系統嗎??</h3><blockquote>
-<p>有<br><img src="https://i.imgur.com/i67JS8r.jpg" alt="2021_05_24_12_33_22_499.png"></p>
-</blockquote>
-<p>補充說明：</p>
-<p>在boostrap版型應該都有要格線。</p>
-<p>像button 的部分 設計師沒有follow 格線系統，因此我們自己在切版的時候，就可以照自己的方式達到就好</p>
-<p><img src="https://i.imgur.com/cs1VgAs.jpg" alt="2021_05_24_12_36_13_651.png"></p>
-<h3 id="5-7-會用到格線系統嗎"><a href="#5-7-會用到格線系統嗎" class="headerlink" title="5.7. 會用到格線系統嗎??"></a>5.7. 會用到格線系統嗎??</h3><blockquote>
-<p>不會<br><img src="https://i.imgur.com/FK53y5e.png" alt="2021_05_24_12_42_14_733.png"></p>
-</blockquote>
-<p>補充說明：</p>
-<p>如果自己要開版設計稿，格線的圖可以哪裡找?</p>
-<p>可用軟體如下</p>
-<ul>
-<li>Adobe XD</li>
-<li>sketch</li>
-<li>figma</li>
-</ul>
-<p><a href="https://bootstrapmade.com/">Free Bootstrap Templates</a></p>
-<h3 id="5-8-需要格線系統嗎"><a href="#5-8-需要格線系統嗎" class="headerlink" title="5.8. 需要格線系統嗎?"></a>5.8. 需要格線系統嗎?</h3><blockquote>
-<p>要<br><img src="https://i.imgur.com/UM5IwAU.png" alt="2021_05_24_12_45_33_367.png"></p>
-</blockquote>
-<h2 id="6-問題解答-column-再包row-column-能不能"><a href="#6-問題解答-column-再包row-column-能不能" class="headerlink" title="6. 問題解答 column 再包row column 能不能?"></a>6. 問題解答 column 再包row column 能不能?</h2><p><img src="https://i.imgur.com/mzUWZdK.png" alt="2021_05_24_13_21_12_769.png"></p>
-<h2 id="7-主線及每日任務"><a href="#7-主線及每日任務" class="headerlink" title="7. 主線及每日任務"></a>7. 主線及每日任務</h2><h3 id="7-1-通用類別前3名"><a href="#7-1-通用類別前3名" class="headerlink" title="7.1. 通用類別前3名"></a>7.1. 通用類別前3名</h3><ul>
-<li>display</li>
-<li>flex</li>
-<li>spacing</li>
-</ul>
 ]]></content>
       <categories>
         <category>CSS FrameWork</category>
@@ -3282,56 +3282,6 @@
       </tags>
   </entry>
   <entry>
-    <title>7zip 常用指令</title>
-    <url>/2021/08/13/2021-08-13%207zip%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h3 id="0-1-排除特定類型的檔案不要進壓縮檔"><a href="#0-1-排除特定類型的檔案不要進壓縮檔" class="headerlink" title="0.1. 排除特定類型的檔案不要進壓縮檔"></a>0.1. 排除特定類型的檔案不要進壓縮檔</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a dir1.zip &quot;dir1\&quot; &quot;-xr!*.pdb&quot; &quot;-xr!web.config&quot;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\dir2\*&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="0-2-指定壓縮檔案類型"><a href="#0-2-指定壓縮檔案類型" class="headerlink" title="0.2. 指定壓縮檔案類型"></a>0.2. 指定壓縮檔案類型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot; -r &quot;dir1\*.aspx&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="0-3-指定多個壓縮檔案類型"><a href="#0-3-指定多個壓縮檔案類型" class="headerlink" title="0.3. 指定多個壓縮檔案類型"></a>0.3. 指定多個壓縮檔案類型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot; -r &quot;dir1\*.aspx&quot; &quot;dir1\*.dll&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="0-4-加入密碼"><a href="#0-4-加入密碼" class="headerlink" title="0.4. 加入密碼"></a>0.4. 加入密碼</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1/&quot; -p&quot;1q2w3e4r&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.7z&quot; &quot;dir1/&quot; -p&quot;1q2w3e4r&quot;  -mhe</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>檔名一起加密，必須輸入完密碼後，才能看到裡面檔案名稱</p>
-</blockquote>
-<h2 id="1-unzip"><a href="#1-unzip" class="headerlink" title="1. unzip"></a>1. unzip</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot; -o&quot;dir1&quot;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>此寫法可解決路徑有空白的問題</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot; -o&quot;C:\Program Files\&quot;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：在 -o 與 Path 中間不能有任何空白字元！</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z e &quot;dir1.zip&quot; -o&quot;dir1&quot; -r &quot;*.js&quot;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>解壓縮指定類型檔案</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z e &quot;dir1.zip&quot; -o&quot;dir1&quot; -r &quot;*.dll&quot; -y</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果不想提示直接覆蓋，可以加上 -y 參數</p>
-</blockquote>
-<h2 id="2-其它"><a href="#2-其它" class="headerlink" title="2. 其它"></a>2. 其它</h2><h3 id="2-1-列出所有檔案清單"><a href="#2-1-列出所有檔案清單" class="headerlink" title="2.1. 列出所有檔案清單"></a>2.1. 列出所有檔案清單</h3><p>我們在自動化的過程中可能會需要先知道壓縮檔中有什麼檔案，此時可以利用 7z 的 l (List) 命令達成這個目的。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z l &quot;dir1.zip&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-參考連結"><a href="#3-參考連結" class="headerlink" title="3. 參考連結"></a>3. 參考連結</h2><p><a href="https://blog.miniasp.com/post/2021/07/07/Useful-7-Zip-7z-CLI-Command-Options?fbclid=IwAR0AF7VqcBB55W2P4jUy-X5rmciWIVIY9mWPa6XsM6FiJwAUvQDZ9uQ8UZ8">分享幾個常用的 7-Zip 壓縮與解壓縮命令</a></p>
-]]></content>
-      <categories>
-        <category>7zip</category>
-      </categories>
-      <tags>
-        <tag>7zip</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Phaser 教學</title>
     <url>/2021/08/12/2021-08-12%20Phaser%20%E6%95%99%E5%AD%B8/</url>
     <content><![CDATA[<h2 id="1-Phaser-是什麼"><a href="#1-Phaser-是什麼" class="headerlink" title="1. Phaser 是什麼"></a>1. Phaser 是什麼</h2><ul>
@@ -3634,6 +3584,56 @@
       </tags>
   </entry>
   <entry>
+    <title>7zip 常用指令</title>
+    <url>/2021/08/13/2021-08-13%207zip%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h3 id="0-1-排除特定類型的檔案不要進壓縮檔"><a href="#0-1-排除特定類型的檔案不要進壓縮檔" class="headerlink" title="0.1. 排除特定類型的檔案不要進壓縮檔"></a>0.1. 排除特定類型的檔案不要進壓縮檔</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a dir1.zip &quot;dir1\&quot; &quot;-xr!*.pdb&quot; &quot;-xr!web.config&quot;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\dir2\*&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-2-指定壓縮檔案類型"><a href="#0-2-指定壓縮檔案類型" class="headerlink" title="0.2. 指定壓縮檔案類型"></a>0.2. 指定壓縮檔案類型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot; -r &quot;dir1\*.aspx&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-3-指定多個壓縮檔案類型"><a href="#0-3-指定多個壓縮檔案類型" class="headerlink" title="0.3. 指定多個壓縮檔案類型"></a>0.3. 指定多個壓縮檔案類型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1\&quot; -r &quot;dir1\*.aspx&quot; &quot;dir1\*.dll&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-4-加入密碼"><a href="#0-4-加入密碼" class="headerlink" title="0.4. 加入密碼"></a>0.4. 加入密碼</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.zip&quot; &quot;dir1/&quot; -p&quot;1q2w3e4r&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z a &quot;dir1.7z&quot; &quot;dir1/&quot; -p&quot;1q2w3e4r&quot;  -mhe</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>檔名一起加密，必須輸入完密碼後，才能看到裡面檔案名稱</p>
+</blockquote>
+<h2 id="1-unzip"><a href="#1-unzip" class="headerlink" title="1. unzip"></a>1. unzip</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot; -o&quot;dir1&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此寫法可解決路徑有空白的問題</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z x &quot;dir1.zip&quot; -o&quot;C:\Program Files\&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：在 -o 與 Path 中間不能有任何空白字元！</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z e &quot;dir1.zip&quot; -o&quot;dir1&quot; -r &quot;*.js&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解壓縮指定類型檔案</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z e &quot;dir1.zip&quot; -o&quot;dir1&quot; -r &quot;*.dll&quot; -y</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果不想提示直接覆蓋，可以加上 -y 參數</p>
+</blockquote>
+<h2 id="2-其它"><a href="#2-其它" class="headerlink" title="2. 其它"></a>2. 其它</h2><h3 id="2-1-列出所有檔案清單"><a href="#2-1-列出所有檔案清單" class="headerlink" title="2.1. 列出所有檔案清單"></a>2.1. 列出所有檔案清單</h3><p>我們在自動化的過程中可能會需要先知道壓縮檔中有什麼檔案，此時可以利用 7z 的 l (List) 命令達成這個目的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7z l &quot;dir1.zip&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-參考連結"><a href="#3-參考連結" class="headerlink" title="3. 參考連結"></a>3. 參考連結</h2><p><a href="https://blog.miniasp.com/post/2021/07/07/Useful-7-Zip-7z-CLI-Command-Options?fbclid=IwAR0AF7VqcBB55W2P4jUy-X5rmciWIVIY9mWPa6XsM6FiJwAUvQDZ9uQ8UZ8">分享幾個常用的 7-Zip 壓縮與解壓縮命令</a></p>
+]]></content>
+      <categories>
+        <category>7zip</category>
+      </categories>
+      <tags>
+        <tag>7zip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Phaser 使用技巧整理</title>
     <url>/2021/08/13/2021-08-13%20Phaser%20%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
     <content><![CDATA[<p>專案 載浮載沉</p>
@@ -3796,32 +3796,6 @@
       </categories>
       <tags>
         <tag>Phaser</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Neor Profile Sql</title>
-    <url>/2021/08/17/2021-08-17%20Neor%20Profile%20Sql/</url>
-    <content><![CDATA[<p><a href="https://www.profilesql.com/">Neor Profile Sql download</a></p>
-<p>啟動之後的畫面如下<br><img src="https://i.imgur.com/fNbMr4m.png"></p>
-<p>關係圖如下</p>
-<p><img src="https://i.imgur.com/r7w57C3.png"></p>
-<span id="more"></span>
-
-
-<h2 id="1-軟體設定"><a href="#1-軟體設定" class="headerlink" title="1. 軟體設定"></a>1. 軟體設定</h2><p>通常MYSQL的預設PORT是3306<br>因此在這個軟體設為3306</p>
-<h2 id="2-PHP的程式資料庫設定"><a href="#2-PHP的程式資料庫設定" class="headerlink" title="2. PHP的程式資料庫設定"></a>2. PHP的程式資料庫設定</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#x27;db&#x27;] = new db(&#x27;mysql:host=localhost;dbname=exam2018;port=4040&#x27;,&#x27;root&#x27;,&#x27;1234&#x27;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-參考畫面"><a href="#3-參考畫面" class="headerlink" title="3. 參考畫面"></a>3. 參考畫面</h2><p><img src="https://i.imgur.com/UeJ2Mgy.png"></p>
-<p><img src="https://i.imgur.com/fLdU9Lz.png"></p>
-<p><img src="https://i.imgur.com/ymVWE6r.png"></p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>SQL Profile</tag>
-        <tag>軟體工具</tag>
       </tags>
   </entry>
   <entry>
@@ -4046,6 +4020,32 @@
       </categories>
       <tags>
         <tag>SQLSERVER</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Neor Profile Sql</title>
+    <url>/2021/08/17/2021-08-17%20Neor%20Profile%20Sql/</url>
+    <content><![CDATA[<p><a href="https://www.profilesql.com/">Neor Profile Sql download</a></p>
+<p>啟動之後的畫面如下<br><img src="https://i.imgur.com/fNbMr4m.png"></p>
+<p>關係圖如下</p>
+<p><img src="https://i.imgur.com/r7w57C3.png"></p>
+<span id="more"></span>
+
+
+<h2 id="1-軟體設定"><a href="#1-軟體設定" class="headerlink" title="1. 軟體設定"></a>1. 軟體設定</h2><p>通常MYSQL的預設PORT是3306<br>因此在這個軟體設為3306</p>
+<h2 id="2-PHP的程式資料庫設定"><a href="#2-PHP的程式資料庫設定" class="headerlink" title="2. PHP的程式資料庫設定"></a>2. PHP的程式資料庫設定</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#x27;db&#x27;] = new db(&#x27;mysql:host=localhost;dbname=exam2018;port=4040&#x27;,&#x27;root&#x27;,&#x27;1234&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-參考畫面"><a href="#3-參考畫面" class="headerlink" title="3. 參考畫面"></a>3. 參考畫面</h2><p><img src="https://i.imgur.com/UeJ2Mgy.png"></p>
+<p><img src="https://i.imgur.com/fLdU9Lz.png"></p>
+<p><img src="https://i.imgur.com/ymVWE6r.png"></p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>SQL Profile</tag>
+        <tag>軟體工具</tag>
       </tags>
   </entry>
   <entry>
@@ -4536,21 +4536,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MYSQL 匯入資料庫亂碼問題</title>
-    <url>/2021/09/14/2021-09-14%20MYSQL%20%E5%8C%AF%E5%85%A5%E8%B3%87%E6%96%99%E5%BA%AB%E4%BA%82%E7%A2%BC%E5%95%8F%E9%A1%8C/</url>
-    <content><![CDATA[<h2 id="匯入資料庫亂碼問題"><a href="#匯入資料庫亂碼問題" class="headerlink" title="匯入資料庫亂碼問題"></a>匯入資料庫亂碼問題</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># mysql <span class="operator">-</span>uroot <span class="operator">-</span>p0000 <span class="comment">--default-character-set=utf8 database &lt; dump_file.sql</span></span><br></pre></td></tr></table></figure>
-<p>-u後面接著帳號<br>-p後面接著密碼</p>
-]]></content>
-      <categories>
-        <category>MYSQL</category>
-        <category>編碥</category>
-      </categories>
-      <tags>
-        <tag>MYSQL</tag>
-        <tag>編碥</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Webpack</title>
     <url>/2021/09/11/2021-09-11%20Webpack/</url>
     <content><![CDATA[<h2 id="建立package-json-指令"><a href="#建立package-json-指令" class="headerlink" title="建立package.json 指令"></a>建立package.json 指令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
@@ -4674,6 +4659,21 @@
       </tags>
   </entry>
   <entry>
+    <title>MYSQL 匯入資料庫亂碼問題</title>
+    <url>/2021/09/14/2021-09-14%20MYSQL%20%E5%8C%AF%E5%85%A5%E8%B3%87%E6%96%99%E5%BA%AB%E4%BA%82%E7%A2%BC%E5%95%8F%E9%A1%8C/</url>
+    <content><![CDATA[<h2 id="匯入資料庫亂碼問題"><a href="#匯入資料庫亂碼問題" class="headerlink" title="匯入資料庫亂碼問題"></a>匯入資料庫亂碼問題</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># mysql <span class="operator">-</span>uroot <span class="operator">-</span>p0000 <span class="comment">--default-character-set=utf8 database &lt; dump_file.sql</span></span><br></pre></td></tr></table></figure>
+<p>-u後面接著帳號<br>-p後面接著密碼</p>
+]]></content>
+      <categories>
+        <category>MYSQL</category>
+        <category>編碥</category>
+      </categories>
+      <tags>
+        <tag>MYSQL</tag>
+        <tag>編碥</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PIXI JS 超人門學習</title>
     <url>/2021/08/17/2021-09-19%20PIXI%20JS%20%E8%B6%85%E4%BA%BA%E9%96%80%E5%AD%B8%E7%BF%92/</url>
     <content><![CDATA[<h2 id="1-基礎結構"><a href="#1-基礎結構" class="headerlink" title="1. 基礎結構"></a>1. 基礎結構</h2><h3 id="1-1-HTML、JS載入"><a href="#1-1-HTML、JS載入" class="headerlink" title="1.1. HTML、JS載入"></a>1.1. HTML、JS載入</h3><p><img src="https://i.imgur.com/qEkGAMk.png" alt="image-20210716151529109"></p>
@@ -4772,22 +4772,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS 常用</title>
-    <url>/2021/09/30/2021-09-30%20CSS%E5%B8%B8%E7%94%A8/</url>
-    <content><![CDATA[<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*, *<span class="selector-pseudo">:after</span>, *<span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">  -webkit-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">     -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: border-box;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="圖片最大寬度"><a href="#圖片最大寬度" class="headerlink" title="圖片最大寬度"></a>圖片最大寬度</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="高滿版"><a href="#高滿版" class="headerlink" title="高滿版"></a>高滿版</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">原文網址：https://kknews.cc/code/gznznay.html</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS 區塊元素</title>
     <url>/2021/09/30/2021-09-30%20CSS%E5%8D%80%E5%A1%8A%E5%85%83%E7%B4%A0/</url>
     <content><![CDATA[<p>CSS規範規定，每个元素都有display屬性，每個元素都有默認的display值，如div的display默認值为“block”，則為“區塊”元素；span默認display屬性值为“inline”，是“行内”元素。</p>
@@ -4797,6 +4781,22 @@
 <h2 id="2-特性2"><a href="#2-特性2" class="headerlink" title="2. 特性2"></a>2. 特性2</h2><p>區塊元素會另起一行呈現</p>
 <p>1.區塊(block)元素都會另起一行 2.高度，行高以及頂和底邊距都可控制； 3.默認情况下，其寬度自動填满其父元素寬度，即寬度100% 4.可以設置寬高 width hight 區塊元素常見包括 div、p、h1~h6、 ul、ol、li、 dl、dt、dd、 form、table、hr、 blockquote 、 address、menu、pre…..等等</p>
 <p><img src="https://i.imgur.com/uK4POMJ.png" alt="https://miro.medium.com/max/245/1*WLuyoSotqmRdz2-2ZBsSHw.png"></p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS 常用</title>
+    <url>/2021/09/30/2021-09-30%20CSS%E5%B8%B8%E7%94%A8/</url>
+    <content><![CDATA[<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*, *<span class="selector-pseudo">:after</span>, *<span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">  -webkit-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">     -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: border-box;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="圖片最大寬度"><a href="#圖片最大寬度" class="headerlink" title="圖片最大寬度"></a>圖片最大寬度</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="高滿版"><a href="#高滿版" class="headerlink" title="高滿版"></a>高滿版</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">margin</span>: <span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">原文網址：https://kknews.cc/code/gznznay.html</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>CSS</category>
@@ -5067,6 +5067,19 @@
       </tags>
   </entry>
   <entry>
+    <title>網頁設計輔助工具</title>
+    <url>/2021/09/30/2021-09-30%20%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E8%BC%94%E5%8A%A9%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<h2 id="軟體工具"><a href="#軟體工具" class="headerlink" title="軟體工具"></a>軟體工具</h2><p><a href="http://www.getmarkman.com/#/download-modal">马克鳗</a></p>
+<p><a href="https://www.fancynode.com.cn/pxcook">PxCook - 高效易用的自动标注工具,生成前端代码,设计研发协作利器</a></p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS tools</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>簡單批次CRUD測試MYSQL複寫機制</title>
     <url>/2021/09/30/2021-09-30%20%E7%B0%A1%E5%96%AE%E6%89%B9%E6%AC%A1CRUD%E6%B8%AC%E8%A9%A6MYSQL%E8%A4%87%E5%AF%AB%E6%A9%9F%E5%88%B6/</url>
     <content><![CDATA[<p>部門分工合作，同事架起了在centOS 系統下的HA架構。</p>
@@ -5080,19 +5093,6 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>網頁設計輔助工具</title>
-    <url>/2021/09/30/2021-09-30%20%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E8%BC%94%E5%8A%A9%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<h2 id="軟體工具"><a href="#軟體工具" class="headerlink" title="軟體工具"></a>軟體工具</h2><p><a href="http://www.getmarkman.com/#/download-modal">马克鳗</a></p>
-<p><a href="https://www.fancynode.com.cn/pxcook">PxCook - 高效易用的自动标注工具,生成前端代码,设计研发协作利器</a></p>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS tools</tag>
       </tags>
   </entry>
   <entry>
@@ -5724,51 +5724,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PHP Laravel 系列 - (6) 專案架構介紹</title>
-    <url>/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(6)%20%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9/</url>
-    <content><![CDATA[<h2 id="1-完整專案架構截圖"><a href="#1-完整專案架構截圖" class="headerlink" title="1. 完整專案架構截圖"></a>1. 完整專案架構截圖</h2><p><img src="https://i.imgur.com/JkAghTK.png" alt="image-20211016113510041"></p>
-<span id="more"></span>
-
-
-<h2 id="2-app-structure"><a href="#2-app-structure" class="headerlink" title="2. app structure"></a>2. app structure</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---app</span><br><span class="line">|   +---Console</span><br><span class="line">|   |       Kernel.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Exceptions</span><br><span class="line">|   |       Handler.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Http</span><br><span class="line">|   |   |   Kernel.php</span><br><span class="line">|   |   |   </span><br><span class="line">|   |   +---Controllers</span><br><span class="line">|   |   |       Controller.php</span><br><span class="line">|   |   |       </span><br><span class="line">|   |   \---Middleware</span><br><span class="line">|   |           Authenticate.php</span><br><span class="line">|   |           EncryptCookies.php</span><br><span class="line">|   |           PreventRequestsDuringMaintenance.php</span><br><span class="line">|   |           RedirectIfAuthenticated.php</span><br><span class="line">|   |           TrimStrings.php</span><br><span class="line">|   |           TrustHosts.php</span><br><span class="line">|   |           TrustProxies.php</span><br><span class="line">|   |           VerifyCsrfToken.php</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在windows 要輸出這樣的結構可以使用cmd指令產出</p>
-<p>tree &gt; dir.txt &#x2F;a &#x2F;f</p>
-</blockquote>
-<h2 id="3-app"><a href="#3-app" class="headerlink" title="3. app"></a>3. app</h2><p>程式最常修改的地方</p>
-<h3 id="3-1-Console"><a href="#3-1-Console" class="headerlink" title="3.1. Console"></a>3.1. Console</h3><p>可以寫一些指令相關的檔案，前期暫時不會使用到它</p>
-<h3 id="3-2-Exceptions"><a href="#3-2-Exceptions" class="headerlink" title="3.2. Exceptions"></a>3.2. Exceptions</h3><p>做一些除錯相關的檔案，前期暫時不會使用到它</p>
-<h3 id="3-3-http"><a href="#3-3-http" class="headerlink" title="3.3. http"></a>3.3. http</h3><p>這是一個很重要的folder</p>
-<h4 id="3-3-1-controllers"><a href="#3-3-1-controllers" class="headerlink" title="3.3.1. controllers"></a>3.3.1. controllers</h4><p>使用者進入程式的進入點設定</p>
-<h4 id="3-3-2-Middleware"><a href="#3-3-2-Middleware" class="headerlink" title="3.3.2. Middleware"></a>3.3.2. Middleware</h4><p>比較進階的模塊</p>
-<h3 id="3-4-Models"><a href="#3-4-Models" class="headerlink" title="3.4. Models"></a>3.4. Models</h3><p>擺放一些資料模塊</p>
-<h3 id="3-5-Providers"><a href="#3-5-Providers" class="headerlink" title="3.5. Providers"></a>3.5. Providers</h3><p>有些邏輯可以包成一些服務，可以放在這兒。</p>
-<p>或者是套件的一些使用方式都會在這邊</p>
-<h2 id="4-bootstrap"><a href="#4-bootstrap" class="headerlink" title="4. bootstrap"></a>4. bootstrap</h2><p>是比較進階的，跟程式運作有關，很少會碰到它</p>
-<h2 id="5-config"><a href="#5-config" class="headerlink" title="5. config"></a>5. config</h2><p>可以去設定一些參數，比方說要連到哪個資料庫、email要發到哪個server ip</p>
-<h2 id="6-database"><a href="#6-database" class="headerlink" title="6. database"></a>6. database</h2><p>跟資料庫操作有關的，或者是要做一些假資料，或者是啟動server時預設產生的資料等等</p>
-<h2 id="7-public"><a href="#7-public" class="headerlink" title="7. public"></a>7. public</h2><p>放的是靜態檔案 比方說圖片或pdf等等</p>
-<h2 id="8-resource-structure"><a href="#8-resource-structure" class="headerlink" title="8. resource structure"></a>8. resource structure</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---resources</span><br><span class="line">|   +---css</span><br><span class="line">|   |       app.css</span><br><span class="line">|   |       </span><br><span class="line">|   +---js</span><br><span class="line">|   |       app.js</span><br><span class="line">|   |       bootstrap.js</span><br><span class="line">|   |       </span><br><span class="line">|   +---lang</span><br><span class="line">|   |   \---en</span><br><span class="line">|   |           auth.php</span><br><span class="line">|   |           pagination.php</span><br><span class="line">|   |           passwords.php</span><br><span class="line">|   |           validation.php</span><br><span class="line">|   |           </span><br><span class="line">|   \---views</span><br><span class="line">|           welcome.blade.php</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-1-css"><a href="#8-1-css" class="headerlink" title="8.1. css"></a>8.1. css</h3><p>可以放一些前端必備的檔案</p>
-<h3 id="8-2-js"><a href="#8-2-js" class="headerlink" title="8.2. js"></a>8.2. js</h3><p>可以放一些前端必備的檔案</p>
-<h3 id="8-3-views"><a href="#8-3-views" class="headerlink" title="8.3. views"></a>8.3. views</h3><p>view有關的程式碼</p>
-<h2 id="9-routes"><a href="#9-routes" class="headerlink" title="9. routes"></a>9. routes</h2><p>使用者透過網址拜訪網站，透過路由決定要執行哪一段程式，下一章節會介紹</p>
-<h2 id="10-storage"><a href="#10-storage" class="headerlink" title="10. storage"></a>10. storage</h2><p>使用者上傳檔案，或者是你要產生暫時檔案，都在這邊哦</p>
-<h2 id="11-tests"><a href="#11-tests" class="headerlink" title="11. tests"></a>11. tests</h2><p>進行程式測試使用的</p>
-<h2 id="12-vendor"><a href="#12-vendor" class="headerlink" title="12. vendor"></a>12. vendor</h2><p>這個專案用到的套件</p>
-]]></content>
-      <categories>
-        <category>PHP</category>
-        <category>Laravel</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PHP Laravel 系列 - (7) Route and Controller</title>
     <url>/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(7)%20Route%20and%20Controller/</url>
     <content><![CDATA[<h2 id="1-簡單介紹-Http-Methods"><a href="#1-簡單介紹-Http-Methods" class="headerlink" title="1. 簡單介紹 Http Methods"></a>1. 簡單介紹 Http Methods</h2><p><img src="https://i.imgur.com/kgK29WP.png" alt="image-20211016115313736"></p>
@@ -5822,6 +5777,51 @@
 
 
 <h2 id="8-問題"><a href="#8-問題" class="headerlink" title="8. 問題"></a>8. 問題</h2><h3 id="8-1-如何添加artisan"><a href="#8-1-如何添加artisan" class="headerlink" title="8.1. 如何添加artisan"></a>8.1. 如何添加artisan</h3><h3 id="8-2-php-namespace"><a href="#8-2-php-namespace" class="headerlink" title="8.2. php namespace"></a>8.2. php namespace</h3>]]></content>
+      <categories>
+        <category>PHP</category>
+        <category>Laravel</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP Laravel 系列 - (6) 專案架構介紹</title>
+    <url>/2021/10/16/2021-10-16%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(6)%20%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9/</url>
+    <content><![CDATA[<h2 id="1-完整專案架構截圖"><a href="#1-完整專案架構截圖" class="headerlink" title="1. 完整專案架構截圖"></a>1. 完整專案架構截圖</h2><p><img src="https://i.imgur.com/JkAghTK.png" alt="image-20211016113510041"></p>
+<span id="more"></span>
+
+
+<h2 id="2-app-structure"><a href="#2-app-structure" class="headerlink" title="2. app structure"></a>2. app structure</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---app</span><br><span class="line">|   +---Console</span><br><span class="line">|   |       Kernel.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Exceptions</span><br><span class="line">|   |       Handler.php</span><br><span class="line">|   |       </span><br><span class="line">|   +---Http</span><br><span class="line">|   |   |   Kernel.php</span><br><span class="line">|   |   |   </span><br><span class="line">|   |   +---Controllers</span><br><span class="line">|   |   |       Controller.php</span><br><span class="line">|   |   |       </span><br><span class="line">|   |   \---Middleware</span><br><span class="line">|   |           Authenticate.php</span><br><span class="line">|   |           EncryptCookies.php</span><br><span class="line">|   |           PreventRequestsDuringMaintenance.php</span><br><span class="line">|   |           RedirectIfAuthenticated.php</span><br><span class="line">|   |           TrimStrings.php</span><br><span class="line">|   |           TrustHosts.php</span><br><span class="line">|   |           TrustProxies.php</span><br><span class="line">|   |           VerifyCsrfToken.php</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在windows 要輸出這樣的結構可以使用cmd指令產出</p>
+<p>tree &gt; dir.txt &#x2F;a &#x2F;f</p>
+</blockquote>
+<h2 id="3-app"><a href="#3-app" class="headerlink" title="3. app"></a>3. app</h2><p>程式最常修改的地方</p>
+<h3 id="3-1-Console"><a href="#3-1-Console" class="headerlink" title="3.1. Console"></a>3.1. Console</h3><p>可以寫一些指令相關的檔案，前期暫時不會使用到它</p>
+<h3 id="3-2-Exceptions"><a href="#3-2-Exceptions" class="headerlink" title="3.2. Exceptions"></a>3.2. Exceptions</h3><p>做一些除錯相關的檔案，前期暫時不會使用到它</p>
+<h3 id="3-3-http"><a href="#3-3-http" class="headerlink" title="3.3. http"></a>3.3. http</h3><p>這是一個很重要的folder</p>
+<h4 id="3-3-1-controllers"><a href="#3-3-1-controllers" class="headerlink" title="3.3.1. controllers"></a>3.3.1. controllers</h4><p>使用者進入程式的進入點設定</p>
+<h4 id="3-3-2-Middleware"><a href="#3-3-2-Middleware" class="headerlink" title="3.3.2. Middleware"></a>3.3.2. Middleware</h4><p>比較進階的模塊</p>
+<h3 id="3-4-Models"><a href="#3-4-Models" class="headerlink" title="3.4. Models"></a>3.4. Models</h3><p>擺放一些資料模塊</p>
+<h3 id="3-5-Providers"><a href="#3-5-Providers" class="headerlink" title="3.5. Providers"></a>3.5. Providers</h3><p>有些邏輯可以包成一些服務，可以放在這兒。</p>
+<p>或者是套件的一些使用方式都會在這邊</p>
+<h2 id="4-bootstrap"><a href="#4-bootstrap" class="headerlink" title="4. bootstrap"></a>4. bootstrap</h2><p>是比較進階的，跟程式運作有關，很少會碰到它</p>
+<h2 id="5-config"><a href="#5-config" class="headerlink" title="5. config"></a>5. config</h2><p>可以去設定一些參數，比方說要連到哪個資料庫、email要發到哪個server ip</p>
+<h2 id="6-database"><a href="#6-database" class="headerlink" title="6. database"></a>6. database</h2><p>跟資料庫操作有關的，或者是要做一些假資料，或者是啟動server時預設產生的資料等等</p>
+<h2 id="7-public"><a href="#7-public" class="headerlink" title="7. public"></a>7. public</h2><p>放的是靜態檔案 比方說圖片或pdf等等</p>
+<h2 id="8-resource-structure"><a href="#8-resource-structure" class="headerlink" title="8. resource structure"></a>8. resource structure</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---resources</span><br><span class="line">|   +---css</span><br><span class="line">|   |       app.css</span><br><span class="line">|   |       </span><br><span class="line">|   +---js</span><br><span class="line">|   |       app.js</span><br><span class="line">|   |       bootstrap.js</span><br><span class="line">|   |       </span><br><span class="line">|   +---lang</span><br><span class="line">|   |   \---en</span><br><span class="line">|   |           auth.php</span><br><span class="line">|   |           pagination.php</span><br><span class="line">|   |           passwords.php</span><br><span class="line">|   |           validation.php</span><br><span class="line">|   |           </span><br><span class="line">|   \---views</span><br><span class="line">|           welcome.blade.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-1-css"><a href="#8-1-css" class="headerlink" title="8.1. css"></a>8.1. css</h3><p>可以放一些前端必備的檔案</p>
+<h3 id="8-2-js"><a href="#8-2-js" class="headerlink" title="8.2. js"></a>8.2. js</h3><p>可以放一些前端必備的檔案</p>
+<h3 id="8-3-views"><a href="#8-3-views" class="headerlink" title="8.3. views"></a>8.3. views</h3><p>view有關的程式碼</p>
+<h2 id="9-routes"><a href="#9-routes" class="headerlink" title="9. routes"></a>9. routes</h2><p>使用者透過網址拜訪網站，透過路由決定要執行哪一段程式，下一章節會介紹</p>
+<h2 id="10-storage"><a href="#10-storage" class="headerlink" title="10. storage"></a>10. storage</h2><p>使用者上傳檔案，或者是你要產生暫時檔案，都在這邊哦</p>
+<h2 id="11-tests"><a href="#11-tests" class="headerlink" title="11. tests"></a>11. tests</h2><p>進行程式測試使用的</p>
+<h2 id="12-vendor"><a href="#12-vendor" class="headerlink" title="12. vendor"></a>12. vendor</h2><p>這個專案用到的套件</p>
+]]></content>
       <categories>
         <category>PHP</category>
         <category>Laravel</category>
@@ -6470,6 +6470,36 @@
       </tags>
   </entry>
   <entry>
+    <title>PHP Laravel 系列 - (16) 資料驗證</title>
+    <url>/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(16)%20%E8%B3%87%E6%96%99%E9%A9%97%E8%AD%89/</url>
+    <content><![CDATA[<p>什麼是資料驗證呢？檢查使用者傳過來的資料是否符合要求。</p>
+<span id="more"></span>
+
+
+<p><img src="https://i.imgur.com/vNx6mjV.png" alt="image-20220110134427966"></p>
+<p><img src="https://i.imgur.com/JJRzB02.png" alt="image-20220110134614068"></p>
+<p><img src="https://i.imgur.com/ypWu3hN.png" alt="image-20220110134718359"></p>
+<p><img src="https://i.imgur.com/x9hbVJD.png" alt="image-20220110134807188"></p>
+<p><img src="https://i.imgur.com/BhtwGNd.png" alt="image-20220110134821109"></p>
+<p><img src="https://i.imgur.com/w6Uy9gb.png" alt="image-20220110134905461"></p>
+<p><img src="https://i.imgur.com/hSZUI4P.png" alt="image-20220110134915037"></p>
+<p><img src="https://i.imgur.com/0va2Pha.png" alt="image-20220110135143019"></p>
+<p><img src="https://i.imgur.com/SsZoLHX.png" alt="image-20220110135618587"></p>
+<p><img src="https://i.imgur.com/IB21DYd.png" alt="image-20220110135553636"></p>
+<p><img src="https://i.imgur.com/9Di1hrf.png" alt="image-20220110135643915"></p>
+<p><img src="https://i.imgur.com/n1chYv5.png" alt="image-20220110135749668"></p>
+<p><img src="https://i.imgur.com/3ArID5P.png" alt="image-20220110135800933"></p>
+]]></content>
+      <categories>
+        <category>PHP</category>
+        <category>Laravel</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP Laravel 系列 - (15) 如何建立Middleware</title>
     <url>/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(15)%20%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9CMiddleware/</url>
     <content><![CDATA[<h2 id="1-建立middleware"><a href="#1-建立middleware" class="headerlink" title="1. 建立middleware"></a>1. 建立middleware</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">php artisan make:middleware CheckDirtyWord</span><br></pre></td></tr></table></figure>
@@ -6496,36 +6526,6 @@
 <h2 id="5-POSTMAN-測試"><a href="#5-POSTMAN-測試" class="headerlink" title="5. POSTMAN 測試"></a>5. POSTMAN 測試</h2><figure class="highlight http"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1:8000/main</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://i.imgur.com/MfNHcHn.png" alt="image-20220110133608558"></p>
-]]></content>
-      <categories>
-        <category>PHP</category>
-        <category>Laravel</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP Laravel 系列 - (16) 資料驗證</title>
-    <url>/2022/01/10/2022-01-10%20PHP%20Laravel%20%E7%B3%BB%E5%88%97%20-%20(16)%20%E8%B3%87%E6%96%99%E9%A9%97%E8%AD%89/</url>
-    <content><![CDATA[<p>什麼是資料驗證呢？檢查使用者傳過來的資料是否符合要求。</p>
-<span id="more"></span>
-
-
-<p><img src="https://i.imgur.com/vNx6mjV.png" alt="image-20220110134427966"></p>
-<p><img src="https://i.imgur.com/JJRzB02.png" alt="image-20220110134614068"></p>
-<p><img src="https://i.imgur.com/ypWu3hN.png" alt="image-20220110134718359"></p>
-<p><img src="https://i.imgur.com/x9hbVJD.png" alt="image-20220110134807188"></p>
-<p><img src="https://i.imgur.com/BhtwGNd.png" alt="image-20220110134821109"></p>
-<p><img src="https://i.imgur.com/w6Uy9gb.png" alt="image-20220110134905461"></p>
-<p><img src="https://i.imgur.com/hSZUI4P.png" alt="image-20220110134915037"></p>
-<p><img src="https://i.imgur.com/0va2Pha.png" alt="image-20220110135143019"></p>
-<p><img src="https://i.imgur.com/SsZoLHX.png" alt="image-20220110135618587"></p>
-<p><img src="https://i.imgur.com/IB21DYd.png" alt="image-20220110135553636"></p>
-<p><img src="https://i.imgur.com/9Di1hrf.png" alt="image-20220110135643915"></p>
-<p><img src="https://i.imgur.com/n1chYv5.png" alt="image-20220110135749668"></p>
-<p><img src="https://i.imgur.com/3ArID5P.png" alt="image-20220110135800933"></p>
 ]]></content>
       <categories>
         <category>PHP</category>
@@ -8250,123 +8250,6 @@
       </categories>
   </entry>
   <entry>
-    <title>typescript</title>
-    <url>/2022/07/28/2022-07-28%20typescript/</url>
-    <content><![CDATA[<h2 id="1-TypeScript-TS-快速入門"><a href="#1-TypeScript-TS-快速入門" class="headerlink" title="1. TypeScript TS 快速入門"></a>1. TypeScript TS 快速入門</h2><h3 id="1-1-什麼是TypeScript？"><a href="#1-1-什麼是TypeScript？" class="headerlink" title="1.1. 什麼是TypeScript？"></a>1.1. 什麼是TypeScript？</h3><ol>
-<li>加強版的javascript(Superset)</li>
-<li>加強了「Type」的部分</li>
-<li>開發完成後，最後還是需要編譯成javascript</li>
-<li>適用於開發前端跟後端，例如：搭配React、Express等框架</li>
-</ol>
-<span id="more"></span>
-
-<h3 id="1-2-為什麼需要TyperScript"><a href="#1-2-為什麼需要TyperScript" class="headerlink" title="1.2. 為什麼需要TyperScript"></a>1.2. 為什麼需要TyperScript</h3><ol>
-<li>開發時的(Type)類型檢查</li>
-<li>補強動態語言JS，Run起來才會出錯的缺點(不小心用字串做加減乘除)</li>
-<li>提高專案程式碼的維護性</li>
-</ol>
-<h2 id="2-環境安裝"><a href="#2-環境安裝" class="headerlink" title="2. 環境安裝"></a>2. 環境安裝</h2><h3 id="2-1-全局安裝"><a href="#2-1-全局安裝" class="headerlink" title="2.1. 全局安裝"></a>2.1. 全局安裝</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install typescript -g</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-專案安裝"><a href="#2-2-專案安裝" class="headerlink" title="2.2. 專案安裝"></a>2.2. 專案安裝</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install typescript --save-dev</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-版本檢查"><a href="#2-3-版本檢查" class="headerlink" title="2.3. 版本檢查"></a>2.3. 版本檢查</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc -v</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-初始化專案"><a href="#2-4-初始化專案" class="headerlink" title="2.4. 初始化專案"></a>2.4. 初始化專案</h3><p>經過以下指令產生<code>tsconfig.json</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-config設定項目"><a href="#3-config設定項目" class="headerlink" title="3. config設定項目"></a>3. config設定項目</h2><p>這邊簡單記錄幾個config設定</p>
-<h3 id="3-1-編譯目標版本"><a href="#3-1-編譯目標版本" class="headerlink" title="3.1. 編譯目標版本"></a>3.1. 編譯目標版本</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;es2016&quot;</span><span class="punctuation">,</span>                                  <span class="comment">/* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-Source-path"><a href="#3-2-Source-path" class="headerlink" title="3.2. Source path"></a>3.2. Source path</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;rootDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./src&quot;</span><span class="punctuation">,</span>                                  <span class="comment">/* Specify the root folder within your source files. */</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-Output-path"><a href="#3-3-Output-path" class="headerlink" title="3.3. Output path"></a>3.3. Output path</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;outDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./dist/&quot;</span><span class="punctuation">,</span>                                <span class="comment">/* Specify an output folder for all emitted files. */</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/BMzSwEZ.png" alt="image-20220730193055247"></p>
-<h3 id="3-4-允許撰寫js"><a href="#3-4-允許撰寫js" class="headerlink" title="3.4. 允許撰寫js"></a>3.4. 允許撰寫js</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &quot;allowJs&quot;: true,                                  /* Allow JavaScript files to be a part of your program. Use the &#x27;checkJS&#x27; option to get errors from these files. */</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3-5-debug模式指向ts檔案"><a href="#3-5-debug模式指向ts檔案" class="headerlink" title="3.5. debug模式指向ts檔案"></a>3.5. debug模式指向ts檔案</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;inlineSourceMap&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>                          <span class="comment">/* Include sourcemap files inside the emitted JavaScript. */</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.imgur.com/ghxCEfp.png" alt="image-20220730192733527"></p>
-<p><img src="https://i.imgur.com/urwlDRE.png" alt="image-20220730192703431"></p>
-<h2 id="4-如何complier"><a href="#4-如何complier" class="headerlink" title="4. 如何complier"></a>4. 如何complier</h2><h3 id="4-1-新增index-ts"><a href="#4-1-新增index-ts" class="headerlink" title="4.1. 新增index.ts"></a>4.1. 新增<code>index.ts</code></h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">string</span> =<span class="string">&quot;kite&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-2-手動編譯檔案"><a href="#4-2-手動編譯檔案" class="headerlink" title="4.2. 手動編譯檔案"></a>4.2. 手動編譯檔案</h3><p>經過以下指令會編譯出<code>index.js</code>檔</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc index.ts</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3-持續監控"><a href="#4-3-持續監控" class="headerlink" title="4.3. 持續監控"></a>4.3. 持續監控</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc --watch</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-動手寫程式"><a href="#5-動手寫程式" class="headerlink" title="5. 動手寫程式"></a>5. 動手寫程式</h2><p><img src="https://i.imgur.com/OedIFzb.png" alt="image-20220802022320270"></p>
-<h3 id="5-1-basic"><a href="#5-1-basic" class="headerlink" title="5.1. basic"></a>5.1. basic</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ 基本類型 ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">str</span>: <span class="built_in">string</span> =<span class="string">&#x27;kite&#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">str1</span>: <span class="built_in">string</span>;</span><br><span class="line">str1 =<span class="string">&quot;kite&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">num</span>: <span class="built_in">number</span> = <span class="number">1000</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">boo</span>: <span class="built_in">boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">n</span>: <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">un</span>: <span class="literal">undefined</span> = <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">test</span>: <span class="built_in">any</span> = <span class="literal">true</span>;<span class="comment">//任何型別都可以</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//陣列</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr1d</span>: <span class="built_in">string</span>[] = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr2d</span>: <span class="built_in">string</span>[][] = [[<span class="string">&#x27;a1&#x27;</span>,<span class="string">&#x27;b1&#x27;</span>,<span class="string">&#x27;c1&#x27;</span>],[<span class="string">&#x27;a2&#x27;</span>,<span class="string">&#x27;b2&#x27;</span>,<span class="string">&#x27;c2&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//元組</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">tuple1d</span>: [<span class="built_in">number</span>, <span class="built_in">string</span>, <span class="built_in">boolean</span>] = [<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>,<span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">tuple2d</span>: [<span class="built_in">string</span>,<span class="built_in">string</span>][] = [[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-2-Enum-枚舉"><a href="#5-2-Enum-枚舉" class="headerlink" title="5.2. Enum 枚舉"></a>5.2. Enum 枚舉</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Enum 枚舉 ------------</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">LiveStatus</span> &#123;</span><br><span class="line">    <span class="variable constant_">SUCCESS</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="variable constant_">FAIL</span> = -<span class="number">1</span>,</span><br><span class="line">    <span class="variable constant_">STREAMING</span> = <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> liveStatus = <span class="title class_">LiveStatus</span>.<span class="property">FAIL</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(liveStatus);</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-3-Union"><a href="#5-3-Union" class="headerlink" title="5.3. Union"></a>5.3. Union</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Union ------------</span></span><br><span class="line"><span class="keyword">let</span> union : <span class="built_in">boolean</span> | <span class="built_in">string</span>;</span><br><span class="line">union = <span class="literal">true</span>;</span><br><span class="line">union = <span class="string">&quot;hi,I&#x27;m Support boolean、string type&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-4-Type"><a href="#5-4-Type" class="headerlink" title="5.4. Type"></a>5.4. Type</h3><h4 id="5-4-1-basic"><a href="#5-4-1-basic" class="headerlink" title="5.4.1. basic"></a>5.4.1. basic</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Type ------------</span></span><br><span class="line"><span class="keyword">type</span> A = <span class="built_in">number</span> | <span class="built_in">string</span> </span><br><span class="line"><span class="keyword">let</span> <span class="attr">a1</span>: A</span><br><span class="line">a1 = <span class="number">1</span></span><br><span class="line">a1 = <span class="string">&quot;type A&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="5-4-2-Partial-Readonly"><a href="#5-4-2-Partial-Readonly" class="headerlink" title="5.4.2. Partial &amp; Readonly"></a>5.4.2. Partial &amp; Readonly</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//保哥 union</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Level</span> = <span class="string">&quot;初階&quot;</span> | <span class="string">&quot;中階&quot;</span> | <span class="string">&quot;高階&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">yourLevel</span>: <span class="title class_">Level</span> = <span class="string">&quot;中階&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//保哥 Partial &amp; ReadOnly Types</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Person</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PersonPartial</span> = <span class="title class_">Partial</span>&lt;<span class="title class_">Person</span>&gt;;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PersonReadonly</span> = <span class="title class_">Readonly</span>&lt;<span class="title class_">Person</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personA</span>: <span class="title class_">Person</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;Will&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personB</span>:<span class="title class_">PersonPartial</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Will&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personC</span>:<span class="title class_">PersonReadonly</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Will&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">123</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//personC.name=&quot;kite&quot;;//error</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-5-Interface"><a href="#5-5-Interface" class="headerlink" title="5.5. Interface"></a>5.5. Interface</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Interface ------------</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">User</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-6-Object"><a href="#5-6-Object" class="headerlink" title="5.6. Object"></a>5.6. Object</h3><p>思考一下type 與 interface的差異性</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Object ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Card</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    desc?: <span class="built_in">string</span> <span class="comment">//可選</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">card01</span>: <span class="title class_">Card</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;kite&quot;</span>,</span><br><span class="line">    <span class="attr">desc</span>:<span class="string">&quot;....&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Card2</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="attr">desc</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Card2</span> &#123;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">card02</span>: <span class="title class_">Card2</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;dog&quot;</span>,</span><br><span class="line">    <span class="attr">desc</span>:<span class="string">&quot;won!&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-7-Function"><a href="#5-7-Function" class="headerlink" title="5.7. Function"></a>5.7. Function</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ function ------------</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params">a: <span class="built_in">string</span>,b: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello2</span>(<span class="params">a: <span class="built_in">string</span>,b: <span class="built_in">string</span></span>): <span class="built_in">number</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello3</span>(<span class="params">a: <span class="built_in">number</span>,b: <span class="built_in">boolean</span>,c: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test2</span>(<span class="params">a: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可選參數要放在最後面</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello4</span>(<span class="params">name: <span class="built_in">string</span>, age?: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(age === <span class="literal">undefined</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="title function_">test2</span>(age)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//箭頭函式</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">func</span> = (<span class="params"></span>) =&gt; &#123;&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">func2</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-8-斷言"><a href="#5-8-斷言" class="headerlink" title="5.8. 斷言"></a>5.8. 斷言</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ 斷言 unknown ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoModel</span> = &#123;</span><br><span class="line">    <span class="attr">userId</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">id</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">getData</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//https://jsonplaceholder.typicode.com/</span></span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> todoModel = <span class="keyword">await</span> res.<span class="title function_">json</span>() <span class="keyword">as</span> <span class="title class_">TodoModel</span>;    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(todoModel);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">data1</span>: <span class="title class_">TodoModel</span> = &#123;</span><br><span class="line">    <span class="string">&quot;userId&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;delectus aut autem&quot;</span>,</span><br><span class="line">    <span class="string">&quot;completed&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Beta</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 假設data1是動態的，想像data1是response回來的json且動態內容，先unknow 再轉為預計的型別</span></span><br><span class="line"><span class="keyword">const</span> beta = data1 <span class="keyword">as</span> <span class="built_in">unknown</span> <span class="keyword">as</span> <span class="title class_">Beta</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">getData</span>()</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-9-Class"><a href="#5-9-Class" class="headerlink" title="5.9. Class"></a>5.9. Class</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ class ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Live</span> &#123;</span><br><span class="line">    <span class="attr">roomName</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="keyword">private</span> <span class="attr">id</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="keyword">protected</span> <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="title function_">constructor</span> (<span class="attr">roomName1</span>: <span class="built_in">string</span>, <span class="attr">id1</span>: <span class="built_in">string</span>, <span class="attr">name1</span>: <span class="built_in">string</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;建立直播中...&#x27;</span>);        </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">roomName</span> = roomName1;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">id</span> = id1;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;class Live start method&quot;</span>);        </span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`class Live this.id = <span class="subst">$&#123;<span class="variable language_">this</span>.id&#125;</span>`</span>);                </span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`class Live this.name = <span class="subst">$&#123;<span class="variable language_">this</span>.name&#125;</span>`</span>);      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承 extends</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CarLive</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Live</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span> (<span class="attr">roomName1</span>: <span class="built_in">string</span>, <span class="attr">id1</span>: <span class="built_in">string</span>, <span class="attr">name1</span>: <span class="built_in">string</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">super</span>(roomName1,id1,name1)        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live01 = <span class="keyword">new</span> <span class="title class_">Live</span>(<span class="string">&quot;1號&quot;</span>,<span class="string">&quot;00001&quot;</span>,<span class="string">&quot;kite&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live01);</span><br><span class="line"><span class="comment">//console.log(live01.id);//在開發階段會有報錯提示</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live02 = <span class="keyword">new</span> <span class="title class_">CarLive</span>(<span class="string">&quot;2號&quot;</span>,<span class="string">&quot;00002&quot;</span>,<span class="string">&quot;Richard&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live02);</span><br><span class="line">live02.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//私有變數新寫法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Live2</span>&#123;</span><br><span class="line">    <span class="comment">//↓私有變數</span></span><br><span class="line">    #name</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.#name= name;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(name);        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live2 = <span class="keyword">new</span> <span class="title class_">Live2</span>(<span class="string">&quot;Mary&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//實作介面 implements</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">CarProps</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">    <span class="attr">start</span>: <span class="function">() =&gt;</span> <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">implements</span> <span class="title class_">CarProps</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">name: <span class="built_in">string</span>,age: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="5-9-1-public"><a href="#5-9-1-public" class="headerlink" title="5.9.1. public"></a>5.9.1. public</h4><p>當一個變數或方法的可視性被宣告為<code>public</code>。這表示這些方法和屬性可以在<code>類別的裡面與外面被存取</code>。</p>
-<h4 id="5-9-2-protected"><a href="#5-9-2-protected" class="headerlink" title="5.9.2. protected"></a>5.9.2. protected</h4><p>當一個變數或方法的可視性被宣告為<code>protected</code>，該變數或方法只能在<code>類別以及子類別的內部存取</code>。</p>
-<h4 id="5-9-3-private"><a href="#5-9-3-private" class="headerlink" title="5.9.3. private"></a>5.9.3. private</h4><p>當一個變數或方法的可視性被宣告為<code>private</code>，該變數或方法只能在<code>定義它們的類別內</code>。</p>
-<p>實質上，在browser上還是能進行存取，如下圖：</p>
-<p><img src="https://i.imgur.com/x75cpRg.png" alt="image-20220730235820137"></p>
-<p>新語法新特性，希望能達到private效果可以使用<code>#</code>符號進行變數宣告。再看一次browser，的確已經限制住存取了。</p>
-<p><img src="https://i.imgur.com/J1vRZue.png" alt="image-20220731005658972"></p>
-<h3 id="5-10-泛型"><a href="#5-10-泛型" class="headerlink" title="5.10. 泛型"></a>5.10. 泛型</h3><h4 id="5-10-1-function"><a href="#5-10-1-function" class="headerlink" title="5.10.1. function"></a>5.10.1. function</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ 泛型 ------------</span></span><br><span class="line"><span class="comment">//function</span></span><br><span class="line"><span class="keyword">function</span> print&lt;T&gt;(<span class="attr">data</span>:T)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;data&#x27;</span>,data);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">print&lt;<span class="built_in">number</span>&gt;(<span class="number">999</span>)</span><br><span class="line">print&lt;<span class="built_in">string</span>&gt;(<span class="string">&quot;kite&quot;</span>)</span><br><span class="line">print&lt;<span class="built_in">string</span>[][]&gt;([[<span class="string">&#x27;kite&#x27;</span>,<span class="string">&#x27;Richard&#x27;</span>]])</span><br><span class="line">print&lt;<span class="title class_">CarProps</span>&gt;(&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;kite&quot;</span></span><br><span class="line">    ,<span class="attr">age</span>:<span class="number">123</span></span><br><span class="line">    ,<span class="title function_">start</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`I&#x27;m start method`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-10-2-class"><a href="#5-10-2-class" class="headerlink" title="5.10.2. class"></a>5.10.2. class</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Print</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="attr">data</span>: T</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">d: T</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">data</span> = d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Print</span>&lt;<span class="built_in">number</span>&gt;(<span class="number">999</span>);</span><br><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">Print</span>&lt;<span class="built_in">string</span>&gt;(<span class="string">&#x27;kite&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p&#x27;</span>,p);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p1&#x27;</span>,p1);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-11-Utility-Types"><a href="#5-11-Utility-Types" class="headerlink" title="5.11. Utility Types"></a>5.11. Utility Types</h3><h4 id="5-11-1-Record"><a href="#5-11-1-Record" class="headerlink" title="5.11.1. Record&lt;Keys, Type&gt;"></a>5.11.1. Record&lt;Keys, Type&gt;</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">CatInfo</span> &#123;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">breed</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">type</span> <span class="title class_">CatName</span> = <span class="string">&quot;miffy&quot;</span> | <span class="string">&quot;boris&quot;</span> | <span class="string">&quot;mordred&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">cats</span>: <span class="title class_">Record</span>&lt;<span class="title class_">CatName</span>, <span class="title class_">CatInfo</span>&gt; = &#123;</span><br><span class="line">    <span class="attr">miffy</span>: &#123; <span class="attr">age</span>: <span class="number">10</span>, <span class="attr">breed</span>: <span class="string">&quot;Persian&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">boris</span>: &#123; <span class="attr">age</span>: <span class="number">5</span>, <span class="attr">breed</span>: <span class="string">&quot;Maine Coon&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">mordred</span>: &#123; <span class="attr">age</span>: <span class="number">16</span>, <span class="attr">breed</span>: <span class="string">&quot;British Shorthair&quot;</span> &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-11-2-Pick"><a href="#5-11-2-Pick" class="headerlink" title="5.11.2. Pick&lt;Type, Keys&gt;"></a>5.11.2. Pick&lt;Type, Keys&gt;</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Todo1</span> &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">description</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoPreview1</span> = <span class="title class_">Pick</span>&lt;<span class="title class_">Todo1</span>, <span class="string">&quot;title&quot;</span> | <span class="string">&quot;completed&quot;</span>&gt;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="attr">todo1</span>: <span class="title class_">TodoPreview1</span> = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Clean room&quot;</span>,</span><br><span class="line">  <span class="attr">completed</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-11-3-Omit"><a href="#5-11-3-Omit" class="headerlink" title="5.11.3. Omit&lt;Type, Keys&gt;"></a>5.11.3. Omit&lt;Type, Keys&gt;</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Todo2</span> &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">description</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">    <span class="attr">createdAt</span>: <span class="built_in">number</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoPreview2</span> = <span class="title class_">Omit</span>&lt;<span class="title class_">Todo2</span>, <span class="string">&quot;description&quot;</span>&gt;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="attr">todo2</span>: <span class="title class_">TodoPreview2</span> = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Clean room&quot;</span>,</span><br><span class="line">  <span class="attr">completed</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">createdAt</span>: <span class="number">1615544252770</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="6-參考連結"><a href="#6-參考連結" class="headerlink" title="6. 參考連結"></a>6. 參考連結</h2><ul>
-<li><a href="https://youtu.be/GinkGJZBHIY">【前端速成】TypeScript TS 快速入門｜Tiktok工程師帶你入門前端｜布魯斯前端</a></li>
-<li><a href="http://json2ts.com/">json2ts</a></li>
-<li><a href="https://jsonplaceholder.typicode.com/">{JSON} Placeholder</a></li>
-<li><a href="https://youtu.be/SCLKlc6G0_k">用不用 TypeScript 隨便你，反正我是用了 | Will 保哥 (JSDC 2020)</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>typescript</category>
-      </categories>
-      <tags>
-        <tag>typescript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>編碼歷史</title>
     <url>/2022/04/29/2022-04-29%20%E7%B7%A8%E7%A2%BC%E6%AD%B7%E5%8F%B2%E6%95%B4%E5%90%88%E5%8C%85/</url>
     <content><![CDATA[<h2 id="1-名詞定義"><a href="#1-名詞定義" class="headerlink" title="1. 名詞定義"></a>1. 名詞定義</h2><h3 id="1-1-位元-bit"><a href="#1-1-位元-bit" class="headerlink" title="1.1. 位元 - bit"></a>1.1. 位元 - bit</h3><span id="more"></span>
@@ -8940,6 +8823,123 @@
       </categories>
       <tags>
         <tag>編碼</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>typescript</title>
+    <url>/2022/07/28/2022-07-28%20typescript/</url>
+    <content><![CDATA[<h2 id="1-TypeScript-TS-快速入門"><a href="#1-TypeScript-TS-快速入門" class="headerlink" title="1. TypeScript TS 快速入門"></a>1. TypeScript TS 快速入門</h2><h3 id="1-1-什麼是TypeScript？"><a href="#1-1-什麼是TypeScript？" class="headerlink" title="1.1. 什麼是TypeScript？"></a>1.1. 什麼是TypeScript？</h3><ol>
+<li>加強版的javascript(Superset)</li>
+<li>加強了「Type」的部分</li>
+<li>開發完成後，最後還是需要編譯成javascript</li>
+<li>適用於開發前端跟後端，例如：搭配React、Express等框架</li>
+</ol>
+<span id="more"></span>
+
+<h3 id="1-2-為什麼需要TyperScript"><a href="#1-2-為什麼需要TyperScript" class="headerlink" title="1.2. 為什麼需要TyperScript"></a>1.2. 為什麼需要TyperScript</h3><ol>
+<li>開發時的(Type)類型檢查</li>
+<li>補強動態語言JS，Run起來才會出錯的缺點(不小心用字串做加減乘除)</li>
+<li>提高專案程式碼的維護性</li>
+</ol>
+<h2 id="2-環境安裝"><a href="#2-環境安裝" class="headerlink" title="2. 環境安裝"></a>2. 環境安裝</h2><h3 id="2-1-全局安裝"><a href="#2-1-全局安裝" class="headerlink" title="2.1. 全局安裝"></a>2.1. 全局安裝</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install typescript -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-專案安裝"><a href="#2-2-專案安裝" class="headerlink" title="2.2. 專案安裝"></a>2.2. 專案安裝</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install typescript --save-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-版本檢查"><a href="#2-3-版本檢查" class="headerlink" title="2.3. 版本檢查"></a>2.3. 版本檢查</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-初始化專案"><a href="#2-4-初始化專案" class="headerlink" title="2.4. 初始化專案"></a>2.4. 初始化專案</h3><p>經過以下指令產生<code>tsconfig.json</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-config設定項目"><a href="#3-config設定項目" class="headerlink" title="3. config設定項目"></a>3. config設定項目</h2><p>這邊簡單記錄幾個config設定</p>
+<h3 id="3-1-編譯目標版本"><a href="#3-1-編譯目標版本" class="headerlink" title="3.1. 編譯目標版本"></a>3.1. 編譯目標版本</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;es2016&quot;</span><span class="punctuation">,</span>                                  <span class="comment">/* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-Source-path"><a href="#3-2-Source-path" class="headerlink" title="3.2. Source path"></a>3.2. Source path</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;rootDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./src&quot;</span><span class="punctuation">,</span>                                  <span class="comment">/* Specify the root folder within your source files. */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-Output-path"><a href="#3-3-Output-path" class="headerlink" title="3.3. Output path"></a>3.3. Output path</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;outDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./dist/&quot;</span><span class="punctuation">,</span>                                <span class="comment">/* Specify an output folder for all emitted files. */</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/BMzSwEZ.png" alt="image-20220730193055247"></p>
+<h3 id="3-4-允許撰寫js"><a href="#3-4-允許撰寫js" class="headerlink" title="3.4. 允許撰寫js"></a>3.4. 允許撰寫js</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &quot;allowJs&quot;: true,                                  /* Allow JavaScript files to be a part of your program. Use the &#x27;checkJS&#x27; option to get errors from these files. */</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-5-debug模式指向ts檔案"><a href="#3-5-debug模式指向ts檔案" class="headerlink" title="3.5. debug模式指向ts檔案"></a>3.5. debug模式指向ts檔案</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;inlineSourceMap&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>                          <span class="comment">/* Include sourcemap files inside the emitted JavaScript. */</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/ghxCEfp.png" alt="image-20220730192733527"></p>
+<p><img src="https://i.imgur.com/urwlDRE.png" alt="image-20220730192703431"></p>
+<h2 id="4-如何complier"><a href="#4-如何complier" class="headerlink" title="4. 如何complier"></a>4. 如何complier</h2><h3 id="4-1-新增index-ts"><a href="#4-1-新增index-ts" class="headerlink" title="4.1. 新增index.ts"></a>4.1. 新增<code>index.ts</code></h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">string</span> =<span class="string">&quot;kite&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-手動編譯檔案"><a href="#4-2-手動編譯檔案" class="headerlink" title="4.2. 手動編譯檔案"></a>4.2. 手動編譯檔案</h3><p>經過以下指令會編譯出<code>index.js</code>檔</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc index.ts</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-持續監控"><a href="#4-3-持續監控" class="headerlink" title="4.3. 持續監控"></a>4.3. 持續監控</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc --watch</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-動手寫程式"><a href="#5-動手寫程式" class="headerlink" title="5. 動手寫程式"></a>5. 動手寫程式</h2><p><img src="https://i.imgur.com/OedIFzb.png" alt="image-20220802022320270"></p>
+<h3 id="5-1-basic"><a href="#5-1-basic" class="headerlink" title="5.1. basic"></a>5.1. basic</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ 基本類型 ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">str</span>: <span class="built_in">string</span> =<span class="string">&#x27;kite&#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">str1</span>: <span class="built_in">string</span>;</span><br><span class="line">str1 =<span class="string">&quot;kite&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">num</span>: <span class="built_in">number</span> = <span class="number">1000</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">boo</span>: <span class="built_in">boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">n</span>: <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">un</span>: <span class="literal">undefined</span> = <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">test</span>: <span class="built_in">any</span> = <span class="literal">true</span>;<span class="comment">//任何型別都可以</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//陣列</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr1d</span>: <span class="built_in">string</span>[] = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr2d</span>: <span class="built_in">string</span>[][] = [[<span class="string">&#x27;a1&#x27;</span>,<span class="string">&#x27;b1&#x27;</span>,<span class="string">&#x27;c1&#x27;</span>],[<span class="string">&#x27;a2&#x27;</span>,<span class="string">&#x27;b2&#x27;</span>,<span class="string">&#x27;c2&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//元組</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">tuple1d</span>: [<span class="built_in">number</span>, <span class="built_in">string</span>, <span class="built_in">boolean</span>] = [<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>,<span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">tuple2d</span>: [<span class="built_in">string</span>,<span class="built_in">string</span>][] = [[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-2-Enum-枚舉"><a href="#5-2-Enum-枚舉" class="headerlink" title="5.2. Enum 枚舉"></a>5.2. Enum 枚舉</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Enum 枚舉 ------------</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">LiveStatus</span> &#123;</span><br><span class="line">    <span class="variable constant_">SUCCESS</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="variable constant_">FAIL</span> = -<span class="number">1</span>,</span><br><span class="line">    <span class="variable constant_">STREAMING</span> = <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> liveStatus = <span class="title class_">LiveStatus</span>.<span class="property">FAIL</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(liveStatus);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-Union"><a href="#5-3-Union" class="headerlink" title="5.3. Union"></a>5.3. Union</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Union ------------</span></span><br><span class="line"><span class="keyword">let</span> union : <span class="built_in">boolean</span> | <span class="built_in">string</span>;</span><br><span class="line">union = <span class="literal">true</span>;</span><br><span class="line">union = <span class="string">&quot;hi,I&#x27;m Support boolean、string type&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-4-Type"><a href="#5-4-Type" class="headerlink" title="5.4. Type"></a>5.4. Type</h3><h4 id="5-4-1-basic"><a href="#5-4-1-basic" class="headerlink" title="5.4.1. basic"></a>5.4.1. basic</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Type ------------</span></span><br><span class="line"><span class="keyword">type</span> A = <span class="built_in">number</span> | <span class="built_in">string</span> </span><br><span class="line"><span class="keyword">let</span> <span class="attr">a1</span>: A</span><br><span class="line">a1 = <span class="number">1</span></span><br><span class="line">a1 = <span class="string">&quot;type A&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-2-Partial-Readonly"><a href="#5-4-2-Partial-Readonly" class="headerlink" title="5.4.2. Partial &amp; Readonly"></a>5.4.2. Partial &amp; Readonly</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//保哥 union</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Level</span> = <span class="string">&quot;初階&quot;</span> | <span class="string">&quot;中階&quot;</span> | <span class="string">&quot;高階&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">yourLevel</span>: <span class="title class_">Level</span> = <span class="string">&quot;中階&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//保哥 Partial &amp; ReadOnly Types</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Person</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PersonPartial</span> = <span class="title class_">Partial</span>&lt;<span class="title class_">Person</span>&gt;;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PersonReadonly</span> = <span class="title class_">Readonly</span>&lt;<span class="title class_">Person</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personA</span>: <span class="title class_">Person</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;Will&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personB</span>:<span class="title class_">PersonPartial</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Will&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="attr">personC</span>:<span class="title class_">PersonReadonly</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Will&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">123</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//personC.name=&quot;kite&quot;;//error</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-Interface"><a href="#5-5-Interface" class="headerlink" title="5.5. Interface"></a>5.5. Interface</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Interface ------------</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">User</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-6-Object"><a href="#5-6-Object" class="headerlink" title="5.6. Object"></a>5.6. Object</h3><p>思考一下type 與 interface的差異性</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ Object ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Card</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    desc?: <span class="built_in">string</span> <span class="comment">//可選</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">card01</span>: <span class="title class_">Card</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;kite&quot;</span>,</span><br><span class="line">    <span class="attr">desc</span>:<span class="string">&quot;....&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Card2</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="attr">desc</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Card2</span> &#123;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">card02</span>: <span class="title class_">Card2</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;dog&quot;</span>,</span><br><span class="line">    <span class="attr">desc</span>:<span class="string">&quot;won!&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-7-Function"><a href="#5-7-Function" class="headerlink" title="5.7. Function"></a>5.7. Function</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ function ------------</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params">a: <span class="built_in">string</span>,b: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello2</span>(<span class="params">a: <span class="built_in">string</span>,b: <span class="built_in">string</span></span>): <span class="built_in">number</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello3</span>(<span class="params">a: <span class="built_in">number</span>,b: <span class="built_in">boolean</span>,c: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test2</span>(<span class="params">a: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可選參數要放在最後面</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello4</span>(<span class="params">name: <span class="built_in">string</span>, age?: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(age === <span class="literal">undefined</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="title function_">test2</span>(age)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//箭頭函式</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">func</span> = (<span class="params"></span>) =&gt; &#123;&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">func2</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-8-斷言"><a href="#5-8-斷言" class="headerlink" title="5.8. 斷言"></a>5.8. 斷言</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ 斷言 unknown ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoModel</span> = &#123;</span><br><span class="line">    <span class="attr">userId</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">id</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">getData</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//https://jsonplaceholder.typicode.com/</span></span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> todoModel = <span class="keyword">await</span> res.<span class="title function_">json</span>() <span class="keyword">as</span> <span class="title class_">TodoModel</span>;    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(todoModel);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">data1</span>: <span class="title class_">TodoModel</span> = &#123;</span><br><span class="line">    <span class="string">&quot;userId&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;delectus aut autem&quot;</span>,</span><br><span class="line">    <span class="string">&quot;completed&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Beta</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 假設data1是動態的，想像data1是response回來的json且動態內容，先unknow 再轉為預計的型別</span></span><br><span class="line"><span class="keyword">const</span> beta = data1 <span class="keyword">as</span> <span class="built_in">unknown</span> <span class="keyword">as</span> <span class="title class_">Beta</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">getData</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-9-Class"><a href="#5-9-Class" class="headerlink" title="5.9. Class"></a>5.9. Class</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ class ------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Live</span> &#123;</span><br><span class="line">    <span class="attr">roomName</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="keyword">private</span> <span class="attr">id</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="keyword">protected</span> <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="title function_">constructor</span> (<span class="attr">roomName1</span>: <span class="built_in">string</span>, <span class="attr">id1</span>: <span class="built_in">string</span>, <span class="attr">name1</span>: <span class="built_in">string</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;建立直播中...&#x27;</span>);        </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">roomName</span> = roomName1;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">id</span> = id1;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;class Live start method&quot;</span>);        </span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`class Live this.id = <span class="subst">$&#123;<span class="variable language_">this</span>.id&#125;</span>`</span>);                </span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`class Live this.name = <span class="subst">$&#123;<span class="variable language_">this</span>.name&#125;</span>`</span>);      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承 extends</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CarLive</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Live</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span> (<span class="attr">roomName1</span>: <span class="built_in">string</span>, <span class="attr">id1</span>: <span class="built_in">string</span>, <span class="attr">name1</span>: <span class="built_in">string</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">super</span>(roomName1,id1,name1)        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live01 = <span class="keyword">new</span> <span class="title class_">Live</span>(<span class="string">&quot;1號&quot;</span>,<span class="string">&quot;00001&quot;</span>,<span class="string">&quot;kite&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live01);</span><br><span class="line"><span class="comment">//console.log(live01.id);//在開發階段會有報錯提示</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live02 = <span class="keyword">new</span> <span class="title class_">CarLive</span>(<span class="string">&quot;2號&quot;</span>,<span class="string">&quot;00002&quot;</span>,<span class="string">&quot;Richard&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live02);</span><br><span class="line">live02.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//私有變數新寫法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Live2</span>&#123;</span><br><span class="line">    <span class="comment">//↓私有變數</span></span><br><span class="line">    #name</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.#name= name;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(name);        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> live2 = <span class="keyword">new</span> <span class="title class_">Live2</span>(<span class="string">&quot;Mary&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(live2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//實作介面 implements</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">CarProps</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">    <span class="attr">start</span>: <span class="function">() =&gt;</span> <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">implements</span> <span class="title class_">CarProps</span>&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> </span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">name: <span class="built_in">string</span>,age: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-9-1-public"><a href="#5-9-1-public" class="headerlink" title="5.9.1. public"></a>5.9.1. public</h4><p>當一個變數或方法的可視性被宣告為<code>public</code>。這表示這些方法和屬性可以在<code>類別的裡面與外面被存取</code>。</p>
+<h4 id="5-9-2-protected"><a href="#5-9-2-protected" class="headerlink" title="5.9.2. protected"></a>5.9.2. protected</h4><p>當一個變數或方法的可視性被宣告為<code>protected</code>，該變數或方法只能在<code>類別以及子類別的內部存取</code>。</p>
+<h4 id="5-9-3-private"><a href="#5-9-3-private" class="headerlink" title="5.9.3. private"></a>5.9.3. private</h4><p>當一個變數或方法的可視性被宣告為<code>private</code>，該變數或方法只能在<code>定義它們的類別內</code>。</p>
+<p>實質上，在browser上還是能進行存取，如下圖：</p>
+<p><img src="https://i.imgur.com/x75cpRg.png" alt="image-20220730235820137"></p>
+<p>新語法新特性，希望能達到private效果可以使用<code>#</code>符號進行變數宣告。再看一次browser，的確已經限制住存取了。</p>
+<p><img src="https://i.imgur.com/J1vRZue.png" alt="image-20220731005658972"></p>
+<h3 id="5-10-泛型"><a href="#5-10-泛型" class="headerlink" title="5.10. 泛型"></a>5.10. 泛型</h3><h4 id="5-10-1-function"><a href="#5-10-1-function" class="headerlink" title="5.10.1. function"></a>5.10.1. function</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ------------ 泛型 ------------</span></span><br><span class="line"><span class="comment">//function</span></span><br><span class="line"><span class="keyword">function</span> print&lt;T&gt;(<span class="attr">data</span>:T)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;data&#x27;</span>,data);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">print&lt;<span class="built_in">number</span>&gt;(<span class="number">999</span>)</span><br><span class="line">print&lt;<span class="built_in">string</span>&gt;(<span class="string">&quot;kite&quot;</span>)</span><br><span class="line">print&lt;<span class="built_in">string</span>[][]&gt;([[<span class="string">&#x27;kite&#x27;</span>,<span class="string">&#x27;Richard&#x27;</span>]])</span><br><span class="line">print&lt;<span class="title class_">CarProps</span>&gt;(&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;kite&quot;</span></span><br><span class="line">    ,<span class="attr">age</span>:<span class="number">123</span></span><br><span class="line">    ,<span class="title function_">start</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`I&#x27;m start method`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-10-2-class"><a href="#5-10-2-class" class="headerlink" title="5.10.2. class"></a>5.10.2. class</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Print</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="attr">data</span>: T</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">d: T</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">data</span> = d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Print</span>&lt;<span class="built_in">number</span>&gt;(<span class="number">999</span>);</span><br><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">Print</span>&lt;<span class="built_in">string</span>&gt;(<span class="string">&#x27;kite&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p&#x27;</span>,p);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p1&#x27;</span>,p1);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-11-Utility-Types"><a href="#5-11-Utility-Types" class="headerlink" title="5.11. Utility Types"></a>5.11. Utility Types</h3><h4 id="5-11-1-Record"><a href="#5-11-1-Record" class="headerlink" title="5.11.1. Record&lt;Keys, Type&gt;"></a>5.11.1. Record&lt;Keys, Type&gt;</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">CatInfo</span> &#123;</span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">breed</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">type</span> <span class="title class_">CatName</span> = <span class="string">&quot;miffy&quot;</span> | <span class="string">&quot;boris&quot;</span> | <span class="string">&quot;mordred&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">cats</span>: <span class="title class_">Record</span>&lt;<span class="title class_">CatName</span>, <span class="title class_">CatInfo</span>&gt; = &#123;</span><br><span class="line">    <span class="attr">miffy</span>: &#123; <span class="attr">age</span>: <span class="number">10</span>, <span class="attr">breed</span>: <span class="string">&quot;Persian&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">boris</span>: &#123; <span class="attr">age</span>: <span class="number">5</span>, <span class="attr">breed</span>: <span class="string">&quot;Maine Coon&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">mordred</span>: &#123; <span class="attr">age</span>: <span class="number">16</span>, <span class="attr">breed</span>: <span class="string">&quot;British Shorthair&quot;</span> &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-11-2-Pick"><a href="#5-11-2-Pick" class="headerlink" title="5.11.2. Pick&lt;Type, Keys&gt;"></a>5.11.2. Pick&lt;Type, Keys&gt;</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Todo1</span> &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">description</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoPreview1</span> = <span class="title class_">Pick</span>&lt;<span class="title class_">Todo1</span>, <span class="string">&quot;title&quot;</span> | <span class="string">&quot;completed&quot;</span>&gt;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="attr">todo1</span>: <span class="title class_">TodoPreview1</span> = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Clean room&quot;</span>,</span><br><span class="line">  <span class="attr">completed</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-11-3-Omit"><a href="#5-11-3-Omit" class="headerlink" title="5.11.3. Omit&lt;Type, Keys&gt;"></a>5.11.3. Omit&lt;Type, Keys&gt;</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Todo2</span> &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">description</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">    <span class="attr">createdAt</span>: <span class="built_in">number</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TodoPreview2</span> = <span class="title class_">Omit</span>&lt;<span class="title class_">Todo2</span>, <span class="string">&quot;description&quot;</span>&gt;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="attr">todo2</span>: <span class="title class_">TodoPreview2</span> = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Clean room&quot;</span>,</span><br><span class="line">  <span class="attr">completed</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">createdAt</span>: <span class="number">1615544252770</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-參考連結"><a href="#6-參考連結" class="headerlink" title="6. 參考連結"></a>6. 參考連結</h2><ul>
+<li><a href="https://youtu.be/GinkGJZBHIY">【前端速成】TypeScript TS 快速入門｜Tiktok工程師帶你入門前端｜布魯斯前端</a></li>
+<li><a href="http://json2ts.com/">json2ts</a></li>
+<li><a href="https://jsonplaceholder.typicode.com/">{JSON} Placeholder</a></li>
+<li><a href="https://youtu.be/SCLKlc6G0_k">用不用 TypeScript 隨便你，反正我是用了 | Will 保哥 (JSDC 2020)</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>typescript</category>
+      </categories>
+      <tags>
+        <tag>typescript</tag>
       </tags>
   </entry>
   <entry>
@@ -9914,7 +9914,7 @@
       </tags>
   </entry>
   <entry>
-    <title>ASP.NET、NetCoreAPI整合reCAPTCHA V2記錄</title>
+    <title>Gitea SSL憑證安裝與SSH連線設定</title>
     <url>/2024/02/20/2024-02-20%20Gitea%20SSL%E6%86%91%E8%AD%89%E5%AE%89%E8%A3%9D%E8%88%87SSH%E9%80%A3%E7%B7%9A%E8%A8%AD%E5%AE%9A/</url>
     <content><![CDATA[<h2 id="1-Gitea-SSL憑證安裝與SSH連線設定"><a href="#1-Gitea-SSL憑證安裝與SSH連線設定" class="headerlink" title="1. Gitea SSL憑證安裝與SSH連線設定"></a>1. Gitea SSL憑證安裝與SSH連線設定</h2><h3 id="1-1-動機"><a href="#1-1-動機" class="headerlink" title="1.1. 動機"></a>1.1. 動機</h3><p>單位計畫以 HTTPS 提供 Git 服務，已申請相關網域並預計透過 TWCA 認證單位完成 SSL 設定。然而，網路上缺乏針對 TWCA 與 Gitea 整合的完整教學。為此，整理並實作相關流程，記錄於此，方便日後參考，也希望能幫助有相同需求的人。</p>
 <span id="more"></span>
